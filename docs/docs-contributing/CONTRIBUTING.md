@@ -4,6 +4,28 @@ We love your input! We want to make contributing to Semaphore documentation as e
 
 This guide outlines the process for making changes to the documentation, whether you are an internal or external contributor.
 
+
+## Table of Content
+
+<!-- toc -->
+
+- [Ways to Contribute](#ways-to-contribute)
+  * [Provide Feedback](#provide-feedback)
+  * [Update Documentation Content](#update-documentation-content)
+- [Prerequisites](#prerequisites)
+- [Step 1: Set Up Your Local Environment](#step-1-set-up-your-local-environment)
+- [Step 2: Set Up Your Working Branch](#step-2-set-up-your-working-branch)
+- [Step 3: Test Your Changes Locally](#step-3-test-your-changes-locally)
+  * [Validate the Markdown Syntax](#validate-the-markdown-syntax)
+  * [Review Changes in Browser](#review-changes-in-browser)
+- [Step 4: Create a Pull Request](#step-4-create-a-pull-request)
+  * [Pull Request Etiquette](#pull-request-etiquette)
+  * [Internal Contributors](#internal-contributors)
+  * [External Contributors](#external-contributors)
+- [Next Steps](#next-steps)
+
+<!-- tocstop -->
+
 ## Ways to Contribute
 
 ### Provide Feedback
@@ -172,7 +194,23 @@ If you're an internal contributor with permission to access the [semaphoreci/sem
    git add -A                                   # Add all changed files to the list of files to be committed
    git commit -am "Fix or feature description"  # Add and commit changes with a comment
    git commit -m "Fix or feature description"   # Commit changes already added
-  
+   ```
+
+2. Push your branch to the [semaphoreci/semaphore](./) repository with a command similar to the following:
+   
+   ```bash
+   git push origin my-branch
+   ```
+
+3. Open the Semaphore repository, select your branch as the branch to merge into `main`, then click **New pull request**.
+   Reviewers are automatically assigned based on the `CODEOWNERS` file and branch protection rules. 
+
+4. Click the `preview` tab in the PR description form, select `Documentation` template and create the pull request after filling in the description.
+
+5. Wait for the minimum required approvals, then merge your pull request as soon as possible.
+
+### External Contributors
+
 If you are an external contributor, you must commit your changes to your branch and push your branch to a fork of the [semaphoreci/semaphore](./) repository.
 
 To push changes as an external contributor:
@@ -212,7 +250,9 @@ To push changes as an external contributor:
 
    If you don't respond to reviewer feedback, your pull request is likely to be deemed inactive and closed.
 
-8. Wait for the minimum required approvals, then merge your pull request as soon as possible.
+8. Click the `preview` tab in the PR description form, select `Documentation` template and create the pull request after filling in the description.
+
+9. Wait for the minimum required approvals, then merge your pull request as soon as possible. 
 
 ## Next Steps
 
