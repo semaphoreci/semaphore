@@ -159,7 +159,7 @@ Go to the **Tasks** tab in your project and:
 
 ## How to delete a task {#delete-task}
 
-When you delete a task all the execution history is also deleted. If you want to keep the execution history for the task, you can [pause the task](#deasctivate-task). This prevents the task from running automatically.
+When you delete a task all the execution history is also deleted. If you want to keep the execution history for the task, you can [pause the task](#deactivate-task). This prevents the task from running automatically.
 
 To delete the task, go to the **Tasks** tab in your project and press the **Delete** button.
 
