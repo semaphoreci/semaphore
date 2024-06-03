@@ -9,5 +9,5 @@
 
 Use a checklist to confirm:
 - [ ] The branch is up-to-date with the main branch.
-- [ ] Update follows the docs style guide.
+- [ ] Update follows the docs [style guide](../../docs/docs-contributing/STYLE_GUIDE.md).
 - [ ] Changes have been tested locally.
