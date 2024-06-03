@@ -7,7 +7,7 @@ description: Find unreliable tests
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The flaky test dashboard shows unreliable tests in your [project](./projects).
+The flaky test dashboard shows unreliable tests in your [project](./projects). This page explains how they work and how to interpret the flaky test dashboard.
 
 ## Overview {#overview}
 

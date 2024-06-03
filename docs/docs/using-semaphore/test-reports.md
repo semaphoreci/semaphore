@@ -10,7 +10,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <VideoTutorial title="How to set up test reports" src="https://www.youtube.com/embed/9L0Z9xcKiYU?si=IdSsYfGLU7btYVwq" />
 
-Test reports shows a unified view of all your tests in a [pipeline](./pipelines).
+Test reports shows a unified view of all your tests in a [pipeline](./pipelines). This page explains how to configure test reports and interpret the test dashboard.
 
 ## Overview {#overview}
 

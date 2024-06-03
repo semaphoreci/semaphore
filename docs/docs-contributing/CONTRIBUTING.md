@@ -9,20 +9,21 @@ This guide outlines the process for making changes to the documentation, whether
 
 <!-- toc -->
 
-- [Ways to Contribute](#ways-to-contribute)
-  * [Provide Feedback](#provide-feedback)
-  * [Update Documentation Content](#update-documentation-content)
-- [Prerequisites](#prerequisites)
-- [Step 1: Set Up Your Local Environment](#step-1-set-up-your-local-environment)
-- [Step 2: Set Up Your Working Branch](#step-2-set-up-your-working-branch)
-- [Step 3: Test Your Changes Locally](#step-3-test-your-changes-locally)
-  * [Validate the Markdown Syntax](#validate-the-markdown-syntax)
-  * [Review Changes in Browser](#review-changes-in-browser)
-- [Step 4: Create a Pull Request](#step-4-create-a-pull-request)
-  * [Pull Request Etiquette](#pull-request-etiquette)
-  * [Internal Contributors](#internal-contributors)
-  * [External Contributors](#external-contributors)
-- [Next Steps](#next-steps)
+- [Contributing](#contributing)
+  - [Table of Content](#table-of-content)
+  - [Ways to Contribute](#ways-to-contribute)
+    - [Provide Feedback](#provide-feedback)
+    - [Update Documentation Content](#update-documentation-content)
+  - [Prerequisites](#prerequisites)
+  - [Step 1: Set Up Your Local Environment](#step-1-set-up-your-local-environment)
+  - [Step 2: Set Up Your Working Branch](#step-2-set-up-your-working-branch)
+  - [Step 3: Test Your Changes Locally](#step-3-test-your-changes-locally)
+    - [Review Changes in Browser](#review-changes-in-browser)
+  - [Step 4: Create a Pull Request](#step-4-create-a-pull-request)
+    - [Pull Request Etiquette](#pull-request-etiquette)
+    - [Internal Contributors](#internal-contributors)
+    - [External Contributors](#external-contributors)
+  - [Next Steps](#next-steps)
 
 <!-- tocstop -->
 
@@ -123,25 +124,16 @@ Follow this naming convention for your branch: `{group-token}/{issue number}/{co
 
 When making changes, ensure you follow the [Style Guide](./STYLE_GUIDE.md) and [UI Reference](UI-REFERENCE.md).
 
-As you update the documentation, it's a good idea to test your changes locally before committing.
+As you update the documentation, it's a good idea to test your changes locally before committing. Push your changes only when the next two commands pass.
 
-### Validate the Markdown Syntax
-
-1. **Install Node.js**: If you haven't already, install Node.js on your system. You can download and install it from the official website: [Node.js](https://nodejs.org/en/download/package-manager).
-
-2. **Install [markdownlint-cli](https://www.npmjs.com/package/markdownlint-cli/v/0.21.0)**: After installing Node.js, open your terminal and install markdownlint-cli globally using npm (Node Package Manager). Run the following command:
-   
+1. Run the linter to validate Markdown syntax
    ```bash
-   npm install -g markdownlint-cli
+   npm run lint
    ```
-
-3. **Run `markdownlint` on all `.md` files you've updated (excluding rules listed below)**:
-
+2. Build a local bundle to detect broken links
    ```bash
-   markdownlint --disable MD013 MD009 -- example.md
+   npm run build
    ```
-
-4. **Fix any errors before committing.**
 
 ### Review Changes in Browser
 
