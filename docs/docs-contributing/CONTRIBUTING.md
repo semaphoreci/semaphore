@@ -18,6 +18,7 @@ This guide outlines the process for making changes to the documentation, whether
   - [Step 1: Set Up Your Local Environment](#step-1-set-up-your-local-environment)
   - [Step 2: Set Up Your Working Branch](#step-2-set-up-your-working-branch)
   - [Step 3: Test Your Changes Locally](#step-3-test-your-changes-locally)
+    - [Run Linter](#run-linter)
     - [Review Changes in Browser](#review-changes-in-browser)
   - [Step 4: Create a Pull Request](#step-4-create-a-pull-request)
     - [Pull Request Etiquette](#pull-request-etiquette)
@@ -124,7 +125,12 @@ Follow this naming convention for your branch: `{group-token}/{issue number}/{co
 
 When making changes, ensure you follow the [Style Guide](./STYLE_GUIDE.md) and [UI Reference](UI-REFERENCE.md).
 
-As you update the documentation, it's a good idea to test your changes locally before committing. Push your changes only when the next two commands pass.
+As you update the documentation, it's a good idea to test your changes locally before committing. 
+
+### Run Linter
+
+Make sure your changes follow proper Markdown syntax and there are no broken links. 
+Push your changes only when the next two commands pass.
 
 1. Run the linter to validate Markdown syntax
    ```bash
