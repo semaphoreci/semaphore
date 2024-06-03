@@ -281,3 +281,9 @@ Click on "Failed first" to change the sort order. You can sort by "Slowest first
 Click on "View" to change display preferences. You can hide passed or skipped tests and change how the report looks.
 
 ![Changing display preferences](./img/test-reports-display.jpg)
+
+## See also
+
+- [Semaphore toolbox reference]
+- [How to use the flaky tests dashboard](./flaky-tests.md)
+- [Plan job and block execution with pipelines](./pipelines)

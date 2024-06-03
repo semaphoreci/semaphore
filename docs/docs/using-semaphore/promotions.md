@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Promotions connect [pipelines](./pipelines) to create branching workflows. This page explains what promotions are, how to use them to connect pipelines, and what settings are available.
+Promotions connect [pipelines](./pipelines) to implement continuous delivery and deployment, or any other kind of automations such as [blue-green](https://semaphoreci.com/blog/blue-green-deployment) deployments and [canary](https://semaphoreci.com/blog/what-is-canary-deployment) deployments. This page explains what promotions are, how to use them to connect pipelines, and what settings are available.
 
 ## Connecting pipelines {#promotions}
 
@@ -30,7 +30,7 @@ You can also run specific pipelines with [tasks](./tasks).
 
 ## Promotion triggers {#triggers}
 
-When a promotion is triggered the child pipeline starts to run. There are three options for triggering a promotion:
+Triggering a promotion means starting the next pipeline in the chain. There are three ways of triggering a promotion:
 
 - **Manual promotions**: the default. Start the next pipeline by pressing a button
 - **Auto promotions**: start on certain conditions such as when all tests have passed on the "master" branch
@@ -38,18 +38,20 @@ When a promotion is triggered the child pipeline starts to run. There are three 
 
 ## How to add promotions {#create-promotions}
 
-Promotions are defined in the pipeline from which the child pipelines branch off. 
+Promotions connect two pipelines, which we'll call the parent and child. The promotion is defined on the parent pipeline and points to the next pipeline down the chain.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
+
 
 1. Press **+Add Promotion** 
 2. Set a descriptive name for the promotion
 3. Configure the new pipeline and add jobs as needed
 
+Press **Delete Promotion** to completely delete the promotion along with *all its child pipelines*.
+
 ![Adding a manual promotion](./img/promotion-add-manual.jpg)
 
-Press (A) "Delete Promotion" to completely delete the promotion and *all child pipelines*.
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
@@ -97,7 +99,7 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 
 1. Open the promotion you wish to autostart
 2. Enable the checkbox **Enable automatic promotion**
-3. Type in the _start conditions_
+3. Type in the [start conditions]
 
 ![Setting autostart conditions on a promotion](./img/promotion-auto.jpg)
 
@@ -106,7 +108,7 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 
 1. Open the pipeline file containing the promotion you wish to autostart
 2. Add an `auto_promote` key
-3. Add a child `when` key. Type in the _start conditions_
+3. Add a child `when` key. Type in the [start conditions]
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -240,7 +242,7 @@ Once you have [added a parameter](#parameters-add), you can select its value fro
 
 <Available/>
 
-You can pass parameter values to the promotion when it is triggered using the _Semaphore API_.
+You can pass parameter values to the promotion when it is triggered using the [Semaphore API].
 
 The following is an example of a curl call that includes parameters:
 
@@ -300,7 +302,7 @@ ${{parameters.ENVIRONMENT}}
 Parameters are available in the following places:
 
 - Pipeline `name`
-- Pipeline _queue name_ (only available via YAML)
+- Pipeline [queue name] (only available via YAML)
 - As the name of a [secret](./jobs#secrets) (only available in YAML)
 
 <Tabs groupId="editor-yaml">
@@ -592,4 +594,10 @@ Once a [promotion](#promotions) is targeted, you may be locked out from starting
 
 ### Promoting environments via API {#promotion-api}
 
-You can also use the _Public API (alpha)_ to trigger promotions. If promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+You can also use the [Public API (alpha)] to trigger promotions. If promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+
+## See also
+
+- [Pipeline YAML reference]
+- [Promotion conditions reference]
+- [Plan job and block execution with pipelines](./pipelines)

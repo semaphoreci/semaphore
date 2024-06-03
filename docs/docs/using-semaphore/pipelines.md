@@ -93,9 +93,13 @@ You can reorder blocks by changing their dependencies using the visual editor.
 
 ## Connecting pipelines
 
-Multiple pipelines can be chained using [promotions](./promotions) to create branching workflows and implement continuous delivery. The workflow always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
+[Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
+
+The workflow always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
 
 ![A workflow with 3 pipelines](./img/workflows.jpg)
+
+For more information, see the [Promotions documentation](./promotions).
 
 ## Pipeline settings {#settings}
 
@@ -589,3 +593,10 @@ after_pipeline:
 
 </TabItem>
 </Tabs>
+
+## See also
+
+- [Pipeline YAML reference]
+- [How to create jobs](./jobs#job-create)
+- [How to connect pipelines with promotions](./promotions)
+- [Run pipelines on a schedule with Tasks](./tasks)

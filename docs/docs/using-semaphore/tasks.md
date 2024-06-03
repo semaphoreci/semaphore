@@ -30,9 +30,11 @@ Scheduled tasks have some limitations:
 - Tasks do not start automatically in the first 60 seconds after being created or edited.
 - In the rare cases in which the scheduler fails to start a task, Semaphore retries it every 10 seconds for the following 15 minutes.
 
-## How to manage tasks {#manage-tasks}
+## How to create a task {#manage-tasks}
 
 To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI.
+
+TODO: add an API tab to manage tasks via the API with examples. link to the main API ref
 
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">
@@ -81,12 +83,12 @@ To create a task, open your project and follow these steps. You can create tasks
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-You can add tasks by editing the project using the _Semaphore command line tool_.
+You can add tasks by editing the project using the [Semaphore command line tool].
 
 1. Run `sem edit project <project-name>`
 2. An editor should open showing the project settings. For example, this is a project called "hello-semaphore"
 
-    ```yaml title="sem edit projet hello-semaphore"
+    ```yaml title="sem edit project hello-semaphore"
     apiVersion: v1alpha
     kind: Project
     metadata:
@@ -99,7 +101,7 @@ You can add tasks by editing the project using the _Semaphore command line tool_
    - Task "nightly-deploys" runs the `nighthly-deploys.yml` on "master" branch pipeline at 12:15 am every day.
    - Task "canary-setup" runs the same pipeline in "develop" branch with [parameters](./promotions#parameters)
 
-    ```yaml title="sem edit projet hello-semaphore"
+    ```yaml title="sem edit project hello-semaphore"
     # ...
     tasks:
     # task 1
@@ -124,23 +126,47 @@ You can add tasks by editing the project using the _Semaphore command line tool_
 </TabItem>
 </Tabs>
 
-## Working with tasks {#create-task}
+## How to view your tasks {#view-task}
 
 Go to the **Tasks** tab in your project to view the configured tasks.
 
 ![Viewing a task on Semaphore UI](./img/task-view.jpg)
 
-You can control tasks using the UI:
-- Press **Run now** to start the task
-- **Deactivate** disables the task's schedule
-- **View** shows the task's execution history
-- **Delete** deletes the task
-- **Edit** let's you modify the task
+Press the **View** button to view the execution log for this task.
 
-### Running tasks manually {#run-tasks}
+![Viewing the task history](./img/view-task.jpg)
 
-Pressing **Run now** shows you the following screen.
+
+## How to run tasks manually {#run-tasks}
+
+Go to the **Tasks** tab in your project to view the configured tasks. Pressing **Run now** shows you the following screen.
 
 ![Running task manually](./img/task-run.jpg)
 
 Here you can change the branch, pipeline file, and define parameter values. Press **Run** to start the task immediately.
+
+## How to pause a task {#deactivate-task}
+
+Deactivating a task disables the schedule. Deactivated tasks can still be run manually. If you don't need the task or its history, [delete the task](#delete-task) instead.
+
+Go to the **Tasks** tab in your project and:
+
+1. Locate the task you want to deactivate.
+2. Click the **Deactivate** link
+3. Confirm the prompt
+
+![Deactivating a task](./img/deactivate-task.jpg)
+
+## How to delete a task {#delete-task}
+
+When you delete a task all the execution history is also deleted. If you want to keep the execution history for the task, you can [pause the task](#deasctivate-task). This prevents the task from running automatically.
+
+To delete the task, go to the **Tasks** tab in your project and press the **Delete** button.
+
+![Deleting a task](./img/delete-task.jpg)
+
+## See also
+
+- [Task API reference]
+- [Semaphore CLI reference]
+- [Plan job and block execution with pipelines](./pipelines)
