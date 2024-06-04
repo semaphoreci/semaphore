@@ -23,7 +23,7 @@ The test tab in your project offers a unified view of the state of tests across 
 Before you can view your tests in the Test tabs, you need to perform a one-time setup. The benefit of having all tests in one place is usually worth the effort of this setup.
 
 1. **Format**: format test results in JUnit XML
-2. **Publish**: push results file into the [artifact store](./jobs#artifact)
+2. **Publish**: push results file into the [artifact store](./artifacts)
 3. **Merge**: collect and process all result files
 
 ![Steps to enable test results](./img/test-reports-steps.jpg)
@@ -185,7 +185,7 @@ The table shows possible test runners for popular languages. If your test runner
 
 ### Step 2 - Publish {#step2}
 
-The publish step uploads all report files to the [artifact store](./jobs#artifact). This is accomplished using the `test-results` tool which is part of the _Semaphore toolbox_.
+The publish step uploads all report files to the [artifact store](./artifacts). This is accomplished using the `test-results` tool which is part of the _Semaphore toolbox_.
 
 Assuming the file is called `report.xml`, you can publish the report with the following command, which runs only if the file exists.
 
