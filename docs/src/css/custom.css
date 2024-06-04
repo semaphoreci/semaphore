@@ -45,3 +45,9 @@
 .header-github-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color);
 }
+
+/* drop shadow for images in docs */
+.img_node_modules-\@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+

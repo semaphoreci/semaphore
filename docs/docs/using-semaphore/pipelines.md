@@ -1,5 +1,5 @@
 ---
-description: Connect blocks to do more
+description: Connect blocks to get things done
 ---
 
 # Pipelines
