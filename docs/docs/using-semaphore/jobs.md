@@ -866,3 +866,9 @@ blocks:
 
 </TabItem>
 </Tabs>
+
+## See also
+
+- [Pipeline YAML reference]
+- [Semaphore toolbox reference]
+- [Plan job and block execution with pipelines](./pipelines)
