@@ -15,7 +15,11 @@ Organizations are the administrative unit in Semaphore. This page explains how t
 
 The fist time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
 
-All organizations have a name, a [billing plan](https://semaphoreci.com/pricing), one or more administrators and collaborators, and settings to manage how to run your [pipelines](./pipelines).
+Organizations have:
+- one or more [projects](./projects)
+- a [billing plan](https://semaphoreci.com/pricing)
+- one or more owners
+- users and permission levels
 
 ## How to change organizations {#org-selection}
 
@@ -31,8 +35,9 @@ To view or create other organizations, open the organization menu on the top rig
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-1. Install and connect the _Semaphore command line_
-2. Run `sem context` to show the organizations connected to the tool. The active organization has an asterisk (*) next to it
+You must install and connect the [Semaphore command line] to access your organizations
+
+1. Run `sem context` to show the organizations connected to the tool. The active organization has an asterisk (*) next to it
     ```shell title="View connected organizations"
     $ sem context
         myorg1_semaphoreci_com
@@ -40,7 +45,7 @@ To view or create other organizations, open the organization menu on the top rig
         # highlight-next-line
       * myorg3_semaphoreci_com
     ```
-3. Change organization with `sem context <organization-name>`
+2. Change organization with `sem context <organization-name>`
     ```shell title="Change active organization"
     $ sem context myorg1_semaphoreci_com
     switched to context "myorg1_semaphoreci_com"
@@ -323,7 +328,7 @@ To send Slack notifications:
 
 To send notifications to other webhook-based services:
 
-1. Create a organization [secret](#secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Rememeber the name of this secret, e.g. "mywebhook-secret"
+1. Create a organization [secret](#secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
 2. Copy the URL of the webhook that receives the notification
 3. Type the name of the secret created on step 1, e.g. "mywebhook-secret"
 
@@ -370,7 +375,7 @@ TODO: get access to this feature
 
 Configure how pipelines are initialized.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like _monorepos_ or _pre-flight checks_, even do a full repository clone.
+Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos] or [pre-flight checks], even do a full repository clone.
 
 By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
 
