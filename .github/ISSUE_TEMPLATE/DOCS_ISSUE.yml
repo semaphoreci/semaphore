@@ -1,0 +1,40 @@
+name: Docs Issue
+description: File a docs bugs/improvement/idea.
+title: "[Docs]: "
+labels: ["documentation"]
+projects: ["semaphoreci/2"]
+assignees: ["TomFern", "AleksandarCole"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this report!
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: What type of report do you want to log?
+      options:
+        - Bug report
+        - Improvement idea
+        - New content idea
+        - Maintenance task
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: content
+    attributes:
+      label: What do you want to report?
+      description: Please do include as much detail as possible.
+      placeholder: I have an idea...
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/semaphoreci/semaphore/tree/main?tab=coc-ov-file). 
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
