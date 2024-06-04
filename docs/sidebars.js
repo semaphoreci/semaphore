@@ -48,6 +48,7 @@ const sidebars = {
       },
       items: [
         'using-semaphore/jobs',
+        'using-semaphore/artifacts',
         'using-semaphore/pipelines',
         'using-semaphore/promotions',
         'using-semaphore/organizations',
