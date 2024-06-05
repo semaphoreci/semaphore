@@ -65,7 +65,7 @@ The artifact store is partitioned in three namespaces:
 
 The job namespace is not shared between jobs. Instead, each job gets assigned a dedicated namespace in every run.
 
-Job artifacts are great to store debugging data such as build logs, screeshots and screencast. In other words, any situation where you don't need to share data with other jobs.
+Job artifacts are great to store debugging data such as build logs, screenshots and screencasts. In other words, any situation where you don't need to share data with other jobs.
 
 The following example shows a common combination of job and workflow artifacts:
 
@@ -309,11 +309,11 @@ Semaphore will never delete your artifacts automatically. To control usage and [
 
 Retention policies are rule-based and namespace-scoped. You must create one or more rules with a file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
 
+### How to create retention policies
+
 You can access the retention policy settings in the following ways:
 
-- Pressing **Configure Retention Policy** in the the [job artifacts view](#view-job)
-- Pressing **Configure Retention Policy** in the the [workflow artifacts view](#view-workflow)
-- Pressing **Configure Retention Policy** in the the [project artifacts view](#view-project)
+- Pressing **Configure Retention Policy** in the [job artifacts](#view-job), [workflow artifacts](#view-workflow), or [project artifacts](#view-project)
 - Selecting the **Artifacts** section in your [project settings](./projects#settings)
 
 The retention policy menu lets you create rules for all the [artifact namespaces](#namespaces).
@@ -323,13 +323,6 @@ To create a retention rule:
 1. Type the file selector
 2. Select the maximum age
 3. Click **+ Add retention policy** to add more rules
-
-The file selector accepts star (*) and double-star (**) glob patterns. For example:
-
-- `/**/*` matches all files and folders in the namespace. We recommend setting this rule at the end of the list
-- `/logs/**/*.txt` matches all files with txt extension in the logs folder or any subfolders
-- `/screenshots/**/*.png` matches all png files in the screenshots folder and subfolders
-- `build.log` matches the file exactly
 
 ![Setting up project artifact retention policies](./img/retention-project.jpg)
 
@@ -346,6 +339,15 @@ And, finally, set up retention policies for the job artifacts:
 Semaphore checks and applies the rules the retention policies in your project once every day.
 
 :::
+
+### Retention policies selectors
+
+The file selector accepts star (`*`) and double-star (`**`) glob patterns. For example:
+
+- `/**/*` matches all files and folders in the namespace. We recommend setting this rule at the end of the list
+- `/logs/**/*.txt` matches all files with txt extension in the logs folder or any subfolders
+- `/screenshots/**/*.png` matches all png files in the screenshots folder and subfolders
+- `build.log` matches the file exactly
 
 ## Usage pricing {#usage}
 
