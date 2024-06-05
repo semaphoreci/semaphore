@@ -17,7 +17,7 @@ Jobs run arbitrary shell commands inside a dedicated environment called an [agen
 When a job is scheduled, the following happens:
 
 1. **Allocate agent**: pick a suitable agent from the warm pool of agents
-2. **Initialize**: execute setup steps such as importing environment variables, loading SSH keys, mounting [secrets](#secrets), and installing the [Semaphore toolbox](#toolbox)
+2. **Initialize**: execute setup steps such as importing environment variables, loading SSH keys, mounting [secrets](./secrets), and installing the [Semaphore toolbox](#toolbox)
 3. **Run commands**: execute your commands
 4. **End job and save logs**: the job activity log is saved for future inspection
 5. **Destroy agent**: the used agent is *discarded*, along with all its contents
@@ -443,7 +443,7 @@ sem debug job <job-id> --duration 3h
 
 :::note
 
-Interactive sessions may be unavailable when [access policies for secrets](./organizations#secret-access-policy) is enabled.
+Interactive sessions may be unavailable when [access policies for secrets](./secrets#secret-access-policy) is enabled.
 
 :::
 
@@ -458,7 +458,7 @@ You can explore running processes, inspect the environment variables, and take a
 
 :::note
 
-Inspecting running jobs may be unavailable when [access policies for secrets](./organizations#secret-access-policy) is enabled.
+Inspecting running jobs may be unavailable when [access policies for secrets](./secrets#secret-access-policy) is enabled.
 
 :::
 
@@ -680,19 +680,9 @@ Numeric values need to be included in quotes.
 
 ### Secrets {#secrets}
 
-<VideoTutorial title="How to use secrets" src="https://www.youtube.com/embed/rAJIRX81DeA"/>
+[Secrets](./secrets) are enabled at the block level and available to all the jobs in the block. You must create the secret *before* you can add it to a block.
 
-Secrets store sensitive data such as API keys, passwords, or SSH keys. Secrets are enabled at the block level and available to all the jobs in the block.
-
-You must create the secret before you can add it to a block. How you create the secret depends on its scope:
-
-- [Organization secrets](./organizations#secrets) are available globally
-- [Project secrets](./projects#secrets) are available only to the pipelines belonging to a [project](./projects)
-- [Environment credentials](./promotions#credentials) are fine-grained secrets only available to specific [pipelines](./pipelines)
-
-Once you create a secret you can no longer view its contents. Secrets are automatically decrypted at runtime when the job starts. Their values are available as environment variables or mounted as files.
-
-To enable secrets in a block:
+To enable existing secrets in a block:
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
