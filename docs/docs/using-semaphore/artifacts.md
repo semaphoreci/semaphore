@@ -13,6 +13,12 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 Artifacts provide persistent storage for files and folders. This page explains how to store, retrieve and view artifacts and how to manage retention policies.
 
+:::warning
+
+Using artifacts can cost money. We recommend reading the [usage princing](#usage) and setting up [retention policies](#retention).
+
+:::
+
 ## Overview {#overview}
 
 Artifacts provide a persistent file store for all your [projects](./projects). Artifacts are ideal for:
@@ -299,17 +305,67 @@ Here you can:
 
 ## Retention policies {#retention}
 
-WIP
+Semaphore will never delete your artifacts automatically. To control usage and [costs](#usage), it's recommended to set up retention policies to automatically delete old artifacts.
+
+Retention policies are rule-based and namespace-scoped. You must create one or more rules with a file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
+
+You can access the retention policy settings in the following ways:
+
+- Pressing **Configure Retention Policy** in the the [job artifacts view](#view-job)
+- Pressing **Configure Retention Policy** in the the [workflow artifacts view](#view-workflow)
+- Pressing **Configure Retention Policy** in the the [project artifacts view](#view-project)
+- Selecting the **Artifacts** section in your [project settings](./projects#settings)
+
+The retention policy menu lets you create rules for all the [artifact namespaces](#namespaces).
+
+To create a retention rule:
+
+1. Type the file selector
+2. Select the maximum age
+3. Click **+ Add retention policy** to add more rules
+
+The file selector accepts star (*) and double-star (**) glob patterns. For example:
+
+- `/**/*` matches all files and folders in the namespace. We recommend setting this rule at the end of the list
+- `/logs/**/*.txt` matches all files with txt extension in the logs folder or any subfolders
+- `/screenshots/**/*.png` matches all png files in the screenshots folder and subfolders
+- `build.log` matches the file exactly
+
+![Setting up project artifact retention policies](./img/retention-project.jpg)
+
+Repeat the process for the workflow artifacts:
+
+![Setting up workflow artifact retention policies](./img/retention-workflow.jpg)
+
+And, finally, set up retention policies for the job artifacts:
+
+![Setting up job artifact retention policies](./img/retention-job.jpg)
+
+:::info
+
+Semaphore checks and applies the rules the retention policies in your project once every day.
+
+:::
 
 ## Usage pricing {#usage}
 
-WIP
+Artifacts on the Semaphore Cloud are charged on the basis of:
 
+- **Storage**: the amount of data stored, charged on a GB per month basis
+- **Traffic**: download network traffic in jobs or from the website, charged in total GB of data per month
+
+For more information, see [Plans and Pricing](https://semaphoreci.com/pricing)
+
+:::note
+
+If you're using [self-hosted agents], prices may differ.
+
+:::
 
 ## See also
 
 - [Semaphore toolbox]
-- [Test reports]
-- [Flaky tests]
-- [Using artifacts in jobs]
+- [Test reports](./test-reports.md)
+- [Flaky tests](./flaky-tests.md)
+- [Using artifacts in jobs](./jobs#artifact)
 

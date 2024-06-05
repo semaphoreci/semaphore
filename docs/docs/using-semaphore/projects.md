@@ -22,3 +22,5 @@ TODO: project-level secrets - https://docs.semaphoreci.com/essentials/using-secr
 Project roles: https://docs.semaphoreci.com/security/default-roles/
 
 ## Secrets {#secrets}
+
+## Settings {#settings}
