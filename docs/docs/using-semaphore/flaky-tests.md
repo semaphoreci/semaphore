@@ -7,7 +7,7 @@ description: Find unreliable tests
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The flaky test dashboard shows unreliable tests in your [project](./projects). This page explains how they work and how to interpret the flaky test dashboard.
+The flaky test dashboard shows unreliable tests in your [projects](./projects). This page explains how they work and how to interpret the flaky test dashboard.
 
 ## Overview {#overview}
 
@@ -45,7 +45,7 @@ Open your [project](./projects) on Semaphore and go to the **Flaky tests** tab.
 
 The dashboard shows:
 
-- A. Create notification button
+- A. Create notification button (bell icon)
 - B. Edit filters buttons
 - C. Saved filters
 - D. The current filter
@@ -57,11 +57,13 @@ The dashboard shows:
 
 ## Charts {#charts}
 
-TODO: zoom in charts
+The **New Flaky Tests** show new flaky tests detected in the [selected period](#filters).
 
-The "New flaky tests" chart defaults to displaying data in a daily overview. However, you can opt for a cumulative view by clicking the "Cumulative overview" button located on the top right-hand side of the chart.
+The **Disruptions Caused by a Flaky Test** shows how many times a flaky test failed disrupting your test suite in the selected period.
 
-The "Disruptions caused by a flaky test" chart presents data in a cumulative overview by default. If you prefer a daily overview, you can select this option by clicking the "Daily overview" button at the top right-hand side of the chart
+![Flaky tests charts](./img/flaky-tests-charts.jpg)
+
+You can switch between daily occurrences and cumulative views on both charts.
 
 ## Filtering the view {#filters}
 
@@ -69,7 +71,7 @@ You can define, edit, and save filters to view the flaky test data in different 
 
 ### How to create a filter {#create-filters}
 
-To create a filter, type the [filter key](#filter-key) in the filter box and press Enter/Return. The view will reload with the new data.
+To create a filter, type the [filter key](#filter-keys) in the filter box and press Enter/Return. The view will reload with the new data.
 
 Once you have filter key you like, you can save it by:
 
@@ -85,22 +87,22 @@ You can combine multiple filter keys to create a filter that suits your needs. T
 
 | Filter key        | Filter Name         | Filter Type         |
 | :--------------:  | :-----------------: | :-----------------: | 
-| @git.branch       | Git branch          | text                |
-| @git.commit_sha   | Git commit sha      | text                |
-| @test.name        | Test name           | text                |
-| @test.group       | Group that the test is assigned to | text |
-| @test.file        | Test file           | text                |
-| @test.class.name  | Name of the test class | text             |
-| @test.suite       | Name of the test suite | text             |
-| @test.runner      | Name of the test runner | text            |
-| @metric.age       | Time passed (days) since first flake | numeric |
-| @metric.pass_rate | Pass rate of a test | numeric             |
-| @metric.disruptions | Number of disruptions of a test | numeric |
-| @label            | Assigned label of the test | text           |
-| @is.resolved      | Filter by resolved or unresolved tests | boolean |
-| @is.scheduled     | Filter by scheduled or unscheduled tests | boolean |
-| @date.from        | Starting date range   | text             | 
-| @date.to          | End of filtering range | text        | 
+| @git.branch       | Git branch          | [text](#text)                |
+| @git.commit_sha   | Git commit sha      | [text](#text)                |
+| @test.name        | Test name           | [text](#text)                |
+| @test.group       | Group that the test is assigned to | [text](#text) |
+| @test.file        | Test file           | [text](#text)                |
+| @test.class.name  | Name of the test class | [text](#text)             |
+| @test.suite       | Name of the test suite | [text](#text)             |
+| @test.runner      | Name of the test runner | [text](#text)            |
+| @metric.age       | Time passed (days) since first flake | [numeric](#numeric) |
+| @metric.pass_rate | Pass rate of a test | [numeric](#numeric)             |
+| @metric.disruptions | Number of disruptions of a test | [numeric](#numeric) |
+| @label            | Assigned label of the test | [text](#text)           |
+| @is.resolved      | Filter by resolved or unresolved tests | [boolean](#boolean) |
+| @is.scheduled     | Filter by scheduled or unscheduled tests | [boolean](#boolean) |
+| @date.from        | Starting date range   | [text](#text)             | 
+| @date.to          | End of filtering range | [text](#text)        | 
 
 ### Text filter keys {#text}
 
@@ -148,24 +150,158 @@ Examples of binary filter keys are:
 
 ## Taking actions on tests {#actions}
 
-You have several actions you can take on a flaky test. For instance, you can attach a label to assign a team or team member to fix the test in question. Additionally, you can mark a flaky test as resolved or mark it as unresolved if it was previously marked as resolved. Another option is to link a ticket to the flaky test, providing the ability to filter by scheduled status.
+The lower part of the flaky test dashboard shows the tests detected. 
 
-Marking as resolved/unresolved#
-To mark a flaky test as resolved or unresolved, locate the flaky test and click the first button (Mark as resolved) in the actions column.
+![Flaky test actions](./img/flaky-test-actions.jpg)
 
-Linking to a ticket#
-To add a ticket link to your flaky test, start by locating the flaky test. In the actions column, click on the second button (Create a ticket for this test). Finally, copy the flaky test information in markdown and save the link after creating the ticket.
+You can take the following actions on these:
 
-If needed, you can unlink an existing ticket by clicking the "Unlink" option.
+- Add labels to a flaky test
+- Mark test as [resolved](#resolved)
+- Link test with a [ticket](#ticket)
 
-Labels#
-To add labels, click the "+ add label" button, give the label a name, and click "OK". Keep in mind that you can only add 3 labels to any given test.
+### Adding labels {#labels}
 
-## Charts {#charts}
+To add labels to a flaky test:
 
-### Detailed view {#details}
+1. Press the **+Add label** button
+2. Type the label
+3. Press **OK**
+
+To add more labels, repeat the same steps. You can have up to three labels per test.
+
+![Adding labels to flaky tests](./img/add-label.jpg)
+
+You can now use the `@label` [key](#filters) to filter tickets by label. In addition, clicking on the label shows a filtered view with all the tests linked to the same label.
+
+### Marking tests as resolved {#resolved}
+
+Test marked as resolved test won't be shown by default. Can be filtered in back again with the `@is.resolved: true` [filter key](#boolean). You can also unmark the test to show it again in the default view
+
+### Link test to a ticket {#ticket}
+
+Pressing the **Open ticket** action button lets you link the test to an issue. Linked tickets can be filtered with the `@is.scheduled:true` [filter key](#boolean).
+
+To use this feature, create a ticket in your tool of choice, e.g. GitHub and:
+
+1. Copy and paste the ticket URL
+2. Press **Save**
+
+The ticket window shows details on Markdown you can use to create your ticket.
+
+![Linking a ticket to a flaky test](./img/create-ticket.jpg)
+
+You can also unlink a test from the issue from this window.
+
+## Detailed view {#details}
+
+Clicking on a flaky test opens the detailed view for that test.
+
+You can take the same [actions](#actions) in this windows. You can add labels, mark as resolved, and link to a ticket.
+
+You also ll find aggregated data detailing the impact of the selected flaky test, such as the P95 runtime, total number of runs, and the pass rate of the test. In addition, you can see the last flaky disruptions in the for the test.
+
+![Detailed view for a flaky test](./img/flaky-test-detailed-view.jpg)
 
 ## Notifications {#notifications}
 
+You can send webhook-based notifications when new flaky test is detected.
 
+Notifications can be enabled from the main Flaky Test dashboard:
 
+1. Press the bell icon
+2. Enter the webhook url, only HTTPs is allowed
+3. Optionally, type the branch names for which you want to receive notifications. Leave blank to enable all branches
+4. Press **Activate**
+5. Press **Save**
+
+![Enabling notifications for flaky tests](./img/flaky-test-notifications.jpg)
+
+:::note
+
+You can use basic regular expressions in the branches field. For example, you can use patterns like `release-*` or `.*.`. If you wish to specify multiple branches, you can separate them using a comma.
+
+The branches field has a limit of 100 characters.
+
+:::
+
+### Notification payload
+
+When notifications are enabled, Semaphore sends an HTTPs POST request with `Content-Type: application/json` and the schema shown below. The endpoint show return a 2XX response status code. 
+
+If the endpoint doesn't respond with a 2XX code, Semaphore attempts to resend the request four additional times using an exponential backoff strategy.
+
+Notification payload:
+
+```yaml
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "a01e9b47-7e3c-4165-9007-8a3c1652b31a"
+  project_id:
+    type: string
+    format: uuid
+    example: "4627d711-4aa2-xe1e-bc5c-e0f4491b8735"
+  test_id:
+    type: string
+    format: uuid
+    example: "3177e680-46ac-4c39-b9fa-02c4ba71b644"
+  branch_name:
+    type: string
+    example: "main"
+  test_name:
+    type: string
+    example: "Test 1"
+  test_group:
+    type: string
+    example: "Elixir.Calculator.Test"
+  test_file:
+    type: string
+    example: "calculator_test.exs"
+  test_suite:
+    type: string
+    example: "suite1"
+  created_at:
+    type: string
+    format: date-time
+    example: "2025-03-22T18:24:34.479219+01:00"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2025-03-22T18:24:34.479219+01:00"
+required:
+  - id
+  - project_id
+  - test_id
+  - branch_name
+  - test_name
+  - test_group
+  - test_file
+  - test_suite
+  - created_at
+  - updated_at
+```
+
+For example:
+
+```yaml
+{
+  "id": "a01e9b47-7e3c-4165-9007-8a3c1652b31a",
+  "project_id": "4627d711-4aa2-xe1e-bc5c-e0f4491b8735",
+  "test_id": "3177e680-46ac-4c39-b9fa-02c4ba71b644",
+  "branch_name": "main",
+  "test_name": "Test 1",
+  "test_group": "Elixir.Calculator.Test",
+  "test_file": "calculator_test.exs",
+  "test_suite": "suite1",
+  "created_at": "2025-03-22T18:24:34.479219+01:00",
+  "updated_at": "2025-03-22T18:24:34.479219+01:00"
+}
+```
+
+## See also
+
+- [How to configure test reports](./test-reports)
+- [How to set up Slack notifications](./organizations#slack-notifications)
