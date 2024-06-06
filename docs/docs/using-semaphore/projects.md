@@ -6,7 +6,6 @@ description: Connect Git repositories with Semaphore
 
 Projects connect your Git repositories with Semaphore. This page explains how to set up projects and what settings are available.
 
-
 ## Create a project
 
 TODO: do it with the CLI
@@ -37,16 +36,15 @@ On Semaphore, each project has to stem from a code base on a remote repository, 
 Rules for assigning project roles#
 Depending on user's premissions within the remote repository, a different role is assigned to them on the Semaphore project.
 
-GitHub:#
-Repository permission level	Semaphore project role
-Admin	Contributor
-Push	Contributor
-Pull	Reader
+Repository permission level Semaphore project role
+Admin Contributor
+Push Contributor
+Pull Reader
 Bitbucket:#
-Repository permission level	Semaphore project role
-Admin	Contributor
-Write	Contributor
-Read	Reader
+Repository permission level Semaphore project role
+Admin Contributor
+Write Contributor
+Read Reader
 
 Members can access the organization's homepage and the projects they are assigned to. However, they are not able to modify settings.
 

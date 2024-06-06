@@ -266,7 +266,7 @@ It might take several minutes for the update to be completed.
 
 :::note
 
-Updating the ownership of an organization doesn't automatically transfer the project ownership. For more information, see [How to transfer project ownership](./project#manage-ownership)
+Updating the ownership of an organization doesn't automatically transfer the project ownership. For more information, see [How to transfer project ownership](./projects#manage-ownership)
 
 :::
 
