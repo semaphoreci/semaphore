@@ -1,5 +1,5 @@
 ---
-description: Manage people, plans, and notifications
+description: Manage people, permissions, and costs
 ---
 
 # Organizations
@@ -9,17 +9,18 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Organizations are the administrative unit in Semaphore. This page explains how to create organizations, manage users, and what settings are available.
+Organizations are the administrative unit for Semaphore. This page explains how to create organizations, manage users, and what settings are available.
 
 ## Overview {#overview}
 
 The fist time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
 
 Organizations have:
-- one or more [projects](./projects)
+
+- zero or more [projects](./projects)
 - a [billing plan](https://semaphoreci.com/pricing)
 - one or more owners
-- users and permission levels
+- users and groups with permission levels
 
 ## How to change organizations {#org-selection}
 
@@ -60,6 +61,8 @@ Semaphore uses roles to manage user access. You can add an unlimited number of p
 
 To manage users in your organization, open the organization menu and select **People**.
 
+![The people tab](./img/people-tab.jpg)
+
 ### Organization roles {#roles}
 
 The default organization roles are:
@@ -75,15 +78,12 @@ The default organization roles are:
   - By default, this role is assigned to the user that creates the organization
   - Get admin access to every project inside the organization 
 
-
-
 The **People** tab shows users in your organization along with their:
 
 - Semaphore usernames
 - GitHub or BitBucket handles
 - Role
 
-TODO: people screenshot (rtx can be a starting point)
 
 ### How to add users {#add-people}
 
@@ -97,14 +97,13 @@ To add a user, press the **Add people** button. You have two options:
   - Select the users and optionally type an email
   - Press **Add selected** to add them to the organization
 
-TODO: people screenshot
+![Adding users to the organization](./img/add-people.jpg)
 
 ### How to change user roles {#roles-people}
 
 To change the role of a user, press the **Change Role** button next to the person.
 
-TODO: image
-
+![Changing user roles](./img/change-roles.jpg)
 
 ### How to create user groups {#add-groups}
 
@@ -119,13 +118,13 @@ To create a group, open the organization menu and select **People**.
 3. Type the names of the persons to add to the group
 4. Press **Save changes** to create the group
 
-TODO: image
+![Add group](./img/add-group.jpg)
 
 ### How to change the role of a group {#group-role}
 
 To change the role of a group, press the **Change Role** button next to the group.
 
-TODO: image
+![Changing the roles of a group](./img/group-role.jpg)
 
 ### How to add/remove users to a group {#change-groups}
 
@@ -135,13 +134,7 @@ To add or remove users in a group, press the **Modify group** button next to it.
 - Type the name of the persons you want to add to the group
 - Press **Save changes** to finish editing the group
 
-TODO: image
-
-https://docs.semaphoreci.com/security/groups/groups/
-
-## Managing ownership {#manage-ownership}
-
-TODO: https://docs.semaphoreci.com/account-management/organizations/
+![Add group](./img/add-group.jpg)
 
 ## Organization settings {#org-settings}
 
@@ -150,8 +143,6 @@ To access your organization settings, open the organization menu and click on **
 ### General settings {#general-settings}
 
 Your organization main settings.  Here, you can change its name, its URL, and control how workflows run.
-
-TODO: we need to explain this "Do not run workflows for project/non-project members"
 
 ![General settings](./img/organization-settings-general.jpg)
 
@@ -284,3 +275,31 @@ TODO: TBD
 ## Plans and billing {#plans}
 
 TODO: TBD
+
+## Transfer ownership {#manage-ownership}
+
+Before you can transfer of an organization, the following conditions need to happen:
+
+- The new owner is a member of the organization
+- The new owner must have logged in Semaphore at least once
+- Only the current owner can transfer ownership
+
+To promote a new owner to the organization:
+
+1. Go to the organization **People** tab
+2. Press the **Change Role** button
+3. Select **Owner**
+
+It might take several minutes for the update to be completed.
+
+:::note
+
+Updating the ownership of an organization doesn't automatically transfer the project ownership. For more information, see [How to transfer project ownership](./project#manage-ownership)
+
+:::
+
+### How to remove an owner {#remove-owner}
+
+If you need to demote or remove an owner from the organization, any user with the Owner permission level needs to send an email to support@semaphoreci.com from the primary email address associated with their GitHub or Bitbucket account used to log into Semaphore.
+
+## See also
