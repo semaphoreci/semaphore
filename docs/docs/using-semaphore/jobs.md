@@ -311,7 +311,7 @@ Using `artifact` in [self-hosted agents] requires additional setup steps.
 
 :::
 
-The [artifact] command can be used:
+The [artifact](./artifacts) command can be used:
 
 - as a way to move files between jobs and runs
 - as persistent storage for artifacts like compiled binaries or bundles
@@ -340,10 +340,6 @@ go build
 artifact push project hello.exe
 ```
 
-Artifacts can be viewed and downloaded from the Semaphore [project](./projects).
-
-![Artifact view in Semaphore](./img/artifact-view.jpg)
-
 <details>
  <summary>Artifact namespaces</summary>
  <div>
@@ -358,6 +354,8 @@ Artifacts can be viewed and downloaded from the Semaphore [project](./projects).
     - **job** artifacts are only accessible to the job that created it. Useful for collecting debugging data
     - **workflow** artifacts are accessible to all jobs in all running [pipelines](./pipelines). The main use case is to pass data between jobs.
     - **project** artifacts are always accessible. They are ideal for storing final deliverables. 
+
+    For more information, see the [Semaphore toolbox documentation].
 
  </div>
 </details>
