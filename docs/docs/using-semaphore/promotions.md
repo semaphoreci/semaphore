@@ -303,7 +303,7 @@ Parameters are available in the following places:
 
 - Pipeline `name`
 - Pipeline [queue name] (only available via YAML)
-- As the name of a [secret](./jobs#secrets) (only available in YAML)
+- As the name of a [secret in the job](./jobs#secrets) (only available in YAML)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -372,7 +372,7 @@ blocks:
 </TabItem>
 </Tabs>
 
-## Environments (deployment targets)
+## Environments (deployment targets) {#deployment-targets}
 
 <VideoTutorial title="How to Use Environments" src="https://www.youtube.com/embed/xId2H2wlKx4?si=0IXKyNNUVVjDDvHz" />
 
@@ -386,7 +386,7 @@ Environments we are formerly known as "Deployment Targets"
 
 ### Overview {#overview-environments}
 
-Environments allow you to tightly control [promotions](#promotions), preventing unauthorized users from starting a critical pipeline. In addition, deployment targets can restrict branches, pull requests, and protect [secrets](./organizations#secrets).
+Environments allow you to tightly control [promotions](#promotions), preventing unauthorized users from starting a critical pipeline. In addition, deployment targets can restrict branches, pull requests, and protect [secrets](./secrets).
 
 Environments also provide a convenient way to [view the history of your deployments](#view-history).
 
@@ -426,7 +426,7 @@ The bookmarks are useful when using [parameterized promotions](#parameters). You
 
 ### Credentials and secrets {#credentials}
 
-Credentials are a restricted type of [secrets](./organizations#secrets) that are only accessible to authorized members of your organization.
+Credentials are a restricted type of [secrets](./secrets) that are only accessible to authorized members of your organization.
 
 In the second part, we can define environment variables and upload files that will be accessible to the promoted pipelines. All information will be encrypted once saved.
 

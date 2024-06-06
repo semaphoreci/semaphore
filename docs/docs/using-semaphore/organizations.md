@@ -1,5 +1,5 @@
 ---
-description: Manage people, plans, secrets, and notifications
+description: Manage people, plans, and notifications
 ---
 
 # Organizations
@@ -155,135 +155,6 @@ TODO: we need to explain this "Do not run workflows for project/non-project memb
 
 ![General settings](./img/organization-settings-general.jpg)
 
-### Secrets overview {#secrets}
-
-Create encrypted environment variables and files to inject in your [jobs](./jobs)
-
-Secrets allows you to keep files and environment variables with sensitive data secure. You can use secrets to store API Tokens for deployments, database passwords, or SSH keys.
-
-:::tip 
-
-Secrets are available to all the [projects](./projects) in the organization. If you need more fine grained control, use the [credentials in environments](./promotions#credentials).
-
-:::
-
-![Secrets settings](./img/organization-settings-secrets.jpg)
-
-### How to create a secret {#secret-create}
-
-<VideoTutorial title="How to use secrets" src="https://www.youtube.com/embed/rAJIRX81DeA"/>
-
-You can create secrets using the UI or the command line.
-
-
-<Tabs groupId="ui-cli">
-<TabItem value="ui" label="UI">
-
-Navigate to the organization settings and select **Secrets**
-
-1. Press **New Secret**
-2. Enter the name of the secret
-3. Add an optional description
-4. Type the environment variable name and its value
-5. Add more variables as needed
-
-To upload files such as SSH keys:
-
-- (A) Type the path of file. This is where the file is injected in the [agent](./pipelines#agents)
-- (B) Upload the file
-- (C) Add more files as needed
-
-<details>
-<summary>Show me</summary>
-<div>
-![Adding a secret with the UI](./img/secret-add.jpg)
-
-</div>
-</details>
-
-</TabItem>
-<TabItem value="cli" label="CLI">
-
-To create a secret using the Semaphore command line tool use:
-
-```shell title="Creating a secret"
-sem create secret <secret-name> \
-    -e <VAR_NAME>=<var_value> \
-    -f <local_file_path>:<agent_file_path>
-```
-
-You can define multiple environment variables at once:
-
-```shell title="Defining multiple variables example"
-sem create secret awskey \
-    -e AWS_ACCESS_KEY_ID=your-value \
-    -e AWS_SECRET_KEYID=your-value
-```
-
-In addition, you can upload multiple files as secrets:
-
-```shell title="Creating multiple secret files example"
-sem create secret sshkeys \
-    -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
-    -f $HOME/.ssh/id_rsa.pub:/home/semaphore/.ssh/id_rsa.pub
-```
-
-To view all organization secrets:
-
-```shell title="Viewing organization secrets"
-$ sem get secret
-NAME                   AGE
-awskey                 1d
-sshkeys                1d
-```
-
-To view a specific secret use `sem get secret <secret-name>`:
-
-```shell title="Viewing a secret"
-$ sem get secret awskey
-apiVersion: v1beta
-kind: Secret
-metadata:
-  name: awskey
-  id: 31887bfb-fac5-4f5b-9a6a-059ecebcc851
-  create_time: 1556828155
-  update_time: 1621528405
-data:
-  env_vars:
-  - name: AWS_ACCESS_KEY_ID
-    value: your-value-here
-  - name: AWS_SECRET_ACCESS_KEY
-    value: your-value-here
-  files: []
-```
-
-To edit a secret:
-
-1. Run `sem edit secret <secret-name>`
-2. Make your changes in the editor
-3. When done, save and exit the editor to save your changes
-
-</TabItem>
-</Tabs>
-
-
-### Access policy for secrets {#secret-access-policy}
-
-<Available plans={['Scaleup']}/>
-
-When creating or editing a secret, you can manage control where and who can use secrets on three levels:
-
-- **Projects**: the secret is available on all, none, or a list of projects
-- **Debug Sessions**: persons connecting with [debug session](./jobs#debug-jobs) can see the contents of the secrets. Here you can disable debug sessions for jobs using this secret
-- **Attaching to jobs**: likewise, [attaching to a running job](./jobs#attach-job) can likewise expose secrets. Disabling this option prevents this secret to be viewed
-
-<details>
-<summary>Show me</summary>
-<div>
-![Managing access policies for secrets](./img/secrets-access-policy.jpg)
-</div>
-</details>
-
 ### Slack notifications {#slack-notifications}
 
 Send notifications to Slack and other webhook-based services. Notifications are sent when a pipeline finishes running so your team get instant feedback on the result. 
@@ -328,7 +199,7 @@ To send Slack notifications:
 
 To send notifications to other webhook-based services:
 
-1. Create a organization [secret](#secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
+1. Create a organization [secret](./secrets#org-secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
 2. Copy the URL of the webhook that receives the notification
 3. Type the name of the secret created on step 1, e.g. "mywebhook-secret"
 
