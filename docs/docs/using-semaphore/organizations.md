@@ -152,12 +152,6 @@ You can set up Slack and other webhook-based notifications to get your team noti
 
 To learn more, see the [notificaction documentation](./notifications.md)
 
-### IP Allow List {#ip-list}
-
-Filter access to your organization by IP.
-
-TODO: get access to this feature
-
 ### Initialization jobs {#initialization-jobs}
 
 Configure how pipelines are initialized.
