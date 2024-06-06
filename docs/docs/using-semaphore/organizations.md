@@ -146,86 +146,11 @@ Your organization main settings.  Here, you can change its name, its URL, and co
 
 ![General settings](./img/organization-settings-general.jpg)
 
-### Slack notifications {#slack-notifications}
+### Notifications {#slack-notifications}
 
-Send notifications to Slack and other webhook-based services. Notifications are sent when a pipeline finishes running so your team get instant feedback on the result. 
+You can set up Slack and other webhook-based notifications to get your team notified whenever there [project](./projects) finishes running.
 
-<Tabs groupId="ui-cli">
-<TabItem value="ui" label="UI">
-
-To create a notification, navigate to **Notifications** and press **New Notification**
-
-1. Type the name of the notification
-2. Type the name of the rule to fires the notification
-3. You can supply optional filters for this rule:
-   - **Projects**: comma-separated list of [projects](./projects) where it applies
-   - **Branches**: comma-separated list of Git branches
-   - **Pipelines**: comma-separated list [pipeline](./pipelines) YAML files that need to run in order to fire the notification
-   - **Results**: comma-separated list of results. Valid values are: "passed", "failed", "stopped", or "canceled"
-
-<details>
-<summary>Show me</summary>
-<div>
-![Creating a new notification](./img/notifications-setup-1.jpg)
-</div>
-</details>
-
-:::note
-
-Regular expressions must wrapped in forward slashes, e.g. `/.*/` matches all values. You can use regular expressions in Projects, Branches, and Pipelines.
-
-:::
-
-To send Slack notifications:
-
-1. Copy the [Slack webhook](https://slack.com/help/articles/360041352714-Build-a-workflow--Create-a-workflow-that-starts-outside-of-Slack) for your Slack Workspace
-2. Type the comma-separated list of channels to receive the message
-
-<details>
-<summary>Show me</summary>
-<div>
-![Adding an Slack webhook](./img/notifications-setup-2.jpg)
-</div>
-</details>
-
-To send notifications to other webhook-based services:
-
-1. Create a organization [secret](./secrets#org-secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
-2. Copy the URL of the webhook that receives the notification
-3. Type the name of the secret created on step 1, e.g. "mywebhook-secret"
-
-<details>
-<summary>Show me</summary>
-<div>
-![Adding a webhook-based service](./img/notifications-setup-3.jpg)
-</div>
-</details>
-
-:::note
-
-The value contained in the secret is sent along with the payload on notification to help secure the message. You can should validate that the secret value matches before accepting the message on the receiving end.
-
-:::
-
-
-At this point, you can create additional rules or save the changes by pressing **Save Notification**.
-
-</TabItem>
-<TabItem value="cli" label="CLI">
-
-TODO: via CLI and tabs
-
-
-"passed", "failed", "stopped", or "canceled"
-
-https://docs.semaphoreci.com/essentials/slack-notifications/
-
-https://docs.semaphoreci.com/essentials/webhook-notifications/
-
-
-</TabItem>
-</Tabs>
-
+To learn more, see the [notificaction documentation](./notifications.md)
 
 ### IP Allow List {#ip-list}
 
@@ -252,7 +177,9 @@ By default, Semaphore chooses automatically which kind of [agent](./pipelines#ag
 
 <Available plans={['Scaleup']} />
 
-TODO: TBD
+Integration with Okta allows you to automate user management within your Semaphore organization, as well as to use Okta apps for Single Sign On.
+
+For more information, see the [Okta integration page](./okta.md)
 
 ### Contacts {#contacts}
 
@@ -266,15 +193,66 @@ In this section, you can add contact details in case the Semaphore Support Team 
 
 ## Audit logs {#audit-log}
 
-TODO: TBD
+<Available plans={['Scaleup']} />
+
+To support compliance, accountability, and security, Semaphore provides logs of audited events. Audit Log events are events that affect your organization, projects, users, or any other resources in Semaphore. Events contain information about when who and what was the performed activity.
+
+You can find audit logs in your organization settings under Audit Logs.
+
+![Audit logs location](./img/audit-log-location.jpg)
+
+The audit logs shows all the [audited events] in reverse cronological order. Latest events are shown first.
+
+![Audit log example](./img/audit-logs-example.jpg)
+
+### How to export audit logs {#audit-export}
+
+<Available plans={['Scaleup']} />
+
+Audit logs can be exported in two ways:
+
+- CSV file
+- Streaming to an S3-compatible bucket
+
+To export the logs as CSV, press the **Export as CSV** button.
+
+![Exporting as CSV](./img/audit-export-csv.jpg)
+
+To configure streaming to an S3-compatible bucket, press the **Configure Streaming** button and:
+
+1. Select between AWS and Google Cloud
+2. Type the region (AWS only)
+3. Type the bucket name
+4. Type the access token. They should have write access to the bucket
+5. Press **Looks Good**
+
+![Configuring Audit log streaming](./img/audit-log-streaming.jpg)
+
+:::info
+
+Audit logs are streamed to the bucket once per day.
+
+:::
 
 ## Activity monitor {#activity-monitor}
 
-TODO: TBD
+The activity monitor show the [agent](./pipelines#agents) utilization and the currently running pipelines.
+
+To view the activity monitor, open your organization menu and select **Activity Monitor**.
+
+![Activity monitor location](./img/activity-monitor-location.jpg)
+
+In the activity monitor, you can see the machine quota utilization for your organization. Here, you can have an overview on how Semaphore Cloud machines and [self-hosted agents] are being used.
+
+![Activity monitor quotas](./img/activity-monitor-quotas.jpg)
+
+In the lower part of the activity monitor you can find the currently running workflows for all the [projects](./projects) in your organization. Use this to know what [jobs](./jobs) are running, and see which ones are waiting in the queue to debug usage issues.
+
+![Activity monitor workflows](./img/activity-monitor-workflows.jpg)
 
 ## Plans and billing {#plans}
 
-TODO: TBD
+Every organization is Semaphore is tied to a billing plan. To learn about available plans, see the [Semaphore plans documentation](./plans).
 
 ## Transfer ownership {#manage-ownership}
 
@@ -303,3 +281,7 @@ Updating the ownership of an organization doesn't automatically transfer the pro
 If you need to demote or remove an owner from the organization, any user with the Owner permission level needs to send an email to support@semaphoreci.com from the primary email address associated with their GitHub or Bitbucket account used to log into Semaphore.
 
 ## See also
+
+- Okta integration
+- How to configure notifications
+- How to configure projects

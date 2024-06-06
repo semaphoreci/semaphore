@@ -53,6 +53,8 @@ const sidebars = {
         'using-semaphore/secrets',
         'using-semaphore/promotions',
         'using-semaphore/organizations',
+        'using-semaphore/notifications',
+        'using-semaphore/okta',
         'using-semaphore/tasks',
         'using-semaphore/test-reports',
         'using-semaphore/flaky-tests',
