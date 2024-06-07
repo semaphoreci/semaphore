@@ -106,6 +106,7 @@ const sidebars = {
         'reference/audit-events',
         'reference/docker',
         'reference/container-registry',
+        'reference/task-api',
       ],
     },
   ],
