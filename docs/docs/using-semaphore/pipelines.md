@@ -131,7 +131,7 @@ To select the agent running your jobs by default:
 1. Select the pipeline
 2. Select the **Environment Type**
 3. Select the **Operating System**
-4. Select the [machine type]
+4. Select the [machine type](../reference/machine-types)
 
 The available hardware changes depending on the type of environment you selected.
 
@@ -139,10 +139,10 @@ The available hardware changes depending on the type of environment you selected
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-
+(../reference/machine-types)
 1. Add the `agent` and `machine` keys
-2. Add the hardware `type`. The value must be one of the supported [machine types]
-3. Add the `os_image`. The value must be one of the supported [operating systems]
+2. Add the hardware `type`. The value must be one of the supported [machine types](../reference/machine-types)
+3. Add the `os_image`. The value must be one of the supported operating systems
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -195,7 +195,7 @@ To run the job inside a Docker container:
 
 1. Select the pipeline
 2. In **Environment Types** select **Docker Container(s)**
-3. Select the [machine type]
+3. Select the [machine type](../reference/machine-types)
 4. Type the **Image** name for this container
 5. Optionally, add environment variables
 6. Optionally, add more containers
@@ -244,7 +244,7 @@ blocks:
 
 :::warning
 
-Due to the introduction of [Docker Hub rate limits](../reference/docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry].
+Due to the introduction of [Docker Hub rate limits](../reference/docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](../reference/container-registry).
 
 :::
 
@@ -403,7 +403,7 @@ The available strategies are:
 - **Stop all remaining jobs**: stops the jobs
 - **Cancel pending jobs**: cancels the jobs
 - **Stop remaining jobs, unless on the master branch**: stops the jobs except when the current branch is "master"
-- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL]
+- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL](../reference/conditions-dsl)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">

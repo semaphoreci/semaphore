@@ -105,6 +105,7 @@ const sidebars = {
         'reference/machine-types',
         'reference/audit-events',
         'reference/docker',
+        'reference/container-registry',
       ],
     },
   ],

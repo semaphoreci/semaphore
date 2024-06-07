@@ -300,7 +300,7 @@ The highlighted lines show how to use the cache:
 - **cache store**: saves `node_modules` to non-ephemeral storage. It knows it's a Node project because it found `package.json` in the working folder.
 - **cache restore**: retrieves the cached copy of `node_modules` to the working directory.
 
-Cache is not limited to Node.js. It works with [several languages and frameworks]. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments].
+Cache is not limited to Node.js. It works with several languages and frameworks. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments](../reference/toolbox#cache).
 
 
 ### artifact {#artifact}

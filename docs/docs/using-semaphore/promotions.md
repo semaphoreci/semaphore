@@ -9,7 +9,9 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Promotions connect [pipelines](./pipelines) to implement continuous delivery and deployment, or any other kind of automations such as [blue-green](https://semaphoreci.com/blog/blue-green-deployment) deployments and [canary](https://semaphoreci.com/blog/what-is-canary-deployment) deployments. This page explains what promotions are, how to use them to connect pipelines, and what settings are available.
+Promotions connect [pipelines](./pipelines) to implement continuous delivery and deployment, or any other kind of automations such as [blue-green](https://semaphoreci.com/blog/blue-green-deployment) deployments and [canary](https://semaphoreci.com/blog/what-is-canary-deployment) deployments. 
+
+This page explains what promotions are, how to use them to connect pipelines, and what settings are available.
 
 ## Connecting pipelines {#promotions}
 
@@ -99,7 +101,7 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 
 1. Open the promotion you wish to autostart
 2. Enable the checkbox **Enable automatic promotion**
-3. Type in the [start conditions]
+3. Type in the [start conditions](../reference/conditions-dsl)
 
 ![Setting autostart conditions on a promotion](./img/promotion-auto.jpg)
 
@@ -242,7 +244,7 @@ Once you have [added a parameter](#parameters-add), you can select its value fro
 
 <Available/>
 
-You can pass parameter values to the promotion when it is triggered using the [Semaphore API].
+You can pass parameter values to the promotion when it is triggered using the [Semaphore API](../reference/api).
 
 The following is an example of a curl call that includes parameters:
 
