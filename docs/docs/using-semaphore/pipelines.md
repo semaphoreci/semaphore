@@ -174,7 +174,7 @@ blocks:
 
 :::tip
 
-If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation](../reference/docker).
+If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation](./docker).
 
 :::
 
@@ -244,7 +244,7 @@ blocks:
 
 :::warning
 
-Due to the introduction of [Docker Hub rate limits](../reference/docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](../reference/container-registry).
+Due to the introduction of [Docker Hub rate limits](./docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](./container-registry).
 
 :::
 

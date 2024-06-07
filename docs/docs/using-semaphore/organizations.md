@@ -156,7 +156,7 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 Configure how pipelines are initialized.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos] or [pre-flight checks](./preflight), even do a full repository clone.
+Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos](./monorepo) or [pre-flight checks](./preflight), even do a full repository clone.
 
 By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
 

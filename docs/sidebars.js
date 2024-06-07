@@ -78,7 +78,20 @@ const sidebars = {
         'using-semaphore/projects',
         'using-semaphore/observability',
         'using-semaphore/self-hosted',
-        'using-semaphore/optimization',
+        {
+          type: 'category',
+          label: 'Optimization',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/optimization'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/monorepo',
+            'using-semaphore/docker',
+            'using-semaphore/container-registry',
+          ]
+        },
         'using-semaphore/preflight',
         'using-semaphore/account-and-security',
       ],
@@ -98,15 +111,13 @@ const sidebars = {
       },
       items: [
         'reference/api',
+        'reference/task-api',
         'reference/toolbox',
         'reference/semaphore-cli',
         'reference/pipeline-yaml',
         'reference/conditions-dsl',
         'reference/machine-types',
         'reference/audit-events',
-        'reference/docker',
-        'reference/container-registry',
-        'reference/task-api',
       ],
     },
   ],

@@ -284,6 +284,6 @@ Click on "View" to change display preferences. You can hide passed or skipped te
 
 ## See also
 
-- [Semaphore toolbox reference]
+- [Semaphore toolbox reference](../reference/toolbox)
 - [How to use the flaky tests dashboard](./flaky-tests.md)
 - [Plan job and block execution with pipelines](./pipelines)

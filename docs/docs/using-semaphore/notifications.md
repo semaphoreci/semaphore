@@ -174,7 +174,7 @@ Semaphore includes the signature in the `X-Semaphore-Signature-256` header when 
 
 You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
 
-To create an advanced notification, install and connect the [Semaphore command line].
+To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli).
 
 Next, create a YAML resource:
 
@@ -255,7 +255,7 @@ spec:
 
 You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
 
-To create an advanced notification, install and connect the [Semaphore command line].
+To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli)
 
 Next, create a YAML resource:
 
