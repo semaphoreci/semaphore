@@ -49,6 +49,16 @@ For blocks of code, use code fences with the language. Use `shell` for Bash or s
 Example pipeline
 ```
 
+### Parameters and variables
+
+Generic parameters and variables used in shell commands must be enclosed between `<>`. For example:
+
+```shell
+sem create notification <name> \
+    --projects <project_name> \
+    --slack-endpoint <slack-webhook-endpoint>
+```
+
 ### Capitalization
 
 Titles are used in the left sidebar, so they must be properly capitalized. Headings are shown in the right-side TOC, only the first word must be capitalized.
