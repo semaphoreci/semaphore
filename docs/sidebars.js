@@ -49,12 +49,32 @@ const sidebars = {
         'using-semaphore/artifacts',
         'using-semaphore/secrets',
         'using-semaphore/promotions',
-        'using-semaphore/organizations',
-        'using-semaphore/notifications',
-        'using-semaphore/okta',
+        {
+          type: 'category',
+          label: 'Organizations',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/organizations'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/notifications',
+            'using-semaphore/okta',
+          ]
+        },
         'using-semaphore/tasks',
-        'using-semaphore/test-reports',
-        'using-semaphore/flaky-tests',
+        {
+          type: 'category',
+          label: 'Test Reports',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/test-reports'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/flaky-tests',
+          ]
+        },
         'using-semaphore/projects',
         'using-semaphore/observability',
         'using-semaphore/self-hosted',
@@ -84,6 +104,7 @@ const sidebars = {
         'reference/conditions-dsl',
         'reference/machine-types',
         'reference/audit-events',
+        'reference/docker',
       ],
     },
   ],
