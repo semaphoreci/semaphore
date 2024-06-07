@@ -11,11 +11,11 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <VideoTutorial title="How to use artifacts" src="https://www.youtube.com/embed/yHzZOKwyaAA?si=7qVathl09Cd3d-Gq"/>
 
-Artifacts provide persistent storage for files and folders. This page explains how to store, retrieve and view artifacts and how to manage retention policies.
+Artifacts provide persistent storage for files and folders. This page explains how to store, retrieve, and view artifacts and how to manage retention policies.
 
 :::warning
 
-Using artifacts can cost money. We recommend reading the [usage princing](#usage) and setting up [retention policies](#retention).
+Using artifacts can cost money. We recommend reading the [usage principles](#usage) and setting up [retention policies](#retention).
 
 :::
 
@@ -26,11 +26,11 @@ Artifacts provide a persistent file store for all your [projects](./projects). A
 - passing files between [jobs](./jobs) like build artifacts or compiled executables
 - long-term storage for final deliverables
 - collecting debug data from your jobs like screenshots and build logs
-- store test results for processing [Test Reports](./test-reports) and [Flaky Tests](./flaky-tests)
+- store test results for processing [Test Reports](./tests/test-reports) and [Flaky Tests](./tests/flaky-tests)
 
 :::note
 
-Using artifacts in [self-hosted agents] requires additional setup steps.
+Using artifacts in [self-hosted agents](./self-hosted) requires additional setup steps.
 
 :::
 
@@ -50,12 +50,12 @@ To retrieve files or folders from the store:
 artifact pull <namespace> <file or folder name>
 ```
 
-Add the `--force` option to overwrite files or folders with the pull or push actions. For more information on syntax, see the [Semaphore toolbox page].
+Add the `--force` option to overwrite files or folders with the pull or push actions. For more information on syntax, see the [Semaphore toolbox page](../reference/toolbox).
 
 
 ## Artifact namespaces {#namespaces}
 
-The artifact store is partitioned in three namespaces:
+The artifact store is partitioned into three namespaces:
 
 - **job**: each job gets a dedicated namespace on every run. Job artifacts are suitable for collecting debug data
 - **workflow**: accessible to jobs for all [pipelines](./pipelines) in a run. Workflow artifacts are ideal for passing data between jobs
@@ -65,7 +65,7 @@ The artifact store is partitioned in three namespaces:
 
 The job namespace is not shared between jobs. Instead, each job gets assigned a dedicated namespace in every run.
 
-Job artifacts are great to store debugging data such as build logs, screenshots and screencasts. In other words, any situation where you don't need to share data with other jobs.
+Job artifacts are great for storing debugging data such as build logs, screenshots, and screencasts. In other words, any situation where you don't need to share data with other jobs.
 
 The following example shows a common combination of job and workflow artifacts:
 
@@ -132,7 +132,7 @@ See the YAML to view the commands used in the example.
 
 The workflow artifact is used to pass data between jobs in the same run. This namespace is accessible to all pipelines, even those connected with [promotions](./promotions).
 
-The following example shows how to use the workflow artifact to pass a compiled binary between the build, test and deploy jobs. Note that the deploy job can access the workflow artifact even when located in a different pipeline.
+The following example shows how to use the workflow artifact to pass a compiled binary between the build, test, and deploy jobs. Note that the deploy job can access the workflow artifact even if found in a different pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -201,7 +201,7 @@ See the YAML to view the commands used in the example.
 
 The project namespace is globally shared for all runs in a given [project](./projects). This namespace is used to store final deliverables such as compiled binaries.
 
-In the following example we use the workflow and project artifacts:
+In the following example, we use the workflow and project artifacts:
 
 1. The workflow artifact is used to pass the compiled binary between the build and the other jobs
 2. Once tests pass, the binary is tagged with the version number and stored in the project artifact
@@ -263,7 +263,7 @@ In addition to accessing artifacts from the job using the `artifact` command, yo
 
 ### Job artifacts {#view-job}
 
-Open the job log and go to the **Artifacts** tab. All the artifact for this job are shown.
+Open the job log and go to the **Artifacts** tab. All the artifacts for this job are shown.
 
 ![View job artifacts](./img/view-job-artifacts.jpg)
 
@@ -307,7 +307,7 @@ Here you can:
 
 Semaphore will never delete your artifacts automatically. To control usage and [costs](#usage), it's recommended to set up retention policies to automatically delete old artifacts.
 
-Retention policies are rule-based and namespace-scoped. You must create one or more rules with a file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
+Retention policies are rule-based and namespace-scoped. You must create one or more rules with file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
 
 ### How to create retention policies
 
@@ -346,7 +346,7 @@ The file selector accepts star (`*`) and double-star (`**`) glob patterns. For e
 
 - `/**/*` matches all files and folders in the namespace. We recommend setting this rule at the end of the list
 - `/logs/**/*.txt` matches all files with txt extension in the logs folder or any subfolders
-- `/screenshots/**/*.png` matches all png files in the screenshots folder and subfolders
+- `/screenshots/**/*.png` matches all PNG files in the screenshots folder and subfolders
 - `build.log` matches the file exactly
 
 ## Usage pricing {#usage}
@@ -360,14 +360,14 @@ For more information, see [Plans and Pricing](https://semaphoreci.com/pricing)
 
 :::note
 
-If you're using [self-hosted agents], prices may differ.
+If you're using [self-hosted agents](./self-hosted), prices may differ.
 
 :::
 
 ## See also
 
-- [Semaphore toolbox]
-- [Test reports](./test-reports.md)
-- [Flaky tests](./flaky-tests.md)
+- [Semaphore toolbox](../reference/toolbox)
+- [Test reports](./tests/test-reports.md)
+- [Flaky tests](./tests/flaky-tests.md)
 - [Using artifacts in jobs](./jobs#artifact)
 

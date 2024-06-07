@@ -12,7 +12,7 @@ Jobs get stuff done. This page explains how jobs and blocks work, how you can co
 
 ## Job lifecycle {#job-lifecycle}
 
-Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows] (TODO: link to self-hosted)
+Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted#windows).
 
 When a job is scheduled, the following happens:
 
@@ -26,7 +26,7 @@ When a job is scheduled, the following happens:
 
 :::note
 
-Agents can be non-ephemeral when using [self-hosted agents].
+Agents can be non-ephemeral when using [self-hosted agents](./self-hosted).
 
 :::
 
@@ -211,7 +211,7 @@ A group of connected blocks constitutes a *pipeline*. We use dependencies to con
 
 ## Semaphore toolbox {#toolbox}
 
-The [Semaphore toolbox] is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
+The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
 
 The most-used tools in the Semaphore toolbox are: 
 
@@ -221,7 +221,7 @@ The most-used tools in the Semaphore toolbox are:
 
 ### checkout {#checkout}
 
-The [checkout] command clones the remote Git repository and `cd`s into the repository directory so you're ready to work.
+The [checkout](../reference/toolbox#checkout) command clones the remote Git repository and `cd`s into the repository directory so you're ready to work.
 
 The following example shows the first commands for working with a Node.js project. We run `checkout` to get a local copy of the code. Next, we can run `npm install` because we can assume that `package.json` and `package-lock.json` exist in the current directory.
 
@@ -278,11 +278,11 @@ blocks:
 
 :::note
 
-Using `cache` in [self-hosted agents] requires additional setup steps.
+Using `cache` in [self-hosted agents](./self-hosted) requires additional setup steps.
 
 :::
 
-The main function of the [cache] is to speed up job execution by caching downloaded files.
+The main function of the [cache](../reference/toolbox#cache) is to speed up job execution by caching downloaded files.
 
 The `cache store` and `cache restore` commands can detect well-known files and folders. Let's say we want to speed up `npm install`, here is how to do it:
 
@@ -300,14 +300,14 @@ The highlighted lines show how to use the cache:
 - **cache store**: saves `node_modules` to non-ephemeral storage. It knows it's a Node project because it found `package.json` in the working folder.
 - **cache restore**: retrieves the cached copy of `node_modules` to the working directory.
 
-Cache is not limited to Node.js. It works with [several languages and frameworks]. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments].
+Cache is not limited to Node.js. It works with several languages and frameworks. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments](../reference/toolbox#cache)
 
 
 ### artifact {#artifact}
 
 :::note
 
-Using `artifact` in [self-hosted agents] requires additional setup steps.
+Using `artifact` in [self-hosted agents](./self-hosted) requires additional setup steps.
 
 :::
 
@@ -355,7 +355,7 @@ artifact push project hello.exe
     - **workflow** artifacts are accessible to all jobs in all running [pipelines](./pipelines). The main use case is to pass data between jobs.
     - **project** artifacts are always accessible. They are ideal for storing final deliverables. 
 
-    For more information, see the [Semaphore toolbox documentation].
+    For more information, see the [Semaphore toolbox documentation](../reference/toolbox).
 
  </div>
 </details>
@@ -394,7 +394,7 @@ You can debug a job interactively by SSHing into the agent. This is a very  powe
 
 :::note
 
-If this is the first time using an interactive session you need to [install and connect] the Semaphore command line tool.
+If this is the first time using an interactive session you need to [install and connect](../reference/semaphore-cli) the Semaphore command line tool.
 
 :::
 
@@ -462,7 +462,7 @@ Inspecting running jobs may be unavailable when [access policies for secrets](./
 
 ### Port forwarding {#port-forwarding}
 
-When SSH is not enough to troubleshoot an issue, you can forward use port forwarding to connect to services listening to ports in the agent.
+When SSH is not enough to troubleshoot an issue, you can use port forwarding to connect to services listening to ports in the agent.
 
 A typical use case for this feature is troubleshooting end-to-end tests. Let's say a test is failing and you can't find any obvious cause from the logs alone. Port forwarding the HTTP port in the agent to your local machine can reveal how the application "looks".
 
@@ -731,7 +731,7 @@ blocks:
 
 You can choose to skip or run the block only under certain conditions. Skipping a block means that none of its job are executed.
 
-Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects].
+Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects](./optimization/monorepo).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -739,7 +739,7 @@ Use cases for this feature include skipping a block on certain branches, or work
 1. Select the block
 2. Open the **Skip/Run conditions** section (you may need to scroll down)
 3. Select **Run this block when...** or **Skip this block when...**
-4. Type the [conditions] to run or skip the block
+4. Type the [conditions](../reference/conditions-dsl.md) to run or skip the block
 
 ![Editing skip/run conditions](./img/conditions.jpg)
 
@@ -748,7 +748,7 @@ Use cases for this feature include skipping a block on certain branches, or work
 
 1. Select the block where to edit the conditions
 2. Under the block `name` add `run` and `when`
-3. Type the [condition] that causes the block to run
+3. Type the [condition](../reference/conditions-dsl) that causes the block to run
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -778,7 +778,7 @@ blocks:
 
 1. Select the block where to edit the conditions
 2. Under the block `name`, add `skip` and `when` keys
-3. Type the [condition] that causes the block to be skipped
+3. Type the [condition](../reference/conditions-dsl) that causes the block to be skipped
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -808,7 +808,7 @@ blocks:
 
 ### Agent {#agent-override}
 
-Here you can override the pipeline-level [agent](./pipelines#agents) for a specific job. You can select VMs running Linux, macOS, or Windows ([self-hosted only]) in both X86 and ARM architectures. This setting also allows you to run the job in [self-hosted agents] or in [Docker environments](./pipelines#docker-environments).
+Here you can override the pipeline-level [agent](./pipelines#agents) for a specific job. You can select VMs running Linux, macOS, or Windows (self-hosted only) in both X86 and ARM architectures. This setting also allows you to run the job in [self-hosted agents](./self-hosted) or in [Docker environments](./pipelines#docker-environments).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -857,6 +857,6 @@ blocks:
 
 ## See also
 
-- [Pipeline YAML reference]
-- [Semaphore toolbox reference]
+- [Pipeline YAML reference](../reference/pipeline-yaml)
+- [Semaphore toolbox reference](../reference/toolbox)
 - [Plan job and block execution with pipelines](./pipelines)

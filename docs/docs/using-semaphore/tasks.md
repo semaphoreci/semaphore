@@ -167,6 +167,6 @@ To delete the task, go to the **Tasks** tab in your project and press the **Dele
 
 ## See also
 
-- [Task API reference]
-- [Semaphore CLI reference]
+- [Task API reference](../reference/task-api)
+- [Semaphore CLI reference](../reference/semaphore-cli)
 - [Plan job and block execution with pipelines](./pipelines)

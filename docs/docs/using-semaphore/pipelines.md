@@ -4,6 +4,7 @@ description: Connect blocks to get things done
 
 # Pipelines
 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
@@ -13,9 +14,11 @@ A pipeline is a group of connected blocks. This page explains what pipelines are
 
 ## Overview {#overview}
 
-The purpose of a pipeline is to connect blocks using dependencies. This lets your plan the execution order.
+The purpose of a pipeline is to connect blocks using dependencies. This lets you plan the execution order.
 
-Pipelines are also the *unit of configuration*. Each pipeline is encoded as separate a YAML file in the `.semaphore` folder. For reference, here is an example pipeline with its respective YAML.
+Pipelines are also the *unit of configuration*. Each pipeline is encoded as separate a YAML file in the `.semaphore` folder. 
+
+For reference, here is an example pipeline with its respective YAML.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Example pipeline">
@@ -70,14 +73,14 @@ blocks:
 
 ## Workflow execution order {#dependencies}
 
-In the same way that a block is a group of [jobs](./jobs), a pipeline is a group of blocks. Pipelines connect blocks using dependencies.  Semaphore derives the execution order from the block dependencies.
+In the same way that a block is a group of [jobs](./jobs), a pipeline is a group of blocks. Pipelines connect blocks using dependencies. Semaphore derives the execution order from these dependencies.
 
 Take the following example:
 
 - Blocks B and C depend on Block A
 - Block D depends on both Blocks B and C
 
-In this scenario Block B and C wait until Block A is done. Block D in turn, waits for Blocks B and C to be finished.
+In this scenario, Block B and C wait until Block A is done. Block D in turn, waits for Blocks B and C to be finished.
 
 ![Pipeline execution order](./img/pipeline-execution-order.jpg)
 
@@ -87,7 +90,7 @@ You can reorder blocks by changing their dependencies using the visual editor.
 
 <details>
  <summary>What if we removed all dependencies?</summary>
- <div>If we removed dependencies between blocks then all of them would run in parallel. 
+ <div>If we removed dependencies between blocks, then all of them would run in parallel. 
  Functionally, it would be the same as having all jobs in one big block</div>
 </details>
 
@@ -107,18 +110,16 @@ Pipeline settings are applied to all its blocks. You can change pipeline setting
 
 ### Agents {#agents}
 
-<Available/>
-
-Agents are the environment where jobs run. Semaphore keeps a pool of warm agents at all times to be sure there's always one ready to work.
+Agents are the environment where jobs run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.
 
 Semaphore Cloud provides the following agent types in x86 and ARM architectures:
-- [Linux Machines] presented as VMs or [Docker containers](#docker-environments)
-- [Apple macOS Machines]
-- [Windows Machines] (only for [self-hosted agents]) 
+- [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
+- [Apple macOS Machines](../reference/machine-types#macos)
+- [Windows Machines](./self-hosted#windows) (only for self-hosted agents) 
 
 :::info
 
-Register your own machines as agents by [installing self-hosted agents].
+Register your own machines as agents by [installing self-hosted agents](./self-hosted).
 
 :::
 
@@ -130,7 +131,7 @@ To select the agent running your jobs by default:
 1. Select the pipeline
 2. Select the **Environment Type**
 3. Select the **Operating System**
-4. Select the [machine type]
+4. Select the [machine type](../reference/machine-types)
 
 The available hardware changes depending on the type of environment you selected.
 
@@ -138,10 +139,10 @@ The available hardware changes depending on the type of environment you selected
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-
+(../reference/machine-types)
 1. Add the `agent` and `machine` keys
-2. Add the hardware `type`. The value must be one of the supported [machine types]
-3. Add the `os_image`. Value must be one of the supported [operating systems]
+2. Add the hardware `type`. The value must be one of the supported [machine types](../reference/machine-types)
+3. Add the `os_image`. The value must be one of the supported operating systems
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -173,13 +174,13 @@ blocks:
 
 :::tip
 
-If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation].
+If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation](./optimization/docker).
 
 :::
 
 Jobs can run inside Docker containers. This allows you to define a custom-build environment with pre-installed tools and dependencies needed for your project. You can enable this setting in the pipeline agent or in the [block agent override](./jobs#agent-override).
 
-You can run multiple containers at the same time. The job runs in the first container (called `main`) and attaches the other of the containers to the same network. This is similar to how containers inside a Kubernetes pod communicate. 
+You can run multiple containers at the same time. The job runs in the first container (called `main`) and attaches the other containers to the same network. This is similar to how containers inside a Kubernetes pod communicate. 
 
 The network addresses of all containers are mapped to their names. Let's say you have two containers, "main" and "mysql", you can connect to the database from main with:
 
@@ -194,7 +195,7 @@ To run the job inside a Docker container:
 
 1. Select the pipeline
 2. In **Environment Types** select **Docker Container(s)**
-3. Select the [machine type]
+3. Select the [machine type](../reference/machine-types)
 4. Type the **Image** name for this container
 5. Optionally, add environment variables
 6. Optionally, add more containers
@@ -243,7 +244,7 @@ blocks:
 
 :::warning
 
-Due to the introduction of [Docker Hub rate limits](https://docs.semaphoreci.com/ci-cd-environment/docker-authentication/), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry].
+Due to the introduction of [Docker Hub rate limits](./optimization/docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](./optimization/container-registry).
 
 :::
 
@@ -402,7 +403,7 @@ The available strategies are:
 - **Stop all remaining jobs**: stops the jobs
 - **Cancel pending jobs**: cancels the jobs
 - **Stop remaining jobs, unless on the master branch**: stops the jobs except when the current branch is "master"
-- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL]
+- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL](../reference/conditions-dsl)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -460,7 +461,7 @@ The options are:
 - **Cancel all pipelines, both running and queued**: stops running pipelines and cancel queued pipelines
 - **Cancel only queued pipelines**: cancels queued pipelines, wait for already-started pipelines to finish
 - **On the master branch cancel only queued pipelines, on others cancel both running and queued**: a mix of the last two strategies
-- **Run a custom auto-cancel strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL]
+- **Run a custom auto-cancel strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL](../reference/conditions-dsl)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -538,7 +539,7 @@ blocks:
 
 You can configure jobs to run once a pipeline stops, even if it ended due to a failure, stopped, or canceled.
 
-After-pipeline jobs are executed in parallel. Typical use cases for after-pipeline jobs are sending notifications, collecting [test reports](./test-reports), or submitting metrics to an external server.
+After-pipeline jobs are executed in parallel. Typical use cases for after-pipeline jobs are sending notifications, collecting [test reports](./tests/test-reports), or submitting metrics to an external server.
 
 You can add after-pipeline jobs using YAML or the editor.
 
@@ -596,7 +597,7 @@ after_pipeline:
 
 ## See also
 
-- [Pipeline YAML reference]
+- [Pipeline YAML reference](../reference/pipeline-yaml)
 - [How to create jobs](./jobs#job-create)
 - [How to connect pipelines with promotions](./promotions)
 - [Run pipelines on a schedule with Tasks](./tasks)

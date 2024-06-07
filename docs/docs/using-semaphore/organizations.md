@@ -18,9 +18,9 @@ The fist time you log in to Semaphore you'll be prompted to create an *organizat
 Organizations have:
 
 - zero or more [projects](./projects)
-- a [billing plan](https://semaphoreci.com/pricing)
+- a [billing plan](./plans)
 - one or more owners
-- users and groups with permission levels
+- users and groups with role-based permissions
 
 ## How to change organizations {#org-selection}
 
@@ -36,7 +36,7 @@ To view or create other organizations, open the organization menu on the top rig
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-You must install and connect the [Semaphore command line] to access your organizations
+You must install and connect the [Semaphore command line](../reference/semaphore-cli) to access your organizations
 
 1. Run `sem context` to show the organizations connected to the tool. The active organization has an asterisk (*) next to it
     ```shell title="View connected organizations"
@@ -156,16 +156,11 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 Configure how pipelines are initialized.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos] or [pre-flight checks], even do a full repository clone.
+Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos](./optimization/monorepo) or [pre-flight checks](./preflight), even do a full repository clone.
 
 By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
 
-<details>
-<summary>Show me</summary>
-<div>
 ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
-</div>
-</details>
 
 ### Okta integration {#okta-integration}
 
@@ -195,7 +190,7 @@ You can find audit logs in your organization settings under Audit Logs.
 
 ![Audit logs location](./img/audit-log-location.jpg)
 
-The audit logs shows all the [audited events] in reverse cronological order. Latest events are shown first.
+The audit logs shows all the [audited events](../reference/audit-events) in reverse cronological order. Latest events are shown first.
 
 ![Audit log example](./img/audit-logs-example.jpg)
 
@@ -236,7 +231,7 @@ To view the activity monitor, open your organization menu and select **Activity 
 
 ![Activity monitor location](./img/activity-monitor-location.jpg)
 
-In the activity monitor, you can see the machine quota utilization for your organization. Here, you can have an overview on how Semaphore Cloud machines and [self-hosted agents] are being used.
+In the activity monitor, you can see the machine quota utilization for your organization. Here, you can have an overview on how Semaphore Cloud machines and [self-hosted agents](./self-hosted) are being used.
 
 ![Activity monitor quotas](./img/activity-monitor-quotas.jpg)
 
@@ -276,6 +271,6 @@ If you need to demote or remove an owner from the organization, any user with th
 
 ## See also
 
-- Okta integration
-- How to configure notifications
-- How to configure projects
+- [How to configure Okta integration](./okta)
+- [How to configure notifications](./notifications)
+- [How to configure projects](./projects)

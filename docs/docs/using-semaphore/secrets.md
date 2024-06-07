@@ -12,11 +12,11 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <VideoTutorial title="How to use secrets" src="https://www.youtube.com/embed/rAJIRX81DeA"/>
 
-Secrets store sensitive data such as API keys, passwords, or SSH keys. This page explains the different kind of secrets, their scopes, and how to create and secure them.
+Secrets store sensitive data such as API keys, passwords, or SSH keys. This page explains the different kinds of secrets, their scopes, and how to create and secure them.
 
 ## Overview {#overview}
 
-Secrets are encrypted on creation and decrypted on runtime, only when they are enabled in [jobs](./jobs#secrets). Once a secret is created, it's contents are no longer visible to users.
+Secrets are encrypted on creation and decrypted on runtime, only when they are enabled in [jobs](./jobs#secrets). Once a secret is created, its contents are no longer visible to users.
 
 Secrets implement two kinds of values:
 - **Variables**: key-value pairs. Available as environment variables in jobs
@@ -26,13 +26,13 @@ Secrets can be created in three scopes:
 
 - [Organization](./organizations): organization secrets are available in all projects in your organization
 - [Project](./projects): project secrets are available only to a single project
-- [Environment credentials](./promotions#credentials): environment credentials are available only pipelines targeted by [environments](./promotions#deployment-targets)
+- [Environment credentials](./promotions#credentials): environment credentials are available only to pipelines targeted by [environments](./promotions#deployment-targets)
 
 <details>
 <summary>How are secret collisions managed?</summary>
 <div>
 
-A collision happens when secrets with the same name are defined on multiple levels. The collision is resolved with the narrowest scope always wining. In other words:
+A collision happens when secrets with the same name are defined on multiple levels. The collision is resolved with the narrowest scope always winning. In other words:
 
 - Environment credentials always take precedence
 - Project secrets win over organization secrets
@@ -45,7 +45,7 @@ A collision happens when secrets with the same name are defined on multiple leve
 
 :::tip
 
-Organization secrets are available to all the [projects](./projects) in the organization. If you need more fine grained control, you can set up [secret access policies](#secret-access-policy) or use the [credentials in environments](./promotions#credentials) instead.
+Organization secrets are available to all the [projects](./projects) in the organization. If you need more fine-grained control, you can set up [secret access policies](#secret-access-policy) or use the [credentials in environments](./promotions#credentials) instead.
 
 :::
 
@@ -55,7 +55,7 @@ You can create secrets using the UI or the command line.
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">
 
-To create a an organization secret, go to the [organization settings](./organizations#general-settings) and:
+To create an organization secret, go to the [organization settings](./organizations#general-settings) and:
 
 1. Select **Secrets**
 2. Press **New Secret**
@@ -64,7 +64,7 @@ To create a an organization secret, go to the [organization settings](./organiza
 
 1. Enter the name of the secret
 2. Add an optional description
-3. To add a key-value, add the secret name and value
+3. To add a key value, add the secret name and value
 4. Add more variables as needed
 5. To add a file, add the path and upload the file
 6. Add more files as needed
@@ -80,7 +80,7 @@ To create a secret using the Semaphore command line tool use:
 
 ```shell title="Creating a secret"
 sem create secret <secret-name> \
-    -e <VAR_NAME>=<var_value> \
+ -e <VAR_NAME>=<var_value> \
     -f <local_file_path>:<agent_file_path>
 ```
 
@@ -88,7 +88,7 @@ You can define multiple environment variables at once:
 
 ```shell title="Defining multiple variables example"
 sem create secret awskey \
-    -e AWS_ACCESS_KEY_ID=your-value \
+ -e AWS_ACCESS_KEY_ID=your-value \
     -e AWS_SECRET_KEYID=your-value
 ```
 
@@ -96,7 +96,7 @@ In addition, you can upload multiple files as secrets:
 
 ```shell title="Creating multiple secret files example"
 sem create secret sshkeys \
-    -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
+ -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
     -f $HOME/.ssh/id_rsa.pub:/home/semaphore/.ssh/id_rsa.pub
 ```
 
@@ -140,13 +140,13 @@ To edit a secret:
 
 <Available plans={['Scaleup']}/>
 
-Access policies lets you control how and who can use [organization secrets](#org-secrets). 
+Access policies let you control how and who can use [organization secrets](#org-secrets). 
 
 You can apply a policy on three levels:
 
 - **Projects**: the secret is available on all, none, or a list of projects
 - **Debug Sessions**: persons connecting with [debug session](./jobs#debug-jobs) can see the contents of the secrets. Here you can disable debug sessions for jobs using this secret
-- **Attaching to jobs**: likewise, [attaching to a running job](./jobs#attach-job) can likewise expose secrets. Disabling this option prevents this secret to be viewed
+- **Attaching to jobs**: likewise, [attaching to a running job](./jobs#attach-job) can likewise expose secrets. Disabling this option prevents this secret from being viewed
 
 <details>
 <summary>Show me</summary>
@@ -174,7 +174,7 @@ To create a project secret, navigate to your project and select the **Settings**
 
 1. Type the name of the secret
 2. Type a description
-3. To add a key-value, add the secret name and value
+3. To add a key value, add the secret name and value
 4. Add more values as needed
 5. To add a file, add the path and upload the file
 6. Add more files as needed
@@ -189,7 +189,7 @@ To create a project secret using the Semaphore command line tool use:
 
 ```shell title="Creating a secret"
 sem create secret -p <project-name> <secret-name> \
-    -e <VAR_NAME>=<var_value> \
+ -e <VAR_NAME>=<var_value> \
     -f <local_file_path>:<agent_file_path>
 ```
 
@@ -197,7 +197,7 @@ You can define multiple environment variables at once:
 
 ```shell title="Defining multiple variables example"
 sem create secret -p myproject awskey \
-    -e AWS_ACCESS_KEY_ID=your-value \
+ -e AWS_ACCESS_KEY_ID=your-value \
     -e AWS_SECRET_KEYID=your-value
 ```
 
@@ -205,7 +205,7 @@ In addition, you can upload multiple files as secrets:
 
 ```shell title="Creating multiple secret files example"
 sem create secret -p myproject sshkeys \
-    -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
+ -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
     -f $HOME/.ssh/id_rsa.pub:/home/semaphore/.ssh/id_rsa.pub
 ```
 
@@ -255,5 +255,5 @@ For more information, see the [promotions and environments](./promotions#credent
 
 ## See also
 
-- [Semaphore toolbox]
+- [Semaphore toolbox](../reference/toolbox)
 - [How to manage organization secrets](./organizations.md)
