@@ -174,7 +174,7 @@ blocks:
 
 :::tip
 
-If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation](./docker).
+If you want to build and run Docker images in your jobs, check the [working with Docker Images documentation](./optimization/docker).
 
 :::
 
@@ -244,7 +244,7 @@ blocks:
 
 :::warning
 
-Due to the introduction of [Docker Hub rate limits](./docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](./container-registry).
+Due to the introduction of [Docker Hub rate limits](./optimization/docker#dockerhub), Semaphore automatically redirects any image pulls from the semaphoreci Docker Hub repository to the [Semaphore Container Registry](./optimization/container-registry).
 
 :::
 
@@ -539,7 +539,7 @@ blocks:
 
 You can configure jobs to run once a pipeline stops, even if it ended due to a failure, stopped, or canceled.
 
-After-pipeline jobs are executed in parallel. Typical use cases for after-pipeline jobs are sending notifications, collecting [test reports](./test-reports), or submitting metrics to an external server.
+After-pipeline jobs are executed in parallel. Typical use cases for after-pipeline jobs are sending notifications, collecting [test reports](./tests/test-reports), or submitting metrics to an external server.
 
 You can add after-pipeline jobs using YAML or the editor.
 

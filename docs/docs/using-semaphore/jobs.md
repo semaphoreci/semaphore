@@ -731,7 +731,7 @@ blocks:
 
 You can choose to skip or run the block only under certain conditions. Skipping a block means that none of its job are executed.
 
-Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects](./monorepo).
+Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects](./optimization/monorepo).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">

@@ -1,5 +1,6 @@
 ---
 description: Find unreliable tests
+sidebar_position: 2
 ---
 
 # Flaky Tests
@@ -7,7 +8,7 @@ description: Find unreliable tests
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The flaky test dashboard shows unreliable tests in your [projects](./projects). This page explains how they work and how to interpret the flaky test dashboard.
+The flaky test dashboard shows unreliable tests in your [projects](../projects). This page explains how they work and how to interpret the flaky test dashboard.
 
 ## Overview {#overview}
 
@@ -39,7 +40,7 @@ It may take a few pipeline runs before flaky tests begin to appear in the flaky 
 
 ## How to view flaky tests {#view}
 
-Open your [project](./projects) on Semaphore and go to the **Flaky tests** tab.
+Open your [project](../projects) on Semaphore and go to the **Flaky tests** tab.
 
 ![The flaky test tab location in Semaphore](./img/flaky-test-tab.jpg)
 
@@ -304,4 +305,4 @@ For example:
 ## See also
 
 - [How to configure test reports](./test-reports)
-- [How to set up Slack notifications](./organizations#slack-notifications)
+- [How to set up Slack notifications](../organizations#slack-notifications)

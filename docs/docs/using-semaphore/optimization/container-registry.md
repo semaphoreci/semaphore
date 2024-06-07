@@ -1,5 +1,6 @@
 ---
 description: Semaphore Container Registry
+sidebar_position: 3
 ---
 
 # Semaphore Container Registry

@@ -18,9 +18,9 @@ The fist time you log in to Semaphore you'll be prompted to create an *organizat
 Organizations have:
 
 - zero or more [projects](./projects)
-- a [billing plan](https://semaphoreci.com/pricing)
+- a [billing plan](./plans)
 - one or more owners
-- users and groups with permission levels
+- users and groups with role-based permissions
 
 ## How to change organizations {#org-selection}
 
@@ -156,16 +156,11 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 Configure how pipelines are initialized.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos](./monorepo) or [pre-flight checks](./preflight), even do a full repository clone.
+Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos](./optimization/monorepo) or [pre-flight checks](./preflight), even do a full repository clone.
 
 By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
 
-<details>
-<summary>Show me</summary>
-<div>
 ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
-</div>
-</details>
 
 ### Okta integration {#okta-integration}
 
@@ -276,6 +271,6 @@ If you need to demote or remove an owner from the organization, any user with th
 
 ## See also
 
-- Okta integration
-- How to configure notifications
-- How to configure projects
+- [How to configure Okta integration](./okta)
+- [How to configure notifications](./notifications)
+- [How to configure projects](./projects)

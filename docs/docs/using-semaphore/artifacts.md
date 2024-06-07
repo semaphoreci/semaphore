@@ -26,7 +26,7 @@ Artifacts provide a persistent file store for all your [projects](./projects). A
 - passing files between [jobs](./jobs) like build artifacts or compiled executables
 - long-term storage for final deliverables
 - collecting debug data from your jobs like screenshots and build logs
-- store test results for processing [Test Reports](./test-reports) and [Flaky Tests](./flaky-tests)
+- store test results for processing [Test Reports](./tests/test-reports) and [Flaky Tests](./tests/flaky-tests)
 
 :::note
 
@@ -367,7 +367,7 @@ If you're using [self-hosted agents](./self-hosted), prices may differ.
 ## See also
 
 - [Semaphore toolbox](../reference/toolbox)
-- [Test reports](./test-reports.md)
-- [Flaky tests](./flaky-tests.md)
+- [Test reports](./tests/test-reports.md)
+- [Flaky tests](./tests/flaky-tests.md)
 - [Using artifacts in jobs](./jobs#artifact)
 

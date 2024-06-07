@@ -1,5 +1,6 @@
 ---
 description: View all your tests in one place
+sidebar_position: 1
 ---
 
 # Tests Reports
@@ -10,7 +11,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <VideoTutorial title="How to set up test reports" src="https://www.youtube.com/embed/9L0Z9xcKiYU?si=IdSsYfGLU7btYVwq" />
 
-Test reports shows a unified view of all your tests in a [pipeline](./pipelines). This page explains how to configure test reports and interpret the test dashboard.
+Test reports show a unified view of all your tests in a [pipeline](../pipelines). This page explains how to configure test reports and interpret the test dashboard.
 
 ## Overview {#overview}
 
@@ -23,12 +24,12 @@ The test tab in your project offers a unified view of the state of tests across 
 Before you can view your tests in the Test tabs, you need to perform a one-time setup. The benefit of having all tests in one place is usually worth the effort of this setup.
 
 1. **Format**: format test results in JUnit XML
-2. **Publish**: push results file into the [artifact store](./artifacts)
+2. **Publish**: push results file into the [artifact store](../artifacts)
 3. **Merge**: collect and process all result files
 
 ![Steps to enable test results](./img/test-reports-steps.jpg)
 
-Once test reports are configure the [flaky test detection](./flaky-tests) feature is automatically enabled.
+Once test reports are configured, [flaky test detection](../tests/flaky-tests) feature is automatically enabled.
 
 ### Step 1 - Format {#step1}
 
@@ -71,7 +72,7 @@ To generate JUnit reports on Ruby on Rails projects we need to add the [rspec_ju
 
 group :development, :test do
   # ...
-  gem "rspec_junit_formatter"
+ gem "rspec_junit_formatter"
 end
 ```
 
@@ -83,7 +84,7 @@ After running `bundle install`, we need to tell RSpec to use the new formatter. 
 --format documentation
 ```
 
-Alternatively, we can change pass the configuration via command line arguments:
+Alternatively, we can change the configuration via command line arguments:
 
 ```shell
 bundle exec rspec --format RspecJunitFormatter --out report.xml --format documentation
@@ -98,7 +99,7 @@ Either way should generate a `report.xml` file at the root of the project.
 <summary>Go example</summary>
 <div>
 
-A project using [GoTestSum](https://github.com/gotestyourself/gotestsum) as the test runner can generate JUnit reports by `--junitfile` to the test command in the [job](./jobs):
+A project using [GoTestSum](https://github.com/gotestyourself/gotestsum) as the test runner can generate JUnit reports by `--junitfile` to the test command in the [job](../jobs):
 
 ```shell
 checkout
@@ -185,15 +186,15 @@ The table shows possible test runners for popular languages. If your test runner
 
 ### Step 2 - Publish {#step2}
 
-The publish step uploads all report files to the [artifact store](./artifacts). This is accomplished using the `test-results` tool which is part of the _Semaphore toolbox_.
+The publishing step uploads all report files to the [artifact store](../artifacts). This is accomplished using the `test-results` tool, which is part of the [Semaphore toolbox](../../reference/toolbox).
 
-Assuming the file is called `report.xml`, you can publish the report with the following command, which runs only if the file exists.
+Assuming the file is called `report.xml`, you can publish the report with the following command.
 
 ```shell
 [[ -f report.xml ]] && test-results publish report.xml
 ```
 
-To simplify this step, you can add a [pipeline epilogue](./pipelines#settings) to run the publish command after every job ends.
+To simplify this step, you can add a [pipeline epilogue](../pipelines#settings) to run the publish command after every job ends.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -225,7 +226,7 @@ global_job_config:
 
 ### Step 3 - Merge {#step3}
 
-The final step is to merge and process all report files. This is achieved using an [after-pipeline job](./pipelines#after-pipeline-job).
+The final step is to merge and process all report files. This is achieved using an [after-pipeline job](../pipelines#after-pipeline-job).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -284,6 +285,6 @@ Click on "View" to change display preferences. You can hide passed or skipped te
 
 ## See also
 
-- [Semaphore toolbox reference](../reference/toolbox)
+- [Semaphore toolbox reference](../../reference/toolbox)
 - [How to use the flaky tests dashboard](./flaky-tests.md)
-- [Plan job and block execution with pipelines](./pipelines)
+- [Plan job and block execution with pipelines](../pipelines)
