@@ -36,7 +36,7 @@ To view or create other organizations, open the organization menu on the top rig
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-You must install and connect the [Semaphore command line] to access your organizations
+You must install and connect the [Semaphore command line](../reference/semaphore-cli) to access your organizations
 
 1. Run `sem context` to show the organizations connected to the tool. The active organization has an asterisk (*) next to it
     ```shell title="View connected organizations"
@@ -156,7 +156,7 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 Configure how pipelines are initialized.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos] or [pre-flight checks], even do a full repository clone.
+Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos] or [pre-flight checks](./preflight), even do a full repository clone.
 
 By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
 
@@ -195,7 +195,7 @@ You can find audit logs in your organization settings under Audit Logs.
 
 ![Audit logs location](./img/audit-log-location.jpg)
 
-The audit logs shows all the [audited events] in reverse cronological order. Latest events are shown first.
+The audit logs shows all the [audited events](../reference/audit-events) in reverse cronological order. Latest events are shown first.
 
 ![Audit log example](./img/audit-logs-example.jpg)
 
@@ -236,7 +236,7 @@ To view the activity monitor, open your organization menu and select **Activity 
 
 ![Activity monitor location](./img/activity-monitor-location.jpg)
 
-In the activity monitor, you can see the machine quota utilization for your organization. Here, you can have an overview on how Semaphore Cloud machines and [self-hosted agents] are being used.
+In the activity monitor, you can see the machine quota utilization for your organization. Here, you can have an overview on how Semaphore Cloud machines and [self-hosted agents](./self-hosted) are being used.
 
 ![Activity monitor quotas](./img/activity-monitor-quotas.jpg)
 

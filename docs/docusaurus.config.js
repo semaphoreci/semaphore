@@ -99,7 +99,12 @@ const config = {
             position: 'left',
             label: 'Using Semaphore',
           },
-
+          {
+            type: 'docSidebar',
+            sidebarId: 'refSidebar',
+            position: 'left',
+            label: 'Reference',
+          },
           {
             href: 'https://github.com/semaphoreci/docs',
             className: 'header-github-link',
@@ -180,9 +185,9 @@ const config = {
         additionalLanguages: ['elixir'],
       },
     }),
-  // future: {
-  //   experimental_router: 'hash', // default to "browser"
-  // }
+  future: {
+    experimental_router: 'hash', // default to "browser"
+  }
 };
 
 export default config;

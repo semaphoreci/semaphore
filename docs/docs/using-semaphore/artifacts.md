@@ -30,7 +30,7 @@ Artifacts provide a persistent file store for all your [projects](./projects). A
 
 :::note
 
-Using artifacts in [self-hosted agents] requires additional setup steps.
+Using artifacts in [self-hosted agents](./self-hosted) requires additional setup steps.
 
 :::
 

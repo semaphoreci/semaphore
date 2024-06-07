@@ -4,6 +4,7 @@ description: Connect blocks to get things done
 
 # Pipelines
 
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
@@ -112,9 +113,9 @@ Pipeline settings are applied to all its blocks. You can change pipeline setting
 Agents are the environment where jobs run. Semaphore keeps a pool of warm agents at all times to be sure there's always one ready to work.
 
 Semaphore Cloud provides the following agent types in x86 and ARM architectures:
-- [Linux Machines] presented as VMs or [Docker containers](#docker-environments)
-- [Apple macOS Machines]
-- [Windows Machines] (only for [self-hosted agents]) 
+- [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
+- [Apple macOS Machines](../reference/machine-types#macos)
+- [Windows Machines](./self-hosted#windows) (only for self-hosted agents) 
 
 :::info
 

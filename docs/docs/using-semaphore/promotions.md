@@ -302,7 +302,7 @@ ${{parameters.ENVIRONMENT}}
 Parameters are available in the following places:
 
 - Pipeline `name`
-- Pipeline [queue name] (only available via YAML)
+- Pipeline [queue name](../reference/pipeline-yaml#queue) (only available via YAML)
 - As the name of a [secret in the job](./jobs#secrets) (only available in YAML)
 
 <Tabs groupId="editor-yaml">
@@ -594,10 +594,10 @@ Once a [promotion](#promotions) is targeted, you may be locked out from starting
 
 ### Promoting environments via API {#promotion-api}
 
-You can also use the [Public API (alpha)] to trigger promotions. If promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+You can also use the [Public API (alpha)](../reference/api) to trigger promotions. If promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
 
 ## See also
 
-- [Pipeline YAML reference]
-- [Promotion conditions reference]
+- [Pipeline YAML reference](../reference/pipeline-yaml)
+- [Promotion conditions reference](../reference/conditions-dsl)
 - [Plan job and block execution with pipelines](./pipelines)

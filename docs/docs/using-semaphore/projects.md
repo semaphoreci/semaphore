@@ -4,6 +4,8 @@ description: Connect Git repositories with Semaphore
 
 # Projects
 
+WIP
+
 Projects connect your Git repositories with Semaphore. This page explains how to set up projects and what settings are available.
 
 ## Create a project

@@ -85,7 +85,7 @@ At this point, you can create additional rules or save the changes by pressing *
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-To create a Slack notification, install and connect the [Semaphore command line] and execute:
+To create a Slack notification, install and connect the [Semaphore command line](../reference/semaphore-cli) and execute:
 
 ```shell title="Creating an Slack Notification"
 sem create notification <name> \
@@ -295,7 +295,7 @@ The available values for `filter.results` are:
 
 ## Advanced notification settings
 
-You can use the [Semaphore command line tool] to view, delete and edit notifications:
+You can use the [Semaphore command line tool](../reference/semaphore-cli) to view, delete and edit notifications:
 
 - List notifications with: `sem get notifications`
 - Describe a notification with: `sem get notifications <name>`
