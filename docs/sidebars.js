@@ -58,6 +58,8 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            'using-semaphore/connect-github',
+            'using-semaphore/connect-bitbucket',
             'using-semaphore/notifications',
             'using-semaphore/okta',
           ]
