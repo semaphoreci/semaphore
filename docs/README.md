@@ -18,15 +18,15 @@ To learn how to contribute to the Semaphore docs site, please refer to the follo
 
 👉 [Bounty Board](https://github.com/orgs/semaphoreci/projects/2/views/7) 👈
 
-WIP
+Contributors list is WIP
 
 ## Work group meetings
 
 Documentation team meets weekly. Meeting agenda is always published one week prior. All contributors are welcome, open an issue to join the workgroup and get a calendar invite.
 
-📆 Every `Monday` at `1pm UTC`
-📝 [Meeting minutes](https://github.com/semaphoreci/semaphore/blob/main/docs/docs-contributing/meeting-notes.md)
-🙋‍♂️ [Join the workgroup](https://github.com/semaphoreci/semaphore/issues/new?assignees=TomFern%2CAleksandarCole&labels=documentation&projects=semaphoreci%2F2&template=DOCS_ISSUE.yml&title=%5BDocs%5D%3A%20Workgroup%20request+) < select `Join the work group` from the dropdown. 
+- 📆 Every `Monday` at `1pm UTC`
+- 📝 [Meeting minutes](https://github.com/semaphoreci/semaphore/blob/main/docs/docs-contributing/meeting-notes.md)
+- 🙋‍♂️ [Join the workgroup](https://github.com/semaphoreci/semaphore/issues/new?assignees=TomFern%2CAleksandarCole&labels=documentation&projects=semaphoreci%2F2&template=DOCS_ISSUE.yml&title=%5BDocs%5D%3A%20Workgroup%20request+) < select `Join the work group` from the dropdown. 
 
 ## License
 
