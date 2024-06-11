@@ -64,6 +64,7 @@ const sidebars = {
             'using-semaphore/okta',
           ]
         },
+        'using-semaphore/projects',
         'using-semaphore/tasks',
         {
           type: 'category',
@@ -76,7 +77,6 @@ const sidebars = {
             },
           ],
         },
-        'using-semaphore/projects',
         'using-semaphore/observability',
         'using-semaphore/self-hosted',
         {
