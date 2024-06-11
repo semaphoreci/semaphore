@@ -9,6 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
+Get notified via Slack or any other webhook-based service when important things happen.
 
 ## Slack and webhook notifications {#slack-notifications}
 
@@ -170,130 +171,7 @@ Semaphore includes the signature in the `X-Semaphore-Signature-256` header when 
 </TabItem>
 </Tabs>
 
-## Advanced Slack notifications
-
-You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
-
-To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli).
-
-Next, create a YAML resource:
-
-```yaml title="notify.yml"
-# Slack notification for failures
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: notify-on-fail
-spec:
-  rules:
-    - name: "Example"
-      filter:
-        projects:
-          - example-project
-        results:
-          - failed
-          - stopped
-          - canceled
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/services/xxx/yyy/zzz
-```
-
-You can create a notification using the file above with the following command:
-
-```shell
-sem create -f notify.yml
-```
-
-The available values for `filter.results` are:
-
-- `passed`
-- `failed`
-- `stopped`
-- `canceled`
-
-Here is a more comprehensive example sending notifications to two teams:
-
-```yaml title="notify.yml"
-# release-cycle-notifications.yml
-
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: release-cycle-notifications
-spec:
-  rules:
-    - name: "On staging branches"
-      filter:
-        projects:
-          - /.*/
-        branches:
-          - staging
-        results:
-          - passed
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
-          channels:
-            - "#qa-team"
-
-    - name: "On master branches"
-      filter:
-        projects:
-          - /.*/
-        branches:
-          - master
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
-          channels:
-            - "#devops-team"
-            - "#secops-team"
-```
-
-## Advanced webhook-based notifications
-
-You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
-
-To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli)
-
-Next, create a YAML resource:
-
-```yaml title="notify.yml"
-# webhook notification on failure
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: notify-on-fail
-spec:
-  rules:
-    - name: "Example"
-      filter:
-        projects:
-          - example-project
-        results:
-          - failed
-          - stopped
-          - cancelled
-      notify:
-        webhook:
-          endpoint: https://example.org/postreceiver
-```
-
-You can create a notification using the file above with the following command:
-
-```shell
-sem create -f notify.yml
-```
-
-The available values for `filter.results` are:
-
-- `passed`
-- `failed`
-- `stopped`
-- `canceled`
-
-## Advanced notification settings
+## Manage notifications from the CLI
 
 You can use the [Semaphore command line tool](../reference/semaphore-cli) to view, delete and edit notifications:
 
@@ -415,3 +293,8 @@ Sample `tag` object:
   "name": "v1.0.1",
 }
 ```
+
+## See also
+
+- [How to create notifications using YAML](../reference/semaphore-cli#notifications)
+- [How to create notifications for flaky tests](./tests/flaky-tests#notifications)

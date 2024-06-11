@@ -19,6 +19,7 @@ Secrets store sensitive data such as API keys, passwords, or SSH keys. This page
 Secrets are encrypted on creation and decrypted on runtime, only when they are enabled in [jobs](./jobs#secrets). Once a secret is created, its contents are no longer visible to users.
 
 Secrets implement two kinds of values:
+
 - **Variables**: key-value pairs. Available as environment variables in jobs
 - **Files**: arbitrary files, they are injected into the job environment at a specified path
 
@@ -136,6 +137,8 @@ To edit a secret:
 </TabItem>
 </Tabs>
 
+To create secrets with the Semaphore API, see the [API reference page](../reference/api#secrets)
+
 ### Access policy {#secret-access-policy}
 
 <Available plans={['Scaleup']}/>
@@ -247,6 +250,8 @@ To edit a secret:
 
 It's worth noting that if you define a secret with the same name at both the organization and project levels, the project-level secret will take precedence over the organization-level secret.
 
+To create secrets with the Semaphore API, see the [API reference page](../reference/api#secrets)
+
 ## Environment credentials
 
 Environment credentials are active only for specific pipelines attached to environments.
@@ -255,5 +260,6 @@ For more information, see the [promotions and environments](./promotions#credent
 
 ## See also
 
-- [Semaphore toolbox](../reference/toolbox)
+- [How to create secrets with the Semaphore CLI](../reference/toolbox)
 - [How to manage organization secrets](./organizations.md)
+- [How to create secrets with the Semaphore API](../reference/api.md#secrets)

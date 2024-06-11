@@ -7,3 +7,5 @@ description: Semaphore API reference
 WIP
 
 this is about the public API
+
+## Secrets {#secrets}
