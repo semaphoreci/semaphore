@@ -68,21 +68,21 @@ After installing and connecting the [Semaphore command line](../reference/semaph
 2. Run `sem init` at the root of the repository
 3. Push a change to get Semaphore working
  
-    ```shell title="Push pipeline to repository
+ ```shell title="Push pipeline to the repository
     git add .semaphore
     git commit "Initalize Semaphore"
     git push origin main
-    ```
+ ```
 
 ![Project created](./img/project-created.jpg)
 
-You can override the project name and url by using [additional options](../reference/semaphore-cli#sem-edit)
+You can override the project name and URL by using [additional options](../reference/semaphore-cli#sem-edit)
 
 ```shell
 sem init --project-name <project_name> --project-url <project_url>
 ```
 
-If you get an permission or not found error message, double check the connection between Semaphore and your Git provider:
+If you get permission or not find error message, double check the connection between Semaphore and your Git provider:
 - [How to connect to GitHub](./connect-github)
 - [How to connect to Bitbucket](./connect-bitbucket)
 
@@ -128,7 +128,7 @@ The available roles are:
 
 - **Admin**: admins can change any setting in the project, add or remove people, and even delete the project altogether
 - **Contributor**: contributors can view, change [pipelines](./pipelines) and re-run them. They can also start [promotions](./promotions), view insights and [tasks](./tasks)
-- **Reader**: readers can view the project's page, view results and jobs logs. They can't make any modification to the project
+- **Reader**: readers can view the project's page, and view results and jobs logs. They can't make any modifications to the project
 
 ### How to add/remove people {#people-add}
 
@@ -177,7 +177,7 @@ The **Settings** tab in your project allows you to customize your project settin
 
 ### General settings {#general}
 
-In the general project settings you can: 
+In the general project settings, you can: 
 
 - Change the owner of the project. The new owner [must be already part](#people-add) of the project.
 - Change the visibility and make the project publicly-viewable
@@ -189,14 +189,14 @@ In the general project settings you can:
 In addition, you can select when the project is triggered:
 
 - **Do not run on any events** disables automatic runs on Semaphore. You can still run workflows manually or with [tasks](./tasks)
-- **Run on** lets you enable or disable running workflows on Semaphore on branches, tags, pull requests and forked pull requests.
+- **Run on** lets you enable or disable running workflows on Semaphore on branches, tags, pull requests, and forked pull requests.
 - You can create an allow list for branches and tags
 
 ![General settings](./img/project-general-settings-2.jpg)
 
 ### Repository {#settings-repo}
 
-In **Repository** settingss page you can:
+In **Repository** settings page you can:
 
 - change the URL of your Git repository if you moved it
 - configure or reinstall the [GitHub](./connect-github) or [Bitbucket](./connect-bitbucket) connections
@@ -206,7 +206,7 @@ In **Repository** settingss page you can:
 
 ### Project secrets {#project-secrets}
 
-In **Secrets** page you can create project-level [secrets](./secrets.md). These are only accessible for this project and not globally to all the organization.
+In **Secrets** page, you can create project-level [secrets](./secrets.md). These are only accessible for this project and not globally to all the organizations.
 
 To learn how to create project secrets, see the [secrets documentation page](./secrets#create-project-secrets).
 

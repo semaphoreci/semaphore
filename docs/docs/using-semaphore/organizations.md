@@ -13,7 +13,7 @@ Organizations are the administrative unit for Semaphore. This page explains how 
 
 ## Overview {#overview}
 
-The fist time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
+The first time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
 
 Organizations have:
 
