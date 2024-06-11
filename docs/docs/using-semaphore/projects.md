@@ -28,17 +28,36 @@ To create a Semaphore project you need:
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">
 
-Go to Semaphore and press **+Create New**
+Go to Semaphore, press **+Create New** 1 and then press **Choose repository**
 
-1. Press **Choose repository**
-2. Select the GitHub or Bitbucket tab. You may need to press the **Connect account** button if this is the first time
-3. Select the repository from the list and press on **Choose**
-4. Optionally, [add people](./organizations#people) to the project. Press **Continue**
-5. Select a started workflow. If in doubt, select **Single Job** and **Start**
+![Creating a new project](./img/create-project-1.jpg)
+
+1. Select the GitHub or Bitbucket tab. You may need to press the **Connect account** button if this is the first time
+2. Select the repository from the list and press on **Choose**
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Select repository](./img/create-project-2.jpg)
+    </div>
+    </details>
+3. Optionally, [add people](./organizations#people) to the project. Press **Continue**
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Add people](./img/create-project-3.jpg)
+    </div>
+    </details>
+4. Select a started workflow. If in doubt, select **Single Job** and **Start**
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Add people](./img/create-project-4.jpg)
+    </div>
+    </details>
 
 Semaphore creates a new [pipeline](./pipelines) file in the `.semaphore` folder in the repository and starts working.
 
-TODO: image
+![Project created](./img/project-created.jpg)
 
 </TabItem>
 <TabItem value="cli" label="CLI">
@@ -55,7 +74,7 @@ After installing and connecting the [Semaphore command line](../reference/semaph
     git push origin main
     ```
 
-TODO: image
+![Project created](./img/project-created.jpg)
 
 You can override the project name and url by using [additional options](../reference/semaphore-cli#sem-edit)
 
@@ -70,7 +89,38 @@ If you get an permission or not found error message, double check the connection
 </TabItem>
 </Tabs>
 
-## Manage people {#people}
+## View projects {#view-projects}
+
+<Tabs groupId="ui-cli">
+<TabItem value="ui" label="UI">
+
+You can find your projects in Semaphore by pressing on the **Projects** tab and searching by project name.
+
+![Searching for projects](./img/find-project.jpg)
+
+Semaphore shows the latest activity in the last few days when logging in. 
+
+![Project activity](./img/project-activity.jpg)
+
+</TabItem>
+<TabItem value="cli" label="CLI">
+
+To get the list of the projects in your organization:
+
+1. If needed, [switch the context](./organizations#org-selection) to your organization
+2. Run [sem get](../reference/semaphore-cli) to list your projects
+
+```shell
+$ sem get project
+NAME                                 REPOSITORY
+semaphore-demo-flutter               git@github.com:semaphoreci-demos/semaphore-demo-flutter.git
+hello-semaphore                      git@github.com:semaphoreci-demos/hello-semaphore.git
+```
+
+</TabItem>
+</Tabs>
+
+## Access roles {#people}
 
 Add people to the project to let them view or administrate it. Semaphore uses role-based permissions to manage access to projects.
 
@@ -82,7 +132,29 @@ The available roles are:
 
 ### How to add/remove people {#people-add}
 
+:::note
+
+You must add individuals to your Git repository and to your [Semaphore organization](./organizations#people) before you can add them to your project.
+
+:::
+
+Open your project and go to the **People** tab
+
+1. Press **Add People**
+2. Select the user from the list of options
+3. Select the role
+4. Press **Add Selected**
+
+![Adding a member to the project](./img/add-user-2.jpg)
+
 ### How to change permissions {#people-roles}
+
+Open your project and go to the **People** tab
+
+1. Press the **Change role** next to the project member
+2. Select the new role
+
+![Changing a members role](./img/change-role.jpg)
 
 ## Project tabs {#manage-projects}
 
@@ -97,46 +169,67 @@ Project members can view or manage the following project elements:
 - **People**: shows the [project members](#people)
 - **Settings**: shows the [project-level settings](#settings)
 
-TODO: image
+![Project tabs](./img/project-tabs.jpg)
 
 ## Settings {#settings}
 
+The **Settings** tab in your project allows you to customize your project settings, add project-level secrets, and manage [artifacts](./artifacts)
+
+### General settings {#general}
+
+In the general project settings you can: 
+
+- Change the owner of the project. The new owner [must be already part](#people-add) of the project.
+- Change the visibility and make the project publicly-viewable
+- Change the project name or description
+- Delete the project
+
+![General settings](./img/project-general-settings-1.jpg)
+
+In addition, you can select when the project is triggered:
+
+- **Do not run on any events** disables automatic runs on Semaphore. You can still run workflows manually or with [tasks](./tasks)
+- **Run on** lets you enable or disable running workflows on Semaphore on branches, tags, pull requests and forked pull requests.
+- You can create an allow list for branches and tags
+
+![General settings](./img/project-general-settings-2.jpg)
+
+### Repository {#settings-repo}
+
+In **Repository** settingss page you can:
+
+- change the URL of your Git repository if you moved it
+- configure or reinstall the [GitHub](./connect-github) or [Bitbucket](./connect-bitbucket) connections
+- regenerate the [git webhook](./connect-github) if Semaphore is not picking up on the remote changes
+
+![Repository settings](./img/project-settings-reop.jpg)
+
 ### Project secrets {#project-secrets}
 
-TODO: project-level secrets - https://docs.semaphoreci.com/essentials/using-secrets/
-    CLI
-    https://docs.semaphoreci.com/essentials/using-secrets/#project-level-secrets_3
+In **Secrets** page you can create project-level [secrets](./secrets.md). These are only accessible for this project and not globally to all the organization.
 
+To learn how to create project secrets, see the [secrets documentation page](./secrets#create-project-secrets).
 
 Project roles: https://docs.semaphoreci.com/security/default-roles/
 
-## Manage project ownership {#manage-ownership}
+### Badges
 
-## Mapping roles to repositories
+The **Badge** settings page shows you [shields](https://shields.io/) embed codes for your README or any webpage, allowing team members and users about the build status of your project.
 
-Users on Semaphore are always mapped to GitHub or Bitbucket repositories. Semaphore keeps track of all linked accounds that have access to the repositories.
+To get a badge embed code:
 
-Permission levels on GitHub
+1. Type the branch name you want to show the status for. This is typically "main" or "master"
+2. Select a badge style. This is only a style choice
+3. Choose the file format where you will embed the badge
+4. Copy the code into your README or webpage
 
-Repository-to-role mappings#
-On Semaphore, each project has to stem from a code base on a remote repository, like GitHub or Bitbucket. Semaphore keeps track of all accounts that have access to those remote repositories (collaborators), and if any of them is associated with a Semaphore account, that Semaphore user is given access to the project (if he is a member of the organization which owns it).
+![Using project badges](./img/project-badges.jpg)
 
-Rules for assigning project roles#
-Depending on user's premissions within the remote repository, a different role is assigned to them on the Semaphore project.
+### Artifacts
 
-Repository permission level Semaphore project role
-Admin Contributor
-Push Contributor
-Pull Reader
-Bitbucket:#
-Repository permission level Semaphore project role
-Admin Contributor
-Write Contributor
-Read Reader
+The **Artifacts** settings page lets you configure the [artifact](./artifacts) retention policy.
 
-Members can access the organization's homepage and the projects they are assigned to. However, they are not able to modify settings.
-
-https://docs.semaphoreci.com/security/repository-to-role-mappings/
+To learn more, see the [artifacts retention page](./artifacts#retention)
 
 ## See also
 
