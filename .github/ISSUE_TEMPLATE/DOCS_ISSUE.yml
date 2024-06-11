@@ -19,6 +19,7 @@ body:
         - Improvement idea
         - New content idea
         - Maintenance task
+        - Join the work group
       default: 0
     validations:
       required: true
