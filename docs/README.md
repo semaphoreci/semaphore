@@ -13,13 +13,18 @@ To learn how to contribute to the Semaphore docs site, please refer to the follo
 - [Style Guide](./docs-contributing/STYLE_GUIDE.md): Guidelines for maintaining consistency in the Semaphore documentation.
 - [UI Reference](./docs-contributing/UI-REFERENCE.md): A reference for UI components available to documentation authors.
 
-## Interest group meetings
-
-WIP
 
 ## Top Contributors
 
+👉 [Bounty Board](https://github.com/orgs/semaphoreci/projects/2/views/7) 👈
+
 WIP
+
+## Interest group meetings
+
+Documentation work group meets Weekly on Monday. 
+
+[Meeting minutes](https://github.com/semaphoreci/semaphore/blob/main/docs/docs-contributing/meeting-notes.md)
 
 ## License
 
