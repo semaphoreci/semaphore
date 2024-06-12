@@ -16,7 +16,7 @@ To learn how to contribute to the Semaphore docs site, please refer to the follo
 
 ## Top Contributors
 
-👉 [Bounty Board](https://github.com/orgs/semaphoreci/projects/2/views/7) 👈
+👉 [Help Wanted Board](https://github.com/orgs/semaphoreci/projects/2/views/7) 👈
 
 Contributors list is WIP
 
