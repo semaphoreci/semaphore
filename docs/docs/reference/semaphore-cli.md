@@ -7,3 +7,5 @@ description: Semaphore command line reference
 WIP
 
 this is about sem cli
+
+## sem edit {#sem-edit}

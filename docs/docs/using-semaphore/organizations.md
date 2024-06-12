@@ -13,7 +13,7 @@ Organizations are the administrative unit for Semaphore. This page explains how 
 
 ## Overview {#overview}
 
-The fist time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
+The first time you log in to Semaphore you'll be prompted to create an *organization*. An organization is the basic unit of administration. 
 
 Organizations have:
 
@@ -261,7 +261,7 @@ It might take several minutes for the update to be completed.
 
 :::note
 
-Updating the ownership of an organization doesn't automatically transfer the project ownership. For more information, see [How to transfer project ownership](./projects#manage-ownership)
+Updating the ownership of an organization doesn't automatically transfer the project ownership. For more information, see [How to transfer project ownership](./projects#general).
 
 :::
 
