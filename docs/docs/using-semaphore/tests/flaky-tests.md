@@ -232,7 +232,28 @@ When notifications are enabled, Semaphore sends an HTTPs POST request with `Cont
 
 If the endpoint doesn't respond with a 2XX code, Semaphore attempts to resend the request four additional times using an exponential backoff strategy.
 
-Notification payload:
+The notification sends a JSON payloads like the example shown below:
+
+```json
+{
+  "id": "a01e9b47-7e3c-4165-9007-8a3c1652b31a",
+  "project_id": "4627d711-4aa2-xe1e-bc5c-e0f4491b8735",
+  "test_id": "3177e680-46ac-4c39-b9fa-02c4ba71b644",
+  "branch_name": "main",
+  "test_name": "Test 1",
+  "test_group": "Elixir.Calculator.Test",
+  "test_file": "calculator_test.exs",
+  "test_suite": "suite1",
+  "created_at": "2025-03-22T18:24:34.479219+01:00",
+  "updated_at": "2025-03-22T18:24:34.479219+01:00"
+}
+```
+
+<details>
+<summary>Notification schema</summary>
+<div>
+
+The complete schema for the notification is shown below:
 
 ```yaml
 type: object
@@ -285,22 +306,8 @@ required:
   - updated_at
 ```
 
-For example:
-
-```yaml
-{
-  "id": "a01e9b47-7e3c-4165-9007-8a3c1652b31a",
-  "project_id": "4627d711-4aa2-xe1e-bc5c-e0f4491b8735",
-  "test_id": "3177e680-46ac-4c39-b9fa-02c4ba71b644",
-  "branch_name": "main",
-  "test_name": "Test 1",
-  "test_group": "Elixir.Calculator.Test",
-  "test_file": "calculator_test.exs",
-  "test_suite": "suite1",
-  "created_at": "2025-03-22T18:24:34.479219+01:00",
-  "updated_at": "2025-03-22T18:24:34.479219+01:00"
-}
-```
+</div>
+</details>
 
 ## See also
 

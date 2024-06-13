@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Organizations are the administrative unit for Semaphore. This page explains how to create organizations, manage users, and what settings are available.
+Organizations are the administrative unit for Semaphore. This page explains how to set up [notifications](./notifications), manage users, and what settings are available.
 
 ## Overview {#overview}
 
