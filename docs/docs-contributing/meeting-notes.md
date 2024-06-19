@@ -1,17 +1,18 @@
 # Documentation Work Group - Meeting Notes
 
-## 17-June-2024
+## 18-June-2024
 
 ### Attendees
 
 - @darkofabijan 
-- @TomFern 
 - @AleksandarCole
 
 ### Agenda
 
-- [ ] Licence for the docs
-- [ ] Review the state of the `help-wanted board`
+- [x] Licence for the docs
+  - Apache 2.0 licence added 
+- [x] Review the state of the `help-wanted board`
+  - Review done, Semaphore team briefed.
 
 ## 11-June-2024
 
