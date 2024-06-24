@@ -1,5 +1,19 @@
 # Documentation Work Group - Meeting Notes
 
+## 24-June-2024
+
+### Attendees
+
+- @darkofabijan 
+- @AleksandarCole
+
+### Agenda
+
+- [x] Review the state of the `help-wanted board`
+  - Review done, support team to get more involved this week
+  - Multiple RFDs planned, API v2 should be one of them
+- No further progress on docs, Tommy is offline this week  
+
 ## 18-June-2024
 
 ### Attendees
