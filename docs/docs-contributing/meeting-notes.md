@@ -1,5 +1,19 @@
 # Documentation Work Group - Meeting Notes
 
+## 02-July-2024
+
+### Attendees
+
+- @TomFern 
+- @AleksandarCole
+
+### Agenda
+- [x] Review the state of the `help-wanted board`
+  - 0 contributions
+  - @AleksandarCole to figure out next steps with internal team
+- @TomFern to review https://github.com/semaphoreci/semaphore/discussions/66
+- @TomFern continuing to work on new pages
+
 ## 24-June-2024
 
 ### Attendees
