@@ -4,7 +4,7 @@ description: View your pipeline productivity
 
 # Project Insights
 
-Project Insights provide productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average and the number of workflow runs in a given period. Use this information to assess the productivity of your development team.
+Project Insights provides productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average and the number of workflow runs in a given period. Use this information to assess the productivity of your development team.
 
 ## How to view project insights {#view}
 
@@ -24,7 +24,7 @@ Semaphore tries to guess which is the main branch in your project. However, to b
 
 The Project Insights settings are split into two sections:
 
-- **Continuous Integration**: this is your project main pipeline. It should build and run your tests
+- **Continuous Integration**: this is your project's main pipeline. It should build and run your tests
 - **Continuous Deployment**: optional. This pipeline deploys your application to production
 
 Follow the steps below to set up Project Insights:
@@ -47,7 +47,7 @@ After you save changes, Semaphore will start collecting metrics for Project Insi
 
 ## Metrics available {#metrics}
 
-The available metrics are: performance, frequency, and reliability. Each metric is show the data for Continuous Integration and Continuous Deployment. You can also create [custom dashboards](#custom) to refine your views.
+The available metrics are performance, frequency, and reliability. Each metric shows the data for Continuous Integration and Continuous Deployment. You can also create [custom dashboards](#custom) to refine your views.
 
 Metrics data is held for 30 days and updated every 24 hours.
 
@@ -57,7 +57,7 @@ Performance metrics show how long pipelines take to run on average. The graph sh
 
 ![CI performance graph](./img/perf-ci.jpg)
 
-Below the Continuous Integration graph you can select which branch to view.
+Below the Continuous Integration graph, you can select which branch to view.
 
 If you have [configured Continuous Deployment insights](#configure), you can also see data for the deployment branch. 
 
@@ -69,7 +69,7 @@ Frequency metrics show the number of pipelines run per week and the total number
 
 ![CI frequency graph](./img/freq-ci.jpg)
 
-Below the Continuous Integration graph you can select which branch to view.
+Below the Continuous Integration graph, you can select which branch to view.
 
 If you have [configured Continuous Deployment insights](#configure), you can also see data for the deployment branch. 
 
@@ -87,14 +87,14 @@ If you have [configured Continuous Deployment insights](#configure), you can als
 
 ## How to create custom dashboards {#custom}
 
-Create your own visualization with custom dashboards. You can add any metric already available in the Project Insights page to the dashboard.
+Create your own visualization with custom dashboards. You can add any metric already available on the Project Insights page to the dashboard.
 
 To create a Dashboard:
 
 1. Open the Project Insights
 2. On the left side, click on the plus sign (+)
 3. Enter the name of the dashboard
-   ![Creating a custom dashboard](./img/custom-create.jpg)
+ ![Creating a custom dashboard](./img/custom-create.jpg)
 4. Press **Create**
 
 
