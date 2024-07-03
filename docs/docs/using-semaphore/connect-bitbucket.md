@@ -37,19 +37,19 @@ If you already have a Semaphore account, you can connect it with your BitBucket 
 1. Log in to your existing Semaphore account
 2. Go to your [Semaphore account page](https://me.semaphoreci.com/account)
 3. Under the **Repository**, click on the Grant access link next to Bitbucket.
-   ![Grant access to BitBucket](./img/grant-bb.jpg)
+ ![Grant access to BitBucket](./img/grant-bb.jpg)
 4. Grant access to the Semaphore OAuth App
 
-## How to disconenct a BitBucket account {#disconnect-bb}
+## How to disconnect a BitBucket account {#disconnect-bb}
 
-Disconnecting a BitBucket account rekoves Semaphore access to your repositories.
+Disconnecting a BitBucket account removes Semaphore access to your repositories.
 
 To disconnect Semaphore from BitBucket:
 
 1. Log in your BitBucket account
 2. Go to the [Application authorization page](https://bitbucket.org/account/settings/app-authorizations/)
 3. Click on **Revoke** next to Semaphore 2.0
-    ![Revoke access to Semaphore](./img/revoke-bb.jpg)
+ ![Revoke access to Semaphore](./img/revoke-bb.jpg)
 
 ## Troubleshooting guide
 
@@ -65,7 +65,7 @@ Your Bitbucket profile connection on this page can be in one of these states:
 - **Not Connected**: your account is not connected. Next time you attempt to log in, you will need to grant access to Semaphore again.
 - **Connected**: can connect both private and public repositories via OAuth. 
 
-You can check and change the permissions of your OAuth App connection in the [BitBucket authorization page](https://bitbucket.org/account/settings/app-authorizations/).
+You can check and change the permissions of your OAuth App connection on the [BitBucket authorization page](https://bitbucket.org/account/settings/app-authorizations/).
 
 ### Verify deploy key health {#deploy-key}
 
@@ -84,7 +84,7 @@ To verify the status of a deploy key:
 2. If there isn't a green check next to **Deploy Key**, the key is invalid
  ![Checking the status of the deploy key](./img/deploy-key-bb.jpg)
 
-To deploy a new key, click on **Regenerate**
+To deploy a new key, click on **Regenerate**.
 
 :::info
 
