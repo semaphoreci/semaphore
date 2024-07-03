@@ -196,6 +196,21 @@ When this happens, you must update the URL of the repository in Semaphore. To do
 
 After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
 
+## Connect with GitHub SAML
+
+Semaphore supports repositories hosted on GitHub with SAML single sign-on (SSO). This GitHub feature is available in the GitHub Enterprise Cloud offering.
+
+To authorize Semaphore to access repositories hosted on GitHub SSO, you need to grant Semaphore access to your organization on GitHub.
+
+Here is how you authorize Semaphore:
+
+1. Navigate to your [GitHub Profile Settings](https://github.com/settings/profile)
+2. On the left-hand side menu, click **Applications**
+3. Open the **Authorized OAuth Apps** tab
+4. Under "Organization access", choose your private organization and click either **Grant** or **Request Access**
+
+If you clicked "Request Access" in step 5, the admin of the orgnization will receive an email showing your request.
+
 ## See also
 
 - [Projects](./projects)
