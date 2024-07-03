@@ -33,11 +33,23 @@ Semaphore recommends using the GitHub App whenever possible as it provides two b
 - **Granular permissions**: you can grant Semaphore access to individual repositories, giving you control over which data Semaphore has access to.
 - **No personal tokens**: since it does not rely on a personal access token, you can offboard people from the GitHub organization without the connection with Semaphore.
 
+## How to sign up using GitHub {#sign-gh}
+
+If you are creating a new Semaphore account, you can sign in with GitHub to create the connection automatically.
+
+Follow these steps to create a Semaphore account using GitHub:
+
+1. Log in to your GitHub account
+2. Navigate to the [Semaphore login page](https://semaphoreci.com/login)
+3. Select **Log in with GitHub**
+4. Grant access to the Semaphore [OAuth App](https://github.com/settings/connections/applications/328c742132e5407abd7d) in GitHub
+5. Finish the Semaphore setup
+
 ## How to authorize OAuth App {#connect-oauth}
 
 The connection between Semaphore and GitHub should be configured automatically when you sign up. However, this connection can be severed for different reasons. If you don't see your repositories when trying to create a [project](./projects), follow these steps:
 
-1. Navigate to your [Semaphore account settings](https://me.semaphoreci.com/account)
+1. Navigate to your [Semaphore account page](https://me.semaphoreci.com/account)
 2. Click on **Grant public access** or **Grant private access** to grant access to only public or all of your repositories on GitHub
  ![Connecting Semaphore to your Git provider](./img/connect-gh-bb.jpg)
 3. Press **Authorize semaphoreci**
@@ -216,4 +228,4 @@ If you clicked "Request Access" in step 5, the admin of the orgnization will rec
 - [Projects](./projects)
 - [Getting Started Guide](../getting-started/guided-tour)
 - [Semaphore Organizations](./organizations)
-
+- [How to connect with BitBucket](./connect-bitbucket)
