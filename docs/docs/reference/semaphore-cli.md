@@ -8,6 +8,8 @@ WIP
 
 this is about sem cli
 
+## sem-edit {#sem-edit}
+
 ## Set up notifications {#notifications}
 
 
