@@ -9,7 +9,7 @@ Use Semaphore to build, test, store, and deploy Docker images to production. Thi
 
 :::tip
 
-This page desscribes how to build, test and publish Docker images using Semaphore. If you want to run [jobs](../jobs) inside Docker containers, see the [Docker environments page](../pipelines#docker-environments).
+This page describes how to build, test, and publish Docker images using Semaphore. If you want to run [jobs](../jobs) inside Docker containers, see the [Docker environments page](../pipelines#docker-environments).
 
 :::
 
@@ -21,7 +21,7 @@ Docker comes preinstalled in all [Semaphore Machines](../../reference/machine-ty
 
 You can use the `docker` command line tool inside a Semaphore [job](../jobs). In most cases, you should also run [checkout](../../reference/toolbox) to clone the repository in order to get access to the code and Dockerfile.
 
-In the following example an image is built. Since the job doesn't push it into a Docker registry, the image is lost as soon as the job ends. [Authenticate with a registry](#dockerhub) to save your image.
+In the following example, an image is built. Since the job doesn't push it into a Docker registry, the image is lost as soon as the job ends. [Authenticate with a registry](#dockerhub) to save your image.
 
 ```shell title="Job commands"
 checkout
@@ -33,7 +33,7 @@ docker images
 
 The following example shows a Dockerfile that builds an image containing a Go application:
 
-```Dockerfile title="Dockerfile"
+```docker title="Dockerfile"
 FROM golang:alpine
 
 RUN mkdir /files
@@ -44,7 +44,7 @@ RUN go build -o /files/hello hello.go
 ENTRYPOINT ["/files/hello"]
 ```
 
-The Dockerfile shown above:
+The Dockerfile is shown above:
 
 1. Downloads the [Go official image](https://hub.docker.com/_/golang)
 2. Creates a directory called `files`
@@ -61,14 +61,14 @@ docker run -it hello-app
 
 :::warning
 
-Due to the introduction of [Docker Hub rate limits](./optimization/docker#dockerhub), Semaphore automatically redirects image pulls from the Docker Hub repository to the [Semaphore Container Registry](./optimization/container-registry).
+Due to the introduction of [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/), Semaphore automatically redirects image pulls from the Docker Hub repository to the [Semaphore Container Registry](./container-registry).
 
 :::
 
 
 ## How to authenticate to Docker registries {#auth}
 
-To save the image built in the section above or access private images, you must fist authenticate with a Docker registry like DockerHub, AWS Elastic Container Registry, or Google Cloud Container Registry.
+To save the image built in the section above or access private images, you must first authenticate with a Docker registry like DockerHub, AWS Elastic Container Registry, or Google Cloud Container Registry.
 
 ### Using DockerHub {#dockerhub}
 
@@ -82,7 +82,7 @@ docker tag hello-app "$DOCKER_USERNAME"/hello-app
 docker push "$DOCKER_USERNAME"/hello-app
 ```
 
-The example above assumes there is a [secret](../secrets) containing your DockerHub credentials using the environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD`.
+The example above assumes there are a [secret](../secrets) containing your DockerHub credentials using the environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD`.
 
 ### Using AWS ECR
 
@@ -92,10 +92,14 @@ To access your AWS Elastic Container Registry (ECR) images:
 2. Enable the secret in your job
 3. Define the [environment variables](../jobs#environment-variables) `AWS_DEFAULT_REGION` and `ECR_REGISTRY`
 4. Type the following commands in your [block prologue](../jobs#prologue)
+
     ```shell title="Prologue"
     sudo pip install awscli
     aws ecr get-login --no-include-email | bash
+    ```
+
 5. Type the following commands in your job:
+
     ```shell title="Job commands"
     checkout
     docker build -t example .
@@ -111,11 +115,14 @@ To access your Google Cloud Container Registry (GCR) images:
 2. Enable the secret in your job
 3. Define the [environment variables](../jobs#environment-variables) `GCR_URL` with the URL of your registry, e.g. `asia.gcr.io`, and `GCP_PROJECT_ID`
 4. Type the following commands in your [block prologue](../jobs#prologue)
+
     ```shell title="Prologue"
     gcloud auth activate-service-account
     gcloud auth configure-docker -q
     ```
+
 5. Type the following commands in your job:
+
     ```shell title="Job commands"
     checkout
     docker build -t example .
@@ -137,4 +144,3 @@ docker pull registry-owner/image-name
 - [How to run jobs inside Docker containers](../pipelines#docker-environments)
 - [How to create jobs](../jobs#job-create)
 - [How to use secrets](../secrets)
-- 
