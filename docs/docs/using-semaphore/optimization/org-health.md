@@ -50,3 +50,4 @@ Metrics are calculated every few hours, so Last Run might not always be accurate
 - [Project Insights dashboard](./insights)
 - [Test reports dashboard](../tests/test-reports)
 - [Flaky test detection dashboard](../tests/flaky-tests)
+
