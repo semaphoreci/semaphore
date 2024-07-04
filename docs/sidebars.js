@@ -51,6 +51,19 @@ const sidebars = {
         'using-semaphore/promotions',
         {
           type: 'category',
+          label: 'Projects',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/projects'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/connect-github',
+            'using-semaphore/connect-bitbucket',
+          ]
+        },
+        {
+          type: 'category',
           label: 'Organizations',
           link: {
             type: 'doc',
@@ -58,13 +71,10 @@ const sidebars = {
           },
           collapsed: false,
           items: [
-            'using-semaphore/connect-github',
-            'using-semaphore/connect-bitbucket',
             'using-semaphore/notifications',
             'using-semaphore/okta',
           ]
         },
-        'using-semaphore/projects',
         'using-semaphore/tasks',
         {
           type: 'category',
