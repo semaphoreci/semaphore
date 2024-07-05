@@ -30,7 +30,7 @@ Due to the introduction of the [rate limits on Docker Hub](https://docs.docker.c
 
 ## How to use the Semaphore Registry
 
-To use any of the images, run `docker pull` or `docker run` using the link provided in the table. The Container Registry is not publicly-accessible; images in the container can only be pulled from jobs running in Semaphore Cloud.
+To use any of the images, run `docker pull` or `docker run` using the link provided in the table. The Container Registry is not publicly accessible; images in the container can only be pulled from jobs running in Semaphore Cloud.
 
 For example, to use a Node image in your jobs add the following command:
 
@@ -132,7 +132,7 @@ Android images come in two variants:
 Node images come in two variants:
 
 - **base**: base images matching the Node.js official images
-- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>Node images</summary>
@@ -169,7 +169,7 @@ Node images come in two variants:
 Python images come in two variants:
 
 - **base**: base images matching the Python official images
-- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>Python images</summary>
@@ -208,7 +208,7 @@ Python images come in two variants:
 Go images come in two variants:
 
 - **base**: base images matching the Golang official images
-- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>Go images</summary>
@@ -243,7 +243,7 @@ Go images come in two variants:
 Ruby images come in two variants:
 
 - **base**: base images matching the Ruby official images
-- **node-browsers**: is the extension of the basic image with an addition of Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>Ruby images</summary>
@@ -312,7 +312,7 @@ PHP images come in four variants:
 - **base**: base images matching the PHP official images
 - **node**: base image extended with Node.js
 - **browsers**: base image extended with Firefox, Google Chrome, and chromedriver
-- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>PHP images</summary>
@@ -361,7 +361,7 @@ PHP images come in four variants:
 Rust images come in two variants:
 
 - **base**: base images matching the Rust official images
-- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipeines
+- **node-browsers**: base image extended with Node.js, Firefox, Google Chrome, and chromedriver. Useful for running browser-based pipelines
 
 <details>
 <summary>Rust images</summary>
