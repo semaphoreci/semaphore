@@ -73,6 +73,7 @@ const sidebars = {
           items: [
             'using-semaphore/notifications',
             'using-semaphore/okta',
+            'using-semaphore/openid',
           ]
         },
         'using-semaphore/tasks',
