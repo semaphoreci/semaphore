@@ -11,15 +11,15 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <VideoTutorial title="How to integrate with Okta" src="https://www.youtube.com/embed/2_am8-e0UTc?si=_XEDoQgiEAsnaFCb"/>
 
-Use Okta to provision, manage your user and provide Single Sign On (SSO) to your users. This page explains how to integrate Okta with Semaphore to manage your users and groups using Okta.
+Use Okta to provision, manage your user, and provide Single Sign On (SSO) to your users. This page explains how to integrate Okta with Semaphore to manage your users and groups using Okta.
 
 ## Overview
 
 <Available plans={['Scaleup']} />
 
-[Okta](https://okta.com) is enterprise identity management platform. It provides a centralized place to manage your users and groups across different products. You can integrate Okta with Semaphore to manage your users from the Okta application.
+[Okta](https://okta.com) is an enterprise identity management platform. It provides a centralized place to manage your users and groups across different products. You can integrate Okta with Semaphore to manage your users from the Okta application.
 
-To use the Okta integration you need:
+To use the Okta integration you need the following:
 
 - An Okta organization
 - A [Semaphore organization](./organizations)
@@ -33,14 +33,14 @@ The process of integrating Okta with Semaphore involves three steps:
 2. [Connect Okta app with Semaphore](#token)
 3. [Configure user provisioning](#provision)
 
-The steps are
+The set up steps are explained in this section.
 
 ### Step 1: Create Okta app {#create}
 
 To create an Okta app integration:
 
 1. Log in to your Okta organization
-2. Press the **Admin** button to access the admintrator dashboard
+2. Press the **Admin** button to access the administrator dashboard
 3. On the left side, select **Applications** > **Applications**
 4. Press **Create App Integration**
 
@@ -60,7 +60,7 @@ In **General Settings**, fill in the following values and then press **Next**:
 
 On the **Configure SAML** page, fill in the following values and press **Next**:
 
-- **Single Sign On URL**: this is the [URL of your Semaphore organization](./organizations#general-settings) followed by `/okta/auth`. For example, if your organization URl is `https://my-org.semaphoreci.com`, you must fill in the value `https://my-org.semaphoreci.com/okta/auth`
+- **Single Sign On URL**: this is the [URL of your Semaphore organization](./organizations#general-settings) followed by `/okta/auth`. For example, if your organization URL is `https://my-org.semaphoreci.com`, you must fill in the value `https://my-org.semaphoreci.com/okta/auth`
 - Leave the option **Use this for Recipient URL and Destination URL** checked (default)
 - **Audience URL**: this is the [URL of your Semaphore organization](./organizations#general-settings). For example `https://my-org.semaphoreci.com`
 - **Application username**: choose **Email** from the selection box
@@ -73,7 +73,7 @@ On the **Feedback** page, select **I'm an Okta customer adding an internal app**
 
 You can leave the rest of the settings in their default values. Press **Finish** to complete the setup.
 
-You should see the new Semaphore application in your Okta applications page.
+You should see the new Semaphore application on your Okta applications page.
 
 ![Semaphore app configured on Okta](./img/application-configured.jpg)
 
@@ -87,7 +87,7 @@ The second step is to connect Semaphore with Okta. Before you can do this, you n
 
 ![View SAML setup instructions](./img/setup-instructions.jpg)
 
-Copy the values shown on screen. You will need them next.
+Copy the values shown on the screen. You will need them next.
 
 ![SAML Setup URL and certificates](./img/saml-values.jpg)
 
@@ -128,7 +128,7 @@ A new tab should have appeared called **Provisioning**. Open that tab and click 
 
 Fill in the following values:
 
-- **SCIM connector base URL**: this is your [organization URL](./organizations#general-settings) followed by `/okta/scrim`. For example, if your organization url is `https://my-org.semaphoreci.com`, the value for this field is `https://my-org.semaphoreci.com/okta/scim`
+- **SCIM connector base URL**: this is your [organization URL](./organizations#general-settings) followed by `/okta/scrim`. For example, if your organization URL is `https://my-org.semaphoreci.com`, the value for this field is `https://my-org.semaphoreci.com/okta/scim`
 - **Unique identifier field for users**: type the string "email"
 - **Supported provisioning actions**: select **Push New Users**, **Push Profile Updates**, and **Push Groups**
 - **Authentication Mode**: select **HTTP Header**
