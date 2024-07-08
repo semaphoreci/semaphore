@@ -73,6 +73,7 @@ const sidebars = {
           items: [
             'using-semaphore/notifications',
             'using-semaphore/okta',
+            'using-semaphore/openid',
           ]
         },
         'using-semaphore/tasks',
@@ -126,6 +127,7 @@ const sidebars = {
         'reference/conditions-dsl',
         'reference/machine-types',
         'reference/audit-events',
+        'reference/openid',
       ],
     },
   ],
