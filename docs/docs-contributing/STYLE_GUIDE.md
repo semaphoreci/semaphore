@@ -103,14 +103,21 @@ Header rules:
 - Use H3s sparingly: reserve H3s to split long H2 sections
 - Obvious headings are best: for example "How to create a job" is a great heading for step-by-step instructions
 
-## Bullet points and lists
+## Bullet points, lists, and tables
 
-Since most of the bullet points and lists are used to give step-by-step instructions and show commands, you can skip the final period at the end of the line.
+Since most of the bullet points, lists, and tables are used to give step-by-step instructions and show commands, you can skip the final period at the end of the line.
 
 Example:
 1. This line doesn't end with a period. It describes how to use `checkout`
 2. Another item. Only use periods to separate sentences in the same line
 3. Periods at the end of this line are optional.
+
+Another example:
+
+| Header1                                        | Header2                                                     |
+| You don't need periods in tables               | You may use periods. To separate sentences in the same line |
+| Avoid periods in the last sentence in the line | Thank you                                                   |
+
 
 ## Shell commands
 
