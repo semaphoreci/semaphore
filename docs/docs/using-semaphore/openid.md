@@ -11,25 +11,19 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-WIP
-
-https://docs.semaphoreci.com/security/open-id-connect/
-
 ## Overview
 
 <Available plans={['Scaleup']}/>
 
-Semaphore users traditionally use [secrets](./secrets) to inject credentials or API keys in jobs that need to interact with cloud providers. Every time the CI pipeline needs to deploy an application or fetch resources from a Docker registry or S3 bucket, we need to supply a secret to authorize Semaphrore to access your cloud.
+Semaphore users traditionally use [secrets](./secrets) to inject credentials or API keys in jobs that need to interact with cloud providers. Every time the CI pipeline needs to deploy an application or fetch resources from a Docker registry or S3 bucket, we need to supply a secret to authorize Semaphore to access your cloud.
 
-These long-lived credentials present a challenge to maintain security or face exposure to security threats. Access and usage of these secrets needs to be carefully monitored. Secrets need to be regularly rotated and the provided access rights on the cloud should follow the principle of least privilege.
+These long-lived credentials present a challenge to maintain security or face exposure to security threats. Access and usage of these secrets need to be carefully monitored. Secrets need to be regularly rotated and the provided access rights on the cloud should follow the principle of least privilege.
 
-OpenID Connect (OIDC) provides an alternative way to interact with the cloud. Instead of secrets, OIDC uses short-lived access tokens that do not require secret maintanance.
-
-TODO: DIAGRAM
-
-OIDC eliminates the chore of rotating and security secrets related to using cloud vendors for continuous deployment.
+OpenID Connect (OIDC) provides an alternative way to interact with the cloud. Instead of secrets, OIDC uses short-lived access tokens that do not require secret maintenance.
 
 ## How to configure OpenID Connect
+
+This section explains how to connect OpenID to your cloud provider.
 
 ### AWS
 
@@ -70,7 +64,7 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 
 Next, edit the trust policy as follows:
 
-1. Select the newly-created Role by name. You may need to use the search box to locate it
+1. Select the newly created Role by name. You may need to use the search box to locate it
 2. Select the **Trust relationships** tab
 3. Press **Edit trust policy**
 4. Edit the `Condition` section (see below for details)
@@ -79,23 +73,23 @@ Next, edit the trust policy as follows:
 
 The trust policy uses JSON to configure what projects and branches can access the resources assigned to this role. 
     
-- Use `StringEquals` to define a specific projects and branches 
+- Use `StringEquals` to define specific projects and branches 
 - Use `StringLike` to match projects and branches using a pattern
 - You can combine `StringEquals` and `StringLike` in the same `Condition`
 
 The following example shows how to grant permissions to:
 
-- organization`my-org` 
-- project id `936a5312-a3b8-4921-8b3f-2cec8baac574`
-- repository `web`
-- branch main
+- organization:`my-org` 
+- project id: `936a5312-a3b8-4921-8b3f-2cec8baac574`
+- repository: `web`
+- branch: `main`
 
-```json title="Assigning trust relationship by exact name"
+```json title="Assigning trust relationship by the exact name"
 "Condition": {
     "StringEquals": {
         "my-org.semaphoreci.com:aud": "https://my-org.semaphoreci.com",
         "my-org.semaphoreci.com:sub": "org:my-org:project:936a5312-a3b8-4921-8b3f-2cec8baac574:repo:web:ref_type:branch:ref:refs/heads/main"
-    }
+ }
 }
 ```
 
@@ -111,7 +105,7 @@ The next example shows how to grant permissions to:
     "StringLike": {
         "{org-name}.semaphoreci.com:sub":
         "org:{org-name}:project:936a5312-a3b8-4921-8b3f-2cec8baac574:repo:web:ref_type:branch:ref:refs/heads/*",
-    },
+ },
 }
 ```
 
@@ -154,21 +148,21 @@ To configure OIDC identity provider in GCP, you will perform the following actio
 <summary>Step 1: Create a new identity pool</summary>
 <div>
 
-1. Define a `POOL_ID` name. This a unique name served to identify a Google Cloud IAM pool. For example: `semaphoreci-com-identity-pool`
-2. Store the pool in an evironment variable, e.g `semaphoreci-com-identity-pool`
+1. Define a `POOL_ID` name. This unique name served to identify a Google Cloud IAM pool. For example: `semaphoreci-com-identity-pool`
+2. Store the pool in an environment variable, e.g `semaphoreci-com-identity-pool`
 
-    ```shell title="Define a name for the identity pool"
+ ```shell title="Define a name for the identity pool"
     export POOL_ID="<unique-pool-name>" 
-    ```
+ ```
 
 3. Create the identify pool
 
-    ```shell title="Create identity pool"
+ ```shell title="Create identity pool"
     gcloud iam workload-identity-pools create $POOL_ID \
     --location="global" \
     --description="Semaphore OIDC Pool" \
     --display-name=$POOL_ID
-    ```
+ ```
 
 </div>
 </details>
@@ -182,19 +176,19 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
 
 1. Define `PROVIDER_ID` with a unique name for the OIDC provider, for example: `semaphoreci-com`. The variable `ISSUER_URI` should contain your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 
-    ```shell title="Define PROVIDER_ID and ISSUER_URI"
+ ```shell title="Define PROVIDER_ID and ISSUER_URI"
     export PROVIDER_ID="<unique-provider-name>"
     export ISSUER_URI="https://my-org.semaphoreci.com"
-    ```
+ ```
 
 2. Use the following template to grant Google Cloud access to the identity pool created in Step 1. 
 
-    Replace:
+ Replace:
     - `<REPOSITORY>` with your repository name, e.g. `web`
     - `<BRANCH>` with the branch that can access the cloud resources, e.g. `refs/heads/main`
     - `<PROJECT_NAME>` with your project name on Semaphore
 
-    ```shell title="Grant access to the identity pool"
+ ```shell title="Grant access to the identity pool"
     gcloud iam workload-identity-pools providers create-oidc $PROVIDER_ID \
     --location="global" \
     --workload-identity-pool=$POOL_ID \
@@ -202,7 +196,7 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
     --allowed-audiences="$ISSUER_URI" \
     --attribute-mapping="google.subject="semaphore::<REPOSITORY>::<BRANCH>" \
     --attribute-condition="'semaphore::<PROJECT_NAME>::<BRANCH>' == google.subject"
-    ```
+ ```
 
 </div>
 </details>
@@ -212,31 +206,31 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
 <summary>Step 3: Connect the pool with a Google Cloud service account</summary>
 <div>
 
-Connnecting to the pool allows Semaphore to impersonate your Google Cloud service account. To create the connection follow these steps:
+Connecting to the pool allows Semaphore to impersonate your Google Cloud service account. To create the connection follow these steps:
 
 1. Define environment variables:
     - `<REPOSITORY>` is the repository name, e.g. `web`
     - `<BRANCH>` is the branch, e.g. `refs/heads/main`
 
-    ```shell
+ ```shell
     export SUBJECT="semaphore::<REPOSITORY>::<BRANCH"
     export PROJECT_NUMBER=$(gcloud projects describe $(gcloud config get-value core/project) --format=value\(projectNumber\))
     export MEMBER_ID="principal://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/subject/$SUBJECT"
-    ```
+ ```
 
 2. Bind the workload identity user to the service account
 
-    ```shell
+ ```shell
     # ID of the service account who you want to impersonate in the pipelines
     export SERVICE_ACCOUNT_EMAIL="myemail@example.com" 
 
     gcloud iam service-accounts add-iam-policy-binding $SERVICE_ACCOUNT_EMAIL \
         --role=roles/iam.workloadIdentityUser \
-        --member="MEMBER_ID"
-    ```
+     --member="MEMBER_ID"
+ ```
 
 
-See [Granting external identities imporsonation permissions](https://cloud.google.com/iam/docs/using-workload-identity-federation#impersonate) to learn more about service accounts.
+See [Granting external identities impersonation permissions](https://cloud.google.com/iam/docs/using-workload-identity-federation#impersonate) to learn more about service accounts.
 </div>
 </details>
 
@@ -275,20 +269,20 @@ The first step is to enable JWT authentication support on the Vault
 
 1. Execute the following command to enable JWT on your vault
 
-    ```shell
+ ```shell
     vault auth enable jwt
-    ```
+ ```
 2. Define a variable with your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 
-    ```shell
+ ```shell
     export PROVIDER_URL="https://my-org.semaphoreci.com"
-    ```
+ ```
 
 3. Enable JWT for your Semaphore organization
 
-    ```shell
+ ```shell
     vault write auth/jwt/config bound_issuer="$PROVIDER_URL" oidc_discovery_url="$PROVIDER_URL"
-    ```
+ ```
 </div>
 </details>
 <details>
@@ -298,7 +292,7 @@ Configure a policy that grants access to specific paths that will be accessed by
 
 1. Create a policy granting access to paths in your Vault. See [Vault policies](https://developer.hashicorp.com/vault/docs/concepts/policies) to learn more about this feature
 
-    ```shell title="Setting read-only permissions to secret/data/production folder"
+ ```shell title="Setting read-only permissions to secret/data/production folder"
     vault policy write example-policy - <<EOF
     path "secret/data/production/*" {
     capabilities = [ "read" ]
@@ -309,14 +303,14 @@ Configure a policy that grants access to specific paths that will be accessed by
     - Replace `<REPOSITORY>` with your repository
     - Replace `<BRANCH>` with the branch that can access the Vault
 
-    ```shell title="Creating a role"
+ ```shell title="Creating a role"
     vault write auth/jwt/role/example-role -<<EOF
     {
     "role_type": "jwt",
     "user_claim": "actor",
     "bound_claims": {
-        "repo": "<REPOSITORY>",
-        "branch": "<BRANCH>"
+     "repo": "<REPOSITORY>",
+     "branch": "<BRANCH>"
     },
     "policies": ["example-policy"],
     "ttl": "5m"
