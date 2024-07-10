@@ -151,18 +151,18 @@ To configure OIDC identity provider in GCP, you will perform the following actio
 1. Define a `POOL_ID` name. This unique name served to identify a Google Cloud IAM pool. For example: `semaphoreci-com-identity-pool`
 2. Store the pool in an environment variable, e.g `semaphoreci-com-identity-pool`
 
- ```shell title="Define a name for the identity pool"
+    ```shell title="Define a name for the identity pool"
     export POOL_ID="<unique-pool-name>" 
- ```
+    ```
 
 3. Create the identify pool
 
- ```shell title="Create identity pool"
+    ```shell title="Create identity pool"
     gcloud iam workload-identity-pools create $POOL_ID \
     --location="global" \
     --description="Semaphore OIDC Pool" \
     --display-name=$POOL_ID
- ```
+    ```
 
 </div>
 </details>
@@ -176,10 +176,10 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
 
 1. Define `PROVIDER_ID` with a unique name for the OIDC provider, for example: `semaphoreci-com`. The variable `ISSUER_URI` should contain your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 
- ```shell title="Define PROVIDER_ID and ISSUER_URI"
+    ```shell title="Define PROVIDER_ID and ISSUER_URI"
     export PROVIDER_ID="<unique-provider-name>"
     export ISSUER_URI="https://my-org.semaphoreci.com"
- ```
+    ```
 
 2. Use the following template to grant Google Cloud access to the identity pool created in Step 1. 
 
@@ -188,7 +188,7 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
     - `<BRANCH>` with the branch that can access the cloud resources, e.g. `refs/heads/main`
     - `<PROJECT_NAME>` with your project name on Semaphore
 
- ```shell title="Grant access to the identity pool"
+    ```shell title="Grant access to the identity pool"
     gcloud iam workload-identity-pools providers create-oidc $PROVIDER_ID \
     --location="global" \
     --workload-identity-pool=$POOL_ID \
@@ -196,7 +196,7 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
     --allowed-audiences="$ISSUER_URI" \
     --attribute-mapping="google.subject="semaphore::<REPOSITORY>::<BRANCH>" \
     --attribute-condition="'semaphore::<PROJECT_NAME>::<BRANCH>' == google.subject"
- ```
+    ```
 
 </div>
 </details>
@@ -212,23 +212,22 @@ Connecting to the pool allows Semaphore to impersonate your Google Cloud service
     - `<REPOSITORY>` is the repository name, e.g. `web`
     - `<BRANCH>` is the branch, e.g. `refs/heads/main`
 
- ```shell
+    ```shell
     export SUBJECT="semaphore::<REPOSITORY>::<BRANCH"
     export PROJECT_NUMBER=$(gcloud projects describe $(gcloud config get-value core/project) --format=value\(projectNumber\))
     export MEMBER_ID="principal://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/subject/$SUBJECT"
- ```
+    ```
 
 2. Bind the workload identity user to the service account
 
- ```shell
+    ```shell
     # ID of the service account who you want to impersonate in the pipelines
     export SERVICE_ACCOUNT_EMAIL="myemail@example.com" 
 
     gcloud iam service-accounts add-iam-policy-binding $SERVICE_ACCOUNT_EMAIL \
         --role=roles/iam.workloadIdentityUser \
      --member="MEMBER_ID"
- ```
-
+    ```
 
 See [Granting external identities impersonation permissions](https://cloud.google.com/iam/docs/using-workload-identity-federation#impersonate) to learn more about service accounts.
 </div>
@@ -269,20 +268,22 @@ The first step is to enable JWT authentication support on the Vault
 
 1. Execute the following command to enable JWT on your vault
 
- ```shell
+    ```shell
     vault auth enable jwt
- ```
+    ```
+    
 2. Define a variable with your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 
- ```shell
+    ```shell
     export PROVIDER_URL="https://my-org.semaphoreci.com"
- ```
+    ```
 
 3. Enable JWT for your Semaphore organization
 
- ```shell
+    ```shell
     vault write auth/jwt/config bound_issuer="$PROVIDER_URL" oidc_discovery_url="$PROVIDER_URL"
- ```
+    ```
+
 </div>
 </details>
 <details>
