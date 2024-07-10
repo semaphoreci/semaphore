@@ -13,7 +13,7 @@ GitHub users need to provide access to Semaphore so it can read their repositori
 
 ## Overview
 
-Semaphore accesses your GitHub repositories using the [Semaphore GitHub App](https://github.com/apps/semaphore-ci-cd). This method provides fine-grained control and per-repository permissions to control which code can Semaphore access.
+Semaphore accesses your GitHub repositories using the [Semaphore GitHub App](https://github.com/apps/semaphore-ci-cd). This method provides fine-grained control and per-repository permissions to control which code Semaphore can access.
 
 ## How to authorize the GitHub App {#connect-ghapp}
 
@@ -23,7 +23,7 @@ To install the GitHub App in your organization:
 2. Press **Install**
 3. Select an organization
 4. Select the repository access, you can grant access to all or some of your repositories
-    ![Install GitHub App](./img/install-ghapp.jpg)
+ ![Install GitHub App](./img/install-ghapp.jpg)
 
 ### Connect repositories via GitHub App {#ghapp}
 
@@ -148,7 +148,7 @@ Here is how you authorize Semaphore:
 3. Open the **Authorized OAuth Apps** tab
 4. Under "Organization access", choose your private organization and click either **Grant** or **Request Access**
 
-If you clicked "Request Access" in step 5, the admin of the orgnization will receive an email showing your request.
+If you click "Request Access" in step 5, the admin of the organization will receive an email showing your request.
 
 ## See also
 

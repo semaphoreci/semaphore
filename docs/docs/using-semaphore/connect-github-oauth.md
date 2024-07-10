@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-OAuth is the legacy method to access your GitHub repositories. This feature might be deprecated in following releases. Semaphore recommends using [GitHub App](./connect-github) instead of the method described here.
+OAuth is the legacy method to access your GitHub repositories. This feature might be deprecated in the following releases. Semaphore recommends using [GitHub App](./connect-github) instead of the method described here.
 
 ## Overview {#overview}
 
@@ -22,7 +22,7 @@ You can create and revoke access to both types of connections at any time.
 
 ## OAuth vs GitHub app {#oauth-vs-app}
 
-The **OAuth App** authorizes Semaphore to impersonate with GitHub using your access credentials. This means you need to have admin-level access to the GitHub repository to connect it with Semaphore.
+The **OAuth App** authorizes Semaphore to impersonate GitHub using your access credentials. This means you need to have admin-level access to the GitHub repository to connect it with Semaphore.
 
 In addition, with OAuth, you can't control access on a per-repository level. Instead, you can only grant or revoke access to repositories based on their visibility, i.e. if they are public or private. It also means that if you delete your GitHub account, Semaphore loses access to all repositories.
 
@@ -81,7 +81,7 @@ You can only use this method on repositories you have admin-level access to (una
 
 Depending on the GitHub organization settings, its owner may need to [authorize OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) within the organization.
 
-If you have given full access to Semaphore but you only see your personal repositories, it might mean that the GitHub organization's owner hasn't granted Semaphore access to the organization yet.
+If you have given full access to Semaphore but only see your personal repositories, it might mean that the GitHub organization's owner hasn't granted Semaphore access to the organization yet.
 
 :::
 
