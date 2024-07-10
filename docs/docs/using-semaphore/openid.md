@@ -146,7 +146,121 @@ Replace `YOUR_AWS_ROLE_NAME` with the Role you created in Step 2
 
 ### Google Cloud
 
-https://docs.semaphoreci.com/security/open-id-connect-gcloud/
+You can use [gcloud](https://cloud.google.com/sdk/gcloud) to set up and configure the connection between Google Cloud and Semaphore. See the [Google Cloud Identity Federation documentation](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#oidc_1) for more details.
+
+To configure OIDC identity provider in GCP, you will perform the following actions:
+
+<details>
+<summary>Step 1: Create a new identity pool</summary>
+<div>
+
+1. Define a `POOL_ID` name. This a unique name served to identify a Google Cloud IAM pool. For example: `semaphoreci-com-identity-pool`
+2. Store the pool in an evironment variable, e.g `semaphoreci-com-identity-pool`
+
+    ```shell title="Define a name for the identity pool"
+    export POOL_ID="<unique-pool-name>" 
+    ```
+
+3. Create the identify pool
+
+    ```shell title="Create identity pool"
+    gcloud iam workload-identity-pools create $POOL_ID \
+    --location="global" \
+    --description="Semaphore OIDC Pool" \
+    --display-name=$POOL_ID
+    ```
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 2: Configure the mapping and conditions</summary>
+<div>
+
+Next, we need to map fields from the Semaphore OIDC provider to Google Cloud attributes and set conditions where Semaphore can access the identity pool. See [attribute mapping](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#mappings-and-conditions) and [condition mapping](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#mappings-and-conditions) to learn more.
+
+1. Define `PROVIDER_ID` with a unique name for the OIDC provider, for example: `semaphoreci-com`. The variable `ISSUER_URI` should contain your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
+
+    ```shell title="Define PROVIDER_ID and ISSUER_URI"
+    export PROVIDER_ID="<unique-provider-name>"
+    export ISSUER_URI="https://my-org.semaphoreci.com"
+    ```
+
+2. Use the following template to grant Google Cloud access to the identity pool created in Step 1. 
+
+    Replace:
+    - `<REPOSITORY>` with your repository name, e.g. `web`
+    - `<BRANCH>` with the branch that can access the cloud resources, e.g. `refs/heads/main`
+    - `<PROJECT_NAME>` with your project name on Semaphore
+
+    ```shell title="Grant access to the identity pool"
+    gcloud iam workload-identity-pools providers create-oidc $PROVIDER_ID \
+    --location="global" \
+    --workload-identity-pool=$POOL_ID \
+    --issuer-uri="$ISSUER_URI" \
+    --allowed-audiences="$ISSUER_URI" \
+    --attribute-mapping="google.subject="semaphore::<REPOSITORY>::<BRANCH>" \
+    --attribute-condition="'semaphore::<PROJECT_NAME>::<BRANCH>' == google.subject"
+    ```
+
+</div>
+</details>
+
+
+<details>
+<summary>Step 3: Connect the pool with a Google Cloud service account</summary>
+<div>
+
+Connnecting to the pool allows Semaphore to impersonate your Google Cloud service account. To create the connection follow these steps:
+
+1. Define environment variables:
+    - `<REPOSITORY>` is the repository name, e.g. `web`
+    - `<BRANCH>` is the branch, e.g. `refs/heads/main`
+
+    ```shell
+    export SUBJECT="semaphore::<REPOSITORY>::<BRANCH"
+    export PROJECT_NUMBER=$(gcloud projects describe $(gcloud config get-value core/project) --format=value\(projectNumber\))
+    export MEMBER_ID="principal://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/subject/$SUBJECT"
+    ```
+
+2. Bind the workload identity user to the service account
+
+    ```shell
+    # ID of the service account who you want to impersonate in the pipelines
+    export SERVICE_ACCOUNT_EMAIL="myemail@example.com" 
+
+    gcloud iam service-accounts add-iam-policy-binding $SERVICE_ACCOUNT_EMAIL \
+        --role=roles/iam.workloadIdentityUser \
+        --member="MEMBER_ID"
+    ```
+
+
+See [Granting external identities imporsonation permissions](https://cloud.google.com/iam/docs/using-workload-identity-federation#impersonate) to learn more about service accounts.
+</div>
+</details>
+
+<details>
+<summary> Step 4: Use OIDC connection in Semaphore jobs</summary>
+<div>
+
+Add the following commands to the Semaphore [job](./jobs) that needs to access your Google Cloud resources
+
+```shell title="Using OIDC in a Semaphore job"
+export POOL_ID="<YOUR_POOL_ID>"
+export PROVIDER_ID="<YOUR_PROVIDER_ID_NAME>"
+export PROJECT_ID="<YOUR_GOOGLE_CLOUD_PROJECT_ID>" 
+export SERVICE_ACCOUNT_EMAIL="<YOUR_SERVICE_ACCOUNT_EMAIL>" 
+export POOL_URI="projects/$PROJECT_ID/locations/global/workloadIdentityPools/$POOL_ID/providers/$PROVIDER_ID"
+echo $SEMAPHORE_OIDC_TOKEN > /tmp/oidc_token
+gcloud iam workload-identity-pools create-cred-config $POOL_URI --service-account="$SERVICE_ACCOUNT_EMAIL" --service-account-token-lifetime-seconds=600 --output-file=/home/semaphore/creds.json --credential-source-file=/tmp/oidc_token --credential-source-type="text"
+export GOOGLE_APPLICATION_CREDENTIALS=/home/semaphore/creds.json
+gcloud auth login --cred-file=/home/semaphore/creds.json
+gcloud projects list
+```
+
+</div>
+</details>
 
 ### HashiCorp Vault
 
