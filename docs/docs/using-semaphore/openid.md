@@ -340,3 +340,4 @@ See the [OIDC token reference page](../reference/openid) to learn how the OIDC t
 
 - [How to integrate Semaphore with Okta](./okta)
 - [Semaphore organizations](./organizations)
+

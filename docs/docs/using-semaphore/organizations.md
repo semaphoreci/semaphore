@@ -142,9 +142,15 @@ To access your organization settings, open the organization menu and click on **
 
 ### General settings {#general-settings}
 
-Your organization main settings.  Here, you can change its name, its URL, and control how workflows run.
+Your organization main settings.  Here, you can change its name, its URL, and control how workflows run. 
 
 ![General settings](./img/organization-settings-general.jpg)
+
+:::info
+
+The *URL of your organization* is the URL that leads to the Home page in your Semaphore organization. By default it follows the pattern `your-organization-name.semaphoreci.com`
+
+:::
 
 ### Notifications {#slack-notifications}
 

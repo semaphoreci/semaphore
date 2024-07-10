@@ -1,5 +1,6 @@
 ---
 description: View your pipeline productivity
+sidebar_position: 1
 ---
 
 # Project Insights

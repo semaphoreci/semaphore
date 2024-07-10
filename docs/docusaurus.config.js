@@ -8,6 +8,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  // disable this setting when the site goes to production to allow Google to index
+  // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
+  noIndex: true,
   title: 'Semaphore Docs',
   tagline: 'Intuitive Continuous Integration and Delivery',
   favicon: 'img/favicon.ico',
