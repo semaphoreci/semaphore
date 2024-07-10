@@ -33,7 +33,7 @@ OIDC eliminates the chore of rotating and security secrets related to using clou
 
 ### AWS
 
-To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you will need to perform the following steps:
+To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you will need to perform the following steps.
 
 <details>
 <summary>Step 1: Create identity provider</summary>
@@ -43,7 +43,7 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 2. Under **Access management**, select **Identity providers**
 3. Press **Add provider**
 4. Select **OpenID connect**
-5. In **Provider URL** and **Audience** type your [organization URL](./organizations#general-settings). For example: `https://my-org.semaphoreci.com`
+5. In **Provider URL** and **Audience** type your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 6. Press **Add provider**
    
 ![Creating an OIDC Identity Provider](./img/aws-identity-provider.jpg)
@@ -124,7 +124,7 @@ The next example shows how to grant permissions to:
 
 You can now use OICD to access your AWS resources from any of your pipelines.
 
-In order authenticate with AWS, add these commands to the Semaphore [job](./jobs) that needs access:
+In order authenticate with AWS, add these commands to the Semaphore [job](./jobs) that needs access.
 
 ```shell "Job commands to authenticate"
 export ROLE_ARN="YOUR_AWS_ROLE_NAME"
@@ -148,7 +148,7 @@ Replace `YOUR_AWS_ROLE_NAME` with the Role you created in Step 2
 
 You can use [gcloud](https://cloud.google.com/sdk/gcloud) to set up and configure the connection between Google Cloud and Semaphore. See the [Google Cloud Identity Federation documentation](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#oidc_1) for more details.
 
-To configure OIDC identity provider in GCP, you will perform the following actions:
+To configure OIDC identity provider in GCP, you will perform the following actions.
 
 <details>
 <summary>Step 1: Create a new identity pool</summary>
@@ -264,15 +264,85 @@ gcloud projects list
 
 ### HashiCorp Vault
 
-https://docs.semaphoreci.com/security/open-id-connect-vault/
+To use OIDC to access [HashiCorp Vault], you need to set up a trust relationship with Semaphore. This configuration uses JWT tokens as the authentication method. See [HashiCorp's JWT/OIDC documentation](https://developer.hashicorp.com/vault/docs/auth/jwt) to learn more.
 
 
-## Implementation details / reference
+<details>
+<summary>Step 1: Enable JWT Support on HashiCorp Vault</summary>
+<div>
 
-See [OpenID Connect token reference page](../reference/openid).
+The first step is to enable JWT authentication support on the Vault
+
+1. Execute the following command to enable JWT on your vault
+
+    ```shell
+    vault auth enable jwt
+    ```
+2. Define a variable with your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
+
+    ```shell
+    export PROVIDER_URL="https://my-org.semaphoreci.com"
+    ```
+
+3. Enable JWT for your Semaphore organization
+
+    ```shell
+    vault write auth/jwt/config bound_issuer="$PROVIDER_URL" oidc_discovery_url="$PROVIDER_URL"
+    ```
+</div>
+</details>
+<details>
+<summary>Step 2: Configure roles and policies for accessing secrets</summary>
+<div>
+Configure a policy that grants access to specific paths that will be accessed by your Semaphore pipelines. For more details, read Vault's Policies documentation.
+
+1. Create a policy granting access to paths in your Vault. See [Vault policies](https://developer.hashicorp.com/vault/docs/concepts/policies) to learn more about this feature
+
+    ```shell title="Setting read-only permissions to secret/data/production folder"
+    vault policy write example-policy - <<EOF
+    path "secret/data/production/*" {
+    capabilities = [ "read" ]
+    }
+    EOF
+
+2. Create a role to access the Vault resources
+    - Replace `<REPOSITORY>` with your repository
+    - Replace `<BRANCH>` with the branch that can access the Vault
+
+    ```shell title="Creating a role"
+    vault write auth/jwt/role/example-role -<<EOF
+    {
+    "role_type": "jwt",
+    "user_claim": "actor",
+    "bound_claims": {
+        "repo": "<REPOSITORY>",
+        "branch": "<BRANCH>"
+    },
+    "policies": ["example-policy"],
+    "ttl": "5m"
+    }
+    EOF
+</div>
+</details>
+
+<details>
+<summary>Step 3: Access Vault secrets from your Semaphore jobs</summary>
+<div>
+
+To access the Vault from a Semaphore [job](./jobs), add the following commands at the beginning:
+
+```shell
+export VAULT_TOKEN=$(vault write -field=token auth/jwt/login role=example-role jwt=$SEMAPHORE_OIDC_TOKEN)
+vault kv get -field=value secret/data/production/my-secret
+```
+</div>
+</details>
+
+## Implementation details
+
+See the [OIDC token reference page](../reference/openid) to learn how the OIDC tokens are created and what fields are available.
 
 ## See also
 
-- a
-- b
-- c
+- [How to integrate Semaphore with Okta](./okta)
+- [Semaphore organizations](./organizations)
