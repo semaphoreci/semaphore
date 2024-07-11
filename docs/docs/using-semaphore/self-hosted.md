@@ -1,5 +1,5 @@
 ---
-description: Run jobs in your hardware
+description: Run jobs on your hardware
 ---
 
 # Self-hosted Agents
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Run Semaphore jobs in your own hardware with self-hosted agents. This page explains what agents are and links to installation and configuration pages.
+Semaphore Hybrid lets you run jobs in your own hardware. This page explains what self-hosted agents are and how to install them in several platforms.
 
 ## Overview
 
@@ -21,11 +21,12 @@ Self-hosted agents allow you to run workflows on machines that are not currently
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
-## One way communication
+## Agent communication
 
-Self-hosted agents use one-way communications to connect with Semaphore. Requests are always initiated by the agent and secured using HTTPS TLS 1.3.
+Self-hosted agents use one-way communication to connect with Semaphore. Requests are always initiated by the agent and secured using HTTPS TLS 1.3. This means you don't need to inbound open ports in your firewall to use Semaphore in Hybrid mode.
 
-When the agent boots up it attempts to register with Semaphore. Once registered, the agent enters in *sync mode* and sends periodic requests to notify what the agent is doing and request instructions on what to do next.
+When the agent boots up it attempts to register with Semaphore.
+
 
 ```mermaid
 zenuml
@@ -34,9 +35,6 @@ zenuml
     S as Semaphore
     A->S.registerAgent {
       return agentToken
-    }
-    if(validAgentToken) {
-        A->S: sync 
     }
 ```
 
@@ -48,13 +46,11 @@ A registration failure causes the agent to stop running jobs. The agent shuts do
 
 :::
 
-### Sync and get jobs
-
-Once the agent is registered, it will periodically send POST requests to Semaphore API `/sync` endpoint. This request sends state information about the agent.
+Once registered, the agent enters in *sync mode* and sends periodic requests to notify what the agent is doing and request instructions on what to do next. The agent periodically sends POST requests to the Semaphore API `/sync` endpoint. The request sends state information about the agent.
 
 ```mermaid
 zenuml
-    title Periodic Sync
+    title Periodic Sync Requets
     A as Agent
     S as Semaphore
     A->S.POST("/sync", state)
@@ -62,11 +58,11 @@ zenuml
     A->S.POST("/sync", state)
 ```
 
-Agents also periodically send GET requests to the `/job` endpoint to retrieve new jobs. Semaphore sends a unique stream token for every scheduled job, which the agent uses to stream the job's output.
+Agents also send GET requests to the Semaphore API `/job` endpoint to determine what job to run next. Semaphore responds with a unique stream token for every scheduled job, which the agent uses to stream the job's output.
 
 ```mermaid
 zenuml
-    title Runing jobs
+    title Get job requests
     A as Agent
     S as Semaphore
     A->S.GET("/job") {
@@ -96,10 +92,7 @@ Not all of the [Semaphore toolbox](../reference/toolbox) commands are available 
 
 ## How to debug jobs on self-hosted {#debug}
 
-Since Semaphore does not have direct access to the self-hosted agents, the convenient 
-
-
-Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach to jobs using the [debug command](./jobs#debug-jobs). Instead, Semaphore will only display the name of the agent running the job and wait until the session stops.
+Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
 
 To debug jobs on a self-hosted agent you need to log in the agent machine. Keep in mind that:
 
