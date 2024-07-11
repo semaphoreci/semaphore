@@ -11,82 +11,9 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 GitHub users need to provide access to Semaphore so it can read their repositories.
 
-## Overview {#overview}
+## Overview
 
-Semaphore supports two types of ways to access your GitHub repositories:
-
-- [OAuth App](https://github.com/settings/connections/applications/328c742132e5407abd7d): also known as *personal access token*, this connection is provides Single-Sign On (SSO) access to your Semaphore account. It is established during the Semaphore [account creation process](../getting-started/guided-tour).
-- [GitHub App](https://github.com/apps/semaphore-ci-cd): an optional type of connection providing additional features such as fine-grained control and per-repository permissions.
-
-You can create and revoke access to both types of connections at any time. Each one has its own set of tradeoffs.
-
-## OAuth vs GitHub app {#oauth-vs-app}
-
-The **OAuth App** authorizes Semaphore to impersonate your GitHub account using a personal access token. This means you need to have admin-level access to the GitHub repository to connect it with Semaphore.
-
-In addition, with OAuth, you can't control access on a per-repository level. Instead, you can only grant or revoke access to repositories based on their visibility, i.e. if they are public or private. It also means that if you delete your GitHub account, Semaphore loses access to all repositories.
-
-The **GitHub App** is installed on a per-organization basis. Before it can be used, the organization owner must install and grant access to the application. Only organization owners can install this app.
-
-Semaphore recommends using the GitHub App whenever possible as it provides two benefits:
-
-- **Granular permissions**: you can grant Semaphore access to individual repositories, giving you control over which data Semaphore has access to.
-- **No personal tokens**: since it does not rely on a personal access token, you can offboard people from the GitHub organization without the connection with Semaphore.
-
-## How to sign up using GitHub {#sign-gh}
-
-If you are creating a new Semaphore account, you can sign in with GitHub to create the connection automatically.
-
-Follow these steps to create a Semaphore account using GitHub:
-
-1. Log in to your GitHub account
-2. Navigate to the [Semaphore login page](https://semaphoreci.com/login)
-3. Select **Log in with GitHub**
-4. Grant access to the Semaphore [OAuth App](https://github.com/settings/connections/applications/328c742132e5407abd7d) in GitHub
-5. Finish the Semaphore setup
-
-## How to authorize OAuth App {#connect-oauth}
-
-The connection between Semaphore and GitHub should be configured automatically when you sign up. However, this connection can be severed for different reasons. If you don't see your repositories when trying to create a [project](./projects), follow these steps:
-
-1. Navigate to your [Semaphore account page](https://me.semaphoreci.com/account)
-2. Click on **Grant public access** or **Grant private access** to grant access to only public or all of your repositories on GitHub
- ![Connecting Semaphore to your Git provider](./img/connect-gh-bb.jpg)
-3. Press **Authorize semaphoreci**
- ![Authorize access to GitHub account](./img/authorize-gh.jpg)
-
-The possible connection status is:
-
-- **Not Connected**: the account is not connected. Log out and back into Semaphore to grant access to your GitHub account
-- **Email only**: Semaphore is connected to your repositories [via the GitHub App](#ghapp) only. The OAuth App has not been authorized
-- **Public repositories**: Semaphore can connect to all your public repositories [via OAuth App](#oauth)
-- **Connected**: Semaphore can connect to all your public and private repositories [via OAuth App](#oauth)
-
-If your GitHub account is fully disconnected, log out of Semaphore and try to log in again. You will be prompted to give Semaphore access to GitHub.
-
-### Connect repositories via OAuth {#oauth}
-
-To connect a GitHub repository with Semaphore using OAuth, you must have admin access to the GitHub repository.
-
-To create a connection using OAuth, follow these steps:
-
-1. Create a [new project](./projects#create-a-project)
-2. Select the **GitHub Personal Token** tab
- ![Selecting the personal token tab](./img/oauth-personal-token.jpg)
-3. Choose **Public repositories** or **All repositories**
- ![OAuth permission options](./img/oauth-permissions.jpg)
-4. Select a repository from the list and finish the [project setup](./projects)
-
-You can only use this method on repositories you have admin-level access to (unavailable repositories are greyed out).
-
-:::note
-
-Depending on the GitHub organization settings, its owner may need to [authorize OAuth App](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) within the organization.
-
-If you have given full access to Semaphore but you only see your personal repositories, it might mean that the GitHub organization's owner hasn't granted Semaphore access to the organization yet.
-
-:::
-
+Semaphore accesses your GitHub repositories using the [Semaphore GitHub App](https://github.com/apps/semaphore-ci-cd). This method provides fine-grained control and per-repository permissions to control which code Semaphore can access.
 
 ## How to authorize the GitHub App {#connect-ghapp}
 
@@ -96,7 +23,7 @@ To install the GitHub App in your organization:
 2. Press **Install**
 3. Select an organization
 4. Select the repository access, you can grant access to all or some of your repositories
-    ![Install GitHub App](./img/install-ghapp.jpg)
+ ![Install GitHub App](./img/install-ghapp.jpg)
 
 ### Connect repositories via GitHub App {#ghapp}
 
@@ -124,7 +51,7 @@ You might not be able to install the GitHub App if you are not the GitHub organi
 
 ## How to transfer projects from OAuth to GitHub App {#transfer}
 
-Projects [connected via the OAuth App](#oauth) can be transferred to the [GitHub App](#ghapp) at any time. You need to have installed the GitHub App in your organization before the transfer can take place.
+Projects [connected via the OAuth App](./connect-github-oauth) can be transferred to the [GitHub App](#ghapp) at any time. You need to have installed the GitHub App in your organization before the transfer can take place.
 
 To transfer projects, follow these steps:
 
@@ -174,7 +101,7 @@ A deploy key can be invalidated if:
 
 - it was manually removed from the repository
 - access via OAuth or GitHub App was revoked
-- the repository's original owner no longer has access to it (only for projects added [via OAuth](#oauth))
+- the repository's original owner no longer has access to it (only for projects added [via OAuth](./connect-github-oauth))
 
 :::
 
@@ -221,11 +148,10 @@ Here is how you authorize Semaphore:
 3. Open the **Authorized OAuth Apps** tab
 4. Under "Organization access", choose your private organization and click either **Grant** or **Request Access**
 
-If you clicked "Request Access" in step 5, the admin of the orgnization will receive an email showing your request.
+If you click "Request Access" in step 5, the admin of the organization will receive an email showing your request.
 
 ## See also
 
-- [Projects](./projects)
 - [Getting Started Guide](../getting-started/guided-tour)
-- [Semaphore Organizations](./organizations)
+- [Using OAuth with GitHub](./connect-github-oauth)
 - [How to connect with BitBucket](./connect-bitbucket)
