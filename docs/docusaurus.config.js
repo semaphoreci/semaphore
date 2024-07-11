@@ -19,12 +19,17 @@ const config = {
   themes: [
     // required for search
     // Disabled for now, it's not working with hash router
+    // ['@docusaurus/theme-mermaid'],
     // ["@easyops-cn/docusaurus-search-local",
     // {
     //   hashed: 'filename',
     //   language: ["en"]
     // }],
   ],
+  // mermaid support doesn't work with canary version
+  // markdown: {
+  //   mermaid: true,
+  // },
 
   // Production url of your site here
   url: 'https://docs.semaphoreci.com',
