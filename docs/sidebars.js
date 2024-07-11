@@ -90,7 +90,19 @@ const sidebars = {
           ],
         },
         'using-semaphore/observability',
-        'using-semaphore/self-hosted',
+        {
+          type: 'category',
+          label: 'Self-hosted Agents',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/self-hosted'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/self-hosted-install',
+            'using-semaphore/self-hosted-configure',
+          ]
+        },
         {
           type: 'category',
           label: 'Optimization',
