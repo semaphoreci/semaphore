@@ -127,6 +127,7 @@ const sidebars = {
         'reference/conditions-dsl',
         'reference/machine-types',
         'reference/audit-events',
+        'reference/openid',
       ],
     },
   ],
