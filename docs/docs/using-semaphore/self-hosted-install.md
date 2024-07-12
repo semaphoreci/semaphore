@@ -115,7 +115,29 @@ Follow these steps to install self-hosted agent in Ubuntu or Debian:
     sudo systemctl restart semaphore-agent
     ```
 
-See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup. If the installation fails, try the [Generic Linux installation](#linux)
+10. Check that the agent is working and is connected
+
+    ```shell title="Checking self-hosted agent status"
+    $ sudo systemctl status semaphore-agent
+    ● semaphore-agent.service - Semaphore agent
+        Loaded: loaded (/etc/systemd/system/semaphore-agent.service; disabled; preset: enabled)
+        Active: active (running) since Fri 2024-07-12 14:09:28 UTC; 10s ago
+    Main PID: 5154 (agent)
+        Tasks: 11 (limit: 509)
+        Memory: 13.0M (peak: 13.8M)
+            CPU: 77ms
+        CGroup: /system.slice/semaphore-agent.service
+                ├─5154 /opt/semaphore/agent/agent start --config-file /opt/semaphore/agent/config.yaml
+                └─5157 /opt/semaphore/agent/agent start --config-file /opt/semaphore/agent/config.yaml
+
+    Jul 12 14:09:28 selfhosted agent[5157]: Jul 12 14:09:28.345 sywinVS8IgIkZzgIgk2D : Starting to poll for jobs
+    Jul 12 14:09:28 selfhosted agent[5157]: Jul 12 14:09:28.345 sywinVS8IgIkZzgIgk2D : SYNC request (state: waiting-for-jobs)
+    Jul 12 14:09:28 selfhosted agent[5157]: Jul 12 14:09:28.442 sywinVS8IgIkZzgIgk2D : SYNC response (action: continue)
+    Jul 12 14:09:28 selfhosted agent[5157]: Jul 12 14:09:28.442 sywinVS8IgIkZzgIgk2D : Waiting 4.888s for next sync...
+    Jul 12 14:09:33 selfhosted agent[5157]: Jul 12 14:09:33.331 sywinVS8IgIkZzgIgk2D : SYNC request (state: waiting-for-jobs)
+    ```
+
+See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup. If the installation fails, try the [Generic Linux installation](#linux) or [installing from source](#rhel).
 
 ### Generic Linux {#linux}
 
@@ -144,7 +166,7 @@ Follow these steps to install self-hosted agent in any Linux distribution:
     EOF
     ```
 
-5. Download and install the [Semaphore toolbox](../reference/toolbox)
+5. Download and install the [Semaphore toolbox](https://github.com/semaphoreci/agent/releases/). Selec the correct platform and architecture
 
     ```shell title="Install Semaphore toolbox"
     curl -L "https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar" -o toolbox.tar
@@ -193,9 +215,171 @@ See [self-hosted agent configuration](./self-hosted-configure) to see the next s
 
 ### Red Hat Enterprise Linux (RHEL) {#rhel}
 
+In order to run the self-hosted agent in FIPS-enabled Red Hat Enterprise Linux (RHEL), you must compile the binary from source. 
+
+To compile the agent, follow these steps:
+
+1. Verify the host has FIPS mode enabled
+
+    ```shell
+    sudo fips-mode-setup --check
+    ```
+
+2. Install the [go-toolset](https://developers.redhat.com/blog/2019/06/24/go-and-fips-140-2-on-red-hat-enterprise-linux#using_go_toolset)
+
+    ```shell
+    sudo yum install go-toolset
+    ```
+
+3. Download the source and compile it. Find the [latest release](https://github.com/semaphoreci/agent/releases/) and downlad the source package
+
+    ```shell
+    curl -L https://github.com/semaphoreci/agent/archive/refs/tags/v2.2.23.tar.gz -o agent.tar.gz
+    tar -xf agent.tar.gz
+    cd agent-2.2.23
+    go build -ldflags='-s -w -X "main.VERSION=v2.2.23"' -o build/agent main.go
+    ```
+
+4. Verify that the binary is FIPS compatible
+
+    ```shell
+    go tool nm ./build/agent | grep FIPS
+    ```
+
+5. Install???
+
+To finish the setup, follow these instructions:
+
 ### macOS {#macos}
 
+To install the Semaphore self-hosted agent in macOS
+
+1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
+2. Log in or switch to the agent service user
+
+    ```shell
+    su - semaphore
+    ```
+3. Prepare the machine
+
+    ```shell title="Prepare machine"
+    sudo mkdir -p /opt/semaphore/agent
+    sudo chown $USER:$USER /opt/semaphore/agent/
+    cd /opt/semaphore/agent
+    ```
+4. Download the agent package. Find the [latest release](https://github.com/semaphoreci/agent/releases/) for your platform and architecture (x86_64 or arm64)
+
+    ```shell title="Download agent package"
+    curl -L https://github.com/semaphoreci/agent/releases/download/v2.2.23/agent_Darwin_arm64.tar.gz -o agent.tar.gz
+    tar -xf agent.tar.gz
+    ```
+
+5. Install the agent and follow the prompts. Type the [organization URL](./organizations#general-settings), the registration token and the name of the local service user. The registration token is the one revealed during [agent registration](#register-agent)
+
+    ```shell title="Install agent"
+    $ sudo ./install.sh
+    Enter organization: my-org.semaphoreci.com
+    Enter registration token: <access token>
+    Enter user [root]: <local-service-user>
+    Downloading toolbox from https://github.com/semaphoreci/toolbox/releases/latest/download/darwin.tar...
+    [sudo] password for semaphore: 
+    Creating agent config file at /opt/semaphore/agent/config.yaml...
+    Creating /etc/systemd/system/semaphore-agent.service...
+    Starting semaphore-agent service...
+    ```
+
+6. Add GitHub and BitBucket SSH fingerprints
+
+    ```shell
+    sudo mkdir -p /home/$USER/.ssh
+    sudo chown -R $USER:$USER /home/$USER/.ssh
+
+    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://bitbucket.org/site/ssh | tee -a /home/$USER/.ssh/known_hosts
+
+    chmod 700 /home/$USER/.ssh
+    chmod 600 /home/$USER/.ssh/known_hosts
+    ```
+
+7. Add your SSH private keys into the `~/.ssh/` folder
+8. Test SSH connection to GitHub or BitBucket
+
+    ```shell title="Testing SSH connection"
+    ssh -T git@bitbucket.org
+    ssh -T git@github.com
+    ```
+### macOS with Homebrew {#homebrew}
+
+1. Install [Homebrew](https://brew.sh/)
+2. Install the Semaphore self-hosted agent
+
+    ```shell
+    brew install semaphoreci/tap/agent
+    ```
+
+3. Download and install the [Semaphore toolbox](https://github.com/semaphoreci/agent/releases/). Select the correct platform and architecture
+
+    ```shell title="Install Semaphore toolbox"
+    curl -L "https://github.com/semaphoreci/toolbox/releases/download/v1.21.19/darwin-arm.tar" -o toolbox.tar
+    tar -xf toolbox.tar
+    mv toolbox ~/.toolbox
+    bash ~/.toolbox/install-toolbox
+    source ~/.toolbox/toolbox
+    echo "source ~/.toolbox/toolbox" >> ~/.bash_profile
+    ```
+
+4. Add GitHub and BitBucket SSH fingerprints
+
+    ```shell
+    sudo mkdir -p /home/$USER/.ssh
+    sudo chown -R $USER:$USER /home/$USER/.ssh
+
+    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://bitbucket.org/site/ssh | tee -a /home/$USER/.ssh/known_hosts
+
+    chmod 700 /home/$USER/.ssh
+    chmod 600 /home/$USER/.ssh/known_hosts
+    ```
+
+5. Add your SSH private keys into the `~/.ssh/` folder
+6. Test SSH connection to GitHub or BitBucket
+
+    ```shell title="Testing SSH connection"
+    ssh -T git@bitbucket.org
+    ssh -T git@github.com
+    ``` 
+
+7. Start the agent. Replace the endpoint with your [organization URL](./organizations#general-settings). Type the [registration token](#register-agent) you received earlier
+
+    ```shell title="Start the agent"
+    agent start --endpoint my-org.semaphoreci.com --token <TOKEN>
+    ```
+
 ### Windows {#windows}
+
+To install the self-hosted agent in Windows, follow these steps:
+
+1. Prepare your machine
+
+    ```shell
+    New-Item -ItemType Directory -Path C:\semaphore-agent
+    Set-Location C:\semaphore-agent
+    ```
+
+2. Download the agent. Find the [latest release](https://github.com/semaphoreci/agent/releases/) for your platform and architecture
+
+    ```shell
+    Invoke-WebRequest "https://github.com/semaphoreci/agent/releases/download/v2.2.23/agent_Windows_x86_64.tar.gz" -OutFile agent.tar.gz
+    tar.exe xvf agent.tar.gz
+    ```
+
+3. Install the agent and follow the prompts
+
+    ```shell
+    $env:SemaphoreEndpoint = "<your-organization>.semaphoreci.com"
+    $env:SemaphoreRegistrationToken = "<your-agent-type-registration-token>"
+    .\install.ps1
+    ```
 
 ### AWS {#aws}
 
