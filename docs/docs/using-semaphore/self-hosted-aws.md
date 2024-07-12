@@ -4,7 +4,7 @@ description: Deploy an autoscaling fleet of self-hosted agents in AWS
 
 # Autoscaling with AWS
 
-WIP
+WIP: in progress
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
