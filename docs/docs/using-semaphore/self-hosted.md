@@ -137,6 +137,13 @@ You can also change the agent for a single job using the [agent override option]
 </TabItem>
 </Tabs>
 
+### Job sessions
+
+The self-hosted agent executes the job commands in two different ways depending on the platform where it is running:
+
+- On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
+- Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
+
 ## How to debug jobs on self-hosted {#debug}
 
 Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
@@ -151,4 +158,5 @@ To debug jobs on a self-hosted agent you need to log in to the agent machine. Ke
 - [How to install self-hosted agents](./self-hosted-install)
 - [How to configure self-hosted agents](./self-hosted-configure)
 - [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)
+- [Self-hosted agents configuration reference](../reference/self-hosted-config)
 

@@ -56,7 +56,7 @@ Agents generate a random name when this argument is empty. Set this value to for
 A pre-signed AWS STS GetCallerIdentity URL can also be used if the [agent type](../using-semaphore/self-hosted)] allows it.
 
 
-### Env-vars
+### Environment variables
 
 - **argument name**: `env-vars`
 - **mandatory**: no
@@ -243,3 +243,6 @@ The agent stops the job and shuts down immediately after receiving an interrupti
 ## See also
 
 - [How to use self-hosted agents](../using-semaphore/self-hosted)
+- [How to install self-hosted agents](./self-hosted-install)
+- [How to configure self-hosted agents](./self-hosted-configure)
+- [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)

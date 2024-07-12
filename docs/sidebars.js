@@ -142,6 +142,7 @@ const sidebars = {
         'reference/audit-events',
         'reference/openid',
         'reference/self-hosted-config',
+        'reference/quotas-and-limits',
       ],
     },
   ],

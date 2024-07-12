@@ -446,3 +446,4 @@ Semaphore, however, also provides an AWS stack to run an auto-scaling fleet of a
 
 - [How to configure self-hosted agents](./self-hosted-configure)
 - [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)
+- [Self-hosted agents configuration reference](../reference/self-hosted-config)
