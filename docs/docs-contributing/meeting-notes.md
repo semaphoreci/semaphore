@@ -1,5 +1,21 @@
 # Documentation Work Group - Meeting Notes
 
+## 08-July-2024
+
+### Attendees
+
+- @darkofabijan
+- @TomFern 
+- @AleksandarCole
+
+### Agenda
+- @TomFern and @darko to review new pages on Wednesday
+- @AleksandarCole and @TomFern to propose list of pages by EOW
+- Support team will join the workgroup in Q3
+- @TomFern to review https://github.com/semaphoreci/semaphore/discussions/66
+- @TomFern continuing to work on new pages
+- @AleksandarCole to push https://github.com/semaphoreci/semaphore/issues/54 with Amir for Wednesday
+
 ## 02-July-2024
 
 ### Attendees
