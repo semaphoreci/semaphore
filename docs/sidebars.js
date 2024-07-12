@@ -141,6 +141,7 @@ const sidebars = {
         'reference/machine-types',
         'reference/audit-events',
         'reference/openid',
+        'reference/self-hosted-config',
       ],
     },
   ],

@@ -1,5 +1,5 @@
 ---
-description: A dest
+description: Configure self-hosted agents
 ---
 
 # Configure Agents
@@ -11,9 +11,17 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
+Self-hosted agents allow you to run Semaphore jobs in your own hardware. This page explains the configuration settings available and how to enable additional features.
+
 ## Overview
 
-## Configuration parameters
+Self-hosted agents accept configuration settings in three ways. In order of precedence:
+
+- **command line arguments**: used when starting the agent, e.g. `agent start --endpoint my-org.semaphoreci.com`
+- **environment variables**: supplied when starting the agent. All configuration variable names are prefixed with `SEMAPHORE_AGENT`. So, for example the `--disconnect-after-job` argument is transformed into `SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`
+- **configuration file**: using the `--config` option when starting the agent, e.g. `agent start --config config.yml`
+
+See the [Self-hosted agents configuration reference](../reference/self-hosted-config) to view all available settings.
 
 ## How to isolate jobs
 
