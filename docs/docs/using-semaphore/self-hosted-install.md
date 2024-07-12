@@ -14,11 +14,11 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 ## Overview
 
 
-Before you can run jobs in your hardware, you need to install and register the self-hosted agent stack. This page explains how to install the stack in several platforms.
+Before you can run jobs in your hardware, you need to install and register the self-hosted agent stack. This page explains how to install the stack on several platforms.
 
 ## How to register agent type {#register-agent}
 
-The agent type is the name assigned to agents running on the same hardware or platform. Semaphore expects all self-hosted agents to belong one agent type.
+The agent type is the name assigned to agents running on the same hardware or platform. Semaphore expects all self-hosted agents to belong to one agent type.
 
 To register a self-hosted agent type, follow these steps:
 
@@ -32,7 +32,7 @@ To register a self-hosted agent type, follow these steps:
 
 ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
 
-The next page shows detailed instructions to install and connect the self-hosted agent in the platform of choice. Press the **Reveal** button to show the registration token. Save it on a safe place for the next step.
+The next page shows detailed instructions to install and connect the self-hosted agent in the platform of choice. Press the **Reveal** button to show the registration token. Save it in a safe place for the next step.
 
 ![Instructions to install self-hosted agent](./img/self-hosted-agent-install.jpg)
 
@@ -51,7 +51,7 @@ Scroll down to learn how to install the stack in your hardware.
 
 ### Kubernetes {#kubernetes}
 
-Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to run agent in a Kubernete cluster.
+Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to run agents in a Kubernete cluster.
 
 To install the Semaphore custom controller, follow these steps:
 
@@ -62,7 +62,11 @@ To install the Semaphore custom controller, follow these steps:
     helm repo add renderedtext https://renderedtext.github.io/helm-charts
     ```
 
-3. Install the [agent-k8s-controller](https://github.com/renderedtext/agent-k8s-controller) with Helm. Replace the endpoint with your [organization URL](./organizations#general-settings) and type the [registration token](#register-agent) you received earlier
+3. Install the [agent-k8s-controller](https://github.com/renderedtext/agent-k8s-controller) with Helm
+
+    Replace:
+    - `<my-org.semaphoreci.com>` with your [organization URL](./organizations#general-settings)
+    - `<token>` with the [registration token](#register-agent) you received earlier
 
     ```shell title="Install agent-k8s-controller"
     helm upgrade --install semaphore-controller renderedtext/controller \
@@ -71,6 +75,7 @@ To install the Semaphore custom controller, follow these steps:
     --set endpoint=my-org.semaphoreci.com \
     --set apiToken=<token>
     ```
+
 4. Create a secret to register the agent type in the Kubernetes cluster. Create a new YAML resource file.
 
      Replace: 
@@ -357,6 +362,7 @@ To install the Semaphore self-hosted agent in macOS
     ssh -T git@bitbucket.org
     ssh -T git@github.com
     ```
+
 ### macOS with Homebrew {#homebrew}
 
 1. Install [Homebrew](https://brew.sh/)
@@ -437,3 +443,6 @@ With AWS (or any other cloud), you can spin up an EC2 instance and install the [
 Semaphore, however, also provides an AWS stack to run an auto-scaling fleet of agents. To learn how this feature works, see the [Autoscaling agents in AWS page](./self-hosted-aws.md).
 
 ## See also
+
+- [How to configure self-hosted agents](./self-hosted-configure)
+- [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)
