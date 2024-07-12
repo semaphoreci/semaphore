@@ -150,3 +150,5 @@ To debug jobs on a self-hosted agent you need to log in the agent machine. Keep 
 
 - [How to install self-hosted agents](./self-hosted-install)
 - [How to configure self-hosted agents](./self-hosted-configure)
+- [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)
+

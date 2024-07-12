@@ -9,9 +9,10 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
+<Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
+
 ## Overview
 
-<Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
 Before you can run jobs in your hardware, you need to install and register the self-hosted agent stack. This page explains how to install the stack in several platforms.
 
@@ -49,6 +50,54 @@ The Semaphore self-hosted agent is [open source](https://github.com/semaphoreci/
 Scroll down to learn how to install the stack in your hardware.
 
 ### Kubernetes {#kubernetes}
+
+Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to run agent in a Kubernete cluster.
+
+To install the Semaphore custom controller, follow these steps:
+
+1. Install [Helm](https://helm.sh/)
+2. Add the Semaphore Helm chart
+
+    ```shell title="Add Helm repository"
+    helm repo add renderedtext https://renderedtext.github.io/helm-charts
+    ```
+
+3. Install the [agent-k8s-controller](https://github.com/renderedtext/agent-k8s-controller) with Helm. Replace the endpoint with your [organization URL](./organizations#general-settings) and type the [registration token](#register-agent) you received earlier
+
+    ```shell title="Install agent-k8s-controller"
+    helm upgrade --install semaphore-controller renderedtext/controller \
+    --namespace semaphore \
+    --create-namespace \
+    --set endpoint=my-org.semaphoreci.com \
+    --set apiToken=<token>
+    ```
+4. Create a secret to register the agent type in the Kubernetes cluster. Create a new YAML resource file.
+
+     Replace: 
+     - `<AGENT_TYPE>` with the type you [created during registration](#register-agent)
+     - `<AGENT_TYPE_REGISTRATION_TOKEN>` with the token you received during registration
+     - The custom controllers looks for the `label` shown below to know what secret is relevant to this connection
+
+    ```yaml title="semaphore-secret.yml"
+    apiVersion: v1
+    kind: Secret
+    metadata:
+        name: my-semaphore-agent-type
+        namespace: semaphore
+        labels:
+            semaphoreci.com/resource-type: agent-type-configuration
+    stringData:
+        agentTypeName: <AGENT_TYPE>
+        registrationToken: <AGENT_TYPE_REGISTRATION_TOKEN>
+    ```
+
+5. Create the secret in Kubernetes
+
+    ```shell
+    kubectl apply -f semaphore-secret.yml
+    ```
+
+See the [Kubernetes executor documentation](https://github.com/semaphoreci/agent/blob/master/docs/kubernetes-executor.md) to learn how the agent creates resources in the cluster.
 
 ### Ubuntu/Debian {#ubuntu}
 
@@ -382,5 +431,9 @@ To install the self-hosted agent in Windows, follow these steps:
     ```
 
 ### AWS {#aws}
+
+With AWS (or any other cloud), you can spin up an EC2 instance and install the [Ubuntu](#ubuntu) or [Linux](#linux) agents. 
+
+Semaphore, however, also provides an AWS stack to run an auto-scaling fleet of agents. To learn how this feature works, see the [Autoscaling agents in AWS page](./self-hosted-aws.md).
 
 ## See also
