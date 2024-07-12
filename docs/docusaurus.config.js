@@ -4,7 +4,8 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
+import * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -17,6 +18,7 @@ const config = {
 
   // extra themes
   themes: [
+    "docusaurus-theme-openapi-docs",
     // required for search
     // Disabled for now, it's not working with hash router
     // ["@easyops-cn/docusaurus-search-local",
@@ -51,6 +53,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -61,6 +64,27 @@ const config = {
         },
       }),
     ],
+  ],
+
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: "api", // plugin id
+        docsPluginId: "classic", // configured for preset-classic
+        config: {
+          semaphoreAPI: {
+            specPath: "https://docs.semaphoreci.com/v2/api-spec/openapi.yaml",
+            outputDir: "docs/openapi-spec",
+            downloadUrl: "https://docs.semaphoreci.com/v2/api-spec/openapi.json",
+            sidebarOptions: {
+              categoryLinkSource: "tag",
+              groupPathsBy: "tag",
+            },
+          },
+        }
+      },
+    ]
   ],
 
   themeConfig:
@@ -107,6 +131,12 @@ const config = {
             sidebarId: 'refSidebar',
             position: 'left',
             label: 'Reference',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'apiSidebar',
+            position: 'left',
+            label: 'API Specification',
           },
           {
             href: 'https://github.com/semaphoreci/docs',
