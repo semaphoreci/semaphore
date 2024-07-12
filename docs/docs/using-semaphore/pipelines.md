@@ -20,7 +20,7 @@ Pipelines are also the *unit of configuration*. Each pipeline is encoded as sepa
 
 For reference, here is an example pipeline with its respective YAML.
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="editor-yaml" queryString>
 <TabItem value="editor" label="Example pipeline">
 
  ![Example job with a single test](./img/example-pipeline.jpg)
@@ -113,6 +113,7 @@ Pipeline settings are applied to all its blocks. You can change pipeline setting
 Agents are the environment where jobs run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.
 
 Semaphore Cloud provides the following agent types in x86 and ARM architectures:
+
 - [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
 - [Apple macOS Machines](../reference/machine-types#macos)
 - [Windows Machines](./self-hosted#windows) (only for self-hosted agents) 

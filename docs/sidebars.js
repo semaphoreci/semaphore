@@ -90,7 +90,20 @@ const sidebars = {
           ],
         },
         'using-semaphore/observability',
-        'using-semaphore/self-hosted',
+        {
+          type: 'category',
+          label: 'Self-hosted Agents',
+          link: {
+            type: 'doc',
+            id: 'using-semaphore/self-hosted'
+          },
+          collapsed: false,
+          items: [
+            'using-semaphore/self-hosted-install',
+            'using-semaphore/self-hosted-configure',
+            'using-semaphore/self-hosted-aws',
+          ]
+        },
         {
           type: 'category',
           label: 'Optimization',
@@ -129,6 +142,8 @@ const sidebars = {
         'reference/machine-types',
         'reference/audit-events',
         'reference/openid',
+        'reference/self-hosted-config',
+        'reference/quotas-and-limits',
       ],
     },
   ],

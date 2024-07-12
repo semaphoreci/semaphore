@@ -13,7 +13,7 @@ const Available = ({plans}) => {
     return (
         <Admonition type="note" icon=<SemaphoreLogo/> title="Available On">
             <span className={styles.semaphore}>
-                Semaphore Cloud: 
+                Plans 
             </span>
             { plans !== undefined ? (
                 plans.map((plan) => (
