@@ -11,7 +11,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 Semaphore Hybrid lets you run jobs in your own hardware. This page explains what self-hosted agents are and how to install them in several platforms.
 
-## Overview
+## Overview {#overview}
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
@@ -21,7 +21,7 @@ Self-hosted agents allow you to run workflows on machines that are not currently
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
-## Agent communication
+## Agent communication {#communication}
 
 Self-hosted agents use one-way communication to connect with Semaphore. Requests are always initiated by the agent and secured using HTTPS TLS 1.3. This means you don't need to inbound open ports in your firewall to use Semaphore in Hybrid mode.
 
@@ -38,7 +38,7 @@ zenuml
     }
 ```
 
-![TODO: placeholder - remove me](./img/mermaid-register-agent.jpg)
+![TODO: placeholder image - remove me once mermaid works](./img/mermaid-register-agent.jpg)
 
 :::note
 
@@ -70,13 +70,11 @@ zenuml
     }
 
     A->S: streamOutput
-
     A->S: streamOutput
-
     A->S: streamOutput
 ```
 
-## Supported toolbox features
+## Supported toolbox features {#toolbox}
 
 Not all of the [Semaphore toolbox](../reference/toolbox) commands are available on self-hosted agents. In some cases, you need additional setup steps to use these features.
 
@@ -89,6 +87,55 @@ Not all of the [Semaphore toolbox](../reference/toolbox) commands are available 
 | Starting [debug jobs](./jobs#debug-jobs)                                        | No  | See the [self-hosted debug jobs](#debug)  |
 | Changing language versions with [sem-version](../reference/toolbox#sem-version) | No  |                                           |
 | Managing databases with [sem-service](../reference/toolbox#sem-service)         | No  |                                           |
+
+## How to run jobs in self-hosted agents {#run-agent}
+
+Once you have [installed](./self-hosted-install) and [configured](./self-hosted-configure) the self-hosted agent, you can use it in your jobs by selecting the new agent type in your pipeline.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To run jobs on a self-hosted agent, follow these steps:
+
+1. Open your Semaphore [project](./projects) and press **Edit Workflow**
+2. Select the pipeline
+3. Under **Environment Type** select **Self-hosted machine**
+4. Select the machine from the selection list
+
+![Selecting a self-hosted agent](./img/use-self-hosted-agent.jpg)
+
+You can also change the agent for a single job using the [agent override option](./jobs#agent-override).
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To run jobs on a self-hosted agent, follow these steps:
+
+1. Edit the [pipeline YAML](./pipelines)
+2. In `agent.machine.type` add the agent type
+3. Leave `os_image` as an empty string
+4. Push the new YAML file to your repository
+
+```yaml title="Semaphore pipeline"
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: s1-gpu-2
+    os_image: ''
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - checkout
+```
+
+You can also change the agent for a single job using the [agent override option](./jobs#agent-override).
+
+</TabItem>
+</Tabs>
 
 ## How to debug jobs on self-hosted {#debug}
 

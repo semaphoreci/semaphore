@@ -15,7 +15,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 Before you can run jobs in your hardware, you need to install and register the self-hosted agent stack. This page explains how to install the stack in several platforms.
 
-## How to register agent type
+## How to register agent type {#register-agent}
 
 The agent type is the name assigned to agents running on the same hardware or platform. Semaphore expects all self-hosted agents to belong one agent type.
 
@@ -41,6 +41,7 @@ The Semaphore self-hosted agent is [open source](https://github.com/semaphoreci/
 
 - Git
 - Bash (Linux and macOS) or PowerShell (Windows)
+- A local user with sudo powers and Docker management permissions (Linux or macOS)
 - A user with sudo powers (Linux and macOS)
 - Docker [running as non-root](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user) (Linux and macOS)
 - Docker Compose (Linux and macOS)
@@ -53,46 +54,142 @@ Scroll down to learn how to install the stack in your hardware.
 
 Follow these steps to install self-hosted agent in Ubuntu or Debian:
 
-1. Prepare the machine
+1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
+2. Log in or switch to the agent service user
+
+    ```shell
+    su - semaphore
+    ```
+3. Prepare the machine
 
     ```shell title="Prepare machine"
     sudo mkdir -p /opt/semaphore/agent
     sudo chown $USER:$USER /opt/semaphore/agent/
     cd /opt/semaphore/agent
     ```
-2. Download the agent package. Find the [latest release](https://github.com/semaphoreci/agent/releases/) for your platform and architecture
+4. Download the agent package. Find the [latest release](https://github.com/semaphoreci/agent/releases/) for your platform and architecture
 
     ```shell title="Download agent package"
     curl -L https://github.com/semaphoreci/agent/releases/download/v2.2.23/agent_Linux_x86_64.tar.gz -o agent.tar.gz
     tar -xf agent.tar.gz
     ```
 
-3. Install the agent and follow the prompts
+5. Install the agent and follow the prompts. Type the [organization URL](./organizations#general-settings), the registration token and the name of the local service user. The registration token is the one revealed during [agent registration](#register-agent)
 
     ```shell title="Install agent"
     $ sudo ./install.sh
-    [sudo] password for semaphore:
-    Enter organization: my-org
-    Enter registration token: 4129164f62879d9039c78f35c365a77a3c92ef2b758915
+    Enter organization: my-org.semaphoreci.com
+    Enter registration token: <access token>
+    Enter user [root]: <local-service-user>
+    Downloading toolbox from https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar...
+    [sudo] password for semaphore: 
+    Creating agent config file at /opt/semaphore/agent/config.yaml...
+    Creating /etc/systemd/system/semaphore-agent.service...
+    Starting semaphore-agent service...
     ```
 
-4. Add GitHub and BitBucket SSH fingerprints
+6. Add GitHub and BitBucket SSH fingerprints
 
     ```shell
-    mkdir -p /home/$USER/.ssh
+    sudo mkdir -p /home/$USER/.ssh
+    sudo chown -R $USER:$USER /home/$USER/.ssh
 
-    # Fetch GitHub SSH keys from api.github.com/meta and put them into ~/.ssh/known_hosts
-    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | sudo tee -a /home/$USER/.ssh/known_hosts
-    # Fetch BitBucket SSH keys from bitbucket.org/site/ssh and put them into ~/.ssh/known_hosts
-    curl -s https://bitbucket.org/site/ssh | grep -oE 'ssh-[a-z]{3} [A-Za-z0-9+/=]+' | sed 's/^/bitbucket.org /' | sudo tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://bitbucket.org/site/ssh | tee -a /home/$USER/.ssh/known_hosts
 
-    sudo chmod 700 /home/$USER/.ssh
-    sudo chmod 600 /home/$USER/.ssh/known_hosts
-    sudo chown $USER:$USER /home/$USER/.ssh
+    chmod 700 /home/$USER/.ssh
+    chmod 600 /home/$USER/.ssh/known_hosts
     ```
-See [self-hosted agent configuration](./self-hosted-configure) to see how to configure the agent for your system.
+
+7. Add your SSH private keys into the `~/.ssh/` folder
+8. Test SSH connection to GitHub or BitBucket
+
+    ```shell title="Testing SSH connection"
+    ssh -T git@bitbucket.org
+    ssh -T git@github.com
+    ```
+
+9. Restart the agent service
+
+    ```shell title="Restart agent service"
+    sudo systemctl restart semaphore-agent
+    ```
+
+See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup. If the installation fails, try the [Generic Linux installation](#linux)
 
 ### Generic Linux {#linux}
+
+Follow these steps to install self-hosted agent in any Linux distribution:
+
+1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
+2. Log in or switch to the agent service user
+
+    ```shell
+    su - semaphore
+    ```
+3. Prepare the machine
+
+    ```shell title="Prepare machine"
+    sudo mkdir -p /opt/semaphore/agent
+    sudo chown $USER:$USER /opt/semaphore/agent/
+    cd /opt/semaphore/agent
+    ```
+
+4. Create the configuration file for the agent. Replace the endpoint with your [organization URL](./organizations#general-settings) (without HTTPS), and the registration token revealed during [agent registration](#register-agent)
+
+    ```shell title="Create config file"
+    cat > config.yaml <<EOF
+    endpoint: "my-org.semaphoreci.com"
+    token: "[token]"
+    EOF
+    ```
+
+5. Download and install the [Semaphore toolbox](../reference/toolbox)
+
+    ```shell title="Install Semaphore toolbox"
+    curl -L "https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar" -o toolbox.tar
+    tar -xf toolbox.tar
+    mv toolbox ~/.toolbox
+    bash ~/.toolbox/install-toolbox
+    source ~/.toolbox/toolbox
+    echo "source ~/.toolbox/toolbox" >> ~/.bash_profile
+    ```
+
+6. Download the agent package. Find the [latest release](https://github.com/semaphoreci/agent/releases/) for your platform and architecture
+
+    ```shell title="Download agent package"
+    curl -L https://github.com/semaphoreci/agent/releases/download/v2.2.23/agent_Linux_x86_64.tar.gz -o agent.tar.gz
+    tar -xf agent.tar.gz
+    ```
+
+7. Add GitHub and BitBucket SSH fingerprints
+
+    ```shell
+    sudo mkdir -p /home/$USER/.ssh
+    sudo chown -R $USER:$USER /home/$USER/.ssh
+
+    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://bitbucket.org/site/ssh | tee -a /home/$USER/.ssh/known_hosts
+
+    chmod 700 /home/$USER/.ssh
+    chmod 600 /home/$USER/.ssh/known_hosts
+    ```
+
+8. Add your SSH private keys into the `~/.ssh/` folder
+9. Test SSH connection to GitHub or BitBucket
+
+    ```shell title="Testing SSH connection"
+    ssh -T git@bitbucket.org
+    ssh -T git@github.com
+    ``` 
+
+10. Start the agent
+
+    ```shell title="Start the agent"
+    agent start --config-file config.yaml
+    ```
+
+See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup.
 
 ### Red Hat Enterprise Linux (RHEL) {#rhel}
 
