@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Semaphore Hybrid lets you run jobs in your own hardware. This page explains what self-hosted agents are and how to install them in several platforms.
+Semaphore Hybrid lets you run jobs on your own hardware. This page explains what self-hosted agents are and how to install them on several platforms.
 
 ## Overview {#overview}
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
-An [agent](./pipelines#agents) is a physical or virtual machine you own that can be dedicated to run Semaphore [jobs](./jobs). You can mix and match your own agents with the [machines provided by Semaphore](../reference/machine-types).
+An [agent](./pipelines#agents) is a physical or virtual machine you own that can be dedicated to running Semaphore [jobs](./jobs). You can mix and match your own agents with the [machines provided by Semaphore](../reference/machine-types).
 
 Self-hosted agents allow you to run workflows on machines that are not currently available as part of Semaphore Cloud plans, such as GPU-enabled machines for machine learning workloads.
 
@@ -46,7 +46,7 @@ A registration failure causes the agent to stop running jobs. The agent shuts do
 
 :::
 
-Once registered, the agent enters in *sync mode* and sends periodic requests to notify what the agent is doing and request instructions on what to do next. The agent periodically sends POST requests to the Semaphore API `/sync` endpoint. The request sends state information about the agent.
+Once registered, the agent enters *sync mode* and sends periodic requests to notify what the agent is doing and request instructions on what to do next. The agent periodically sends POST requests to the Semaphore API `/sync` endpoint. The request sends state information about the agent.
 
 ```mermaid
 zenuml
@@ -141,7 +141,7 @@ You can also change the agent for a single job using the [agent override option]
 
 Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
 
-To debug jobs on a self-hosted agent you need to log in the agent machine. Keep in mind that:
+To debug jobs on a self-hosted agent you need to log in to the agent machine. Keep in mind that:
 
 - You should log in with the same user the agent is running under. For example, if you're using [agent-aws-stack](https://github.com/renderedtext/agent-aws-stack), the user is `semaphore`
 - The agent does not automatically load environment variables for the job. To load the variables, you must source the files located at `/tmp/.env-*`
