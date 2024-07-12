@@ -2,7 +2,7 @@
 description: Deploy an autoscaling fleet of self-hosted agents in AWS
 ---
 
-# Autoscaling Agents in AWS
+# Autoscaling with AWS
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

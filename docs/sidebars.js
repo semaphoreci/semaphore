@@ -101,6 +101,7 @@ const sidebars = {
           items: [
             'using-semaphore/self-hosted-install',
             'using-semaphore/self-hosted-configure',
+            'using-semaphore/self-hosted-aws',
           ]
         },
         {

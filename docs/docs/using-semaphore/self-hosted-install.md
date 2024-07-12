@@ -102,7 +102,9 @@ To install the Semaphore custom controller, follow these steps:
     kubectl apply -f semaphore-secret.yml
     ```
 
-See the [Kubernetes executor documentation](https://github.com/semaphoreci/agent/blob/master/docs/kubernetes-executor.md) to learn how the agent creates resources in the cluster.
+The Helm chart provides a few additional configuration options so you can tweak your installation to best suit your needs. Run `helm show values renderedtext/controller` to view all available settings.
+
+See the [Helm chart repo](https://github.com/renderedtext/helm-charts/tree/main/charts/controller) to learn more.
 
 ### Ubuntu/Debian {#ubuntu}
 

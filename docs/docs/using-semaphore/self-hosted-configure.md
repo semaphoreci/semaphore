@@ -11,7 +11,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
-Self-hosted agents allow you to run Semaphore jobs in your own hardware. This page explains the configuration settings available and how to enable additional features.
+Self-hosted agents allow you to run Semaphore jobs on your own hardware. This page explains the configuration settings available and how to enable additional features.
 
 ## Overview
 
@@ -23,12 +23,6 @@ Self-hosted agents accept configuration settings in three ways. In order of prec
 
 See the [Self-hosted agents configuration reference](../reference/self-hosted-config) to view all available settings.
 
-
-## Kubernetes
-
-The Helm chart provides a few additional configuration options so you can tweak your installation to best suit your needs. You can see all of them with helm show values renderedtext/controller. More information is also available in the chart repo.
-https://github.com/renderedtext/helm-charts/tree/main/charts/controller
-
 ## How to isolate jobs
 
 Self-hosted agent jobs do not run in isolated environments. This means one job can interfere with the operation of another. To avoid this possibility, you can configure job isolation.
@@ -36,11 +30,11 @@ Self-hosted agent jobs do not run in isolated environments. This means one job c
 The details depend on how you run the jobs:
 
 - **Containers**: configuring jobs to run in containers is the easiest and recommended way to achieve job isolation. The self-hosted agent spins up a new container for every job and destroys it once it is done.
-- **Cloud instance**: this involves configuring the agent to spin up a new cloud machines for every job. This method takes longer to provision instances on demand and thus not recommended generally.
+- **Cloud instance**: this involves configuring the agent to spin up a new cloud machine for every job. This method takes longer to provision instances on demand and is thus not recommended generally.
 
 ### Isolation with Docker
 
-Docker is the fastest method for provisioning clean and isolated environments for every job.. Creating, starting, stopping, and destroying Docker containers is a very fast operation, especially if you cache the Docker images in the machine running the agent.
+Docker is the fastest method for provisioning clean and isolated environments for every job. Creating, starting, stopping, and destroying Docker containers is a very fast operation, especially if you cache the Docker images in the machine running the agent.
 
 There are two different ways that Docker containers can be used by an agent:
 
@@ -51,9 +45,9 @@ Depending on how Docker is configured, isolation can be achieved in two ways:
 
 ### Isolation with cloud instances
 
-In this scenario, a new cloud instance is spun up for every job and terminated when its done. This is achieved by setting the [`shutdown-hook-path`](../reference/self-hosted-config#shutdown-path) and [`disconnect-after-job`](../reference/self-hosted-config#disconnect-after-job) settings in the agent.
+In this scenario, a new cloud instance is spun up for every job and terminated when it's done. This is achieved by setting the [`shutdown-hook-path`](../reference/self-hosted-config#shutdown-path) and [`disconnect-after-job`](../reference/self-hosted-config#disconnect-after-job) settings in the agent.
 
-See the [AWS self-hosted stack page](./self-hosted-aws) how to automate this process in AWS.
+See the [AWS self-hosted stack page](./self-hosted-aws) for how to automate this process in AWS.
 
 :::tip
 
@@ -63,7 +57,7 @@ Keep in mind that using this method is slower than using Docker containers.
 
 ## How to set up caching 
 
-Self-hosted agents do not provide cache storage for the [cache command](../reference/toolbox#cache) out of the box. If you want to use the cache, you need to provide an S3-compatible bucket. This sections explains how to set up an external cache with AWS S3.
+Self-hosted agents do not provide cache storage for the [cache command](../reference/toolbox#cache) out of the box. If you want to use the cache, you need to provide an S3-compatible bucket. This section explains how to set up an external cache with AWS S3.
 
 ### Create AWS resources
 

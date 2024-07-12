@@ -144,6 +144,8 @@ The self-hosted agent executes the job commands in two different ways depending 
 - On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
 - Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
 
+See [self-hosted configuration](./self-hosted-configure#isolate-jobs) to learn how to run jobs in isolation.
+
 ## How to debug jobs on self-hosted {#debug}
 
 Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
