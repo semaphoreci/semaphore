@@ -13,7 +13,6 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 ## Overview
 
-
 Before you can run jobs in your hardware, you need to install and register the self-hosted agent stack. This page explains how to install the stack on several platforms.
 
 ## How to register agent type {#register-agent}
@@ -365,7 +364,7 @@ To install the Semaphore self-hosted agent in macOS
     ssh -T git@github.com
     ```
 
-### macOS with Homebrew {#homebrew}
+### macOS (Homebrew) {#homebrew}
 
 1. Install [Homebrew](https://brew.sh/)
 2. Install the Semaphore self-hosted agent
