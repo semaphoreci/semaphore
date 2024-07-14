@@ -271,7 +271,7 @@ After deleting a macOS stack you need to manually delete the host resource group
 
 See the [self-hosted parameters reference](../reference/self-hosted-config) for all the available parameters.
 
-### Autoscaling {#scaling}
+### Autoscaling {#scale}
 
 The self-hosted AWS stack dynamically scales agents based on the job demand. A Lambda function periodically polls the Semaphore API to determine the number of pending jobs for a given agent type. When the function determines more agents are needed, it will update the autoscaling group, resulting in new EC2 instances being launched.
 
@@ -284,7 +284,7 @@ You con control the autoscaling behavior using the following parameters in `conf
 - `SEMAPHORE_AGENT_ASG_MIN_SIZE` this is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0 the Lambda function will leave this number of agents idling without shuttind them down
 - `SEMAPHORE_AGENT_USE_DYNAMIC_SCALING` when set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running
 
-### Multiple agent types {#multiple-agents}
+### Multiple agent types {#stacks}
 
 You need to create an AWS stack for every agent type you run self-hosted. For example, if you wish to run Linux and Windows machines, you need two stacks.
 
