@@ -26,8 +26,21 @@ To register a self-hosted agent type, follow these steps:
 3. Press **Add self-hosted agent type**
 4. Type the name of the agent type. Self hosted agents all begin with `s1-`, e.g. `s1-gpu-2`
 5. Select **Agent name is directly assigned by the agent** unless you're using [AWS Security Tokens](#aws)
-6. Select if the agent is available immediately after disconnection or not
+6. Select if the agent name is available immediately after disconnection. See [agent lifecycle](./self-hosted#lifecycle) and [disconnection conditions](./self-hosted-configure#disconnect) for more details
 7. Press **Looks good**
+
+:::danger
+
+TODO-1: what is the purpose of the name relase option here?
+
+TODO-2: what is the purpose of AWS Security Token Service? 
+
+https://docs.aws.amazon.com/general/latest/gr/sts.html
+
+There is a registration option to control how the agent name is assigned, STS is one option but I don't understand why it's there
+
+:::
+
 
 ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
 
@@ -439,7 +452,11 @@ To install the self-hosted agent in Windows, follow these steps:
 
 ### AWS {#aws}
 
-With AWS (or any other cloud), you can spin up an EC2 instance and install the [Ubuntu](#ubuntu) or [Linux](#linux) agents. 
+With AWS (or any other cloud), you can spin up an EC2 instance and install the [Ubuntu](#ubuntu), [Linux](#linux), [macOS](#macos), or [Windows](#windows) agents. 
+
+TODO: explain the role of STS for AWS naming agents, and the options when name is assigned from a pre-signed AWS STS GetCallerIdentity URL:
+- What is the AWS account ID?
+- What are the AWS IAM role names allowed?
 
 Semaphore, however, also provides an AWS stack to run an auto-scaling fleet of agents. To learn how this feature works, see the [Autoscaling agents in AWS page](./self-hosted-aws.md).
 

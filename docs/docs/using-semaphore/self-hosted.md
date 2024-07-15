@@ -21,6 +21,7 @@ Self-hosted agents allow you to run workflows on machines that are not currently
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
+
 ## Agent communication {#communication}
 
 Self-hosted agents use one-way communication to connect with Semaphore. Requests are always initiated by the agent and secured using HTTPS TLS 1.3. This means you don't need to inbound open ports in your firewall to use Semaphore in Hybrid mode.
@@ -55,7 +56,6 @@ zenuml
     S as Semaphore
     A->S.POST("/sync", state)
     A->S.POST("/sync", state)
-    A->S.POST("/sync", state)
 ```
 
 Agents also send GET requests to the Semaphore API `/job` endpoint to determine what job to run next. Semaphore responds with a unique stream token for every scheduled job, which the agent uses to stream the job's output.
@@ -73,6 +73,34 @@ zenuml
     A->S: streamOutput
     A->S: streamOutput
 ```
+
+## Agent lifecycle {#lifecycle}
+
+On start up, the agent attempts to register with the Semaphore API. When it succeeeds it enters into *idle* state.
+
+Idle agents periodically poll the Semaphore API for job assignments. When a new job is scheduled, the agent enters into *running* state. Once done, the agent goes back to *idle* and the cycle starts again.
+
+Agents stay *idle* forever unless [a disconnection condition is set](./self-hosted-configure#disconnect). When an agent disconnects it automatically shuts down.
+
+:::danger
+
+TODO: what happens with the agent name after disconnecting? there is a setting during registration to control if the name is released immediately or after some time. What is it's purpose?
+
+:::
+
+```mermaid
+stateDiagram-v2
+    Start: Agent Start
+    Shutdown: Agent Shutdown
+    Start --> Disconnected
+    Disconnected --> Shutdown
+    Disconnected --> Idle: Register
+    Idle --> Running: Job Scheduled
+    Running --> Idle: Job Done
+    Idle --> Disconnected: 
+```
+
+![TODO: remove when mermaid works](./img/self-hosted-state-chart.jpg)
 
 ## Supported toolbox features {#toolbox}
 
