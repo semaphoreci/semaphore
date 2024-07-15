@@ -23,7 +23,21 @@ Self-hosted agents accept configuration settings in three ways. In order of prec
 
 See the [Self-hosted agents configuration reference](../reference/self-hosted-config) to view all available settings.
 
-## How to isolate jobs
+## Agent disconnection {#disconnect}
+
+Once connected self-hosted agents periodically [send sync requests](./self-hosted#communication) to keep the connection alive. This means that the agent remains idle until a new job is available. 
+
+There are, however, situations in which it is we may prefer to let agents disconnect, for example:
+
+- when the agent is running [inside a Docker container](#isolation-docker) it is a advantageous delete the old container after a job and create a new one on demand
+- when using [AWS agent stack](./self-hosted-aws) disconnecting idle EC2 instance lets autoscaler do its job properly
+
+There are two configuration settings to control when an agent can disconnect:
+
+- [`disconnect-after-job`](../reference/self-hosted-config#disconnect-after-job) (default=false): when true the agent disconnects after running a job
+- [`disconnect-after-idle-timeout`](../reference/self-hosted-config#disconnect-after-idle-timeout) (default=0): the agent disconnects after being idle for the set amount of seconds. The value must be greater than 0
+
+## Job isolation {#isolation}
 
 Self-hosted agent jobs do not run in isolated environments. This means one job can interfere with the operation of another. To avoid this possibility, you can configure job isolation.
 
@@ -32,7 +46,7 @@ The details depend on how you run the jobs:
 - **Containers**: configuring jobs to run in containers is the easiest and recommended way to achieve job isolation. The self-hosted agent spins up a new container for every job and destroys it once it is done.
 - **Cloud instance**: this involves configuring the agent to spin up a new cloud machine for every job. This method takes longer to provision instances on demand and is thus not recommended generally.
 
-### Isolation with Docker
+### Isolation with Docker {#isolation-docker}
 
 Docker is the fastest method for provisioning clean and isolated environments for every job. Creating, starting, stopping, and destroying Docker containers is a very fast operation, especially if you cache the Docker images in the machine running the agent.
 
