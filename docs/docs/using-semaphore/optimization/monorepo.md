@@ -14,9 +14,9 @@ Semaphore features a repository change detection strategy to optimize monorepo p
 
 ## Overview
 
-A [monorepo](https://semaphoreci.com/blog/what-is-monorepo) is a repository that holds many projects. While these projects may be related, they are often logically independent, uncoupled, and sometimes event managed by different teams.
+A [monorepo](https://semaphoreci.com/blog/what-is-monorepo) is a repository that holds many projects. While these projects may be related, they are often logically independent, uncoupled, and sometimes even managed by different teams.
 
-Semaphore can detect changes between commits, allowing you to set up fine-grained jobs that only run when the underlying code changes. Skipping jobs covering unchanged code can greatly speed up testing and reduce costs on big codebases.
+Semaphore can detect changes between commits, allowing you to set up fine-grained jobs that only run when the underlying code changes. Skipping jobs covering unchanged code can greatly speed testing and reduce costs on big codebases.
 
 :::info 
 
@@ -26,7 +26,7 @@ Pipelines with `change_in` expressions require a [pipeline initialization](../pi
 
 ## Change detection strategies
 
-When change detection is enabled, Semaphore takes into account two variables to decide which jobs to run: a user-supplied glob pattern and a commit range. If one or more of the commits in the range changed at least one file matching the pattern, the job runs. Otherwise it is skipped.
+When change detection is enabled, Semaphore considers two variables to decide which jobs to run: a user-supplied glob pattern and a commit range. If one or more of the commits in the range changed at least one file matching the pattern, the job runs. Otherwise, it is skipped.
 
 The default commit range used depends on a few conditions.
 
@@ -92,10 +92,10 @@ For pull requests the commit range starts at the common ancestor between the bra
         commit
 ```
 
-In addition, these conditions force the job to run even if no files where changed:
+In addition, these conditions force the job to run even if no files were changed:
 
 - [Pipeline changes](../pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
-- **Pushed tags**: all jobs run by default is the push includes Git tags. This can be [disabled](#condition)
+- **Pushed tags**: all jobs run by default in the push include Git tags. This can be [disabled](#condition)
 
 :::note
 
@@ -105,7 +105,7 @@ Semaphore defaults to **master** as the main/trunk branch name. You can change t
 
 ## How to use change detection? {#why}
 
-Let's say we have a repository with two separate components: frontend and backend. Let us asumme that the two codebases are related but can be built and tested separetely. We could set up a pipeline like this:
+Let's say we have a repository with two components: frontend and backend. Let us assume that the two codebases are related but can be built and tested separately. We could set up a pipeline like this:
 
 ![Monorepo starting pipeline](./img/workflow-monorepo.jpg)
 
@@ -115,7 +115,7 @@ We can speed up the pipeline by only running enabling change detection. For exam
 
 :::note
 
-While change detection is mainly geared for monorepo projects. There is nothing preventing you from using these conditions on regular repositories. You can, for example, use this feature to control when to run long test suites based on what files have recently changes.
+While change detection is mainly geared toward monorepo projects. Nothing is preventing you from using these conditions on regular repositories. You can, for example, use this feature to control when to run long test suites based on what files have recently changed.
 
 :::
 
@@ -140,7 +140,7 @@ To enable change detection, follow these steps.
 
 ![Setting up change conditions](./img/change-conditions-first.jpg)
 
-Repeat the procedure for the rest of the blocks. For example for the Backend block we could use the condition `change_in('/backend')`
+Repeat the procedure for the rest of the blocks. For example, for the Backend block, we could use the condition `change_in('/backend')`
 
 Press **Run the workflow** > **Start** to save your changes and run the pipeline.
 
@@ -216,9 +216,9 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 
 ### Change detection in promotions {#promotions}
 
-You can use change detection in [promotions](../pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project changes.
+You can use change detection in [promotions](../pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project change.
 
-With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for the web you might use a [Docker container](./docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
+With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for a web app you might use a [Docker container](./docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
 
 With change detection on promotions, you can activate the correct deployment pipeline based on what component has changed in the last push.
 
@@ -231,7 +231,7 @@ To activate change detection on promotions, follow these steps:
 
 ![Change conditions for promotions](./img/change-condition-promotion.jpg)
 
-Repeat the procedure for the rest of the promotions. For example for the Frontend block we could use the condition `change_in('/frontend') and branch = 'master' AND result = 'passed'`
+Repeat the procedure for the rest of the promotions. For example, for the Frontend block, we could use the condition `change_in('/frontend') and branch = 'master' AND result = 'passed'`
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -325,7 +325,7 @@ The **Skip/Run** section for blocks has three options available.
 
 - **Always run this block**: disables all conditions, always runs the bloc
 - **Run this block when conditions are met**: runs the block when the conditions are true
-- **Skip this block when conditions are met**: negated version of previous option, runs the block when conditions are false
+- **Skip this block when conditions are met**: negated version of the previous option, runs the block when conditions are false
 
 ![Skip Run condition options selector](./img/change-skip-vs-run.jpg)
 
@@ -418,7 +418,7 @@ The supported options are:
 
 | Option | Default | Description |
 |--|--|--|
-|`on_tags` | `true` | If value is `true` conditions are not evaluated. The block, job and promotion always run when a Git tag is pushed |
+|`on_tags` | `true` | If the value is `true` conditions are not evaluated. The block, job, and promotion always run when a Git tag is pushed |
 |`default_branch`| `master` | Changes the name for the trunk branch |
 |`pipeline_file` | `track` | If value is `ignore` changes in the pipeline file are ignored. Otherwise, they always cause jobs and promotions to run |
 | `exclude` | Empty | A list of globs to exclude from the file matches. Files matching the glob are not taken into account when evaluating changes |
@@ -427,7 +427,7 @@ See the [change_in conditions DSL referece](../../reference/conditions-dsl#chang
 
 ### Examples {#examples}
 
-This section shows examples for common change detection scenarios.
+This section shows examples of common change detection scenarios.
 
 ```text title="When a directory changes"
 change_in('/backend/')
