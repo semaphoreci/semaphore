@@ -108,6 +108,10 @@ For more information, see the [Promotions documentation](./promotions).
 
 Pipeline settings are applied to all its blocks. You can change pipeline settings with the editor or directly in the YAML. 
 
+### Pipeline initialization {#pipeline-initialization}
+
+TODO: TBD
+
 ### Agents {#agents}
 
 Agents are the environment where jobs run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.

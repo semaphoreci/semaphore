@@ -1,5 +1,5 @@
 ---
-description: Use change detection to speed up large repositories
+description: Speed up large repositories
 sidebar_position: 3
 ---
 
@@ -17,6 +17,12 @@ Semaphore features a repository change detection strategy to optimize monorepo p
 A [monorepo](https://semaphoreci.com/blog/what-is-monorepo) is a repository that holds many projects. While these projects may be related, they are often logically independent, uncoupled, and sometimes event managed by different teams.
 
 Semaphore can detect changes between commits, allowing you to set up fine-grained jobs that only run when the underlying code changes. Skipping jobs covering unchanged code can greatly speed up testing and reduce costs on big codebases.
+
+:::info 
+
+Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#initialization) step before the workflow starts.
+
+:::
 
 ## Change detection strategies
 
@@ -88,12 +94,12 @@ For pull requests the commit range starts at the common ancestor between the bra
 
 In addition, these conditions force the job to run even if no files where changed:
 
-- [Pipeline changes](../pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#config)
-- **Pushed tags**: all jobs run by default is the push includes Git tags. This can be [disable](#config)
+- [Pipeline changes](../pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
+- **Pushed tags**: all jobs run by default is the push includes Git tags. This can be [disabled](#condition)
 
 :::note
 
-Semaphore defaults to **master** as the main/trunk branch name. You can change this value, for example to **main**, in the [config](#config).
+Semaphore defaults to **master** as the main/trunk branch name. You can change this value, for example to **main**, in the [config](#condition).
 
 :::
 
@@ -115,13 +121,16 @@ While change detection is mainly geared for monorepo projects. There is nothing 
 
 ### Change detection in jobs {#jobs}
 
-To enable change detection
+:::note
 
+All paths are relative to the root of the repository.
+
+:::
+
+To enable change detection, follow these steps.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
-
-To enable change detection, follow these steps:
 
 1. Open the **Workflow Editor** for your Semaphore project
 2. Select the block
@@ -137,8 +146,6 @@ Press **Run the workflow** > **Start** to save your changes and run the pipeline
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-
-To use change detection, follow these steps:
 
 1. Open your pipeline YAML file
 2. Locate the block you wish to add change conditions to
@@ -304,13 +311,154 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 
 :::
 
-### Conditions config {#condition}
 
-Discuss skip vs run
+## Conditions options {#condition}
 
-Options for change in and example
+This section describes the available options for change detection. Note that the conditions are not limited to `change_in`. See the [conditions DSL reference](../../reference/conditions-dsl) to view all available conditions.
+
+### Skip vs Run {#skip-run}
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+The **Skip/Run** section for blocks has three options available.
+
+- **Always run this block**: disables all conditions, always runs the bloc
+- **Run this block when conditions are met**: runs the block when the conditions are true
+- **Skip this block when conditions are met**: negated version of previous option, runs the block when conditions are false
+
+![Skip Run condition options selector](./img/change-skip-vs-run.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+Using the YAML syntax there are two variants for conditions:
+
+- `run.when`: execute the block when the conditions are true
+- `skip.when`: execute the block when the conditions are false
+
+Example with `run.when`:
+
+```shell title="Using run when conditions"
+version: v1.0
+name: Monorepo
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Backend
+    dependencies: []
+    task:
+      jobs:
+        - name: Unit tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test'
+        - name: Integration tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test:integration'
+    # highlight-start
+    run:
+      when: change_in('/backend')
+    # highlight-end
+```
+
+Example showing `skip.when` conditions:
+
+```shell title="Using skip when conditions"
+version: v1.0
+name: Monorepo
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Backend
+    dependencies: []
+    task:
+      jobs:
+        - name: Unit tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test'
+        - name: Integration tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test:integration'
+    # highlight-start
+    skip:
+      when: change_in('/backend')
+    # highlight-end
+```
+
+</TabItem>
+</Tabs>
+
+### change_in options {#options}
+
+The full syntax for `change_in` is:
+
+```text
+change_in(<glob_pattern>, options)
+```
+
+The `options` is an optional hashmap to change the change detection behavior. For example, to change the name of the trunk from master to main:
+
+```text title="Using main instead of master"
+change_in('/backend/', {default_branch: 'main'})
+```
+The most common options are:
+The supported options are:
+
+| Option | Default | Description |
+|--|--|--|
+|`on_tags` | `true` | If value is `true` conditions are not evaluated. The block, job and promotion always run when a Git tag is pushed |
+|`default_branch`| `master` | Changes the name for the trunk branch |
+|`pipeline_file` | `track` | If value is `ignore` changes in the pipeline file are ignored. Otherwise, they always cause jobs and promotions to run |
+| `exclude` | Empty | A list of globs to exclude from the file matches. Files matching the glob are not taken into account when evaluating changes |
+
+See the [change_in conditions DSL referece](../../reference/conditions-dsl#change-in) to view all available options.
+
+### Examples {#examples}
+
+This section shows examples for common change detection scenarios.
+
+```text title="When a directory changes"
+change_in('/backend/')
+```
+
+```text title="When a file changes"
+change_in('../Gemfile.lock')
+```
+
+```text title="Trunk is main instead of master"
+change_in('/backend/', {default_branch: 'main'})
+```
+
+```text title="Ignoring pipeline file changes"
+change_in('/backend/', {pipeline_file: 'ignore'})
+```
+
+```text title="When any file changes, except files in the docs folder"
+change_in('/', {exclude: ['/docs']})
+```
+
+```text title="Changes in /backend/ folder for branches master or staging"
+(branch = 'staging' OR branch = 'master') and change_in('/backend/)
+```
+
+```text title="Changes on /backend/ folder for any branch starting with 'hotfix/'"
+branch =~ '^hotfix/' and change_in('/backend/) 
+```
 
 ## See also
 
 - [How to create pipelines](../pipelines)
 - [How to create jobs](../jobs)
+- [change_in DSL reference](../../reference/conditions-dsl#change-in)
