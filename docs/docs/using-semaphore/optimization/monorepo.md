@@ -5,8 +5,6 @@ sidebar_position: 3
 
 # Monorepos
 
-WIP
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
@@ -21,8 +19,6 @@ A [monorepo](https://semaphoreci.com/blog/what-is-monorepo) is a repository that
 Semaphore can detect changes between commits, allowing you to set up fine-grained jobs that only run when the underlying code changes. Skipping jobs covering unchanged code can greatly speed up testing and reduce costs on big codebases.
 
 ## Change detection strategies
-
-<!-- Semaphore takes into account a range of commits for a given branch, Git tags, or pull request to decide when to run or skip a block of jobs or a promotion.  -->
 
 When change detection is enabled, Semaphore takes into account two variables to decide which jobs to run: a user-supplied glob pattern and a commit range. If one or more of the commits in the range changed at least one file matching the pattern, the job runs. Otherwise it is skipped.
 
@@ -111,6 +107,12 @@ The downside of this strategy is that it will run all jobs even for commits that
 
 We can speed up the pipeline by only running enabling change detection. For example, to run the frontend job only a file in the `/frontend` folder has changed.
 
+:::note
+
+While change detection is mainly geared for monorepo projects. There is nothing preventing you from using these conditions on regular repositories. You can, for example, use this feature to control when to run long test suites based on what files have recently changes.
+
+:::
+
 ### Change detection in jobs {#jobs}
 
 To enable change detection
@@ -135,6 +137,8 @@ Press **Run the workflow** > **Start** to save your changes and run the pipeline
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+To use change detection, follow these steps:
 
 1. Open your pipeline YAML file
 2. Locate the block you wish to add change conditions to
@@ -203,20 +207,110 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 
 :::
 
-### Change detection in promotions {#promotionms}
+### Change detection in promotions {#promotions}
+
+You can use change detection in [promotions](../pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project changes.
+
+With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for the web you might use a [Docker container](./docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
+
+With change detection on promotions, you can activate the correct deployment pipeline based on what component has changed in the last push.
+
+To activate change detection on promotions, follow these steps:
+
+1. Open the **Workflow Editor** for your Semaphore project
+2. Create or select the [promotion](../pipelines#connecting-pipelines)
+3. Check the option **Enable automatic promotion**
+4. Type the [change condition](#condition), e.g. `branch = 'master' AND result = 'passed' AND change_in('/backend')`
+
+![Change conditions for promotions](./img/change-condition-promotion.jpg)
+
+Repeat the procedure for the rest of the promotions. For example for the Frontend block we could use the condition `change_in('/frontend') and branch = 'master' AND result = 'passed'`
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To use change detection, follow these steps:
+
+1. Open your pipeline YAML file
+2. Locate or create the [promotion block](../pipelines#connecting-pipelines) you wish to add conditions to
+3. Add `auto_promote.when` under the block
+4. Type the [change condition](#condition), e.g. `change_in('/frontend')`
+5. Repeat the process for the other promotions that need conditions
+6. Push the pipeline file to the remote repository 
+
+```yaml title="Change conditions for promotions"
+version: v1.0
+name: Monorepo
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Backend
+    dependencies: []
+    task:
+      jobs:
+        - name: Unit tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test'
+        - name: Integration tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test:integration'
+    run:
+      when: change_in('/frontend')
+  - name: Frontend
+    dependencies: []
+    task:
+      jobs:
+        - name: Unit tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test'
+        - name: Integration tests
+          commands:
+            - 'checkout'
+            - 'npm install'
+            - 'npm run test:integration'
+    run:
+      when: change_in('/backend')
+promotions:
+  - name: Deploy Backend
+    pipeline_file: deploy_backend.yml
+    # highlight-start
+    auto_promote:
+      when: change_in('/backend') and branch = 'master' AND result = 'passed'
+    # highlight-end
+  - name: Deploy Frontend
+    pipeline_file: deploy_frontend.yml
+    # highlight-start
+    auto_promote:
+      when: change_in('/frontend') and branch = 'master' AND result = 'passed'
+    # highlight-end
+```
+
+</TabItem>
+</Tabs>
+
+:::info
+
+Conditions are ignored by default when you change the pipeline file. So, the very next run executes all blocks. Subsequent pushes should respect your change detection conditions.
+
+:::
 
 ### Conditions config {#condition}
 
+Discuss skip vs run
+
+Options for change in and example
+
 ## See also
 
-optimized workflows for monorepos. 
-
-By detecting changes in your repository, Semaphore can skip jobs related to unchanged code.
-
- This page explains how to reduce time and costs for pipelines running on monorepos.
-
-A monorepo is a repository that holds many projects. While these projects may be related, they are often logically independent and run by different teams. 
-
-
-
-this page is all about monorepo setup and optimizations
+- [How to create pipelines](../pipelines)
+- [How to create jobs](../jobs)
