@@ -596,6 +596,170 @@ after_pipeline:
 </TabItem>
 </Tabs>
 
+## Pipeline queues
+
+Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
+
+### Default and named queues
+
+Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
+
+In other words, every time press the **Rerun** button, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
+
+![Default queue behavior](./img/default-queues.jpg)
+
+The downside of this stategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
+
+You can avoid conflics with named queues. Named queues allow you to manually assign pipelines to specific queues to they always run in sequence.
+
+![Named queued used to avoid deployment conflicts](./img/named-queues.jpg)
+
+In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
+
+### Queue scopes
+
+Queues can be configured on two scopes:
+
+- **Project** (the default): pipelines belonging to the same [project](./projects)
+- **Organization**: pipelines belonging to all projects withing an [organization](./organizations)
+
+### How to assign named queues
+
+Queues can only be defined using the [pipeline YAML](../reference/pipeline-yaml). There is currently no support for queue management using the visual editor.
+
+To assign a pipeline to a named queue, follow these steps:
+
+1. Open the pipeline file
+2. Add `queue`, `name` and `scope` at the root level of the YAML
+3. Save the file and push it to the repository
+
+The following example shows how to assign the pipeline to project-level queue called "Deployment queue".
+
+```yaml title="Pipeline assigned to a project-level queue"
+version: v1.0
+name: Production deployment
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+# highlight-start
+queue:
+  name: Deployment queue
+  scope: project
+# highlight-end
+blocks:
+  - name: Deploy
+    task:
+      jobs:
+      - commands:
+          - make deploy
+```
+
+We can do the same with organization-level queues. This example shows how to assign the pipeline a queue called "Shared deployment queue" for all projects in the organization.
+
+```yaml title="Pipeline assigned to an organization-level queue"
+version: v1.0
+name: Project A deployment
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+# highlight-start
+queue:
+  name: Shared deployment queue
+  scope: organization
+# highlight-end
+blocks:
+  - name: Deploy
+    task:
+      jobs:
+      - commands:
+          - make deploy
+```
+
+### How to disable queues
+
+You can force pipelines to run in parallel by disabling queuing. This can help to obtain faster feedback when pipelines are completely independent and have no chance of causing conflicts.
+
+To disable queue for a pipeline, follow these steps:
+
+1. Open the pipeline file
+2. Add `queue`, `processing: parallel` at the root level of the YAML
+3. Save the file and push it to the repository
+
+The following example shows a pipeline that always runs in parallel. As soon as an agent is available, the pipeline starts.
+
+```yaml title="Pipeline that always runs in parallel"
+version: v1.0
+name: Tests
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+# highlight-start
+queue:
+  processing: parallel
+# highlight-end
+blocks:
+  - name: Unit Tests
+    task:
+      jobs:
+      - commands:
+          - make test
+```
+
+### Conditional queues
+
+You can use conditional statements to assign pipelines based on parameters like branch name or tag name. 
+
+The following example uses three rules:
+
+- On "master" branch: assign pipeline to organization queue called "Production"
+- When the commit includes any Git tag: assign pipeline to project-level queue called "Image build queue"
+- If none of the other rule match: default to running pipeline in parallel (no queue)
+
+```yaml title="Conditional queue example"
+version: v1.0
+name: Example project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+# highlight-start
+queue:
+  - when: "branch = 'master'"
+    name: Production
+    scope: organization
+  - when: "tag =~ '.*'"
+    name: Image build queue
+  - when: true
+    processing: parallel
+# highlight-end
+blocks:
+  - name: Unit Tests
+    task:
+      jobs:
+      - commands:
+          - make test
+  - name: Build and push image
+    run:
+      when: "branch = 'master' or tag =~ '.*'"
+    task:
+      jobs:
+      - commands:
+          - make image.build
+          - make image.push
+  - name: Deploy to production
+    run:
+      when: "branch = 'master'"
+    task:
+      jobs:
+      - commands:
+          - make deploy
+```
+
+See [conditional queue reference](../reference/pipeline-yaml#queue) for more details.
+
 ## See also
 
 - [Pipeline YAML reference](../reference/pipeline-yaml)
