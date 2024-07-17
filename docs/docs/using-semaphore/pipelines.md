@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-A pipeline is a group of connected blocks. This page explains what pipelines are, how they organize workflow execution order, and what settings are available.
+A pipeline is a group of connected blocks. This page explains what pipelines are, how they organize workflow execution orders, and what settings are available.
 
 ## Overview {#overview}
 
@@ -23,7 +23,7 @@ For reference, here is an example pipeline with its respective YAML.
 <Tabs groupId="editor-yaml" queryString>
 <TabItem value="editor" label="Example pipeline">
 
- ![Example job with a single test](./img/example-pipeline.jpg)
+![Example job with a single test](./img/example-pipeline.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
@@ -602,26 +602,26 @@ Queues allow you to control the order in which pipelines Semaphore can run pipel
 
 ### Default and named queues
 
-Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
+Semaphore creates a queue for each Git push or pull request. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
 In other words, every time press the **Rerun** button, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
 
 ![Default queue behavior](./img/default-queues.jpg)
 
-The downside of this stategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
+The downside of this strategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
 
-You can avoid conflics with named queues. Named queues allow you to manually assign pipelines to specific queues to they always run in sequence.
+You can avoid conflicts with named queues. Named queues allow you to manually assign pipelines to specific queues so they always run in sequence.
 
 ![Named queued used to avoid deployment conflicts](./img/named-queues.jpg)
 
-In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
+In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflicts due to parallelism.
 
 ### Queue scopes
 
 Queues can be configured on two scopes:
 
 - **Project** (the default): pipelines belonging to the same [project](./projects)
-- **Organization**: pipelines belonging to all projects withing an [organization](./organizations)
+- **Organization**: pipelines belonging to all projects within an [organization](./organizations)
 
 ### How to assign named queues
 
@@ -681,7 +681,7 @@ blocks:
 
 You can force pipelines to run in parallel by disabling queuing. This can help to obtain faster feedback when pipelines are completely independent and have no chance of causing conflicts.
 
-To disable queue for a pipeline, follow these steps:
+To disable the queue for a pipeline, follow these steps:
 
 1. Open the pipeline file
 2. Add `queue`, `processing: parallel` at the root level of the YAML
@@ -714,9 +714,9 @@ You can use conditional statements to assign pipelines based on parameters like 
 
 The following example uses three rules:
 
-- On "master" branch: assign pipeline to organization queue called "Production"
-- When the commit includes any Git tag: assign pipeline to project-level queue called "Image build queue"
-- If none of the other rule match: default to running pipeline in parallel (no queue)
+- On the "master" branch: assign pipeline to organization queue called "Production"
+- When the commit includes any Git tag: assign pipeline to a project-level queue called "Image build queue"
+- If none of the other rules match: default to running pipeline in parallel (no queue)
 
 ```yaml title="Conditional queue example"
 version: v1.0
