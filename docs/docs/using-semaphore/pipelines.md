@@ -596,11 +596,11 @@ after_pipeline:
 </TabItem>
 </Tabs>
 
-## Pipeline queues
+## Pipeline queues {#pipeline-queues}
 
 Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
 
-### Default and named queues
+### Default and named queues {#named-queues}
 
 Semaphore creates a queue for each Git push or pull request. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
@@ -616,14 +616,14 @@ You can avoid conflicts with named queues. Named queues allow you to manually as
 
 In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflicts due to parallelism.
 
-### Queue scopes
+### Queue scopes {#queue-scopes}
 
 Queues can be configured on two scopes:
 
 - **Project** (the default): pipelines belonging to the same [project](./projects)
 - **Organization**: pipelines belonging to all projects within an [organization](./organizations)
 
-### How to assign named queues
+### How to assign named queues {#use-queues}
 
 Queues can only be defined using the [pipeline YAML](../reference/pipeline-yaml). There is currently no support for queue management using the visual editor.
 
@@ -677,7 +677,7 @@ blocks:
           - make deploy
 ```
 
-### How to disable queues
+### How to disable queues {#disable-queues}
 
 You can force pipelines to run in parallel by disabling queuing. This can help to obtain faster feedback when pipelines are completely independent and have no chance of causing conflicts.
 
@@ -708,7 +708,7 @@ blocks:
           - make test
 ```
 
-### Conditional queues
+### Conditional queues {#conditional-queues}
 
 You can use conditional statements to assign pipelines based on parameters like branch name or tag name. 
 
