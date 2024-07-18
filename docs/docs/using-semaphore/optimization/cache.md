@@ -90,7 +90,7 @@ Avoid using `cache store` in the [prologue](../pipelines#prologue) as this can c
 
 :::
 
-## Advanced usage
+## Advanced usage {#advanced}
 
 If your use case is not covered in the [supported languages](#languages) you can still use the cache. In this scenario, you need to provide additional arguments.
 
