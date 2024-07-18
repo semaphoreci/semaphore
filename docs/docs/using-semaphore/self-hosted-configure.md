@@ -69,7 +69,7 @@ Keep in mind that using this method is slower than using Docker containers.
 
 :::
 
-## How to set up caching 
+## How to set up caching {#aws-cache}
 
 Self-hosted agents do not provide cache storage for the [cache command](../reference/toolbox#cache) out of the box. If you want to use the cache, you need to provide an S3-compatible bucket. This section explains how to set up an external cache with AWS S3.
 
