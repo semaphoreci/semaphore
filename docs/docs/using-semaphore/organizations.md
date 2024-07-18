@@ -229,6 +229,10 @@ Audit logs are streamed to the bucket once per day.
 
 :::
 
+## Organization queues {#queue}
+
+You can use assign pipelines to organization queues to control the order in which pipelines are executed. See [named queues](./pipelines#named-queues) for more information.
+
 ## Activity monitor {#activity-monitor}
 
 The activity monitor show the [agent](./pipelines#agents) utilization and the currently running pipelines.
