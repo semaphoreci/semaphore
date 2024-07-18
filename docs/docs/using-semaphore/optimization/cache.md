@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-The cache provides fast and convenient storage for your jobs. Use the cache to store project dependencies to speed up builds. This page explains in detail how the cache works and shows examples
+The cache provides fast and convenient storage for your jobs. Use the cache to store project dependencies to speed up builds. This page explains in detail how the cache works and shows examples.
 
 ## Overview
 
 Semaphore provides a [cache tool](../../reference/toolbox#cache) in all jobs to reuse files your project depends on but are not part of the repository.
 
-Typical uses of the cache ae:
+Typical uses of the cache are:
 
 - to propagate a file from one block to the next
 - to reuse dependencies that are normally downloaded from the internet, like NPM modules
@@ -24,13 +24,13 @@ Semaphore creates a separate cache for every [project](../projects). For jobs ru
 
 DIAGRAM
 
-Users running Semaphore On Premise or [self-hosted agents](../self-hosted) need to [configure a custom backend](#custom-backends) to use the cache.
+Users running Semaphore On-Premise or [self-hosted agents](../self-hosted) need to [configure a custom backend](#custom-backends) to use the cache.
 
 ## Language support {#languages}
 
 The cache tool can recognize the structure for various popular languages and frameworks and automatically figure out what files to store and retrieve.
 
-The cache tools recognizes the following languages and dependency managers. See [advanced usage](#advanced) if your dependency manager is not listed below.
+The cache tools recognize the following languages and dependency managers. See [advanced usage](#advanced) if your dependency manager is not listed below.
 
 | Language | Files to be cached | Observations |
 |--|--|--|
@@ -108,11 +108,11 @@ The syntax to retrieve the keys is:
 cache restore <keys>
 ```
 
-Where keys is again a comma-separated lists of keys. Semaphore searches for the keys in the order provided and restores the first match to the working directory.
+Where keys are again a comma-separated lists of keys. Semaphore searches for the keys in the order provided and restores the first match to the working directory.
 
 ### Using multiple keys 
 
-It's recommened to use multiple keys to increase the chances of matching a key. The following example uses two keys:
+It's recommended to use multiple keys to increase the chances of matching a key. The following example uses two keys:
 
 ```shell
 cache store gems,my-gems vendor/bundle
@@ -128,7 +128,7 @@ cache restore my-gems
 cache restore gems,my-gems
 ```
 
-Since *keys are not overwritten*, it's recommended to add a unique identifier for the stored files. The following example uses three keys and the checksum of `Gemfile.lock` as a keys:
+Since *keys are not overwritten*, it's recommended to add a unique identifier for the stored files. The following example uses three keys and the checksum of `Gemfile.lock` as a key:
 
 ```shell
 # store
@@ -142,7 +142,7 @@ cache restore gems-master,gems-$SEMAPHORE_GIT_BRANCH,gems-$(checksum Gemfile.loc
 You can add the `--cleanup-by` parameter to define the cleanup strategy when the cache is full. This parameter accepts two options:
 
 - `SIZE`: delete smallest archives first
-- `ACCESS_TIME`: deletes least recenctly accessed keys first
+- `ACCESS_TIME`: deletes least recently accessed keys first
 
 For example:
 
@@ -172,9 +172,9 @@ cache clear
 
 ## Custom backends {#custom-backends}
 
-The cache storage is available for all Semaphore Cloud users. If you're running a different version such as On Premise or [self-hosted agents](../self-hosted), the cache might not be available.
+The cache storage is available for all Semaphore Cloud users. If you're running a different version such as On-Premise or [self-hosted agents](../self-hosted), the cache might not be available.
 
-For these cases you need to provide storage. This section explains how to configure custom storage in other platforms.
+For these cases, you need to provide storage. This section explains how to configure custom storage in other platforms.
 
 ### AWS S3 {#aws}
 
