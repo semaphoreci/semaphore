@@ -58,6 +58,7 @@ zenuml
     A->S.POST("/sync", state)
 ```
 
+
 ![TODO: remove image](./img/mermaid-self-hosted-state.jpg)
 
 Agents also send GET requests to the Semaphore API `/job` endpoint to determine what job to run next. Semaphore responds with a unique stream token for every scheduled job, which the agent uses to stream the job's output.
