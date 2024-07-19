@@ -96,14 +96,14 @@ You can reorder blocks by changing their dependencies using the visual editor.
 
 ## Pipeline initialization {#init}
 
-Before Semaphore can start running the jobs in pipeline, it needs to parse the pipeline YAML file from the repository. As a first step, Semaphore retrieves the file using the GitHub or BitBucket API and inspects its contents.
+Before Semaphore can start running the jobs in the pipeline, the pipeline YAML file needs to be parsed from the repository. As a first step, Semaphore retrieves the file using the GitHub or BitBucket API and inspects its contents.
 
 There are two possible types of pipelines:
 
-- **Static**: for pipelines without dynamic or runtime-dependent elements. Semaphore uses the pipeline file retrieved from repository directly to create the workflow
-- **Dynamic**: these are pipelines that contain elements that need to be evaluated at runtime. Semaphore uses an initialization job to compile and evaluate these type of pipelines before any job starts
+- **Static**: for pipelines without dynamic or runtime-dependent elements. Semaphore uses the pipeline file retrieved from the repository directly to create the workflow
+- **Dynamic**: these pipelines contain elements that must be evaluated at runtime. Semaphore uses an initialization job to compile and evaluate these types of pipelines before any job starts
 
-These presence of any of these elements cause the pipeline to be classified as dynamic:
+The presence of any of these elements causes the pipeline to be classified as dynamic:
 
 - [Change detection for monorepos](./optimization/monorepo): since Semaphore needs to evaluate the Git commit history to determine which files have changed
 - [Job matrices](./jobs#matrix): since Semaphore needs to compute all the variable permutations
@@ -129,7 +129,7 @@ The Semaphore Pipeline Compiler (spc) is an open-source component. You can find 
 
 ### How to change the init agent {#init-agent}
 
-You can change the agent that runs the initialization job in two levels:
+You can change the agent that runs the initialization job on two levels:
 
 - **Organization**: affects all projects in the organization. See [organization init agent](./organizations#initialization-jobs) to learn how to change this settings
 - **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./project-preflight#init-agent) to learn how to change this setting
