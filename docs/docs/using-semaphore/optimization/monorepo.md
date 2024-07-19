@@ -20,7 +20,7 @@ Semaphore can detect changes between commits, allowing you to set up fine-graine
 
 :::info 
 
-Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#initialization) step before the workflow starts.
+Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#init) step before the workflow starts.
 
 :::
 

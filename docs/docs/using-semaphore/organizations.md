@@ -158,7 +158,7 @@ You can set up Slack and other webhook-based notifications to get your team noti
 
 To learn more, see the [notificaction documentation](./notifications.md)
 
-### Initialization jobs {#initialization-jobs}
+### Initialization agent {#init-agent}
 
 Configure how pipelines are initialized.
 

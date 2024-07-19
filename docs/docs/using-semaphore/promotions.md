@@ -146,6 +146,11 @@ Parameterized promotions allow you to propagate environment variables on all job
 
 Use parameters to reduce the amount of pipeline duplication. For example, if you create a parametrized pipeline that reads the target environment from a variable, you can reuse it to deploy an application to production and testing environments. Parameters work with [manual](#manual-promotions) and [automatic](#automatic-promotions) promotions.
 
+:::info
+
+Parameterized promotions causes Semaphore to run an [initialization job](./pipelines#init-job) before the pipeline starts.
+
+:::
 
 ### How to add parameters {#parameters-add}
 

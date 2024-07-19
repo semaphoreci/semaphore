@@ -213,6 +213,12 @@ A group of connected blocks constitutes a *pipeline*. We use dependencies to con
 
 TBD
 
+:::info
+
+Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
+
+:::
+
 ## Semaphore toolbox {#toolbox}
 
 The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
