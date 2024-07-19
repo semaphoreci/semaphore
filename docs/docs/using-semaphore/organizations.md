@@ -140,6 +140,8 @@ To add or remove users in a group, press the **Modify group** button next to it.
 
 To access your organization settings, open the organization menu and click on **Settings**.
 
+![Organization settings location](./img/org-settings-location.jpg)
+
 ### General settings {#general-settings}
 
 Your organization main settings.  Here, you can change its name, its URL, and control how workflows run. 
@@ -160,13 +162,21 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 ### Initialization agent {#init-agent}
 
-Configure how pipelines are initialized.
+For some types of workflows, Semaphore must run an [initialization job](./pipelines#init-job) to evaluate and compile the pipelines before execution.
 
-Semaphore must run some initialiation steps before it can start a [pipeline](./pipelines). It must fetch and validate the pipeline YAML and, in some cases like [monorepos](./optimization/monorepo) or [pre-flight checks](./preflight), even do a full repository clone.
+Semaphore tries to pick the best type of agent for the initialization job. You can, however, change the agent used for this step. This is particularly useful when you are using [self-hosted agents](./self-hosted).
 
-By default, Semaphore chooses automatically which kind of [agent](./pipelines#agents) run the initialization job, but in this section you can customize it for all [projects](./projects).
+To change the initialization job agent for all your [projects](./projects) in your organization, follow these steps:
+
+1. Select **Initialization job** from the settings menu
+2. Select the **Environment type**
+3. Select the **Machine type**
+4. Select the **OS image**
+5. Press **Save**
 
 ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
+
+To change the initialization agent for a single project, see [project pre-flight checks](./project-preflight).
 
 :::info
 

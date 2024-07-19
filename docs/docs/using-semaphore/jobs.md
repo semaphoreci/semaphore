@@ -219,6 +219,10 @@ Using job matrices causes Semaphore to run an [initialization job](./pipelines#i
 
 :::
 
+## Job parallelism (#parallelism)
+
+TBD
+
 ## Semaphore toolbox {#toolbox}
 
 The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
