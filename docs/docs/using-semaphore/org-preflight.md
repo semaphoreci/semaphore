@@ -12,7 +12,7 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 
 <Available plans={['Scaleup']}/>
 
-Pre-flight checks are user-defined commands executed before the pipeline begins as part of the [pipeline initialization job](./pipelines#init-job). This page explains how to use to use this feature and shows some examples.
+Pre-flight checks are user-defined commands executed before the pipeline begins as part of the [pipeline initialization job](./pipelines#init-job). This page explains how to use this feature and shows some examples.
 
 :::note
 
@@ -27,7 +27,7 @@ Pre-flight checks allow you to manually run commands before any pipeline for any
 Pre-flight checks can be used to:
 
 - run security checks
-- perform dependency managemnt
+- perform dependency management
 - validate custom access controls
 
 :::warning
@@ -42,7 +42,7 @@ Only members with *organization admin permissions* can add, remove, or modify pr
 
 ## How to set up pre-flight checks {#add}
 
-To access the organization pre-flight checks, follow these steps:
+To access the organization's pre-flight checks, follow these steps:
 
 1. Open the [organization settings](./organizations#org-settings)
 2. Select **Initialization jobs**
@@ -53,17 +53,17 @@ To access the organization pre-flight checks, follow these steps:
 
 ![Configuring pre-flight checks for the organization](./img/org-preflight-screen.jpg)
 
-In the same screen, you can delete the existing pre-flight check by pressing the **Delete pre-flight checks** button.
+On the same screen, you can delete the existing pre-flight check by pressing the **Delete pre-flight checks** button.
 
 :::warning
 
-If any of the commands in the pre-flight check exits with non-zero exit code, the process stops with error and the pipeline is never processed. As a result, *no further obs are executed*.
+If any of the commands in the pre-flight check exits with a non-zero exit code, the process stops with an error and the pipeline is never processed. As a result, *no further obs are executed*.
 
 :::
 
 ## Environment variables {#env-vars}
 
-Semaphore exposes several environment variables into the pre-flight environment. The most commonly used variables are:
+Semaphore exposes several environmental variables in the pre-flight environment. The most commonly used variables are:
 
 - [`SEMAPHORE_PROJECT_NAME`](../reference/env-vars#project-name): the name of the Semaphore project 
 - [`SEMAPHORE_GIT_REPO_SLUG`](../reference/env-vars#git-repo-slug): the name of the Git repository in the form `owner/repo_name`, e.g. `semaphoreci/docs`
@@ -71,13 +71,13 @@ Semaphore exposes several environment variables into the pre-flight environment.
 - [`SEMAPHORE_PIPELINE_PROMOTION`](../reference/env-vars#pipeline-promotion): is `true` when the pipeline is started via a [promotion](./pipelines#connecting-pipelines)
 - [`SEMAPHORE_PIPELINE_PROMOTED_BY`](../reference/env-vars#pipeline-promoted-by): contains the name of the GitHub or BitBucket account that started the promotion
 - `INPUT_FILE`: the path to the original pipeline file, e.g. `semaphore.yml`
-- `OUTPUT_FILE`: the path to the compiled pipeline file, created as output for the [initialization job](./pipelines#init-job). This is the pipeline definintion Semaphore ultimately uses to run the workflow
+- `OUTPUT_FILE`: the path to the compiled pipeline file, created as output for the [initialization job](./pipelines#init-job). This is the pipeline definition Semaphore ultimately uses to run the workflow
 
 See [initialization environment variables reference](../reference/env-vars#init) for more details.
 
 ## Examples
 
-This section illustrates pre-flight checks possible uses with examples.
+This section illustrates pre-flight checks' possible uses with examples.
 
 ### Restricting secrets
 
@@ -92,7 +92,7 @@ The sample [check-secret](https://raw.githubusercontent.com/renderedtext/snippet
 
 The script exits with status code 1 if the secret is not allowed to run in the current project, pipeline, or branch.
 
-The following pre-flight checks only allows a secret called `my-super-secret` on the project called `awesome-project` on the deployment pipeline for the `master` branch:
+The following pre-flight checks only allow a secret called `my-super-secret` on the project called `awesome-project` on the deployment pipeline for the `master` branch:
 
 ```shell
 curl https://raw.githubusercontent.com/renderedtext/snippets/master/check-secret.sh -o check-secret
@@ -110,7 +110,7 @@ You can achieve a similar result with [organization secret policies](./secrets#s
 
 ### Restricting who can start promotions
 
-The following example shows how to restrict promotions to a list of allowed users. The list of users that can start a promotion is listed on the fist line of the example.
+The following example shows how to restrict promotions to a list of allowed users. The list of users that can start a promotion is listed on the first line of the example.
 
 ```shell
 printf '%s\n' 'user-1' 'user-2' 'user-3' > allowed_users.txt
@@ -138,6 +138,3 @@ if my_lib_dir_changed; then increase_parallelism; fi
 - [Initialization jobs](./pipelines#init-job)
 - [How to change the agent running initialization jobs](./organizations#init-agent)
 - [Project pre-flight checks](./project-preflight)
-
-
-
