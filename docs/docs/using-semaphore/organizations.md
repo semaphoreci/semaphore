@@ -168,6 +168,12 @@ By default, Semaphore chooses automatically which kind of [agent](./pipelines#ag
 
 ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
 
+:::info
+
+If you experience errors during initialization, see the [initialization job logs](./pipelines#init-logs) to help troubleshoot the issue.
+
+:::
+
 ### Okta integration {#okta-integration}
 
 <Available plans={['Scaleup']} />

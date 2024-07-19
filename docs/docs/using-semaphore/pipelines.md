@@ -136,9 +136,13 @@ You can change the agent that runs the initialization job in two levels:
 
 ### How to access init logs {#init-logs}
 
-This 
+Semaphore shows an **Initializing** message for pipelines that require an initialization job. You can see the log by clicking on the **See log** link at the top of the pipeline.
 
-a pipeline can star
+![See logs link](./img/init-log.jpg)
+
+Following the link shows the complete job log.
+
+![Example init job log](./img/init-log-example.jpg)
 
 ## Connecting pipelines 
 

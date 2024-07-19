@@ -15,4 +15,11 @@ Pre-flight checks cause Semaphore to run an [initialization job](./pipelines#ini
 
 TBD
 
+
+:::info
+
+Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
+
+:::
+
 ## See also
