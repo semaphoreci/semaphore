@@ -209,6 +209,10 @@ All files are lost when the job ends. This happens because each jobs are allocat
 
 A group of connected blocks constitutes a *pipeline*. We use dependencies to control the order in which blocks run. Dependencies are explained in detail in the [pipelines page](./pipelines#dependencies).
 
+## Job matrix {#matrix}
+
+TBD
+
 ## Semaphore toolbox {#toolbox}
 
 The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.

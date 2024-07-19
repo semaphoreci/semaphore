@@ -61,6 +61,7 @@ const sidebars = {
             'using-semaphore/connect-github',
             'using-semaphore/connect-github-oauth',
             'using-semaphore/connect-bitbucket',
+            'using-semaphore/project-preflight',
           ]
         },
         {
@@ -75,6 +76,7 @@ const sidebars = {
             'using-semaphore/notifications',
             'using-semaphore/okta',
             'using-semaphore/openid',
+            'using-semaphore/org-preflight',
           ]
         },
         'using-semaphore/tasks',
@@ -115,7 +117,6 @@ const sidebars = {
             },
           ],
         },
-        'using-semaphore/preflight',
         'using-semaphore/account-and-security',
       ],
     },
