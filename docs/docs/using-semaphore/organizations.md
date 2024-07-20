@@ -176,7 +176,7 @@ To change the initialization job agent for all your [projects](./projects) in yo
 
 ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
 
-To change the initialization agent for a single project, see [project pre-flight checks](./project-preflight).
+To change the initialization agent for a single project, see [project pre-flight checks](./projects#preflight).
 
 :::info
 

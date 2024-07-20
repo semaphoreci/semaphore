@@ -22,9 +22,11 @@ Typical uses of the cache are:
 
 Semaphore creates a separate cache for every [project](../projects). For jobs running on Semaphore Cloud, the total cache size is 9.6GB. Older files are automatically deleted after 30 days or when the cache fills up.
 
-DIAGRAM
+:::note
 
 Users running Semaphore On-Premise or [self-hosted agents](../self-hosted) need to [configure a custom backend](#custom-backends) to use the cache.
+
+:::
 
 ## Language support {#languages}
 

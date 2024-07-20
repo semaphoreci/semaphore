@@ -124,17 +124,17 @@ If a non-allowed user tries to start a promotion, the job fails preventing the p
 
 ### Dynamically changing pipeline files
 
-The following example shows how to increase the [job parallelism](./jobs#parallelism) from 2 to 10 when commit history contains a change in the folder called `big_project`.
+The following example shows how to dynamically change the pipeline on editing the `$OUTPUT_FILE` in place. The code increases [job parallelism](./jobs#parallelism) from 2 to 10 when commit history contains a change in the folder called `big_project`, resulting in a faster feedback loop.
 
 ```shell
-my_lib_dir_changed () { spc list-diff --default-branch main | grep -q "^big_project/"; }
+is_dir_changed () { spc list-diff --default-branch main | grep -q "^big_project/"; }
 increase_parallelism () { `sed -i 's/parallelism: 2/parallelism: 10/' $OUTPUT_FILE`; }
 
-if my_lib_dir_changed; then increase_parallelism; fi
+if is_dir_changed; then increase_parallelism; fi
 ```
 
 ## See also
 
 - [Initialization jobs](./pipelines#init-job)
 - [How to change the agent running initialization jobs](./organizations#init-agent)
-- [Project pre-flight checks](./project-preflight)
+- [Project pre-flight checks](./projects#preflight)

@@ -61,7 +61,6 @@ const sidebars = {
             'using-semaphore/connect-github',
             'using-semaphore/connect-github-oauth',
             'using-semaphore/connect-bitbucket',
-            'using-semaphore/project-preflight',
           ]
         },
         {

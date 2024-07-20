@@ -109,7 +109,7 @@ The presence of any of these elements causes the pipeline to be classified as dy
 - [Job matrices](./jobs#matrix): since Semaphore needs to compute all the variable permutations
 - [Parameterized promotions](./promotions#parameters): since parameter values are user-selected
 - [Organization pre-flight checks](./org-preflight): because these commands must be  executed before the pipeline begins processing
-- [Project pre-flight checks](./project-preflight): because these commands must be executed before the pipeline begins processing
+- [Project pre-flight checks](./projects#preflight): because these commands must be executed before the pipeline begins processing
 
 ### Initialization job {#init-job}
 
@@ -132,7 +132,7 @@ The Semaphore Pipeline Compiler (spc) is an open-source component. You can find 
 You can change the agent that runs the initialization job on two levels:
 
 - **Organization**: affects all projects in the organization. See [organization init agent](./organizations#initialization-jobs) to learn how to change this settings
-- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./project-preflight#init-agent) to learn how to change this setting
+- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
 
 ### How to access init logs {#init-logs}
 

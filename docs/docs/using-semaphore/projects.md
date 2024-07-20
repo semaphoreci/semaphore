@@ -231,10 +231,59 @@ The **Artifacts** settings page lets you configure the [artifact](./artifacts) r
 
 To learn more, see the [artifacts retention page](./artifacts#retention)
 
+## Pre-flight checks {#preflight}
+
+Pre-flight checks are user-defined commands executed before the pipeline begins as part of the pipeline [initialization job](./pipelines#init-job). They checks allow you to define the type of agent running the initialization job and to manually run commands before a pipeline starts.
+
+:::note
+
+If you want to run commands for all pipelines in your organization, see [organization pre-flight checks](./org-preflight).
+
+:::
+
+### Permissions required {#preflight-permissions}
+
+Only members with *admin permissions for the project* can add, remove, or modify pre-flight checks.
+
+### How to set up checks {#preflight-add}
+
+To create, edit, or delete project pre-flight checks, follow these steps:
+
+1. Open the project on Semaphore
+2. Go to the **Settings** tab
+3. Select **Pre-flight checks**
+4. Type the pre-flight commands
+5. Optionally, type the name of [secrets](./secrets) to be injected during the initialization job
+6. Press **Save changes**
+
+![Setting up pre-flight checks for project](./img/project-preflight.jpg)
+
+See the [organization pre-flight page](./org-preflight#env-vars) to learn about the available environment variables and see examples of pre-flight checks.
+
+### How to change init agent {#init-agent}
+
+You can change the agent in which the initialization and pre-flight commands run.
+
+To change the initialization for the project, follow these steps:
+
+1. Go to the [Pre-flight settings page](#preflight-add)
+2. Check the box **Override default agent configuration**
+3. Select an **Environment type**
+4. Select a **Machine type**
+5. Select an **OS image**
+6. Press **Save changes**
+
+![Changing the initialization agent for the project](./img/override-project-init-agent.jpg)
+
+:::note
+
+This setting overrides the [organization-wide initialization agent](./organizations#init-agent).
+
+:::
+
 ## See also
 
-- [Getting Started Guide](../getting-started/guided-tour)
+- [Organization pre-flight checks](./org-preflight)
 - [How to manage organizations](./organizations.md)
 - [How to configure test reports](./tests/test-reports)
-
 
