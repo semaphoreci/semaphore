@@ -162,9 +162,9 @@ To learn more, see the [notificaction documentation](./notifications.md)
 
 ### Initialization agent {#init-agent}
 
-For some types of workflows, Semaphore must run an [initialization job](./pipelines#init-job) to evaluate and compile the pipelines before execution.
+Some types of pipelines require [initialization job](./pipelines#init-job) to evaluate and compile the them before the workload beings.
 
-Semaphore tries to pick the best type of agent for the initialization job. You can, however, change the agent used for this step. This is particularly useful when you are using [self-hosted agents](./self-hosted).
+Semaphore tries to pick the best type of agent automatically but you change it for the whole organization. This is particularly useful when you are using [self-hosted agents](./self-hosted).
 
 To change the initialization job agent for all your [projects](./projects) in your organization, follow these steps:
 

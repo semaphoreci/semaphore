@@ -170,7 +170,7 @@ You can also change the agent for a single job using the [agent override option]
 </TabItem>
 </Tabs>
 
-### Job sessions
+### Job sessions {#sessions}
 
 The self-hosted agent executes the job commands in two different ways depending on the platform where it is running:
 
@@ -178,6 +178,13 @@ The self-hosted agent executes the job commands in two different ways depending 
 - Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
 
 See [self-hosted configuration](./self-hosted-configure#isolate-jobs) to learn how to run jobs in isolation.
+
+### Initialization agents {#init-agent}
+
+If you want to run [initialization jobs](./pipelines#init-job) on self-hosted agents, you must change the default initialization agent. You can do this in two places:
+
+- **Organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
+- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
 
 ## How to debug jobs on self-hosted {#debug}
 

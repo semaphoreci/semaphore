@@ -233,6 +233,8 @@ To learn more, see the [artifacts retention page](./artifacts#retention)
 
 ## Pre-flight checks {#preflight}
 
+<Available plans={['Scaleup']}/>
+
 Pre-flight checks are user-defined commands executed before the pipeline begins as part of the pipeline [initialization job](./pipelines#init-job). They checks allow you to define the type of agent running the initialization job and to manually run commands before a pipeline starts.
 
 :::note

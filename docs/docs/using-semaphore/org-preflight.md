@@ -22,7 +22,7 @@ Pre-flight checks cause Semaphore to run an [initialization job](./pipelines#ini
 
 ## Overview
 
-Pre-flight checks allow you to manually run commands before any pipeline for any project starts. This allows you to add sanity checks or customize your environment for all your projects.
+Pre-flight checks allow you to manually run commands before all pipelines in all the project in your organization. This allows you to add sanity checks or customize your environment.
 
 Pre-flight checks can be used to:
 
@@ -57,7 +57,7 @@ On the same screen, you can delete the existing pre-flight check by pressing the
 
 :::warning
 
-If any of the commands in the pre-flight check exits with a non-zero exit code, the process stops with an error and the pipeline is never processed. As a result, *no further obs are executed*.
+If any of the commands in the pre-flight check exits with a non-zero exit code, the process stops with an error and the pipeline is never processed. As a result, *no further jobs are executed*.
 
 :::
 
@@ -136,5 +136,5 @@ if is_dir_changed; then increase_parallelism; fi
 ## See also
 
 - [Initialization jobs](./pipelines#init-job)
+- [Project-level pre-flight checks](./projects#preflight)
 - [How to change the agent running initialization jobs](./organizations#init-agent)
-- [Project pre-flight checks](./projects#preflight)

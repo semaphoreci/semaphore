@@ -72,10 +72,10 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            'using-semaphore/org-preflight',
             'using-semaphore/notifications',
             'using-semaphore/okta',
             'using-semaphore/openid',
-            'using-semaphore/org-preflight',
           ]
         },
         'using-semaphore/tasks',
