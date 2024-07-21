@@ -33,7 +33,7 @@ This section describes the available configuration parameters.
 - **default value**: Empty string
 - **environment variable**: `SEMAPHORE_AGENT_ENDPOINT`
 
-This is the endpoint the agent connects to to register, sync, and pull job information. This is your the same as your [organization URL](./organizations#general-settings).
+This is the endpoint the agent connects to to register, sync, and pull job information. This is your the same as your [organization URL](../using-semaphore/organizations#general-settings).
 
 ### Token {#token}
 
@@ -243,6 +243,6 @@ The agent stops the job and shuts down immediately after receiving an interrupti
 ## See also
 
 - [How to use self-hosted agents](../using-semaphore/self-hosted)
-- [How to install self-hosted agents](./self-hosted-install)
-- [How to configure self-hosted agents](./self-hosted-configure)
-- [How to run an autoscaling fleet of agents in AWS](./self-hosted-aws)
+- [How to install self-hosted agents](../using-semaphore/self-hosted-install)
+- [How to configure self-hosted agents](../using-semaphore/self-hosted-configure)
+- [How to run an autoscaling fleet of agents in AWS](../using-semaphore/self-hosted-aws)
