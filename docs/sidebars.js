@@ -72,6 +72,7 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            'using-semaphore/org-preflight',
             'using-semaphore/notifications',
             'using-semaphore/okta',
             'using-semaphore/openid',
@@ -115,7 +116,6 @@ const sidebars = {
             },
           ],
         },
-        'using-semaphore/preflight',
         'using-semaphore/account-and-security',
       ],
     },

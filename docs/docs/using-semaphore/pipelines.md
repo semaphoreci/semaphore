@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-A pipeline is a group of connected blocks. This page explains what pipelines are, how they organize workflow execution orders, and what settings are available.
+A pipeline is a group of connected blocks. This page explains what pipelines are, how they organize workflow execution order, and what settings are available.
 
 ## Overview {#overview}
 
@@ -94,7 +94,57 @@ You can reorder blocks by changing their dependencies using the visual editor.
  Functionally, it would be the same as having all jobs in one big block</div>
 </details>
 
-## Connecting pipelines
+## Pipeline initialization {#init}
+
+Before Semaphore can start running the jobs in the pipeline, the pipeline YAML file needs to be parsed from the repository. As a first step, Semaphore retrieves the file using the GitHub or BitBucket API and inspects its contents.
+
+There are two types of pipelines:
+
+- **Static**: pipelines that don't require runtime evaluations. Semaphore uses the pipeline directly as is to start the workflow
+- **Dynamic**: contain elements that must be evaluated at runtime. Semaphore compiles it to generate a new pipeline that's used to start the workflow
+
+If one or more of these elements are present, the pipeline is dynamic and must be compiled using an *initialization job*:
+
+- [Change detection for monorepos](./optimization/monorepo): since Semaphore needs to evaluate the Git commit history to determine which files have changed
+- [Job matrices](./jobs#matrix): since Semaphore needs to compute all the variable permutations
+- [Parameterized promotions](./promotions#parameters): since parameter values are user-selected
+- [Organization pre-flight checks](./org-preflight): because these commands must be  executed before the pipeline begins processing
+- [Project pre-flight checks](./projects#preflight): because these commands must be executed before the pipeline begins processing
+
+### Initialization job {#init-job}
+
+The initialization job runs in a dedicated [initialization agent](#init-agent) and performs the following steps:
+
+1. Clones the repository using Git
+2. Compiles the YAML tree with [Semaphore Pipeline Compiler](https://github.com/semaphoreci/spc) (spc)
+3. Executes organization pre-flight checks, if any
+4. Executes project pre-flight checks, if any
+5. Saves the job output log
+
+:::info
+
+The Semaphore Pipeline Compiler (spc) is an open-source component. You can find the code in the [spc repository](https://github.com/semaphoreci/spc)
+
+:::
+
+### How to change the init agent {#init-agent}
+
+You can change the agent that runs the initialization job in two instances:
+
+- **Organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
+- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
+
+### How to access init logs {#init-logs}
+
+Semaphore shows an **Initializing** message for pipelines that require an initialization job. You can see the log by clicking on the **See log** link at the top of the pipeline.
+
+![See logs link](./img/init-log.jpg)
+
+Following the link shows the complete job log.
+
+![Example init job log](./img/init-log-example.jpg)
+
+## Connecting pipelines 
 
 [Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
 
@@ -108,10 +158,6 @@ For more information, see the [Promotions documentation](./promotions).
 
 Pipeline settings are applied to all its blocks. You can change pipeline settings with the editor or directly in the YAML. 
 
-### Pipeline initialization {#pipeline-initialization}
-
-TODO: TBD
-
 ### Agents {#agents}
 
 Agents are the environment where jobs run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.
@@ -120,7 +166,7 @@ Semaphore Cloud provides the following agent types in x86 and ARM architectures:
 
 - [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
 - [Apple macOS Machines](../reference/machine-types#macos)
-- [Windows Machines](./self-hosted#windows) (only for self-hosted agents) 
+- [Windows Machines](./self-hosted-install#windows) (only for self-hosted agents) 
 
 :::info
 
@@ -600,34 +646,34 @@ after_pipeline:
 </TabItem>
 </Tabs>
 
-## Pipeline queues {#pipeline-queues}
+## Pipeline queues
 
 Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
 
 ### Default and named queues {#named-queues}
 
-Semaphore creates a queue for each Git push or pull request. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
+Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
-In other words, every time press the **Rerun** button, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
+In other words, every you rerun a workflow, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
 
 ![Default queue behavior](./img/default-queues.jpg)
 
-The downside of this strategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
+The downside of this stategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
 
-You can avoid conflicts with named queues. Named queues allow you to manually assign pipelines to specific queues so they always run in sequence.
+You can avoid conflics with named queues. Named queues allow you to manually assign pipelines to specific queues to they always run in sequence.
 
 ![Named queued used to avoid deployment conflicts](./img/named-queues.jpg)
 
-In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflicts due to parallelism.
+In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
 
 ### Queue scopes {#queue-scopes}
 
 Queues can be configured on two scopes:
 
 - **Project** (the default): pipelines belonging to the same [project](./projects)
-- **Organization**: pipelines belonging to all projects within an [organization](./organizations)
+- **Organization**: pipelines belonging to all projects withing an [organization](./organizations)
 
-### How to assign named queues {#use-queues}
+### How to assign named queues {#assign-queue}
 
 Queues can only be defined using the [pipeline YAML](../reference/pipeline-yaml). There is currently no support for queue management using the visual editor.
 
@@ -685,7 +731,7 @@ blocks:
 
 You can force pipelines to run in parallel by disabling queuing. This can help to obtain faster feedback when pipelines are completely independent and have no chance of causing conflicts.
 
-To disable the queue for a pipeline, follow these steps:
+To disable queue for a pipeline, follow these steps:
 
 1. Open the pipeline file
 2. Add `queue`, `processing: parallel` at the root level of the YAML
@@ -718,9 +764,9 @@ You can use conditional statements to assign pipelines based on parameters like 
 
 The following example uses three rules:
 
-- On the "master" branch: assign pipeline to organization queue called "Production"
-- When the commit includes any Git tag: assign pipeline to a project-level queue called "Image build queue"
-- If none of the other rules match: default to running pipeline in parallel (no queue)
+- On "master" branch: assign pipeline to organization queue called "Production"
+- When the commit includes any Git tag: assign pipeline to project-level queue called "Image build queue"
+- If none of the other rule match: default to running pipeline in parallel (no queue)
 
 ```yaml title="Conditional queue example"
 version: v1.0

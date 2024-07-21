@@ -113,7 +113,7 @@ Not all of the [Semaphore toolbox](../reference/toolbox) commands are available 
 
 | Feature                                     | Available | Notes                                           |
 |---------------------------------------------|-----------|-------------------------------------------------|
-| Using the [cache](../reference/toolbox#cache)                                   | Optional | Using [S3](./self-hosted-configure#cache-s3) or [GCS](./self-hosted-configure#cache-gcp) as a storage backend |
+| Using the [cache](../reference/toolbox#cache)                                   | Optional | Using [S3](./optimization/cache#aws), [GCP](./optimization/cache#gcp), or [SFTP](./optimization/cache#sftp) as a storage backend |
 | [Artifact](./artifacts) storage                                                 | Yes |                                           |
 | [Test results](./tests/test-reports) and [flaky tests](./tests/flaky-tests)     | Yes |                                           |
 | Checking code with [checkout](../reference/toolbox#checkout)                    | Yes |                                           |
@@ -170,14 +170,21 @@ You can also change the agent for a single job using the [agent override option]
 </TabItem>
 </Tabs>
 
-### Job sessions
+### Job sessions {#sessions}
 
 The self-hosted agent executes the job commands in two different ways depending on the platform where it is running:
 
 - On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
 - Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
 
-See [self-hosted configuration](./self-hosted-configure#isolate-jobs) to learn how to run jobs in isolation.
+See [self-hosted configuration](./self-hosted-configure#isolation) to learn how to run jobs in isolation.
+
+### Initialization agents {#init-agent}
+
+If you want to run [initialization jobs](./pipelines#init-job) on self-hosted agents, you must change the default initialization agent. You can do this in two places:
+
+- **Organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
+- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
 
 ## How to debug jobs on self-hosted {#debug}
 

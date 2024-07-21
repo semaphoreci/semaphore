@@ -12,7 +12,7 @@ Jobs get stuff done. This page explains how jobs and blocks work, how you can co
 
 ## Job lifecycle {#job-lifecycle}
 
-Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted#windows).
+Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted-install#windows).
 
 When a job is scheduled, the following happens:
 
@@ -208,6 +208,20 @@ All files are lost when the job ends. This happens because each jobs are allocat
 ### Connecting blocks
 
 A group of connected blocks constitutes a *pipeline*. We use dependencies to control the order in which blocks run. Dependencies are explained in detail in the [pipelines page](./pipelines#dependencies).
+
+## Job matrix {#matrix}
+
+TBD
+
+:::info
+
+Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
+
+:::
+
+## Job parallelism {#job-parallelism}
+
+TBD
 
 ## Semaphore toolbox {#toolbox}
 

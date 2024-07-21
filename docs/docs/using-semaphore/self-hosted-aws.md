@@ -271,6 +271,10 @@ After deleting a macOS stack you need to manually delete the host resource group
 
 See the [self-hosted parameters reference](../reference/self-hosted-config) for all the available parameters.
 
+### Cache
+
+See [setting up S3 cache](./optimization/cache#aws) to learn how to configure cache with AWS S3 buckets.
+
 ### Autoscaling {#scale}
 
 The self-hosted AWS stack dynamically scales agents based on the job demand. A Lambda function periodically polls the Semaphore API to determine the number of pending jobs for a given agent type. When the function determines more agents are needed, it will update the autoscaling group, resulting in new EC2 instances being launched.

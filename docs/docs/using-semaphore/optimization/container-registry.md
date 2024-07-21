@@ -1,6 +1,6 @@
 ---
 description: Download popular Docker images faster
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Semaphore Container Registry

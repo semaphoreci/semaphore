@@ -193,9 +193,9 @@ const config = {
         additionalLanguages: ['elixir'],
       },
     }),
-  future: {
-    experimental_router: 'hash', // default to "browser"
-  }
+  // future: {
+  //   experimental_router: 'hash', // default to "browser"
+  // }
 };
 
 export default config;
