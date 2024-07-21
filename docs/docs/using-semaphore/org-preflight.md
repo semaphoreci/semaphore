@@ -124,7 +124,7 @@ If a non-allowed user tries to start a promotion, the job fails preventing the p
 
 ### Dynamically changing pipeline files
 
-The following example shows how to dynamically change the pipeline on editing the `$OUTPUT_FILE` in place. The code increases [job parallelism](./jobs#parallelism) from 2 to 10 when commit history contains a change in the folder called `big_project`, resulting in a faster feedback loop.
+The following example shows how to dynamically change the pipeline on editing the `$OUTPUT_FILE` in place. The code increases [job parallelism](./jobs#job-parallelism) from 2 to 10 when commit history contains a change in the folder called `big_project`, resulting in a faster feedback loop.
 
 ```shell
 is_dir_changed () { spc list-diff --default-branch main | grep -q "^big_project/"; }

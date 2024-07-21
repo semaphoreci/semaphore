@@ -1,6 +1,6 @@
 ---
 description: Build and deploy Docker containers
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Working with Docker

@@ -1,6 +1,6 @@
 ---
 description: Speed up large repositories
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Monorepos
@@ -20,7 +20,7 @@ Semaphore can detect changes between commits, allowing you to set up fine-graine
 
 :::info 
 
-Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#init) step before the workflow starts.
+Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#init-job) step before the workflow starts.
 
 :::
 

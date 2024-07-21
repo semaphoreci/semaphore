@@ -12,7 +12,7 @@ Jobs get stuff done. This page explains how jobs and blocks work, how you can co
 
 ## Job lifecycle {#job-lifecycle}
 
-Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted#windows).
+Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted-install#windows).
 
 When a job is scheduled, the following happens:
 
@@ -219,7 +219,7 @@ Using job matrices causes Semaphore to run an [initialization job](./pipelines#i
 
 :::
 
-## Job parallelism (#parallelism)
+## Job parallelism {#job-parallelism}
 
 TBD
 

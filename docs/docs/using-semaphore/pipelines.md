@@ -166,7 +166,7 @@ Semaphore Cloud provides the following agent types in x86 and ARM architectures:
 
 - [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
 - [Apple macOS Machines](../reference/machine-types#macos)
-- [Windows Machines](./self-hosted#windows) (only for self-hosted agents) 
+- [Windows Machines](./self-hosted-install#windows) (only for self-hosted agents) 
 
 :::info
 
@@ -650,11 +650,11 @@ after_pipeline:
 
 Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
 
-### Default and named queues
+### Default and named queues {#named-queues}
 
 Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
-In other words, every time press the **Rerun** button, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
+In other words, every you rerun a workflow, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
 
 ![Default queue behavior](./img/default-queues.jpg)
 
@@ -666,14 +666,14 @@ You can avoid conflics with named queues. Named queues allow you to manually ass
 
 In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
 
-### Queue scopes
+### Queue scopes {#queue-scopes}
 
 Queues can be configured on two scopes:
 
 - **Project** (the default): pipelines belonging to the same [project](./projects)
 - **Organization**: pipelines belonging to all projects withing an [organization](./organizations)
 
-### How to assign named queues
+### How to assign named queues {#assign-queue}
 
 Queues can only be defined using the [pipeline YAML](../reference/pipeline-yaml). There is currently no support for queue management using the visual editor.
 
@@ -727,7 +727,7 @@ blocks:
           - make deploy
 ```
 
-### How to disable queues
+### How to disable queues {#disable-queues}
 
 You can force pipelines to run in parallel by disabling queuing. This can help to obtain faster feedback when pipelines are completely independent and have no chance of causing conflicts.
 
@@ -758,7 +758,7 @@ blocks:
           - make test
 ```
 
-### Conditional queues
+### Conditional queues {#conditional-queues}
 
 You can use conditional statements to assign pipelines based on parameters like branch name or tag name. 
 

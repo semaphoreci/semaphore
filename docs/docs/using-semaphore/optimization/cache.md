@@ -1,5 +1,6 @@
 ---
 description: Speed up pipelines with the cache
+sidebar_position: 1
 ---
 
 # Cache

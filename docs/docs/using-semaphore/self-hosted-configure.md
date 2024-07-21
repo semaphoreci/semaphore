@@ -223,7 +223,7 @@ Follow these steps to finish the cache storage set up:
 
 3. Configure the agent
 
-    Add the following [environment variables](../reference/self-hosted-config#environment-variables) to the agent. You can achieve this by adding these lines to the agent's `config.yml`.
+    Add the following [environment variables](../reference/self-hosted-config#env-vars) to the agent. You can achieve this by adding these lines to the agent's `config.yml`.
 
     ```yaml title="Adding environment variables to the agent"
     env-vars:

@@ -1,6 +1,6 @@
 ---
 description: Overview of all your projects
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Organization Health

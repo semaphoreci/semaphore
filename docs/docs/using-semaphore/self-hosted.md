@@ -113,7 +113,7 @@ Not all of the [Semaphore toolbox](../reference/toolbox) commands are available 
 
 | Feature                                     | Available | Notes                                           |
 |---------------------------------------------|-----------|-------------------------------------------------|
-| Using the [cache](../reference/toolbox#cache)                                   | Optional | Using [S3](./self-hosted-configure#cache-s3) or [GCS](./self-hosted-configure#cache-gcp) as a storage backend |
+| Using the [cache](../reference/toolbox#cache)                                   | Optional | Using [S3](./optimization/cache#aws), [GCP](./optimization/cache#gcp), or [SFTP](./optimization/cache#sftp) as a storage backend |
 | [Artifact](./artifacts) storage                                                 | Yes |                                           |
 | [Test results](./tests/test-reports) and [flaky tests](./tests/flaky-tests)     | Yes |                                           |
 | Checking code with [checkout](../reference/toolbox#checkout)                    | Yes |                                           |
@@ -177,7 +177,7 @@ The self-hosted agent executes the job commands in two different ways depending 
 - On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
 - Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
 
-See [self-hosted configuration](./self-hosted-configure#isolate-jobs) to learn how to run jobs in isolation.
+See [self-hosted configuration](./self-hosted-configure#isolation) to learn how to run jobs in isolation.
 
 ### Initialization agents {#init-agent}
 
