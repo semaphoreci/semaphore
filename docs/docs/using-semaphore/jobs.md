@@ -869,6 +869,21 @@ blocks:
 </TabItem>
 </Tabs>
 
+## Job and block limits {#limits}
+
+This section describes the limits and quotas that Semaphore applies to jobs and blocks.
+
+### Block duration {#block-duration}
+
+### Job duration {#job-duration}
+
+### Max blocks per pipeline {#max-blocks}
+
+### Max jobs per block {#max-jobs}
+
+### Max job log size {#max-log-size}
+
+
 ## See also
 
 - [Pipeline YAML reference](../reference/pipeline-yaml)

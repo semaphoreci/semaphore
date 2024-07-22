@@ -810,6 +810,16 @@ blocks:
 
 See [conditional queue reference](../reference/pipeline-yaml#queue) for more details.
 
+## Pipeline limits {#limits}
+
+### Pipeline duration {#pipeline-duration}
+
+### Max pipelines per queue {#max-pipelines}
+
+### Max blocks per pipeline {#max-blocks}
+
+Repeated
+
 ## See also
 
 - [Pipeline YAML reference](../reference/pipeline-yaml)
