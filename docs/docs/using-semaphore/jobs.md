@@ -869,6 +869,117 @@ blocks:
 </TabItem>
 </Tabs>
 
+## Limits {#limits}
+
+## Job priority {#priority}
+
+Every job in Semaphore has an internal priority value from 0 to 100. The priority is used to decide what jobs to run when a [job limit](#limits) is reached. Jobs with higher priority run first when the organization reaches their quota limits.
+
+### Default priorities {#default-priority}
+
+The priorities are assigned automatically according to the table below, but they [can be configured](#priority-assign) on a per-job or per-pipeline basis.
+
+| Job type                                                 | Branch        | Default priority |
+|----------------------------------------------------------|---------------|------------------|
+| [Promotion pipeline](./pipelines#connecting-pipelines)   | master        | 65               |
+| Promotion pipeline                                       | non-master    | 55               |
+| Promotion pipeline                                       | tags          | 55               |
+| Promotion pipeline                                       | pull requests | 55               |
+| Initial pipeline                                         | master        | 60               |
+| Initial pipeline                                         | non-master    | 50               |
+| Initial pipeline                                         | tags          | 50               |
+| Initial pipeline                                         | pull requests | 50               |
+| [After pipeline](./pipelines#after-pipeline-job)         | any           | 45               |
+| [Tasks](./tasks)                                         | any           | 40               |
+
+### Assigning priorities {#priority-assign}
+
+To assign a different priority to a specific job, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate the jobs
+3. Create a `priority` key
+4. Define a `value` and a [condition](../reference/conditions-dsl)
+5. Save the file and push it to the repository
+
+The following example shows how to assign a higher priority to specific jobs when the branch is master:
+
+```yaml title="Assigning priorities to specific jobs"
+version: v1.0
+name: Job priorities
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Tests
+    task:
+      jobs:
+      - name: Unit tests
+        # highlight-start
+        priority:
+        - value: 70
+          when: "branch = 'master'"
+        - value: 45
+          when: true
+        # highlight-end
+        commands:
+          - make unit-test
+      - name: Integration tests
+        # highlight-start
+        priority:
+        - value: 58
+          when: "branch = 'master'"
+        - value: 42
+          when: true
+        # highlight-end
+        commands:
+          - make integration-test
+```
+
+To change the priority to all jobs in a pipeline, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate the jobs
+3. Add a `global_job_config` key at the root of the YAM
+4. Create a `priority` key
+5. Define a `value` and a [condition](../reference/conditions-dsl)
+6. Save the file and push it to the repository
+
+The following example does the same as the one above, but using a global config:
+
+```yaml
+version: "v1.0"
+name: An example of using global_job_config
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+# highlight-start
+global_job_config:
+  priority:
+  - value: 70
+    when: "branch = 'master'"
+  - value: 45
+    when: true
+# highlight-end
+
+blocks:
+  - name: Tests
+    task:
+      jobs:
+      - name: Unit tests
+        commands:
+          - make unit-test
+      - name: Integration tests
+        commands:
+          - make integration-test
+```
+
+See the [pipeline YAML reference](../reference/pipeline-yaml) for more details.
+
 ## See also
 
 - [Pipeline YAML reference](../reference/pipeline-yaml)
