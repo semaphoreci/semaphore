@@ -209,160 +209,6 @@ All files are lost when the job ends. This happens because each jobs are allocat
 
 A group of connected blocks constitutes a *pipeline*. We use dependencies to control the order in which blocks run. Dependencies are explained in detail in the [pipelines page](./pipelines#dependencies).
 
-## Job parallelism {#job-parallelism}
-
-Job parallelism is a feature to multiplicate a job using parameters. When coupled with a test partitioning strategy, parallelism allows you to speed up large tests suite by horizontally scaling the tests. In other words, each job runs a portion of your tests.
-
-When job parallelism is enabled two new environment variables are available in the job environment:
-
-- `SEMAPHORE_JOB_COUNT`: the total number of jobs running on the parallelism set
-- `SEMAPHORE_JOB_INDEX`: a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
-
-<Tabs groupId="editor-yaml">
-<TabItem value="editor" label="Editor">
-
-To use job parallelism, follow these steps:
-
-1. Open the workflow editor
-2. Select or create a job
-3. Open the section under the job **Configure parallelism or a job matrix**
-4. Select **Multiple instances**
-5. Drag the slider to select the number of jobs to run in the parallelism set
-6. Type the commands, you can use the variable counter as environment variables
-7. Press **Run the workflow**, then **Start**
-
-![Setting up job parallalelism](./img/job-parallelism-4.jpg)
-
-</TabItem>
-<TabItem value="yaml" label="YAML">
-
-To enable job parallelism, follow these steps:
-
-1. Open the pipeline YAML
-2. Locate or create the job
-3. Type the commands
-4. Add a `parallelism` key with the desired job parallelism value
-5. Save the file and push it to the repository
-
-The following example creates four jobs, each printing a differnt line in the log:
-
-- "Job 1 out of 4"
-- "Job 2 out of 4"
-- "Job 3 out of 4"
-- "Job 4 out of 4"
-
-```yaml title="Enabling job parallelism"
-version: v1.0
-name: Continuous Integration Pipeline
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-blocks:
-  - name: Parallel jobs
-    dependencies: []
-    task:
-      jobs:
-        - name: Job
-          commands:
-            - echo "Job $SEMAPHORE_JOB_INDEX out of $SEMAPHORE_JOB_COUNT"
-          # highlight-next-line
-          parallelism: 4
-```
-
-</TabItem>
-</Tabs>
-
-
-:::note
-
-It's not possible to use job parallelism at the same time as [job matrices](#matrix).
-
-:::
-
-## Job matrix {#matrix}
-
-A job matrix is a more advanced form of [job parallelism](#job-parallelism) where you can define multiple variables with different values and run all the possible permutations.
-
-For example, let's say we want to test our application using three Node.js versions using npm and yarn
-
-- Node.js versions: v22.5.1, v21.7.3, and v20.15.1
-- Package managers: npm, and yarn
-
-We have a total of 6 possible test jobs when we take into account all permutations. Usually, we would need to manually create these jobs, but with job matrix we can specify the variables and values and let Semaphore expand one job into all the possible permutations.
-
-<Tabs groupId="editor-yaml">
-<TabItem value="editor" label="Editor">
-
-To create a job matrix, follow these steps:
-
-1. Open the workflow editor
-2. Select or create the job
-3. Open the section under the job **Configure parallelism or a job matrix**
-4. Select **Multiple instances based on a matrix**
-5. Type the variable names
-6. Type the possible values of the variable separated by commands
-7. Add more variables as needed
-8. Type the commands. The variables are available as environment variables
-9. Press **Run the workflow**, then **Start**
-
-Semaphore automatically expands all possible permutations and adds the variables part of the job name
-
-![Configuring job matrix](./img/job-matrix.jpg)
-
-</TabItem>
-<TabItem value="yaml" label="YAML">
-
-CONTINUE HERE
-
-```yaml
-version: v1.0
-name: Continuous Integration Pipeline
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-execution_time_limit:
-  hours: 3
-global_job_config:
-  prologue:
-    commands:
-      - export SAMPLE_ENV_VAR=123abc
-      - checkout
-blocks:
-  - name: Parallel jobs
-    dependencies: []
-    task:
-      jobs:
-        - name: Job
-          commands:
-            - nvm install $NODE_VER
-            - node -v
-            - 'echo "Package manager: $PKG_MNGR"'
-            - $PKG_MNGR --version
-            - $PKG_MNGR test
-          matrix:
-            - env_var: PKG_MNGR
-              values:
-                - npm
-                - yarn
-            - env_var: NODE_VER
-              values:
-                - 22.5.1
-                - 21.7.3
-                - 20.15.1
-```
-</TabItem>
-</Tabs>
-
-
-:::info
-
-Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
-
-:::
-
-
 ## Semaphore toolbox {#toolbox}
 
 The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
@@ -1008,6 +854,163 @@ blocks:
 
 </TabItem>
 </Tabs>
+
+## Job parallelism {#job-parallelism}
+
+Job parallelism is a feature to multiplicate a job using parameters. When coupled with a test partitioning strategy, parallelism allows you to speed up large tests suite by horizontally scaling the tests. In other words, each job runs a portion of your tests.
+
+When job parallelism is enabled two new environment variables are available in the job environment:
+
+- `SEMAPHORE_JOB_COUNT`: the total number of jobs running on the parallelism set
+- `SEMAPHORE_JOB_INDEX`: a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To use job parallelism, follow these steps:
+
+1. Open the workflow editor
+2. Select or create a job
+3. Open the section under the job **Configure parallelism or a job matrix**
+4. Select **Multiple instances**
+5. Drag the slider to select the number of jobs to run in the parallelism set
+6. Type the commands, you can use the variable counter as environment variables
+7. Press **Run the workflow**, then **Start**
+
+![Setting up job parallalelism](./img/job-parallelism-4.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To enable job parallelism, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate or create the job
+3. Type the commands
+4. Add a `parallelism` key with the desired job parallelism value
+5. Save the file and push it to the repository
+
+The following example creates four jobs, each printing a differnt line in the log:
+
+- "Job 1 out of 4"
+- "Job 2 out of 4"
+- "Job 3 out of 4"
+- "Job 4 out of 4"
+
+```yaml title="Enabling job parallelism"
+version: v1.0
+name: Continuous Integration Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Parallel jobs
+    dependencies: []
+    task:
+      jobs:
+        - name: Job
+          commands:
+            - echo "Job $SEMAPHORE_JOB_INDEX out of $SEMAPHORE_JOB_COUNT"
+          # highlight-next-line
+          parallelism: 4
+```
+
+</TabItem>
+</Tabs>
+
+
+:::note
+
+It's not possible to use job parallelism at the same time as [job matrices](#matrix).
+
+:::
+
+## Job matrix {#matrix}
+
+A job matrix is a more advanced form of [job parallelism](#job-parallelism) where you can define multiple variables with different values and run all the possible permutations.
+
+For example, let's say we want to test our application using three Node.js versions using npm and yarn
+
+- Node.js versions: v22.5.1, v21.7.3, and v20.15.1
+- Package managers: npm, and yarn
+
+We have a total of 6 possible test jobs when we take into account all permutations. Usually, we would need to manually create these jobs, but with job matrix we can specify the variables and values and let Semaphore expand one job into all the possible permutations.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To create a job matrix, follow these steps:
+
+1. Open the workflow editor
+2. Select or create the job
+3. Open the section under the job **Configure parallelism or a job matrix**
+4. Select **Multiple instances based on a matrix**
+5. Type the variable names
+6. Type the possible values of the variable separated by commands
+7. Add more variables as needed
+8. Type the commands. The variables are available as environment variables
+9. Press **Run the workflow**, then **Start**
+
+Semaphore automatically expands all possible permutations and adds the variables part of the job name
+
+![Configuring job matrix](./img/job-matrix.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To use a job matrix, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate or create the job
+3. Add a `matrix` key
+4. Inside the matrix element add `env_var` and the name of the variable
+5. Add `values` and a list of values for the variable
+6. Type the job commands, you can use the variable names as environment variables
+7. Save the file and push it to the repository
+
+The following example runs a 2 x 3 matrix with variables `NODE_VER` and `PKG_MNGR`. Semaphore expands the job into 6 parametererized jobs:
+
+```yaml
+version: v1.0
+name: Continuous Integration Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Job matrix
+    dependencies: []
+    task:
+      jobs:
+        - name: Job
+          commands:
+            - nvm install $NODE_VER
+            - node -v
+            - 'echo "Package manager: $PKG_MNGR"'
+            - $PKG_MNGR --version
+            - $PKG_MNGR test
+          # highlight-start
+          matrix:
+            - env_var: PKG_MNGR
+              values:
+                - npm
+                - yarn
+            - env_var: NODE_VER
+              values:
+                - 22.5.1
+                - 21.7.3
+                - 20.15.1
+          # highlight-end
+```
+</TabItem>
+</Tabs>
+
+:::info
+
+Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
+
+:::
 
 ## See also
 
