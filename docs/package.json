@@ -15,8 +15,8 @@
     "lint": "markdownlint-cli2 markdownlint-cli2 \"docs/**/*.md\" \"#node_modules\""
   },
   "dependencies": {
-    "@docusaurus/core": "0.0.0-5954",
-    "@docusaurus/preset-classic": "0.0.0-5954",
+    "@docusaurus/core": "^3.4.0",
+    "@docusaurus/preset-classic": "^3.4.0",
     "@easyops-cn/docusaurus-search-local": "^0.40.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
@@ -27,8 +27,8 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "0.0.0-5954",
-    "@docusaurus/types": "^0.0.0-5954",
+    "@docusaurus/module-type-aliases": "^3.4.0",
+    "@docusaurus/types": "^3.4.0",
     "markdownlint-cli2": "^0.13.0"
   },
   "browserslist": {
