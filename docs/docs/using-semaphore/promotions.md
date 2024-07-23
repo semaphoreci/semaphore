@@ -140,6 +140,61 @@ promotions:
 </TabItem>
 </Tabs>
 
+### Tagged promotions {#tagged}
+
+Many teams use Git tags to manage their release cycles. To autotrigger a promotion with tags, you can use Perl Compatible Regular Expressions. 
+
+For example:
+
+- `tag =~ '.*'` match all tags. The presence of Git tag alone is enough to match the condition
+- `tag =~ '^v1\.'` match any tag starting with "v1"
+
+You can mix tags and other conditions to trigger promotions with a lot of control.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+The following example shows how to trigger a deployment promotion when all tests have passed and there is a Git tag starting with "v1".
+
+![Using tags for promotions](./img/promote-on-tag.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+The following example shows how to trigger a deployment promotion when all tests have passed and there is a Git tag starting with "v1".
+
+
+```yaml
+version: v1.0
+name: Continuous Integration Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Install
+    dependencies: []
+    task:
+      jobs:
+        - name: Job
+          commands:
+          - checkout
+          - npm install
+          - npm test
+
+promotions:
+  - name: Deploy on v1 tag
+    pipeline_file: deploy.yml
+    # highlight-start
+    auto_promote:
+      when: result = 'passed' AND tag =~ '^v1\.'
+    # highlight-end
+```
+
+</TabItem>
+</Tabs>
+
+
 ## Parameterized promotions {#parameters}
 
 Parameterized promotions allow you to propagate environment variables on all jobs in the next pipeline. 

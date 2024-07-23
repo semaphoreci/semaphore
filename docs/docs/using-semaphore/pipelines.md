@@ -144,7 +144,7 @@ Following the link shows the complete job log.
 
 ![Example init job log](./img/init-log-example.jpg)
 
-## Connecting pipelines 
+## Connecting pipelines {#connecting-pipelines}
 
 [Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
 
@@ -153,6 +153,28 @@ The workflow always starts with the default pipeline (located at `.semaphore/sem
 ![A workflow with 3 pipelines](./img/workflows.jpg)
 
 For more information, see the [Promotions documentation](./promotions).
+
+## How to skip commits {#skip}
+
+If you don't want to start a Semaphore workflow for type one of the following options in the commit message. The skip message doesn't work on [pushed tags](./promotions#tagged).
+
+- `[ci skip]`
+- `[skip ci]`
+
+For example, this push does not trigger a Semaphore pipeline execution, it is completely ignored:
+
+```shell title="Skipping a commit"
+git add -A
+git commit -m "[skip ci] Initial commit"
+git push origin main
+```
+
+:::note
+
+Merging a pull request with the squash commit option is also ignored unless the skip message is removed manually.
+
+:::
+
 
 ## Pipeline settings {#settings}
 
