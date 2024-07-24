@@ -21,7 +21,7 @@ const config = {
     "docusaurus-theme-openapi-docs",
     // required for search
     // Disabled for now, it's not working with hash router
-    // ['@docusaurus/theme-mermaid'],
+    '@docusaurus/theme-mermaid',
     // ["@easyops-cn/docusaurus-search-local",
     // {
     //   hashed: 'filename',
@@ -29,9 +29,9 @@ const config = {
     // }],
   ],
   // mermaid support doesn't work with canary version
-  // markdown: {
-  //   mermaid: true,
-  // },
+  markdown: {
+    mermaid: true,
+  },
 
   // Production url of your site here
   url: 'https://docs.semaphoreci.com',
