@@ -157,6 +157,7 @@ const sidebars = {
         // image: '/img/docusaurus.png',
       },
       items: [
+        'reference/env-vars',
         'reference/api',
         'reference/task-api',
         'reference/toolbox',
