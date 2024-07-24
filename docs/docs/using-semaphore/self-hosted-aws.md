@@ -14,7 +14,6 @@ import VideoTutorial from '@site/src/components/VideoTutorial';
 Semaphore provides the open-source [AWS agent stack](https://github.com/renderedtext/agent-aws-stack) to help you deploy an autoscaling fleet of self-hosted agents in AWS.
 
 
-
 ## Overview
 
 The AWS agent stack lets you autoscale EC2 instances on demand. Running cloud instances only when they are needed can help you gracefully manage bursts of activity and save costs when there is no work being done.

@@ -25,8 +25,8 @@ To register a self-hosted agent type, follow these steps:
 2. Select **Self-hosted agents**
 3. Press **Add self-hosted agent type**
 4. Type the name of the agent type. Self hosted agents all begin with `s1-`, e.g. `s1-gpu-2`
-5. Select **Agent name is directly assigned by the agent** unless you're using [AWS Security Tokens](#aws)
-6. Select if the agent name is available immediately after disconnection. See [agent lifecycle](./self-hosted#lifecycle) and [disconnection conditions](./self-hosted-configure#disconnect) for more details
+5. Select the [how the agent name is assigned](#name-assign)
+6. Select [when the agent name is released](#name-release)
 7. Press **Looks good**
 
 :::danger
@@ -35,7 +35,7 @@ TODO-1: what is the purpose of the name relase option here?
 
 TODO-2: what is the purpose of AWS Security Token Service? 
 
-https://docs.aws.amazon.com/general/latest/gr/sts.html
+
 
 There is a registration option to control how the agent name is assigned, STS is one option but I don't understand why it's there
 
@@ -47,6 +47,44 @@ There is a registration option to control how the agent name is assigned, STS is
 The next page shows detailed instructions to install and connect the self-hosted agent in the platform of choice. Press the **Reveal** button to show the registration token. Save it in a safe place for the next step.
 
 ![Instructions to install self-hosted agent](./img/self-hosted-agent-install.jpg)
+
+## Agent name assignment {#name-assign}
+
+Every agent must have a unique name. There are two ways in which the name can be assigned:
+
+- **Name assigned by agent**: the agent selects its own name and sends it to the Semaphore Control Plane during registration
+- **Name assigned by AWS STS**: agents running on AWS can get an additional level of security by validating their name with [AWS Security Token Service](https://docs.aws.amazon.com/general/latest/gr/sts.html)
+
+### Name assigned by the agent {#name-agent}
+
+The agent name can be assigned by the user when the agent service starts. For example:
+
+```shell title="Agent start with name"
+agent start --name my-agent-name
+```
+
+DIAGRAM
+
+https://whimsical.com/agent-name-assignment-and-release-5fd97vVz2PgZsiD8TX8n5C
+
+When the `--name` argument is not supplied, the agent creates a random name.
+
+### Name assigned by AWS STS {#name-sts}
+
+[AWS Security Token Service](https://docs.aws.amazon.com/general/latest/gr/sts.html) provides a second layer of security that ensures only allowed agents can connect with Semaphore.
+
+To use this option, you must run your agent in AWS EC2 instances. The [Autoscaling AWS Stack](./self-hosted-aws) uses this feature by default.
+
+When AWS STS is enabled, the agent sends a name request to Semaphore during registration, which in turn validates the access with the AWS-secured endpoint. This mechanism thwarts attempts to register rogue agents even if the attacked has secured access to a valid registration token.
+
+DIAGRAM
+
+https://whimsical.com/agent-name-assignment-and-release-5fd97vVz2PgZsiD8TX8n5C
+
+## Name release {#name-release}
+
+TBD
+
 
 ## How to install agent stack {#install}
 
