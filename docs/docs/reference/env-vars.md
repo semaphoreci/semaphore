@@ -11,10 +11,6 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-```text title="example"
-```
-
-
 ## Semaphore variables
 
 ### `CI` {#ci}
