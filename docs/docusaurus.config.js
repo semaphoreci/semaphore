@@ -37,7 +37,7 @@ const config = {
   url: 'https://docs.semaphoreci.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
+  baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/sem-docs/main/',
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',

@@ -980,7 +980,6 @@ blocks:
 
 See the [pipeline YAML reference](../reference/pipeline-yaml) for more details.
 
-
 ## Job and block limits {#limits}
 
 Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
