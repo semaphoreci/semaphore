@@ -980,6 +980,83 @@ blocks:
 
 See the [pipeline YAML reference](../reference/pipeline-yaml) for more details.
 
+
+## Job and block limits {#limits}
+
+Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
+
+This section describes the limits that Semaphore applies to jobs and blocks. See [pipelines limits](./pipelines#limits) to see limits that apply to pipelines.
+
+### Job duration {#job-duration}
+
+Jobs have a *1 hour limit*. Jobs exceeding this limit are terminated.
+
+You can change the limit up to a maximum value of *24 hours*.
+
+To change the maximum duration for a single job:
+
+1. Open the pipeline YAML
+2. Locate the job
+3. Add and `execution_time_limit` element
+4. Add `hours` or `minutes`, set the new value
+5. Save the file and push it to the repository
+
+```shell title="Changing max duration for a single job"
+version: v1.0
+name: Pipeline using execution_time_limit
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Job limited to 3 hours
+    # highlight-start
+    execution_time_limit:
+      hours: 3
+    # highlight-end
+    commands:
+      - checkout
+      - npm install
+      - npm test
+```
+
+:::note
+
+See [pipeline global time limit](./pipelines#max-job-duration) to change the maximum duration for all jobs in a pipeline.
+
+:::
+
+### Max blocks per pipeline {#max-blocks}
+
+A pipeline can have up to *100 blocks*. This limit is not configurable.
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+
+### Max jobs per block {#max-jobs}
+
+A block can have up to *50 jobs*. This limit is not configurable.
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+
+
+### Max job log size {#max-log-size}
+
+Job logs have a limit of 16 megabytes, which is roughly 100,000 lines. This limit is not configurable.
+
+The following message reveals that the job has exceeded the limit:
+
+```text
+Content of the log is bigger than 16MB. Log is trimmed.
+```
+
+You can workaround this limitation by setting the following [environment variable](#environment-variables), which makes Semaphore upload the log file as an [artifact](./artifacts) when the limit is exceeded.
+
+```text
+SEMAPHORE_AGENT_UPLOAD_JOB_LOGS=when-trimmed
+```
+
+See the [upload-job-logs reference](../reference/self-hosted-config#upload-job-logs) for more details.
+
 ## See also
 
 - [Pipeline YAML reference](../reference/pipeline-yaml)
