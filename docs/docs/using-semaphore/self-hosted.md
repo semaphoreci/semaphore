@@ -105,7 +105,7 @@ sequenceDiagram
     Semaphore-->>-Agent: continue
 ```
 
-### Disconnect {#disconnect}
+### Disconnect request {#disconnect}
 
 [Depending on its configuration](./self-hosted-configure#disconnect), the agent can either disconnect and shutdown after the job is finished, or go back to the *waiting for job* state.
 

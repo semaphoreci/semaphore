@@ -29,19 +29,6 @@ To register a self-hosted agent type, follow these steps:
 6. Select [when the agent name is released](#name-release)
 7. Press **Looks good**
 
-:::danger
-
-TODO-1: what is the purpose of the name relase option here?
-
-TODO-2: what is the purpose of AWS Security Token Service? 
-
-
-
-There is a registration option to control how the agent name is assigned, STS is one option but I don't understand why it's there
-
-:::
-
-
 ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
 
 The next page shows detailed instructions to install and connect the self-hosted agent in the platform of choice. Press the **Reveal** button to show the registration token. Save it in a safe place for the next step.
@@ -63,7 +50,11 @@ The agent name can be assigned by the user when the agent service starts. For ex
 agent start --name my-agent-name
 ```
 
-DIAGRAM
+```mermaid
+sequenceDiagram
+    Agent->>+Semaphore: register(name)
+    Semaphore-->>-Agent: accessToken
+```
 
 https://whimsical.com/agent-name-assignment-and-release-5fd97vVz2PgZsiD8TX8n5C
 
@@ -77,14 +68,34 @@ To use this option, you must run your agent in AWS EC2 instances. The [Autoscali
 
 When AWS STS is enabled, the agent sends a name request to Semaphore during registration, which in turn validates the access with the AWS-secured endpoint. This mechanism thwarts attempts to register rogue agents even if the attacked has secured access to a valid registration token.
 
-DIAGRAM
+```mermaid
+sequenceDiagram
+    Agent->>+Semaphore: register("aws.amazonaws.com/sts/...")
+    Semaphore->>+AWS: validate URL
+    AWS-->>-Semaphore: OK
+    Semaphore-->>-Agent: accessToken
+```
 
-https://whimsical.com/agent-name-assignment-and-release-5fd97vVz2PgZsiD8TX8n5C
+To use AWS STS name assignments, follow these steps:
+
+1. Create an IAM user on AWS with permissions to create and delete EC2 instances
+2. Select the option **Agent name is assigned from a pre-signed AWS STS GetCallerIdentity URL** during [agent registration](#register-agent)
+3. Type your AWS account ID
+4. Type the list of roles the [IAM user is allowed to assume](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
+5. Press **Save**
+
+![Configuring AWS STS names](./img/self-hosted-sts.jpg)
 
 ## Name release {#name-release}
 
-TBD
+You can select what happens when the agent name when it disconnects. The default behavior is to release for reuse the name immediately after disconnection. 
 
+On some cases, however, you may want to keep the name reserved, for example:
+
+- If you want to connect to self-hosted agent machine to troubleshoot some issue
+- If you're using AWS STS endpoints, you may want to reserve the name for the duration of the EC2 instance
+
+You can select how long to reserve the agent name during [agent registration](#register-agent).
 
 ## How to install agent stack {#install}
 
