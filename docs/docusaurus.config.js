@@ -224,7 +224,11 @@ const config = {
       },
     }),
   future: {
-    experimental_router: 'hash', // default to "browser"
+    experimental_router: 'hash', // default to "browser",
+    experimental_storage: {
+      type: 'localStorage',
+      namespace: true,
+    },
   }
 };
 
