@@ -37,7 +37,7 @@ const config = {
   url: 'https://docs.semaphoreci.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/sem-docs/main/',
+  baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',
@@ -223,9 +223,13 @@ const config = {
         additionalLanguages: ['elixir'],
       },
     }),
-  // future: {
-  //   experimental_router: 'hash', // default to "browser"
-  // }
+  future: {
+    experimental_router: 'hash', // default to "browser",
+    experimental_storage: {
+      type: 'localStorage',
+      namespace: true,
+    },
+  }
 };
 
 export default config;
