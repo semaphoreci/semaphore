@@ -2,7 +2,6 @@
 description: Environment variables in Semaphore
 ---
 
-
 # Environment variables
 
 
@@ -11,7 +10,13 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-## Semaphore variables
+This page describes the environment variables that are defined by Semaphore for job environments.
+
+See [environment variables](../using-semaphore/jobs#environment-variables) to learn how to define your own variables.
+
+## Semaphore variables {#semaphore-variables}
+
+These variables describe various aspects of Semaphore workings.
 
 ### CI {#ci}
 
@@ -223,7 +228,7 @@ The variable is `false` when the workflow is triggered Git push, pull request, T
 
 Holds `true` if the workflow was triggered using [Tasks](../using-semaphore/tasks).
 
-## Git variables
+## Git repository variables {#git-variables}
 
 ### Branch (upstream) {#git-branch}
 
@@ -367,7 +372,7 @@ Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`
 
 The name in format `owner_name/repo_name` of the repository from which the Pull Request originated.
 
-::note
+:::note
 
 Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`
 
@@ -410,6 +415,8 @@ Present only for builds where `SEMAPHORE_GIT_REF_TYPE=tag`.
 
 ## After pipeline variables
 
+The following variables are available during [after pipeline jobs](../using-semaphore/pipelines#after-pipeline-job).
+
 ### Pipeline created at {#pipeline-created-at}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_CREATED_AT`
@@ -433,87 +440,96 @@ The duration of [initialization job](../using-semaphore/pipelines#init-job) expr
 
 CONTINUE HERE
 
-### Pipeline Queueing Duration {#pipeline-queueing-duration}
+### Pipeline queueing duration {#pipeline-queueing-duration}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_QUEUEING_DURATION`
 - **Example**: `1`
 
-The value of the `SEMAPHORE_PIPELINE_QUEUEING_DURATION` contains the time that the pipeline spent in the queue. The value is expressed in seconds.
+The time that the pipeline spent in the queue expressed in seconds.
 
-### Pipeline Result {#pipeline-result}
+### Pipeline result {#pipeline-result}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_RESULT`
 - **Example**: `failed`, `passed`, `canceled`, `stopped`
 
-The value of the `SEMAPHORE_PIPELINE_RESULT` contains the result of the pipeline.
+Contains the result of the pipeline. Possible values are: `failed`, `passed`, `canceled`, `stopped` 
 
-### Pipeline Result Reason {#pipeline-result-reason}
+### Pipeline result reason {#pipeline-result-reason}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_RESULT_REASON`
 - **Example**: `test`, `malformed`, `stuck`, `internal`, `user`, `strategy`, `timeout`
 
-The value of the `SEMAPHORE_PIPELINE_RESULT_REASON` contains the reason for the pipeline result.
+The reason for the pipeline result. Possible values are: `test`, `malformed`, `stuck`, `internal`, `user`, `strategy`, `timeout`
 
-### Pipeline Running Duration {#pipeline-running-duration}
+### Pipeline running duration {#pipeline-running-duration}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_RUNNING_DURATION`
 - **Example**: `12`
 
-The value of the `SEMAPHORE_PIPELINE_RUNNING_DURATION` contains the pipeline execution time while jobs were running. The value is expressed in seconds.
+The total pipeline execution time expressed in seconds.
 
-### Pipeline Started At {#pipeline-started-at}
+### Pipeline started at {#pipeline-started-at}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_STARTED_AT`
 - **Example**: `1632943642`
 
-The value of the `SEMAPHORE_PIPELINE_STARTED_AT` is the UNIX epoch timestamp when the pipeline started running jobs.
+The UNIX epoch timestamp when the pipeline started running jobs.
 
-### Pipeline Total Duration {#pipeline-total-duration}
+### Pipeline total duration {#pipeline-total-duration}
 
 - **Environment variable**: `SEMAPHORE_PIPELINE_TOTAL_DURATION`
 - **Example**: `10`
 
-The value of the `SEMAPHORE_PIPELINE_TOTAL_DURATION` contains the duration of the pipeline including queuing time. The value is expressed in seconds.
+The total duration of the pipeline including queuing time expressed in seconds.
 
-## Cache variables
+## Cache variables {#cache-variables}
 
-## Docker variables
+### Cache URL {#cache-url}
 
-## Self-hosted variables
+- **Environment variable**: `SEMAPHORE_CACHE_URL`
+- **Example**: `94.130.158.146:29920`
 
+The IP address and the port number of the cache server.
 
-## Initialization job {#init}
+### Username {#cache-username}
 
-NOTE: These seem to be all the env-vars that are defined during initialization jobs
+- **Environment variable**: `SEMAPHORE_CACHE_USERNAME`
+- **Example**: `0614ef08af7a408d8aae45b029ba3bb8`
 
-"SEMAPHORE_PIPELINE_ID"
-"SEMAPHORE_PIPELINE_ARTEFACT_ID"
-"SEMAPHORE_PIPELINE_RERUN"
-"SEMAPHORE_PIPELINE_PROMOTION"
-"SEMAPHORE_PIPELINE_PROMOTED_BY"
-"SEMAPHORE_WORKFLOW_ID"
-"SEMAPHORE_SNAPSHOT_ID"
-"SEMAPHORE_WORKFLOW_NUMBER"
-"SEMAPHORE_WORKFLOW_RERUN"
-"SEMAPHORE_WORKFLOW_TRIGGERED_BY_HOOK"
-"SEMAPHORE_WORKFLOW_HOOK_SOURCE"
-"SEMAPHORE_WORKFLOW_TRIGGERED_BY_SCHEDULE"
-"SEMAPHORE_WORKFLOW_TRIGGERED_BY_API"
-"SEMAPHORE_WORKFLOW_TRIGGERED_BY_MANUAL_RUN"
-"SEMAPHORE_WORKFLOW_TRIGGERED_BY"
-"SEMAPHORE_GIT_COMMIT_AUTHOR"
-"SEMAPHORE_GIT_COMMITTER"
+The username used for connecting to the cache server.
 
-"TERM"
-"CI"
-"SEMAPHORE"
-"SEMAPHORE_PROJECT_NAME"
-"SEMAPHORE_PROJECT_ID"
-"SEMAPHORE_JOB_NAME"
-"SEMAPHORE_JOB_ID"
-"SEMAPHORE_JOB_CREATION_TIME"
-"SEMAPHORE_JOB_TYPE"
-"SEMAPHORE_AGENT_MACHINE_TYPE"
-"SEMAPHORE_AGENT_MACHINE_OS_IMAGE"
-"SEMAPHORE_AGENT_MACHINE_ENVIRONMENT_TYPE"
-"SEMAPHORE_ORGANIZATION_URL"
+### Private Key Path {#cache-private-key-path}
+
+- **Environment variable**: `SEMAPHORE_CACHE_PRIVATE_KEY_PATH`
+- **Example**: `/home/semaphore/.ssh/semaphore_cache_key`
+
+The path in the server to the SSH key file to access the cache server.
+
+## Semaphore Docker registry variables {#registry-variables}
+
+These variables can be used to access the [Semaphore Docker registry](../using-semaphore/optimization/docker).
+
+### Username {#registry-username}
+
+- **Environment variable**: `SEMAPHORE_REGISTRY_USERNAME`
+
+Username to access the Semaphore Docker Registry.
+
+### Password {#registry-password}
+
+- **Environment variable**: `SEMAPHORE_REGISTRY_PASSWORD`
+
+Password to access the Semaphore Docker Registry.
+
+### Registry URL {#registry-url}
+
+- **Environment variable**: `SEMAPHORE_REGISTRY_URL`
+
+The URL to access the Semaphore Docker Registry.
+
+## See also
+
+- [Docker optimization](../using-semaphore/optimization/docker)
+- [How to configure jobs](../using-semaphore/jobs)
+- [Semaphore pipelines](../using-semaphore/pipelines)
+- [Pipeline YAML reference](./pipeline-yaml)

@@ -812,7 +812,8 @@ See [conditional queue reference](../reference/pipeline-yaml#queue) for more det
 
 ## See also
 
-- [Pipeline YAML reference](../reference/pipeline-yaml)
 - [How to create jobs](./jobs#job-create)
 - [How to connect pipelines with promotions](./promotions)
 - [Run pipelines on a schedule with Tasks](./tasks)
+- [Pipeline YAML reference](../reference/pipeline-yaml)
+- [Semaphore environment variable reference](../reference/env-vars#semaphore-variables)
