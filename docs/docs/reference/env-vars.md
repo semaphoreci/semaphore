@@ -527,7 +527,7 @@ The URL to access the Semaphore Docker Registry.
 
 ## Initialization job variables {#init}
 
-This section describes additional environment variables that are only available during [initialization jobs](../using-semaphore/pipelines#init-job) and [pre-flight checks](../using-semaphore/org-preflight).
+This section describes the special variables available during the [initialization jobs](../using-semaphore/pipelines#init-job) and [pre-flight checks](../using-semaphore/org-preflight) in addition to the regular job environment variables explained above.
 
 ### Input file {#input-file}
 
