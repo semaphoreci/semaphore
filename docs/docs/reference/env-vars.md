@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-This page describes the environment variables that are defined by Semaphore for job environments.
+This page describes the environment variables defined by Semaphore for job environments.
 
-See [environment variables](../using-semaphore/jobs#environment-variables) to learn how to define your own variables.
+See [environment variables](../using-semaphore/jobs#environment-variables) to learn how to define variables.
 
 ## Semaphore variables {#semaphore-variables}
 
@@ -23,7 +23,7 @@ These variables describe various aspects of Semaphore workings.
 - **Environment variable**: `CI`
 - **Example**: `true`
 
-Holds `true` when the session is running in a Semaphore continuous integration (CI) environment.
+Holds `true` when the session runs in a Semaphore continuous integration (CI) environment.
 
 ### Semaphore {#semaphore}
 
@@ -148,7 +148,7 @@ Determines the individual that promoted the pipeline. There are three possible c
 - **Environment variable**: `SEMAPHORE_PIPELINE_RERUN`
 - **Example**: `true`
 
-Holds `true` when the pipeline was rerun by the user.
+Holds `true` when the pipeline is rerun by the user.
 
 ### Project ID {#project-id}
 
@@ -192,7 +192,7 @@ Holds `true` if the workflow is a rerun of a previously-ran workflow.
 - **Environment variable**: `SEMAPHORE_WORKFLOW_TRIGGERED_BY`
 - **Example**: `torvalds`
 
-Determines the GitHub or BitBucket username for the individual that promoted the pipeline.
+Determines the GitHub or BitBucket username for the individual who promoted the pipeline.
 
 ### Workflow is triggered by API {#workflow-triggered-by-api}
 
@@ -210,7 +210,7 @@ The variable is `false` if the workflow is triggered by a Git push, pull request
 
 Holds `true` if the workflow was triggered by a Git push to the repository. It's also true for Git tags and pull requests.
 
-The variable is `false` when the workflow is triggered via the Semaphore API or using [Tasks](../using-semaphore/tasks).
+The variable is `false` when the workflow is triggered via the [Semaphore API](../category/api-specification) or using [Tasks](../using-semaphore/tasks).
 
 ### Workflow is triggered manually {#workflow-triggered-by-manual-run}
 
@@ -219,7 +219,7 @@ The variable is `false` when the workflow is triggered via the Semaphore API or 
 
 Holds `true` if the workflow was triggered by a user through the Semaphore UI.
 
-The variable is `false` when the workflow is triggered Git push, pull request, Tasks, or the Semaphore API
+The variable is `false` when the workflow is triggered by Git push, pull request, Tasks, or the [Semaphore API](../category/api-specification).
 
 ### Workflow is triggered by task {#workflow-triggered-by-schedule}
 
@@ -235,7 +235,7 @@ Holds `true` if the workflow was triggered using [Tasks](../using-semaphore/task
 - **Environment variable**: `SEMAPHORE_GIT_BRANCH`
 - **Example**: `main`
 
-The Git branch used in the current job. On pull requests, the value is the name of the upstream branch targeted by the merge.
+The Git branch is used in the current job. On pull requests, the value is the name of the upstream branch targeted by the merge.
 
 For example, if you create a branch called `feature` and create a pull request to merge to `main`, then `SEMAPHORE_GIT_BRANCH=main`.
 
@@ -250,7 +250,7 @@ For example, if you create a branch called `feature` and create a pull request t
 
 :::note
 
-The variable is *missing* when the workflow is triggered by pushing Git tag.
+The variable is *missing* when the workflow is triggered by pushing the Git tag.
 
 :::
 
@@ -259,7 +259,7 @@ The variable is *missing* when the workflow is triggered by pushing Git tag.
 - **Environment variable**: `SEMAPHORE_GIT_COMMIT_AUTHOR`
 - **Example**: `torvalds`
 
-The GitHub or Bitbucket username of the person that authored the revision.
+The GitHub or Bitbucket username of the person who authored the revision.
 
 ### Commit Range {#commit-range}
 
@@ -275,14 +275,14 @@ This is empty for builds triggered by the initial commit of a new branch or tag.
 - **Environment variable**: `SEMAPHORE_GIT_SHA`
 - **Example**: `5c84719708b9b649b9ef3b56af214f38cee6acde`
 
-The current Git SHA revision of code that the job is using.
+The current Git SHA revision of the code that the job is using.
 
 ### Committer {#committer}
 
 - **Environment variable**: `SEMAPHORE_GIT_COMMITTER`
 - **Example**: `torvalds`
 
-The GitHub or Bitbucket username of the person that authored the revision.
+The GitHub or Bitbucket username of the person who authored the revision.
 
 ### Git Provider {#git-provider}
 
@@ -296,7 +296,7 @@ The Git provider the repository is hosted on. Possible values are `bitbucket` or
 - **Environment variable**: `SEMAPHORE_GIT_REF`
 - **Example**: `refs/heads/master`
 
-The name of Git reference to the commit that the job is using.
+The name of Git references the commit that the job is using.
 
 ### Git Reference Type {#git-reference-type}
 
@@ -370,7 +370,7 @@ Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`
 - **Environment variable**: `SEMAPHORE_GIT_PR_SLUG`
 - **Example**: `renderedtext/docs`
 
-The name in format `owner_name/repo_name` of the repository from which the Pull Request originated.
+The name in the format `owner_name/repo_name` of the repository from which the Pull Request originated.
 
 :::note
 
@@ -443,7 +443,7 @@ Duration of the pipeline initialization stage expressed in seconds.
 - **Environment variable**: `SEMAPHORE_PIPELINE_QUEUEING_DURATION`
 - **Example**: `1`
 
-The time that the pipeline spent in the queue expressed in seconds.
+The time that the pipeline spent in the queue is expressed in seconds.
 
 ### Pipeline result {#pipeline-result}
 
@@ -464,7 +464,7 @@ The reason for the pipeline result. Possible values are: `test`, `malformed`, `s
 - **Environment variable**: `SEMAPHORE_PIPELINE_RUNNING_DURATION`
 - **Example**: `12`
 
-The total pipeline execution time expressed in seconds.
+The total pipeline execution time is expressed in seconds.
 
 ### Pipeline started at {#pipeline-started-at}
 
@@ -494,7 +494,7 @@ The IP address and the port number of the cache server.
 - **Environment variable**: `SEMAPHORE_CACHE_USERNAME`
 - **Example**: `0614ef08af7a408d8aae45b029ba3bb8`
 
-The username used for connecting to the cache server.
+The username is used for connecting to the cache server.
 
 ### Private Key Path {#cache-private-key-path}
 
