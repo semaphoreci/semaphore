@@ -27,28 +27,30 @@ To register a self-hosted agent type, follow these steps:
 4. Type the name of the agent type. Self hosted agents all begin with `s1-`, e.g. `s1-gpu-2`
 5. Select the [how the agent name is assigned](#name-assign)
 6. Select [when the agent name is released](#name-release)
-7. Press **Looks good**
+7. Press **Register**
 
 ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
 
-The next page shows detailed instructions to install and connect the self-hosted agent in the platform of choice. Press the **Reveal** button to show the registration token. Save it in a safe place for the next step.
+The next page shows detailed instructions to install and register the self-hosted. Select the platform you're using and press **Reveal** to view the registration token. Save it in a safe place for the next step.
 
 ![Instructions to install self-hosted agent](./img/self-hosted-agent-install.jpg)
+
+Follow the on-screen instructions. See [how to install agent stack](#install) for more options.
+
+When the agent connects you should be able to see it on the self-hosted agents page.
+
+![Agent is connected](./img/self-hosted-agent-connected.jpg)
 
 ## Agent name assignment {#name-assign}
 
 Every agent must have a unique name. There are two ways in which the name can be assigned:
 
-- **Name assigned by agent**: the agent selects its own name and sends it to the Semaphore Control Plane during registration
+- **Name assigned by agent**: the agent provides its own name
 - **Name assigned by AWS STS**: agents running on AWS can get an additional level of security by validating their name with [AWS Security Token Service](https://docs.aws.amazon.com/general/latest/gr/sts.html)
 
 ### Name assigned by the agent {#name-agent}
 
-The agent name can be assigned by the user when the agent service starts. For example:
-
-```shell title="Agent start with name"
-agent start --name my-agent-name
-```
+In this mode, the agent selects its own name and sends it during registration.
 
 ```mermaid
 sequenceDiagram
@@ -56,9 +58,39 @@ sequenceDiagram
     Semaphore-->>-Agent: accessToken
 ```
 
-https://whimsical.com/agent-name-assignment-and-release-5fd97vVz2PgZsiD8TX8n5C
+The agent picks a random name by default. You can override the name by specifying it during service start. For example:
 
-When the `--name` argument is not supplied, the agent creates a random name.
+```shell title="Agent start with name"
+agent start --name my-agent-name
+```
+
+You may need to edit the configuration file of the service manager to change the name. For example, to change the agent name when using systemd, follow these steps:
+
+1. Edit the service file
+
+    ```shell
+    sudo systemctl edit semaphore-agent.service
+    ```
+
+2. Override `ExecStart` to add the `--name` argument and save the file
+
+    ```text title="Add an override to the systemd service file"
+    [Service]
+    ExecStart=
+    ExecStart=/opt/semaphore/agent/agent start --config-file /opt/semaphore/agent/config.yaml --name my-agent-name
+    ```
+
+3. Restart the service and confirm it has successfully registered
+
+    ```shell
+    sudo systemctl restart semaphore-agent
+    ```
+
+:::info
+
+Agent names should have between 8 and 80 characters.
+
+:::
 
 ### Name assigned by AWS STS {#name-sts}
 
@@ -171,7 +203,13 @@ See the [Helm chart repo](https://github.com/renderedtext/helm-charts/tree/main/
 
 Follow these steps to install self-hosted agent in Ubuntu or Debian:
 
-1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
+1. Create a user with sudo permissions to run the agent service, e.g. `semaphore`
+
+    ```shell
+    sudo adduser semaphore
+    sudo adduser semaphore sudo
+    ```
+
 2. Log in or switch to the agent service user
 
     ```shell
@@ -191,11 +229,11 @@ Follow these steps to install self-hosted agent in Ubuntu or Debian:
     tar -xf agent.tar.gz
     ```
 
-5. Install the agent and follow the prompts. Type the [organization URL](./organizations#general-settings), the registration token and the name of the local service user. The registration token is the one revealed during [agent registration](#register-agent)
+5. Install the agent and follow the prompts. Type the [organization name](./organizations), the registration token and the name of the local service user, e.g. `semaphore` . The registration token is the one revealed during [agent registration](#register-agent)
 
     ```shell title="Install agent"
     $ sudo ./install.sh
-    Enter organization: my-org.semaphoreci.com
+    Enter organization: my-org
     Enter registration token: <access token>
     Enter user [root]: <local-service-user>
     Downloading toolbox from https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar...

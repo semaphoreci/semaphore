@@ -61,7 +61,7 @@ sequenceDiagram
 
 :::note
 
-A registration failure causes the agent to stop running jobs. The agent shuts down after failing to sync for some time.
+A registration failure prevents the agent from connecting to the Semaphore Control Plane. Unregistered agents cannot run any jobs.
 
 :::
 
@@ -86,8 +86,10 @@ When the agent receives a new jobID it enters the *starting job* state and sends
 ```mermaid
 sequenceDiagram
     Agent->>+Semaphore: GET /jobs/jobID
-    Semaphore-->>-Agent: jobStreamToken
+    Semaphore-->>-Agent: jobStreamToken, jobSpecs, etc
 ```
+
+Semaphore responds with a token used to stream the job output and the job specs, including commands, environment variables, files, prologues, epilogues, containers, among other details.
 
 ### Job output request {#logs}
 
@@ -100,7 +102,7 @@ sequenceDiagram
     Agent->>+Semaphore: POST /sync(running)
     Semaphore-->>-Agent: continue
     Agent->>+Semaphore: POST /logs(output)
-    Semaphore-->>-Agent: continue
+    Semaphore-->>-Agent: 200 OK
     Agent->>+Semaphore: POST /sync(finished, passed)
     Semaphore-->>-Agent: continue
 ```
@@ -112,7 +114,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     Agent->>+Semaphore: POST /disconnect
-    Semaphore-->>-Agent: continue
+    Semaphore-->>-Agent: 200 OK
 ```
 
 ## Supported toolbox features {#toolbox}
@@ -183,7 +185,7 @@ You can also change the agent for a single job using the [agent override option]
 The self-hosted agent executes the job commands in two different ways depending on the platform where it is running:
 
 - On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
-- Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
+- On Windows, PYT sessions are not used. Instead, each command is executed in a new PowerShell process with `powershell -NonInteractive -NoProfile`
 
 See [self-hosted configuration](./self-hosted-configure#isolation) to learn how to run jobs in isolation.
 
@@ -196,9 +198,11 @@ If you want to run [initialization jobs](./pipelines#init-job) on self-hosted ag
 
 ## How to debug jobs on self-hosted {#debug}
 
-Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
+Before you can [debug jobs](./jobs#debug-jobs) you must enable self-hosted debugging on to the [project settings](./projects#general).
 
-To debug jobs on a self-hosted agent you need to log in to the agent machine. Keep in mind that:
+Debug jobs work in a different way on self-hosted agents. Instead of connecting directly to the job via SSH as in cloud debug jobs, Semaphore starts the debug job and displays the name of the agent that is running the job. You must connect to the host running the agent and debug the job manually.
+
+Keep in mind that:
 
 - You should log in with the same user the agent is running under. For example, if you're using [agent-aws-stack](https://github.com/renderedtext/agent-aws-stack), the user is `semaphore`
 - The agent does not automatically load environment variables for the job. To load the variables, you must source the files located at `/tmp/.env-*`
