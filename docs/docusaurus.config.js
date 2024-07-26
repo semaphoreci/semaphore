@@ -223,9 +223,13 @@ const config = {
         additionalLanguages: ['elixir'],
       },
     }),
-  // future: {
-  //   experimental_router: 'hash', // default to "browser"
-  // }
+  future: {
+    experimental_router: 'hash', // default to "browser",
+    experimental_storage: {
+      type: 'localStorage',
+      namespace: true,
+    },
+  }
 };
 
 export default config;

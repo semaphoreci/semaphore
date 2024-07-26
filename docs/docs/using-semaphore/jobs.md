@@ -209,6 +209,7 @@ All files are lost when the job ends. This happens because each jobs are allocat
 
 A group of connected blocks constitutes a *pipeline*. We use dependencies to control the order in which blocks run. Dependencies are explained in detail in the [pipelines page](./pipelines#dependencies).
 
+
 ## Semaphore toolbox {#toolbox}
 
 The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
@@ -1011,6 +1012,192 @@ blocks:
 Using job matrices causes Semaphore to run an [initialization job](./pipelines#init-job) before your jobs are executed.
 
 :::
+
+
+## Job priority {#priority}
+
+Every job in Semaphore has an internal priority value from 0 to 100. The priority is used to decide what jobs to run when a [job limit](#limits) is reached. Jobs with higher priority run first when the organization reaches their quota limits.
+
+### Default priorities {#default-priority}
+
+The priorities are assigned automatically according to the table below, but they [can be configured](#priority-assign) on a per-job or per-pipeline basis.
+
+| Job type                                                 | Branch        | Default priority |
+|----------------------------------------------------------|---------------|------------------|
+| [Promotion pipeline](./pipelines#connecting-pipelines)   | master        | 65               |
+| Promotion pipeline                                       | non-master    | 55               |
+| Promotion pipeline                                       | tags          | 55               |
+| Promotion pipeline                                       | pull requests | 55               |
+| Initial pipeline                                         | master        | 60               |
+| Initial pipeline                                         | non-master    | 50               |
+| Initial pipeline                                         | tags          | 50               |
+| Initial pipeline                                         | pull requests | 50               |
+| [After pipeline](./pipelines#after-pipeline-job)         | any           | 45               |
+| [Tasks](./tasks)                                         | any           | 40               |
+
+### Assigning priorities {#priority-assign}
+
+To assign a different priority to a specific job, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate the jobs
+3. Create a `priority` key
+4. Define a `value` and a [condition](../reference/conditions-dsl)
+5. Save the file and push it to the repository
+
+The following example shows how to assign a higher priority to specific jobs when the branch is master:
+
+```yaml title="Assigning priorities to specific jobs"
+version: v1.0
+name: Job priorities
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Tests
+    task:
+      jobs:
+      - name: Unit tests
+        # highlight-start
+        priority:
+        - value: 70
+          when: "branch = 'master'"
+        - value: 45
+          when: true
+        # highlight-end
+        commands:
+          - make unit-test
+      - name: Integration tests
+        # highlight-start
+        priority:
+        - value: 58
+          when: "branch = 'master'"
+        - value: 42
+          when: true
+        # highlight-end
+        commands:
+          - make integration-test
+```
+
+To change the priority to all jobs in a pipeline, follow these steps:
+
+1. Open the pipeline YAML
+2. Locate the jobs
+3. Add a `global_job_config` key at the root of the YAM
+4. Create a `priority` key
+5. Define a `value` and a [condition](../reference/conditions-dsl)
+6. Save the file and push it to the repository
+
+The following example does the same as the one above, but using a global config:
+
+```yaml
+version: "v1.0"
+name: An example of using global_job_config
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+# highlight-start
+global_job_config:
+  priority:
+  - value: 70
+    when: "branch = 'master'"
+  - value: 45
+    when: true
+# highlight-end
+
+blocks:
+  - name: Tests
+    task:
+      jobs:
+      - name: Unit tests
+        commands:
+          - make unit-test
+      - name: Integration tests
+        commands:
+          - make integration-test
+```
+
+See the [pipeline YAML reference](../reference/pipeline-yaml) for more details.
+
+## Job and block limits {#limits}
+
+Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
+
+This section describes the limits that Semaphore applies to jobs and blocks. See [pipelines limits](./pipelines#limits) to see limits that apply to pipelines.
+
+### Job duration {#job-duration}
+
+Jobs have a *1 hour limit*. Jobs exceeding this limit are terminated.
+
+You can change the limit up to a maximum value of *24 hours*.
+
+To change the maximum duration for a single job:
+
+1. Open the pipeline YAML
+2. Locate the job
+3. Add and `execution_time_limit` element
+4. Add `hours` or `minutes`, set the new value
+5. Save the file and push it to the repository
+
+```shell title="Changing max duration for a single job"
+version: v1.0
+name: Pipeline using execution_time_limit
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Job limited to 3 hours
+    # highlight-start
+    execution_time_limit:
+      hours: 3
+    # highlight-end
+    commands:
+      - checkout
+      - npm install
+      - npm test
+```
+
+:::note
+
+See [pipeline global time limit](./pipelines#max-job-duration) to change the maximum duration for all jobs in a pipeline.
+
+:::
+
+### Max blocks per pipeline {#max-blocks}
+
+A pipeline can have up to *100 blocks*. This limit is not configurable.
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+
+### Max jobs per block {#max-jobs}
+
+A block can have up to *50 jobs*. This limit is not configurable.
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+
+
+### Max job log size {#max-log-size}
+
+Job logs have a limit of 16 megabytes, which is roughly 100,000 lines. This limit is not configurable.
+
+The following message reveals that the job has exceeded the limit:
+
+```text
+Content of the log is bigger than 16MB. Log is trimmed.
+```
+
+You can workaround this limitation by setting the following [environment variable](#environment-variables), which makes Semaphore upload the log file as an [artifact](./artifacts) when the limit is exceeded.
+
+```text
+SEMAPHORE_AGENT_UPLOAD_JOB_LOGS=when-trimmed
+```
+
+See the [upload-job-logs reference](../reference/self-hosted-config#upload-job-logs) for more details.
 
 ## See also
 

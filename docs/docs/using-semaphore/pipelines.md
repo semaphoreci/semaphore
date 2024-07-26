@@ -144,7 +144,7 @@ Following the link shows the complete job log.
 
 ![Example init job log](./img/init-log-example.jpg)
 
-## Connecting pipelines 
+## Connecting pipelines {#connecting-pipelines}
 
 [Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
 
@@ -153,6 +153,28 @@ The workflow always starts with the default pipeline (located at `.semaphore/sem
 ![A workflow with 3 pipelines](./img/workflows.jpg)
 
 For more information, see the [Promotions documentation](./promotions).
+
+## How to skip commits {#skip}
+
+If you don't want to start a Semaphore workflow for type one of the following options in the commit message. The skip message doesn't work on [pushed tags](./promotions#tagged).
+
+- `[ci skip]`
+- `[skip ci]`
+
+For example, this push does not trigger a Semaphore pipeline execution, it is completely ignored:
+
+```shell title="Skipping a commit"
+git add -A
+git commit -m "[skip ci] Initial commit"
+git push origin main
+```
+
+:::note
+
+Merging a pull request with the squash commit option is also ignored unless the skip message is removed manually.
+
+:::
+
 
 ## Pipeline settings {#settings}
 
@@ -809,6 +831,79 @@ blocks:
 ```
 
 See [conditional queue reference](../reference/pipeline-yaml#queue) for more details.
+
+## Pipeline limits {#limits}
+
+Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
+
+This section describes the limits that Semaphore applies to pipeilnes. See [job limits](./jobs#limits) to see limits that apply to jobs.
+
+### Global job duration {#max-job-duration}
+
+All jobs in a pipeline have a *1 hour limit*. Jobs exceeding this limit are terminated.
+
+You can change the limit up to a maximum value of *24 hours*.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To change the global time limit for all jobs in a pipeline, follow these steps:
+
+1. Open the workflow editor
+2. Select the pipeline
+3. Scroll down to **Execution time limit** on the right-side menu
+4. Select a new value in **Hours** or **Minutes**
+5. Press **Run the workflow**, then **Start**
+
+![Changing global job limit duration](./img/global-job-duration.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+1. Open the pipeline YAML
+2. Add and `execution_time_limit` element at the root of the pipeline
+3. Add `hours` or `minutes`, set the new value
+4. Save the file and push it to the repository
+
+```shell title="Changing max duration for a single job"
+version: v1.0
+name: Pipeline using execution_time_limit
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+# highlight-start
+execution_time_limit:
+  hours: 3
+# highlight-end
+blocks:
+  - name: All jobs have a 3 hour limit
+    commands:
+      - checkout
+      - npm install
+      - npm test
+```
+
+</TabItem>
+</Tabs>
+
+:::note
+
+See [job time limit](./jobs#job-duration) to change the maximum duration for a single job.
+
+:::
+
+### Max pipelines per queue {#max-pipelines}
+
+[Pipeline queues](#pipeline-queues) have a limit of *30 pipelines*. This limit is not configurable.
+
+You can workaround the queue limit by asigning pipelines to [named queues](#named-queues).
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+
+### Max blocks per pipeline {#max-blocks}
+
+If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
 
 ## See also
 

@@ -1,5 +1,20 @@
 # Documentation Work Group - Meeting Notes
 
+## 22-July-2024
+
+### Attendees
+
+- @TomFern 
+- @AleksandarCole
+- @mateuscap
+- @diegoguerrad
+- @tbogosavljevic 
+
+### Agenda
+- Open API plogin shipped but broke the dev instance @hamir-suspect working on a fix. Need to figure out how to have better testing/checks.
+- Tech. support team joined the work goroup and will help with the review and other `help-wanted` tasks.
+- We have a lot of new pages in queue for initial review - @TomFern, @AleksandarCole and @darkofabijan to meet this week and clean up the queue.
+
 ## 08-July-2024
 
 ### Attendees
