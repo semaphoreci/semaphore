@@ -436,9 +436,7 @@ The UNIX epoch timestamp when the pipeline was finished.
 - **Environment variable**: `SEMAPHORE_PIPELINE_INIT_DURATION`
 - **Example**: `1`
 
-The duration of [initialization job](../using-semaphore/pipelines#init-job) expressed in seconds.
-
-CONTINUE HERE
+Duration of the pipeline initialization stage expressed in seconds.
 
 ### Pipeline queueing duration {#pipeline-queueing-duration}
 
@@ -526,6 +524,22 @@ Password to access the Semaphore Docker Registry.
 - **Environment variable**: `SEMAPHORE_REGISTRY_URL`
 
 The URL to access the Semaphore Docker Registry.
+
+## Initialization job variables {#init}
+
+This section describes additional environment variables that are only available during [initialization jobs](../using-semaphore/pipelines#init-job) and [pre-flight checks](../using-semaphore/org-preflight).
+
+### Input file {#input-file}
+
+- **Environment variable**: `INPUT_FILE`
+
+The path to the input pipeline file during the initialization job.
+
+### Output file {#output-file}
+
+- **Environment variable**: `OUTPUT_FILE`
+
+The path to the output pipeline file during the initialization job. This file is used by Semaphore to lay out the jobs for the pipeline.
 
 ## See also
 

@@ -10,6 +10,11 @@ this is about sem cli
 
 ## sem-edit {#sem-edit}
 
+## Debug projects {#debug-project}
+
+## Debug jobs {#debug-job}
+
+
 ## Set up notifications {#notifications}
 
 
