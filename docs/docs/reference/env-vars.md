@@ -1,9 +1,8 @@
 ---
-description: Environment variables in Semaphore
+description: Environment variables defined by Semaphore
 ---
 
 # Environment variables
-
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -32,7 +31,7 @@ Holds `true` when the session runs in a Semaphore continuous integration (CI) en
 
 Holds `true` when the session is running in a Semaphore environment.
 
-### Agent machine type {#agent-machine-environment-type}
+### Agent environment type {#agent-machine-environment-type}
 
 - **Environment variable**: `SEMAPHORE_AGENT_MACHINE_ENVIRONMENT_TYPE`
 - **Example**: `container`
@@ -230,6 +229,8 @@ Holds `true` if the workflow was triggered using [Tasks](../using-semaphore/task
 
 ## Git repository variables {#git-variables}
 
+These variables give Git-related information about the repository that is liked to the project the job is running.
+
 ### Branch (upstream) {#git-branch}
 
 - **Environment variable**: `SEMAPHORE_GIT_BRANCH`
@@ -237,16 +238,16 @@ Holds `true` if the workflow was triggered using [Tasks](../using-semaphore/task
 
 The Git branch is used in the current job. On pull requests, the value is the name of the upstream branch targeted by the merge.
 
-For example, if you create a branch called `feature` and create a pull request to merge to `main`, then `SEMAPHORE_GIT_BRANCH=main`.
+For example, if you create a branch called `featureA` and create a pull request to merge to `main`, then `SEMAPHORE_GIT_BRANCH=main`.
 
 ### Working branch (downstream) {#git-working-branch}
 
 - **Environment variable**: `SEMAPHORE_GIT_WORKING_BRANCH`
-- **Example**: `main`
+- **Example**: `featureA`
 
 The name of the branch used in the current job. On pull request, this is the downstream branch that would be merged.
 
-For example, if you create a branch called `feature` and create a pull request to merge to `main`, then `SEMAPHORE_GIT_WORKING_BRANCH=feature`.
+For example, if you create a branch called `featureA` and create a pull request to merge to `main`, then `SEMAPHORE_GIT_WORKING_BRANCH=featureA`.
 
 :::note
 
@@ -254,14 +255,14 @@ The variable is *missing* when the workflow is triggered by pushing the Git tag.
 
 :::
 
-### Commit Author {#commit-author}
+### Commit author {#commit-author}
 
 - **Environment variable**: `SEMAPHORE_GIT_COMMIT_AUTHOR`
 - **Example**: `torvalds`
 
 The GitHub or Bitbucket username of the person who authored the revision.
 
-### Commit Range {#commit-range}
+### Commit range {#commit-range}
 
 - **Environment variable**: `SEMAPHORE_GIT_COMMIT_RANGE`
 - **Example**: `5c84719708b9b649b9ef3b56af214f38cee6acde...92d87d5c0dd2dbb7a68ecb27df43d1b164fd3e30`
@@ -296,9 +297,9 @@ The Git provider the repository is hosted on. Possible values are `bitbucket` or
 - **Environment variable**: `SEMAPHORE_GIT_REF`
 - **Example**: `refs/heads/master`
 
-The name of Git references the commit that the job is using.
+The Git reference the commit that the job is using.
 
-### Git Reference Type {#git-reference-type}
+### Git reference type {#git-reference-type}
 
 - **Environment variable**: `SEMAPHORE_GIT_REF_TYPE`
 - **Example**: `branch`, `tag`, or `pull-request`
@@ -400,7 +401,7 @@ The name of the Git repository name for the current Semaphore project.
 
 The repository name in the form `owner/repo-name` for the current Semaphore project.
 
-### Tag Name {#git-tag-name}
+### Tag name {#git-tag-name}
 
 - **Environment variable**: `SEMAPHORE_GIT_TAG_NAME`
 - **Example**: `v1.0.0`
@@ -481,6 +482,8 @@ The UNIX epoch timestamp when the pipeline started running jobs.
 The total duration of the pipeline including queuing time expressed in seconds.
 
 ## Cache variables {#cache-variables}
+
+These variables are used to access the [cache](../using-semaphore/optimization/cache).
 
 ### Cache URL {#cache-url}
 
