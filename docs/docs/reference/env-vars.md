@@ -285,14 +285,21 @@ The current Git SHA revision of the code that the job is using.
 
 The GitHub or Bitbucket username of the person who authored the revision.
 
-### Git Provider {#git-provider}
+### Depth {#git-depth}
+
+- **Environment variable**: `SEMAPHORE_GIT_DEPTH`
+- **Example**: `50`
+
+Holds the shallow clone depth level for the [checkout](./toolbox.md#checkout) command. The default value is 50.
+
+### Git provider {#git-provider}
 
 - **Environment variable**: `SEMAPHORE_GIT_PROVIDER`
 - **Example**: `bitbucket`, `github`
 
 The Git provider the repository is hosted on. Possible values are `bitbucket` or `github`.
 
-### Git Reference {#git-reference}
+### Git reference {#git-reference}
 
 - **Environment variable**: `SEMAPHORE_GIT_REF`
 - **Example**: `refs/heads/master`
