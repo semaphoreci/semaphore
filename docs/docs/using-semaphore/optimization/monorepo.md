@@ -24,13 +24,13 @@ Pipelines with `change_in` expressions require a [pipeline initialization](../pi
 
 :::
 
-## Change detection strategies
+## Change detection strategies {#strategies}
 
 When change detection is enabled, Semaphore considers two variables to decide which jobs to run: a user-supplied glob pattern and a commit range. If one or more of the commits in the range changed at least one file matching the pattern, the job runs. Otherwise, it is skipped.
 
 The default commit range used depends on a few conditions.
 
-For pushes on the **trunk**, i.e. master branch, the commit ranges between the first and the last commit in the push that triggered the workflow.
+For pushes on the default branch (also known as trunk, i.e. master branch) the commit ranges between the first and the last commit in the push that triggered the workflow.
 
 ```mermaid
 ---

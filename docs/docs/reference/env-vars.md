@@ -9,6 +9,8 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
+## Commit Range {#commit-range}
+
 ## SEMAPHORE_PROJECT_NAME {#project-name}
 
 Example: `semaphore-demo-javascript`

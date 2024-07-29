@@ -668,7 +668,7 @@ after_pipeline:
 </TabItem>
 </Tabs>
 
-## Pipeline queues
+## Pipeline queues {#pipeline-queues}
 
 Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
 
