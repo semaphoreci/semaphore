@@ -298,6 +298,63 @@ retry --times 5 --sleep 10 bundle install
 
 ## sem-service {#sem-service}
 
+The `sem-service` tool manages databases and other useful services in Ubuntu-based environments. 
+
+:::info
+
+sem-service does not work on [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+
+:::
+
+The syntax is:
+
+```shell title="sem-service syntax"
+sem-service <command> <service> [version] [flags]
+```
+
+Where `<command>` is one of the following:
+
+- `start`: starts a service in the backgroun, returns when service is ready to accept connections
+- `stop`: stops a running service
+- `status`: returns non-zero exit status if service is not running
+
+All services run locally on the agent running the job. Started services always listen on 0.0.0.0 and their default port.
+
+### Services supported {#sem-service-services}
+
+The `<service>` argument is one of the following:
+
+- `mysql`
+- `postgres`
+- `postgis`
+- `redis`
+- `rabbitmq`
+- `memcached`
+- `mongodb`
+- `elasticsearch`
+- `opensearch`
+- `cassandra`
+- `rethinkdb`
+
+The `<version>` argument depends on the kind of service being started. You can run `sem-service help` to see all available services and versions.
+
+### Options for MySQL and PostgreSQL {#sem-service-options}
+
+When starting `mysql` or `postgres` services you can provide the following optional arguments:
+
+- `--username=<username>`: user with admin permissions on the instance
+  - On `mysql` defaults to "root"
+  - On `postgres` defaults to "postgres"
+- `--password=<username>`: password for the admin user
+  - On `mysql` defaults to "test"
+  - On `postgres` defaults to a blank string
+- `--db=<name>` database name to create and default to
+
+
+### Container registry {#sem-service-container}
+
+The `sem-service` tool pulls images from the [Semaphore Container Registry](../using-semaphore/optimization/container-registry).
+
 ## sem-version {#sem-version}
 
 The `sem-version` tool manages language and utilities versions in Ubuntu environments. It provides a quick and simple way to install and switch to a version of a command line tool or programming language.
