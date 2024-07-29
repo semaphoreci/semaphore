@@ -21,91 +21,101 @@ Self-hosted agents allow you to run workflows on machines that are not currently
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
+## Agent lifecycle {#lifecycle}
+
+The agent attempts on startup to register with the Semaphore Control Plane by sending a registration request. Once registered, it waits for jobs. Repeated failure to register the agent causes it to shutdown.
+
+The agent enters into a running state when a new job is available. Depending on its configuration, once the job is done the agent may disconnect and shutdown, or go back to the waiting state until a new job is available.
+
+```mermaid
+stateDiagram-v2
+    Register: Registering Agent
+    Disconnect: Disconnect Agent
+    Wait: Waiting for job
+    Run: Running job
+    Finish: Job finished
+    [*] --> Register
+    Register --> [*]: Fail
+    Register --> Wait: Success
+    Wait --> Run: New job available
+    Run --> Finish
+    Finish --> Disconnect: Disconnect after job?
+    Disconnect --> [*]
+    Finish --> Wait
+```
 
 ## Agent communication {#communication}
 
 Self-hosted agents use one-way communication to connect with Semaphore. Requests are always initiated by the agent and secured using HTTPS TLS 1.3. This means you don't need to inbound open ports in your firewall to use Semaphore in Hybrid mode.
 
-When the agent boots up it attempts to register with Semaphore.
+### Registration request {#registration}
+
+When the agent boots up it sends a register request using a registration token. If the registration succeeds, the agent receives an access token to be used in all future communications and enters the *waiting for job* state.
 
 
 ```mermaid
-zenuml
-    title Register Agent
-    A as Agent
-    S as Semaphore
-    A->S.registerAgent {
-      return agentToken
-    }
+sequenceDiagram
+    Agent->>+Semaphore: GET /register(registrationToken)
+    Semaphore-->>-Agent: accessToken
 ```
-
-![TODO: placeholder image - remove me once mermaid works](./img/mermaid-register-agent.jpg)
 
 :::note
 
-A registration failure causes the agent to stop running jobs. The agent shuts down after failing to sync for some time.
+A registration failure prevents the agent from connecting to the Semaphore Control Plane. Unregistered agents cannot run any jobs.
 
 :::
 
-Once registered, the agent enters *sync mode* and sends periodic requests to notify what the agent is doing and request instructions on what to do next. The agent periodically sends POST requests to the Semaphore API `/sync` endpoint. The request sends state information about the agent.
+### Sync request {#sync}
+
+Waiting agents periodically send sync requests to the control plane with its state information. Semaphore responds with a continue message unless there is a job in the queue to be executed, in which case Semaphore sends the jobID.
 
 ```mermaid
-zenuml
-    title Periodic Sync Requets
-    A as Agent
-    S as Semaphore
-    A->S.POST("/sync", state)
-    A->S.POST("/sync", state)
+sequenceDiagram
+    Agent->>+Semaphore: POST /sync(waiting)
+    Semaphore-->>-Agent: continue
+    Agent->>+Semaphore: POST /sync(waiting)
+    Semaphore-->>-Agent: continue
+    Agent->>+Semaphore: POST /sync(waiting)
+    Semaphore-->>-Agent: jobID
 ```
 
+### Get job request {#get-job}
 
-![TODO: remove image](./img/mermaid-self-hosted-state.jpg)
-
-Agents also send GET requests to the Semaphore API `/job` endpoint to determine what job to run next. Semaphore responds with a unique stream token for every scheduled job, which the agent uses to stream the job's output.
+When the agent receives a new jobID it enters the *starting job* state and sends a request to the `/jobs` endpoint. Semaphore responds with the job specs and an job log stream token.
 
 ```mermaid
-zenuml
-    title Get job requests
-    A as Agent
-    S as Semaphore
-    A->S.GET("/job") {
-        return streamToken
-    }
-
-    A->S: streamOutput
-    A->S: streamOutput
-    A->S: streamOutput
+sequenceDiagram
+    Agent->>+Semaphore: GET /jobs/jobID
+    Semaphore-->>-Agent: jobStreamToken, jobSpecs, etc
 ```
 
-![TODO: remove image](./img/mermaid-get-job-requests.jpg)
+Semaphore responds with a token used to stream the job output and the job specs, including commands, environment variables, files, prologues, epilogues, containers, among other details.
 
-## Agent lifecycle {#lifecycle}
+### Job output request {#logs}
 
-On start up, the agent attempts to register with the Semaphore API. When it succeeeds it enters into *idle* state.
-
-Idle agents periodically poll the Semaphore API for job assignments. When a new job is scheduled, the agent enters into *running* state. Once done, the agent goes back to *idle* and the cycle starts again.
-
-Agents stay *idle* forever unless [a disconnection condition is set](./self-hosted-configure#disconnect). When an agent disconnects it automatically shuts down.
-
-:::danger
-
-TODO: what happens with the agent name after disconnecting? there is a setting during registration to control if the name is released immediately or after some time. What is it's purpose?
-
-:::
+Agents running a job periodically send sync requests along with the output of the active job. Once the job is done, the agent sends the remainder of the logs and a sync request with the job result (passed or failed).
 
 ```mermaid
-stateDiagram-v2
-    Start: Agent Start
-    Shutdown: Agent Shutdown
-    Start --> Disconnected
-    Disconnected --> Shutdown
-    Disconnected --> Idle: Register
-    Idle --> Running: Job Scheduled
-    Running --> Idle: Job Done
-    Idle --> Disconnected: 
+sequenceDiagram
+    Agent->>+Semaphore: POST /sync(running)
+    Semaphore-->>-Agent: continue
+    Agent->>+Semaphore: POST /sync(running)
+    Semaphore-->>-Agent: continue
+    Agent->>+Semaphore: POST /logs(output)
+    Semaphore-->>-Agent: 200 OK
+    Agent->>+Semaphore: POST /sync(finished, passed)
+    Semaphore-->>-Agent: continue
 ```
 
-![TODO: remove when mermaid works](./img/self-hosted-state-chart.jpg)
+### Disconnect request {#disconnect}
+
+[Depending on its configuration](./self-hosted-configure#disconnect), the agent can either disconnect and shutdown after the job is finished, or go back to the *waiting for job* state.
+
+```mermaid
+sequenceDiagram
+    Agent->>+Semaphore: POST /disconnect
+    Semaphore-->>-Agent: 200 OK
+```
 
 ## Supported toolbox features {#toolbox}
 
@@ -175,7 +185,7 @@ You can also change the agent for a single job using the [agent override option]
 The self-hosted agent executes the job commands in two different ways depending on the platform where it is running:
 
 - On Linux and macOS, a new PTY session is created at the beginning of every job. All commands run in that single session
-- Since Windows does not support PTYs, each command is executed in a new PowerShell process with `powershell -NonINteractive -NoProfile`. The only way to have aliases available to commands is through PowerShell modules.
+- On Windows, PYT sessions are not used. Instead, each command is executed in a new PowerShell process with `powershell -NonInteractive -NoProfile`
 
 See [self-hosted configuration](./self-hosted-configure#isolation) to learn how to run jobs in isolation.
 
@@ -188,9 +198,11 @@ If you want to run [initialization jobs](./pipelines#init-job) on self-hosted ag
 
 ## How to debug jobs on self-hosted {#debug}
 
-Since communication is always initiated from the self-hosted agent, Semaphore has no way to start or attach a terminal to jobs running on self-hosted agents. This means that the [debug command](./jobs#debug-jobs) does not work. 
+Before you can [debug jobs](./jobs#debug-jobs) you must enable self-hosted debugging on to the [project settings](./projects#general).
 
-To debug jobs on a self-hosted agent you need to log in to the agent machine. Keep in mind that:
+Debug jobs work in a different way on self-hosted agents. Instead of connecting directly to the job via SSH as in cloud debug jobs, Semaphore starts the debug job and displays the name of the agent that is running the job. You must connect to the host running the agent and debug the job manually.
+
+Keep in mind that:
 
 - You should log in with the same user the agent is running under. For example, if you're using [agent-aws-stack](https://github.com/renderedtext/agent-aws-stack), the user is `semaphore`
 - The agent does not automatically load environment variables for the job. To load the variables, you must source the files located at `/tmp/.env-*`
