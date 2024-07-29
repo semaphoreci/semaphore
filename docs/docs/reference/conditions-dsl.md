@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-The conditions syntax allows to use regular expressions to match different conditions and take actions.
+The conditions syntax allows the use of regular expressions to match different conditions and take actions.
 
 ## Overview
 
@@ -41,7 +41,7 @@ The basic syntax for conditions is:
 keyword operator term
 ```
 
-The expression should result in either `true` or `false`. In it's simplest form:
+The expression should result in either `true` or `false`. In its simplest form:
 
 ```text
 true
@@ -66,11 +66,11 @@ Expressions can be combined using boolean "AND", "OR" (they also work in lowerca
 # True when branch is 'staging' or 'master
 branch = 'staging' OR branch = 'master'
 
-# True when branch is master and there is a tag
+# True when the branch is master and there is a tag
 branch = 'master' OR tag =~ '.*'
 
-# Branch does not begin with 'dev' and all job have completed successfully
-# unless branch is master, if master the output is always true
+# Branch does not begin with 'dev' and all job have been completed successfully
+# unless the branch is master, if master the output is always true
 (branch !~ '^dev/'" and result = 'passed') or branch = 'master'
 ```
 
@@ -100,8 +100,8 @@ You can use the following operators in your conditions.
 |--|--|
 | = | String equality |
 | != | String inequality |
-| =~ | Regular expression (regexp) matching |
-| !~ | Regular expression (regexp) not matching | 
+| =~ | Regular expression (regexp) matches |
+| !~ | Regular expression (regexp) does not match | 
 | and | Boolean AND | 
 | or | Boolean OR |
 
@@ -131,12 +131,12 @@ The `file_pattern` is a required argument. The pattern can be one of the followi
 
 - Path relative to repository root: the pattern begins with `/`, e.g. `/lib` matches all files recursively in the `lib` directory
 - Path relative to pipeline file: the pattern begins with `../`, e.g. `../lib` matches all files recursively in the `lib` directory relative to the pipeline file
-- Glob: the pattern uses globbing `*` and `**`, e.g. `/lib/**/*.js` matches every file with js extension recusively in the `lib` directory
-- A list of patterns: multiple patterns separated by comma, e.g. `['/lib', '/app', '/config/**/*.rb']` matches every file in the `lib` and `app` directories, and every rb file in the `config` directory (all matches are recursive in the example)
+- Glob: the pattern uses globbing `*` and `**`, e.g. `/lib/**/*.js` matches every file with js extension recursively in the `lib` directory
+- A list of patterns: multiple patterns separated by commas, e.g. `['/lib', '/app', '/config/**/*.rb']` matches every file in the `lib` and `app` directories, and every rb file in the `config` directory (all matches are recursive in the example)
 
 ### Options {#options}
 
-The second argument in an optional hashmap with key-value options to modify the behavior of the `change_in` function.
+The second argument is an optional hashmap with key-value options to modify the behavior of the `change_in` function.
 
 The supported options are:
 
@@ -144,7 +144,7 @@ The supported options are:
 |--|--|--|
 | `on_tags` | `true` | Always returns true if a Git tag is present in the commit |
 | `default_branch` | `master` | define the main/master branch for your repository |
-| `pipeline_file` | `track` | When set to `track` always returns true of the pipeline file has changed. If set to `ignore`, pipeline file changes are ignored and the file pattern is evaluated |
+| `pipeline_file` | `track` | When set to `track` always returns true if the pipeline file has changed. If set to `ignore`, pipeline file changes are ignored and the file pattern is evaluated |
 | `branch_range` | [`$SEMAPHORE_GIT_COMMIT_RANGE`](./env-vars#commit-range) | The commit range examined for all non-default branches. The default behavior is to examine the commits between the start of the branch and the point for the targeted merge. You can use any predefined or literal values to create ranges in double-dot or triple-dot syntax, as described in [Revision Selection](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection) |
 | `default_range` | [`$SEMAPHORE_GIT_COMMIT_RANGE`](./env-vars#commit-range) | Same as `branch_range` but it applies to the default branch, e.g. "master" |
 | `exclude` | `[]` | A list of [file patterns](#file-patterns) to ignore, e.g. `change_in('/', {exclude: ['/docs']})` searches recursively in all directories except `/docs` |
@@ -177,43 +177,43 @@ This is the text representation of the conditions syntax.
 ```text title="Conditions in EBNF notation"
 
 expression = expression, bool_operator, term
-           | term;
+ | term;
 
 term = "(", expression, ")"
-     | keyword, operator, string
-     | string, operator, keyword
-     | basic_val
-     | fun
-     | fun, operator, term;
+ | keyword, operator, string
+ | string, operator, keyword
+ | basic_val
+ | fun
+ | fun, operator, term;
 
 basic_val = string
-          | boolean
-          | integer
-          | float
-          | list
-          | map;
+ | boolean
+ | integer
+ | float
+ | list
+ | map;
 
 list = "[", "]"
-     | "[", params, "]";
+ | "[", params, "]";
 
 params = basic_val
-       | basic_val, ",", params;
+ | basic_val, ",", params;
 
 map = "{", "}"
-    | "{", map_vals, "}";
+ | "{", map_vals, "}";
 
 map_vals = key_val
-         | key_val, ",", map_vals;
+ | key_val, ",", map_vals;
 
 key_val = map_key, basic_val;
 
 fun = identifier, "(", ")"
-    | identifier, "(", params, ")";
+ | identifier, "(", params, ")";
 
 bool_operator = "and" | "AND" | "or" | "OR";
 
 keyword = "branch" | "BRANCH" | "tag" | "TAG" | "pull_request" | "PULL_REQUEST"
-        | "result" | "RESULT" | "result_reason" | "RESULT_REASON";
+ | "result" | "RESULT" | "result_reason" | "RESULT_REASON";
 
 operator = "=" | "!=" | "=~" | "!~";
 
@@ -221,9 +221,9 @@ boolean = "true" | "TRUE" | "false" | "FALSE";
 
 string = ? all characters between two single quotes, e.g. 'master' ?;
 
-integer = ? any integer value, e. g. 123, -789, 42 etc. ?;
+integer = ? any integer value, e.g. 123, -789, 42, etc. ?;
 
-float = ? any float value, e.g. 0.123, -78.9012, 42.0 etc. ?;
+float = ? any float value, e.g. 0.123, -78.9012, 42.0, etc. ?;
 
 map_key = ? string that matches [a-zA-Z][a-zA-Z0-9_\-]*: regex, e.g. first-name_1: ?;
 
