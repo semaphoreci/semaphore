@@ -70,8 +70,8 @@ Semaphore exposes several environmental variables in the pre-flight environment.
 - [`SEMAPHORE_GIT_BRANCH`](../reference/env-vars#git-branch): the name of the branch active for the current pipeline, e.g. `main`
 - [`SEMAPHORE_PIPELINE_PROMOTION`](../reference/env-vars#pipeline-promotion): is `true` when the pipeline is started via a [promotion](./pipelines#connecting-pipelines)
 - [`SEMAPHORE_PIPELINE_PROMOTED_BY`](../reference/env-vars#pipeline-promoted-by): contains the name of the GitHub or BitBucket account that started the promotion
-- `INPUT_FILE`: the path to the original pipeline file, e.g. `semaphore.yml`
-- `OUTPUT_FILE`: the path to the compiled pipeline file, created as output for the [initialization job](./pipelines#init-job). This is the pipeline definition Semaphore ultimately uses to run the workflow
+- [`INPUT_FILE`](../reference/env-vars#input-file): the path to the original pipeline file, e.g. `semaphore.yml`
+- [`OUTPUT_FILE`](../reference/env-vars#output-file): the path to the compiled pipeline file, created as output for the [initialization job](./pipelines#init-job). This is the pipeline definition Semaphore ultimately uses to run the workflow
 
 See [initialization environment variables reference](../reference/env-vars#init) for more details.
 
