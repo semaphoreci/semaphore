@@ -149,3 +149,4 @@ docker pull registry-owner/image-name
 - [How to run jobs inside Docker containers](../pipelines#docker-environments)
 - [How to create jobs](../jobs#job-create)
 - [How to use secrets](../secrets)
+- [Semaphore Docker registry reference](../../reference/env-vars#registry-variables)

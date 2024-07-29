@@ -1,5 +1,17 @@
 # Documentation Work Group - Meeting Notes
 
+## 29-July-2024
+
+### Attendees
+
+- @TomFern 
+- @AleksandarCole
+
+### Agenda
+- API v1 section is done.
+- @AleksandarCole and @TomFern booked a call for 31st to review all new pages and plan "Jobs to be done" section.
+- Self-hosted section is completed along with multiple smaller improvements. 
+
 ## 22-July-2024
 
 ### Attendees
@@ -11,7 +23,7 @@
 - @tbogosavljevic 
 
 ### Agenda
-- Open API plogin shipped but broke the dev instance @hamir-suspect working on a fix. Need to figure out how to have better testing/checks.
+- Open API plugin shipped but broke the dev instance @hamir-suspect working on a fix. Need to figure out how to have better testing/checks.
 - Tech. support team joined the work goroup and will help with the review and other `help-wanted` tasks.
 - We have a lot of new pages in queue for initial review - @TomFern, @AleksandarCole and @darkofabijan to meet this week and clean up the queue.
 

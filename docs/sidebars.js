@@ -128,7 +128,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'Semaphore API',
-        description: 'API Specification of the new Semaphore API. Please note that this is work in progress.',
+        description: 'API Specification of the new Semaphore API',
         // slug: '/using-semaphore',
         keywords: ['api'],
         // image: '/img/docusaurus.png',
@@ -157,7 +157,7 @@ const sidebars = {
         // image: '/img/docusaurus.png',
       },
       items: [
-        'reference/api',
+        'reference/env-vars',
         'reference/task-api',
         'reference/toolbox',
         'reference/semaphore-cli',
