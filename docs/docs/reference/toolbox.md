@@ -109,7 +109,9 @@ To perform a full repository clone add `--use-cache` to the command.
 checkout --use-cache
 ```
 
-You can also convert a shallow repository into a full repository with these commands:
+This option creates or refreshes a Semaphore-maintained cache for your repository. Note that using the option redirects the clone from GitHub or BitBucket to the Semaphore Git Cache, as a result you may not get the latest revision of your code. See the [environment variables](#cache-env for more details.
+
+If you prefer to avoid using the Semaphore Git Cache, you can run the following commands to "unshallow" a repository:
 
 ```shell
 checkout
@@ -118,18 +120,7 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch --all
 ```
 
-CONTINUE HERE DIGEST
-The checkout command supports the --use-cache flag. The purpose of this flag is to tell checkout to get the contents of the repository from the Semaphore Cache server instead of from the servers, because it is faster.
 
-If there is no cache entry for the active repository, the functionality of the --use-cache flag will create one.
-
-When using the --use-cache flag, checkout supports the following environment variables:
-
-SEMAPHORE_GIT_CACHE_AGE: This environment variable specifies how often the cache for that repository will be updated. Its value is always in seconds and by default it is 259200, which is 3 days. The value that you are going to choose depends on your project and how often it gets updated.
-
-SEMAPHORE_GIT_CACHE_KEEP: Each time there is an update to the cache, the key in the Cache server is also updated. Before updating the key, the previous key related to the current project is deleted. This environment variable tells the Semaphore Cache server to keep a history. The default value of SEMAPHORE_GIT_CACHE_KEEP is 0.
-
-Note: When used with the --use-cache flag, checkout does not use shallow clone.
 
 Examples:
 
@@ -145,7 +136,7 @@ If you set SEMAPHORE_GIT_CACHE_KEEP to 1, it will keep two copies in the Semapho
 
 If you set SEMAPHORE_GIT_CACHE_AGE=86400, the cache for the repository will be updated after 1 day.
 
-### Environment variables
+### Environment variables {#cache-env}
 
 The checkout command uses the following environment variables
 
@@ -153,8 +144,19 @@ The checkout command uses the following environment variables
 - [`SEMAPHORE_GIT_DIR`](./env-vars#git-dir)
 - [`SEMAPHORE_GIT_SHA`](./env-vars#git-sha)
 - [`SEMAPHORE_GIT_DEPTH`](./env-vars#git-depth)
+- [`SEMAPHORE_GIT_CACHE_AGE`](./env-vars#git-cache-age)
+- [`SEMAPHORE_GIT_CACHE_KEEP`](./env-vars#git-cache-keep)
 
 ## checksum {#checksum}
+
+This tool takes a single argument which is the file to checksum. It outputs the MD5 checksum of the file's contents. This tool is useful for tagging [artifacts](../using-semaphore/artifacts) or generating [cache keys](../using-semaphore/optimization/cache).
+
+Example:
+
+```shell title="Checksumming package-lock.json"
+$ checksum package-lock.json
+3dc6f33834092c93d26b71f9a35e4bb3
+```
 
 ## install-package {#install-package}
 
