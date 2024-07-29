@@ -283,7 +283,7 @@ The current Git SHA revision of the code that the job is using.
 - **Environment variable**: `SEMAPHORE_GIT_CACHE_AGE`
 - **Example**: `259200`
 
-Used only when runnin [`checkout --use-cache`](./toolbox#cache-full-clone). It specifies how often the Semaphore Git Cache is updated, expressed in seconds. The default is 259200 (3 days).
+Used only when running [`checkout --use-cache`](./toolbox#cache-full-clone). It specifies how often the Semaphore Git Cache is updated, expressed in seconds. The default is 259200 (3 days).
 
 ### Cache keep {#git-cache-keep}
 
@@ -291,7 +291,7 @@ Used only when runnin [`checkout --use-cache`](./toolbox#cache-full-clone). It s
 - **Example**: `1`
 
 
-Used only when runnin [`checkout --use-cache`](./toolbox#cache-full-clone). It how many copies of the repository should be maintained in the Sempahore Git Cache. Older copies are automatically deleted.
+Used only when running [`checkout --use-cache`](./toolbox#cache-full-clone). It how many copies of the repository should be maintained in the Sempahore Git Cache. Older copies are automatically deleted.
 
 The default value is 0, which means that Semaphore maintains only 1 copy of the repository. If you set it to 1, Semaphore will maintain 2 copies of the repository.
 

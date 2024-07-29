@@ -90,6 +90,76 @@ artifact yank workflow build/app
 
 ## cache {#cache}
 
+The cache tool lets you interact with your project's [Semaphore cache](../using-semaphore/optimization/cache).
+
+The syntax is:
+
+```shell
+cache <command> <keys> [path] [flags]
+```
+
+The available commands are:
+
+- `clear`: remove all keys in the cache.
+- `delete`: delete a key from the cache.
+- `has_key`: check if a key is present in the cache. Exits with non-zero status if key is not found.
+- `is_not_empty`: check if the cache is not empty.
+- `list`: list all keys in the cache.
+- `restore`: restore keys from the cache.
+- `store`: store keys in the cache.
+- `usage`: get a summary of cache usage.
+
+### Keys
+
+The cache keys are a comma-separated list of strings to label or select cached items.
+
+The following examples show different ways to store and identify Ruby Gems in the `vendor/bundle` directory:
+
+```shell
+cache store our-gems vendor/bundle
+cache store gems-$SEMAPHORE_GIT_BRANCH vendor/bundle
+cache store gems-$SEMAPHORE_GIT_BRANCH-revision-$(checksum Gemfile.lock) vendor/bundle
+```
+
+To restore counterparts for the example above are:
+
+```shell
+cache restore our-gems
+cache restore gems-$SEMAPHORE_GIT_BRANCH
+cache restore gems-$SEMAPHORE_GIT_BRANCH-revision-$(checksum Gemfile.lock),gems-master
+```
+
+`cache restore` always retrieves the first item that matches a key found in the cache. The rest are ignored. If no archives are restored the command exits with exit status 0.
+
+:::note
+
+As cache store uses tar, which automatically removes any leading / from a given path value, any further changes of path after the store command completes will not be automatically propagated to cache.
+
+:::
+
+### Space management {#cache-storage}
+
+The `cache store` command automatically deletes older files when the cache is full. You can change the deletion criteria using the `--cleanup-by` or `-c` argument. For example:
+
+```shell
+cache store our-gems vendor/bundle --cleanup-by SIZE
+```
+
+The supported options for `--cleanup-by` are:
+
+- `SIZE`: delete biggest files first
+- `STORE_TIME`: (default) delete oldest files first
+- `ACCESS_TIME`: delete oldest accessed files first
+
+
+### Environment variables {#cache-env-vars}
+
+The cache tool depends on the following environment variables:
+
+- [`SEMAPHORE_CACHE_URL`](./env-vars#cache-url)
+- [`SEMAPHORE_CACHE_USERNAME`](./env-vars#cache-username)
+- [`SEMAPHORE_CACHE_PRIVATE_KEY_PATH`](./env-vars#cache-private-key-path)
+
 ## checkout {#checkout}
 
 This tool clones the repository using Git. For performance reasons, the default behavior is to perform a [shallow clone](https://git-scm.com/docs/shallow). Shallow clones only include the latest commit instead of the full repository history.
@@ -101,17 +171,9 @@ checkout
 npm install
 ```
 
-### Full clone {#cache-full-clone}
+### Full clone {#full-clone}
 
-To perform a full repository clone add `--use-cache` to the command.
-
-```shell
-checkout --use-cache
-```
-
-This option creates or refreshes a Semaphore-maintained cache for your repository. Note that using the option redirects the clone from GitHub or BitBucket to the Semaphore Git Cache, as a result you may not get the latest revision of your code. See the [environment variables](#cache-env for more details.
-
-If you prefer to avoid using the Semaphore Git Cache, you can run the following commands to "unshallow" a repository:
+If you want to do a full clone of the repository you can run the following commands to "unshallow" a repository:
 
 ```shell
 checkout
@@ -120,21 +182,23 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch --all
 ```
 
+### Full clone {#cache-full-clone}
 
+:::info
 
-Examples:
+This is marked as an experimental feature
 
+:::
 
-checkout
-Notice that the checkout command automatically changes the current working directory in the Operating System of the VM to the directory defined in the SEMAPHORE_GIT_DIR environment variable.
+If a full clone takes too long, you can use `checkout --use-cache` to save a copy of the repository in the Semaphore cache. This should speed up full clones significantly.
 
-The following command will tell checkout to use the Semaphore Cache server to get the contents of the repository, instead of using git server:
+To perform a full repository clone with cache run:
 
-
+```shell
 checkout --use-cache
-If you set SEMAPHORE_GIT_CACHE_KEEP to 1, it will keep two copies in the Semaphore Cache server: the active one and its antecedent.
+```
 
-If you set SEMAPHORE_GIT_CACHE_AGE=86400, the cache for the repository will be updated after 1 day.
+This option creates or refreshes one or more copies of the repository in the Semaphore cache. See the [environment variables](#cache-env) to learn how to control the behavior of the cached copies.
 
 ### Environment variables {#cache-env}
 
@@ -144,12 +208,18 @@ The checkout command uses the following environment variables
 - [`SEMAPHORE_GIT_DIR`](./env-vars#git-dir)
 - [`SEMAPHORE_GIT_SHA`](./env-vars#git-sha)
 - [`SEMAPHORE_GIT_DEPTH`](./env-vars#git-depth)
-- [`SEMAPHORE_GIT_CACHE_AGE`](./env-vars#git-cache-age)
-- [`SEMAPHORE_GIT_CACHE_KEEP`](./env-vars#git-cache-keep)
+- [`SEMAPHORE_GIT_CACHE_AGE`](./env-vars#git-cache-age) (only available after using `--use-cache`)
+- [`SEMAPHORE_GIT_CACHE_KEEP`](./env-vars#git-cache-keep) (only available after using `--use-cache`)
 
 ## checksum {#checksum}
 
 This tool takes a single argument which is the file to checksum. It outputs the MD5 checksum of the file's contents. This tool is useful for tagging [artifacts](../using-semaphore/artifacts) or generating [cache keys](../using-semaphore/optimization/cache).
+
+The syntax is:
+
+```shell title="checksum syntax"
+checksum <file>
+```
 
 Example:
 
@@ -160,14 +230,110 @@ $ checksum package-lock.json
 
 ## install-package {#install-package}
 
+The `install-package` tool is used to manage Ubuntu packages you may need for your jobs. It downloads and caches packages in a way that can be quickly reinstalled over and over again in different jobs. This is a convenience tool, you can still use `sudo` to install packages using the system's package manager.
+
+
+The syntax is:
+
+```shell title="install-package syntax"
+install-package <command> <pkg-name>
+```
+
+Where `<pkg-name>` is the Ubuntu package name without the `.deb` extension. In other words, you want `libc6` instead of `libc6.deb`.
+
+Where command is one of the following:
+
+- `update`: Retrieve new lists of packages
+- `upgrade`: Perform an upgrade
+- `install`: Install new packages 
+- `reinstall`: Reinstall packages 
+- `remove`: Remove packages
+- `purge`: Remove packages and config files
+- `autoremove`: Remove automatically all unused packages
+- `dist-upgrade`: Distribution upgrade, see apt-get(8)
+- `dselect-upgrade`: Follow dselect selections
+- `build-dep`: Configure build-dependencies for source packages
+- `satisfy`: Satisfy dependency strings
+- `clean`: Erase downloaded archive files
+- `autoclean`: Erase old downloaded archive files
+- `check`: Verify that there are no broken dependencies
+- `source`: Download source archives
+- `download`: Download the binary package into the current directory
+- `changelog`: Download and display the changelog for the given package
+
+You can supply multiple packages with their versions in the same invocation:
+
+```shell
+ install-package install mongodb-clients=3.6.8 mysql-client=8.0.36-0ubuntu0.20.04.1
+```
+
+The tool integrates with the [Semaphore cache](../using-semaphore/optimization/cache) to save, retrieve, and update the Deb packages as needed.
+
+You can reinstall the packages in a different job within the same project with:
+
+```shell title="Installing packages from cache in other jobs"
+install-package install
+```
 
 ## retry {#retry}
 
+The retry tool can be used to retry a command on an interval. This is useful when waiting for resources to become available or mitigate connectivity issues.
 
+The syntax is:
+
+```shell title="retry syntax"
+retry [flags] <command>
+```
+
+Where flags are optional arguments:
+
+- `--times` or `-t`: number of times to retry before giving up. Default is 3
+- `--sleep` or `-s`: wait interval between retries in seconds. Default is 0
+
+For example, to retry 5 times `bundle install` with a 10 second sleep use:
+
+```shell
+retry --times 5 --sleep 10 bundle install
+```
 
 ## sem-service {#sem-service}
 
 ## sem-version {#sem-version}
+
+The `sem-version` tool manages language and utilities versions in Ubuntu environments. It provides a quick and simple way to install and switch to a version of a command line tool or programming language.
+
+:::info
+
+sem-version does not work on [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+
+:::
+
+The syntax is:
+
+```shell title="sem-version syntax"
+sem-version <target> <version> [flags]
+```
+
+Where `<target>` is one of the following:
+
+- `elixir`
+- `erlang`
+- `go`
+- `java`
+- `kubectl`
+- `php`
+- `ruby`
+- `python`
+- `scala`
+- `node`
+
+The `<version>` depends on the target used. The command fails with non-zero exit code unless the `--ignore` or `-i` flag is supplied.
+
+For example, to download and use Go version 1.22:
+
+```shell
+sem-version go 1.22
+```
 
 ## See also
 
