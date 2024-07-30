@@ -296,6 +296,83 @@ For example, to retry 5 times `bundle install` with a 10-second sleep use:
 retry --times 5 --sleep 10 bundle install
 ```
 
+## sem-context {#sem-context}
+
+This tool can be used to share key-value data between Semaphore jobs. It enables communication between jobs and pipelines within the same workflow.
+
+:::note
+
+sem-context depends on [artifacts](../using-semaphore/artifacts) to store data.
+
+:::
+
+The syntax is:
+
+```shell title="sem-context syntax"
+sem-context <action> <key>[=value] [flags]
+```
+
+The possible actions are:
+
+- `put`: store a key-value pair
+- `get`: retrieve a value for a key
+- `delete`: delete a key
+
+The following limitations apply to keys and values:
+
+- keys is a alphanumerical string (`-` and `_` are allowed) of length 3 to 256 characters
+- value is a string up to 20KB in size
+
+Possible flags are:
+
+- `--ignore-failure` forces the tool to exit with exit status 0 on failure
+- `--force` overwrites existing keys
+- `--fallback <value>` provides a default value for the get action if the key is not present
+
+### put key {#sem-context-put}
+
+The following example stores the version number with the key `ReleaseVersion`.
+
+```shell
+sem-context put ReleaseVersion=1.2.3
+```
+
+Exit status codes:
+
+- 0: key-value saved successfully
+- 1: key already exists
+- 2: connection to the artifacts server failed
+- 3: invalid format for key or value
+
+### get key {#sem-context-get}
+
+The following example retrieves the version number using the key `ReleaseVersion`.
+
+```shell
+$ sem-context get ReleaseVersion
+1.2.3
+```
+
+Exit status codes:
+- 0: key retrieved successfully
+- 1: key not found
+- 2: connection to the artifacts server failed
+- 3: invalid key format
+
+### delete key {#sem-context-delete}
+
+The following example deletes the version value using the key `ReleaseVersion`.
+
+```shell
+sem-context delete ReleaseVersion
+```
+
+Exit status codes:
+- 0: key deleted successfully
+- 1: key not found
+- 2: connection to the artifacts server failed
+- 3: invalid key format
+
 ## sem-service {#sem-service}
 
 The `sem-service` tool manages databases and other useful services in Ubuntu-based environments. 
