@@ -41,7 +41,7 @@ You can get an API token on your [account page](https://me.semaphoreci.com/accou
 The general syntax of the `sem` utility is:
 
 ```shell
-sem <command> <resource> <name> [flags]
+sem <command> <resource-type> <resource-name> [flags]
 ```
 
 The supported commands are:
@@ -190,246 +190,243 @@ Relative paths are mounted relative to the agent's service account home director
 
 :::
 
-### sem edit
+### sem edit {#sem-edit}
 
-The `sem edit` command works for `projects`, `secrets`, `notifications`,
-`dashboards` and `deployment-targets` and allows you to edit the YAML representation of these resources
-using your configured text editor.
+The `sem edit` command works with the same resources as [`sem create`](#sem-create), except jobs. In other words, `sem edit` does not support editing jobs.
 
-The `sem edit` command does not support the `job` resource type.
-
-#### sem edit examples
-
-The following command will edit an existing `secret` that is named `my-secret` by overwriting it,
-and will automatically run your configured text editor:
+The syntax is:
 
 ```shell
-sem edit secret my-secret
+sem edit <resource-type> <resource-name>
 ```
 
-If the secret is on the project `my-project` level you can edit it with the following command:
+The tool retrieves the resource YAML definition and opens it on an editor. Once you exit the editor, the updated configuration is applied to the resource.
 
-```bash
-sem edit secret -p my-project my-secret
-```
-
-A YAML representation of the `my-secret` secret should appear on your screen.
-
-Similarly, the next command will edit a `dashboard` named `my-activity`:
+For example:
 
 ```shell
+sem edit secret mysecret
+```
+
+You can add the `-p <project-name>` argument to edit project-level secrets.
+
+The following examples show how to edit other types of resources
+
+```shell
+# edit a dashboard
 sem edit dashboard my-activity
-```
 
-To edit a `project` with the name `my-project`, use the following command:
-
-```shell
+# edit a project
 sem edit project my-project
+
+# edit a deployment target
+sem edit deployment-target my-target -p my-project
 ```
 
-To modify a `deployment-target` named `my-dt`, which is associated with the project `my-project`,
-execute the following command:
+### sem get {#sem-get}
+
+The `sem get` command can retrieve all resources of a given type. 
+
+The syntax is:
 
 ```shell
-sem edit deployment-target my-dt -p my-project
+sem get <resource-type>
 ```
 
-### sem get
-
-The `sem get` command can do two things. First, it can return a list of items
-for a given resource type that can be found in the active organization. This
-option requires a command line argument, which is the resource type. Second, it
-can return analytical information for a given resource. In this case, you
-should provide `sem get` with the type of the resource and the name of the
-resource that interests you, in that exact order.
-
-For the first case, `sem get` can be used as follows:
+For example, this retrieves a list of all secrets in the organization:
 
 ```shell
-sem get [RESOURCE]
+$ sem get secret
+NAME                            AGE
+dockerhub                        2d
+sshkeys                         10d
+my-secret                      100d
 ```
 
-For the second case, `sem get` should be used as follows:
+You can view project-level secrets with:
 
 ```shell
-sem get [RESOURCE] [name]
+sem get secret -p <project-name>
 ```
 
-In the case of a `job` resource, you should give the Job ID of the job that
-interests you and **not** its name.
-
-#### sem get examples
-
-As the `sem get` command works with resources, you will need to specify a
-resource type each time you issue a `sem get` command.
-
-So, in order to get a list of the available projects for the current user
-within the active organization, you should execute the following command:
+To see all projects in the organization:
 
 ```shell
-sem get project
+$ sem get project
+NAME                                 REPOSITORY
+semaphore-demo-python-notebooks      git@github.com:TomFern/semaphore-demo-python-notebooks.git
+semaphore-demo-scala-play            git@github.com:semaphoreci-demos/semaphore-demo-scala-play.git
+semaphore-demo-workflows             git@github.com:semaphoreci-demos/semaphore-demo-workflows.git
+semaphore-flutter-example            git@github.com:semaphoreci-demos/semaphore-flutter-example.git
 ```
 
-Similarly, the next command returns a list of the names of the available
-secrets for the current user within the active organization:
+### sem get resource-name {#sem-get-details}
+
+You can use the `sem get` command to get details about a particular resource. The syntax is:
 
 ```shell
-sem get secret
+sem get <resource-type> <resource-name>
 ```
 
-List of names of project-level secrets can be obtained by appending 
-the project name flag to the previous command:
-
-```bash
-sem get secret -p my-project
-```
-
-Each entry is printed on a separate line, which makes the generated output
-suitable for being further processed by traditional UNIX command line tools.
-
-Additionally, you can use `sem get` to display all running jobs:
+For example, this retrieves the project details for the project `hello-semaphore`:
 
 ```shell
-sem get jobs
+$ sem get project hello-semaphore
+apiVersion: v1alpha
+kind: Project
+metadata:
+  name: hello-semaphore
+  id: a2ba1008-afc9-4326-b994-58fb816fc4d5
+  description: ""
+spec:
+  visibility: public
+  repository:
+    url: git@github.com:semaphoreci-demos/hello-semaphore.git
+    run_on:
+    - tags
+    - branches
+    pipeline_file: .semaphore/semaphore.yml
+    status:
+      pipeline_files:
+      - path: .semaphore/semaphore.yml
+        level: pipeline
+    whitelist:
+      branches: []
+      tags: []
+    integration_type: github_app
+  tasks:
+  - name: Audit task
+    description: ""
+    scheduled: true
+    id: ef84157f-0e23-42dc-aaf0-df6875919e78
+    branch: setup-semaphore
+    at: 0 0 * * *
+    pipeline_file: .semaphore/semaphore.yml
+    status: ACTIVE
 ```
 
-Last, you can use `sem get jobs` with `--all` to display the more recent jobs
-of the current organization, both running and finished:
+### sem apply {#sem-apply}
+
+The `sem apply` command works exactly like [`sem create`](#sem-create), except it allows you to update an existing resource.
+
+The syntax is:
 
 ```shell
-sem get jobs --all
+sem apply -f <resource-file>
 ```
 
-In order to find out more information about a specific project, named `docs`,
-you should execute the following command:
+You must provide the path to the updated YAML resource file using `-f <resource.yaml>` or `--file <resource.yaml>`.
+
+### sem delete {#sem-delete}
+
+The `sem delete` command deletes resources. It can work on all the same resource types as [`sem create`](#sem-create), with the exception of jobs. In other words, `sem delete` cannot delete jobs.
+
+The syntax is:
 
 ```shell
-sem get project docs
+sem delete <resource-type> <resource-name>
 ```
 
-Similarly, in order to find out the list of environment variables and files in a `secret`, named `mySecrets`,
-you should execute the following command:
-
-```shell
-sem get secret mySecrets
-```
-
-You can also use `sem get` for displaying information about a `dashboard`:
-
-```shell
-sem get dashboard my-dashboard
-```
-
-In order to find more information about a specific job using its Job ID
-(either running or finished), you should execute the following command:
-
-```shell
-sem get job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40
-```
-
-### sem apply
-
-The `sem apply` command works for `projects`, `secrets`, `dashboards`, `notifications` and `agent_types`, and allows you to
-update the contents of an existing resource using an external
-YAML file. `sem apply` is used with the `-f` command
-line option followed by a valid path to a proper YAML file.
-
-#### sem apply example
-
-The following command will update the `my-secret` secret according to the
-contents of `aFile`, which must be a valid `secrets` YAML file:
-
-```shell
-sem apply -f aFile
-```
-
-If everything is OK with `aFile`, the output of the previous command will be as
-follows:
-
-```shell
-Secret 'my-secrets' updated.
-```
-
-This means that `my-secrets` was updated successfully.
-
-You can also use `sem apply -f` in the same manner to update an existing dashboard.
-
-### sem delete
-
-The `sem delete` command is used for deleting existing resources, i.e. Semaphore 2.0 projects, dashboards, and secrets.
-
-When you delete a secret, then that particular secret will disappear from the
-active organization, which will affect **all** the Semaphore 2.0 projects that are
-using it.
-
-When you use `sem delete` to delete a project, then that particular project is
-deleted from the active organization of the active user.
-
-Deleting a `dashboard` does not affect any Semaphore 2.0 projects.
-
-#### sem delete example
-
-In order to delete an existing project, named `be-careful`, from the current
-organization, execute the following command:
-
-```shell
-sem delete project be-careful
-```
-
-Similarly, you can delete an existing dashboard, named `my-dashboard`, as
-follows:
-
-```shell
-sem delete dashboard my-dashboard
-```
-
-Last, you can delete an existing secret, named `my-secret`, as follows:
+For example, this deletes the secret `my-secret`:
 
 ```shell
 sem delete secret my-secret
 ```
 
-The `sem delete` command does not work with `jobs`.
-
 ## Working with jobs
 
-The list of commands for working with `jobs` includes the `sem attach`,
-`sem logs`, `sem port-forward`, and `sem debug` commands. You can also
-use `sem create -f` to create a one-off job that is not part of a pipeline.
+This section describes in detail how to create, edit, and debug jobs using the Semaphore CLI.
 
-Additionally, you can use the `sem get` command to get a list of all
-jobs or getting a description of a particular job.
+### sem get job {#sem-get-job}
 
-The `sem get jobs` command returns a list of all running jobs.
+You can use the `sem get` command to view running jobs.
 
-The `sem get jobs --all` command returns a list of all recent jobs of the
-current organization, both running and finished.
-
-The `sem stop` command allows you to stop a running job or entire pipeline.
-
-### Creating one-off jobs
-
-You can use `sem create -f` to create a one-off job that runs without being
-part of an existing pipeline. You must provide `sem create -f` with a valid
-YAML file, as described in the
-[Jobs YAML Reference page](https://docs.semaphoreci.com/reference/jobs-yaml-reference/).
-
-This can be very useful for checking out things like compiler versions and
-package availability before adding a command into a bigger and slower pipeline.
-
-When a job is created this way, it cannot be viewed in the Semaphore 2.0 UI.
-The only way to see the results of such a job is with the `sem logs` command.
-
-#### One-off job creation example
+The syntax is:
 
 ```shell
-sem create -f /tmp/aJob.yml
+$ sem get jobs
+ID                                     NAME          AGE   STATE     RESULT
+7f3b9a52-8ad6-4adc-9d0a-7ed91d31df86   Compilation   9s    RUNNING   NONE
 ```
 
-The previous command creates a new job based on the contents of
-`/tmp/aJob.yml`, which are as follows:
+To view the most recent jobs, even if they are no longer running:
 
-``` yaml
+```shell
+$ sem get jobs --all
+sem get jobs --all
+ID                                     NAME                                                         AGE   STATE      RESULT
+8c7800ed-8f97-4124-8a95-08669af9b0c8   Job #1                                                       30s   FINISHED   PASSED
+767b0e41-a56a-4553-afd3-c2f102438f52   Job #1                                                       35s   FINISHED   PASSED
+7f3b9a52-8ad6-4adc-9d0a-7ed91d31df86   Compilation                                                  45s   FINISHED   PASSED
+5dc508b9-9f93-4769-9fdf-80e81e1c5e42   Debug Session for Job 17c008c8-68d7-48aa-95d6-456d1b013ebd   2h    FINISHED   STOPPED
+d593f1e2-c68f-48a4-b3c8-3310fe9c0e93   Job #1                                                       2h    FINISHED   PASSED
+```
+
+In order to view details about a specific job, provide the job ID as shown in `sem get job`. For example:
+
+```shell
+$ sem get job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40
+apiVersion: v1alpha
+kind: Job
+metadata:
+  name: 'Job #1'
+  id: 8c7800ed-8f97-4124-8a95-08669af9b0c8
+  create_time: 1722352753
+  update_time: 1722352757
+  start_time: 1722352755
+  finish_time: 1722352757
+spec:
+  agent:
+    machine:
+      type: e1-standard-2
+      os_image: ubuntu2004
+  project_id: a2ba1008-afc9-4326-b994-58fb816fc4d5
+status:
+  state: FINISHED
+  result: PASSED
+  agent:
+    ip: 195.201.62.241
+    name: ""
+    ports:
+    - name: ssh
+      number: 40004
+```
+
+### sem stop job {#sem-stop-job}
+
+You can stop running jobs with `sem stop job`. You need to supply the job ID as explained in [`sem get job`](#sem-get-job).
+
+The syntax is:
+
+```shell
+sem stop job <job-id>
+```
+
+For example:
+
+```shell
+sem stop job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40
+```
+
+### Create one-off jobs {#sem-creat-job}
+
+To create a one-off job, use `sem create` and supply the the job spec using the [Job YAML reference](./job-yaml).
+
+The syntax is:
+
+```shell
+sem create -f <job-specification.yaml>
+```
+
+:::info
+
+One-off jobs are not shown in the Semaphore UI. They can only be viewed and managed using the Semaphore CLI.
+
+:::
+
+For example, to create a job that outputs the Go version in the agent, we can use this job definition:
+
+```yaml title="my-job.yaml"
 apiVersion: v1alpha
 kind: Job
 metadata:
@@ -443,37 +440,54 @@ spec:
   project_id: 7384612f-e22f-4710-9f0f-5dcce85ba44b
 ```
 
-The value of `project_id` must be valid or the `sem create -f` command will
+To run it, we execute:
+
+```shell
+sem create -f my-job.yaml
+```
+
+:::note
+
+The value of `project_id` must be valid or the command will fail.
 fail.
 
-The output of the `sem create -f` command appears as follows:
+:::
+
+### sem attach {#sem-attach}
+
+The `sem attach` command allows you to connect a terminal to a running job using SSH. You can explore the state of the job and the agent while the job is running.
+
+The syntax is:
 
 ```shell
-Job '686b3ed4-be56-4e95-beee-b3bbcc3981b3' created.
+sem attach <job-id>
 ```
 
-### sem attach
+Where the job id is the one shown with [`sem get job`](#sem-get-job).
 
-The `sem attach` command allows you to connect to running jobs with an interactive SSH
-session. This allows you to explore and inspect the state of a job.
+:::note
 
-When the job ends, the SSH session will automatically end and the SSH
-connection will be closed.
+`sem attach` has a different behavior in [self-hosted agents](../using-semaphore/self-hosted#debug)
 
-If you want to debug finished jobs, use `sem debug jobs [job-id]`.
+:::
 
-#### sem attach example
+### sem debug {#sem-debug}
 
-The `sem attach` command requires the *Job ID* of a **running** job as its single
-parameter. So, the following command will connect to the environment of the
-job with Job ID `6ed18e81-0541-4873-93e3-61025af0363b` using SSH:
+The `sem debug` command allows you to connect a terminal to a finished job. You can re-run the job interactively using a SSH session to debug a problem.
+
+The syntax is:
 
 ```shell
-sem attach 6ed18e81-0541-4873-93e3-61025af0363b
+sem debug <job-id>
 ```
 
-The job with the given Job ID must be in running state at the time of
-execution of `sem attach`.
+Where the job id is the one shown with [`sem get job`](#sem-get-job).
+
+:::note
+
+`sem debug` has a different behavior in [self-hosted agents](../using-semaphore/self-hosted#debug)
+
+:::
 
 ### sem logs
 
