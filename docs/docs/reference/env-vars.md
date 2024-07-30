@@ -559,14 +559,23 @@ This section describes the special variables available during the [initializatio
 ### Input file {#input-file}
 
 - **Environment variable**: `INPUT_FILE`
+- **Default value**: `.semaphore/semaphore.yml`
 
 The path to the input pipeline file during the initialization job.
 
 ### Output file {#output-file}
 
 - **Environment variable**: `OUTPUT_FILE`
+- **Default value**: `.semaphore/semaphore.yml.output.yml`
 
 The path to the output pipeline file during the initialization job. This file is used by Semaphore to lay out the jobs for the pipeline.
+
+### Logs file {#logs-file}
+
+- **Environment variable**: `LOGS_FILE`
+- **Default value**: `.semaphore/semaphore.yml.logs.jsonl`
+
+The path to the log file during the initialization job.
 
 ## See also
 

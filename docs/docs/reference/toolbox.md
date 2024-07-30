@@ -473,9 +473,21 @@ sem-version go 1.22
 
 ## spc {#spc}
 
-??
+The [Semaphore Pipeline Compiler](https://github.com/semaphoreci/spc) (SPC) is used during [initialization jobs](../using-semaphore/pipelines#init-job) to process runtime values in input pipelines. It generates an output pipeline that is used for the workflow execution.
 
-https://github.com/semaphoreci/spc
+:::note
+
+spc is called automatically by Semaphore during initialization.
+
+:::
+
+The syntax is:
+
+```shell title="spc syntax"
+spc compile --input <input-pipeline-file> --output <output-pipeline-file> --logs <logs-file>
+```
+
+The tool evaluates [`change_in`](./conditions-dsl#change-in) arguments and outputs the result of each match condition.
 
 ## test-results {#test-results}
 
