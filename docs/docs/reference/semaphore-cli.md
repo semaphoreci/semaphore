@@ -701,7 +701,7 @@ spec:
             - "#secops-team"
 ```
 
-See [Notifications YAML reference](./notifications) for more details.
+See [Notifications YAML reference](./notifications-yaml) for more details.
 
 ## Working with pipelines
 
@@ -839,76 +839,83 @@ The output of `sem rebuild workflow` command is a new workflow id and a new pipe
 
 ## Working with self-hosted agents
 
-### Listing agent types
+This section describes in detail how to create, edit, and viewing [self-hosted agents](../using-semaphore/self-hosted) using the Semaphore CLI
 
-The `sem get agent_types` command returns the list of self-hosted agent types for a Semaphore
-organization.
+### sem get agent_types {#sem-get-agent-types}
 
-#### Listing agent types examples
+The `sem get agent_types` command returns the list of self-hosted agent types for a Semaphore organization.
 
-```bash
+The syntax is:
+
+```shell
 sem get agent_types
-sem get agenttypes
 ```
 
-### Listing agents
+### sem get agents {#sem-get-agents}
 
-The `sem get agents` command returns the list of self-hosted agents Semaphore organization. By default, it returns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
+The `sem get agents` command returns the list of self-hosted agents Semaphore organization.
 
-#### Listing agents examples
+The syntax is:
 
-```bash
-# Returns all agents in the organization, for all agent types
+```shell
 sem get agents
+```
 
-# Return agents only for the 's1-my-type' agent type
+Thisreturns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
+
+For example:
+
+```shell
 sem get agents s1-my-type
 ```
 
-### Describing an agent type
 
-Each agent type has its own unique name. Using that unique name you
-can find more information about that particular agent type using the following command:
+### sem get agent details {#sem-get-agent-types-details}
 
-```bash
-sem get agent_type [AGENT TYPE NAME]
+The `sem get agent` command can be used to view details on a specific self-hosted agents. You need to provide the unique agent name.
+
+The syntax is:
+
+```shell
+sem get agent_type <agent-name>
 ```
 
-#### Describing an agent type example
+### sem get agent_type details {#sem-get-agent-types-details}
 
-```bash
-$ sem get agent_type s1-my-agent-type
+The `sem get agent_type` command can be used to view details on a specific self-hosted agents.
+
+The syntax is:
+
+```shell
+sem get agent_type <agent-type-name>
 ```
 
-### Creating an agent type
+### sem create agent_type {#sem-create-agent-type}
 
-There are two ways you can use the CLI to create an agent type:
+The `sem create agent_type` command can be used to create a self-hosted agent type using the Semaphore CLI.
 
-- Using the `sem create agent_type` command, specifying all the parameters. You can check the available parameters with `sem create agent_type -h`.
-- Using the `sem create -f agent_type.yml` command, defining the agent type from a YAML file.
+There are two ways of creating a new agent type:
+- Command line arguments : passing arguments to the `sem create` command
+- Resource file: passing an [Agent Type YAML spec file](./agent-yaml.md)
 
-You can find more details about each parameter in the [Agent Types YAML Reference](/reference/agent-types-yaml-reference)
+To create an agent using command line arguments:
 
-#### Creating an agent type inline
+```shell
+sem create agent_type s1-my-type
+```
 
-```bash
-# This creates an agent type with all the default settings.
-# By default, --name-assignment-origin=assignment_origin_agent and --release-name-after=0.
-$ sem create agent_type s1-my-agent-type
+You can provide options to customize the agent:
 
-# If you want to create an agent type with --name-assignment-origin=assignment_origin_aws_sts,
-# you need to specify the --aws-account-id and --aws-roles parameters.
-$ sem create agent_type s1-my-agent-type \
+```shell
+sem create agent_type s1-my-agent-type \
   --name-assignment-origin assignment_origin_aws_sts \
   --aws-account-id 1234567890 \
   --aws-roles role1,role2
 ```
 
-#### Creating an agent type from YAML
+To create an agent using an Agent YAML resource, start with an spec:
 
-```bash
-# Define the agent type through a YAML file
-$ cat > agent_type.yml << EOF
+```yaml title="agent_type.yml"
 apiVersion: v1alpha
 kind: SelfHostedAgentType
 metadata:
@@ -920,40 +927,15 @@ spec:
     aws:
       account_id: 1234567890
       role_name_patterns: "role1,role2"
-EOF
-
-# Create the agent type
-$ sem create -f agent_type.yml
 ```
 
-### Updating an agent type
+Then use `sem create -f` to create the agent type. For example:
 
-You can use the [`sem apply`](#sem-apply) command to update an agent type:
-
-```bash
-# Save the current state of the agent type into a YAML file.
-$ sem get agent_type s1-example > my_agent_type.yml
-
-# Edit 'my_agent_type.yml' as you wish.
-$ vim my_agent_type.yml
-
-# Update the agent type.
-$ sem apply -f agent_type.yml
+```shell
+sem create -f agent_type.yml
 ```
 
-### Describing an agent
-
-Each agent has its own unique name. Using that unique name you can find more information about that particular agent using the following command:
-
-```bash
-sem get agent [AGENT NAME]
-```
-
-#### Describing an agent example
-
-```bash
-$ sem get agent tE77rxu2gHy2clIe4tHV
-```
+See [Agent Type YAML spec file](./agent-yaml.md) for more details.
 
 ## Working with deployment targets
 
