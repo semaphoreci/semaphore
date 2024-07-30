@@ -130,7 +130,7 @@ You can create, edit, and delete resources using the commands described in this 
 
 The `sem create` action creates new resources. 
 
-For the following resource types you need to supply the `-f <resource.yaml>` or `--file <resource.yaml> argument with a YAML file. The file spec is described in a dedicated reference page:
+For the following resource types you need to supply the `-f <resource.yaml>` or `--file <resource.yaml>` argument with a YAML file. The file spec is described in a dedicated reference page:
 
 - [Dashboards reference](./dashboard-yaml.md)
 - [Deployment targets reference](./deployment-target-yaml.md)
@@ -184,7 +184,7 @@ You can supply the `-p <project-name>` to create the secret as [project level se
 
 :::info
 
-Absolute paths for <agent_path_file> are mounted relative to the root on the agent's disk. So `/etc/hosts` is actually mounted at `/etc/hosts` in the agent's machine or container.
+Absolute paths for `<agent_path_file>` are mounted relative to the root on the agent's disk. So `/etc/hosts` is actually mounted at `/etc/hosts` in the agent's machine or container.
 
 Relative paths are mounted relative to the agent's service account home directory. So `.ssh/id_rsa` is mounted as `/home/semaphore/.ssh/id_rsa`.
 
@@ -939,221 +939,156 @@ See [Agent Type YAML spec file](./agent-yaml.md) for more details.
 
 ## Working with deployment targets
 
-This section offers a guide on how to handle deployment targets using the `sem` utility,
-starting from creating a new deployment target.
+This section describes in detail how to create, edit, and view [deployment targets](../using-semaphore/promotions#deployment-targets) using the Semaphore CLI.
 
-### Creating a deployment target
+### sem create dt {#sem-create-dt}
 
-To begin, you'll need to create a deployment target utilizing the `sem` utility.
+The `sem create dt` command can be used to create a deployment target.
 
-The simplest way to create a deployment target is by using the `sem create dt` command.
-This command will generate a deployment target with a specified name and link it to
-a particular project:
+The syntax is:
 
 ```shell
-sem create dt [name] --project-name [project-name]
+sem create dt <target-name> --project-name <project-name> [flags]
+# or
+sem create dt <target-name> --project-id <project-id> [flags]
 ```
 
-When creating a new deployment target with the `sem create dt` command, you don't need
-to utilize all the command line options. However, the project must be defined, either
-by supplying the project's ID using `--project-id` (short `-i`) or by providing
-the project's name using `--project-name` (`-p`).
+Optional flags are:
 
-Additional parameters that can be specified include `--desc` (or `-d`) for
-the deployment target's description, `--url` (`-u`) for the URL, `--bookmark` (`-b`)
-to set a maximum of three bookmarks, `--file` (`-f`) to supply files, `--env` (`-e`)
-to allocate environment variables to the deployment target, `--subject-rule` (`-s`)
-for subject rules, and `--object-rule` (`-o`) for object rule assignment.
+- `--desc <description>` (`-d`): a description for the target
+- `--url <URL>` (`-u`): the URL of the deployed application
+- `--bookmark <bookmark>` (`-b`): up to 3 bookmarks for the target
+- `--file <local-path>:<mount-path>` (`-f`): files to be imported as secrets in the deployment target pipeline
+- `--env <VAR=VALUE>`(`-e`): environment variables imported as secrets in the deployment target pipeline
+- `--subject-rule <TYPE>,<SUBJECT-ID>` (`-s`): subject rules assignment
+- `--object-rule <TYPE>,<MODE>,<PATTERN>` (`-o`): object rules assignment
 
-Files should be provided using the format `-f <local-path>:<mount-path>`. Environment
-variables can be assigned using `-e VAR=VALUE`.
+For subject rule assignment, the `<TYPE>` can be one of the following:
 
-For subject rules, use the format `-s TYPE,SUBJECT-ID`, where `TYPE` can be either `ANY`,
-`ROLE`, or `USER`. The `SUBJECT-ID` is either the name of the role or the UUID of the user.
+- `ANY`
+- `ROLE`
+- `USER`
 
-Object rules should follow the format `-o TYPE,MODE,PATTERN`. Here, `TYPE` can be `BRANCH`,
-`PR`, or `TAG`. `MODE` could be `ALL`, `EXACT`, or `REGEX`, and `PATTERN` represents
-the string used for name matching.
+The `<SUBJECT-ID>` is either the name of the role or the UUID of the user.
 
-Example:
-```shell
-sem create dt myDTName -p testProject -d "DT description" -u "myurl321.zyx" -b "book 1" \
-        -b "book 2" -f /home/dev/app/server.conf:/etc/my.conf -e X=123 \
-        -s ROLE,admin -o branch,exact,main
-```
+For object rule assignment, the `<TYPE>` can be one of the following:
 
-### Listing deployment targets
+- `BRANCH`
+- `PR`
+- `TAG`
 
-You can list all the deployment targets within your project with the command
-`sem get dt -p [project-name]` or `sem get dt -i [project-id]`:
+Mode can be one of the following:
 
-```shell
-sem get dt -p [projectName]
-```
+- `ALL`
+- `EXACT`
+- `REGEX`
 
-### Describing a deployment target
+And the `<PATTERN>` represents the string to be used for name matching.
 
-You can acquire detailed information about a deployment target using the `sem get dt`
-command followed by the target's UUID, or by specifying the deployment target's name
-and project name or project ID.
+For example with all the options:
 
 ```shell
-sem get dt [ID]
-sem get dt [dt-name] -p [project-name]
-sem get dt [dt-name] -i [project-id]
+sem create dt <target-name> \
+  -p <project-name> \
+  -d "A description for the target" \
+  -u "myurl321.zyx" \
+  -b "bookmark 1" \
+  -b "bookmark 2" \
+  -f /home/dev/app/server.conf:/etc/my.conf \
+  -e X=123 \
+  -s ROLE,admin \
+  -o branch,exact,main
 ```
 
-The output will be a YAML file that describes the deployment target. To understand more
-about Deployment Targets YAML syntax, visit the [Deployment Targets YAML reference](/reference/deployment-targets-yaml-reference)
-page.
+### sem get dt {#sem-get-dt}
 
-### Retrieving deployment history
-
-To retrieve deployment history for a specific deployment target you can use the
-`sem get dt` command with `--history` (`-s`) parameter.
+You can list all the deployment targets for a project with:
 
 ```shell
-sem get dt [ID] --history
-sem get dt [dt-name] -p [project-name] -s
-sem get dt [dt-name] -i [project-id] -s
+sem get dt --project-name <project-name>
+# or
+sem get dt --project-id <project-id>
 ```
 
-The output will be list of deployments for the provided deployment target.
-
-### Editing a deployment target
-
-Use the `sem edit dt` command followed by the UUID of the deployment target, or
-the target's name and project name or project ID, to edit a deployment target:
+To view the details of a given deployment target:
 
 ```shell
-sem edit dt [UUID]
-sem edit dt [dt-name] -p [project-name]
-sem edit dt [dt-name] -i [project-id]
+sem get dt <deployment-target-id>
 ```
 
-The `sem edit dt` command will open your configured text editor. Ensure that you save
-the changes and close your text editor for the modifications to take effect.
+The output is a YAML file that describes the deployment target. See [Deployment Targets YAML reference](./deployment-target-yaml).
 
-You can also deactivate an active deployment target using the `--deactivate` (`-d`) parameter:
+### sem get dt history {#sem-get-dt-history}
+
+You can retrieve the deployment history for a specific deployment target with the `--history` or `-s` parameter.
+
+The syntax is:
 
 ```shell
-sem edit dt [UUID] -d
-sem edit dt [UUID] --deactivate
-sem edit dt [dt-name] -p [project-name] -d
-sem edit dt [dt-name] -i [project-id] --deactivate
+sem get dt <deployment-target-id> --history
+sem get dt <target-id> --project-name <project-name> --history
+sem get dt <target-id> --project-id <project-id> --history
 ```
 
-You can similarly activate previously deactivated target, using the `--activate` (`-a`) parameter.
+The output is a list of deployments with their IDs for the provided deployment targets.
 
-### Deleting a deployment target
+### sem edit dt {#sem-edit-dt}
 
-To remove a deployment target, use the `sem delete dt` command followed by
-the UUID of the target you wish to delete.
+The `sem edit dt` command is used to edit an existing deployment target.
+
+The syntax is:
 
 ```shell
-sem delete dt [UUID]
+sem edit dt <target-name> --project-name <project-name>
+# or
+sem edit dt <target-name> --project-id <project-id>
 ```
 
-#### Example use cases for deployment targets
+This opens a text editor with the YAML spec. After closing the file, the new changes are updated.
 
-This section provides `sem` command examples for handling deployment targets.
-
-You can create a new deployment target named `my-dt` and assign it to a project
-named `my-proj` (provided such a project has been created) as follows:
+You can also edit the deployment target using its id with:
 
 ```shell
-sem create deployment-target my-dt -p my-proj
+sem edit dt <target-id>
 ```
 
-To view all deployment targets associated with your `my-proj` project, including
-your newly created target, use the following command:
+The `<target-id>` is obtained with [sem get dt](#sem-get-dt).
+
+In addition, you can supply the `--activate` (`-a`) or `--deactivate` (`-d`) option to activate or deactivate the deployment target.
+
+For example:
 
 ```shell
-sem get dt -p my-proj
-
+sem edit dt my-deployment-target --project-name my-project --deactivate
 ```
 
-To get further details about your created target, use:
+### sem delete dt {#sem-delete-dt}
+
+The `sem delete dt` to delete a deployment target.
+
+The syntax is:
 
 ```shell
-sem get dt my-dt -p my-proj
+sem delete dt <target-id>
 ```
 
-To edit your target using your configured editor, execute:
+The `<target-id>` is obtained with [sem get dt](#sem-get-dt).
+
+## Troubleshooting resources {#troubleshoot}
+
+The `sem troubleshoot` command can help you troubleshoot problems with any of the supported resources.
+
+The syntax is:
 
 ```shell
-sem edit dt my-dt -p my-proj
+sem troubleshoot <RESOURCE_TYPE> <RESOURCE_ID>
 ```
 
-After saving your changes and closing the editor, the updated deployment target
-can be verified by retrieving it again.
+The command returns vital information about the resource in YAML format containing IDs, timestamps and debugging information that the support staff might need to help you resolve your issues.
 
-If you assign your deployment target to a promotion and trigger that promotion,
-you can later view the history of the deployments using:
+For example:
 
 ```shell
-sem get dt my-dt -p my-proj --history
-```
-
-You can deactivate the deployment target using:
-
-```shell
-sem edit dt my-dt -p my-proj -d
-```
-
-Or reactivate it later with:
-
-```shell
-sem edit dt my-dt -p my-proj -a
-```
-
-Finally, you can delete the deployment target by replacing the UUID below with
-the UUID of the target you wish to remove:
-
-```shell
-sem delete dt 0d4d4184-c80a-4cbb-acdd-b75e3a03f795
-```
-
-
-## Help commands
-
-The last group of `sem` commands includes the `sem help`, `sem troubleshoot` and `sem version`
-commands, which are help commands.
-
-### sem help
-
-The `sem help` command returns information about an existing command when it is
-followed by a valid command name. If no command is given as a command line
-argument to `sem help`, a help screen is displayed.
-
-#### sem help example
-
-The output of the `sem help` command is static and identical to the output of
-the `sem` command when executed without any command line arguments.
-
-Additionally, the `help` command can be also used as follows (the `connect`
-command is used as an example here):
-
-```shell
-sem connect help
-```
-
-In this case, `help` will generate information about the use of the
-`sem connect` command.
-
-### sem troubleshoot
-
-The `sem troubleshoot` command has the following form:
-
-```
-sem troubleshoot [RESOURCE_TYPE] [RESOURCE_ID]
-```
-
-It can be used to gather information about a workflow, pipeline or job. The output of the command is a YAML containing IDs, timestamps, and other information that you can copy and paste in a support case. That helps the support and engineering teams to troubleshoot issues faster.
-
-#### sem troubleshoot example
-
-```bash
 # This returns information about a workflow
 sem troubleshoot workflow 4a7b869d-9cb3-4818-944a-e67c9009a188
 
@@ -1164,115 +1099,30 @@ sem troubleshoot pipeline ece6ee2a-f2a0-488c-a1c0-7d26bfdd254a
 sem troubleshoot job 3c70699a-b2bb-411b-a9ae-24b049d19308
 ```
 
-### sem version
+## Changing the text editor {#editor}
 
-The `sem version` command requires no additional command line parameters and
-returns the current version of the `sem` tool.
+The `sem edit` command opens a text editor so you can modify resources. The editor program can be customized in the following ways:
 
-#### sem version example
-
-The `sem version` command displays the used version of the `sem` tool. As an
-example, if you are using `sem` version 0.4.1, the output of `sem version`
-will be as follows:
-
-```shell
-$ sem version
-v0.8.17
-```
-
-Your output might be different.
-
-Additionally, the `sem version` command cannot be used with the `-f` flag and
-does not create any additional output when used with the `-v` flag.
-
-## Flags
-
-### The --help flag
-
-The `--help` flag, which can also be used as `-h`, is used for getting
-information about a `sem` command or `sem` itself.
-
-### The --verbose flag
-
-The `--verbose` flag, which can also be used as `-v`, displays verbose
-output – you will see the interaction and the data exchanged between
-`sem` and the Semaphore 2.0 API.
-
-This flag is useful for debugging.
-
-### The -f flag
-
-The `-f` flag allows you to specify the path to the desired YAML file that will
-be used with the `sem create` or `sem apply` commands.
-
-Additionally, `-f` can be used for creating new `secrets` with multiple files.
-
-Last, the `-f` flag can be used as `--file`.
-
-### The --all flag
-
-The `--all` flag can only be used with the `sem get jobs` command in order to
-display the most recent jobs of the current organization, both running and
-finished.
-
-### Defining an editor
-
-The `sem` utility chooses which editor to use according to the process shown below:
-
-- Using the value of the `editor` property. This value can be set using the
-    `sem config set editor` command.
-- From the value of the `EDITOR` environment variable, if one is set.
-- If none of the above exists, `sem` will try to use the `vim` editor.
-
-#### The `sem config set editor` command
-
-You can define that you want to use the `nano` editor for editing Semaphore
-resources by executing the following command:
-
-```shell
-sem config set editor nano
-```
-
-#### The EDITOR environment variable
-
-The `EDITOR` environment variable offers a way of defining the editor that
-will be used with the session of the `sem edit` command.
-
-You can check whether the `EDITOR` environment variable is set on your UNIX
-machine by executing the following command:
-
-```shell
-echo $EDITOR
-```
-
-If the output is an empty line, then then `EDITOR` environment variable is not
-set. You can set it to the `nano` editor using the following command:
-
-```shell
-$ export EDITOR=nano
-$ echo $EDITOR
-nano
-```
-
-The `sem` utility also supports custom flags in the `EDITOR` environment
-variable, e.g. `EDITOR="subl --wait"`.
+- `sem config`: for example by running `sem config set editor nano`
+- Environment variables: with `$EDITOR` variable in your shell session, e.g. `export EDITOR=nano`
+- Default editor: the default editor is `vim`
 
 ## Command aliases
 
-The words of each line that follows, which represent resource types, are
-equivalent:
+The Semaphore CLI supports the following aliases for these resources:
 
-- `project`, `projects`, and `prj`
-- `dashboard`, `dashboards`, and `dash`
-- `secret` and `secrets`
-- `job` and `jobs`
-- `notifications`, `notification`, `notifs`, and `notif`
-- `pipelines`, `pipeline`, and `ppl`
-- `workflows`, `workflow`, and `wf`
-- `deployment-target`, `deployment-targets`, `dt`, `dts`, `deployment` and `deployments`
+| Resource | Aliases |
+|--|--|
+| `project` | `projects`, `prj` |
+| `dashboard` | `dashboards`, `dash` |
+| `secret` | `secrets` |
+| `job` | `jobs` |
+| `notification` | `notifications`, `notifs`, `notif` |
+| `pipeline` | `pipelines`, `ppl` |
+| `workflow` | `workflows`, `wf` |
+| `deployment-target` | `deployment-targets`, `dt`, `dts`, `deployments`, `deployment` |
 
-As an example, the following three commands are equivalent and will return the
-same output:
+As an example, the following three commands are equivalent:
 
 ```shell
 sem get project
@@ -1280,247 +1130,12 @@ sem get prj
 sem get projects
 ```
 
-
----
-
-## sem-edit {#sem-edit}
-
-## Debug projects {#debug-project}
-
-## Debug jobs {#debug-job}
-
-
-## Set up notifications {#notifications}
-
-You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
-
-To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli).
-
-Next, create a YAML resource:
-
-```yaml title="notify.yml"
-# Slack notification for failures
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: notify-on-fail
-spec:
-  rules:
-    - name: "Example"
-      filter:
-        projects:
-          - example-project
-        results:
-          - failed
-          - stopped
-          - canceled
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/services/xxx/yyy/zzz
-```
-
-You can create a notification using the file above with the following command:
-
-```shell
-sem create -f notify.yml
-```
-
-The available values for `filter.results` are:
-
-- `passed`
-- `failed`
-- `stopped`
-- `canceled`
-
-Here is a more comprehensive example sending notifications to two teams:
-
-```yaml title="notify.yml"
-# release-cycle-notifications.yml
-
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: release-cycle-notifications
-spec:
-  rules:
-    - name: "On staging branches"
-      filter:
-        projects:
-          - /.*/
-        branches:
-          - staging
-        results:
-          - passed
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
-          channels:
-            - "#qa-team"
-
-    - name: "On master branches"
-      filter:
-        projects:
-          - /.*/
-        branches:
-          - master
-      notify:
-        slack:
-          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
-          channels:
-            - "#devops-team"
-            - "#secops-team"
-```
-
-You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
-
-To create an advanced notification, install and connect the [Semaphore command line](../reference/semaphore-cli)
-
-Next, create a YAML resource:
-
-```yaml title="notify.yml"
-# webhook notification on failure
-apiVersion: v1alpha
-kind: Notification
-metadata:
-  name: notify-on-fail
-spec:
-  rules:
-    - name: "Example"
-      filter:
-        projects:
-          - example-project
-        results:
-          - failed
-          - stopped
-          - cancelled
-      notify:
-        webhook:
-          endpoint: https://example.org/postreceiver
-```
-
-You can create a notification using the file above with the following command:
-
-```shell
-sem create -f notify.yml
-```
-
-The available values for `filter.results` are:
-
-- `passed`
-- `failed`
-- `stopped`
-- `canceled`
-
 ## See also
 
----
-
-# FRAGMENTS
-
-## Resource breakdown {#resources}
-
-This section explains
-
-You can use `sem` to manipulate eight types of Semaphore resources: dashboards,
-jobs, notifications, projects, pipelines, workflows, secrets and deployment targets.
-Most resource related operations require either a valid resource name or an ID.
-
-#### Dashboards
-
-A Semaphore 2.0 `dashboard` is a place when you can keep the `widgets` that you
-define in order to manage the operations of your current Semaphore 2.0
-organization.
-
-A `widget` is used for following the activity of pipelines and workflows,
-according to specific criteria defined using filters that help you
-narrow down the displayed information.
-
-As with `secrets`, each `dashboard` is associated with a given
-organization. Therefore, in order to view a specific `dashboard`, you must be
-connected to the organization to which the `dashboard` belongs.
-
-#### Jobs
-
-A `job` is the only Semaphore 2.0 entity that can be executed in a Virtual
-Machine (VM). You cannot have a pipeline without at least one `job`.
-
-The `jobs` of Semaphore 2.0 pipelines are independent from each other because they
-run in completely different Virtual Machines.
-
-#### Notifications
-
-A notification offers a way to send messages to one or more Slack
-channels or users. Notifications are delivered on the success or failure of a
-pipeline. Notification rules contain user-defined criteria and filters.
-
-A notification can contain multiple rules that are evaluated each time
-a pipeline ends, either successfully or unsuccessfully.
-
-#### Projects
-
-A project is the way Semaphore 2.0 organizes, stores, and processes
-repositories. As a result, each Semaphore 2.0 project has a direct relationship
-with a single repository.
-
-However, the same repository can be assigned to multiple Semaphore 2.0
-projects under different names. Additionally, the same project name can exist
-within multiple Semaphore 2.0 organizations, and deleting a Semaphore 2.0 project
-from an organization will not automatically delete it from the other
-organizations. Last, the related repository will
-remain intact after deleting a project from Semaphore 2.0.
-
-You can use the same project name in multiple organizations but you cannot
-use the same project name more than once within the same organization.
-
-#### Pipelines
-
-The smallest unit of scheduling and execution in Semaphore 2.0 is the **Job**.
-A `pipeline` is the Semaphore 2.0 entity where jobs are defined in order to be
-executed in a Virtual Machine.
-
-Each `pipeline` is defined using a YAML file. The YAML file of the initial
-pipeline is `.semaphore/semaphore.yml`. This value can be adjusted by [editing
-the project configuration](#changing-the-initial-pipeline-file).
-
-#### Workflows
-
-Put simply, a `workflow` is the execution of a Semaphore 2.0 project. Each
-workflow has its own Workflow ID that uniquely differentiates each workflow
-execution from other workflow executions.
-
-A `workflow` is composed of one or more `pipelines` depending on whether there
-are promotions or auto-promotions in the `workflow`. Therefore, a workflow
-should be viewed of as *a group of pipelines* or, more strictly, as a dynamically-configurable n-ary tree of pipelines.
-
-#### Secrets
-
-A `secret` is a bucket for keeping sensitive information in the form of
-environment variables and small files. Therefore, you can consider a `secret`
-to be a place where you can store small amounts of sensitive data such as
-passwords, tokens, or keys. Sharing sensitive data in a `secret` is both
-safer and more flexible than storing it using plain text files or environment
-variables that anyone can access.
-
-Each `secret` is associated with a single organization. In other words, a
-`secret` belongs to an organization. In order to use a specific `secret` you
-must be connected to the organization to which it belongs.
-
-Aditionally a `secret` can be associated with a single project. This is 
-called a project-level secret. In order to manage project-level secrets
-you must provide the project name or id of the associated project with 
-`-i` or `-p` flags, or use a different yaml `kind` described [here](/reference/secrets-yaml-reference).
-
-#### Deployment Targets
-
-The `deployment-targets` serve as stringent control mechanisms, allowing you to
-restrict **who** (person or a role) can trigger a promotion pipeline and on
-**which git reference** (branch, tag, and/or pull request).
-
-Each `deployment-target` is created within a single project and it can be linked
-with numerous [promotions](/essentials/deploying-with-promotions) within that project.
-To use `deployment-targets`, ensure your organization has this feature activated.
-
-For more comprehensive information, refer to our in-depth guide on
-[Deployment Targets](/essentials/deployment-targets).
-
-
+- [Jobs YAML reference](./jobs-yaml)
+- [Pipeline YAML reference](./pipeline-yaml)
+- [Projects YAML reference](./project-yaml)
+- [Secret YAML reference](./secret-yaml)
+- [Deployment targets YAML reference](./deployment-target-yaml)
+- [Agents YAML reference](./agent-yaml)
+- [Notifications YAML reference](./notifications-yaml)
