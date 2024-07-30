@@ -408,7 +408,23 @@ For example:
 sem stop job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40
 ```
 
-### Create one-off jobs {#sem-creat-job}
+### sem stop pipeline {#sem-stop-pipeline}
+
+You can stop running jobs with `sem stop pipeline`. You need to supply the pipeline ID. This stops all running jobs in the pipeline.
+
+The syntax is:
+
+```shell
+sem stop pipeline <pipeline-id>
+```
+
+For example:
+
+```shell
+sem stop pipeline ea3e6bba-d19a-45d7-86a0-e78a2301b616
+```
+
+### Create one-off jobs {#sem-create-job}
 
 To create a one-off job, use `sem create` and supply the the job spec using the [Job YAML reference](./job-yaml).
 
@@ -483,131 +499,64 @@ sem debug <job-id>
 
 Where the job id is the one shown with [`sem get job`](#sem-get-job).
 
+Once you are logged in, you can start the job commands interactively with:
+
+```shell
+source ~/commands.sh
+```
+
+The duration of the SSH session is limited to one hour. You can supply the `--duration` argument to change the limit. For example:
+
+```shell
+sem debug job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40 --duration 3h
+```
+
+You can define the duration using numeric values in the `XXhYYmZZs` format. For instance, 1 hour can be defined as `1h0m0s`, `1h`, or `60m`.
+
 :::note
 
 `sem debug` has a different behavior in [self-hosted agents](../using-semaphore/self-hosted#debug)
 
 :::
 
-### sem logs
+### sem logs {#sem-logs}
 
-The `sem logs` command allows you to see the log entries of a job, which is
-specified by its Job ID.
+The `sem logs` command allows you to see the output of a finished jog.
 
-The `sem logs` command works with both finished and running jobs.
-
-#### sem logs example
-
-The `sem logs` command requires the *Job ID* of a job as its parameter:
+The syntax is:
 
 ```shell
-sem logs 6ed18e81-0541-4873-93e3-61025af0363b
+sem logs <job-id>
 ```
 
-The last lines of the output of the previous command of a PASSED job should be
-similar to the following output:
+Where the job id is the one shown with [`sem get job`](#sem-get-job).
+
+### sem port-forward {#sem-port-forward}
+
+The `sem port-forward` command lets you forward a port in the agent to your local machine. This allows you to connect to services running on the machine for debugging.
+
+The syntax is:
 
 ```shell
-✻ export SEMAPHORE_JOB_RESULT=passed
-exit status: 0
-Job passed.
+sem port-forward <job-id> <local-port> <remote-port>
 ```
+Where the job id is the one shown with [`sem get job`](#sem-get-job).
 
-### sem port-forward
-
-The general form of the `sem port-forward` command is the following:
+For example, if we have a MySQL database running on the default port in the agent, we can forward it to our local machine on port 8000 with:
 
 ```shell
-sem port-forward [JOB ID of running job] [LOCAL TCP PORT] [REMOTE TCP PORT]
+sem port-forward 5c011197-2bd2-4c82-bf4d-f0edd9e69f40 8000 3306
 ```
 
-So, the `sem port-forward` command needs three command line arguments: the Job
-ID, the local TCP port number that will be used in the local machine, and
-the remote TCP port number, which is defined in the Virtual Machine (VM).
+:::note
 
-The `sem port-forward` command works with running jobs only.
+`sem port-forward` command works with running jobs only.
 
-#### sem port-forward example
-
-The `sem port-forward` command is executed as follows:
-
-```shell
-sem port-forward 6ed18e81-0541-4873-93e3-61025af0363b 8000 8080
-```
-
-The previous command tells `sem` to forward the network traffic from the TCP
-port 8000 of the job with job ID `6ed18e81-0541-4873-93e3-61025af0363b` that is
-running in a VM to TCP port 8080 of your local machine.
-
-All traffic of `sem port-forward` is transferred over an encrypted SSH channel.
-
-Note: Port-Forwarding works only for Virtual Machine-based CI/CD environments.
-
-### sem debug for jobs
-
-The general form of the `sem debug` command for jobs is the following:
-
-```shell
-sem debug job [Job ID]
-```
-
-This will start a new interactive job based on the specification of an old job,
-export the same environment variables, inject the same secrets, and connect to
-the same git commit.
-
-Commands in the debug mode are not executed automatically, instead they are
-stored in `~/commands.sh`. This allows you to execute them step-by-step, and
-inspect the changes in the environment.
-
-By default, the duration of the SSH session is limited to one hour. To run
-longer debug sessions, pass the `duration` flag to the previous command:
-
-```shell
-sem debug job [job-id] --duration 3h
-```
-
-A debug session does not include the contents of the repository related
-to your Semaphore 2.0 project. Run `checkout` in the debug session to clone
-your repository.
-
-#### The --duration flag
-
-By default the SSH session of a `sem debug` command is limited to **one hour**.
-In order to change that, you can pass the `--duration` flag to the `sem debug`
-command.
-
-You can define the time duration using numeric values in the `XXhYYmZZs` format
-in any valid combination. One hour can be defined as `1h0m0s`, `1h`,
-or even `60m`.
-
-### sem stop
-
-You can stop a running job or pipeline with `sem stop`:
-
-```shell
-sem stop job|pipeline [ID]
-```
-
-If you are executing `sem stop job`, you must provide the `ID` of a
-running job. If you are executing `sem stop pipeline`, you must provide the `ID` of a running pipeline.
-
-#### sem stop example
-
-The following command will stop the `job` with the Job ID of
-`0ae14ece-17b1-428d-99bd-5ec6b04494e9`:
-
-```shell
-sem stop job 0ae14ece-17b1-428d-99bd-5ec6b04494e9
-```
-
-The following command will stop the `pipeline` with the Pipeline ID of
-`ea3e6bba-d19a-45d7-86a0-e78a2301b616`:
-
-```shell
-sem stop pipeline ea3e6bba-d19a-45d7-86a0-e78a2301b616
-```
+:::
 
 ## Working with projects
+
+CONTINUE HERE
 
 This group includes the `sem init`, `sem get`, `sem edit`, `sem apply`, and `sem debug` commands.
 
