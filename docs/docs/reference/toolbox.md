@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-The toolbox is an [open source](https://github.com/semaphoreci/toolbox) package of command line tools available in every Semaphore job. It provides utility functions to clone, cache data, run test services, or change language versions. This page explains all the available tools
+The toolbox is an [open source](https://github.com/semaphoreci/toolbox) package of command line tools available in every Semaphore job. It provides utility functions to clone, cache data, run test services, or change language versions. This page explains all the available tools.
 
 ## Overview
 
-The Semaphore toolbox is preinstalled in all Semaphore jobs. It is also installed in [self-hosted agents](../using-semaphore/self-hosted), so you can assume that all the tools described in this page are available for use.
+The Semaphore toolbox is preinstalled in all Semaphore jobs. It is also installed in [self-hosted agents](../using-semaphore/self-hosted), so you can assume that all the tools described on this page are available for use.
 
 ## artifact {#artifact}
 
@@ -49,10 +49,10 @@ The optional flags are:
 The uploaded files must meet the following requirements:
 
 - Unicode characters are supported
-- File name lengths must be bewteen 1-1024 bytes when UTF-8 encoded
-- File names cannot contain end of line characters (carraige return or line feed)
+- File name lengths must be between 1-1024 bytes when UTF-8 encoded
+- File names cannot contain end-of-line characters (carriage return or line feed)
 - File names cannot start with `.well-known/acme-challenge/`
-- File names cannot contain non URI-encodable characters like `{, }, |, \, ^, ~, [, ]`
+- File names cannot contain non-URI-encodable characters like `{, }, |, \, ^, ~, [, ]`
 - Files cannot be named `.` or `...`
 
 You can workaround these limitations by compressing the file with tar before pushing it to the artifact store. For example: 
@@ -102,7 +102,7 @@ The available commands are:
 
 - `clear`: remove all keys in the cache.
 - `delete`: delete a key from the cache.
-- `has_key`: check if a key is present in the cache. Exits with non-zero status if key is not found.
+- `has_key`: check if a key is present in the cache. Exits with non-zero status if the key is not found.
 - `is_not_empty`: check if the cache is not empty.
 - `list`: list all keys in the cache.
 - `restore`: restore keys from the cache.
@@ -133,7 +133,7 @@ cache restore gems-$SEMAPHORE_GIT_BRANCH-revision-$(checksum Gemfile.lock),gems-
 
 :::note
 
-As cache store uses tar, which automatically removes any leading / from a given path value, any further changes of path after the store command completes will not be automatically propagated to cache.
+As the cache store uses tar, which automatically removes any leading / from a given path value, any further changes of the path after the store command completes will not be automatically propagated to the cache.
 
 :::
 
@@ -164,7 +164,7 @@ The cache tool depends on the following environment variables:
 
 This tool clones the repository using Git. For performance reasons, the default behavior is to perform a [shallow clone](https://git-scm.com/docs/shallow). Shallow clones only include the latest commit instead of the full repository history.
 
-The `checkout` command takes no arguments. It also changes directory into the cloned repository. So, for example, this would work on a Node.js project:
+The `checkout` command takes no arguments. It also changes the directory into the cloned repository. So, for example, this would work on a Node.js project:
 
 ```shell title="No need to cd into the cloned repository"
 checkout
@@ -186,7 +186,7 @@ git fetch --all
 
 :::info
 
-This is marked as an experimental feature
+This is marked as an experimental feature.
 
 :::
 
@@ -202,7 +202,7 @@ This option creates or refreshes one or more copies of the repository in the Sem
 
 ### Environment variables {#cache-env}
 
-The checkout command uses the following environment variables
+The checkout command uses the following environment variables.
 
 - [`SEMAPHORE_GIT_URL`](./env-vars#git-url)
 - [`SEMAPHORE_GIT_DIR`](./env-vars#git-dir)
@@ -230,7 +230,7 @@ $ checksum package-lock.json
 
 ## install-package {#install-package}
 
-The `install-package` tool is used to manage Ubuntu packages you may need for your jobs. It downloads and caches packages in a way that can be quickly reinstalled over and over again in different jobs. This is a convenience tool, you can still use `sudo` to install packages using the system's package manager.
+The `install-package` tool is used to manage Ubuntu packages you may need for your jobs. It downloads and caches packages in a way that can be quickly reinstalled over and over again in different jobs. This is a convenient tool, you can still use `sudo` to install packages using the system's package manager.
 
 
 The syntax is:
@@ -271,13 +271,13 @@ The tool integrates with the [Semaphore cache](../using-semaphore/optimization/c
 
 You can reinstall the packages in a different job within the same project with:
 
-```shell title="Installing packages from cache in other jobs"
+```shell title="Installing packages from the cache in other jobs"
 install-package install
 ```
 
 ## retry {#retry}
 
-The retry tool can be used to retry a command on an interval. This is useful when waiting for resources to become available or mitigate connectivity issues.
+The retry tool can be used to retry a command on an interval. This is useful when waiting for resources to become available or to mitigate connectivity issues.
 
 The syntax is:
 
@@ -290,7 +290,7 @@ Where flags are optional arguments:
 - `--times` or `-t`: number of times to retry before giving up. Default is 3
 - `--sleep` or `-s`: wait interval between retries in seconds. Default is 0
 
-For example, to retry 5 times `bundle install` with a 10 second sleep use:
+For example, to retry 5 times `bundle install` with a 10-second sleep use:
 
 ```shell
 retry --times 5 --sleep 10 bundle install
@@ -314,7 +314,7 @@ sem-service <command> <service> [version] [flags]
 
 Where `<command>` is one of the following:
 
-- `start`: starts a service in the backgroun, returns when service is ready to accept connections
+- `start`: starts service in the background, returns when the service is ready to accept connections
 - `stop`: stops a running service
 - `status`: returns non-zero exit status if service is not running
 
@@ -357,7 +357,7 @@ The `sem-service` tool pulls images from the [Semaphore Container Registry](../u
 
 ## sem-version {#sem-version}
 
-The `sem-version` tool manages language and utilities versions in Ubuntu environments. It provides a quick and simple way to install and switch to a version of a command line tool or programming language.
+The `sem-version` tool manages language and utility versions in Ubuntu environments. It provides a quick and simple way to install and switch to a version of a command line tool or programming language.
 
 :::info
 
@@ -386,7 +386,7 @@ Where `<target>` is one of the following:
 - `scala`
 - `node`
 
-The `<version>` depends on the target used. The command fails with non-zero exit code unless the `--ignore` or `-i` flag is supplied.
+The `<version>` depends on the target used. The command fails with a non-zero exit code unless the `--ignore` or `-i` flag is supplied.
 
 For example, to download and use Go version 1.22:
 
