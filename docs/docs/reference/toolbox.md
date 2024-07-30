@@ -371,7 +371,7 @@ The syntax is:
 sem-version <target> <version> [flags]
 ```
 
-### Languages supported
+### Languages supported {#languages}
 
 Where `<target>` is one of the following:
 
