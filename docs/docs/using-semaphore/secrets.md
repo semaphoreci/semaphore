@@ -209,8 +209,16 @@ In addition, you can upload multiple files as secrets:
 ```shell title="Creating multiple secret files example"
 sem create secret -p myproject sshkeys \
  -f $HOME/.ssh/id_rsa:/home/semaphore/.ssh/id_rsa \
-    -f $HOME/.ssh/id_rsa.pub:/home/semaphore/.ssh/id_rsa.pub
+ -f $HOME/.ssh/id_rsa.pub:/home/semaphore/.ssh/id_rsa.pub
 ```
+
+:::info
+
+Absolute paths for <agent_path_file> are mounted relative to the root on the agent's disk. So `/etc/hosts` is actually mounted at `/etc/hosts` in the agent's machine or container.
+
+Relative paths are mounted relative to the agent's service account home directory. So `.ssh/id_rsa` is mounted as `/home/semaphore/.ssh/id_rsa`.
+
+:::
 
 To view all organization secrets:
 
