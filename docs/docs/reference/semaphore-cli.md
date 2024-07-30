@@ -305,6 +305,8 @@ spec:
     status: ACTIVE
 ```
 
+You can, for instance, change the `pipeline_file` value to use a different default path for the initial pipeline.
+
 ### sem apply {#sem-apply}
 
 The `sem apply` command works exactly like [`sem create`](#sem-create), except it allows you to update an existing resource.
@@ -556,616 +558,254 @@ sem port-forward 5c011197-2bd2-4c82-bf4d-f0edd9e69f40 8000 3306
 
 ## Working with projects
 
-CONTINUE HERE
+You can create, edit, debug, and delete projects using the commands described in this section.
 
-This group includes the `sem init`, `sem get`, `sem edit`, `sem apply`, and `sem debug` commands.
+### sem init {#sem-init}
 
-### sem init
+The `sem init` command creates a Semaphore project from a repository. The command must be run at the root of a repository that has been cloned or pushed to GitHub or BitBucket.
 
-The `sem init` command adds a repository as a Semaphore 2.0 project to
-the active organization.
-
-The `sem init` command should be executed from within the root directory of the repository that has been either created locally and pushed to or
-cloned using the `git clone` command. Although the command can be executed
-without any other command line parameters or arguments, it also supports the
-`--project-name`, `--repo-url` and `--github-integration` options.
-
-#### --project-name
-
-The `--project-name` command line option is used for manually setting the name
-of a Semaphore 2.0 project.
-
-#### --repo-url
-
-The `--repo-url` command line option allows you to manually specify the URL of
-a repository in case `sem init` cannot determine it.
-
-#### --github-integration
-
-The `--github-integration` command line option allows you to manually specify
-the GitHub integration type for the project. It supports two values:
-
-- `github_token`: Creates the project using the OAuth integration. This is the default one.
-- `github_app`: Creates the project using the GitHub App integration.
-
-#### sem init example
-
-As `sem init` can be used without any command line arguments, you can execute
-it as follows from the root directory of a repository that resides on
-your local machine:
+The syntax is:
 
 ```shell
-sem init
+sem init [flags]
 ```
 
-If a `.semaphore/semaphore.yml` file already exists in the root directory of a repository, `sem init` will keep that `.semaphore/semaphore.yml` file
-and continue with its operation. If there is no `.semaphore/semaphore.yml` file,
-`sem init` will create one.
+You can provide the following options with `sem init`:
 
-If you decide to use `--project-name`, then you can call `sem init` as follows:
+- `--project-name`: override the project name on Semaphore
+- `--repo-url`: manually specify the URL of the repository in GitHub or BitBucket
+- `--github-integration`: accepts one of two arguments
+  - `github_token` (default) creates the project using the [OAuth integration](../using-semaphore/connect-github-oauth)
+  - `github_app` creates the project using the [GitHub App integration](../using-semaphore/connect-github)
+
+On project creation, if a `.semaphore/semaphore.yml` file already exists in the root directory of a repository, `sem init` will keep that file
+and continue with its operation. If there is no `.semaphore/semaphore.yml` file, `sem init` will create one for you.
+
+
+:::warning
+
+Using the wrong `--repo-url` can cause problems to connect to the repository.
+
+:::
+
+### sem debug project {#sem-debug-project}
+
+You can debug problems with your project using `sem debug project`. This can be particularly helpful when you do not know whether the Virtual Machine you are using has the latest version of a programming language or a package, and when you want to know what you need to download in order to perform the task you want.
+
+The syntax is:
 
 ```shell
-sem init --project-name my-own-name
+sem debug project <project-name>
 ```
 
-The previous command creates a new Semaphore 2.0 project that will be called
-`my-own-name`.
+This command opens a SSH session on the "master" branch and the HEAD revision of the repository.
 
-Using `--repo-url` with `sem init` is very tricky--**you need to know what you're doing**.
-
-#### Troubleshooting
-
-If running `sem init` returns an error:
-
-``` txt
-error: http status 422 with message
-"{"message":"POST https://api.github.com/repos/orgname/projectname/keys: 404 - Not Found // See:
-https://developer.github.com/v3/repos/keys/#add-a-new-deploy-key";}"
-received from upstream
-```
-
-or
-
-``` txt
-"{"message":"admin permisssions are required on the repository in order to add the project to Semaphore"}"
-```
-
-or
-
-``` txt
-error: http status 422 with message "{"message":"Repository 'orgname/projectname' not found"}"
-received from upstream
-```
-
-check the following pages to debug connection to your git provider:
-
-- [Checking the Connection Between GitHub and Semaphore](/account-management/connecting-github-and-semaphore/#checking-the-connection-between-github-and-semaphore)
-- [Checking the Connection Between Bitbucket and Semaphore](/account-management/connecting-bitbucket-and-semaphore/#checking-the-connection-between-bitbucket-and-semaphore)
-
-### sem get
-
-You can list your projects by using the `sem get projects` command and from there you can get
-a specific project YAML file by using `sem get project` followed by the `name` of an existing project.
+For example:
 
 ```shell
-sem get project [name]
+sem debug project my-project
 ```
 
-The `sem get project` command will fetch the YAML file of a project which you can store, edit and later
-use with `sem apply -f` command.
+The agent will remain operational for the duration of the session (by default 1 hour). You can terminate the agent early by running `sudo poweroff` or `sudo shutdown -r now`.
 
-### sem edit
+Sessions that are created using the `sem debug project` command support the
+[`--duration`](#sem-debug) parameter.
 
-You can edit a project by using the `sem edit project` command followed by the
-`name` of an existing project.
+## Working with notifications {#notifications}
+
+You can define complex notifications using YAML resources.
+
+### sem create notification {#sem-create-notification}
+
+Use `sem create` to create Slack and other webhook based notifications.
+
+The syntax is:
 
 ```shell
-sem edit project [name]
+sem create -f <notification-spec>
 ```
 
-The `sem edit project` command will start your configured text editor. In order
-for the changes to take effect, you will have to save the changes and exit your
-text editor.
-
-To learn more about the configuration options for projects, visit the
-[Projects YAML Reference](https://docs.semaphoreci.com/reference/projects-yaml-reference/) page.
-
-### sem apply 
-
-You can apply an existing YAML a project by using the `sem apply -f` command followed by the
-valid file path to a project YAML file that contains the updates.
+For example:
 
 ```shell
-sem apply -f [file_path]
+sem create -f notify.yml
 ```
 
-The `sem apply -f` command will use that file and try to update the project specified.
+You must provide a valid notification YAML spec:
 
-To learn more about the configuration options for projects, visit the
-[Projects YAML Reference](https://docs.semaphoreci.com/reference/projects-yaml-reference/) page.
-
-
-
-### sem debug for projects
-
-You can use the `sem debug` command to debug an existing Semaphore 2.0 project.
-
-The `sem debug` command can help you specify the commands of a job before
-adding and executing it in a pipeline. This can be particularly helpful when
-you do not know whether the Virtual Machine you are using has the latest
-version of a programming language or a package, and when you want to know what
-you need to download in order to perform the task you want.
-
-The general form of the `sem debug project` command is the following:
-
-```shell
-sem debug project [Project NAME]
+```yaml title="notify.yml"
+# Slack notification for failures
+apiVersion: v1alpha
+kind: Notification
+metadata:
+  name: notify-on-fail
+spec:
+  rules:
+    - name: "Example"
+      filter:
+        projects:
+          - example-project
+        results:
+          - failed
+          - stopped
+          - canceled
+      notify:
+        slack:
+          endpoint: https://hooks.slack.com/services/xxx/yyy/zzz
 ```
 
-Next, you will be automatically connected to the VM of the
-project using SSH. The value of `SEMAPHORE_GIT_BRANCH` will be `master`
-whereas the value of `SEMAPHORE_GIT_SHA` will be `HEAD`, which means that
-you will be using the latest version of the `master` branch available on the repository of the Semaphore 2.0 project.
 
-Projects that are created using the `sem debug project` command support the
-`--duration` parameter for specifying the timeout period of the project.
+The available values for `filter.results` are:
 
-#### sem debug project example
+- `passed`
+- `failed`
+- `stopped`
+- `canceled`
 
-You can debug the project, named `docker-push`, by executing the following command:
+Here is a more comprehensive example sending notifications to two teams:
 
-```shell
-sem debug project docker-push
-```
-
-You will need to execute either `sudo poweroff` or `sudo shutdown -r now` to
-**manually terminate** the VM. Otherwise, you can wait for the timeout period
-to pass.
-
-By default, the SSH session of a `sem debug` command is limited to **one hour**.
-In order to change that, you can pass a `--duration` flag to the `sem debug`
-command.
-
-You can define the time duration using numeric values in the `XXhYYmZZs` format
-using any valid combination. One hour can be defined as `1h0m0s`, `1h`,
-or even `60m`.
-
-The following command specifies that the SSH session for the `deployment` project
-will time out in 2 minutes:
-
-```shell
-sem debug project deployment --duration 2m
-```
-
-The following command specifies that the SSH session for the `job` with JOB ID
-`d7caf99e-de65-4dbb-ad63-91829bc8a693` will time out in 2 hours:
-
-```shell
-sem debug job d7caf99e-de65-4dbb-ad63-91829bc8a693 --duration 2h
-```
-
-Last, the following command specifies that the SSH session of the `deployment`
-project will time out in 20 minutes and 10 seconds:
-
-```shell
-sem debug project deployment --duration 20m10s
-```
-
-### Changing the initial pipeline file
-
-By default, `.semaphore/semaphore.yml` is the initial pipeline file that is
-triggered when a git hook is received on Semaphore.
-
-To modify the initial pipeline file, edit the repository section in the project's
-YAML file.
-
-For example, to modify the initial pipeline file from `.semaphore/semaphore.yml`
-to `.semaphore/alternative-tests.yml`, edit your project with the following
-command:
-
-```shell
-sem edit project example-project-1
-```
-
-In the editor, modify the `pipeline_file` entry as follows:
-
-``` yaml
-# Editing Projects/example-project-1.
+```yaml title="notify.yml"
+# release-cycle-notifications.yml
 
 apiVersion: v1alpha
-kind: Project
+kind: Notification
 metadata:
-  name: example-project-1
-  id: 37db0a22-592c-45e2-bdeb-799ba977502c
-  description: "Example project"
+  name: release-cycle-notifications
 spec:
-  repository:
-    url: git@github.com:example/project-1.git
-    run_on:
-      - tags
-      - branches
+  rules:
+    - name: "On staging branches"
+      filter:
+        projects:
+          - /.*/
+        branches:
+          - staging
+        results:
+          - passed
+      notify:
+        slack:
+          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
+          channels:
+            - "#qa-team"
 
-    #
-    # Edit this line to set a new entry-point YAML file for the project.
-    #
-    pipeline_file: ".semaphore/alternative-tests.yml"
+    - name: "On master branches"
+      filter:
+        projects:
+          - /.*/
+        branches:
+          - master
+      notify:
+        slack:
+          endpoint: https://hooks.slack.com/XXXXXXXXXXX/YYYYYYYYYYYY/ZZZZZZZZZZ
+          channels:
+            - "#devops-team"
+            - "#secops-team"
 ```
 
-When you save the changes and leave the editor, they will be applied to
-the project.
-
-### Changing the status check notifications
-
-By default, Semaphore submits pull request status checks for
-the initial pipeline.
-
-To change this, edit the status property in the repository section of the project's
-YAML file.
-
-#### Add status notifications from promoted pipelines
-
-Let's say that your Semaphore workflow is composed of two pipelines:
-a promotion connecting `semaphore.yml` to `production.yml`.
-
-To submit status checks from the pipeline defined in `production.yml`,
-modify the `pipeline_files` entry and add the following additional pipeline file:
-
-```yaml
-# Editing Projects/example-project-1.
-
-apiVersion: v1alpha
-kind: Project
-metadata:
-  name: example-project-1
-  id: 37db0a22-592c-45e2-bdeb-799ba977502c
-  description: "Example project"
-spec:
-  repository:
-    url: git@github.com:example/project-1.git
-    run_on:
-      - tags
-      - branches
-    pipeline_file: ".semaphore/semaphore.yml"
-    status:
-      pipeline_files:
-      - path: ".semaphore/semaphore.yml"
-        level: "pipeline"
-        #
-        # Add this line to send status also after promotion
-        #
-      - path: ".semaphore/production.yml"
-        level: "pipeline"
-```
-
-#### Pipeline or block level statuses
-
-Status notifications can be set on two levels: `pipeline` or `block`.
-
-`pipeline` level means that only one status will be created per commit.
-The name of the status is based on name of the pipeline.
-
-`block` level means that Semaphore will create a status for each block in
-the pipeline. The name of each status is based on the corresponding block name.
-
-## Working with notifications
-
-In this section you will learn how to work with notifications with the `sem`
-utility, starting with how to create a new notification with a single rule.
-
-### Create a notification
-
-The first thing that you will need to do is to create one or more notifications
-with the help of the `sem` utility.
-
-The general form of the `sem create notification` command is as follows:
-
-```shell
-sem create notification [name] \
-  --projects [list of projects] \
-  --branches [list of branches] \
-  --slack-endpoint [slack-webhook-endpoint] \
-  --slack-channels [list of slack channels] \
-  --pipelines [list of pipelines]
-```
-
-Please refer to the [Examples](#examples) section to learn more about using the `sem create notification` command.
-
-You do not need to use all the command line options of the `sem create notification`
-command when creating a new notification. However, the `--projects` as well as the
-`--slack-endpoint` options are mandatory. The former specifies which
-Semaphore 2.0 projects will be included in the notification rule and the
-latter specifies the URL for the Incoming WebHook that will be associated with
-this particular notification rule. All `--branches`, `--pipelines`, and
-`--slack-channels` are optional.
-
-If the `--slack-channels` option is not set, the default Slack channel that is
-associated with the specified Incoming WebHook will be used. If you want to
-test your notifications, you might need to create a dedicated Slack channel for
-that purpose.
-
-Additionally, the values of `--branches`, `--projects`, and `--pipelines` can
-contain regular expressions. Regex matches must be wrapped in forward slashes
-(`/.-/`). Specifying a branch name without slashes (example: `.-`) would
-execute a direct equality match.
-
-Therefore, the minimum valid `sem create notification` command that can be
-executed will have the following form:
-
-```shell
-sem create notification [name] \
-  --projects [list of projects] \
-  --slack-endpoint [slack-webhook-endpoint]
-```
-
-The `sem create notification` command can only create a single rule under the
-newly created notification. However, you can now use the `sem edit notification`
-command to add as many rules as you like to a notification.
-
-Tip: you can use a single Incoming WebHook from Slack for all your
-notifications as this Incoming WebHook has access to all the channels of a
-Slack Workspace.
-
-### List notifications
-
-You can list all the available notifications within your current organization
-with the `sem get notifications` command.
-
-```shell
-sem get notifications
-```
-
-### Describing a notification
-
-You can describe a notification using the `sem get notifications` command
-followed by the `name` of the desired notification.
-
-```shell
-sem get notifications [name]
-```
-
-The output of the previous command will be a YAML file – you can learn more
-about the Notifications YAML grammar by visiting the
-[Notifications YAML reference](https://docs.semaphoreci.com/reference/notifications-yaml-reference/) page.
-
-### Editing a notification
-
-You can edit a notification using the `sem edit notification` command followed
-by the `name` of the notification.
-
-```shell
-sem edit notification [name]
-```
-
-The `sem edit notification` command will start your configured text editor.
-In order for the changes to take effect, you must save the changes and
-exit your text editor.
-
-### Deleting a notification
-
-You can delete an existing notification using the `sem delete notification`
-command followed by the `name` of the notification you want to delete.
-
-```shell
-sem delete notifications [name]
-```
-
-#### Working with notifications examples
-
-In this subsection you will find `sem` examples related to notifications.
-
-You can create a new notification, named `documents`, as follows:
-
-```shell
-sem create notifications documents \
-  --projects "/.*-api$/" \
-  --branches "master" \
-  --pipelines "semaphore.yml" \
-  --slack-endpoint https://hooks.slack.com/services/XXTXXSSA/ABCDDAS/XZYZWAFDFD \
-  --slack-channels "#dev-team,@mtsoukalos"
-```
-
-You can list all existing notifications within your current organization as
-follows:
-
-```shell
-sem get notifications
-```
-
-The output that you will get from the previous command will look similar to the
-following:
-
-```shell
-$ sem get notifications
-NAME        AGE
-documents   18h
-master      17h
-```
-
-The `AGE` column shows the time since the last change.
-
-You can find more information about a notification called `documents` as
-follows:
-
-```shell
-sem get notifications documents
-```
-
-You can edit that notification as follows:
-
-```shell
-sem edit notifications documents
-```
-
-The aforementioned command will take you to your configured text editor. If your
-changes are syntactically correct, you will get an output similar to the follwing:
-
-```shell
-$ sem edit notifications documents
-Notification 'documents' updated.
-```
-
-If there is a syntactical error in the new file, the `sem` reply will give you
-more information about the error but any changes you made to the notification
-will be lost.
-
-Last, you can delete an existing notification, named `documents`, as follows:
-
-```shell
-sem delete notification documents
-```
-
-The output of the `sem delete notification documents` command is as follows:
-
-```shell
-$ sem delete notification documents
-Notification 'documents' deleted.
-```
+See [Notifications YAML reference](./notifications) for more details.
 
 ## Working with pipelines
 
-### Listing pipelines
+This section describes in detail how to create, edit, and rebuild pipelines using the Semaphore CLI
 
-The `sem get pipelines` command returns the list of pipelines for a Semaphore
-2.0 project. If you are inside the directory of a Semaphore project, then you
-will not need to provide `sem` with the name of the project as this will be
-discovered automatically.
+### sem get pipeline {#sem-get-pipeline}
 
-However, if you want list of pipelines for a project other than the one you
-are currently in, you can use the `-p` flag to declare the Semaphore project
-that interests you.
+The `sem get pipelines` command returns the pipelines for all your projects in your organization.
 
-So, the `sem get pipelines` command can have the following two formats:
+The syntax is:
 
 ```shell
 sem get pipelines
-sem get pipelines -p [PROJECT NAME]
 ```
 
-#### Listing pipelines example
-
-The following command will return the last 30 pipelines of the S1 project:
+If you want to see only the pipelines for a project use:
 
 ```shell
-sem get pipelines -p S1
+sem get pipelines -p <project-name>
 ```
 
-### Describing a pipeline
+### sem get pipeline detail {#sem-get-pipeline-detail}
+
+You can see the pipeline details using:
+
+```shell
+sem get pipeline <pipeline-id>
+```
+
+The pipeline id is the value shown with [`sem get pipeline`](#sem-get-pipeline).
 
 The `sem get pipeline` command followed by a valid Pipeline ID will return
 a description of the specified pipeline.
 
-### Describing a pipeline example
-
-You can find more information about the pipeline with the Pipeline ID of
-`c2016294-d5ac-4af3-9a3d-1212e6652cd8` as follows:
+For example:
 
 ```shell
 sem get pipeline c2016294-d5ac-4af3-9a3d-1212e6652cd8
 ```
 
-### Rebuilding a pipeline
+### sem rebuild pipeline {#sem-rebuild-pipeline}
 
-You can rebuild an existing pipeline with the help of the
-`sem rebuild pipeline` command, in the following format:
+Rebuilding a pipeline re-runs only the failed jobs.
+
+The syntax is:
 
 ```shell
-sem rebuild pipeline [Pipeline ID]
+sem rebuild pipeline <pipeline-id>
 ```
 
-Note that `sem rebuild pipeline` will perform a partial rebuild of the pipeline
-as **only the blocks that failed** will be rerun.
+The pipeline id is the value shown with [`sem get pipeline`](#sem-get-pipeline).
 
-#### Rebuilding a pipeline example
-
-Rebuilding the pipeline with a Pipeline ID of
-`b83bce61-fdb8-4ace-b8bc-18be471aa96e` will return the following output:
+For example:
 
 ```shell
 $ sem rebuild pipeline b83bce61-fdb8-4ace-b8bc-18be471aa96e
 {"pipeline_id":"a1e45038-a689-460b-b3bb-ba1605104c08","message":""}
 ```
 
-### The --follow flag
+The `sem rebuild` command accepts the `--follow` flag. The command will block until the pipeline ends running. This only works with an already running pipeline.
 
-The general form of the `sem get pipeline` command when used with the
-`--follow` flag is as follows:
+For example
 
 ```shell
-sem get pipeline [RUNNING Pipeline ID] --follow
+sem get pipeline <pipeline-id> --follow
 ```
-
-The `--follow` flag calls the `sem get pipeline [RUNNING Pipeline ID]` command
-repeatedly until the pipeline reaches a terminal state.
 
 The `--follow` flag is particularly useful in the following two cases:
 
-- If you want to look at how a build is advancing without using the Semaphore
-    Web Interface (e.g. when you are prototyping something).
+- If you want to look at how a build is advancing without using the Semaphore UI
 - If you want to be notified when pipeline is done (e.g. in shell scripts).
-
-### The --follow flag example
-
-The `--follow flag` can be used on a running pipeline with a Pipeline ID of
-`9bfaf8d6-05c8-4397-b764-5f0f574c8e64` as follows:
-
-```shell
-sem get pipeline 9bfaf8d6-05c8-4397-b764-5f0f574c8e64 --follow
-```
 
 ## Working with workflows
 
-### Listing workflows
+This section describes in detail how to create, edit, and rebuild workflows using the Semaphore CLI
 
-The `sem get workflows` command returns the list of workflows for a Semaphore
-2.0 project. If you are inside the directory of a Semaphore project, then you
-will not need to provide `sem` the name of the project as this will be
-discovered automatically.
 
-However, if you want the list of workflows for some project other than the one
-you are currently in, you can use the `-p` flag to directly specify the
-Semaphore project that interests you.
+### sem get workflows {#sem-get-workflows}
 
-So the `sem get workflows` can have the following two formats:
+The `sem get workflows` command returns the workflows for all your projects in your organization.
 
-```shell
-sem get workflows
-sem get workflows -p [Project Name]
-```
-
-### Listing workflows examples
-
-Finding the last 30 workflows for the `S1` Semaphore project is as simple as
-executing the following commands:
-
-```shell
-sem get workflows -p S1
-```
-
-If the project name does not exist, you will get an error message.
-
-If you are inside the root directory of the `S1` Semaphore project, then you
-can also execute the next command to get the same output:
+The syntax is:
 
 ```shell
 sem get workflows
 ```
 
-### Describing a workflow
-
-Each workflow has its own unique Workflow ID. Using that unique Workflow ID you
-can find more information about that particular workflow using the following command:
+If you want to see only the workflows for a project use:
 
 ```shell
-sem get workflow [WORKFLOW ID]
+sem get workflows -p <project-name>
 ```
 
-The output of the previous command is a list of pipelines that includes
-promoted and auto-promoted pipelines.
+### sem get workflow detail {#sem-get-workflow-detail}
 
-#### Describing a workflow example
+You can see the workflow details using:
 
-Finding more information about the Workflow with ID
-`5bca6294-29d5-4fd3-891b-8ac3179ba196` is simple. To do so, enter the following command:
+```shell
+sem get workflow <workflow-id>
+```
+
+The workflows id is the value shown with [`sem get workflows`](#sem-get-workflows).
+
+For example:
 
 ```shell
 $ sem get workflow 5bca6294-29d5-4fd3-891b-8ac3179ba196
@@ -1176,33 +816,26 @@ PIPELINE ID                            PIPELINE NAME            CREATION TIME   
 55e94adb-7aa8-4b1e-b60d-d9a1cb0a443a   Testing Auto Promoting   2018-10-03 09:31:35   DONE
 ```
 
-Please note that you should have the required permissions in order to find
-information about a Workflow.
+### sem rebuild workflow {#sem-rebuild-workflow}
 
-### Rebuilding a workflow
+Rebuilding a workflow re-runs all the jobs in the pipeline, even those that previously ended successfully.
 
-You can rebuild an existing workflow using the following command:
+The syntax is:
 
 ```shell
-sem rebuild workflow [WORKFLOW ID]
+sem rebuild workflow <workflow-id>
 ```
 
-Note that `sem rebuild workflow` will perform a full rebuild of the specified
-workflow. A new workflow will be created as if a new commit was pushed to the repository.
+The workflow id is the value shown with [`sem get workflows`](#sem-get-workflows).
 
-#### Rebuilding a workflow example
-
-You can rebuild a workflow with a Workflow ID of
-`99737bcd-a295-4278-8804-fff651fb6a8c` as follows:
+For example:
 
 ```shell
 $ sem rebuild wf 99737bcd-a295-4278-8804-fff651fb6a8c
 {"wf_id":"8480a83c-2d90-4dd3-8e8d-5fb899a58bc0","ppl_id":"c2016294-d5ac-4af3-9a3d-1212e6652cd8"}
 ```
 
-The output of `sem rebuild wf` command is a new Workflow ID and a new pipeline
-ID as the `sem rebuild workflow` command creates a new workflow based on an
-existing one.
+The output of `sem rebuild workflow` command is a new workflow id and a new pipeline id.
 
 ## Working with self-hosted agents
 
@@ -1676,7 +1309,6 @@ sem get projects
 
 
 ## Set up notifications {#notifications}
-
 
 You can set up more complex notifications by creating a YAML resource. This option is only available with the command line.
 
