@@ -320,7 +320,7 @@ The possible actions are:
 
 The following limitations apply to keys and values:
 
-- keys is a alphanumerical string (`-` and `_` are allowed) of length 3 to 256 characters
+- keys are a alphanumerical string (`-` and `_` are allowed) of length 3 to 256 characters
 - value is a string up to 20KB in size
 
 Possible flags are:
