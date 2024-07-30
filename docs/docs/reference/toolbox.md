@@ -109,7 +109,7 @@ The available commands are:
 - `store`: store keys in the cache.
 - `usage`: get a summary of cache usage.
 
-### Keys
+### Cache keys
 
 The cache keys are a comma-separated list of strings to label or select cached items.
 
@@ -182,7 +182,7 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch --all
 ```
 
-### Full clone {#cache-full-clone}
+### Clone with cache {#cache-full-clone}
 
 :::info
 
@@ -351,7 +351,7 @@ When starting `mysql` or `postgres` services you can provide the following optio
 - `--db=<name>` database name to create and default to
 
 
-### Container registry {#sem-service-container}
+### Container registry images {#sem-service-container}
 
 The `sem-service` tool pulls images from the [Semaphore Container Registry](../using-semaphore/optimization/container-registry).
 
@@ -370,6 +370,8 @@ The syntax is:
 ```shell title="sem-version syntax"
 sem-version <target> <version> [flags]
 ```
+
+### Languages supported
 
 Where `<target>` is one of the following:
 
@@ -394,32 +396,6 @@ sem-version go 1.22
 
 ## See also
 
-## package contents
-
-```shell
-drwxrwxr-x 2 1001 1001     4096 Jul 11 14:02 .
-drwxr-xr-x 3 root root     4096 Jul 29 17:48 ..
--rw-rw-r-- 1 1001 1001      365 Jul 11 14:02 Dockerfile.dev
--rw-rw-r-- 1 1001 1001      320 Jul 11 14:02 README.md
--rwxrwxr-x 1 1001 1001  8253440 Oct 18  2023 artifact
--rw-rw-r-- 1 1001 1001 30031455 Jul 11 14:02 cache
--rwxrwxr-x 1 1001 1001     2090 Jul 11 14:02 enetwork
--rwxrwxr-x 1 1001 1001     2758 Jul 11 14:02 install-package
--rw-rw-r-- 1 1001 1001     4538 Jul 11 14:02 install-toolbox
--rwxrwxr-x 1 1001 1001     7525 Jul 11 14:02 libcheckout
--rw-rw-r-- 1 1001 1001      248 Jul 11 14:02 libchecksum
--rw-rw-r-- 1 1001 1001     1550 Jul 11 14:02 retry
--rw-rw-r-- 1 1001 1001  4879359 Jul 11 14:02 sem-context
--rw-rw-r-- 1 1001 1001      189 Jul 11 14:02 sem-dockerize
--rw-rw-r-- 1 1001 1001     7086 Jul 11 14:02 sem-install
--rw-rw-r-- 1 1001 1001     4689 Jul 11 14:02 sem-semantic-release
--rwxrwxr-x 1 1001 1001    18528 Jul 11 14:02 sem-service
--rw-rw-r-- 1 1001 1001     6712 Jul 11 14:02 sem-service-check-params
--rwxrwxr-x 1 1001 1001     9883 Jul 11 14:02 sem-version
--rwxrwxr-x 1 1001 1001  6742016 Jun  4 12:50 spc
--rw-rw-r-- 1 1001 1001     2158 Jul 11 14:02 ssh-session-cli
--rw-rw-r-- 1 1001 1001     1584 Jul 11 14:02 system-metrics-collector
--rwxrwxr-x 1 1001 1001  6774784 Nov 23  2023 test-results
--rw-rw-r-- 1 1001 1001      120 Jul 11 14:02 toolbox
--rwxrwxr-x 1 1001 1001  1635790 Jul 11 14:02 when
-```
+- [Semaphore command line tool reference](./semaphore-cli)
+- [Working with Docker](../using-semaphore/optimization/docker)
+- [Environment variable reference](./env-vars)
