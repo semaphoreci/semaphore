@@ -379,7 +379,7 @@ The `sem-service` tool manages databases and other useful services in Ubuntu-bas
 
 :::info
 
-sem-service does not work on [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+`sem-service` is not available on [self-hosted agents](../using-semaphore/self-hosted) or [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 :::
 
@@ -438,7 +438,7 @@ The `sem-version` tool manages language and utility versions in Ubuntu environme
 
 :::info
 
-sem-version does not work on [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+`sem-version` is not available on [self-hosted agents](../using-semaphore/self-hosted) or [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 :::
 
@@ -469,6 +469,56 @@ For example, to download and use Go version 1.22:
 
 ```shell
 sem-version go 1.22
+```
+
+## spc {#spc}
+
+??
+
+https://github.com/semaphoreci/spc
+
+## test-results {#test-results}
+
+This tool processes test results in the JUnit format. It is used to process and generate [test reports](../using-semaphore/tests/test-reports) and the [flaky tests dashboard](../using-semaphore/tests/flaky-tests).
+
+The syntax is:
+
+```shell
+test-results <command> [flags]
+```
+
+The available commands are:
+
+- `combine`: combines multiples JSON report files into one file summary
+- `compile`: parses JUnit XML files to a well-defined JSON report file
+- `gen-pipeline-report`: fetches and combines workflow-level JUnit report files
+- `publish`: parses XML JUnit file to a well-defined JSON schema and publishes results to artifacts storage
+
+The available flags are:
+
+- `--config <path>`: path to the config file. Default is `$HOME/.test-results.yaml`
+- `--name <name>` or `-N <name>`: override the name of the test suite
+- `--parser <name>` or `-p <name>`: override the parser used. Defaults to "auto"
+- `--suite-prefix <name>` or `-S <name>`: add a prefix for the test suite name
+- `--trace`: provide trace logging
+
+### Merging test results {#test-result-merge}
+
+To use the test result feature you must add the following command at the end of every test job. 
+
+The syntax is:
+
+```shell
+test-results publish <path>
+```
+
+Where `<path>` is a file or a directory containing JUnit XML files. This processes the files and uploads the results to the artifact store.
+
+If working with Docker containers, you need to expose the JUnit files using bind mounts. For example:
+
+```shell
+docker run -v $(pwd):/app test-runner run-specs
+test-results publish junit.xml
 ```
 
 ## See also
