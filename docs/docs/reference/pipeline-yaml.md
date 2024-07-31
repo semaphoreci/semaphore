@@ -535,6 +535,302 @@ blocks:
             - echo $TEST_ENV_VAR
 ```
 
+## blocks {#blocks}
+
+Defines an array of items that holds the elements of a pipeline. Each element of that array is called a *block* and can have two properties:
+
+- `name`: optional name of the block, defaults to unique auto-generated names
+- `task`: mandatory property that describes the jobs inside the block
+
+### dependencies {#dependencies-in-blocks}
+
+Defines the flow of execution between blocks. When no dependencies are set, blocks run in parallel.
+
+The following example runs `Block A` and `Block B` in parallel at the beginning of a pipeline. `Block C` runs only after `Block A` and `Block B` have finished.
+
+```yaml title="Example"
+version: "v1.0"
+name: Pipeline with dependencies
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: "Block A"
+  # highlight-next-line
+    dependencies: []
+    task:
+      jobs:
+      - name: "Job A"
+        commands:
+          - echo "output"
+  - name: "Block B"
+  # highlight-next-line
+    dependencies: []
+    task:
+      jobs:
+      - name: "Job B"
+        commands:
+          - echo "output"
+  - name: "Block C"
+  # highlight-next-line
+    dependencies: ["Block A", "Block B"]
+    task:
+      jobs:
+      - name: "Job C"
+        commands:
+          - echo "output"
+```
+
+If you use the `dependencies` property in one block, you have to specify dependencies for all other blocks as well. The following pipeline **is invalid** because dependencies are missing for `Block A` and `Block B`.
+
+```yaml title="This example is INVALID"
+version: "v1.0"
+name: Invalid pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: "Block A"
+    task:
+      jobs:
+      - name: "Job A"
+        commands:
+          - echo "output"
+  - name: "Block B"
+    task:
+      jobs:
+      - name: "Job B"
+        commands:
+          - echo "output"
+  - name: "Block C"
+  # highlight-next-line
+    dependencies: ["Block A", "Block B"]
+    task:
+      jobs:
+      - name: "Job C"
+        commands:
+          - echo "output"
+```
+
+### skip {#skip-in-blocks}
+
+The `skip` property is optional and it allows you to define conditions, written in [Conditions DSL](./conditions-dsl) which are based on the branch name or tag name of current push which initiated entire pipeline.  If a condition defined in this way is evaluated to be true, the block will be skipped.
+
+When a block is skipped, it means that it will immediately finish with a `passed` result without actually running any of its jobs.
+
+Its result_reason will be set to `skipped` and other blocks which depend on it passing will be started and executed as if this block executed regularly and all of its jobs passed.
+
+Example of a block that has been skipped on all branches except master:
+
+```yaml title="Example"
+version: v1.0
+name: The name of the Semaphore project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Inspect Linux environment
+ # highlight-start
+   skip:
+     when: "branch != 'master'"
+ # highlight-end
+   task:
+      jobs:
+        - name: Print Environment variables
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $HOME
+```
+
+:::note
+
+It is not possible to have both `skip` and [`run`](#run-in-blocks) properties defined for the same block.
+
+:::
+
+### run {#run-in-blocks}
+
+The `run` property is optional and it allows you to define a condition, written in [Conditions DSL](./conditions-dsl) that is based on properties of the push which initiated the entire workflow.
+
+If the run condition is evaluated as true, the block and all of its jobs will run, otherwise the block will be skipped.
+
+When a block is skipped, it means that it will immediately finish with a `passed` result and a `skipped` result_reason, without actually running any of its jobs.
+
+Example of a block that is run only on the master branch:
+
+```yaml title="Example"
+version: v1.0
+name: The name of the Semaphore project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Inspect Linux environment
+ # highlight-start
+   run:
+     when: "branch = 'master'"
+ # highlight-end
+   task:
+      jobs:
+        - name: Print Environment variables
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $HOME
+```
+
+:::note
+
+It is not possible to have both `skip` and [`run`](#run-in-blocks) properties defined for the same block.
+
+:::
+
+### task {#task}
+
+The `task` property defines the jobs in the blocks along with all its optional properties such as `prologue`, `epilogue`, `env_vars`, or `secrets`.
+
+```yaml title="Example"
+version: v1.0
+name: The name of the Semaphore project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Inspect Linux environment
+ # highlight-next-line
+   task:
+      jobs:
+        - name: Print Environment variables
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $HOME
+```
+
+### agent {#agent-section-in-task}
+
+The `agent` section under a `task` section is optional and can coexist with the global `agent` definition at the beginning of a Pipeline YAML file. The properties and the possible values of the `agent` section can be found in the [agent reference](#agent).
+
+An `agent` block under a `task` block overrides the global `agent` definition.
+
+
+```yaml title="Example"
+version: v1.0
+name: YAML file example with task and agent.
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Run in Linux environment
+   task:
+      jobs:
+        - name: Learn about SEMAPHORE_GIT_DIR
+          commands:
+            - echo $SEMAPHORE_GIT_DIR
+
+ - name: Run in macOS environment
+   task:
+   # highlight-start
+      agent:
+          machine:
+            type: a1-standard-4
+            os_image: macos-xcode14
+   # highlight-end
+      jobs:
+        - name: Using agent job
+          commands:
+            - echo $PATH
+```
+
+### secrets {#secrets}
+
+The `secrets` property uses pre-existing environment variables from a secret. This is described in the [secrets](#secrets) section.
+
+### prologue {#prologue}
+
+A `prologue` block is executed before the commands of each job within a `task` item.
+
+You can consider the `prologue` commands as a part of each of the `jobs` within the same `task` item.
+
+### epilogue {#epilogue}
+
+An `epilogue` block is executed after the commands of each `jobs` item within a `task`.
+
+### env_vars {#env-vars}
+
+The elements of an `env_vars` array are name and value pairs that hold the name of the environment variable and the value of the environment variable.
+
+```yaml title="Example"
+version: v1.0
+name: A Semaphore project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+   task:
+      jobs:
+        - name: Check environment variables
+          commands:
+            - echo $HOME
+            - echo $PI
+            - echo $VAR1
+            # highlight-start
+      env_vars:
+           - name: PI
+             value: "3.14159"
+           - name: VAR1
+             value: This is Var 1
+            # highlight-end
+```
+
+:::note
+
+The indentation level of the `prologue`, `epilogue`, `env_vars`, and `jobs` properties should be the same.
+
+:::
+
+## jobs {#jobs}
+
+The `jobs` items are essential for each pipeline because they allow you to define the actual commands that you want to execute.
+
+### name {#name-property-in-jobs}
+
+The value of the optional `name` property is a Unicode string that provides a name for a job.
+
+Semaphore assigns its own names to nameless `jobs` items, which is displayed in the UI.
+
+It is strongly recommended that you give descriptive names to all `jobs` and `blocks` items in a Semaphore pipeline.
+
+### commands {#commands}
+
+The `commands` property is an array of strings that holds the commands that will be executed for a job.
+
+The general structure of a job when using the `commands` property is as follows:
+
+```yaml title="Example"
+version: v1.0
+name: The name of the Semaphore project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+   task:
+      jobs:
+        - name: Check environment variables
+        # highlight-start
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - pwd
+        # highlight-end
+```
 
 ---
 
