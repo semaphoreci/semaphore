@@ -832,6 +832,381 @@ blocks:
         # highlight-end
 ```
 
+### commands_file {#commands_file}
+
+The `commands_file` property allows you to define the path of a plain text file containing the commands of a job that is an item in a `jobs` list, `prologue` block, or `epilogue` block, instead of using a `commands` list.
+
+You cannot use both `commands_file` and `commands` when defining a job, `prologue`, or `epilogue` item. Moreover, you cannot have a job, `prologue`, or `epilogue` properly defined if both the `commands` and `commands_file` properties are missing, i.e. you must use one (and only one).
+
+```yaml title="Example"
+version: v1.0
+name: Using commands_file
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Calling text file
+   task:
+      jobs:
+        - name: Using command_file
+        # highlight-next-line
+          commands_file: file_with_commands.txt
+      prologue:
+          commands:
+            - checkout
+```
+
+The contents of `file_with_commands.txt` should be valid shell commands, for instance:
+
+```bash
+echo "Command File"
+echo "Exit command_file"
+```
+
+:::note
+
+Semaphore reads the plain text file and creates an equivalent job using a `commands` block, which is what is finally executed. This means that the `commands_file` property is replaced before the job is started and the machine begins its execution.
+
+The location of the `commands_file` file is relative to the pipeline file. For example, if your pipeline file is located in .semaphore/semaphore.yml, the file_with_commands in the above example is assumed to live in `semaphore/file_with_commands`
+
+:::
+
+### env_vars {#env-vars-and-jobs}
+
+An `env_vars` block can also be defined within a `jobs` block on a local scope in addition to an `env_vars` block that is defined on the `task` level, where its scope is the entire `task` block. In that case, the environment variables of the local `env_vars` block will be only visible to the `jobs` block it belongs to.
+
+If one or more environment variables are defined on both a `jobs` level and a `task` level, the values of the environment variables that are defined on the `jobs` level take precedence over the values of the environment variables defined on the `task` level.
+
+```yaml title="Example"
+version: v1.0
+name: Using env_vars per jobs
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Using Local Environment variables only
+    task:
+      jobs:
+      - name: Job that uses local env_vars
+        commands:
+          - echo $APP_ENV
+          # highlight-start
+        env_vars:
+          - name: APP_ENV
+            value: This is APP_ENV
+          - name: VAR_2
+            value: This is VAR_2 from First Job
+          # highlight-end
+
+  - name: Both local and global env_vars
+    task:
+      env_vars:
+        - name: APP_ENV
+          value: prod
+        - name: VAR_1
+          value: VAR_1 from outer env_vars
+      jobs:
+      - name: Using both global and local env_vars
+        commands:
+          - echo $VAR_1
+          - echo $VAR_2
+          - echo $APP_ENV
+          # highlight-start
+        env_vars:
+          - name: VAR_1
+            value: This is VAR_1
+          - name: VAR_2
+            value: This is VAR_2
+          # highlight-end
+      - name: Second job - no local env_vars
+        commands:
+          - echo $VAR_1
+          - echo $APP_ENV
+```
+
+### priority {#priority}
+
+The `priority` property allows you to configure a job priority that affects the order in which jobs are started when the parallel jobs quota for the organization is reached.
+
+This property holds a list of items, where each item has a `value` property that represents the numerical value for its job priority in a range from 0 to 100, and a `when` condition property written in [Conditions DSL](./conditions-dsl).
+
+The items are evaluated from the top of the list and the value of the first item for which the `when` condition is evaluated as true will be set as top priority for the given job.
+
+If none of the conditions are evaluated as true, the [default job priority](../using-semaphore/jobs#priority).
+
+```yaml title="Example"
+version: v1.0
+name: Job priorities
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Tests
+    task:
+      jobs:
+      - name: Unit tests
+      # highlight-start
+        priority:
+        - value: 70
+          when: "branch = 'master'"
+        - value: 45
+          when: true
+      # highlight-end
+        commands:
+          - make unit-test
+      - name: Integration tests
+      # highlight-start
+        priority:
+        - value: 58
+          when: "branch = 'master'"
+        - value: 42
+          when: true
+      # highlight-end
+        commands:
+          - make integration-test
+```
+
+### matrix {#matrix}
+
+The `matrix` property allows you to define one or more environment variable sets with multiple values. In such a setup, `n` parallel jobs are created, where `n` equals the cardinality of the Cartesian product of all environment variable sets.
+
+So, the final outcome of the `matrix` property is the creation of multiple parallel jobs with exactly the same commands that are defined in the respective `commands` property. Each generated job is assigned with the environment variables from the corresponding element of the Cartesian product.
+
+```yaml title="Example"
+version: v1.0
+name: Using the matrix property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Elixir + Erlang
+    task:
+        jobs:
+        - name: Elixir + Erlang matrix
+          commands:
+            - echo $ELIXIR
+            - echo $ERLANG
+            # highlight-start
+          matrix:
+            - env_var: ELIXIR
+              values: ["1.3", "1.4"]
+            - env_var: ERLANG
+              values: ["19", "20", "21"]
+            # highlight-end
+```
+
+In this example, the job specification named `Elixir + Erlang matrix` expands to 6 parallel jobs as there are 2 x 3 = 6 combinations of the provided environment variables:
+
+- `Elixir + Erlang matrix - ELIXIR=1.4, ERLANG=21`
+- `Elixir + Erlang matrix - ELIXIR=1.4, ERLANG=20`
+- `Elixir + Erlang matrix - ELIXIR=1.4, ERLANG=19`
+- `Elixir + Erlang matrix - ELIXIR=1.3, ERLANG=21`
+- `Elixir + Erlang matrix - ELIXIR=1.3, ERLANG=20`
+- `Elixir + Erlang matrix - ELIXIR=1.3, ERLANG=19`
+
+### parallelism {#parallelism}
+
+The `parallelism` property can be used to easily generate a set of jobs with the same commands that can be parameterized. Each of those jobs will have environment variables with the total number of jobs and the index of a particular job that can be used as parameters.
+
+The `parallelism` property expects integer values larger than `1`.
+
+The following environment variables are added to each generated job:
+
+- `SEMAPHORE_JOB_COUNT`: total number of jobs generated via the `parallelism` property
+- `SEMAPHORE_JOB_INDEX`: value in the range from `1` to `SEMAPHORE_JOB_COUNT`, which represents the index of a particular job in the list of generated jobs.
+
+
+```yaml title="Example"
+version: v1.0
+name: Using the parallelism property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Example for parallelism
+    task:
+        jobs:
+        - name: Parallel job
+        # highlight-next-line
+          parallelism: 4
+          commands:
+            - echo Job $SEMAPHORE_JOB_INDEX out of $SEMAPHORE_JOB_COUNT
+            - make test PARTITION=$SEMAPHORE_JOB_INDEX
+```
+It will automatically create 4 jobs with the following names:
+
+- `Parallel job - 1/4`
+- `Parallel job - 2/4`
+- `Parallel job - 3/4`
+- `Parallel job - 4/4`
+
+
+:::note
+
+It is not possible to have both `parallelism` and [`matrix`](#matrix) properties defined for the same job, as `parallelism` functionality is a subset of `matrix` functionality.
+
+:::
+
+### prologue {#prologue}
+
+A `prologue` block in a `task` block is used when you want to execute certain commands prior to the commands of each job of a given `task`. This is usually the case with initialization commands that install software, start or stop services, etc.
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the prologue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Display a file
+   task:
+      jobs:
+        - name: Display hw.go
+          commands:
+            - ls -al
+            - cat hw.go
+            # highlight-start
+      prologue:
+          commands:
+            - checkout
+            # highlight-end
+```
+
+### epilogue {#epilogue}
+
+An `epilogue` block should be used when you want to execute commands after a job has finished, either successfully or unsuccessfully.
+
+Please notice that a pipeline *will not fail* if one or more commands in the `epilogue` fail to execute for some reason. Also, epilogue commands will not run if the job was stopped, canceled or timed-out.
+
+There are three types of epilogue commands:
+
+1. Epilogue commands that are always executed. Defined with `always` in the epilogue section.
+2. Epilogue commands that are executed when the job passes. Defined with `on_pass` in the epilogue section.
+3. Epilogue commands that are executed when the job fails. Defined with `on_fail` in the epilogue sections.
+
+The order of command execution is as follows:
+
+- First, the `always` commands are executed.
+- Then, the `on_pass` or `on_fail` commands are executed.
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the epilogue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Linux version
+   task:
+      jobs:
+        - name: Execute uname
+          commands:
+            - uname -a
+            # highlight-start
+      epilogue:
+        always:
+          commands:
+            - echo "this command is executed for both passed and failed jobs"
+        on_pass:
+          commands:
+            - echo "This command runs if job has passed"
+        on_fail:
+          commands:
+            - echo "This command runs if job has failed"
+            # highlight-end
+```
+
+Commands can be defined as a list directly in the YAML file, as in the above example, or via the `commands_file` property:
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the epilogue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Linux version
+   task:
+      jobs:
+        - name: Execute uname
+          commands:
+            - uname -a
+            # highlight-start
+      epilogue:
+        always:
+          commands_file: file_with_epilogue_always_commands.sh
+        on_pass:
+          commands_file: file_with_epilogue_on_pass_commands.sh
+        on_fail:
+          commands_file: file_with_epilogue_on_fail_commands.sh
+            # highlight-end
+```
+
+Where the content of the files is a list of commands, as in the following example:
+
+```bash
+echo "hello from command file"
+echo "hello from $SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+```
+
+The location of the file is relative to the pipeline file. For example, if your pipeline file is located in `.semaphore/semaphore.yml`, the `file_with_epilogue_always_commands.sh` in the above example is assumed to live in `.semaphore/file_with_epilogue_always_commands.sh`.
+
+## secrets {#secrets}
+
+A secret is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. A secret is defined using specific [YAML grammar](https://docs.semaphoreci.com/reference/secrets-yaml-reference/) and processed using the `sem` command line tool.
+
+The `secrets` property is used for importing all the environment variables and files from an existing secret into a Semaphore organization.
+
+If one or more names of the environment variables from two or more imported secrets are the same, then the shared environment variables will have the value that was found in the secret that was imported last. The same rule applies to the files in secrets.
+
+Additionally, if you try to use a `name` value that does not exist, the pipeline will fail to execute.
+
+### name {#name-property-in-secrets}
+
+The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
+
+#### files in secrets {#files-in-secrets}
+
+You can store one or more files in a `secret`.
+
+You do not need any extra work for using a file that you stored in a `secret`, apart from including the name of the secret that holds the file in the `secrets` list of the pipeline YAML file. Apart from that, the only other requirement is remembering the name of the file, which is the value you put in the `path` property when creating the `secret`.
+
+All files in secrets are restored in the home directory of the user of the agent, usually mapped to `/home/semaphore`.
+
+```yaml title="Example"
+version: v1.0
+name: Pipeline configuration with secrets
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - task:
+      jobs:
+        - name: Using secrets
+          commands:
+            - echo $USERNAME
+            - echo $PASSWORD
+            # highlight-start
+      secrets:
+        - name: mysql-secrets
+            # highlight-end
+```
+
+Environment variables imported from a `secrets` property are used like regular environment variables defined in an `env_vars` block.
+
 ---
 
 WIP
