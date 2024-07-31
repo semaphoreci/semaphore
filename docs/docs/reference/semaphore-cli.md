@@ -13,7 +13,7 @@ You can interact with most aspects of your jobs, pipelines, projects, and organi
 
 ## Overview
 
-The Semaphore CLI tool lets you create projects, debug jobs, define dashboards, set up notifications, and your Semaphore manage resources.
+The Semaphore CLI tool lets you create projects, debug jobs, define dashboards, set up notifications, and manage your Semaphore resources.
 
 ## Installation and set up {#install}
 
@@ -80,7 +80,7 @@ This section explains how to connect and switch organizations.
 
 ### sem connect {#sem-connect}
 
-Before you can use any other commands, you need to conenct to your Semaphore organization.
+Before using any other commands, you need to conenct to your Semaphore organization.
 
 The syntax to connect is:
 
@@ -165,9 +165,9 @@ You may also create a secret and initialize it with values or files with:
 
 ```shell
 sem create secret <secret-name> \
-  -e <VARIABLE_NAME1>=<VALUE2> \
+ -e <VARIABLE_NAME1>=<VALUE2> \
   -e <VARIABLE_NAME2>=<VALUE2> \
-  -f <local_path_file1>:<agent_path_file1> \
+ -f <local_path_file1>:<agent_path_file1> \
   -f <local_path_file2>:<agent_path_file2>
 ```
 
@@ -175,9 +175,9 @@ For example:
 
 ```shell
 sem create secret example-secret \
-  -e FOO=BAR \
+ -e FOO=BAR \
   -e "MESSAGE=Hello World" \
-  -f /Users/John/hello.txt:/home/semaphore/hello.txt
+ -f /Users/John/hello.txt:/home/semaphore/hello.txt
 ```
 
 You can supply the `-p <project-name>` to create the secret as [project level secret](../using-semaphore/secrets#project-secrets).
@@ -341,7 +341,7 @@ This section describes in properties how to create, edit, and debug jobs using t
 
 ### Create one-off jobs {#sem-create-job}
 
-To create a one-off job, use `sem create` and supply the the job spec using the [Job YAML reference](./job-yaml).
+To create a one-off job, use `sem create` and supply the job spec using the [Job YAML reference](./job-yaml).
 
 The syntax is:
 
@@ -380,7 +380,6 @@ sem create -f my-job.yaml
 :::note
 
 The value of `project_id` must be valid or the command will fail.
-fail.
 
 :::
 
@@ -491,7 +490,7 @@ Where the job id is the one shown with [`sem get job`](#sem-get-job).
 
 ### sem debug {#sem-debug}
 
-The `sem debug` command allows you to connect a terminal to a finished job. You can re-run the job interactively using a SSH session to debug a problem.
+The `sem debug` command allows you to connect a terminal to a finished job. You can re-run the job interactively using an SSH session to debug a problem.
 
 The syntax is:
 
@@ -584,7 +583,7 @@ and continue with its operation. If there is no `.semaphore/semaphore.yml` file,
 
 :::warning
 
-Using the wrong `--repo-url` can cause problems to connect to the repository.
+Using the wrong `--repo-url` can cause problems in connecting to the repository.
 
 :::
 
@@ -598,7 +597,7 @@ The syntax is:
 sem debug project <project-name>
 ```
 
-This command opens a SSH session on the "master" branch and the HEAD revision of the repository.
+This command opens an SSH session on the "master" branch and the HEAD revision of the repository.
 
 For example:
 
@@ -617,7 +616,7 @@ You can define complex notifications using YAML resources.
 
 ### sem create notification {#sem-create-notification}
 
-Use `sem create` to create Slack and other webhook based notifications.
+Use `sem create` to create Slack and other webhook-based notifications.
 
 The syntax is:
 
@@ -705,7 +704,7 @@ See [Notifications YAML reference](./notifications-yaml) for more details.
 
 ## Working with pipelines
 
-This section describes in detail how to create, edit, and rebuild pipelines using the Semaphore CLI
+This section describes in detail how to create, edit, and rebuild pipelines using the Semaphore CLI.
 
 ### sem get pipeline {#sem-get-pipeline}
 
@@ -772,11 +771,11 @@ sem get pipeline <pipeline-id> --follow
 The `--follow` flag is particularly useful in the following two cases:
 
 - If you want to look at how a build is advancing without using the Semaphore UI
-- If you want to be notified when pipeline is done (e.g. in shell scripts).
+- If you want to be notified when the pipeline is done (e.g. in shell scripts).
 
 ## Working with workflows
 
-This section describes in detail how to create, edit, and rebuild workflows using the Semaphore CLI
+This section describes in detail how to create, edit, and rebuild workflows using the Semaphore CLI.
 
 
 ### sem get workflows {#sem-get-workflows}
@@ -839,7 +838,7 @@ The output of `sem rebuild workflow` command is a new workflow id and a new pipe
 
 ## Working with self-hosted agents
 
-This section describes in detail how to create, edit, and viewing [self-hosted agents](../using-semaphore/self-hosted) using the Semaphore CLI
+This section describes in detail how to create, edit, and view [self-hosted agents](../using-semaphore/self-hosted) using the Semaphore CLI
 
 
 ### sem create agent_type {#sem-create-agent-type}
@@ -847,6 +846,7 @@ This section describes in detail how to create, edit, and viewing [self-hosted a
 The `sem create agent_type` command can be used to create a self-hosted agent type using the Semaphore CLI.
 
 There are two ways of creating a new agent type:
+
 - Command line arguments : passing arguments to the `sem create` command
 - Resource file: passing an [Agent Type YAML spec file](./agent-yaml.md)
 
@@ -902,7 +902,7 @@ sem get agent_types
 
 ### sem get agent_type properties {#sem-get-agent-types-properties}
 
-The `sem get agent_type` command can be used to view properties on a specific self-hosted agents.
+The `sem get agent_type` command can be used to view properties on a specific self-hosted agent.
 
 The syntax is:
 
@@ -920,7 +920,7 @@ The syntax is:
 sem get agents
 ```
 
-Thisreturns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
+This returns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
 
 For example:
 
@@ -931,7 +931,7 @@ sem get agents s1-my-type
 
 ### sem get agent properties {#sem-get-agent-types-props}
 
-The `sem get agent` command can be used to view properties on a specific self-hosted agents. You need to provide the unique agent name.
+The `sem get agent` command can be used to view properties on specific self-hosted agents. You need to provide the unique agent name.
 
 The syntax is:
 
@@ -1002,6 +1002,8 @@ sem create dt <target-name> \
   -s ROLE,admin \
   -o branch,exact,main
 ```
+
+See [environments (deployment targets)](../using-semaphore/promotions#deployment-targets) for more information.
 
 ### sem get dt {#sem-get-dt}
 
@@ -1087,7 +1089,7 @@ The syntax is:
 sem troubleshoot <RESOURCE_TYPE> <RESOURCE_ID>
 ```
 
-The command returns vital information about the resource in YAML format containing IDs, timestamps and debugging information that the support staff might need to help you resolve your issues.
+The command returns vital information about the resource in YAML format containing IDs, timestamps, and debugging information that the support staff might need to help you resolve your issues.
 
 For example:
 
