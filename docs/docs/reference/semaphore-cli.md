@@ -36,7 +36,7 @@ sem connect <organization-name>.semaphoreci.com <API_TOKEN>
 ```
 You can get an API token on your [account page](https://me.semaphoreci.com/account).
 
-## Syntax {#syntax}
+## General syntax {#syntax}
 
 The general syntax of the `sem` utility is:
 
@@ -260,15 +260,15 @@ semaphore-demo-workflows             git@github.com:semaphoreci-demos/semaphore-
 semaphore-flutter-example            git@github.com:semaphoreci-demos/semaphore-flutter-example.git
 ```
 
-### sem get resource-name {#sem-get-details}
+### sem get resource {#sem-get-properties}
 
-You can use the `sem get` command to get details about a particular resource. The syntax is:
+You can use the `sem get` command to get properties about a particular resource. The syntax is:
 
 ```shell
 sem get <resource-type> <resource-name>
 ```
 
-For example, this retrieves the project details for the project `hello-semaphore`:
+For example, this retrieves the project properties for the project `hello-semaphore`:
 
 ```shell
 $ sem get project hello-semaphore
@@ -337,7 +337,52 @@ sem delete secret my-secret
 
 ## Working with jobs
 
-This section describes in detail how to create, edit, and debug jobs using the Semaphore CLI.
+This section describes in properties how to create, edit, and debug jobs using the Semaphore CLI.
+
+### Create one-off jobs {#sem-create-job}
+
+To create a one-off job, use `sem create` and supply the the job spec using the [Job YAML reference](./job-yaml).
+
+The syntax is:
+
+```shell
+sem create -f <job-specification.yaml>
+```
+
+:::info
+
+One-off jobs are not shown in the Semaphore UI. They can only be viewed and managed using the Semaphore CLI.
+
+:::
+
+For example, to create a job that outputs the Go version in the agent, we can use this job definition:
+
+```yaml title="my-job.yaml"
+apiVersion: v1alpha
+kind: Job
+metadata:
+  name: A new job
+spec:
+  files: []
+  envvars: []
+  secrets: []
+  commands:
+    - go version
+  project_id: 7384612f-e22f-4710-9f0f-5dcce85ba44b
+```
+
+To run it, we execute:
+
+```shell
+sem create -f my-job.yaml
+```
+
+:::note
+
+The value of `project_id` must be valid or the command will fail.
+fail.
+
+:::
 
 ### sem get job {#sem-get-job}
 
@@ -364,7 +409,7 @@ ID                                     NAME                                     
 d593f1e2-c68f-48a4-b3c8-3310fe9c0e93   Job #1                                                       2h    FINISHED   PASSED
 ```
 
-In order to view details about a specific job, provide the job ID as shown in `sem get job`. For example:
+In order to view properties about a specific job, provide the job ID as shown in `sem get job`. For example:
 
 ```shell
 $ sem get job 5c011197-2bd2-4c82-bf4d-f0edd9e69f40
@@ -425,51 +470,6 @@ For example:
 ```shell
 sem stop pipeline ea3e6bba-d19a-45d7-86a0-e78a2301b616
 ```
-
-### Create one-off jobs {#sem-create-job}
-
-To create a one-off job, use `sem create` and supply the the job spec using the [Job YAML reference](./job-yaml).
-
-The syntax is:
-
-```shell
-sem create -f <job-specification.yaml>
-```
-
-:::info
-
-One-off jobs are not shown in the Semaphore UI. They can only be viewed and managed using the Semaphore CLI.
-
-:::
-
-For example, to create a job that outputs the Go version in the agent, we can use this job definition:
-
-```yaml title="my-job.yaml"
-apiVersion: v1alpha
-kind: Job
-metadata:
-  name: A new job
-spec:
-  files: []
-  envvars: []
-  secrets: []
-  commands:
-    - go version
-  project_id: 7384612f-e22f-4710-9f0f-5dcce85ba44b
-```
-
-To run it, we execute:
-
-```shell
-sem create -f my-job.yaml
-```
-
-:::note
-
-The value of `project_id` must be valid or the command will fail.
-fail.
-
-:::
 
 ### sem attach {#sem-attach}
 
@@ -723,9 +723,9 @@ If you want to see only the pipelines for a project use:
 sem get pipelines -p <project-name>
 ```
 
-### sem get pipeline detail {#sem-get-pipeline-detail}
+### sem get pipeline properties {#sem-get-pipeline-properties}
 
-You can see the pipeline details using:
+You can see the pipeline properties using:
 
 ```shell
 sem get pipeline <pipeline-id>
@@ -795,9 +795,9 @@ If you want to see only the workflows for a project use:
 sem get workflows -p <project-name>
 ```
 
-### sem get workflow detail {#sem-get-workflow-detail}
+### sem get workflow properties {#sem-get-workflow-properties}
 
-You can see the workflow details using:
+You can see the workflow properties using:
 
 ```shell
 sem get workflow <workflow-id>
@@ -841,54 +841,6 @@ The output of `sem rebuild workflow` command is a new workflow id and a new pipe
 
 This section describes in detail how to create, edit, and viewing [self-hosted agents](../using-semaphore/self-hosted) using the Semaphore CLI
 
-### sem get agent_types {#sem-get-agent-types}
-
-The `sem get agent_types` command returns the list of self-hosted agent types for a Semaphore organization.
-
-The syntax is:
-
-```shell
-sem get agent_types
-```
-
-### sem get agents {#sem-get-agents}
-
-The `sem get agents` command returns the list of self-hosted agents Semaphore organization.
-
-The syntax is:
-
-```shell
-sem get agents
-```
-
-Thisreturns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
-
-For example:
-
-```shell
-sem get agents s1-my-type
-```
-
-
-### sem get agent details {#sem-get-agent-types-details}
-
-The `sem get agent` command can be used to view details on a specific self-hosted agents. You need to provide the unique agent name.
-
-The syntax is:
-
-```shell
-sem get agent_type <agent-name>
-```
-
-### sem get agent_type details {#sem-get-agent-types-details}
-
-The `sem get agent_type` command can be used to view details on a specific self-hosted agents.
-
-The syntax is:
-
-```shell
-sem get agent_type <agent-type-name>
-```
 
 ### sem create agent_type {#sem-create-agent-type}
 
@@ -937,9 +889,60 @@ sem create -f agent_type.yml
 
 See [Agent Type YAML spec file](./agent-yaml.md) for more details.
 
+
+### sem get agent_types {#sem-get-agent-types}
+
+The `sem get agent_types` command returns the list of self-hosted agent types for a Semaphore organization.
+
+The syntax is:
+
+```shell
+sem get agent_types
+```
+
+### sem get agent_type properties {#sem-get-agent-types-properties}
+
+The `sem get agent_type` command can be used to view properties on a specific self-hosted agents.
+
+The syntax is:
+
+```shell
+sem get agent_type <agent-type-name>
+```
+
+### sem get agents {#sem-get-agents}
+
+The `sem get agents` command returns the list of self-hosted agents Semaphore organization.
+
+The syntax is:
+
+```shell
+sem get agents
+```
+
+Thisreturns all agents for all agent types, but you can use the `--agent-type` flag to filter for agents for a specific agent type.
+
+For example:
+
+```shell
+sem get agents s1-my-type
+```
+
+
+### sem get agent properties {#sem-get-agent-types-props}
+
+The `sem get agent` command can be used to view properties on a specific self-hosted agents. You need to provide the unique agent name.
+
+The syntax is:
+
+```shell
+sem get agent_type <agent-name>
+```
+
+
 ## Working with deployment targets
 
-This section describes in detail how to create, edit, and view [deployment targets](../using-semaphore/promotions#deployment-targets) using the Semaphore CLI.
+This section describes in properties how to create, edit, and view [deployment targets](../using-semaphore/promotions#deployment-targets) using the Semaphore CLI.
 
 ### sem create dt {#sem-create-dt}
 
@@ -1010,7 +1013,7 @@ sem get dt --project-name <project-name>
 sem get dt --project-id <project-id>
 ```
 
-To view the details of a given deployment target:
+To view the properties of a given deployment target:
 
 ```shell
 sem get dt <deployment-target-id>
