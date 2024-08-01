@@ -274,6 +274,23 @@ This is empty for builds triggered by the initial commit of a new branch or tag.
 
 The current Git SHA revision of the code that the job is using.
 
+### Cache age {#git-cache-age}
+
+- **Environment variable**: `SEMAPHORE_GIT_CACHE_AGE`
+- **Example**: `259200`
+
+Used only when running [`checkout --use-cache`](./toolbox#cache-full-clone). It specifies how often the Semaphore Git Cache is updated, expressed in seconds. The default is 259200 (3 days).
+
+### Cache keep {#git-cache-keep}
+
+- **Environment variable**: `SEMAPHORE_GIT_CACHE_KEEP`
+- **Example**: `1`
+
+
+Used only when running [`checkout --use-cache`](./toolbox#cache-full-clone). It how many copies of the repository should be maintained in the Sempahore Git Cache. Older copies are automatically deleted.
+
+The default value is 0, which means that Semaphore maintains only 1 copy of the repository. If you set it to 1, Semaphore will maintain 2 copies of the repository.
+
 ### Committer {#committer}
 
 - **Environment variable**: `SEMAPHORE_GIT_COMMITTER`
@@ -281,14 +298,21 @@ The current Git SHA revision of the code that the job is using.
 
 The GitHub or Bitbucket username of the person who authored the revision.
 
-### Git Provider {#git-provider}
+### Depth {#git-depth}
+
+- **Environment variable**: `SEMAPHORE_GIT_DEPTH`
+- **Example**: `50`
+
+Holds the shallow clone depth level for the [checkout](./toolbox.md#checkout) command. The default value is 50.
+
+### Git provider {#git-provider}
 
 - **Environment variable**: `SEMAPHORE_GIT_PROVIDER`
 - **Example**: `bitbucket`, `github`
 
 The Git provider the repository is hosted on. Possible values are `bitbucket` or `github`.
 
-### Git Reference {#git-reference}
+### Git reference {#git-reference}
 
 - **Environment variable**: `SEMAPHORE_GIT_REF`
 - **Example**: `refs/heads/master`
@@ -531,14 +555,23 @@ This section describes the special variables available during the [initializatio
 ### Input file {#input-file}
 
 - **Environment variable**: `INPUT_FILE`
+- **Default value**: `.semaphore/semaphore.yml`
 
 The path to the input pipeline file during the initialization job.
 
 ### Output file {#output-file}
 
 - **Environment variable**: `OUTPUT_FILE`
+- **Default value**: `.semaphore/semaphore.yml.output.yml`
 
 The path to the output pipeline file during the initialization job. This file is used by Semaphore to lay out the jobs for the pipeline.
+
+### Logs file {#logs-file}
+
+- **Environment variable**: `LOGS_FILE`
+- **Default value**: `.semaphore/semaphore.yml.logs.jsonl`
+
+The path to the log file during the initialization job.
 
 ## See also
 

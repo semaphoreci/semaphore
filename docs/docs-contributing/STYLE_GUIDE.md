@@ -134,6 +134,21 @@ When the output is not shown, don't use the dollar sign ($):
 npm run build
 ```
 
+When you need to provide placeholder arguments use this convention:
+
+- Mandatory arguments: `<argument_name>`
+- Optional arguments: `[argument_name]`
+
+For example:
+
+```shell
+# optional and mandatory arguments
+cache store <keys> <path> [flags]
+
+# combine two types of arguments in the same example
+sem-context <action> <key>[=value]
+```
+
 ## Step-by-step instructions
 
 Only use indentation when absolutely needed. Avoid it when possible. The typical example is when you want to add a child item inside a list without breaking the numbering.
