@@ -48,17 +48,17 @@ The value of the `name` property, which is a string, defines the name of the sec
 
 This `name` value will be used in the Pipeline YAML file for importing a specific secret.
 
-The value of each `name` property should be unique for all secrets that exist under the same organization and must only contain alphanumerical characters ([a-z], [A-Z], or [0-9]). Dashes, underscores, hypens, and spaces are not allowed.
+The value of each `name` property should be unique for all secrets that exist under the same organization and must only contain alphanumerical characters ([a-z], [A-Z], or [0-9]). Dashes, underscores, hyphens, and spaces are not allowed.
 
 ### project_id_or_name {#project-id-or-name-in-metadata}
 
-This is a required field for project-level secrets. It must contain either the project name or project id of the project the secret is scoped to.
+This is a required field for project-level secrets. It must contain either the project name or project ID of the project the secret is scoped to.
 
 ## org_config {#org-config}
 
 <Available plans={['Startup','Scaleup']}/>
 
-The `org_config` property holds organization access policy fields, which are enabled for organizations on Startup plan or higher. 
+The `org_config` property holds organization access policy fields, which are enabled for organizations on a Startup plan or higher. 
 
 This property can contain the following:
 
@@ -72,12 +72,12 @@ This property can contain the following:
 This field can be set to one of three values: 
 
 - `ALL`: all projects in the organizations can use this secret in jobs
-- `ALLOWED`:  the secret is available to projects in the allow list 
+- `ALLOWED`:  the secret is available to projects in the allowed list 
 - `NONE`: does not allow use of the secret by any project
 
 ### projects_ids {#projects-ids-in-org-config}
 
-This field is a list of project ids to be added to the allowlist to use a secret when `projects_access` is 
+This field is a list of project IDs to be added to the allowlist to use a secret when `projects_access` is 
 set to `ALLOWED`. 
 
 If `projects_access` is set to `ALL` or `NONE` this whitelist is ignored.
@@ -106,7 +106,7 @@ The mandatory `data` property holds a single [`env_vars`](#env-vars-in-data) par
 
 ### env_vars {#env-vars-in-data}
 
-The `env_vars` property is a list key-value pairs to define environment variables that will be
+The `env_vars` property is a list of key-value pairs to define environment variables that will be
 inserted into a secret.
 
 Each key-value pair is an item of an array with these properties:
@@ -117,7 +117,7 @@ Each key-value pair is an item of an array with these properties:
 
 ### files {#files-in-data}
 
-The `files` property holds a list path-content pairs used for storing files.
+The `files` property holds a list of path-content pairs used for storing files.
 
 Each path-content pair is an item of an array with these properties:
 
