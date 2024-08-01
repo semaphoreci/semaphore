@@ -908,18 +908,16 @@ The `jobs` items are essential for each pipeline because they allow you to defin
 Under `jobs` you may define the following properties:
 
 - [`name`](#name-in-jobs)
-- `commands`
-- `commands_file`
-- `env_vars`
-- `priority`
-- `matrix`
-- `parallelism`
+- [`commands`](#commands-in-jobs)
+- [`commands_file`](#commands-file-in-jobs)
+- [`env_vars`](#env-vars-in-jobs)
+- [`priority`](#priority-in-jobs)
+- [`matrix`](#matrix-in-jobs)
+- [`parallelism`](#parallelism-in-jobs)
 
 ### name {#name-in-jobs}
 
-The value of the optional `name` property is a Unicode string that provides a name for a job.
-
-Semaphore assigns its own names to nameless `jobs` items, which is displayed in the UI.
+The value of the optional `name` property is a Unicode string that provides a name for a job. Semaphore assigns its own names to nameless `jobs` items, which is displayed in the Semahore website.
 
 It is strongly recommended that you give descriptive names to all `jobs` and `blocks` items in a Semaphore pipeline.
 
@@ -989,7 +987,7 @@ The location of the `commands_file` file is relative to the pipeline file. For e
 
 ### env_vars {#env-vars-in-jobs}
 
-An `env_vars` block can also be defined within a `jobs` block on a local scope in addition to an `env_vars` block that is defined on the `task` level, where its scope is the entire `task` block. In that case, the environment variables of the local `env_vars` block will be only visible to the `jobs` block it belongs to.
+The `env_vars` property can also be defined within a [`jobs`](#jobs) block on a local scope in addition to an `env_vars` block that is defined on the `task` level, where its scope is the entire `task` block. In that case, the environment variables of the local `env_vars` block will be only visible to the `jobs` block it belongs to.
 
 If one or more environment variables are defined on both a `jobs` level and a `task` level, the values of the environment variables that are defined on the `jobs` level take precedence over the values of the environment variables defined on the `task` level.
 
@@ -1245,8 +1243,10 @@ blocks:
 # highlight-start
 promotions:
   - name: Pipeline 1
+  # highlight-next-line
     pipeline_file: p1.yml
   - name: Pipeline 2
+  # highlight-next-line
     pipeline_file: p2.yml
 # highlight-end
 ```
@@ -1296,18 +1296,18 @@ blocks:
 
 The `auto_promote` property is optional and it allows you to specify a set of conditions under which a pipeline will be promoted automatically.
 
-It requires conditions to be defined in a `when` sub-property, following the [Conditions DSL][conditions-reference].
+It requires conditions to be defined in a `when` sub-property, following the [Conditions DSL](./conditions-dsl).
 
 If these conditions are fulfilled for a given pipeline's execution, the appropriate promotion will be triggered automatically.
 
 You can define conditions based on values for the following properties of the original pipeline:
 
-- `branch` - the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
-- `tag` - the name of the tag for which the pipeline is initiated (empty in the case of branch or pull-requests)
-- `pull request` - the number of pull request for which the pipeline is initiated (empty in the case of a branch or tag)
-- `change_in` - at least one file has changed in a given path (used for [monorepo workflows][monorepo-workflows])
-- `result` - the result of a pipeline's execution (see possible values below)
-- `result_reason` - the reason for a specific pipeline execution result (see possible values for each result type below)
+- `branch`: the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
+- `tag`: the name of the tag for which the pipeline is initiated (empty in the case of branch or pull-requests)
+- `pull request`: the number of pull request for which the pipeline is initiated (empty in the case of a branch or tag)
+- `change_in`: at least one file has changed in a given path (used for [monorepo workflows][monorepo-workflows])
+- `result`: the result of a pipeline's execution (see possible values below)
+- `result_reason`: the reason for a specific pipeline execution result (see possible values for each result type below)
 
 The valid values for `result` are:
 
@@ -1343,12 +1343,16 @@ agent:
 promotions:
 - name: Staging
   pipeline_file: p1.yml
+  # highlight-start
   auto_promote:
     when: "result = 'passed' and (branch = 'master' or tag =~ '^v1\.')"
+  # highlight-end
 - name: Documentation
   pipeline_file: p2.yml
+  # highlight-start
   auto_promote:
     when: "branch = 'master' and change_in('/docs/')"
+  # highlight-end
 - name: Production
   pipeline_file: p3.yml
 
@@ -1515,6 +1519,7 @@ agent:
 promotions:
 - name: Staging
   pipeline_file: p1.yml
+  # highlight-start
   auto_promote_on:
     - result: passed
       branch:
@@ -1524,6 +1529,7 @@ promotions:
       branch:
         - "v2."
       result_reason: malformed
+  # highlight-end
 
 - name: prod
   pipeline_file: p2.yml
