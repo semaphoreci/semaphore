@@ -13,17 +13,17 @@ This page describes the formal pipeline YAML specification for Semaphore.
 
 ## Overview
 
-Semaphore uses YAML for [pipeline](../using-semaphore/pipelines) definition. Every Semaphore project requires at least one pipeline to work. If you don't want to write pipelines by hand, you can use the [visual workflow editor](../using-semaphore/jobs#workflow-editor).
+Semaphore uses YAML for the definition of [pipeline](../using-semaphore/pipelines). Every Semaphore project requires at least one pipeline to work. If you don't want to write pipelines by hand, you can use the [visual workflow editor](../using-semaphore/jobs#workflow-editor).
 
 ### Execution order {#order}
 
-You cannot assume that [`jobs`](#jobs) in the same [`task`](#task) run in any particular order. They run in parallel on an resouce availability basis.
+You cannot assume that [`jobs`](#jobs) in the same [`task`](#task) run in any particular order. They run in parallel on a resource availability basis.
 
 To force execution order, you must use [`block dependencies`](#dependencies-in-blocks). Semaphore only starts a `block` when all their dependencies are completed.
 
 ### Comments {#comments}
 
-Lines begining with `#` are considered comments and are ignored by the YAML parser.
+Lines beginning with `#` are considered comments and are ignored by the YAML parser.
 
 ## version {#version}
 
@@ -35,7 +35,7 @@ version: v1.0
 
 ## name {#name}
 
-A Unicode string for the pipeline name. It is strongly recommended to give descriptive names to your Semaphore pipelines.
+A Unicode string for the pipeline name. It is strongly recommended that you give descriptive names to your Semaphore pipelines.
 
 ```yaml title="Example"
 name: The name of the Semaphore pipeline
@@ -82,7 +82,7 @@ machine:
 
 ### type {#type}
 
-Part of the [`agent`](#agent) deinition. It selects the hardware or [self-hosted agent](../using-semaphore/self-hosted) type that runs the jobs.
+Part of the [`agent`](#agent) definition. It selects the hardware or [self-hosted agent](../using-semaphore/self-hosted) type that runs the jobs.
 
 The list of valid values for Semaphore Cloud is available on the [machine types reference](./machine-types) page.
 
@@ -95,7 +95,7 @@ machine:
 
 ### os_image {#os-image}
 
-Part of the [`agent`](#agent) deinition. This is an optional property to specify the Operating System image to mount on the [`machine`](#machine).
+Part of the [`agent`](#agent) definition. This is an optional property to specify the Operating System image to mount on the [`machine`](#machine).
 
 If a value is not provided, the default for the machine type is used:
 
@@ -115,7 +115,7 @@ machine:
 
 An optional part of [`agent`](#agent). Defines an array of Docker image names to run jobs. 
 
-The first container in the list runs the jobs. You may optionally add more items which run as separate containers. All containers can reference each other via their names, which are mapped to hostnames using DNS records.
+The first container in the list runs the jobs. You may optionally add more items that run as separate containers. All containers can reference each other via their names, which are mapped to hostnames using DNS records.
 
 Each `container` entry can have:
 
@@ -207,7 +207,7 @@ Defines an optional time limit for executing the pipeline. Jobs are forcibly ter
 
 The `execution_time_limit` property accepts one of two options:
 - `hours`: time limit expressed in hours. Maximum value is 24
-- `minutes`: time limit expressed in minutes. Maximum value is 1440
+- `minutes`: The time limit is expressed in minutes. The maximum value is 1440
 
 You can only either `hours` or `minutes`. Not both.
 
@@ -240,7 +240,7 @@ If both are set, `stop` is evaluated first. If `fail_fast` is not defined, jobs 
 
 The `stop` property causes all running jobs to stop as soon as one job fails. It requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
-In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished. If Block A fails and the workflow was initiated from a non-master branch all running job stop immediately.
+In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished. If Block A fails and the workflow is initiated from a non-master branch all running jobs stop immediately.
 
 ```yaml title="Example"
 version: v1.0
@@ -283,12 +283,12 @@ blocks:
 
 ### cancel {#cancel-in-fail}
 
-The `cancel` property causes all non-started jobs to be canceled as soon as on job fails. Already running jobs are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
+The `cancel` property causes all non-started jobs to be canceled as soon as one job fails. Already running jobs are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
 In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.  If Block A fails in a workflow that was initiated from a non-master branch:
 
 - Block B is allowed to finish
-- Block C is cancelled, i.e. it never starts
+- Block C is canceled, i.e. it never starts
 
 ```yaml title="Example"
 version: v1.0
@@ -354,7 +354,7 @@ The following rules apply:
 
 When `scope: project` the queues with the same values for the `name` property in different projects are not queued together.
 
-When `scope: organization` the pipelines from the queue will be queued together with pipelines from other projects within the organization that have a queue configuration with same `name` and `scope` values. 
+When `scope: organization` the pipelines from the queue will be queued together with pipelines from other projects within the organization that have a queue configuration with the same `name` and `scope` values. 
 
 The `processing` property can have two values:
 
@@ -363,7 +363,7 @@ The `processing` property can have two values:
 
 ### Conditional assignment {#conditional-in-queue}
 
-In this option you define an array of items with queue configurations as a sub-property of the `queue` property. Each array item can have the same properties, i.e. `name`, `scope`, and `processing`, as in [direct assignment](#direct-in-queue).
+In this option, you define an array of items with queue configurations as a sub-property of the `queue` property. Each array item can have the same properties, i.e. `name`, `scope`, and `processing`, as in [direct assignment](#direct-in-queue).
 
 In addition, you need to supply a `when` property using the [Conditions DSL](./conditions-dsl). When the `queue` configuration is evaluated in this approach, the `when` conditions from the items in the array are evaluated one by one starting with the first item in the array.
 
@@ -375,7 +375,7 @@ If none of the conditions are evaluated as true, the [default queue behavior](..
 
 ## auto_cancel {#auto-cancel}
 
-Sets an strategy for auto-canceling pipelines in a queue when a new pipeline appears. Two values are supported:
+Sets a strategy for auto-canceling pipelines in a queue when a new pipeline appears. Two values are supported:
 
 - [`running`](#running-in-auto-cancel)
 - [`queued`](#queued-in-auto-cancel)
@@ -385,7 +385,7 @@ At least one of them is required. If both are set, `running` will be evaluated f
 
 ### running {#running-in-auto-cancel}
 
-When this property is set, queued and running pipelines are cancelled as soon as a new workflow is triggered. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
+When this property is set, queued and running pipelines are canceled as soon as a new workflow is triggered. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
 In the following configuration, all pipelines initiated from a non-master branch will run immediately after auto-stopping everything else in front of them in the queue.
 
@@ -414,7 +414,7 @@ blocks:
 
 ### queued {#queued-in-auto-cancel}
 
-When this property is set, only queued are cancelled as soon as a new workflow is triggered. Already-running pipelines are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
+When this property is set, only queued are canceled as soon as a new workflow is triggered. Already-running pipelines are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
 In the following configuration, all pipelines initiated from a non-master branch will cancel any queued pipelines and wait for the one that is running to finish before starting.
 
@@ -451,13 +451,13 @@ Set global properties to be applied to all jobs and blocks in the pipeline. It c
 
 The defined configuration values have the same syntax as the ones defined on the [`task`](#task) or a [`jobs`](#jobs) level and are applied to all the tasks and jobs in a pipeline.
 
-In the case of `prologue` and `env_vars` the global values, i.e. values from `global_job_config`, are exported first, and those defined on a task level thereafter. This allows for overriding of global values for the specific task, if the need arises.
+In the case of `prologue` and `env_vars` the global values, i.e. values from `global_job_config`, are exported first, and those defined on a task level thereafter. This allows for the overriding of global values for the specific task if the need arises.
 
 In the case of `epilogue`, the order of exporting is reversed, so, for example, one can first perform specific cleanup commands before global ones.
 
 `secrets` are simply merged since order plays no role here.
 
-In the case of the `priority`, the global values are added at the end of the list of priorities, and their conditions defined on the job level. This allows for job-specific priorities to be evaluated first, and only if none of them match will the global values be evaluated and used.
+In the case of the `priority`, the global values are added at the end of the list of priorities, and their conditions are defined at the job level. This allows for job-specific priorities to be evaluated first, and only if none of them match will the global values be evaluated and used.
 
 ```yaml title="Example"
 version: "v1.0"
@@ -498,7 +498,7 @@ blocks:
 
 ## blocks {#blocks}
 
-Defines an array of items that holds the elements of a pipeline. Each element of that array is called a *block* and can have these properties:
+Defines an array of items that hold the elements of a pipeline. Each element of that array is called a *block* and can have these properties:
 
 - [`name`](#name-in-blocks)
 - [`dependencies`](#dependencies-in-blocks)
@@ -586,11 +586,11 @@ blocks:
 
 ### skip {#skip-in-blocks}
 
-The `skip` property is optional and it allows you to define conditions, written in [Conditions DSL](./conditions-dsl) which are based on the branch name or tag name of current push which initiated entire pipeline.  If a condition defined in this way is evaluated to be true, the block will be skipped.
+The `skip` property is optional and it allows you to define conditions, written in [Conditions DSL](./conditions-dsl) which are based on the branch name or tag name of the current push that initiated the entire pipeline.  If a condition defined in this way is evaluated to be true, the block will be skipped.
 
 When a block is skipped, it means that it will immediately finish with a `passed` result without actually running any of its jobs.
 
-Its result_reason will be set to `skipped` and other blocks which depend on it passing will be started and executed as if this block executed regularly and all of its jobs passed.
+Its result_reason will be set to `skipped` and other blocks which depend on its passing will be started and executed as if this block executed regularly and all of its jobs passed.
 
 Example of a block that has been skipped on all branches except master:
 
@@ -625,7 +625,7 @@ It is not possible to have both `skip` and [`run`](#run-in-blocks) properties de
 
 The `run` property is optional and it allows you to define a condition, written in [Conditions DSL](./conditions-dsl) that is based on properties of the push which initiated the entire workflow.
 
-If the run condition is evaluated as true, the block and all of its jobs will run, otherwise the block will be skipped.
+If the run condition is evaluated as true, the block and all of its jobs will run, otherwise, the block will be skipped.
 
 When a block is skipped, it means that it will immediately finish with a `passed` result and a `skipped` result_reason, without actually running any of its jobs.
 
@@ -786,7 +786,7 @@ blocks:
 
 An `epilogue` block should be used when you want to execute commands after a job has finished, either successfully or unsuccessfully.
 
-Please notice that a pipeline *will not fail* if one or more commands in the `epilogue` fail to execute for some reason. Also, epilogue commands will not run if the job was stopped, canceled or timed-out.
+Please notice that a pipeline *will not fail* if one or more commands in the `epilogue` fail to execute for some reason. Also, epilogue commands will not run if the job was stopped, canceled, or timed-out.
 
 There are three types of epilogue commands:
 
@@ -865,7 +865,7 @@ The location of the file is relative to the pipeline file. For example, if your 
 
 ### secrets {#secrets-in-task}
 
-A [secret](../using-semaphore/secrets) is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. 
+A [secret](../using-semaphore/secrets) is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. 
 
 The `secrets` property is used for importing all the environment variables and files from an existing secret into a Semaphore organization.
 
@@ -917,7 +917,7 @@ Under `jobs` you may define the following properties:
 
 ### name {#name-in-jobs}
 
-The value of the optional `name` property is a Unicode string that provides a name for a job. Semaphore assigns its own names to nameless `jobs` items, which is displayed in the Semahore website.
+The value of the optional `name` property is a Unicode string that provides a name for a job. Semaphore assigns its own names to nameless `jobs` items, which are displayed on the Semaphore website.
 
 It is strongly recommended that you give descriptive names to all `jobs` and `blocks` items in a Semaphore pipeline.
 
@@ -1046,7 +1046,7 @@ The `priority` property allows you to configure a job priority that affects the 
 
 This property holds a list of items, where each item has a `value` property that represents the numerical value for its job priority in a range from 0 to 100, and a `when` condition property written in [Conditions DSL](./conditions-dsl).
 
-The items are evaluated from the top of the list and the value of the first item for which the `when` condition is evaluated as true will be set as top priority for the given job.
+The items are evaluated from the top of the list and the value of the first item for which the `when` condition is evaluated as true will be set as a top priority for the given job.
 
 If none of the conditions are evaluated as true, the [default job priority](../using-semaphore/jobs#priority).
 
@@ -1171,7 +1171,7 @@ It is not possible to have both `parallelism` and [`matrix`](#matrix-in-jobs) pr
 
 ## after_pipeline {#after_pipeline}
 
-Defines set of jobs to execute when the pipeline is finished. The `after_pipeline` property is most commonly used for sending notifications, collecting test results, and submitting metrics.
+Defines a set of jobs to execute when the pipeline is finished. The `after_pipeline` property is most commonly used for sending notifications, collecting test results, and submitting metrics.
 
 For example, to submit pipeline duration metrics and to publish test results, you would define the `after_pipeline` with the following YAML snippet:
 
@@ -1193,7 +1193,7 @@ Jobs in the `after_pipeline` task are always executed regardless of the result o
 
 All `SEMAPHORE_*` environment variables that are injected into regular pipeline jobs are also injected into `after_pipeline` jobs.
 
-Additionally, Semaphore [injects environment variables](./env-vars#after-pipeline-variables) that describe the state, result, and duration of the executed pipeline into `after_pipeline` jobs.
+Additionally, Semaphore [injects environment variables](./env-vars#after-pipeline-variables) describes the state, result, and duration of the executed pipeline into `after_pipeline` jobs.
 
 :::note
 
@@ -1203,7 +1203,7 @@ Global job config is not applied to `after_pipeline` jobs. This includes secrets
 
 ## promotions {#promotions}
 
-The `promotions` property is used for *promoting* (manually or automatically triggering) one or more pipelines using one or more pipeline YAML files. A pipeline YAML file can have a single `promotions` block or no `promotions` blocks.
+The `promotions` property is used for *promoting* (manually or automatically triggering) one or more pipelines using one or more pipeline YAML files. A pipeline YAML file can have a single `promotions` block or no `promotions` block.
 
 The items of a `promotions` block are called *targets* and are implemented using pairs of `name` and `pipeline_file` properties. A `promotions` block can have multiple targets.
 
@@ -1217,7 +1217,7 @@ The `name` property in a `promotions` block is a Unicode string and is compulsor
 
 The `pipeline_file` property of the `promotions` block is a path to another pipeline YAML file within the repository of the Semaphore project. This property is compulsory.
 
-If `pipeline_file` is a relative path, Semaphore will search for the file inside the directory of the current pipeline. If `pipeline_file` is an absolute path (starts with `/` character), Semaphore will seek the file starting from the root directory of the repository.
+If `pipeline_file` is a relative path, Semaphore will search for the file inside the directory of the current pipeline. If `pipeline_file` is an absolute path (starts with the `/` character), Semaphore will seek the file starting from the root directory of the repository.
 
 Each `pipeline_file` value must be a valid and syntactically correct pipeline YAML file as defined in this document. However, potential errors in a pipeline YAML file, given as a value to the `pipeline_file` property, will be revealed when the relevant target is promoted.
 
@@ -1303,8 +1303,8 @@ If these conditions are fulfilled for a given pipeline's execution, the appropri
 You can define conditions based on values for the following properties of the original pipeline:
 
 - `branch`: the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
-- `tag`: the name of the tag for which the pipeline is initiated (empty in the case of branch or pull-requests)
-- `pull request`: the number of pull request for which the pipeline is initiated (empty in the case of a branch or tag)
+- `tag`: the name of the tag for which the pipeline is initiated (empty in the case of branch or pull requests)
+- `pull request`: the number of pull requests for which the pipeline is initiated (empty in the case of a branch or tag)
 - `change_in`: at least one file has changed in a given path (used for [monorepo workflows](../using-semaphore/optimization/monorepo). See [Conditions DSL](./conditions-dsl) for more details
 - `result`: the result of a pipeline's execution (see possible values below)
 - `result_reason`: the reason for a specific pipeline execution result (see possible values for each result type below)
@@ -1313,7 +1313,7 @@ The valid values for `result` are:
 
 - `passed`: all the blocks in the pipeline ended successfully
 - `stopped`: the pipeline was stopped either by the user or by the system
-- `canceled`: the pipeline was canceled either by the user or by the system (the difference between `canceled` and `stopped` is if the result is `canceled` it means that pipeline was terminated before any block or job started to execute)
+- `canceled`: the pipeline was canceled either by the user or by the system (the difference between `canceled` and `stopped` is if the result is `canceled` it means that the pipeline was terminated before any block or job started to execute)
 - `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
 
 The valid values for `result_reason` are:
@@ -1322,13 +1322,18 @@ The valid values for `result_reason` are:
 - `malformed`: the pipeline YAML file is not correct
 - `stuck`: the pipeline jammed for internal reasons and then aborted
 - `internal`: the pipeline was terminated for internal reasons
-- `user`: the pipeline was stopped on user request
+- `user`: the pipeline was stopped on the user request
 - `strategy`: the pipeline was terminated due to an auto-cancel strategy
 - `timeout`: the pipeline exceeded the execution time limit
 
-Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
+Not all [`result`](#result-in-promotions) and [`result_reason`](#result-reason-promotions) combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
 
-For example, a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `internal`, `user`, `strategy`, and `timeout`.
+For example, with a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are:
+
+- `internal`
+- `user`
+- `strategy`
+- `timeout`
 
 The following pipeline YAML file presents two examples using `auto_promote` and depends on three other pipeline YAML files named `p1.yml`, `p2.yml`, and `p3.yml`:
 
@@ -1376,11 +1381,11 @@ blocks:
             - echo Job 2 - Block 2
 ```
 
-According to the specified rules, only the `Staging` and `Documentation` promotions can be auto-promoted – when the conditions specified in the `when` sub-property of `auto_promote` property are fulfilled. However, the `Production` promotion has no `auto_promote` property, so it can't be auto-promoted.
+According to the specified rules, only the `Staging` and `Documentation` promotions can be auto-promoted – when the conditions specified in the `when` sub-property of the `auto_promote` property are fulfilled. However, the `Production` promotion has no `auto_promote` property, so it can't be auto-promoted.
 
 Therefore, if the pipeline finishes with a `passed` result and was initiated from the `master` branch, then the `p1.yml` pipeline file will be auto-promoted.
 
-The same will happen if the pipeline was initiated from the tag with a name that matches the expression given in PCRE (*Perl Compatible Regular Expression*) syntax, which is, in this case, any string that starts with `v1.`.
+The same will happen if the pipeline is initiated from the tag with a name that matches the expression given in PCRE (*Perl Compatible Regular Expression*) syntax, which is, in this case, any string that starts with `v1.`.
 
 `Documentation` promotion will be auto-promoted when initiated from the `master` branch, while there is at least one changed file in the `docs` folder (relative to the root of the repository). Check the [change_in reference](./conditions-dsl#change-in) for additional usage details.
 
@@ -1453,7 +1458,7 @@ The list of valid values for `result`: `passed`, `stopped`, `canceled`, and `fai
 
 - `passed`: all the blocks in the pipeline ended successfully
 - `stopped`: the pipeline was stopped either by the user or by the system
-- `canceled`: the pipeline was cancelled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be cancelled but cannot be stopped)
+- `canceled`: the pipeline was canceled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be canceled but cannot be stopped)
 - `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
 
 ### branch {#branch-in-promotions}
@@ -1462,7 +1467,7 @@ The `branch` property is a list of items. Its items are regular expressions that
 
 The `branch` property uses Perl Compatible Regular Expressions.
 
-In order for a `branch` value to match the `master` branch only and not match names such as `this-is-not-master` or `a-master-alternative`, you should use `^master$` as the value of the `branch` property. The same rule applies for matching words or strings.
+In order for a `branch` value to match the `master` branch only and not match names such as `this-is-not-master` or `a-master-alternative`, you should use `^master$` as the value of the `branch` property. The same rule applies to matching words or strings.
 
 In order for a `branch` value to match branches that begin with `dev` you should use something like `^dev`.
 
@@ -1477,11 +1482,15 @@ The list of valid values for `result_reason` are: `test`, `malformed`, `stuck`, 
 - `stuck`: the pipeline jammed for internal reasons and then aborted
 - `deleted`: the pipeline was terminated because the branch was deleted while the pipeline was running
 - `internal`: the pipeline was terminated for internal reasons
-- `user`: the pipeline was stopped on user request
+- `user`: the pipeline was stopped on the user's request
 
 Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
 
-For example a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `deleted`, `internal`, and `user`.
+For example, with a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are:
+
+- `deleted`
+- `internal`
+- `user`
 
 ## Deprecated properties {#deprecated}
 
@@ -1499,7 +1508,7 @@ The `auto_promote_on` property is used for automatically promoting one or more b
 
 The `auto_promote_on` property is a list of items that supports three properties: `result`, which is mandatory; `branch`, which is optional; and `result_reason`, which is also optional.
 
-For a `auto_promote_on` branch to execute, the return values of all the used properties of that branch must be `true`.
+For an `auto_promote_on` branch to execute, the return values of all the used properties of that branch must be `true`.
 
 
 <details>
@@ -1559,7 +1568,7 @@ blocks:
 
 According to the specified rules, only the `Staging` promotion of the `promotions` list can be auto-promoted – this depends on the rules of the two items of the `auto_promote_on` list. However, the `prod` promotion of the `promotions` list has no `auto_promote_on` property so there is no way it can be auto-promoted.
 
-So, if the pipeline finishes with a `passed` result and the branch name contains the word `master`, then the `p1.yml` pipeline file will be auto-promoted. The same will happen if the the pipeline finishes with a `failed` result. The `result_reason` is `malformed` and the branch name contains the `v2` sequence of characters followed by at least one more character, because a `.` character in a Perl Compatible Regular Expression means one or more characters.
+So, if the pipeline finishes with a `passed` result and the branch name contains the word `master`, then the `p1.yml` pipeline file will be auto-promoted. The same will happen if the pipeline finishes with a `failed` result. The `result_reason` is `malformed` and the branch name contains the `v2` sequence of characters followed by at least one more character because a `.` character in a Perl Compatible Regular Expression means one or more characters.
 
 The contents of `p1.yml` are as follows:
 
