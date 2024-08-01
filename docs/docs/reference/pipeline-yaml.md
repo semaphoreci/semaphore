@@ -1165,7 +1165,7 @@ It will automatically create 4 jobs with the following names:
 
 :::note
 
-It is not possible to have both `parallelism` and [`matrix`](#matrix) properties defined for the same job, as `parallelism` functionality is a subset of `matrix` functionality.
+It is not possible to have both `parallelism` and [`matrix`](#matrix-in-jobs) properties defined for the same job, as `parallelism` functionality is a subset of `matrix` functionality.
 
 :::
 
@@ -1305,7 +1305,7 @@ You can define conditions based on values for the following properties of the or
 - `branch`: the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
 - `tag`: the name of the tag for which the pipeline is initiated (empty in the case of branch or pull-requests)
 - `pull request`: the number of pull request for which the pipeline is initiated (empty in the case of a branch or tag)
-- `change_in`: at least one file has changed in a given path (used for [monorepo workflows][monorepo-workflows])
+- `change_in`: at least one file has changed in a given path (used for [monorepo workflows](../using-semaphore/optimization/monorepo). See [Conditions DSL](./conditions-dsl) for more details
 - `result`: the result of a pipeline's execution (see possible values below)
 - `result_reason`: the reason for a specific pipeline execution result (see possible values for each result type below)
 
@@ -1382,7 +1382,7 @@ Therefore, if the pipeline finishes with a `passed` result and was initiated fro
 
 The same will happen if the pipeline was initiated from the tag with a name that matches the expression given in PCRE (*Perl Compatible Regular Expression*) syntax, which is, in this case, any string that starts with `v1.`.
 
-`Documentation` promotion will be auto-promoted when initiated from the `master` branch, while there is at least one changed file in the `docs` folder (relative to the root of the repository). Check the [change_in reference][change-in-ref] for additional usage details.
+`Documentation` promotion will be auto-promoted when initiated from the `master` branch, while there is at least one changed file in the `docs` folder (relative to the root of the repository). Check the [change_in reference](./conditions-dsl#change-in) for additional usage details.
 
 The content of `p1.yml` is as follows:
 
@@ -1491,7 +1491,7 @@ This section shows deprecated properties.
 
 :::warning
 
-The `auto_promote_on` property has been deprecated in favor of the [`auto_promote`](#auto_promote) property.
+The `auto_promote_on` property has been deprecated in favor of the [`auto_promote`](#auto-promote-in-promotions) property.
 
 :::
 
