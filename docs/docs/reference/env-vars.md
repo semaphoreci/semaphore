@@ -9,10 +9,6 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-This page describes the environment variables defined by Semaphore for job environments.
-
-See [environment variables](../using-semaphore/jobs#environment-variables) to learn how to define variables.
-
 ## Semaphore variables {#semaphore-variables}
 
 These variables describe various aspects of Semaphore workings.

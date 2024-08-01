@@ -1013,7 +1013,6 @@ Using job matrices causes Semaphore to run an [initialization job](./pipelines#i
 
 :::
 
-
 ## Job priority {#priority}
 
 Every job in Semaphore has an internal priority value from 0 to 100. The priority is used to decide what jobs to run when a [job limit](#limits) is reached. Jobs with higher priority run first when the organization reaches their quota limits.

@@ -280,3 +280,23 @@ To get the embeddable URL:
 2. Press the **Share** button
 3. Select embed
 4. Copy the SRC part of the code, e.g. "https://www.youtube.com/embed/xId2H2wlKx4?si=0IXKyNNUVVjDDvHz"
+
+### Railroad diagrams
+
+To render EBNF style diagrams, you can use [DrawGrammar](https://jacquev6.github.io/DrawGrammar/) with default options.
+
+The only downside is that you need to add a white background to the output PNG file before using it on this side.
+
+### Mermaid diagrams
+
+Docusaurus supports [Mermaid] diagrams. This allows us to embed sequence, state, and other types of diagrams using just code. To use mermaid, we just add a code fence with the mermaid type. For example
+
+  ```mermaid
+  sequenceDiagram
+      Agent->>+Semaphore: register("https://aws.amazonaws.com/sts/...")
+      Semaphore->>+AWS: request URL signature
+      AWS-->>-Semaphore: signed URL
+      Semaphore-->>-Agent: accessToken
+  ```
+
+You can preview diagram lives at [Mermaid Live Editor](https://mermaid.live/).
