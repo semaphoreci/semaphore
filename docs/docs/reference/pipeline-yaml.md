@@ -88,7 +88,7 @@ machine:
   os_image: ubuntu2004
 ```
 
-### os_image {#os_image}
+### os_image {#os-image}
 
 `os_image` is an optional property that specifies the operating system image to be used in the virtual machine. If a value is not provided, the default for the machine type is used.
 
@@ -290,7 +290,7 @@ The behavior is:
 - when `stop` is set all running jobs are stopped and all pending jobs are canceled as soon a job fails
 - when `cancel` is set running jobs are allowed to finish but no new jobs are started. This will provide you with more data for debugging without using additional resources
 
-### stop {#fail-sop}
+### stop {#stop-in-fail}
 
 In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.
 
@@ -336,7 +336,7 @@ blocks:
           - sleep 60
 ```
 
-### cancel {#fail-cancel}
+### cancel {#cancel-in-fail}
 
 In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.
 
@@ -395,7 +395,7 @@ There are two ways you can define `queue` behavior:
 
 All the sub-properties and their potential values for both approaches are listed below and you can find more examples and use cases for different queue configurations on the [Pipeline Queues](../using-semaphore/pipelines#queues).
 
-### direct {#direct-queue-configuration}
+### direct {#direct-in-queue}
 
 This option allows you to can use the `name`, `scope`, and `processing` properties as direct sub-properties of the `queue` property.  
 
@@ -416,7 +416,7 @@ The `processing` property can have two values:
 - `serialized` the pipelines in the queue will be queued and executed one by one in ascending order, according to creation time. This is the default
 - `parallel`: all pipelines in the queue will be executed as soon as they are created and there will be no queuing.
 
-### conditional {#conditional-queue-configurations}
+### conditional {#conditional-in-queue}
 
 In this option you define an array of items with queue configurations as a sub-property of the `queue` property. Each array item can have the same properties, i.e. `name`, `scope`, and `processing`, as in [direct queue configuration](#direct-queue-configuration).
 
@@ -428,7 +428,7 @@ This means that the order of the items in the array is important and that items 
 
 If none of the conditions are evaluated as true, the [default queue behavior](../using-semaphore/pipelines#queues) is used.
 
-## auto_cancel {#auto_cancel}
+## auto_cancel {#auto-cancel}
 
 Sets an strategy for auto-canceling pipelines in a queue when a new pipeline appears. Two values are supported:
 
@@ -439,7 +439,7 @@ At least one of them is required. If both are set, `running` will be evaluated f
 
 The `running` and `queued` properties both require a condition defined with a `when`, following the [Conditions DSL](./conditions-dsl).
 
-### running {#cancel-running}
+### running {#running-in-auto-cancel}
 
 In the following configuration, all pipelines initiated from a non-master branch will run immediately after auto-stopping everything else in front of them in the queue.
 
@@ -466,7 +466,7 @@ blocks:
           - echo Running unit test
 ```
 
-### queued {#cancel-queued}
+### queued {#queued-in-auto-cancel}
 
 In the following configuration, all pipelines initiated from a non-master branch will cancel any queued pipelines and wait for the one that is running to finish before starting.
 
@@ -491,7 +491,7 @@ blocks:
           - echo Running unit test
 ```
 
-## global_job_config {#global_job_config}
+## global_job_config {#global-job-config}
 
 Set global properties to be applied to all jobs and blocks in the pipeline. It can contain any of these properties:
 
@@ -737,7 +737,7 @@ blocks:
             - echo $HOME
 ```
 
-### agent {#agent-section-in-task}
+### agent {#agent-in-task}
 
 The `agent` section under a `task` section is optional and can coexist with the global `agent` definition at the beginning of a Pipeline YAML file. The properties and the possible values of the `agent` section can be found in the [agent reference](#agent).
 
@@ -773,7 +773,7 @@ blocks:
             - echo $PATH
 ```
 
-### env_vars {#env-vars}
+### env_vars {#env-vars-in-task}
 
 The elements of an `env_vars` array are name and value pairs that hold the name of the environment variable and the value of the environment variable.
 
@@ -808,7 +808,7 @@ The indentation level of the `prologue`, `epilogue`, `env_vars`, and `jobs` prop
 :::
 
 
-### prologue {#prologue}
+### prologue {#prologue-in-task}
 
 A `prologue` block in a `task` block is used when you want to execute certain commands prior to the commands of each job of a given `task`. This is usually the case with initialization commands that install software, start or stop services, etc.
 
@@ -834,7 +834,7 @@ blocks:
             # highlight-end
 ```
 
-### epilogue {#epilogue}
+### epilogue {#epilogue-in-task}
 
 An `epilogue` block should be used when you want to execute commands after a job has finished, either successfully or unsuccessfully.
 
@@ -915,7 +915,7 @@ echo "hello from $SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
 
 The location of the file is relative to the pipeline file. For example, if your pipeline file is located in `.semaphore/semaphore.yml`, the `file_with_epilogue_always_commands.sh` in the above example is assumed to live in `.semaphore/file_with_epilogue_always_commands.sh`.
 
-### secrets {#secrets}
+### secrets {#secrets-in-task}
 
 A secret is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. A secret is defined using specific [YAML grammar](https://docs.semaphoreci.com/reference/secrets-yaml-reference/) and processed using the `sem` command line tool.
 
@@ -925,7 +925,7 @@ If one or more names of the environment variables from two or more imported secr
 
 Additionally, if you try to use a `name` value that does not exist, the pipeline will fail to execute.
 
-#### name {#name-property-in-secrets}
+#### name {#name-in-secrets}
 
 The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
 
@@ -974,7 +974,7 @@ Under `jobs` you may define the following properties:
 - `matrix`
 - `parallelism`
 
-### name {#name-property-in-jobs}
+### name {#name-in-jobs}
 
 The value of the optional `name` property is a Unicode string that provides a name for a job.
 
@@ -982,7 +982,7 @@ Semaphore assigns its own names to nameless `jobs` items, which is displayed in 
 
 It is strongly recommended that you give descriptive names to all `jobs` and `blocks` items in a Semaphore pipeline.
 
-### commands {#commands}
+### commands {#commands-in-jobs}
 
 The `commands` property is an array of strings that holds the commands that will be executed for a job.
 
@@ -1006,7 +1006,7 @@ blocks:
         # highlight-end
 ```
 
-### commands_file {#commands_file}
+### commands_file {#commands-file-in-jobs}
 
 The `commands_file` property allows you to define the path of a plain text file containing the commands of a job that is an item in a `jobs` list, `prologue` block, or `epilogue` block, instead of using a `commands` list.
 
@@ -1046,7 +1046,7 @@ The location of the `commands_file` file is relative to the pipeline file. For e
 
 :::
 
-### env_vars {#env-vars-and-jobs}
+### env_vars {#env-vars-in-jobs}
 
 An `env_vars` block can also be defined within a `jobs` block on a local scope in addition to an `env_vars` block that is defined on the `task` level, where its scope is the entire `task` block. In that case, the environment variables of the local `env_vars` block will be only visible to the `jobs` block it belongs to.
 
@@ -1101,7 +1101,7 @@ blocks:
           - echo $APP_ENV
 ```
 
-### priority {#priority}
+### priority {#priority-in-jobs}
 
 The `priority` property allows you to configure a job priority that affects the order in which jobs are started when the parallel jobs quota for the organization is reached.
 
@@ -1145,7 +1145,7 @@ blocks:
           - make integration-test
 ```
 
-### matrix {#matrix}
+### matrix {#matrix-in-jobs}
 
 The `matrix` property allows you to define one or more environment variable sets with multiple values. In such a setup, `n` parallel jobs are created, where `n` equals the cardinality of the Cartesian product of all environment variable sets.
 
@@ -1185,7 +1185,7 @@ In this example, the job specification named `Elixir + Erlang matrix` expands to
 - `Elixir + Erlang matrix - ELIXIR=1.3, ERLANG=20`
 - `Elixir + Erlang matrix - ELIXIR=1.3, ERLANG=19`
 
-### parallelism {#parallelism}
+### parallelism {#parallelism-in-jobs}
 
 The `parallelism` property can be used to easily generate a set of jobs with the same commands that can be parameterized. Each of those jobs will have environment variables with the total number of jobs and the index of a particular job that can be used as parameters.
 
@@ -1270,11 +1270,11 @@ The items of a `promotions` block are called *targets* and are implemented using
 
 You can promote a target from the UI at any point, even while the pipeline that owns that target is still running.
 
-### name {#name-property-in-promotions}
+### name {#name-in-promotions}
 
 The `name` property in a `promotions` block is a Unicode string and is compulsory. It defines the name of a target.
 
-### pipeline_file {#pipeline-file}
+### pipeline_file {#pipeline-file-in-promotions}
 
 The `pipeline_file` property of the `promotions` block is a path to another pipeline YAML file within the repository of the Semaphore project. This property is compulsory.
 
@@ -1351,7 +1351,7 @@ blocks:
           - uname -a
 ```
 
-### auto_promote {#auto_promote}
+### auto_promote {#auto-promote-in-promotions}
 
 The `auto_promote` property is optional and it allows you to specify a set of conditions under which a pipeline will be promoted automatically.
 
@@ -1500,7 +1500,7 @@ blocks:
 All the displayed files are correct pipeline YAML files that could be used as `semaphore.yml` files.
 
 
-### result {#result}
+### result {#result-in-promotions}
 
 The value of the `result` property is a string that is used for matching the status of a pipeline.
 
@@ -1511,7 +1511,7 @@ The list of valid values for `result`: `passed`, `stopped`, `canceled`, and `fai
 - `canceled`: the pipeline was cancelled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be cancelled but cannot be stopped)
 - `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
 
-### branch {#branch}
+### branch {#branch-in-promotions}
 
 The `branch` property is a list of items. Its items are regular expressions that Semaphore tries to match against the name of the branch that is used with the pipeline that is being executed. If any of them is a match, then the return value of the `branch` is `true`.
 
@@ -1521,7 +1521,7 @@ In order for a `branch` value to match the `master` branch only and not match na
 
 In order for a `branch` value to match branches that begin with `dev` you should use something like `^dev`.
 
-### result_reason {#result_reason}
+### result_reason {#result-reason-promotions}
 
 The value of the `result_reason` property is a string that defines the reason behind the value of the `result` property.
 
@@ -1542,7 +1542,7 @@ For example a `result` value of `failed`, the valid values of `result_reason` ar
 
 This section shows deprecated properties.
 
-### auto_promote_on {#auto_promote_on-deprecated}
+### auto_promote_on {#auto-promote-on-in-deprecated}
 
 :::warning
 
@@ -1779,4 +1779,12 @@ blocks:
 
 
 ## See also
+
+- [Jobs YAML reference](./jobs-yaml)
+- [Projects YAML reference](./project-yaml)
+- [Secret YAML reference](./secret-yaml)
+- [Deployment targets YAML reference](./deployment-target-yaml)
+- [Agents YAML reference](./agent-yaml)
+- [Notifications YAML reference](./notifications-yaml)
+- [Semapore Command Line reference](./semaphore-cli)
 
