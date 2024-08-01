@@ -45,6 +45,11 @@ name: The name of the Semaphore pipeline
 
 Defines the global agent's [`machine` type](#machine) and [`os_image`](#os-image) to run [`jobs`](#jobs). See [agents](../using-semaphore/pipelines#agents) to learn more.
 
+The `agent` can contain the following properties:
+
+- [`machine`]: VM machine type to run the jobs
+- [`containers`]: optional Docker containers to run the jobs
+
 ```yaml title="Example"
 # highlight-next-line
 agent:
@@ -106,9 +111,67 @@ machine:
   os_image: ubuntu2004
 ```
 
-### containers {#containers}
+## containers {#containers}
 
-An optional part of [`agent`](#agent).
+An optional part of [`agent`](#agent). Defines an array of Docker image names. Jobs run inside these containers. The first container in the list runs the jobs. You may optionally add more items which run as separate containers. All containers can reference each other via their names, which are mapped to hostnames using DNS records.
+
+Each `container` entry must have:
+
+- [`name`](#name-in-containers): the name of the container
+- [`image`](#image-in-containers): the image for the container
+- [`env_vars](#env-vars-in-containers): optional list of key-value pairs to define environment variables
+
+```yaml title="Example"
+agent:
+  machine:
+    type: e1-standard-2
+  # highlight-start
+  containers:
+    - name: main
+      image: 'registry.semaphoreci.com/ruby:2.6'
+    - name: db
+      image: 'registry.semaphoreci.com/postgres:9.6'
+  # highlight-end
+```
+
+### name {#name-in-containers}
+
+Defines the unique `name` of the container. The name is mapped to the container hostname and can be used to communicate with other containers.
+
+```yaml title="Example"
+agent:
+  machine:
+    type: e1-standard-2
+  containers:
+  # highlight-next-line
+    - name: main
+      image: 'registry.semaphoreci.com/ruby:2.6'
+```
+
+### image {#image-in-containers}
+
+Defines the Docker image to run inside the container.
+
+```yaml title="Example"
+agent:
+  machine:
+    type: e1-standard-2
+  containers:
+    - name: main
+  # highlight-next-line
+      image: 'registry.semaphoreci.com/ruby:2.6'
+```
+
+### env_vars {#env-vars-in-containers}
+
+An array of key-value pairs. The keys are exported as environment variables when the container starts.
+
+You can define special variables to modify the container initialization:
+
+- `user`: the user that will be used within the container
+- `command`: the first command to execute within the container. This overrides the command defined in Dockerfile
+- `entrypoint`: this specifies which executable to run when the container starts
+
 
 A list of Docker images to contain the jobs in the pipeline.  Each container entry must define a `name` and `image` property. The name of the container is used when linking the containers together, and for defining hostnames in the first container.
 
