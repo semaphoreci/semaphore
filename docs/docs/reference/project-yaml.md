@@ -10,11 +10,11 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
 
-This document is the YAML sytnax reference used for adding and editing Semaphore projects via [Semaphore Command Line](./semaphore-cli).
+This document is the YAML syntax reference used for adding and editing Semaphore projects via [Semaphore Command Line](./semaphore-cli).
 
 ## Overview
 
-Projects can be created using [`sem init`](./semaphore-cli#sem-init) or [`sem create`](./semaphore-cli#sem-create). The syntax described here is required to use `sem create` for creating a project.
+The syntax described here is required to use [`sem create`](./semaphore-cli#sem-create) for creating a project using the command line.
 
 ## apiVersion {#apiVersion}
 
@@ -30,9 +30,9 @@ To create a project `kind` value must be `Project`
 
 ## metadata {#metadata}
 
-The metadata supports the `name` property. This is the name for the project.
+The metadata supports the `name` property. This is the name of the project.
 
-The value of the `name` property should be unique among all Semaphore projects belonging to the same organization and must only contain alphanumeric characters ([a-z], [A-Z] or [0-9]). Dashes, underscores, hypens, and spaces are not allowed.
+The value of the `name` property should be unique among all Semaphore projects belonging to the same organization and must only contain alphanumeric characters ([a-z], [A-Z], or [0-9]). Dashes, underscores, hyphens, and spaces are not allowed.
 
 ## spec {#spec}
 
@@ -57,7 +57,7 @@ This property is deprecated and will be removed in the future. Please use [`task
 
 The schedulers property can contain a list of schedulers defined in the project.
 
-A scheduler is a way to run a pre-defined pipeline on a project at the pre-defined time. All times are interpreted as UTC.
+A scheduler is a way to run a pre-defined pipeline on a project at a pre-defined time. All times are interpreted as UTC.
 
 A scheduler has the following properties:
 
@@ -98,7 +98,7 @@ See [Pipeline YAML Reference](./pipeline-yaml) for more information on the pipel
 ### tasks parameters {#parameters-in-spec}
 
 
-The `parameters` property contains a list of parameters passed to the triggered workflow.  Those parameters are accessible in job environment as environment variables. By default, `parameters` is an empty list.
+The `parameters` property contains a list of parameters passed to the triggered workflow.  Those parameters are accessible in the job environment as environment variables. By default, `parameters` is an empty list.
 
 Each parameter has the following properties:
 
@@ -108,7 +108,7 @@ Each parameter has the following properties:
 |`required`| Yes | Either `true` or `false`. Determines if the parameter is required |
 |`description`| No | A descriptive string for the parameter |
 |`default_value`| No | The parameter's default value. Required if `required: true` |
-|`options`| No | A list of possible values to show in the Semaphore website |
+|`options`| No | A list of possible values to show on the Semaphore website |
 
 ## repository {#repository-in-spec}
 
@@ -135,7 +135,7 @@ git@github.com:github_username/github_repository.git
 An invalid URL prompts the following error:
 
 ```text
-error: http status 422 with message "{"message":"repository \"repo-name\" not found"}" received from upstream
+error: http status 422 with the message "{"message":"repository \"repo-name\" not found"}" received from upstream
 ```
 
 If the URL is not in SSH format, you will get the following error:
@@ -206,7 +206,7 @@ Each item has two properties:
   - `block`
   - `pipeline`
 
-The default value is 
+The default value is:
 
 ```yaml title="Default value for pipeline_files"
 - path: .semaphore/semaphore.yml
