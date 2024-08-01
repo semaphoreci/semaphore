@@ -41,15 +41,9 @@ A Unicode string for the pipeline name. It is strongly recommended to give descr
 name: The name of the Semaphore pipeline
 ```
 
-:::note
-
-The `name` property can also be found in other sections, e.g., defining the name of a job inside a `jobs` block.
-
-:::
-
 ## agent {#agent}
 
-Defines the agent's [machine type](#machine) and [OS image](#os_image) to run the jobs by default.
+Defines the global agent's [`machine` type](#machine) and [`os_image`](#os-image) to run [`jobs`](#jobs). See [agents](../using-semaphore/pipelines#agents) to learn more.
 
 ```yaml title="Example"
 # highlight-next-line
@@ -61,13 +55,18 @@ agent:
 
 :::note
 
-The default `agent` can be overriden on specific [tasks](#agent-task).
+The default `agent` can be overriden [inside `tasks`](#agent-in-task).
 
 :::
 
 ### machine {#machine}
 
-The `machine` property, which can only be defined under `agent`, requires two properties: `type` and `os_image`.
+Part of the [`agent`](#agent) definition. It defines the global VM machine type to run the jobs. 
+
+It requires two properties:
+
+- [`type`](#type)
+- [`os_image`](#os-image)
 
 ```yaml title="Example"
 # highlight-next-line
@@ -78,8 +77,9 @@ machine:
 
 ### type {#type}
 
+Part of the [`agent`](#agent) deinition. It selects the hardware or [self-hosted agent](../using-semaphore/self-hosted) type that runs the jobs.
 
-The `type` property is intended for selecting the hardware you would like to use on the virtual machine that runs your jobs. A complete list of valid values for the `type` property is available on the [Machine Types](./machine-types) page.
+The list of valid values for Semaphore Cloud is available on the [machine types reference](./machine-types) page.
 
 ```yaml title="Example"
 machine:
@@ -90,14 +90,14 @@ machine:
 
 ### os_image {#os-image}
 
-`os_image` is an optional property that specifies the operating system image to be used in the virtual machine. If a value is not provided, the default for the machine type is used.
+Part of the [`agent`](#agent) deinition. This is an optional property to specify the Operating System image to mount on the [`machine`](#machine).
 
-Default values:
+If a value is not provided, the default for the machine type is used:
 
 - `e1-standard-*` machine types: `ubuntu2004`
 - `a1-standard-*` machine types: `macos-xcode14`
 
-A complete list of valid values for the `os_image` property is available on the [Machine Types](./machine-types) page.
+The list of valid values for Semaphore Cloud is available on the [machine types reference](./machine-types) page.
 
 ```yaml title="Example"
 machine:
@@ -107,6 +107,8 @@ machine:
 ```
 
 ### containers {#containers}
+
+An optional part of [`agent`](#agent).
 
 A list of Docker images to contain the jobs in the pipeline.  Each container entry must define a `name` and `image` property. The name of the container is used when linking the containers together, and for defining hostnames in the first container.
 
