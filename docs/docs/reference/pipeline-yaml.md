@@ -9,12 +9,25 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
+This page describes the formal pipeline YAML specification for Semaphore.
+
+## Overview
+
+Semaphore uses YAML for [pipeline](../using-semaphore/pipelines) definition. Every Semaphore project requires at least one pipeline to work. If you don't want to write pipelines by hand, you can use the [visual workflow editor](../using-semaphore/jobs#workflow-editor).
+
+### Execution order {#order}
+
+You cannot assume that [`jobs`](#jobs) in the same [`task`](#task) run in any particular order. They run in parallel on an resouce availability basis.
+
+To force execution order, you must use [`block dependencies`](#dependencies-in-blocks). Semaphore only starts a `block` when all their dependencies are completed.
+
+### Comments {#comments}
+
+Lines begining with `#` are considered comments and are ignored by the YAML parser.
+
 ## version {#version}
 
-
-The version of the pipeline YAML specification used.
-
-- **Valid values**: `v1.0`
+The version of the pipeline YAML specification to be used. The only value supported is `v1.0`
 
 ```yaml title="Example"
 version: v1.0
@@ -266,7 +279,7 @@ blocks:
           - echo "Building executable"
 ```
 
-## fail_fast {#fail_fast}
+## fail_fast {#fail-fast}
 
 The `fail_fast` property enables you to set a policy for a pipeline in the event that one of its jobs fails. It can have two sub-properties: `stop` and `cancel`.  At least one of them is required. If both are set, `stop` will be evaluated first.
 
@@ -541,6 +554,9 @@ Defines an array of items that holds the elements of a pipeline. Each element of
 
 - `name`: optional name of the block, defaults to unique auto-generated names
 - `task`: mandatory property that describes the jobs inside the block
+- `skip`
+- `run`
+
 
 ### dependencies {#dependencies-in-blocks}
 
@@ -690,9 +706,18 @@ It is not possible to have both `skip` and [`run`](#run-in-blocks) properties de
 
 :::
 
-### task {#task}
+## task {#task}
 
 The `task` property defines the jobs in the blocks along with all its optional properties such as `prologue`, `epilogue`, `env_vars`, or `secrets`.
+
+Under `tasks` you may define the following elements:
+
+- `secrets`
+- `agent`
+- `prologue`
+- `epilogue`
+- `env_vars`
+- `jobs`
 
 ```yaml title="Example"
 version: v1.0
@@ -748,20 +773,6 @@ blocks:
             - echo $PATH
 ```
 
-### secrets {#secrets}
-
-The `secrets` property uses pre-existing environment variables from a secret. This is described in the [secrets](#secrets) section.
-
-### prologue {#prologue}
-
-A `prologue` block is executed before the commands of each job within a `task` item.
-
-You can consider the `prologue` commands as a part of each of the `jobs` within the same `task` item.
-
-### epilogue {#epilogue}
-
-An `epilogue` block is executed after the commands of each `jobs` item within a `task`.
-
 ### env_vars {#env-vars}
 
 The elements of an `env_vars` array are name and value pairs that hold the name of the environment variable and the value of the environment variable.
@@ -796,9 +807,172 @@ The indentation level of the `prologue`, `epilogue`, `env_vars`, and `jobs` prop
 
 :::
 
+
+### prologue {#prologue}
+
+A `prologue` block in a `task` block is used when you want to execute certain commands prior to the commands of each job of a given `task`. This is usually the case with initialization commands that install software, start or stop services, etc.
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the prologue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Display a file
+   task:
+      jobs:
+        - name: Display hw.go
+          commands:
+            - ls -al
+            - cat hw.go
+            # highlight-start
+      prologue:
+          commands:
+            - checkout
+            # highlight-end
+```
+
+### epilogue {#epilogue}
+
+An `epilogue` block should be used when you want to execute commands after a job has finished, either successfully or unsuccessfully.
+
+Please notice that a pipeline *will not fail* if one or more commands in the `epilogue` fail to execute for some reason. Also, epilogue commands will not run if the job was stopped, canceled or timed-out.
+
+There are three types of epilogue commands:
+
+1. Epilogue commands that are always executed. Defined with `always` in the epilogue section.
+2. Epilogue commands that are executed when the job passes. Defined with `on_pass` in the epilogue section.
+3. Epilogue commands that are executed when the job fails. Defined with `on_fail` in the epilogue sections.
+
+The order of command execution is as follows:
+
+- First, the `always` commands are executed.
+- Then, the `on_pass` or `on_fail` commands are executed.
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the epilogue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Linux version
+   task:
+      jobs:
+        - name: Execute uname
+          commands:
+            - uname -a
+            # highlight-start
+      epilogue:
+        always:
+          commands:
+            - echo "this command is executed for both passed and failed jobs"
+        on_pass:
+          commands:
+            - echo "This command runs if job has passed"
+        on_fail:
+          commands:
+            - echo "This command runs if job has failed"
+            # highlight-end
+```
+
+Commands can be defined as a list directly in the YAML file, as in the above example, or via the `commands_file` property:
+
+```yaml title="Example"
+version: v1.0
+name: YAML file illustrating the epilogue property
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+ - name: Linux version
+   task:
+      jobs:
+        - name: Execute uname
+          commands:
+            - uname -a
+            # highlight-start
+      epilogue:
+        always:
+          commands_file: file_with_epilogue_always_commands.sh
+        on_pass:
+          commands_file: file_with_epilogue_on_pass_commands.sh
+        on_fail:
+          commands_file: file_with_epilogue_on_fail_commands.sh
+            # highlight-end
+```
+
+Where the content of the files is a list of commands, as in the following example:
+
+```bash
+echo "hello from command file"
+echo "hello from $SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+```
+
+The location of the file is relative to the pipeline file. For example, if your pipeline file is located in `.semaphore/semaphore.yml`, the `file_with_epilogue_always_commands.sh` in the above example is assumed to live in `.semaphore/file_with_epilogue_always_commands.sh`.
+
+### secrets {#secrets}
+
+A secret is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. A secret is defined using specific [YAML grammar](https://docs.semaphoreci.com/reference/secrets-yaml-reference/) and processed using the `sem` command line tool.
+
+The `secrets` property is used for importing all the environment variables and files from an existing secret into a Semaphore organization.
+
+If one or more names of the environment variables from two or more imported secrets are the same, then the shared environment variables will have the value that was found in the secret that was imported last. The same rule applies to the files in secrets.
+
+Additionally, if you try to use a `name` value that does not exist, the pipeline will fail to execute.
+
+#### name {#name-property-in-secrets}
+
+The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
+
+#### Importing files {#files-in-secrets}
+
+You can store one or more files in a `secret`.
+
+You do not need any extra work for using a file that you stored in a `secret`, apart from including the name of the secret that holds the file in the `secrets` list of the pipeline YAML file. Apart from that, the only other requirement is remembering the name of the file, which is the value you put in the `path` property when creating the `secret`.
+
+All files in secrets are restored in the home directory of the user of the agent, usually mapped to `/home/semaphore`.
+
+```yaml title="Example"
+version: v1.0
+name: Pipeline configuration with secrets
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - task:
+      jobs:
+        - name: Using secrets
+          commands:
+            - echo $USERNAME
+            - echo $PASSWORD
+            # highlight-start
+      secrets:
+        - name: mysql-secrets
+            # highlight-end
+```
+
+Environment variables imported from a `secrets` property are used like regular environment variables defined in an `env_vars` block.
+
+
 ## jobs {#jobs}
 
 The `jobs` items are essential for each pipeline because they allow you to define the actual commands that you want to execute.
+
+Under `jobs` you may define the following properties:
+
+- `name`
+- `commands`
+- `commands_file`
+- `env_vars`
+- `priority`
+- `matrix`
+- `parallelism`
 
 ### name {#name-property-in-jobs}
 
@@ -1055,157 +1229,6 @@ It will automatically create 4 jobs with the following names:
 It is not possible to have both `parallelism` and [`matrix`](#matrix) properties defined for the same job, as `parallelism` functionality is a subset of `matrix` functionality.
 
 :::
-
-### prologue {#prologue}
-
-A `prologue` block in a `task` block is used when you want to execute certain commands prior to the commands of each job of a given `task`. This is usually the case with initialization commands that install software, start or stop services, etc.
-
-```yaml title="Example"
-version: v1.0
-name: YAML file illustrating the prologue property
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-blocks:
- - name: Display a file
-   task:
-      jobs:
-        - name: Display hw.go
-          commands:
-            - ls -al
-            - cat hw.go
-            # highlight-start
-      prologue:
-          commands:
-            - checkout
-            # highlight-end
-```
-
-### epilogue {#epilogue}
-
-An `epilogue` block should be used when you want to execute commands after a job has finished, either successfully or unsuccessfully.
-
-Please notice that a pipeline *will not fail* if one or more commands in the `epilogue` fail to execute for some reason. Also, epilogue commands will not run if the job was stopped, canceled or timed-out.
-
-There are three types of epilogue commands:
-
-1. Epilogue commands that are always executed. Defined with `always` in the epilogue section.
-2. Epilogue commands that are executed when the job passes. Defined with `on_pass` in the epilogue section.
-3. Epilogue commands that are executed when the job fails. Defined with `on_fail` in the epilogue sections.
-
-The order of command execution is as follows:
-
-- First, the `always` commands are executed.
-- Then, the `on_pass` or `on_fail` commands are executed.
-
-```yaml title="Example"
-version: v1.0
-name: YAML file illustrating the epilogue property
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-blocks:
- - name: Linux version
-   task:
-      jobs:
-        - name: Execute uname
-          commands:
-            - uname -a
-            # highlight-start
-      epilogue:
-        always:
-          commands:
-            - echo "this command is executed for both passed and failed jobs"
-        on_pass:
-          commands:
-            - echo "This command runs if job has passed"
-        on_fail:
-          commands:
-            - echo "This command runs if job has failed"
-            # highlight-end
-```
-
-Commands can be defined as a list directly in the YAML file, as in the above example, or via the `commands_file` property:
-
-```yaml title="Example"
-version: v1.0
-name: YAML file illustrating the epilogue property
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-blocks:
- - name: Linux version
-   task:
-      jobs:
-        - name: Execute uname
-          commands:
-            - uname -a
-            # highlight-start
-      epilogue:
-        always:
-          commands_file: file_with_epilogue_always_commands.sh
-        on_pass:
-          commands_file: file_with_epilogue_on_pass_commands.sh
-        on_fail:
-          commands_file: file_with_epilogue_on_fail_commands.sh
-            # highlight-end
-```
-
-Where the content of the files is a list of commands, as in the following example:
-
-```bash
-echo "hello from command file"
-echo "hello from $SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
-```
-
-The location of the file is relative to the pipeline file. For example, if your pipeline file is located in `.semaphore/semaphore.yml`, the `file_with_epilogue_always_commands.sh` in the above example is assumed to live in `.semaphore/file_with_epilogue_always_commands.sh`.
-
-## secrets {#secrets}
-
-A secret is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. A secret is defined using specific [YAML grammar](https://docs.semaphoreci.com/reference/secrets-yaml-reference/) and processed using the `sem` command line tool.
-
-The `secrets` property is used for importing all the environment variables and files from an existing secret into a Semaphore organization.
-
-If one or more names of the environment variables from two or more imported secrets are the same, then the shared environment variables will have the value that was found in the secret that was imported last. The same rule applies to the files in secrets.
-
-Additionally, if you try to use a `name` value that does not exist, the pipeline will fail to execute.
-
-### name {#name-property-in-secrets}
-
-The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
-
-### Importing files {#files-in-secrets}
-
-You can store one or more files in a `secret`.
-
-You do not need any extra work for using a file that you stored in a `secret`, apart from including the name of the secret that holds the file in the `secrets` list of the pipeline YAML file. Apart from that, the only other requirement is remembering the name of the file, which is the value you put in the `path` property when creating the `secret`.
-
-All files in secrets are restored in the home directory of the user of the agent, usually mapped to `/home/semaphore`.
-
-```yaml title="Example"
-version: v1.0
-name: Pipeline configuration with secrets
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-blocks:
-  - task:
-      jobs:
-        - name: Using secrets
-          commands:
-            - echo $USERNAME
-            - echo $PASSWORD
-            # highlight-start
-      secrets:
-        - name: mysql-secrets
-            # highlight-end
-```
-
-Environment variables imported from a `secrets` property are used like regular environment variables defined in an `env_vars` block.
 
 ## after_pipeline {#after_pipeline}
 
@@ -1476,7 +1499,50 @@ blocks:
 
 All the displayed files are correct pipeline YAML files that could be used as `semaphore.yml` files.
 
-### auto_promote_on (DEPRECATED) {#auto_promote_on-deprecated}
+
+### result {#result}
+
+The value of the `result` property is a string that is used for matching the status of a pipeline.
+
+The list of valid values for `result`: `passed`, `stopped`, `canceled`, and `failed` is shown below.
+
+- `passed`: all the blocks in the pipeline ended successfully
+- `stopped`: the pipeline was stopped either by the user or by the system
+- `canceled`: the pipeline was cancelled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be cancelled but cannot be stopped)
+- `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
+
+### branch {#branch}
+
+The `branch` property is a list of items. Its items are regular expressions that Semaphore tries to match against the name of the branch that is used with the pipeline that is being executed. If any of them is a match, then the return value of the `branch` is `true`.
+
+The `branch` property uses Perl Compatible Regular Expressions.
+
+In order for a `branch` value to match the `master` branch only and not match names such as `this-is-not-master` or `a-master-alternative`, you should use `^master$` as the value of the `branch` property. The same rule applies for matching words or strings.
+
+In order for a `branch` value to match branches that begin with `dev` you should use something like `^dev`.
+
+### result_reason {#result_reason}
+
+The value of the `result_reason` property is a string that defines the reason behind the value of the `result` property.
+
+The list of valid values for `result_reason` are: `test`, `malformed`, `stuck`, `deleted`, `internal`, and `user`.
+
+- `test`: one or more user tests failed
+- `malformed`: the pipeline YAML file is not correct
+- `stuck`: the pipeline jammed for internal reasons and then aborted
+- `deleted`: the pipeline was terminated because the branch was deleted while the pipeline was running
+- `internal`: the pipeline was terminated for internal reasons
+- `user`: the pipeline was stopped on user request
+
+Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
+
+For example a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `deleted`, `internal`, and `user`.
+
+## Deprecated properties {#deprecated}
+
+This section shows deprecated properties.
+
+### auto_promote_on {#auto_promote_on-deprecated}
 
 :::warning
 
@@ -1593,51 +1659,124 @@ Both `p1.yml` and `p2.yml` are correct pipeline YAML files that could be used as
 </details>
 
 
-### result {#result}
+## Complete examples {#complete-examples}
 
-The value of the `result` property is a string that is used for matching the status of a pipeline.
+This section shows complete pipelines showcasing YAML features.
 
-The list of valid values for `result`: `passed`, `stopped`, `canceled`, and `failed` is shown below.
+<details>
+<summary>Go pipeline</summary>
+<div>
 
-- `passed`: all the blocks in the pipeline ended successfully
-- `stopped`: the pipeline was stopped either by the user or by the system
-- `canceled`: the pipeline was cancelled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be cancelled but cannot be stopped)
-- `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
+```yaml
+version: v1.0
+name: YAML file example for Go project
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
 
-### branch {#branch}
+blocks:
+ - name: Inspect Linux environment
+   task:
+      jobs:
+        - name: Execute hw.go
+          commands:
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $HOME
+            - echo $SEMAPHORE_GIT_DIR
+            - echo $PI
+      prologue:
+          commands:
+            - checkout
+      env_vars:
+           - name: PI
+             value: "3.14159"
 
-The `branch` property is a list of items. Its items are regular expressions that Semaphore tries to match against the name of the branch that is used with the pipeline that is being executed. If any of them is a match, then the return value of the `branch` is `true`.
+ - name: Build Go project
+   task:
+      jobs:
+        - name: Build hw.go
+          commands:
+            - checkout
+            - change-go-version 1.10
+            - go build hw.go
+            - ./hw
+        - name: PATH variable
+          commands:
+            - echo $PATH
+      epilogue:
+        always:
+          commands:
+            - echo "The job finished with $SEMAPHORE_JOB_RESULT"
+        on_pass:
+          commands:
+            - echo "Executed when the SEMAPHORE_JOB_RESULT is passed"
+        on_fail:
+          commands:
+            - echo "Executed when the SEMAPHORE_JOB_RESULT is failed"
+```
 
-The `branch` property uses Perl Compatible Regular Expressions.
+</div>
+</details>
 
-In order for a `branch` value to match the `master` branch only and not match names such as `this-is-not-master` or `a-master-alternative`, you should use `^master$` as the value of the `branch` property. The same rule applies for matching words or strings.
-
-In order for a `branch` value to match branches that begin with `dev` you should use something like `^dev`.
-
-### result_reason {#result_reason}
-
-The value of the `result_reason` property is a string that defines the reason behind the value of the `result` property.
-
-The list of valid values for `result_reason` are: `test`, `malformed`, `stuck`, `deleted`, `internal`, and `user`.
-
-- `test`: one or more user tests failed
-- `malformed`: the pipeline YAML file is not correct
-- `stuck`: the pipeline jammed for internal reasons and then aborted
-- `deleted`: the pipeline was terminated because the branch was deleted while the pipeline was running
-- `internal`: the pipeline was terminated for internal reasons
-- `user`: the pipeline was stopped on user request
-
-Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
-
-For example a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `deleted`, `internal`, and `user`.
+<details>
+<summary>Pipeline using secrets</summary>
+<div>
 
 
+``` yaml
+version: v1.0
+name: Pipeline configuration with secrets
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - task:
+      jobs:
+        - name: Using secrets
+          commands:
+            - checkout
+            - ls -l .semaphore
+            - echo $SEMAPHORE_PIPELINE_ID
+            - echo $SECRET_ONE
+            - echo $SECRET_TWO
+        - name: Using SECRET_TWO
+          commands:
+            - checkout
+            - echo $SECRET_TWO
+            - ls -l .semaphore
+
+      secrets:
+        - name: mySecrets
+        - name: more-mihalis-secrets
+```
+
+</div>
+</details>
+
+<details>
+<summary>Pipeline without job/block names</summary>
+<div>
+
+``` yaml
+version: v1.0
+name: Basic YAML configuration file example.
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - task:
+      jobs:
+          - commands:
+             - echo $SEMAPHORE_PIPELINE_ID
+             - echo "Hello World!"
+```
+
+</div>
+</details>
 
 
----
+## See also
 
-WIP
-
-this is the YAML reference for pipelines
-
-## Queue name {#queue}
