@@ -113,9 +113,11 @@ machine:
 
 ## containers {#containers}
 
-An optional part of [`agent`](#agent). Defines an array of Docker image names. Jobs run inside these containers. The first container in the list runs the jobs. You may optionally add more items which run as separate containers. All containers can reference each other via their names, which are mapped to hostnames using DNS records.
+An optional part of [`agent`](#agent). Defines an array of Docker image names to run jobs. 
 
-Each `container` entry must have:
+The first container in the list runs the jobs. You may optionally add more items which run as separate containers. All containers can reference each other via their names, which are mapped to hostnames using DNS records.
+
+Each `container` entry can have:
 
 - [`name`](#name-in-containers): the name of the container
 - [`image`](#image-in-containers): the image for the container
@@ -164,31 +166,15 @@ agent:
 
 ### env_vars {#env-vars-in-containers}
 
-An array of key-value pairs. The keys are exported as environment variables when the container starts.
+An optional array of key-value pairs. The keys are exported as environment variables when the container starts.
 
 You can define special variables to modify the container initialization:
 
-- `user`: the user that will be used within the container
-- `command`: the first command to execute within the container. This overrides the command defined in Dockerfile
-- `entrypoint`: this specifies which executable to run when the container starts
+- `user`: the active user inside the container
+- `command`: overrides the Docker image's [CMD command](https://docs.docker.com/reference/dockerfile/#cmd)
+- `entrypoint`: overrides the Docker image' [ENTRYPOINT entry](https://docs.docker.com/reference/dockerfile/#entrypoint)
 
-
-A list of Docker images to contain the jobs in the pipeline.  Each container entry must define a `name` and `image` property. The name of the container is used when linking the containers together, and for defining hostnames in the first container.
-
-The first container runs the jobs' commands, while the rest of the containers are linked via DNS records.
-
-Other optional parameters of container definition can be divided into two groups:
-
-- **Docker commands**: are passed to the `docker run` command that starts the container. These are:
-
-  - `user`: the user that will be used within the container
-  - `command`: the first command to execute within the container. This overrides the command defined in Dockerfile
-  - `entrypoint`: this specifies which executable to run when the container starts
-
-- **Data**: the data that needs to be injected into containers, which is either defined directly in the YAML file or stored in Semaphore secrets. These are:
-
-  - `env_vars`: environment variables that are injected into the container. These are defined in the same way as in [task definition](#environment-variables-task).
-  - `secrets`: secrets which hold the data to be injected into the container. They are defined in the same way as in [task definition](#secrets-task)
+You may also supply environment variables with `env_vars` and `secrets`.
 
 ```yaml title="Example"
 agent:
@@ -201,6 +187,8 @@ agent:
     - name: db
       image: 'registry.semaphoreci.com/postgres:9.6'
       user: postgres
+      secrets:
+        - name: mysecret
       env_vars:
         - name: POSTGRES_PASSWORD
           value: keyboard-cat
@@ -209,17 +197,23 @@ agent:
 
 :::note
 
-Only environment variables defined in a secret will be injected into container, the files within the secret will be ignored.
+For `secrets`, only environment variables defined in the secret are imported. Any files in the secret are ignored.
 
 :::
 
 ## execution_time_limit {#execution_time_limit}
 
-The `execution_time_limit` property can be used at the `pipeline`, `block`, or `job` scope. It holds two properties, `hours` and `minutes`, to specify the execution time limit. 
+Defines an optional time limit for executing the pipeline. Jobs are forcibly terminated once the time limit is reached. The default value is 1 hour.
 
-Use only one property at a time.
+The `execution_time_limit` property accepts one of two options:
+- `hours`: time limit expressed in hours. Maximum value is 24
+- `minutes`: time limit expressed in minutes. Maximum value is 1440
 
-```yaml title="Single Example"
+You can only either `hours` or `minutes`. Not both.
+
+This property is also available on [`blocks`](#blocks) and [`jobs`](#jobs).
+
+```yaml title="Example"
 version: v1.0
 name: Using execution_time_limit
 agent:
@@ -231,136 +225,22 @@ agent:
 execution_time_limit:
   hours: 3
 # highlight-end
-
-blocks:
-  - name: Creating Docker Image
-    task:
-      jobs:
-      - name: Docker build
-        commands:
-          - checkout
-          - sleep 120
-
-  - name: Building executable
-    task:
-      jobs:
-      - name: Building job
-        commands:
-          - echo 360
-          - echo "Building executable"
-```
-
-```yaml title="Block Example"
-version: v1.0
-name: Using execution_time_limit
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-
-blocks:
-  - name: Creating Docker Image
-    # highlight-start
-    execution_time_limit:
-      minutes: 15
-    # highlight-end
-    task:
-      jobs:
-      - name: Docker build
-        commands:
-          - checkout
-          - sleep 120
-
-  - name: Building executable
-  # highlight-start
-    execution_time_limit:
-      minutes: 10
-  # highlight-end
-    task:
-      jobs:
-      - name: Building job
-        commands:
-          - echo 360
-          - echo "Building executable"
-```
-
-```yaml title="Job Example"
-version: v1.0
-name: Using execution_time_limit on a job
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-
-blocks:
-  - name: Tests
-    task:
-      jobs:
-
-      - name: Lint
-        commands:
-          - checkout
-          - make lint
-
-      - name: Tests
-      # highlight-start
-        execution_time_limit:
-          minutes: 30
-      # highlight-end
-        commands:
-          - checkout
-          - make test
-```
-
-```yaml title="Multiple Properties Example"
-version: v1.0
-name: Using execution_time_limit
-agent:
-  machine:
-    type: e1-standard-2
-    os_image: ubuntu2004
-# highlight-start
-execution_time_limit:
-  hours: 5
-# highlight-end
-
-blocks:
-  - name: Creating Docker Image
-    execution_time_limit:
-      minutes: 15
-    task:
-      jobs:
-      - name: Docker build
-        commands:
-          - checkout
-          - sleep 120
-
-  - name: Building executable
-    task:
-      jobs:
-      - name: Building job
-        commands:
-          - checkout
-          - echo "Building executable"
 ```
 
 ## fail_fast {#fail-fast}
 
-The `fail_fast` property enables you to set a policy for a pipeline in the event that one of its jobs fails. It can have two sub-properties: `stop` and `cancel`.  At least one of them is required. If both are set, `stop` will be evaluated first.
+This optional property defines what happens when a job fails. It accepts the following properties:
 
-The `stop` and `cancel` properties both require a condition defined with a `when`, according to the [Conditions DSL](./conditions-dsl). If this condition is fulfilled for a given pipeline's execution, the appropriate fail-fast policy is activated.
+- [`stop`](#stop-in-fail)
+- ['cancel'](#cancel-in-fail)
 
-The behavior is:
-
-- when `stop` is set all running jobs are stopped and all pending jobs are canceled as soon a job fails
-- when `cancel` is set running jobs are allowed to finish but no new jobs are started. This will provide you with more data for debugging without using additional resources
+If both are set, `stop` is evaluated first. If `fail_fast` is not defined, jobs continue running following declared [`dependencies`](#dependencies-in-blocks) when a job fails.
 
 ### stop {#stop-in-fail}
 
-In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.
+The `stop` property causes all running jobs to stop as soon as one job fails. It requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
-When Block A fails, if the workflow was initiated from a non-master branch, the
-fail fast `stop` policy will be applied to:
+In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished. If Block A fails and the workflow was initiated from a non-master branch all running job stop immediately.
 
 ```yaml title="Example"
 version: v1.0
@@ -403,12 +283,12 @@ blocks:
 
 ### cancel {#cancel-in-fail}
 
-In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.
+The `cancel` property causes all non-started jobs to be canceled as soon as on job fails. Already running jobs are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
-When Block A fails, if the workflow was initiated from a non-master branch, the fail fast `cancel` policy will be applied to:
+In the following configuration, blocks A and B run in parallel. Block C runs after block B is finished.  If Block A fails in a workflow that was initiated from a non-master branch:
 
-- Let block B finish
-- Cancel (i.e. not run) block C
+- Block B is allowed to finish
+- Block C is cancelled, i.e. it never starts
 
 ```yaml title="Example"
 version: v1.0
@@ -451,16 +331,16 @@ blocks:
 
 ## queue {#queue}
 
-The optional `queue` property enables you to assign pipelines to custom execution queues, and/or to configure the way the pipelines are processed when queuing happens.
+The optional `queue` property enables you to assign pipelines to custom execution queues or to configure the way the pipelines are processed when queuing happens.
 
-There are two ways you can define `queue` behavior:
+There are two queueing strategies:
 
-- **Direct**: using `direct queue configuration` applies to ll pipelines initiated from the current pipeline YAML file
-- **Conditional**: using `conditional queue configurations` which allows you to define an array of queue definitions, and conditions under which those definitions should be applied
+- **Direct assignment**: assigns all pipelines from the current pipeline file to a shared queue
+- **Conditional assignment**: defines assignment rules based on conditions
 
-All the sub-properties and their potential values for both approaches are listed below and you can find more examples and use cases for different queue configurations on the [Pipeline Queues](../using-semaphore/pipelines#queues).
+See [Pipeline Queues](../using-semaphore/pipelines#queues) for more information.
 
-### direct {#direct-in-queue}
+### Direct assignment {#direct-in-queue}
 
 This option allows you to can use the `name`, `scope`, and `processing` properties as direct sub-properties of the `queue` property.  
 
@@ -478,12 +358,12 @@ When `scope: organization` the pipelines from the queue will be queued together 
 
 The `processing` property can have two values:
 
-- `serialized` the pipelines in the queue will be queued and executed one by one in ascending order, according to creation time. This is the default
+- `serialized`: the pipelines in the queue will be queued and executed one by one in ascending order, according to creation time. This is the default
 - `parallel`: all pipelines in the queue will be executed as soon as they are created and there will be no queuing.
 
-### conditional {#conditional-in-queue}
+### Conditional assignment {#conditional-in-queue}
 
-In this option you define an array of items with queue configurations as a sub-property of the `queue` property. Each array item can have the same properties, i.e. `name`, `scope`, and `processing`, as in [direct queue configuration](#direct-queue-configuration).
+In this option you define an array of items with queue configurations as a sub-property of the `queue` property. Each array item can have the same properties, i.e. `name`, `scope`, and `processing`, as in [direct assignment](#direct-in-queue).
 
 In addition, you need to supply a `when` property using the [Conditions DSL](./conditions-dsl). When the `queue` configuration is evaluated in this approach, the `when` conditions from the items in the array are evaluated one by one starting with the first item in the array.
 
@@ -497,14 +377,15 @@ If none of the conditions are evaluated as true, the [default queue behavior](..
 
 Sets an strategy for auto-canceling pipelines in a queue when a new pipeline appears. Two values are supported:
 
-- `running`: older pipelines are cancelled, this includes queued and running pipelines
-- `queued`: queued pipelines are cancelled, running pipelines are alloed to complete
+- [`running`](#running-in-auto-cancel)
+- [`queued`](#queued-in-auto-cancel)
 
 At least one of them is required. If both are set, `running` will be evaluated first.
 
-The `running` and `queued` properties both require a condition defined with a `when`, following the [Conditions DSL](./conditions-dsl).
 
 ### running {#running-in-auto-cancel}
+
+When this property is set, queued and running pipelines are cancelled as soon as a new workflow is triggered. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
 
 In the following configuration, all pipelines initiated from a non-master branch will run immediately after auto-stopping everything else in front of them in the queue.
 
@@ -533,6 +414,8 @@ blocks:
 
 ### queued {#queued-in-auto-cancel}
 
+When this property is set, only queued are cancelled as soon as a new workflow is triggered. Already-running pipelines are allowed to finish. This property requires a `when` property that defines a condition according to [Conditions DSL](./conditions-dsl).
+
 In the following configuration, all pipelines initiated from a non-master branch will cancel any queued pipelines and wait for the one that is running to finish before starting.
 
 ```yaml title="Example"
@@ -560,13 +443,13 @@ blocks:
 
 Set global properties to be applied to all jobs and blocks in the pipeline. It can contain any of these properties:
 
-- [prologue](#prologue)
-- [epilogue](#epilogue)
-- [secrets](#secrets)
-- [env_vars](#env_vars)
-- [priority](#priority)
+- `prologue`
+- `epilogue`
+- `secrets`
+- `env_vars`
+- `priority`
 
-The defined configuration values have the same syntax as the ones defined on the task or a job level and are applied to all the tasks and jobs in a pipeline.
+The defined configuration values have the same syntax as the ones defined on the [`task`](#task) or a [`jobs`](#jobs) level and are applied to all the tasks and jobs in a pipeline.
 
 In the case of `prologue` and `env_vars` the global values, i.e. values from `global_job_config`, are exported first, and those defined on a task level thereafter. This allows for overriding of global values for the specific task, if the need arises.
 
@@ -615,13 +498,17 @@ blocks:
 
 ## blocks {#blocks}
 
-Defines an array of items that holds the elements of a pipeline. Each element of that array is called a *block* and can have two properties:
+Defines an array of items that holds the elements of a pipeline. Each element of that array is called a *block* and can have these properties:
 
-- `name`: optional name of the block, defaults to unique auto-generated names
-- `task`: mandatory property that describes the jobs inside the block
-- `skip`
-- `run`
+- [`name`](#name-in-blocks)
+- [`dependencies`](#dependencies-in-blocks)
+- [`task`](#task) (mandatory)
+- [`skip`](#skip-in-blocks)
+- [`run`](#run-in-blocks)
 
+### name {#name-in-blocks}
+
+An optional name for the block.
 
 ### dependencies {#dependencies-in-blocks}
 
@@ -773,16 +660,13 @@ It is not possible to have both `skip` and [`run`](#run-in-blocks) properties de
 
 ## task {#task}
 
-The `task` property defines the jobs in the blocks along with all its optional properties such as `prologue`, `epilogue`, `env_vars`, or `secrets`.
+The `task` property defines the [`jobs`](#jobs) in the blocks along with all its optional properties:
 
-Under `tasks` you may define the following elements:
-
-- `secrets`
-- `agent`
-- `prologue`
-- `epilogue`
-- `env_vars`
-- `jobs`
+- [`agent`](#agent-in-task)
+- [`prologue`](#prologue-in-task)
+- [`epilogue`](#epilogue-in-task)
+- [`env_vars`](#env-vars-in-task)
+- [`secrets`](#secrets-in-task)
 
 ```yaml title="Example"
 version: v1.0
@@ -804,10 +688,9 @@ blocks:
 
 ### agent {#agent-in-task}
 
-The `agent` section under a `task` section is optional and can coexist with the global `agent` definition at the beginning of a Pipeline YAML file. The properties and the possible values of the `agent` section can be found in the [agent reference](#agent).
+The `agent` section under a `task` section is optional and can coexist with the global `agent` definition at the beginning of a Pipeline YAML file. The properties and the possible values of the `agent` section can be found in the [`agent` reference](#agent).
 
 An `agent` block under a `task` block overrides the global `agent` definition.
-
 
 ```yaml title="Example"
 version: v1.0
@@ -982,23 +865,17 @@ The location of the file is relative to the pipeline file. For example, if your 
 
 ### secrets {#secrets-in-task}
 
-A secret is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. A secret is defined using specific [YAML grammar](https://docs.semaphoreci.com/reference/secrets-yaml-reference/) and processed using the `sem` command line tool.
+A [secret](../using-semaphore/secrets) is a place for keeping sensitive information in the form of environment variables and small files. Sharing sensitive data in a secret is both safer and more flexible than storing it using plain text files or environment variables that anyone can access. 
 
 The `secrets` property is used for importing all the environment variables and files from an existing secret into a Semaphore organization.
 
 If one or more names of the environment variables from two or more imported secrets are the same, then the shared environment variables will have the value that was found in the secret that was imported last. The same rule applies to the files in secrets.
 
-Additionally, if you try to use a `name` value that does not exist, the pipeline will fail to execute.
+Additionally, if you try to use a `name` value that does not exist, the pipeline fails to execute.
 
 #### name {#name-in-secrets}
 
 The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
-
-#### Importing files {#files-in-secrets}
-
-You can store one or more files in a `secret`.
-
-You do not need any extra work for using a file that you stored in a `secret`, apart from including the name of the secret that holds the file in the `secrets` list of the pipeline YAML file. Apart from that, the only other requirement is remembering the name of the file, which is the value you put in the `path` property when creating the `secret`.
 
 All files in secrets are restored in the home directory of the user of the agent, usually mapped to `/home/semaphore`.
 
@@ -1024,14 +901,13 @@ blocks:
 
 Environment variables imported from a `secrets` property are used like regular environment variables defined in an `env_vars` block.
 
-
 ## jobs {#jobs}
 
 The `jobs` items are essential for each pipeline because they allow you to define the actual commands that you want to execute.
 
 Under `jobs` you may define the following properties:
 
-- `name`
+- [`name`](#name-in-jobs)
 - `commands`
 - `commands_file`
 - `env_vars`
