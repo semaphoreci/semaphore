@@ -1177,7 +1177,7 @@ Additionally, if you try to use a `name` value that does not exist, the pipeline
 
 The `name` property is compulsory in a `secrets` block because it specifies the secret that you want to import. The secret or secrets must be found within the active organization.
 
-#### files in secrets {#files-in-secrets}
+### Importing files {#files-in-secrets}
 
 You can store one or more files in a `secret`.
 
@@ -1206,6 +1206,433 @@ blocks:
 ```
 
 Environment variables imported from a `secrets` property are used like regular environment variables defined in an `env_vars` block.
+
+## after_pipeline {#after_pipeline}
+
+Defines set of jobs to execute when the pipeline is finished. The `after_pipeline` property is most commonly used for sending notifications, collecting test results, and submitting metrics.
+
+For example, to submit pipeline duration metrics and to publish test results, you would define the `after_pipeline` with the following YAML snippet:
+
+```yaml title="Example"
+after_pipeline:
+  task:
+    jobs:
+      - name: Submit Metrics
+        commands:
+          - "export DURATION_IN_MS=$((SEMAPHORE_PIPELINE_TOTAL_DURATION * 1000))"
+          - echo "ci.duration:${DURATION_IN_MS}|ms" | nc -w 3 -u statsd.example.com
+
+      - name: Publish Tests
+        commands:
+          - test-results gen-pipeline-report
+```
+
+Jobs in the `after_pipeline` task are always executed regardless of the result of the pipeline. Meaning that the `after_pipeline` jobs are executed on passed, failed, stopped, and canceled pipelines.
+
+All `SEMAPHORE_*` environment variables that are injected into regular pipeline jobs are also injected into `after_pipeline` jobs.
+
+Additionally, Semaphore [injects environment variables](./env-vars#after-pipeline-variables) that describe the state, result, and duration of the executed pipeline into `after_pipeline` jobs.
+
+:::note
+
+Global job config is not applied to `after_pipeline` jobs. This includes secrets, prologue, and epilogue commands that are defined in the global job configuration stanza.
+
+:::
+
+## promotions {#promotions}
+
+The `promotions` property is used for *promoting* (manually or automatically triggering) one or more pipelines using one or more pipeline YAML files. A pipeline YAML file can have a single `promotions` block or no `promotions` blocks.
+
+The items of a `promotions` block are called *targets* and are implemented using pairs of `name` and `pipeline_file` properties. A `promotions` block can have multiple targets.
+
+You can promote a target from the UI at any point, even while the pipeline that owns that target is still running.
+
+### name {#name-property-in-promotions}
+
+The `name` property in a `promotions` block is a Unicode string and is compulsory. It defines the name of a target.
+
+### pipeline_file {#pipeline-file}
+
+The `pipeline_file` property of the `promotions` block is a path to another pipeline YAML file within the repository of the Semaphore project. This property is compulsory.
+
+If `pipeline_file` is a relative path, Semaphore will search for the file inside the directory of the current pipeline. If `pipeline_file` is an absolute path (starts with `/` character), Semaphore will seek the file starting from the root directory of the repository.
+
+Each `pipeline_file` value must be a valid and syntactically correct pipeline YAML file as defined in this document. However, potential errors in a pipeline YAML file, given as a value to the `pipeline_file` property, will be revealed when the relevant target is promoted.
+
+The same will happen if the file given as a `pipeline_file` value does not exist – an error will be revealed at the time of promotion.
+
+```yaml title="Example"
+version: v1.0
+name: Using promotions
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: ls
+    task:
+      jobs:
+      - name: List contents
+        commands:
+          - ls -al
+          - echo $SEMAPHORE_PIPELINE_ID
+
+# highlight-start
+promotions:
+  - name: Pipeline 1
+    pipeline_file: p1.yml
+  - name: Pipeline 2
+    pipeline_file: p2.yml
+# highlight-end
+```
+
+The `promotions` block in the aforementioned `.semaphore/semaphore.yml` file will allow you to promote two other YAML files named `p1.yml` and `p2.yml`.
+
+The contents of the `.semaphore/p1.yml` are as follows:
+
+```yaml title="Example"
+version: v1.0
+name: This is Pipeline 1
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Environment variable
+    task:
+      jobs:
+      - name: SEMAPHORE_PIPELINE_ID
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+```
+
+Last, the contents of the `.semaphore/p2.yml` are as follows:
+
+```yaml title="Example"
+version: v1.0
+name: This is Pipeline 2
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: List VM Linux version
+    task:
+      jobs:
+      - name: uname
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+          - uname -a
+```
+
+### auto_promote {#auto_promote}
+
+The `auto_promote` property is optional and it allows you to specify a set of conditions under which a pipeline will be promoted automatically.
+
+It requires conditions to be defined in a `when` sub-property, following the [Conditions DSL][conditions-reference].
+
+If these conditions are fulfilled for a given pipeline's execution, the appropriate promotion will be triggered automatically.
+
+You can define conditions based on values for the following properties of the original pipeline:
+
+- `branch` - the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
+- `tag` - the name of the tag for which the pipeline is initiated (empty in the case of branch or pull-requests)
+- `pull request` - the number of pull request for which the pipeline is initiated (empty in the case of a branch or tag)
+- `change_in` - at least one file has changed in a given path (used for [monorepo workflows][monorepo-workflows])
+- `result` - the result of a pipeline's execution (see possible values below)
+- `result_reason` - the reason for a specific pipeline execution result (see possible values for each result type below)
+
+The valid values for `result` are:
+
+- `passed`: all the blocks in the pipeline ended successfully
+- `stopped`: the pipeline was stopped either by the user or by the system
+- `canceled`: the pipeline was canceled either by the user or by the system (the difference between `canceled` and `stopped` is if the result is `canceled` it means that pipeline was terminated before any block or job started to execute)
+- `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
+
+The valid values for `result_reason` are:
+
+- `test`: one or more user tests failed
+- `malformed`: the pipeline YAML file is not correct
+- `stuck`: the pipeline jammed for internal reasons and then aborted
+- `internal`: the pipeline was terminated for internal reasons
+- `user`: the pipeline was stopped on user request
+- `strategy`: the pipeline was terminated due to an auto-cancel strategy
+- `timeout`: the pipeline exceeded the execution time limit
+
+Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
+
+For example, a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `internal`, `user`, `strategy`, and `timeout`.
+
+The following pipeline YAML file presents two examples using `auto_promote` and depends on three other pipeline YAML files named `p1.yml`, `p2.yml`, and `p3.yml`:
+
+```yaml title="Example"
+version: v1.0
+name: Testing Auto Promoting
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+promotions:
+- name: Staging
+  pipeline_file: p1.yml
+  auto_promote:
+    when: "result = 'passed' and (branch = 'master' or tag =~ '^v1\.')"
+- name: Documentation
+  pipeline_file: p2.yml
+  auto_promote:
+    when: "branch = 'master' and change_in('/docs/')"
+- name: Production
+  pipeline_file: p3.yml
+
+blocks:
+  - name: Block 1
+    task:
+      jobs:
+        - name: Job 1 - Block 1
+          commands:
+            - echo $SEMAPHORE_GIT_BRANCH
+
+  - name: Block 2
+    task:
+      jobs:
+        - name: Job 1 - Block 2
+          commands:
+            - echo Job 1 - Block 2
+            - echo $SEMAPHORE_GIT_BRANCH
+        - name: Job 2 - Block 2
+          commands:
+            - echo Job 2 - Block 2
+```
+
+According to the specified rules, only the `Staging` and `Documentation` promotions can be auto-promoted – when the conditions specified in the `when` sub-property of `auto_promote` property are fulfilled. However, the `Production` promotion has no `auto_promote` property, so it can't be auto-promoted.
+
+Therefore, if the pipeline finishes with a `passed` result and was initiated from the `master` branch, then the `p1.yml` pipeline file will be auto-promoted.
+
+The same will happen if the pipeline was initiated from the tag with a name that matches the expression given in PCRE (*Perl Compatible Regular Expression*) syntax, which is, in this case, any string that starts with `v1.`.
+
+`Documentation` promotion will be auto-promoted when initiated from the `master` branch, while there is at least one changed file in the `docs` folder (relative to the root of the repository). Check the [change_in reference][change-in-ref] for additional usage details.
+
+The content of `p1.yml` is as follows:
+
+```yaml title="Example"
+version: v1.0
+name: Pipeline 1
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Environment variable
+    task:
+      jobs:
+      - name: SEMAPHORE_PIPELINE_ID
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+```
+
+The content of `p2.yml` is as follows:
+
+```yaml title="Example"
+version: v1.0
+name: Pipeline 2
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Update docs
+    task:
+      jobs:
+      - name: make docs
+        commands:
+          - make docs
+```
+
+Finally, the contents of `p3.yml` is as follows:
+
+```yaml title="Example"
+version: v1.0
+name: This is Pipeline 3
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: List VM Linux version
+    task:
+      jobs:
+      - name: uname
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+          - uname -a
+```
+
+All the displayed files are correct pipeline YAML files that could be used as `semaphore.yml` files.
+
+### auto_promote_on (DEPRECATED) {#auto_promote_on-deprecated}
+
+:::warning
+
+The `auto_promote_on` property has been deprecated in favor of the [`auto_promote`](#auto_promote) property.
+
+:::
+
+The `auto_promote_on` property is used for automatically promoting one or more branches of `promotions` blocks according to user-specified rules.
+
+The `auto_promote_on` property is a list of items that supports three properties: `result`, which is mandatory; `branch`, which is optional; and `result_reason`, which is also optional.
+
+For a `auto_promote_on` branch to execute, the return values of all the used properties of that branch must be `true`.
+
+
+<details>
+<summary>`auto_promote_on` example</summary>
+<div>
+
+The following pipeline YAML file shows an example use of `auto_promote_on` and depends on two other pipeline YAML files named `p1.yml` and `p2.yml`:
+
+```yaml title="Example"
+version: v1.0
+name: Testing Auto Promoting
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+promotions:
+- name: Staging
+  pipeline_file: p1.yml
+  auto_promote_on:
+    - result: passed
+      branch:
+        - "master"
+        - ^refs/tags/v1.*
+    - result: failed
+      branch:
+        - "v2."
+      result_reason: malformed
+
+- name: prod
+  pipeline_file: p2.yml
+
+blocks:
+  - name: Block 1
+    task:
+      jobs:
+        - name: Job 1 - Block 1
+          commands:
+            - echo $SEMAPHORE_GIT_BRANCH
+        - name: Job 2 - Block 1
+          commands:
+            - echo Job 2 - Block 1
+
+  - name: Block 2
+    task:
+      jobs:
+        - name: Job 1 - Block 2
+          commands:
+            - echo Job 1 - Block 2
+            - echo $SEMAPHORE_GIT_BRANCH
+        - name: Job 2 - Block 2
+          commands:
+            - echo Job 2 - Block 2
+```
+
+According to the specified rules, only the `Staging` promotion of the `promotions` list can be auto-promoted – this depends on the rules of the two items of the `auto_promote_on` list. However, the `prod` promotion of the `promotions` list has no `auto_promote_on` property so there is no way it can be auto-promoted.
+
+So, if the pipeline finishes with a `passed` result and the branch name contains the word `master`, then the `p1.yml` pipeline file will be auto-promoted. The same will happen if the the pipeline finishes with a `failed` result. The `result_reason` is `malformed` and the branch name contains the `v2` sequence of characters followed by at least one more character, because a `.` character in a Perl Compatible Regular Expression means one or more characters.
+
+The contents of `p1.yml` are as follows:
+
+```yaml title="Example"
+version: v1.0
+name: Pipeline 1
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Environment variable
+    task:
+      jobs:
+      - name: SEMAPHORE_PIPELINE_ID
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+```
+
+The contents of `p2.yml` are as follows:
+
+```yaml title="Example"
+version: v1.0
+name: This is Pipeline 2
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: List VM Linux version
+    task:
+      jobs:
+      - name: uname
+        commands:
+          - echo $SEMAPHORE_PIPELINE_ID
+          - uname -a
+```
+
+Both `p1.yml` and `p2.yml` are correct pipeline YAML files that could be used as `semaphore.yml` files.
+
+</div>
+</details>
+
+
+### result {#result}
+
+The value of the `result` property is a string that is used for matching the status of a pipeline.
+
+The list of valid values for `result`: `passed`, `stopped`, `canceled`, and `failed` is shown below.
+
+- `passed`: all the blocks in the pipeline ended successfully
+- `stopped`: the pipeline was stopped either by the user or by the system
+- `canceled`: the pipeline was cancelled either by the user or by the system. (the difference between `canceled` and `stopped` is that a pipeline that is not running can be cancelled but cannot be stopped)
+- `failed`: the pipeline failed either due to a pipeline YAML syntax error or because at least one of the blocks of the pipeline failed due to a command not being successfully executed.
+
+### branch {#branch}
+
+The `branch` property is a list of items. Its items are regular expressions that Semaphore tries to match against the name of the branch that is used with the pipeline that is being executed. If any of them is a match, then the return value of the `branch` is `true`.
+
+The `branch` property uses Perl Compatible Regular Expressions.
+
+In order for a `branch` value to match the `master` branch only and not match names such as `this-is-not-master` or `a-master-alternative`, you should use `^master$` as the value of the `branch` property. The same rule applies for matching words or strings.
+
+In order for a `branch` value to match branches that begin with `dev` you should use something like `^dev`.
+
+### result_reason {#result_reason}
+
+The value of the `result_reason` property is a string that defines the reason behind the value of the `result` property.
+
+The list of valid values for `result_reason` are: `test`, `malformed`, `stuck`, `deleted`, `internal`, and `user`.
+
+- `test`: one or more user tests failed
+- `malformed`: the pipeline YAML file is not correct
+- `stuck`: the pipeline jammed for internal reasons and then aborted
+- `deleted`: the pipeline was terminated because the branch was deleted while the pipeline was running
+- `internal`: the pipeline was terminated for internal reasons
+- `user`: the pipeline was stopped on user request
+
+Not all `result` and `result_reason` combinations can coexist. For example, you cannot have `passed` as the value of `result` and `malformed` as the value of `result_reason`. On the other hand, you can have `failed` as the value of `result` and `malformed` as the value of `result_reason`.
+
+For example a `result` value of `failed`, the valid values of `result_reason` are `test`, `malformed`, and `stuck`. When the `result` value is `stopped` or `canceled`, the list of valid values for `result_reason` are `deleted`, `internal`, and `user`.
+
+
+
 
 ---
 
