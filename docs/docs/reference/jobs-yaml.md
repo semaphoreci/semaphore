@@ -25,7 +25,7 @@ The only value supported is: `v1alpha`
 
 Defines the type of a YAML file.
 
-For jobs this property must be `Job`
+For jobs, this property must be `Job`
 
 ## metadata {#metadata}
 
@@ -44,7 +44,7 @@ The `name` property is the only one that can be used-defined. The rest are popul
 
 ### name {#name-in-metadata}
 
-A descriptive name for the job. Jobs can share the same name as they are uniquely identifies by a job ID.
+A descriptive name for the job. Jobs can share the same name as they are uniquely identified by a job ID.
 
 ### id {#id-in-metadata}
 
@@ -99,7 +99,7 @@ Each variable is represented with two properties:
 
 ### secrets {#secrets-in-spec}
 
-A list of [secrets](../using-semaphore/secrets) to be imported in the job.
+A list of [secrets](../using-semaphore/secrets) to be imported into the job.
 
 Each secret requires the `name` property to identify the secret by name.
 
@@ -156,7 +156,7 @@ The possible values are:
 - `NONE`: the job has not yet finished
 - `PASSED`: the job has successfully finished
 - `FAILED`: the job has failed, either because a command has failed or because
-    one or more dependancies were not available
+ one or more dependencies were not available
 - `STOPPED`: the job was terminated before completion
 
 ## agent in status {#agent-in-status}

@@ -167,6 +167,7 @@ const sidebars = {
         'reference/self-hosted-config',
         'reference/agent-yaml',
         'reference/dashboard-yaml',
+        'reference/jobs-yaml',
         'reference/deployment-target-yaml',
         'reference/notifications-yaml',
         'reference/pipeline-yaml',
