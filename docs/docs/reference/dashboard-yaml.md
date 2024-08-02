@@ -13,9 +13,9 @@ This page describes the YAML syntax used to define dashboards in Semaphore.
 
 ## Overview
 
-A dashboard in an interface containing widgets. Widgets can give you an overview of events and operations that happen inyour Semaphore organization.
+A dashboard in an interface containing widgets. Widgets can give you an overview of events and operations that happen in your Semaphore organization.
 
-More specifically, widgets are used for viewing activity of pipelines and workflows. You can use filters to modify the views.
+More specifically, widgets are used for viewing the activity of pipelines and workflows. You can use filters to modify the views.
 
 Each dashboard is associated with an organization. Therefore, in order to view a specific dashboard, you should be connected to the organization to which it belongs.
 
@@ -37,7 +37,7 @@ For dashboards use the value: `Dashboard`
 
 Defines metadata about the dashboard.
 
-It contains the folllwing properties:
+It contains the following properties:
 
 - [`name`](#name-in-metadata)
 - [`title`](#title-in-metadata)
@@ -49,11 +49,11 @@ It contains the folllwing properties:
 
 This property describes the name of the dashboard. The name of the dashboard is part of the URL and should be unique among an organization's dashboards.
 
-The value should only contains alphanumeric characters and dashes.
+The value should only contain alphanumeric characters and dashes.
 
 ### title {#title-in-metadata}
 
-This property describes the title of the dashboard as it appears in the Semaphore website. It can only contain Unicode characters.
+This property describes the title of the dashboard as it appears on the Semaphore website. It can only contain Unicode characters.
 
 ### id {#id-in-metadata}
 
@@ -65,7 +65,7 @@ The dashboard creation time in UNIX epoch format.
 
 ### update_time {#update-time-in-metadata}
 
-The dashboard last config update time in UNIX epoch format.
+The dashboard's last config update time is in UNIX epoch format.
 
 ## spec {#spec}
 
@@ -83,7 +83,7 @@ Each item list contains the following elements:
 
 ### name {#name-in-widgets}
 
-This property describes the name of the widget to be shown in the dashboard shown on the Semaphore website.
+This property describes the name of the widget to be shown in the dashboard on the Semaphore website.
 
 ### type {#type-in-widgets}
 
@@ -98,7 +98,7 @@ Possible values for this property are:
 
 Describes the criteria to filter elements shown in the widget.
 
-The properties contained in depends on the widget [`type`](#type-in-widgets).
+The properties contained in depend on the widget [`type`](#type-in-widgets).
 
 See the properties for each `type` below:
 
@@ -115,7 +115,7 @@ filters: {}
 
 When `type: list_workflows` the widget shows the workflow activity. 
 
-In this scenario you may use the following properties inside `filters` to filter activity shown in the widget:
+In this scenario, you may use the following properties inside `filters` to filter the activity shown in the widget:
 
 - `project_id` (optional): show only workflows for the specified project
 - `branch` (optional): shows only workflows for the specified branch for a given project (exact string match supported only)
@@ -144,7 +144,7 @@ spec:
 
 When `type: list_pipelines` the widget shows the pipeline activity. 
 
-In this scenario you may use the following properties inside `filters` to filter activity shown in the widget:
+In this scenario, you may use the following properties inside `filters` to filter the activity shown in the widget:
 
 - `project_id` (required): select the project to show pipeline activity
 - `branch` (optional): shows only workflows for the specified branch for a given project (exact string match supported only)
