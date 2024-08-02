@@ -13,7 +13,7 @@ This page explains the YAML syntax for agent types required to configure [self-h
 
 ## Overview
 
-The YAML syntax described in this page is used setting up and configuring self-hosted agents with the [Semaphore Command Line](./semaphore-cli#sem-get-agents).
+The YAML syntax described on this page is used to set up and configure self-hosted agents with the [Semaphore Command Line](./semaphore-cli#sem-get-agents).
 
 ## apiVersion {#apiVersion}
 
@@ -39,9 +39,9 @@ Contains the following properties:
 
 ### name {#name-in-metadata}
 
-Represents the name of the type for the self-hosted agent. All self-hosted agent type names begin with the `s1-` prefix.
+Represents the name of the type for the self-hosted agent. All self-hosted agent-type names begin with the `s1-` prefix.
 
-The property support alphanumerical, dashes, underscores, slash and plus characters.
+The property supports alphanumerical, dashes, underscores, slash, and plus characters.
 
 ### create_time {#create-time-in-metadata}
 
@@ -72,7 +72,7 @@ Contains the following properties:
 
 This property defines how long the agent name is to be reserved before being released. The value is expressed in seconds.
 
-If the value is 0 the name is reusable immediately after agent disconnects.
+If the value is 0 the name is reusable immediately after the agent disconnects.
 
 Non-zero values must be greater than 60.
 
