@@ -9,29 +9,25 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
+This page describes the YAML syntax used to configure [deployment targets (environments)](../using-semaphore/promotions#deployment-targets).
 
-The Deployment Targets YAML reference explains the YAML grammar used for
-configuring deployment targets. These targets enable the enforcement of strict
-conditions for triggering pipeline promotions. Those conditions allow you to
-restrict **who** (person or a role) can trigger a promotion and on
-**which git reference** (branch, tag, and/or pull request).
+## Overview
 
-By integrating promotions with Deployment Targets, you can establish secure
+Deployment targets enable the enforcement of strict conditions for triggering pipeline promotions. 
+
+You can restrict who and on when a promotion can be triggered.  By integrating promotions with Deployment Targets, you can establish secure
 Continuous Deployment pipelines that seamlessly align with your current setup.
 
-A deployment target is created within a project and exclusively employed within
-that project for multiple promotions.
+A deployment target is created within a project and exclusively employed within that project for multiple promotions.
 
-## Properties
-
-### apiVersion
+## apiVersion {#apiVersion}
 
 The `apiVersion` property indicates the version of the YAML grammar employed
 within the current YAML file. Different versions may introduce varying features.
 
 Here is a list of valid values for the `apiVersion` property: `v1alpha`.
 
-### kind
+## kind {#kind}
 
 The `kind` property specifies the purpose of a YAML file. For YAML files
 intended to define deployment targets, the value of the `kind` property should
@@ -39,85 +35,85 @@ be `DeploymentTarget`.
 
 Here is a list of valid values for the `kind` property: `DeploymentTarget`.
 
-### metadata
+## metadata {#metadata}
 
 The `metadata` property defines the metadata for a Deployment Target YAML file,
 supporting the following properties: `id`, `name`, `project_id`, `organization_id`,
 `created_by`, `created_at`, `updated_by`, `updated_at`, `description` and `url`
 properties.
 
-#### id
+### id {#id-in-metadata}
 
 The `id` property is an automatically generated unique identifier assigned by
 Semaphore 2.0 to each deployment target. It should not be modified.
 
-#### name
+### name {#name-in-metadata}
 
 The `name` property is a string that represents the name of the deployment target.
 This name is displayed when executing the `sem get dt -p [project-name]` command.
 The name should only consist of alphanumerical characters, dashes, underscores, and dots.
 
-#### project_id
+### project_id {#project-id-in-metadata}
 
 The `project_id` property corresponds to the UUID (Universally Unique Identifier) of
 the project associated with the deployment target. It should not be modified.
 
-#### organization_id
+### organization_id {#organization-id-in-metadata}
 
 The `organization_id` property represents the UUID of the organization linked to
 the deployment target. It should not be modified.
 
-#### created_by
+### created_by {#created-by-in-metadata}
 
 The `created_by` property contains the UUID of the user who created the deployment
 target. It should not be modified.
 
-#### created_at
+### created_at {#created-at-in-metadata}
 
 The `created_at` property indicates the UTC when the deployment target was created.
 It should not be modified.
 
-#### updated_by
+### updated_by {#updated-by-in-metadata}
 
 The `updated_by` property stores the UUID of the user who last updated the deployment
 target. It should not be modified.
 
-#### updated_at
+### updated_at {#updated-at-in-metadata}
 
 The `updated_at` property denotes the UTC when the deployment target was last
 updated. It should not be modified.
 
-#### description
+### description {#description-in-metadata}
 
 The `description` property is a string that describes the deployment target.
 
-#### url
+### url {#url-in-metadata}
 
 The `url` property is a string containing the URL associated with the deployment target.
 
-### spec
+## spec {#spec}
 
 The `spec` property contains a list of deployment target properties.
 
-#### state
+### state {#state-in-spec}
 
 The `state` property indicates the state of the deployment target, which can be
 one of the following values: `SYNCING`, `USABLE`, `UNUSABLE`, or `CORDONED`. It should
 not be modified.
 
-#### state_message
+### state_message {#state-message-in-spec}
 
 The `state_message` property provides an additional message associated with
 the deployment target's state. It should not be modified.
 
-#### subject_rules
+## subject_rules {#subject-rules-in-spec}
 
 The `subject_rules` property holds a list of subject rules that determine who
 can trigger promotions when the deployment target is associated with them. Each
 rule must include the `type`. Depending on the rule `type`, the `subject_id`
 or `git_login` may also be required.
 
-##### type
+### type {#type-in-subject-rules}
 
 The `type` property of a subject rule can have one of the following values: `ANY`,
 `USER`, `ROLE`, or `AUTO`. Each value has a specific meaning:
@@ -139,51 +135,17 @@ Please note that these values determine the authorization requirements for
 triggering promotions based on the subject rule. Choose the appropriate `type`
 value based on your desired promotion workflow and access control needs.
 
-##### subject_id
 
-The `subject_id` property is required for `USER` and `ROLE` rule types.
-For `USER`, the `subject_id` contains the UUID of the user. If the rule type is `ROLE`,
-it should be the name of the project role (e.g. `Admin`, `Contributor`).
-
-##### git_login
-
-The `git_login` property is used only for `USER` rule types when specifying a user
-by their git handle (e.g. GitHub login) instead of their UUID.
-
-#### object_rules
-
-The `object_rules` property contains a list of object rules that define which branches,
-tags, or pull requests can trigger promotions. Each rule must include the `type`,
-`match_mode`, and `pattern` properties.
-
-##### type
-
-The `type` property of an object rule can have the following values: `BRANCH`, `TAG`,
-or `PR`.
-
-##### match_mode
-
-The `match_mode` property plays a crucial role in determining how the pattern matches
-the name of the git reference, such as a branch or tag. There are three options available
-for match_mode: `ALL`, `EXACT`, or `REGEX`. However, when it comes to object rules of
-type `PR`, there is no requirement to specify the `match_mode`. This is because any
-pull request will automatically trigger the promotion if there is an object rule
-with the `type` set to `PR`.
-
-##### pattern
-
-The `pattern` property is a string used to match the name of the git reference specified
-by the rule type (branch, tag, or pull request). The pattern is only used for `EXACT`
-and `REGEX` match modes. In `EXACT` mode, an exact string comparison is performed between
-the branch/tag name and the pattern. In `REGEX` mode, the pattern is treated as a regular
-expression to match the reference name. The regular expressions are Perl-compatible, and
-you can find more information about the syntax in
-the [the Erlang re module documentation](https://www.erlang.org/doc/man/re.html)
-
-#### active
+### active {#active-in-spec}
 
 The `active` property is a boolean value indicating whether the deployment target is active
 or inactive. It should not be modified.
+
+### bookmark_parameter1 {#bookmark-parameter1-in-spec}
+
+### bookmark_parameter2 {#bookmark-parameter2-in-spec}
+
+### bookmark_parameter3 {#bookmark-parameter3-in-spec}
 
 #### bookmark_parameter1, bookmark_parameter2, bookmark_parameter3
 
@@ -198,12 +160,12 @@ it enables you to filter the deployment history and display only those promotion
 for instance, `staging` was passed as the value for the parameter. This feature allows you
 to conveniently track deployments based on specific parameter values.
 
-### env_vars
+### env_vars {#env-vars-in-spec}
 
 The `env_vars` property is a list of environment variables defined for the deployment target.
 Each environment variable is defined by its `name` and `value`.
 
-#### name
+#### name 
 
 The `name` property represents the name of the environment variable.
 
@@ -213,7 +175,7 @@ The `value` property represents the value of the environment variable. If
 the response includes the suffix [md5], this indicates that a hashed value has
 been received for security reasons.
 
-### files
+### files {#files-in-spec}
 
 The `files` property is a list of files defined for the deployment target.
 Each file is defined by its path and content.
@@ -235,16 +197,55 @@ The `source` property represents the path on your host machine of the file
 you want to assign to the deployment target. It is only used when creating
 or updating the files property.
 
+### subject_id {#subject-id-in-subject-rules}
 
-## An example
+The `subject_id` property is required for `USER` and `ROLE` rule types.
+For `USER`, the `subject_id` contains the UUID of the user. If the rule type is `ROLE`,
+it should be the name of the project role (e.g. `Admin`, `Contributor`).
+
+### git_login {#git-login-in-subject-rules}
+
+The `git_login` property is used only for `USER` rule types when specifying a user
+by their git handle (e.g. GitHub login) instead of their UUID.
+
+## object_rules {#object-rules-in-spec}
+
+The `object_rules` property contains a list of object rules that define which branches,
+tags, or pull requests can trigger promotions. Each rule must include the `type`,
+`match_mode`, and `pattern` properties.
+
+### type {#type-in-object-rules}
+
+The `type` property of an object rule can have the following values: `BRANCH`, `TAG`,
+or `PR`.
+
+### match_mode {#match-mode-in-object-rules}
+
+The `match_mode` property plays a crucial role in determining how the pattern matches
+the name of the git reference, such as a branch or tag. There are three options available
+for match_mode: `ALL`, `EXACT`, or `REGEX`. However, when it comes to object rules of
+type `PR`, there is no requirement to specify the `match_mode`. This is because any
+pull request will automatically trigger the promotion if there is an object rule
+with the `type` set to `PR`.
+
+### pattern {#pattern-in-object-rules}
+
+The `pattern` property is a string used to match the name of the git reference specified
+by the rule type (branch, tag, or pull request). The pattern is only used for `EXACT`
+and `REGEX` match modes. In `EXACT` mode, an exact string comparison is performed between
+the branch/tag name and the pattern. In `REGEX` mode, the pattern is treated as a regular
+expression to match the reference name. The regular expressions are Perl-compatible, and
+you can find more information about the syntax in
+the [the Erlang re module documentation](https://www.erlang.org/doc/man/re.html)
+
+## Examples {#examples}
 
 The following YAML code provides an example of a deployment target
 as returned by the `sem get dt 0d4d4184-c80a-4cbb-acdd-b75e3a03f795` command
 (using the deployment target UUID) or the `sem get dt mytest -i a426b4db-1919-483d-926d-06ba1320b209`
 command (using the deployment target name and project UUID):
 
-``` bash
-$ sem get dt my-dt -p my-project
+```yaml title="Example"
 apiVersion: v1alpha
 kind: DeploymentTarget
 metadata:
