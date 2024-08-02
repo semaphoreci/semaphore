@@ -125,7 +125,7 @@ Provides a string message associated to the deployment target [`state`](#state-i
 
 A boolean value indicating if the deployment target is active. It should not be modified.
 
-### bookmark_parameter1 {#bookmark-parameoter1-in-spec}
+### bookmark_parameter1 {#bookmark-parameter1-in-spec}
 
 This property can hold values to be used in filter the deployment history. 
 
@@ -133,11 +133,11 @@ For instance, if you set the parameter value to `environment` and then create a 
 
 ### bookmark_parameter2 {#bookmark-parameter2-in-spec}
 
-This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameoter1-in-spec).
+This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
 
 ### bookmark_parameter3 {#bookmark-parameter3-in-spec}
 
-This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameoter1-in-spec).
+This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
 
 ### env_vars {#env-vars-in-spec}
 
