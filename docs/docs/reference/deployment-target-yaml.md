@@ -15,10 +15,9 @@ This page describes the YAML syntax used to configure [deployment targets (envir
 
 Deployment targets enable the enforcement of strict conditions for triggering pipeline promotions. 
 
-You can restrict who and on when a promotion can be triggered.  By integrating promotions with Deployment Targets, you can establish secure
-Continuous Deployment pipelines that seamlessly align with your current setup.
+You can restrict who and when a promotion can be triggered.  By integrating promotions with Deployment Targets, you can establish secure Continuous Deployment pipelines that seamlessly align with your current setup.
 
-A deployment target is created within a project and exclusively employed within that project for multiple promotions.
+A deployment target is created within a project and exclusively employed for multiple promotions.
 
 ## apiVersion {#apiVersion}
 
@@ -30,7 +29,7 @@ The only supported value is: `v1alpha`
 
 Determines the type of resource to create.
 
-For deployment targets the value is: `DeploymentTarget`
+For deployment targets, the value is: `DeploymentTarget`
 
 ## metadata {#metadata}
 
@@ -51,13 +50,13 @@ Contains the following values:
 
 ### id {#id-in-metadata}
 
-This property is automatically geneerated. It is a unique identified for the deployment target.
+This property is automatically generated. It is a unique identification for the deployment target.
 
 ### name {#name-in-metadata}
 
 A descriptive name for the deployment target. 
 
-The name should only consist of alphanumerical characters, dashes, underscores, and dots.
+The name should only include alphanumerical characters, dashes, underscores, and dots.
 
 ### project_id {#project-id-in-metadata}
 
@@ -89,7 +88,7 @@ A string to describe the deployment target.
 
 ### url {#url-in-metadata}
 
-A URL string associated to the deployment target.
+A URL string associated with the deployment target.
 
 ## spec {#spec}
 
@@ -119,25 +118,25 @@ Possible values are:
 
 ### state_message {#state-message-in-spec}
 
-Provides a string message associated to the deployment target [`state`](#state-in-spec).
+Provides a string message associated with the deployment target [`state`](#state-in-spec).
 
 ### active {#active-in-spec}
 
-A boolean value indicating if the deployment target is active. It should not be modified.
+A boolean value indicates if the deployment target is active. It should not be modified.
 
 ### bookmark_parameter1 {#bookmark-parameter1-in-spec}
 
-This property can hold values to be used in filter the deployment history. 
+This property can hold values to be used as filters for the deployment history. 
 
-For instance, if you set the parameter value to `environment` and then create a parameterized promotion with `environment: ['staging', 'production']`, you can use the filtering function in the Semaphore website to view deployment history per-environment.
+For instance, if you set the parameter value to `environment` and then create a parameterized promotion with `environment: ['staging', 'production']`, you can use the filtering function in the Semaphore website to view deployment history per environment.
 
 ### bookmark_parameter2 {#bookmark-parameter2-in-spec}
 
-This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
+This property can hold values to be used to filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
 
 ### bookmark_parameter3 {#bookmark-parameter3-in-spec}
 
-This property can hold values to be used in filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
+This property can hold values to be used to filter the deployment history. Works just like [`bookmark_parameter1`](#bookmark-parameter1-in-spec).
 
 ### env_vars {#env-vars-in-spec}
 
@@ -156,9 +155,7 @@ Each item in the list consists of these properties:
 
 - `path`: path to the file in the job environment
 - `content`: base64 encoded content of the file. If the value includes the suffix `[md5]`, this indicates that a hashed value has been received for security reasons
-- `source`: represents the path on your host machine of the file
-you want to assign to the deployment target. It is only used when creating
-or updating the files property
+- `source`: represents the path on your host machine of the file you want to assign to the deployment target. It is only used when creating or updating the file property
 
 ## subject_rules {#subject-rules-in-spec}
 
@@ -173,7 +170,7 @@ Each item in the list can contain these properties:
 
 ### type {#type-in-subject-rules}
 
-Used to define subject rules in the deployment target. The contents of this property is a list with rules to allow deployment target to be used.
+Used to define subject rules in the deployment target. The contents of this property are a list with rules to allow deployment targets to be used.
 
 Semaphore processes the rules in the supplied order and allows the promotion when one rule is matched.
 
@@ -188,7 +185,7 @@ The `type` property can take the following values:
 
 This property is used in combination with `type: USER` and `type: ROLE`. 
 
-Allow user's by adding their user IDs. 
+Allow users to add their user IDs. 
 
 To allow roles, add their role name, e.g. `Admin` or `Contributor`.
 
@@ -213,7 +210,7 @@ Each item in the list can contain these properties:
 
 ### type {#type-in-object-rules}
 
-Used to define object rules in the deployment target. The contents of this property is a list with rules to allow deployment target to be used.
+Used to define object rules in the deployment target. The contents of this property are a list with rules to allow deployment targets to be used.
 
 Semaphore processes the rules in the supplied order and allows the promotion when one rule is matched.
 
@@ -225,7 +222,7 @@ The `type` property can take the following values:
 
 ### match_mode {#match-mode-in-object-rules}
 
-Determines what type of matching is used in pattern matching the object rule. This property is used in conjuction with [`type`](#type-in-object-rules).
+Determines what type of matching is used in pattern matching the object rule. This property is used in conjunction with [`type`](#type-in-object-rules).
 
 The possible values for this property are:
 
@@ -245,7 +242,7 @@ This property defines the string used to match the rule. It is only used when `m
 
 The value of `pattern` is evaluated according to the `match_mode` and if a match is found the rule passes.
 
-This property is used to define Git branch and tag names.
+This property is used to define the Git branch and tag names.
 
 :::note
 
