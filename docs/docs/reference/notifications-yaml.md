@@ -13,7 +13,7 @@ This page specifies the YAML syntax and rules for notifications on Semaphore.
 
 ## Overview
 
-Use this reference in conjuction with the [Semaphore Command Line](./semaphore-cli) to manage and configure notifications on Semaphore.
+Use this reference in conjunction with the [Semaphore Command Line](./semaphore-cli) to manage and configure notifications on Semaphore.
 
 Notifications can be sent only when a pipeline is finished.
 
@@ -27,7 +27,7 @@ The only supported value is: `v1alpha`
 
 Defines the type of resource. 
 
-For notification resoureces use the kind: `Notification` 
+For notification resources use the kind: `Notification` 
 
 ## metadata {#metadata}
 
@@ -54,7 +54,7 @@ The notification creation time in UNIX epoch format. Automatically populated by 
 
 ### update_time {#update-time-in-metadata}
 
-The notification last notification update time in UNIX epoch format. Automatically populated by Semaphore.
+The last notification update time in UNIX epoch format. Automatically populated by Semaphore.
 
 ## spec {#spec}
 
@@ -62,7 +62,7 @@ The `spec` property holds a list of notification [`rules`](#rules-in-spec)
 
 ## rules {#rules-in-spec}
 
-Notifications must have at least one rule. Semaphore evaluates the rule in the order defined and trigger the notification when a match is found.
+Notifications must have at least one rule. Semaphore evaluates the rule in the order defined and triggers the notification when a match is found.
 
 This property contains:
 
@@ -84,7 +84,7 @@ Each item list in `filter` contains the following properties:
 - [`branches`](#branches-in-filter)
 - [`pipelines`](#pipelines-in-filter)
 
-For a filter to match, all its properties must evaluate to `true`. If any of the properties have multiple values, at least one of these must match.
+For a filter to match, all its properties must be evaluated to `true`. If any of the properties have multiple values, at least one of these must match.
 
 :::note
 
@@ -98,17 +98,17 @@ Mandatory property. Contains a list of project names where the notification rule
 
 ### branches {#branches-in-filter}
 
-Optional property. Contains a list of Git branches. If specified, the rule can only trigger on events that apply to one of the listed branches.
+Optional property. Contains a list of Git branches. If specified, the rule can only trigger events that apply to one of the listed branches.
 
 #### pipelines {#pipelines-in-filter}
 
-Optional property. A list of pipeline filenames. If specified, the rule can only trigger on events that originginated from one of the listed pipelines.
+Optional property. A list of pipeline filenames. If specified, the rule can only trigger events originating from one of the listed pipelines.
 
 ## notify {#notify-in-rules}
 
 Specifies how to send the notification.
 
-This property may contain these subproperties:
+This property may contain these sub-properties:
 
 - [`slack`](#slack-in-notify): configuration to send Slack notifications
 - [`webhook`](#webhook-in-notify): configuration to send notifications to webhook-enabled services
@@ -153,7 +153,7 @@ Supports the following properties:
 
 ### endpoint {#endpoint-in-webhook}
 
-Mandatory property. Specifies the URL to contact in order to send the notification.
+Mandatory property. Specifies the URL to contact to send the notification.
 
 The `endpoint` property holds the URL to which Semaphore will send the notification.
 
@@ -171,7 +171,7 @@ This property is optional and defaults to `500`.
 
 ### secret {#secret-in-webhook}
 
-An optional property used to sign the notification payload. This property is the name of a organzation-level [secret](../using-semaphore/secrets).
+An optional property used to sign the notification payload. This property is the name of an organization-level [secret](../using-semaphore/secrets).
 
 If this property is not provided, the notification payload is not signed.
 
@@ -179,7 +179,7 @@ If this property is not provided, the notification payload is not signed.
 
 The following example has two rules:
 
-1. Sends a Slack notifiacation to the `#devops` channel and to the user `#mtsukalos` on events related to the "API-docs" project
+1. Sends a Slack notification to the `#devops` channel and to the user `#mtsukalos` on events related to the "API-docs" project
 2. Sends a signed notification to a webhook-enabled service on the following conditions:
    - Project name is "website", "docs", or matches regexp "/.*api$/"
    - Branch is "master" or matches regexp "/^feature-.*/"
