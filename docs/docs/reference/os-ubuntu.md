@@ -66,39 +66,39 @@ Linux-based machines support nested virtualization. You can create virtual machi
 Follow these commands to use nested virtualization:
 
 1. Check that nested virtualization is supported. The output should be `0`
- ```shell
+    ```shell
     grep -cw vmx /proc/cpuinfo
- ```
+    ```
 2. Install the required packages
- ```shell
+    ```shell
     sudo apt-get install -y uvtool sshpass net-tools netcat-openbsd
- ```
+    ```
 3. Download prebuilt Ubuntu cloud image
- ```shell
+    ```shell
     uvt-simplestreams-libvirt --verbose sync --source http://cloud-images.ubuntu.com/daily release=focal arch=amd64
     uvt-simplestreams-libvirt query
- ```
+    ```
 4. Create a new SSH keypair
- ```shell
+    ```shell
     rm -rf ~/.ssh/id_rsa
     echo | ssh-keygen -t rsa  -f ~/.ssh/id_rsa
- ```
+    ```
 5. Create the VM
- ```shell
+    ```shell
     uvt-kvm create vm1 --memory 1024 --cpu 1 --disk 4 --password ubuntu --bridge virbr0
     uvt-kvm list
- ```
+    ```
 6. Wait for the machine to be up and IP to be available
- ```shell
+    ```shell
     IP=""
     while [ -z $IP ];do IP=$(arp -an | grep $(virsh dumpxml vm1| grep "mac address" | cut -d"'" -f2)|cut -d"(" -f2|cut -d")" -f1);done
     echo $IP
     while ! nc -w5 -z $IP 22; do  echo "Sleep while $IP is up";sleep 1; done
- ```
+    ```
 7. Run the commands in the VM using SSH. For example, this runs `uname -a`
- ```shell
+    ```shell
     sshpass -p "ubuntu" -v  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@$IP -t 'uname -a'
- ```
+    ```
 
 The predefined default network for nested virtualization is 192.168.123.0/24. The base VM provides virbr0 interface with the IP address: 192.168.123.1.
 
