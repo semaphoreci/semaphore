@@ -108,3 +108,8 @@ Semaphore Cloud provides the following Apple machine types:
 | `a2-standard-4` | 4 | Apple Silicon | macOS Sonoma | 8 | 150 |
 
 ## See also
+
+- [How to configure agents](../using-semaphore/pipelines#agents)
+- [Self-hosted agents](../using-semaphore/self-hosted)
+- [Linux Ubuntu images reference](./os-ubuntu)
+- [Apple macOS images reference](./os-apple)

@@ -404,3 +404,8 @@ The following gems are pre-installed:
 
 
 ## See also
+
+- [How to configure agents](../using-semaphore/pipelines#agents)
+- [Self-hosted agents](../using-semaphore/self-hosted)
+- [Machine type references](./machine-types)
+- [Linux Ubuntu images reference](./os-ubuntu)

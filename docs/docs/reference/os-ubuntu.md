@@ -740,4 +740,7 @@ Additional tools:
 
 ## See also
 
-
+- [How to configure agents](../using-semaphore/pipelines#agents)
+- [Self-hosted agents](../using-semaphore/self-hosted)
+- [Machine type references](./machine-types)
+- [Apple macOS images reference](./os-apple)
