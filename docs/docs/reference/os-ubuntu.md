@@ -15,13 +15,13 @@ This page describes the Ubuntu images supported on Semaphore Cloud.
 
 ## Overview
 
-The Operating System image defines what OS and software is pre-installed in you [agents](../using-semaphore/pipelines#agents). 
+The Operating System image defines what OS and software are pre-installed in your [agents](../using-semaphore/pipelines#agents). 
 
 This page describes OS images to run on Linux-based Semaphore Cloud [machines](./machine-types). You can add more OS options using [self-hosted agents](../using-semaphore/self-hosted).
 
 ### Installing packages {#install}
 
-You have full `sudo` passworldless permissions to install and modify OS packages as needed. Ubuntu package manager is [apt](https://ubuntu.com/server/docs/package-management).
+You have full `sudo` passwordless permissions to install and modify OS packages as needed. Ubuntu package manager is [apt](https://ubuntu.com/server/docs/package-management).
 
 To install a package, run:
 
@@ -61,44 +61,44 @@ sudo apt-get update
 
 ### Nested virtualization {#nested-virtualization}
 
-Linux-based machine support nested virtualization. You can create virtual machines inside the virtual machine running your agent using [libvirt]
+Linux-based machines support nested virtualization. You can create virtual machines inside the virtual machine running your agent using [libvirt]
 
 Follow these commands to use nested virtualization:
 
 1. Check that nested virtualization is supported. The output should be `0`
-    ```shell
+ ```shell
     grep -cw vmx /proc/cpuinfo
-    ```
+ ```
 2. Install the required packages
-    ```shell
+ ```shell
     sudo apt-get install -y uvtool sshpass net-tools netcat-openbsd
-    ```
+ ```
 3. Download prebuilt Ubuntu cloud image
-    ```shell
+ ```shell
     uvt-simplestreams-libvirt --verbose sync --source http://cloud-images.ubuntu.com/daily release=focal arch=amd64
     uvt-simplestreams-libvirt query
-    ```
+ ```
 4. Create a new SSH keypair
-    ```shell
+ ```shell
     rm -rf ~/.ssh/id_rsa
     echo | ssh-keygen -t rsa  -f ~/.ssh/id_rsa
-    ```
+ ```
 5. Create the VM
-    ```shell
+ ```shell
     uvt-kvm create vm1 --memory 1024 --cpu 1 --disk 4 --password ubuntu --bridge virbr0
     uvt-kvm list
-    ```
-6. Wait for machine to be up and IP to be available
-    ```shell
+ ```
+6. Wait for the machine to be up and IP to be available
+ ```shell
     IP=""
     while [ -z $IP ];do IP=$(arp -an | grep $(virsh dumpxml vm1| grep "mac address" | cut -d"'" -f2)|cut -d"(" -f2|cut -d")" -f1);done
     echo $IP
     while ! nc -w5 -z $IP 22; do  echo "Sleep while $IP is up";sleep 1; done
-    ```
+ ```
 7. Run the commands in the VM using SSH. For example, this runs `uname -a`
-    ```shell
+ ```shell
     sshpass -p "ubuntu" -v  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@$IP -t 'uname -a'
-    ```
+ ```
 
 The predefined default network for nested virtualization is 192.168.123.0/24. The base VM provides virbr0 interface with the IP address: 192.168.123.1.
 
@@ -110,7 +110,7 @@ This section describes the software pre-installed on the image.
 
 ### Version control
 
-Following version control tools are pre-installed:
+The following version control tools are pre-installed:
 
 - Git 2.43.0
 - Git LFS (Git Large File Storage) 3.4.1
@@ -159,7 +159,7 @@ The following cloud tools are pre-installed:
 - Terraform 1.7.2
 - Helm 3.14.0
 
-### Utilites
+### Utilities
 
 The following utilities are pre-installed:
 
@@ -342,7 +342,7 @@ The following browsers and headless browsers are pre-installed. Chrome and Firef
 
 ### Docker
 
-Docker toolset is installed and the following versions are available:
+The Docker toolset is installed and the following versions are available:
 
 - Docker 24.0.7
 - Docker-compose 2.24.2 (used as `docker compose version`)
@@ -370,7 +370,7 @@ The following cloud CLIs are pre-installed:
 
 ### Utilites
 
-The following utilites are pre-installed:
+The following utilities are pre-installed:
 
 - Httpie 3.2.2
 - Curl 7.81.0
@@ -523,7 +523,7 @@ This section describes the software pre-installed on the image.
 
 ### Version control
 
-Following version control tools are pre-installed:
+The following version control tools are pre-installed:
 
 - Git 2.43.0
 - Git LFS (Git Large File Storage) 3.4.1
@@ -573,7 +573,7 @@ The following cloud tools are pre-installed:
 - Terraform 1.7.2
 - Helm 3.14.0
 
-### Utilites
+### Utilities
 
 The following utilities are pre-installed:
 

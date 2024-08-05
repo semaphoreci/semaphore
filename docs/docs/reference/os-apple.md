@@ -15,7 +15,7 @@ This page describes the Apple macOS images supported on Semaphore Cloud.
 
 ## Overview
 
-The Operating System image defines what OS and software is pre-installed in you [agents](../using-semaphore/pipelines#agents). 
+The Operating System image defines what OS and software are pre-installed in your [agents](../using-semaphore/pipelines#agents). 
 
 This page describes OS images to run on Apple-based Semaphore Cloud [machines](./machine-types). You can add more OS options using [self-hosted agents](../using-semaphore/self-hosted).
 
@@ -29,7 +29,7 @@ System version:
 
 ### Version control
 
-Following version control tools are pre-installed:
+The following version control tools are pre-installed:
 
 - Git (2.x)
 - Git LFS (Git Large File Storage)
@@ -38,7 +38,7 @@ Following version control tools are pre-installed:
 
 ### Utilities
 
-The following utitilies are pre-installed:
+The following utilities are pre-installed:
 
 - homebrew
 - bundler
@@ -153,7 +153,7 @@ System version:
 
 ### Version control
 
-Following version control tools are pre-installed:
+The following version control tools are pre-installed:
 
 - Git (2.x)
 - Git LFS (Git Large File Storage)
@@ -284,7 +284,7 @@ System version:
 
 ### Version control
 
-Following version control tools are pre-installed:
+The following version control tools are pre-installed:
 
 - Git (2.x)
 - Git LFS (Git Large File Storage)
@@ -376,7 +376,7 @@ Installed versions:
 
 - 2.7.8 (system)
 
-Following gems are pre-installed:
+The following gems are pre-installed:
 
 - fastlane (2.213.0)
 - cocoapods (1.11.3)
