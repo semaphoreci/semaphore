@@ -243,10 +243,6 @@ If you want to run commands for all pipelines in your organization, see [organiz
 
 :::
 
-### Permissions required {#preflight-permissions}
-
-Only members with *admin permissions for the project* can add, remove, or modify pre-flight checks.
-
 ### How to set up checks {#preflight-add}
 
 To create, edit, or delete project pre-flight checks, follow these steps:
