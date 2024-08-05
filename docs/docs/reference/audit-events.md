@@ -21,7 +21,7 @@ Each audit log entry shows applicable information about an event, such as:
 
 ## Audit log entry fields
 
-All audited events contain following fields:
+All audited events contain the following fields:
 
 - [Resource](#resource-field)
 - [Operation](#operation-field)
@@ -29,10 +29,10 @@ All audited events contain following fields:
 - [Medium](#medium-field)
 - Timestamp
 
-Some events contain following fields:
+Some events contain the following fields:
 
 - Resource ID
-- Resource name
+- Resource Name
 - IP address
 - Username
 - Description
@@ -71,7 +71,7 @@ Values of **Operation** field:
 
 ### Medium field {#medium-field}
 
-Operation can be done from one of the follwoing Mediums:
+Operation can be done from one of the following Mediums:
 
 - Web
 - API
