@@ -135,7 +135,7 @@ For the following resource types you need to supply the `-f <resource.yaml>` or 
 - [Dashboards reference](./dashboard-yaml.md)
 - [Deployment targets reference](./deployment-target-yaml.md)
 - [Projects reference](./project-yaml.md)
-- [Jobs reference](./job-yaml.md)
+- [Jobs reference](./jobs-yaml.md)
 - [Secrets reference](./secret-yaml.md)
 
 For example:
@@ -341,7 +341,7 @@ This section describes in properties how to create, edit, and debug jobs using t
 
 ### Create one-off jobs {#sem-create-job}
 
-To create a one-off job, use `sem create` and supply the job spec using the [Job YAML reference](./job-yaml).
+To create a one-off job, use `sem create` and supply the job spec using the [Job YAML reference](./jobs-yaml).
 
 The syntax is:
 
