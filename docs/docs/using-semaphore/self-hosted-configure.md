@@ -57,9 +57,6 @@ Depending on how Docker is configured, isolation can be achieved in two ways:
 - **Agent inside container**: the self-hosted agent itself runs in a respawnable Docker container. The container must stop once the job is finished to give room for a new container. To do this, set the [`disconnect-after-job`](../reference/self-hosted-config#disconnect-after-job) setting to true.
 - **Agent outside container**: in this scenario, the self-hosted agent runs outside a container. Isolation is achieved by configuring the pipeline to run the jobs in [Docker environments](./pipelines#docker-environments). This approach does not need any extra configuration settings.
 
-TODO1: how to run agent in docker conatiner?
-TODO2: state diagram with systemd+container+shudown+respawn (docker or k8s platforms)
-
 ### Isolation with cloud instances
 
 In this scenario, a new cloud instance is spun up for every job and terminated when it's done. This is achieved by setting the [`shutdown-hook-path`](../reference/self-hosted-config#shutdown-path) and [`disconnect-after-job`](../reference/self-hosted-config#disconnect-after-job) settings in the agent.
