@@ -30,6 +30,14 @@ Agents can be non-ephemeral when using [self-hosted agents](./self-hosted).
 
 :::
 
+## Visual workflow editor {#workflow-editor}
+
+You can define your jobs and most aspect of your workflows using the visual editor. To access the visual editor, open your [project](./projects) on the Semaphore website and press **Edit Workflow**.
+
+All your changes are stored as YAML pipeline definitions on your Git repository. You can make changes using the visual editor, or edit the YAML directly by clicking on the pipeline YAML file.
+
+![Workflow editor button](./img/workflow-editor.jpg)
+
 ## How to create a job {#job-create}
 
 You can create a job with the visual editor or by creating a YAML file.
