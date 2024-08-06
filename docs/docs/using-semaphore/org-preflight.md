@@ -22,23 +22,21 @@ Pre-flight checks cause Semaphore to run an [initialization job](./pipelines#ini
 
 ## Overview
 
-Pre-flight checks allow you to manually run commands before all pipelines in all the project in your organization. This allows you to add sanity checks or customize your environment.
+Pre-flight checks are user-defined commands that are executed for every pipeline in your organization before it begins its normal workflow. Pre-flight checks run during the pipeline initialization job. 
 
-Pre-flight checks can be used to:
+Their purpose is to provide users with a way to manually define commands before the execution of a pipeline. For example:
 
-- run security checks
-- perform dependency management
-- validate custom access controls
+- Add custom security checks
+- Perform detailed dependency management
+- Enforce access control
 
 :::warning
 
-Pre-flight checks have the potential to disrupt all the pipelines in your organization. Semaphore encourages you to be cautious and familiar with the CI/CD platform before attempting to configure these checks. 
+Pre-flight check commands run in every pipeline in your organization. If any of the commands in the pre-flight check fails, the pipeline does not start. As a result, this feature has the potential to disrupt all the pipelines in your organization.
+
+Semaphore encourages you to be cautious and familiar with the CI/CD platform before attempting to configure these checks. 
 
 :::
-
-## Permissions required {#permissions}
-
-Only members with *organization admin permissions* can add, remove, or modify pre-flight checks.
 
 ## How to set up pre-flight checks {#add}
 
@@ -54,12 +52,6 @@ To access the organization's pre-flight checks, follow these steps:
 ![Configuring pre-flight checks for the organization](./img/org-preflight-screen.jpg)
 
 On the same screen, you can delete the existing pre-flight check by pressing the **Delete pre-flight checks** button.
-
-:::warning
-
-If any of the commands in the pre-flight check exits with a non-zero exit code, the process stops with an error and the pipeline is never processed. As a result, *no further jobs are executed*.
-
-:::
 
 ## Environment variables {#env-vars}
 
@@ -121,6 +113,12 @@ if is_promotion; then if user_is_allowed; then echo "Promotion allowed."; else f
 ```
 
 If a non-allowed user tries to start a promotion, the job fails preventing the promotion from being started.
+
+:::note
+
+You can also control who can start promotions with [deployment targets (environments)](./promotions#deployment-targets).
+
+:::
 
 ### Dynamically changing pipeline files
 
