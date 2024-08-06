@@ -162,6 +162,8 @@ const sidebars = {
         'reference/toolbox',
         'reference/conditions-dsl',
         'reference/machine-types',
+        'reference/os-ubuntu',
+        'reference/os-apple',
         'reference/audit-events',
         'reference/openid',
         'reference/self-hosted-config',
