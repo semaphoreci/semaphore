@@ -30,7 +30,7 @@ Roles can be gained in three ways:
 
 - **Direct**: you can directly assign up to one organization role and one project role to the user
 - **Group**: you can create a [group](#groups) with up to one organization role and one project role. Users in the group inherit the assigned roles
-- **Repository**: users with access to the repository can inherit roles based on their [repository-level permissions](#repo)
+- **Repository**: users with access to the repository can gain [project roles](#project) based on their repository-level permissions
 
 Permissions are additive. Users gaining roles though more than one role obtain the sum of all the permissions belonging to the assigned roles.
 
@@ -113,9 +113,14 @@ To grant a user access to a given project they need to:
 - Have access to the related repository in GitHub or BitBucket
 - Be granted access to the Semaphore project
 
-The role given when a user is added to the project depends on their repository-level permissions. The following table shows how repository permissions map to project roles.
+The role given when a user is added to the project depends on their repository-level role. The following table shows how repository permissions map to project roles.
 
-TODO TABLE
+| GitHub repo role | BitBucket repo role | Semaphore project role | 
+|--|--|--|
+|Pull|Read|[Reader](#project-reader)|
+|Push|Write|[Contributor](#project-contributor)|
+|Admin|Admin|[Contributor](#project-contributor)|
+
 
 ### Reader {#project-reader}
 
@@ -152,13 +157,15 @@ Admins have the authority to modify any setting within the projects, including t
 
 ## Custom roles {#custom-roles}
 
-## Repository permissions {#repo}
+In addition to the pre-defined roles provided by Semaphore, you can create your own roles. Custom roles lets you follow the principle of least privilege when managing using permissions.
 
-## Examples
+To manage custom roles, see the following pages:
+
+- [How to manage organization custom roles](./organizations#custom-roles)
+- [How to manage project custom roles](./project#custom-roles)
 
 ## See also
 
-- okta integration
-- How to manage organization users
-- How to manage project permissions
-
+- [How to manage organization users](./organizations#people)
+- [How to manage project access](./projects#people)
+- [Okta integration](./okta)
