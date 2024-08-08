@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Projects are codebases developed and managed through Semaphore [Continuous Integration](https://semaphoreci.com/continuous-integration). A project links your Git repository with Semaphore, so it can run [jobs](./jobs) to test, build, or deploy your application. 
+Projects are repositories [continuosly integrated](https://semaphoreci.com/continuous-integration) through Semaphore. A project links your Git repository with Semaphore, so it can run [jobs](./jobs) to test, build, or deploy your application. 
 
 This page explains how to set up projects and what settings are available.
 
-## Create a project
+## Create a project {#project-creation}
 
 <VideoTutorial title="Create a Project" src="https://www.youtube.com/embed/Y4Ac5EJpzEc?si=INZVrNw4LTWg3l6k"/>
 
@@ -40,7 +40,7 @@ Go to Semaphore, press **+Create New** 1 and then press **Choose repository**
     ![Select repository](./img/create-project-2.jpg)
     </div>
     </details>
-3. Optionally, [add people](./organizations#people) to the project. Press **Continue**
+3. [Admins and Owners](./rbac#org) may optionally invite repository memebrs to your Semaphore organization and project. Press **Continue**
     <details>
     <summary>Show me</summary>
     <div>
@@ -120,25 +120,16 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 </TabItem>
 </Tabs>
 
-## Access roles {#people}
+## How to add people {#people-add}
 
-Add people to the project to let them view or administrate it. Semaphore uses role-based permissions to manage access to projects.
+Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level.
 
-The available roles are:
+You can only add people to the project if:
 
-- **Admin**: admins can change any setting in the project, add or remove people, and even delete the project altogether
-- **Contributor**: contributors can view, change [pipelines](./pipelines) and re-run them. They can also start [promotions](./promotions), view insights and [tasks](./tasks)
-- **Reader**: readers can view the project's page, and view results and jobs logs. They can't make any modifications to the project
+- The person has been already invited to your Semaphore organization. Only [Admins and Owners](./rbac#org) can do this
+- The person already has access to the GitHub or BitBucket repository
 
-### How to add/remove people {#people-add}
-
-:::note
-
-You must add individuals to your Git repository and to your [Semaphore organization](./organizations#people) before you can add them to your project.
-
-:::
-
-Open your project and go to the **People** tab
+People added to the project can take actions according to their [project-level permisions](./rbac#project). To add a person, open the project on Semaphore and go to the **People** tab:
 
 1. Press **Add People**
 2. Select the user from the list of options
@@ -147,14 +138,50 @@ Open your project and go to the **People** tab
 
 ![Adding a member to the project](./img/add-user-2.jpg)
 
-### How to change permissions {#people-roles}
+If none of the pre-defined roles suit your needs, you can create [custom project roles](#custom).
 
-Open your project and go to the **People** tab
+:::note
+
+The people you add during [project creation](#project-creation) are assigned roles depending on their permission level on the repository. See [project roles](./rbac#project) to learn how repository roles are mapped to project roles.
+
+:::
+
+## How to change people roles {#people-roles}
+
+To change the role for the project, open your project and go to the **People** tab:
 
 1. Press the **Change role** next to the project member
 2. Select the new role
 
 ![Changing a members role](./img/change-role.jpg)
+
+## Project roles {#project-roles}
+
+Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+    ![Settings Role location](./img/settings-roles.jpg)
+3. Scroll down to **Project Roles**
+4. Press the eye button next to the role you want to examine
+
+The actions with enabled checkbox are allowed for that role.
+
+![Project admin allowed actions](./img/project-admin-roles.jpg)
+
+### Custom project roles {#custom}
+
+Create custom roles to give your users the precise permissions they need. 
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+3. Scroll down to **Project Roles**
+4. Press **New Role**
+5. Give a name a description to the new role
+6. Enable the permissions allowed to the role. You can use the search box to narrow down options
+7. Press **Save changes**
+
+![Creating a new project role](./img/create-custom-project-role.jpg)
 
 ## Project tabs {#manage-projects}
 
@@ -281,6 +308,7 @@ This setting overrides the [organization-wide initialization agent](./organizati
 
 ## See also
 
+- [Role Based Access Control](./rbac)
 - [Organization pre-flight checks](./org-preflight)
 - [How to manage organizations](./organizations.md)
 - [How to configure test reports](./tests/test-reports)
