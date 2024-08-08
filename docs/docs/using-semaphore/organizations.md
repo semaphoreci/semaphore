@@ -85,7 +85,7 @@ To change the role of a user, press the **Change Role** button next to the perso
 
 ![Changing user roles](./img/change-roles.jpg)
 
-### How to create user groups {#add-groups}
+### How to create groups {#add-groups}
 
 <Available plans={['Scaleup']}/>
 
@@ -98,9 +98,11 @@ To create a group, open the organization menu and select **People**.
 3. Type the names of the persons to add to the group
 4. Press **Save changes** to create the group
 
-default role? how to change role?? CONTINUE HERE!!
-
 ![Add group](./img/add-group.jpg)
+
+The new group starts with the [member](./rbac#org-member) role. You can change it by pressing the **Modify Role** button and selecting a different role.
+
+You can also define [custom organization roles](#custom) if none of the pre-defined roles suit your needs.
 
 ### How to change the role of a group {#group-role}
 
@@ -117,6 +119,32 @@ To add or remove users in a group, press the **Modify group** button next to it.
 - Press **Save changes** to finish editing the group
 
 ![Add group](./img/add-group.jpg)
+
+### How to view pre-defined roles {#org-roles}
+
+Semaphore provides pre-defined roles for organizations. You can see what actions each role can perform by following these steps:
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+    ![Settings Role location](./img/settings-roles.jpg)
+3. In the **Organization Roles** section, press the eye button next to the role you want to examine
+
+The actions with enabled checkbox are allowed for that role.
+
+![Organization admin allowed actions](./img/org-admin-roles.jpg)
+
+### How to create custom roles {#custom}
+
+Create custom roles to give your users the precise permissions they need. 
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+3. On the **Organization Roles** section, press **New Role**
+4. Give a name a description to the new role
+5. Enable the permissions allowed to the role. You can use the search box to narrow down options
+6. Press **Save changes**
+
+![Creating a new organization role](./img/org-role-create-custom.jpg)
 
 ## Organization settings {#org-settings}
 

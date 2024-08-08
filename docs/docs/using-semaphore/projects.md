@@ -120,7 +120,7 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 </TabItem>
 </Tabs>
 
-## How to add people {#people-add}
+## How to add people {#people}
 
 Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level.
 
@@ -159,7 +159,18 @@ To change the role for the project, open your project and go to the **People** t
 
 <Available plans={['Scaleup']}/>
 
-TODO!!
+Add an [organization group](./organizations#add-groups) to your project to grant all group members access to the project.
+
+To add a group to a project, open the project on Semaphore and go to the **People** tab:
+
+1. Press **Add Groups**
+2. Type the name of an existing group
+3. Select the role
+4. Press **Add Selected**
+
+The group members are granted access to the group and gain the permissions inherited from the selected role.
+
+![Add a group to the project](./img/add-group-to-project.jpg)
 
 ## Project roles {#project-roles}
 
@@ -212,7 +223,7 @@ The **Settings** tab in your project allows you to customize your project settin
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [must be already part](#people-add) of the project.
+- Change the owner of the project. The new owner [must be already part](#people) of the project.
 - Change the visibility and make the project publicly-viewable
 - Change the project name or description
 - Delete the project
