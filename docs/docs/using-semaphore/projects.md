@@ -155,6 +155,12 @@ To change the role for the project, open your project and go to the **People** t
 
 ![Changing a members role](./img/change-role.jpg)
 
+## How to add groups to projects {#groups-projects}
+
+<Available plans={['Scaleup']}/>
+
+TODO!!
+
 ## Project roles {#project-roles}
 
 Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:

@@ -57,45 +57,25 @@ You must install and connect the [Semaphore command line](../reference/semaphore
 
 ## Managing users {#people}
 
-Semaphore uses roles to manage user access. You can add an unlimited number of persons to your organization.
+Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level. You can add an unlimited number of persons to your organization.
 
-To manage users in your organization, open the organization menu and select **People**.
+You can only invite people with GitHub or BitBucket accounts to your organization.
+
+To manage users in your organization, open the organization menu and select **People**. This tab shows users and groups in your organization along with their:
 
 ![The people tab](./img/people-tab.jpg)
 
-### Organization roles {#roles}
+### How to invite users {#add-people}
 
-The default organization roles are:
-
-- **Members**
-  - Can create new [projects](./projects)
-  - Can view existing notifications and settings.
-- **Admins**
-  - Can view, manage, and modify everything within the organization except general settings and financial information.
-  - Get admin access to every project inside the organization
-- **Owners**
-  - Can do everything within the organization, including changing general settings and deleting it
-  - By default, this role is assigned to the user that creates the organization
-  - Get admin access to every project inside the organization 
-
-The **People** tab shows users in your organization along with their:
-
-- Semaphore usernames
-- GitHub or BitBucket handles
-- Role
-
-
-### How to add users {#add-people}
-
-To add a user, press the **Add people** button. You have two options:
+To invite a user to your organization, press the **Add people** button. You have two options:
 
 - By their GitHub handle
   - Type their GitHub handle and press **Invite**
-  - Invitees will receive an email to join the organization
-- By shared GitHub organization
-  - The list shows users who already belong in the same GitHub organization as you
+  - Optionally, type their emails to receive notifications
+- By existing projects
+  - The list shows GitHub and BitBucket users that already have access to repositories but have not yet been added to the Semaphore project
   - Select the users and optionally type an email
-  - Press **Add selected** to add them to the organization
+  - Press **Add selected** to add them to the organization and project
 
 ![Adding users to the organization](./img/add-people.jpg)
 
@@ -117,6 +97,8 @@ To create a group, open the organization menu and select **People**.
 2. Type in the group name and description
 3. Type the names of the persons to add to the group
 4. Press **Save changes** to create the group
+
+default role? how to change role?? CONTINUE HERE!!
 
 ![Add group](./img/add-group.jpg)
 
