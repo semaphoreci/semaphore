@@ -9,17 +9,15 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Role Based Access Control (RBAC) allows you to manage user permissions in the organization and its projects. This page describes how the RBAC model works.
+Role Based Access Control (RBAC) allows you to manage user permissions in the organization and its projects. This page describes gives an overview of RBAC and the existing roles in Semaphore.
 
 ## Overview
 
-Semaphore uses a Role Based Access Control (RBAC) model to manage user permissions and access within the [organization](./organizations).
+Semaphore uses a Role Based Access Control model to manage user permissions and access within the organizations and projects.
 
-Users need to be added to the organization before they can log into Semaphore or access any of your projects. Users need a GitHub or BitBucket account in order to log in to your organization.
+An organization [Admin](#org-admin) or [Owner](#org-owner) must invite users via their GitHub or BitBucket accounts before they can access the Semaphore organization or any of the projects.
 
-Only organization [Admins](#org-admin) or [Owners](#org-owner) can invite users to the organization.
-
-### Role scopes
+### Role scopes {#scopes}
 
 Semaphore manages roles on two levels:
 
@@ -29,38 +27,23 @@ Semaphore manages roles on two levels:
 Roles can be gained in three ways:
 
 - **Direct**: you can directly assign up to one organization role and one project role to the user
-- **Group**: you can create a [group](#groups) with up to one organization role and one project role. Users in the group inherit the assigned roles
-- **Repository**: users with access to the repository can gain [project roles](#project) based on their repository-level permissions
+- **Group**: you add users to [groups](#org-groups). Group members gain the role assigned to the group
+- **Repository**: users with access to repositories linked to projects may gain [project roles](#project)
 
-Permissions are additive. Users gaining roles through more than one role obtain the sum of all the permissions belonging to the assigned roles.
+![RBAC authentication relations](./img/rbac-diagram.jpg)
 
-```mermaid
-mindmap
-  root(("`GitHub<br/>or Bitbucket`"))
-    id("`Semaphore<br/>Organization`")
-      id[Role]
-      id[Groups]
-        id[Role]
-    id(Repository)
-        id("`Semaphore<br/>Project`")
-            id[Role]
-            id[Groups]
-                id[Role]
-```
+### Permissions are additive {#additive}
 
-### Groups
+Permissions are additive. Users gaining permissions through multiple ways obtain the sum of all the permissions.
 
-<Available plans={['Scaleup']}/>
-
-Groups exist at the organizational level. A group can have exactly one role directly assigned.
-
-Groups can be added to the project and assigned exactly to [project-level role](#project). This grants every member of the group access to the project and grants them all the permissions inherited from the roles.
+For example, let's say Ana has [admin](#org-admin) role in the organization. This gives her admin access to all the projects in the organization. If someone gives her the [reader](#project-reader) role in one project, she is still admin to that project. In other words, roles never substract permissions.
 
 ## Organization roles {#org}
 
 Organization roles control what actions the users may perform in Semaphore. Users need to be added to the organization via their GitHub or BitBucket usernames before they can be granted a role. Only users who are part of the organization can log in to Semaphore.
 
 The only exception is when a user is added via the [Okta integration](./okta).
+
 
 ### Member {#org-member}
 
@@ -104,6 +87,14 @@ The owner of the organization is the person that created it. An organization can
 Only Admins and Owners can invite users to the organization.
 
 For the full list of owner permissions, see [organization roles](./organizations#roles).
+
+### Organization groups {#org-groups}
+
+<Available plans={['Scaleup']}/>
+
+Your organization can have any number of groups. A group can have exactly one role directly assigned.
+
+Groups can be added to the project and assigned exactly to [project-level role](#project). This grants every member of the group access to the project and grants them all the permissions inherited from the roles.
 
 ## Project roles {#project}
 

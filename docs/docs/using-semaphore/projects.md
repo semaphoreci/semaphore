@@ -146,32 +146,6 @@ The people you add during [project creation](#project-creation) are assigned rol
 
 :::
 
-## How to change people roles {#people-roles}
-
-To change the role for the project, open your project and go to the **People** tab:
-
-1. Press the **Change role** next to the project member
-2. Select the new role
-
-![Changing a members role](./img/change-role.jpg)
-
-## How to add groups to projects {#groups-projects}
-
-<Available plans={['Scaleup']}/>
-
-Add an [organization group](./organizations#add-groups) to your project to grant all group members access to the project.
-
-To add a group to a project, open the project on Semaphore and go to the **People** tab:
-
-1. Press **Add Groups**
-2. Type the name of an existing group
-3. Select the role
-4. Press **Add Selected**
-
-The group members are granted access to the group and gain the permissions inherited from the selected role.
-
-![Add a group to the project](./img/add-group-to-project.jpg)
-
 ## Project roles {#project-roles}
 
 Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:
@@ -199,6 +173,32 @@ Create custom roles to give your users the precise permissions they need.
 7. Press **Save changes**
 
 ![Creating a new project role](./img/create-custom-project-role.jpg)
+
+## How to change people roles {#people-roles}
+
+To change the role for the project, open your project and go to the **People** tab:
+
+1. Press the **Change role** next to the project member
+2. Select the new role
+
+![Changing a members role](./img/change-role.jpg)
+
+## How to add groups to projects {#groups-projects}
+
+<Available plans={['Scaleup']}/>
+
+Add an [organization group](./organizations#add-groups) to your project to grant all group members access to the project.
+
+To add a group to a project, open the project on Semaphore and go to the **People** tab:
+
+1. Press **Add Groups**
+2. Type the name of an existing group
+3. Select the role
+4. Press **Add Selected**
+
+The group members are granted access to the group and gain the permissions inherited from the selected role.
+
+![Add a group to the project](./img/add-group-to-project.jpg)
 
 ## Project tabs {#manage-projects}
 

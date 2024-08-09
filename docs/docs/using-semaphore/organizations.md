@@ -85,11 +85,13 @@ To change the role of a user, press the **Change Role** button next to the perso
 
 ![Changing user roles](./img/change-roles.jpg)
 
+See [organization roles](./rbac#org) to learn what roles are available.
+
 ### How to create groups {#add-groups}
 
 <Available plans={['Scaleup']}/>
 
-User groups allows you to manage users in bulk. Instead of managing users one by one, add them to a group and assign a role to it.
+User groups allows you to manage users in bulk. You can create organization-level groups and add members to it. All group members gain the role assigned to the group.
 
 To create a group, open the organization menu and select **People**. 
 
@@ -104,13 +106,13 @@ The new group starts with the [member](./rbac#org-member) role. You can change i
 
 You can also define [custom organization roles](#custom) if none of the pre-defined roles suit your needs.
 
-### How to change the role of a group {#group-role}
+### How to change group roles {#group-role}
 
 To change the role of a group, press the **Change Role** button next to the group.
 
 ![Changing the roles of a group](./img/group-role.jpg)
 
-### How to add/remove users to a group {#change-groups}
+### How to add members groups {#change-groups}
 
 To add or remove users in a group, press the **Modify group** button next to it.
 
