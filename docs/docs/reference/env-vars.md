@@ -393,6 +393,8 @@ Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`
 
 The name in the format `owner_name/repo_name` of the repository from which the Pull Request originated.
 
+To distinguish workflows from original and forked repositories, you can compare [`SEMAPHORE_GIT_PR_SLUG`](#pr-slug) and [`SEMAPHORE_GIT_REPO_SLUG`](#git-repo-slug) environment variables.
+
 :::note
 
 Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`

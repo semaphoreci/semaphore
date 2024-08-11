@@ -13,7 +13,7 @@ Projects are codebases developed and managed through Semaphore [Continuous Integ
 
 This page explains how to set up projects and what settings are available.
 
-## Create a project
+## Create a project {#create-project}
 
 <VideoTutorial title="Create a Project" src="https://www.youtube.com/embed/Y4Ac5EJpzEc?si=INZVrNw4LTWg3l6k"/>
 
@@ -120,17 +120,32 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 </TabItem>
 </Tabs>
 
-## Access roles {#people}
+## Workflow triggers {#triggers}
 
-Add people to the project to let them view or administrate it. Semaphore uses role-based permissions to manage access to projects.
+The following actions in the repository can trigger Semaphore to start the project's pipelines.
 
-The available roles are:
+- Pushing commits into any branch
+- Pushing Git tags
+- Creating pull requests from the same repository
+- Creating pull requests originating from a forked repository
+- Updating any of the project's pipelines using the [visual editor](./jobs#workflow editor)
+- Pressing the Run button on the Semahore website
+- Requesting a re-run [using the API](../openapi-spec/workflows-reschedule)
+- Scheduling workflows [using Tasks](./tasks)
 
-- **Admin**: admins can change any setting in the project, add or remove people, and even delete the project altogether
-- **Contributor**: contributors can view, change [pipelines](./pipelines) and re-run them. They can also start [promotions](./promotions), view insights and [tasks](./tasks)
-- **Reader**: readers can view the project's page, and view results and jobs logs. They can't make any modifications to the project
+The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
 
-### How to add/remove people {#people-add}
+### How pull requests are handled {#pr}
+
+Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
+
+:::note
+
+Instead of the HEAD commit pushed to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
+
+:::
+
+## How to add/remove people to the project {#people-add}
 
 :::note
 
@@ -146,6 +161,8 @@ Open your project and go to the **People** tab
 4. Press **Add Selected**
 
 ![Adding a member to the project](./img/add-user-2.jpg)
+
+See [project roles](./rbac#project-roles) for more information what actions can each role perform.
 
 ### How to change permissions {#people-roles}
 
@@ -175,24 +192,40 @@ Project members can view or manage the following project elements:
 
 The **Settings** tab in your project allows you to customize your project settings, add project-level secrets, and manage [artifacts](./artifacts)
 
-### General settings {#general}
+### Project settings {#general}
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [must be already part](#people-add) of the project.
-- Change the visibility and make the project publicly-viewable
+- Change the owner of the project. The new owner [should fist be added](#people-add) to the project
+- Change the visibility of the project
 - Change the project name or description
 - Delete the project
 
 ![General settings](./img/project-general-settings-1.jpg)
 
-In addition, you can select when the project is triggered:
+### Workflow triggers {#settings-triggers}
 
-- **Do not run on any events** disables automatic runs on Semaphore. You can still run workflows manually or with [tasks](./tasks)
-- **Run on** lets you enable or disable running workflows on Semaphore on branches, tags, pull requests, and forked pull requests.
-- You can create an allow list for branches and tags
+The **What to build** section allows you to configure [workflow triggers](#triggers).
 
-![General settings](./img/project-general-settings-2.jpg)
+Selecting **Do not run on any events** disables all triggers, effectively pausing thr project. You can, however, still run workflows manually or with [tasks](./tasks).
+
+Selecting **Run on** allows you to configure what triggers are enabled for the project.
+
+- The **Branches** option allows you to run workflows on all branches or configure an allow list with branch names. Regular expressions are supported
+- The **Tags** options works the same but for Git tags
+
+![Branch and tag triggers](./img/project-general-settings-2.jpg)
+
+- Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
+- The **Forked pull request** works the same but for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
+  
+![Pull request triggers](./img/project-general-settings-3.jpg)
+
+:::note
+
+You can still approve blocked pull requests by adding a comment in the pull request containing the message `/sem-approve`. Anyone who would normally be able to run a forked pull request can also approve one.  Approving forked pull requests is limited to new comments only and is not possible for comment edits.
+
+:::
 
 ### Repository {#settings-repo}
 
@@ -212,7 +245,7 @@ To learn how to create project secrets, see the [secrets documentation page](./s
 
 Project roles: https://docs.semaphoreci.com/security/default-roles/
 
-### Badges
+### Badges {#badges}
 
 The **Badge** settings page shows you [shields](https://shields.io/) embed codes for your README or any webpage, allowing team members and users about the build status of your project.
 
@@ -225,7 +258,7 @@ To get a badge embed code:
 
 ![Using project badges](./img/project-badges.jpg)
 
-### Artifacts
+### Artifacts {#artifacts}
 
 The **Artifacts** settings page lets you configure the [artifact](./artifacts) retention policy.
 

@@ -38,6 +38,10 @@ All your changes are stored as YAML pipeline definitions on your Git repository.
 
 ![Workflow editor button](./img/workflow-editor.jpg)
 
+## Jobs and blocks {#jobs-blocks}
+
+Jobs are grouped into blocks. A job always exists inside a block and a block may contain one or more jobs. Jobs in the same block run in parallel and [share common settings](#block-settings).
+
 ## How to create a job {#job-create}
 
 You can create a job with the visual editor or by creating a YAML file.
@@ -94,9 +98,9 @@ Semaphore automatically starts the job when the file is saved. Click the running
 
 ![Job log](./img/job-log.jpg)
 
-:::info
+:::tip
 
-A *block* is a group of jobs that [share common settings](#block-settings).
+Do not use `exit` in the job commands. Doing so terminates the terminal session and marks the job as failed. If you want force a non-exit status code use `return` instead.
 
 :::
 
@@ -276,10 +280,10 @@ blocks:
  <summary>How does checkout work?</summary>
  <div>
  During agent initialization, Semaphore sets four [environment variables](#environment-variables) that define how checkout works:
- - SEMAPHORE_GIT_URL: the URL of the repository (e.g. git@github.com:mycompany/myproject.git).
- - SEMAPHORE_GIT_DIR: the path where the repository is to be cloned (e.g. `/home/semaphore/myproject`)
- - SEMAPHORE_GIT_SHA: the SHA key for the HEAD used for `git reset -q --hard`
- - SEMAPHORE_GIT_DEPTH: checkout does by default a shallow clone. This is the depth level for the shallow clone. Defaults to 50
+ - [`SEMAPHORE_GIT_URL`](../reference/env-vars#git-url): the URL of the repository (e.g. git@github.com:mycompany/myproject.git).
+ - [`SEMAPHORE_GIT_DIR`](../reference/env-vars#git-dir): the path where the repository is to be cloned (e.g. `/home/semaphore/myproject`)
+ - [`SEMAPHORE_GIT_SHA`](../reference/env-vars#commit-sha): the SHA key for the HEAD used for `git reset -q --hard`
+ - [`SEMAPHORE_GIT_DEPTH`](../reference/env-vars#git-depth): checkout does by default a shallow clone. This is the depth level for the shallow clone. Defaults to 50
  </div>
 </details>
 
