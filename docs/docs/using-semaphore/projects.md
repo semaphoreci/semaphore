@@ -129,7 +129,7 @@ The following actions in the repository can trigger Semaphore to start the proje
 - Creating pull requests from the same repository
 - Creating pull requests originating from a forked repository
 - Updating any of the project's pipelines using the [visual editor](./jobs#workflow editor)
-- Pressing the Run button on the Semahore website
+- Pressing the Run button on the Semaphore website
 - Requesting a re-run [using the API](../openapi-spec/workflows-reschedule)
 - Scheduling workflows [using Tasks](./tasks)
 
@@ -137,11 +137,11 @@ The reason for the trigger can be determined at runtime by examining the Semapho
 
 ### How pull requests are handled {#pr}
 
-Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
+Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
 
 :::note
 
-Instead of the HEAD commit pushed to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
+Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
 
 :::
 
@@ -196,7 +196,7 @@ The **Settings** tab in your project allows you to customize your project settin
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [should fist be added](#people-add) to the project
+- Change the owner of the project. The new owner [should first be added](#people-add) to the project
 - Change the visibility of the project
 - Change the project name or description
 - Delete the project
@@ -207,23 +207,23 @@ In the general project settings, you can:
 
 The **What to build** section allows you to configure [workflow triggers](#triggers).
 
-Selecting **Do not run on any events** disables all triggers, effectively pausing thr project. You can, however, still run workflows manually or with [tasks](./tasks).
+Selecting **Do not run on any events** disables all triggers, effectively pausing the project. You can, however, still run workflows manually or with [tasks](./tasks).
 
 Selecting **Run on** allows you to configure what triggers are enabled for the project.
 
 - The **Branches** option allows you to run workflows on all branches or configure an allow list with branch names. Regular expressions are supported
-- The **Tags** options works the same but for Git tags
+- The **Tags** options work the same but for Git tags
 
 ![Branch and tag triggers](./img/project-general-settings-2.jpg)
 
 - Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
-- The **Forked pull request** works the same but for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
+- The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
   
 ![Pull request triggers](./img/project-general-settings-3.jpg)
 
 :::note
 
-You can still approve blocked pull requests by adding a comment in the pull request containing the message `/sem-approve`. Anyone who would normally be able to run a forked pull request can also approve one.  Approving forked pull requests is limited to new comments only and is not possible for comment edits.
+You can still approve blocked pull requests by adding a comment in the pull request containing the message `/sem-approve`. Anyone who would normally be able to run a forked pull request can also approve one.  Approving forked pull requests is limited to new comments only and is impossible for comment edits.
 
 :::
 
