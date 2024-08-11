@@ -26,6 +26,7 @@ const sidebars = {
         // image: '/img/docusaurus.png',
       },
       items: [
+          'getting-started/experiments',
           'getting-started/howto',
           'getting-started/guided-tour',
         ],
