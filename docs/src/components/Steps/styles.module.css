@@ -21,12 +21,12 @@
     content: counter(step-counter);
     counter-increment: step-counter;
     position: absolute;
-    left: -45px;
+    left: -48px;
     top: -5px;
     width: 30px;
     height: 30px;
     background-color: #fff;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--ifm-color-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -47,4 +47,16 @@
   
   .stepsContainer > ol > li:last-child::after {
     display: none;
+  }
+
+
+  /* Adjust styles for dark mode */
+  [data-theme='dark'] .stepsContainer > ol > li::before {
+    background-color: var(--ifm-background-color);
+    color: var(--ifm-color-primary);
+    border-color: var(--ifm-color-primary);
+  }
+  
+  [data-theme='dark'] .stepsContainer > ol > li::after {
+    background-color: var(--ifm-color-emphasis-300);
   }
