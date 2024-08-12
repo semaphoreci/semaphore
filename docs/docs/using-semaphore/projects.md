@@ -145,6 +145,21 @@ Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE
 
 :::
 
+## Project tabs {#manage-projects}
+
+Project members can view or manage the following project elements:
+
+- **Activity**: shows the latest [pipeline](./pipelines) runs
+- **Deployments**: access the [project's environment](./promotions#deployment-targets) (formerly deployment targets)
+- **Insights**: shows the [insights](./optimization/insights)
+- **Artifacts**: shows the [project-level artifacts](./artifacts#projects) and [retention policy](./artifacts#retention)
+- **Tasks**: shows the [tasks](./tasks)
+- **Flaky Tests**: shows the [flaky tests](./tests/flaky-tests) detected in the project
+- **People**: shows or changes the [project members](#people)
+- **Settings**: shows the [project-level settings](#settings)
+
+![Project tabs](./img/project-tabs.jpg)
+
 ## How to add/remove people to the project {#people}
 
 :::note
@@ -173,20 +188,11 @@ Open your project and go to the **People** tab
 
 ![Changing a members role](./img/change-role.jpg)
 
-## Project tabs {#manage-projects}
+### How to change the project's owner {#owner-change}
 
-Project members can view or manage the following project elements:
+Open the [project settings](#settings), under **Project Owner** type the username and press **Change**. The user must already have been [invited to the organization](./organizations#add-people).
 
-- **Activity**: shows the latest [pipeline](./pipelines) runs
-- **Deployments**: access the [project's environment](./promotions#deployment-targets) (formerly deployment targets)
-- **Insights**: shows the [insights](./optimization/insights)
-- **Artifacts**: shows the [project-level artifacts](./artifacts#projects) and [retention policy](./artifacts#retention)
-- **Tasks**: shows the [tasks](./tasks)
-- **Flaky Tests**: shows the [flaky tests](./tests/flaky-tests) detected in the project
-- **People**: shows the [project members](#people)
-- **Settings**: shows the [project-level settings](#settings)
-
-![Project tabs](./img/project-tabs.jpg)
+![Changing project owner](./img/change-project-owner.jpg)
 
 ## Settings {#settings}
 
@@ -196,7 +202,7 @@ The **Settings** tab in your project allows you to customize your project settin
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [should first be added](#people) to the project
+- [Change the owner](#owner-change) of the project
 - Change the visibility of the project
 - Change the project name or description
 - Delete the project
