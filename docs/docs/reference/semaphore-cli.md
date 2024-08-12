@@ -166,9 +166,9 @@ You may also create a secret and initialize it with values or files with:
 ```shell
 sem create secret <secret-name> \
  -e <VARIABLE_NAME1>=<VALUE2> \
-  -e <VARIABLE_NAME2>=<VALUE2> \
+ -e <VARIABLE_NAME2>=<VALUE2> \
  -f <local_path_file1>:<agent_path_file1> \
-  -f <local_path_file2>:<agent_path_file2>
+ -f <local_path_file2>:<agent_path_file2>
 ```
 
 For example:

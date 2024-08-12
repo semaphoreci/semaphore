@@ -98,6 +98,7 @@ To create a Dashboard:
  ![Creating a custom dashboard](./img/custom-create.jpg)
 4. Press **Create**
 
+You can also create dashboards using the command line. See [Semaphore Command Line](../../reference/semaphore-cli) and [Dashboard YAML reference](../../reference/dashboard-yaml) for more details.
 
 Once created, you can add metrics to the dashboard following these steps:
 
@@ -126,3 +127,4 @@ After you save, a new Metric chart will appear on the Dashboard. It may take up 
 - [Organization health dashboard](./org-health)
 - [Test reports dashboard](../tests/test-reports)
 - [Flaky test detection dashboard](../tests/flaky-tests)
+- [Dashboards YAML refence](../../reference/dashboard-yaml)
