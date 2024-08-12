@@ -57,45 +57,25 @@ You must install and connect the [Semaphore command line](../reference/semaphore
 
 ## Managing users {#people}
 
-Semaphore uses roles to manage user access. You can add an unlimited number of persons to your organization.
+Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level. You can add an unlimited number of persons to your organization.
 
-To manage users in your organization, open the organization menu and select **People**.
+You can only invite people with GitHub or BitBucket accounts to your organization.
+
+To manage users in your organization, open the organization menu and select **People**. This tab shows users and groups in your organization along with their:
 
 ![The people tab](./img/people-tab.jpg)
 
-### Organization roles {#roles}
+### How to invite users {#add-people}
 
-The default organization roles are:
-
-- **Members**
-  - Can create new [projects](./projects)
-  - Can view existing notifications and settings.
-- **Admins**
-  - Can view, manage, and modify everything within the organization except general settings and financial information.
-  - Get admin access to every project inside the organization
-- **Owners**
-  - Can do everything within the organization, including changing general settings and deleting it
-  - By default, this role is assigned to the user that creates the organization
-  - Get admin access to every project inside the organization 
-
-The **People** tab shows users in your organization along with their:
-
-- Semaphore usernames
-- GitHub or BitBucket handles
-- Role
-
-
-### How to add users {#add-people}
-
-To add a user, press the **Add people** button. You have two options:
+To invite a user to your organization, press the **Add people** button. You have two options:
 
 - By their GitHub handle
   - Type their GitHub handle and press **Invite**
-  - Invitees will receive an email to join the organization
-- By shared GitHub organization
-  - The list shows users who already belong in the same GitHub organization as you
+  - Optionally, type their emails to receive notifications
+- By existing projects
+  - The list shows GitHub and BitBucket users that already have access to repositories but have not yet been added to the Semaphore project
   - Select the users and optionally type an email
-  - Press **Add selected** to add them to the organization
+  - Press **Add selected** to add them to the organization and project
 
 ![Adding users to the organization](./img/add-people.jpg)
 
@@ -105,11 +85,13 @@ To change the role of a user, press the **Change Role** button next to the perso
 
 ![Changing user roles](./img/change-roles.jpg)
 
-### How to create user groups {#add-groups}
+See [organization roles](./rbac#org) to learn what roles are available.
+
+### How to create groups {#add-groups}
 
 <Available plans={['Scaleup']}/>
 
-User groups allows you to manage users in bulk. Instead of managing users one by one, add them to a group and assign a role to it.
+User groups allows you to manage users in bulk. You can create organization-level groups and add members to it. All group members gain the role assigned to the group.
 
 To create a group, open the organization menu and select **People**. 
 
@@ -120,13 +102,17 @@ To create a group, open the organization menu and select **People**.
 
 ![Add group](./img/add-group.jpg)
 
-### How to change the role of a group {#group-role}
+The new group starts with the [member](./rbac#org-member) role. You can change it by pressing the **Modify Role** button and selecting a different role.
+
+You can also define [custom organization roles](#custom) if none of the pre-defined roles suit your needs.
+
+### How to change group roles {#group-role}
 
 To change the role of a group, press the **Change Role** button next to the group.
 
 ![Changing the roles of a group](./img/group-role.jpg)
 
-### How to add/remove users to a group {#change-groups}
+### How to add members groups {#change-groups}
 
 To add or remove users in a group, press the **Modify group** button next to it.
 
@@ -135,6 +121,32 @@ To add or remove users in a group, press the **Modify group** button next to it.
 - Press **Save changes** to finish editing the group
 
 ![Add group](./img/add-group.jpg)
+
+### How to view pre-defined roles {#org-roles}
+
+Semaphore provides pre-defined roles for organizations. You can see what actions each role can perform by following these steps:
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+    ![Settings Role location](./img/settings-roles.jpg)
+3. In the **Organization Roles** section, press the eye button next to the role you want to examine
+
+The actions with enabled checkbox are allowed for that role.
+
+![Organization admin allowed actions](./img/org-admin-roles.jpg)
+
+### How to create custom roles {#custom}
+
+Create custom roles to give your users the precise permissions they need. 
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+3. On the **Organization Roles** section, press **New Role**
+4. Give a name a description to the new role
+5. Enable the permissions allowed to the role. You can use the search box to narrow down options
+6. Press **Save changes**
+
+![Creating a new organization role](./img/org-role-create-custom.jpg)
 
 ## Organization settings {#org-settings}
 
