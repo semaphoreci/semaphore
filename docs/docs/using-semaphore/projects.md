@@ -194,6 +194,12 @@ Open the [project settings](#settings), under **Project Owner** type the usernam
 
 ![Changing project owner](./img/change-project-owner.jpg)
 
+:::note
+
+Transferring ownership does not automatically grant [project roles](./rbac#project) on the project. You must still manually grant the [admin role](./rbac#project-admin) to allow the new owner manage the project.
+
+:::
+
 ## Settings {#settings}
 
 The **Settings** tab in your project allows you to customize your project settings, add project-level secrets, and manage [artifacts](./artifacts)
