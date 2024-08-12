@@ -145,7 +145,7 @@ Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE
 
 :::
 
-## How to add/remove people to the project {#people-add}
+## How to add/remove people to the project {#people}
 
 :::note
 
@@ -196,7 +196,7 @@ The **Settings** tab in your project allows you to customize your project settin
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [should first be added](#people-add) to the project
+- Change the owner of the project. The new owner [should first be added](#people) to the project
 - Change the visibility of the project
 - Change the project name or description
 - Delete the project
