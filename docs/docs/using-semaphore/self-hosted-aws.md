@@ -144,8 +144,8 @@ Follow these steps to deploy self-hosted agents in AWS.
     - `<your-organization>.semaphoreci.com` with your [organization URL](./organizations#general-settings), e.g. `my-org.semaphoreci.com`
     - `<license-configuration>` the license information from Apple (only for macOS)
 
-    <br>
-   <details>
+    <br/>
+    <details>
     <summary>Linux</summary>
     <div>
 
@@ -209,7 +209,7 @@ Follow these steps to deploy self-hosted agents in AWS.
     </div>
     </details>
 
-7. Bootstrap the CDK application
+6. Bootstrap the CDK application
 
     Open the file `execution-policy.json` created in Step 4 and copy the ARN value. 
     Replace:
@@ -229,7 +229,7 @@ Follow these steps to deploy self-hosted agents in AWS.
 
     :::
 
-8. Deploy the stack
+7. Deploy the stack
 
     To deploy the stack, execute the following command
 
