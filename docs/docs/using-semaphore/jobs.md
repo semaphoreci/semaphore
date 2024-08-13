@@ -866,12 +866,16 @@ blocks:
 
 ## Job parallelism {#job-parallelism}
 
-Job parallelism is a feature to multiplicate a job using parameters. When coupled with a test partitioning strategy, parallelism allows you to speed up large tests suite by horizontally scaling the tests. In other words, each job runs a portion of your tests.
+Job parallelism expands a job into multiple parallel jobs. You can use this feature to run a test suite faster by spreading the load among multiple agents.
+
+To take full advantage of job parallelism you need to partition your test suite. Semaphore does not partition tests automatically, but it enables 3rd party test runners like [Knapsack](https://github.com/KnapsackPro/knapsack) or [Semaphore Test Booster](https://github.com/renderedtext/test-boosters) (Ruby) to even the load with a partition strategy that you can configure.
+
+When coupled your own partitioning strategy, test parallelism allows you to speed up large tests suite by horizontally scaling the tests.
 
 When job parallelism is enabled two new environment variables are available in the job environment:
 
-- `SEMAPHORE_JOB_COUNT`: the total number of jobs running on the parallelism set
-- `SEMAPHORE_JOB_INDEX`: a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
+- [`SEMAPHORE_JOB_COUNT`](../reference/env-vars#job-count): the total number of jobs running on the parallelism set
+- [`SEMAPHORE_JOB_INDEX`](../reference/env-vars#job-index): a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
