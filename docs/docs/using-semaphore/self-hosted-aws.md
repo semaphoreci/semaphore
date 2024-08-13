@@ -358,3 +358,4 @@ If you experience agent registration errors, follow these steps to troubleshoot:
 - [What are self-hosted agents](./self-hosted)
 - [Self-hosted agents configuration reference](../reference/self-hosted-config)
 - [Docker environments](./pipelines#docker-environments)
+
