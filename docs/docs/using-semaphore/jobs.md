@@ -1027,7 +1027,12 @@ Using job matrices causes Semaphore to run an [initialization job](./pipelines#i
 
 ## Job priority {#priority}
 
-Every job in Semaphore has an internal priority value from 0 to 100. The priority is used to decide what jobs to run when a [job limit](#limits) is reached. Jobs with higher priority run first when the organization reaches their quota limits.
+Every job in Semaphore has an internal priority value from 0 to 100. Job prioritization determines which jobs will get a machine assigned first when all agents are in use.
+
+The priority of a job matters when there are more jobs than available agents. Because paid plans do not enforce limits on the number of available agents, the job priority value is only useful in two situations:
+
+- For projects on organizations on free and open source plans. These plans enforce concurrency limits
+- For projects running on a limited number of [self-hosted agents](./self-hosted)
 
 ### Default priorities {#default-priority}
 
