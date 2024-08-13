@@ -2,7 +2,8 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Create an Organization
+
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,12 +11,16 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-What you will learn?
 
-What is Semaphore?
+## Prerequisites
 
-Why on board this way
+GitHub or BitBucket account
+Knowlege of Git
 
-No credit card required. Try Semaphore no strings attached
+## What is an organization?
 
+DIAGRAM OF ORG
 
+## Create Organization
+
+You are now the owner of this org

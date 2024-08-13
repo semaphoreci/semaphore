@@ -2,20 +2,10 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Next Steps
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
-
-What you will learn?
-
-What is Semaphore?
-
-Why on board this way
-
-No credit card required. Try Semaphore no strings attached
-
-

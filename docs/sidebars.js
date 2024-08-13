@@ -28,7 +28,23 @@ const sidebars = {
       items: [
           'getting-started/experiments',
           'getting-started/howto',
-          'getting-started/guided-tour',
+          {
+            type: 'category',
+            label: 'Guided Tour',
+            link: {
+              type: 'doc',
+              id: 'getting-started/guided-tour'
+            },
+            collapsed: false,
+            items: [
+              'getting-started/tour/organization',
+              'getting-started/tour/project',
+              'getting-started/tour/continuous-integration',
+              'getting-started/tour/continuous-delivery',
+              'getting-started/tour/people',
+              'getting-started/tour/next-steps',
+            ]
+          },
         ],
     },
   ],

@@ -2,7 +2,7 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Manage People
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,12 +10,11 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-What you will learn?
+## Add people to the organization
 
-What is Semaphore?
+Mention roles and groups
 
-Why on board this way
+## Add people to the project
 
-No credit card required. Try Semaphore no strings attached
-
+Mention they need access to repo, roles and maybe groups
 

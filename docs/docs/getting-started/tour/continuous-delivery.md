@@ -2,7 +2,7 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Continuous Delivery
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,12 +10,18 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-What you will learn?
 
-What is Semaphore?
+## What is Continuous Delivery
 
-Why on board this way
+How it relates to continuoue deployment
 
-No credit card required. Try Semaphore no strings attached
+## Release job
 
+## Secrets
+
+## Promotions
+
+Why promotions
+
+Create a promotion pipeline to release
 

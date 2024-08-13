@@ -2,7 +2,7 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Continuous Integration
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,12 +10,12 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-What you will learn?
+## What is Continuous Integration?
 
-What is Semaphore?
+## Build and test job
 
-Why on board this way
+## Blocks and dependencies
 
-No credit card required. Try Semaphore no strings attached
+Optimize one job into two
 
-
+## Artifacts

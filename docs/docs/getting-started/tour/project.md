@@ -2,7 +2,8 @@
 description: Get started in 5 minutes
 ---
 
-# Guided Tour
+# Create a Project
+
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,12 +11,19 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-What you will learn?
+## Prerequites
 
-What is Semaphore?
+- A repo with at least one commit on GitHub or BitBucket
+- Git command line
 
-Why on board this way
+## Hello world
 
-No credit card required. Try Semaphore no strings attached
+## View logs
 
+## Pipeline files
 
+## Workflow triggers
+
+## Debug with SSH
+
+Optional but useful.
