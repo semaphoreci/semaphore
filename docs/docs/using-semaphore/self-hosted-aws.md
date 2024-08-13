@@ -144,6 +144,7 @@ Follow these steps to deploy self-hosted agents in AWS.
     - `<your-organization>.semaphoreci.com` with your [organization URL](./organizations#general-settings), e.g. `my-org.semaphoreci.com`
     - `<license-configuration>` the license information from Apple (only for macOS)
 
+    <br/>
     <details>
     <summary>Linux</summary>
     <div>
@@ -357,3 +358,4 @@ If you experience agent registration errors, follow these steps to troubleshoot:
 - [What are self-hosted agents](./self-hosted)
 - [Self-hosted agents configuration reference](../reference/self-hosted-config)
 - [Docker environments](./pipelines#docker-environments)
+

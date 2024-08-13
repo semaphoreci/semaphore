@@ -72,6 +72,7 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            'using-semaphore/rbac',
             'using-semaphore/org-preflight',
             'using-semaphore/notifications',
             'using-semaphore/okta',
