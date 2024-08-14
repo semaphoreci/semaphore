@@ -37,11 +37,10 @@ const sidebars = {
             },
             collapsed: false,
             items: [
-              'getting-started/tour/organization',
-              'getting-started/tour/project',
+              'getting-started/tour/sign-up',
+              'getting-started/tour/hello-world',
               'getting-started/tour/continuous-integration',
               'getting-started/tour/continuous-delivery',
-              'getting-started/tour/people',
               'getting-started/tour/next-steps',
             ]
           },

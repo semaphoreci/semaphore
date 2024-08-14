@@ -2,7 +2,7 @@
 description: Get started in 5 minutes
 ---
 
-# Create a Project
+# Hello, World!
 
 
 import Tabs from '@theme/Tabs';
@@ -11,6 +11,8 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
+Concepts: Project, Workflow, Pipelines, Jobs
+
 ## Prerequites
 
 - A repo with at least one commit on GitHub or BitBucket
@@ -18,12 +20,18 @@ import Steps from '@site/src/components/Steps';
 
 ## Hello world
 
-## View logs
+Step-by-step
 
 ## Pipeline files
 
+Explain and point out to branch and pipeline files
+
 ## Workflow triggers
 
-## Debug with SSH
+Explain what triggers a workflow and how to change it
 
-Optional but useful.
+## View logs
+
+Step-by-step
+
+
