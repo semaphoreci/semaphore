@@ -2,8 +2,7 @@
 description: Create your first organization
 ---
 
-# Sign up to Semaphore
-
+# Sign Up 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -11,13 +10,20 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-If you already have or have been invited to an organization, you can skip directly to the [next step](./hello-world).
+You will need a Semaphore account to follow this guided tour. Don't worry, the only thing you need to sign up is a GitHub or BitBucket account.
+
 
 In this section we'll learn about:
 
-- Signing up to Semaphore
-- Organizations
-- Inviting poeple to your organization
+- Creating an account
+- Creating an organization
+- Overview of the Semaphore hompage
+
+:::note
+
+If you already have or have been invited to an organization, you can skip directly to the [next step](./hello-world).
+
+:::
 
 ## Why do I need CI/CD?
 
@@ -98,10 +104,6 @@ An organization the place where all your project and teammembers live. You can c
 ![Semaphore Organization components](./img/org-diagram.jpg)
 
 Since you created the organzation, you have the Owner role for it. That means you can do pretty much anything. Including invite teammembers, create groups, grant permissions, and even delete the whole organization.
-
-## Add people
-
-Mention roles and groups and a different way of adding people next step
 
 ## What's next?
 
