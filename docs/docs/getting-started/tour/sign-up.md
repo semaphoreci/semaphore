@@ -13,7 +13,7 @@ import Steps from '@site/src/components/Steps';
 
 If you already have or have been invited to an organization, you can skip directly to the [next step](./hello-world).
 
-In this section we'll learn abou
+In this section we'll learn about:
 
 - Signing up to Semaphore
 - Organizations
@@ -33,7 +33,7 @@ Continuous Delivery and Continuous Deployment extend this process by providing a
 
 ## Prerequisites
 
-To create your Semaphore account you need a [GitHub](https://github) or [BitBucket](https://bitbucket.org) account. That's all.
+To create your Semaphore account you need a [GitHub](https://github) or [BitBucket](https://bitbucket.org) account.
 
 ## Sign up to Semaphore
 
@@ -53,24 +53,27 @@ Before you can start using Semaphore, you need to create an account:
 
 5. Type a name for your organization
     
-    Your organization is the HQ for all your projects and teammembers. 
+    Your organization is the HQ for all your projects and teammates. 
     
     The organization's name determines the URL for your Semaphore homepage. So, if your organization name is "keyboard-cowboys", your organization URL will be: `keyboard-cowboys.semaphoreci.com`
 
+    You can always change the organization name later.
+
     ![Naming your organization](./img/create-org.jpg)
 
-6. Fill in the short survey. This helps us to know you better
+6. Fill in the short survey. This helps us to know you and your needs better
 
     ![Onboading survey](./img/onboarding-survery.jpg)
 
 7. Finally, select your plan
 
-    - You can test one of the paid plans (no credit card required) or sign up with a free plan. -
-    - You can always change plans afterwards
+    You can test one of the paid plans (no credit card required) or sign up with a free plan. You can change this later.
 
     ![Choose a plan](./img/select-plan.jpg)
 
 8. Congratulations and welcome to your new account
+
+</Steps>
 
 ## Semaphore homepage
 
@@ -86,13 +89,15 @@ On the top right side there is:
 - The account menu: here you logout and change account settings
 - The organization menu: let's you manage your organization
 
-On the center of the page you'll see the recent activity in your organization. Since we're just starting, there no activity yet.
+On the middle you'll see the recent activity in your organization. Since we're just starting, there no activity yet.
 
 ## What is an organization?
 
 An organization the place where all your project and teammembers live. You can create more organization as needed, each one can be tied to a different plan.
 
-DIAGRAM OF ORG
+![Semaphore Organization components](./img/org-diagram.jpg)
+
+Since you created the organzation, you have the Owner role for it. That means you can do pretty much anything. Including invite teammembers, create groups, grant permissions, and even delete the whole organization.
 
 ## Add people
 
