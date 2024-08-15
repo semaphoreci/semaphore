@@ -1,5 +1,5 @@
 ---
-description: Get started in 5 minutes
+description: Move on to more complex projects
 ---
 
 # Continuous Integration
@@ -10,22 +10,23 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Concentps: CI, blocks dependencies, env vars, artifacts, debug
+Concentps: CI, blocks dependencies, prologue, sem-version, artifacts, debug
 
 ## What is Continuous Integration?
 
-## Build and test job
+Intro to what's the practices
+
+## Build job
 
 Step-by-step
 
-## Environment variables
+mention job matrix to cross-build
 
-Use an environment variable
-
-## Blocks and dependencies
+## Blocks and dependencies: add test job
 
 Step-by-step
-Optimize one job into two
+
+Problem: test either fails or rebuilds, fix with artifacts
 
 ## Artifacts
 
@@ -35,3 +36,5 @@ Solve the build-test problem with artifacts
 ## Debug with SSH
 
 Step-by-step
+
+## What's next?

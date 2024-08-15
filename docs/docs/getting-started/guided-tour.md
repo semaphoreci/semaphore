@@ -1,5 +1,5 @@
 ---
-description: Try Semaphore online, no string attached, no credit cards needed
+description: Try Semaphore online. No string attached.
 ---
 
 # Guided Tour
@@ -18,9 +18,13 @@ This X-minute tutorial will give you 80% of ever need to use Semaphore effective
 
 1. [Sign up](tour/sign-up): How to sign up and add your teammates
 2. [First project](tour/hello-world): The hello world of CI/CD
-3. [Continuous Integration](tour/continuous-integration): Covers environment variables, artifacts, dependencies, and how to debug with SSH
+3. [Continuous Integration](tour/continuous-integration): Firsts steps with CI
 4. [Continuous Delivery](tour/continuous-delivery): Goes throug automated release, secrets, and promotions
 5. [Next Steps](tour/next-steps): Where to go next
+
+## Where is Semaphore a good fit?
+
+## Where is not a good fit?
 
 Notes on demo:
 - With a build step

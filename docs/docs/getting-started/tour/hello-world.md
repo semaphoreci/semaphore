@@ -1,5 +1,5 @@
 ---
-description: Get started in 5 minutes
+description: Create your first job
 ---
 
 # Hello, World!
@@ -11,7 +11,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Concepts: Project, Workflow, Pipelines, Jobs
+Concepts: Project, Workflow, Pipelines, Jobs, Env vars
 
 ## Prerequites
 
@@ -21,6 +21,12 @@ Concepts: Project, Workflow, Pipelines, Jobs
 ## Hello world
 
 Step-by-step
+
+Mention you can add people here
+
+## Parallel jobs
+
+## Env vars
 
 ## Pipeline files
 
@@ -34,4 +40,4 @@ Explain what triggers a workflow and how to change it
 
 Step-by-step
 
-
+## What's next?

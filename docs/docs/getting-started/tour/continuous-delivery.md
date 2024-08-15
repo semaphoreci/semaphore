@@ -1,5 +1,5 @@
 ---
-description: Get started in 5 minutes
+description: Finish up with automated continuous delivery
 ---
 
 # Continuous Delivery
@@ -14,21 +14,25 @@ Concepts: Secrets, Multiple Pipelines, Promotions and automation
 
 ## What is Continuous Delivery
 
+Intro to what's the practice
 How it relates to continuoue deployment
+
+## Secrets
+
+Why we need it
+Step-by-step
 
 ## Release job
 
 Step-by-step
 add a job to release
 
-## Secrets
-
-Step-by-step
-
 ## Promotions
 
-Why promotions
+Why promotions, problems with a release job in CI
 
 Step-by-step
 Create a promotion pipeline to release
 
+
+## What's next?
