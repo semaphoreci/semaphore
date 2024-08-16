@@ -23,8 +23,6 @@ In this section you will:
 ## Prerequisites
 
 - A repository with at least one commit
-- Familiarity with Git
-- Git installed on your machine
 
 ## What is a project? {#project}
 
@@ -85,7 +83,7 @@ Once you're done these following thins will happen:
 
 ## Editing your pipelines {#workflow-editor}
 
-Press the **Edit Workflow** on the right. This will open the visual workflow editor.
+Press the **Edit Workflow** on the right. This will open the visual Workflow Editor.
 
 ![Initial workflow](./img/initial-workflow1.jpg)
 
