@@ -26,7 +26,7 @@ In this section you will:
 - Familiarity with Git
 - Git installed on your machine
 
-## What is a project?
+## What is a project? {#project}
 
 A project connects Semaphore to your Git repository. Every project on Semaphore is connected to one and only one repository on GitHub or BitBucket.
 
@@ -43,7 +43,7 @@ By default, a workflow can be initiated by any of these events:
 - Manually re-running workflows or pipelines
 - Running pipelines using Scheduled Tasks
 
-## Hello, world!
+## Hello, world! {#hello}
 
 These are the steps to create your first project:
 
@@ -83,7 +83,7 @@ Once you're done these following thins will happen:
 
 ![First workflow](./img/first-workflow.jpg)
 
-## Editing your pipelines
+## Editing your pipelines {#workflow-editor}
 
 Press the **Edit Workflow** on the right. This will open the visual workflow editor.
 
@@ -101,7 +101,7 @@ The new workflow starts immediately. Clicking on the job reveals the job log whe
 
 ![Job log](./img/hello-world-output1.jpg)
 
-## Adding more jobs
+## Adding more jobs {#jobs}
 
 A block can have many jobs. Let's add a second job by pressing **Edit Workflow** and then clicking on **Add Job**
 
@@ -113,7 +113,7 @@ The first thing you'll notice is that both job run in parallel. This happens eve
 
 ![Parallel jobs](./img/parallel-jobs.jpg)
 
-## Using environment variables
+## Using environment variables {#variables}
 
 A block not only runs jobs in parallel; a block also contains settings that apply to all its child jobs.
 
@@ -121,23 +121,36 @@ Open the workflow editor again and scroll down the right menu until you reach th
 
 Click **Add env_vars** and set a few variables. You can define the variable name and value. Variables defined on the block are available to all its jobs.
 
-![Setting up environment variables](./img/environment-variables.jpg)
+![Setting up environment variables](./img/environment-variables1.jpg)
 
 The following above runs two job both printing the same message:
 
 ![The output of one of the jobs. The other one is exactly the same](./img/env-vars-log.jpg)
 
-## Add people to the organization {#people}
+## Inviting people to the organization {#people}
 
-Step-by-step add people tab, invite github by handle
+We've seen that during [project creation](#project) you can invite people to the project. In reality, you're also inviting them to your organization, since only organization members log in to Semaphore.
+
+But creating a project is not the only way to invite people to your organization. You can review your members and invite people by selecting **People** in the organization menu.
+
+The People screen shows people that are part of your organization. Here you can remove them or change their roles.
+
+![People tab in your organization](./img/people-tab.jpg)
+
+Press **Add people** to get to the invitation page. This page shows you individuals that have access to your repositories but have not yet been added to your organization.
+
+![Invite people to the organization](./img/invite-people.jpg)
+
+You can also add people without repository access by typing their GitHub usernames and pressing **Invite**
 
 ## What have we learned?
 
-- How to create a Semaphore account
-- We created our first organization
-- Organizations are containers for projects and people. They are tied to a plan
-- We learned that we can create multiple organizations
+- How to create a project
+- How to invite people to the organization and the project
+- What blocks are and how they related to jobs
+- That jobs in the same block run in parallel
+- That block settings apply to all jobs in the block
 
 ## What's next?
 
-In the next section we'll do our first steps with Continuous Integration.
+In the next section we'll do our first steps with [Continuous Integration](./continuous-integration)
