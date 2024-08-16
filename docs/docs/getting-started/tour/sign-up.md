@@ -105,6 +105,13 @@ An organization the place where all your project and teammembers live. You can c
 
 Since you created the organzation, you have the Owner role for it. That means you can do pretty much anything. Including invite teammembers, create groups, grant permissions, and even delete the whole organization.
 
+## What have we learned?
+
+- How to create a Semaphore account
+- We created our first organization
+- Organizations are containers for projects and people. They are tied to a plan
+- We learned that we can create multiple organizations
+
 ## What's next?
 
 In the next section we'll create our first project.

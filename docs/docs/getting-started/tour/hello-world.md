@@ -85,25 +85,58 @@ Once you're done these following thins will happen:
 
 ## Editing your pipelines
 
-Step-by-step Edit workflow
+Press the **Edit Workflow** on the right. This will open the visual workflow editor.
 
-You may also edit the pipeline file located in the `.semaphore` folder.
+![Initial workflow](./img/initial-workflow1.jpg)
 
-## Viewing the logs
+Let's get our bearings. The element highlighed is a block. A block is a container for job. Currently, there is only one job. 
 
-Step-by-step view job logs
+On the right-side menu, you can see the block settings and the job. The job currently has one command. Every line here represents one command to run on the Bash shell.
+
+Try adding the command `echo "Hello, World!"` and pressing **Run the workflow** > **Start**.
+
+![Adding hello world to the job](./img/hello-world-editor1.jpg)
+
+The new workflow starts immediately. Clicking on the job reveals the job log where we can see the output of our command.
+
+![Job log](./img/hello-world-output1.jpg)
 
 ## Adding more jobs
 
-Step-by-step adding a second job in the block. Be sure to have Introduced the concept of block
+A block can have many jobs. Let's add a second job by pressing **Edit Workflow** and then clicking on **Add Job**
+
+![Adding a second job](./img/add-job.jpg)
+
+Add a few commands in the second job and press  **Run the workflow** > **Start**.
+
+The first thing you'll notice is that both job run in parallel. This happens every time jobs share a block.
+
+![Parallel jobs](./img/parallel-jobs.jpg)
 
 ## Using environment variables
 
-Step-by-step to add environment variables and use them in the jobs
+A block not only runs jobs in parallel; a block also contains settings that apply to all its child jobs.
+
+Open the workflow editor again and scroll down the right menu until you reach the section called **Environment variables**.
+
+Click **Add env_vars** and set a few variables. You can define the variable name and value. Variables defined on the block are available to all its jobs.
+
+![Setting up environment variables](./img/environment-variables.jpg)
+
+The following above runs two job both printing the same message:
+
+![The output of one of the jobs. The other one is exactly the same](./img/env-vars-log.jpg)
 
 ## Add people to the organization {#people}
 
 Step-by-step add people tab, invite github by handle
+
+## What have we learned?
+
+- How to create a Semaphore account
+- We created our first organization
+- Organizations are containers for projects and people. They are tied to a plan
+- We learned that we can create multiple organizations
 
 ## What's next?
 
