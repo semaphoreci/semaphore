@@ -20,7 +20,6 @@ This X-minute tutorial will give you 80% of ever need to use Semaphore effective
 2. [First project](tour/hello-world): The hello world of CI/CD
 3. [Continuous Integration](tour/continuous-integration): Firsts steps with CI
 4. [Continuous Delivery](tour/continuous-delivery): Goes throug automated release, secrets, and promotions
-5. [Next Steps](tour/next-steps): Where to go next
 
 ## Where is Semaphore a good fit?
 

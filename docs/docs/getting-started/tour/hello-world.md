@@ -87,7 +87,7 @@ Press the **Edit Workflow** on the right. This will open the visual Workflow Edi
 
 ![Initial workflow](./img/initial-workflow1.jpg)
 
-Let's get our bearings. The element highlighed is a block. A block is a container for job. Currently, there is only one job. 
+Let's get our bearings. The element highlighed is a block. A block is a container for job. Currently, there is only one job in the block. The container for the block is called the pipeline and this will be important in the Continuous Delivery section.
 
 On the right-side menu, you can see the block settings and the job. The job currently has one command. Every line here represents one command to run on the Bash shell.
 

@@ -40,8 +40,7 @@ const sidebars = {
               'getting-started/tour/sign-up',
               'getting-started/tour/hello-world',
               'getting-started/tour/continuous-integration',
-              'getting-started/tour/continuous-delivery',
-              'getting-started/tour/next-steps',
+              'getting-started/tour/continuous-delivery'
             ]
           },
         ],
