@@ -93,13 +93,13 @@ Press the **Edit Workflow** on the right. This will open the visual Workflow Edi
 
 Let's get our bearings. The highlighed element is a *block*. A block is a container for jobs. Currently, there is only one job in the block.
 
-On the right-side menu, you can see the block settings and the job. The job currently has one command. Every line here represents one command to run on the Bash shell.
+On the right-side menu, you can see the block settings and the job command, which currently has one command (`checkout`). Every line here represents one command to run on a Bash shell.
 
 Try adding the command `echo "Hello, World!"` and pressing **Run the workflow** > **Start**.
 
 ![Adding hello world to the job](./img/hello-world-editor1.jpg)
 
-The new workflow starts immediately. Clicking on the job reveals the job log where we can see the output of our command.
+The new workflow starts immediately. Clicking on the job reveals the job log. You can view the output of each command by clicking on them.
 
 ![Job log](./img/hello-world-output1.jpg)
 
@@ -111,13 +111,13 @@ A block can have many jobs. Let's add a second job by pressing **Edit Workflow**
 
 Add a few commands in the second job and press  **Run the workflow** > **Start**.
 
-The first thing you'll notice is that both job run in parallel. This happens every time jobs share a block.
+The first thing you'll notice is that both job run in parallel. Job contained in the same block always run in concurrenlty.
 
 ![Parallel jobs](./img/parallel-jobs.jpg)
 
 ## Using environment variables {#variables}
 
-A block not only runs jobs in parallel; a block also contains settings that apply to all its child jobs.
+A block not only runs jobs in parallel; it also contains settings that all its child jobs share.
 
 Open the workflow editor again and scroll down the right menu until you reach the section called **Environment variables**.
 
@@ -125,17 +125,17 @@ Click **Add env_vars** and set a few variables. You can define the variable name
 
 ![Setting up environment variables](./img/environment-variables1.jpg)
 
-The following above runs two job both printing the same message:
+Execute this workflow and see the output of the jobs. Both jobs should show the same message.
 
 ![The output of one of the jobs. The other one is exactly the same](./img/env-vars-log.jpg)
 
 ## Inviting people to the organization {#people}
 
-We've seen that during [project creation](#project) you can invite people to the project. In reality, you're also inviting them to your organization, since only organization members log in to Semaphore.
+As we've seen, you can invite people when you [create a project](#project). When you do this, you're also inviting them to your organization, since only organization members log in to Semaphore.
 
-But creating a project is not the only way to invite people to your organization. You can review your members and invite people by selecting **People** in the organization menu.
+But creating a project is not the only way to invite people to your organization.
 
-The People screen shows people that are part of your organization. Here you can remove them or change their roles.
+Open the organization menu and select **People**. The page shows all the members in your organization. Here you can remove them or change their roles.
 
 ![People tab in your organization](./img/people-tab.jpg)
 
@@ -143,16 +143,16 @@ Press **Add people** to get to the invitation page. This page shows you individu
 
 ![Invite people to the organization](./img/invite-people.jpg)
 
-You can also add people without repository access by typing their GitHub usernames and pressing **Invite**
+You can also add people without repository access by typing their GitHub usernames on the top input box and pressing **Invite**.
 
 ## What have we learned?
 
 - How to create a project
-- How to invite people to the organization and the project
-- What blocks are and how they related to jobs
-- That jobs in the same block run in parallel
+- How to invite people
+- What blocks and jobs are
+- How jobs in the same block run in parallel
 - That block settings apply to all jobs in the block
 
 ## What's next?
 
-In the next section we'll do our first steps with [Continuous Integration](./continuous-integration)
+In the next section we'll do our first steps with Continuous Integration.
