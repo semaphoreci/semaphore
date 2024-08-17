@@ -19,6 +19,10 @@ import Steps from '@site/src/components/Steps';
    ```
 2. Step 2
 
+    - subpoint
+    - subpoint
+    - subpoint
+
     <details>
     <summary>Show me</summary>
     <div>
