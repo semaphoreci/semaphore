@@ -10,7 +10,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-We suceeded into having a program built and tested using Continuous Integration. It's time to release it automatically using Continuous Delivery.
+We succeeded into having a program built and tested using Continuous Integration. It's time to release it automatically using Continuous Delivery.
 
 In this section you will learn about:
 
@@ -31,11 +31,11 @@ The goal is to automatically deploy the built binary to the GitHub repository so
 
 ## Creating a Secret
 
-In order to upload files from Semaphore job we need to authenticate with your GitHub account. For that, we'll need an access token.
+In order to upload files from the Semaphore job we need to authenticate with your GitHub account. For that, we'll need an access token.
 
 Now, the problem with such tokens is that they should remain secret. This rules out using environment variables in our jobs to store the token, as these are visible to anyone with read access to the repository.
 
-We can protect sensitive data such as tokens with *secrets*. Secrets provide a secure way to store key-value pairs and files withing your Semaphore organization. So, even if our repository is public, no one outside your organization can access these secrets.
+We can protect sensitive data such as tokens with *secrets*. Secrets provide a secure way to store key-value pairs and files within your organization. So, even if our repository is public, no one outside your organization can access these secrets.
 
 To create a secret, follow these steps:
 
@@ -81,7 +81,7 @@ Now we're ready to add a release job. We can use the [gh command line tool](http
 
 </Steps>
 
-After the workflow finishes your should see a new release on your GitHub repository.
+After the workflow finishes you should see a new release on your GitHub repository.
 
 ![Released package](./img/release1.jpg)
 
@@ -148,7 +148,7 @@ If you check your GitHub repository, you should now find a release correctly tag
 
 ## Automating releases
 
-Releasing packages by pressing a button is great. But you know what's even better? Doing it automatically. Specially if you have a very robust test suite that gives you confidence in the build.
+Releasing packages by pressing a button is great. But you know what's even better? Doing it automatically. Especially if you have a very robust test suite that gives you confidence in the build.
 
 To automate the release we need to add a promotion condition.
 
@@ -195,7 +195,7 @@ This time the Release pipeline should automatically start as soon as all jobs in
 
 That's all for the guided tour. What you've learned here will serve you well to build complex workflows for a lot of scenarios.
 
-There is, of course, a lot more to learn. Semahore is packed with features do more with less work and optimizations to greatly speed up your workflows.
+There is, of course, a lot more to learn. Semaphore is packed with features that do more with less work and optimizations to greatly speed up your workflows.
 
 We recommend going next to the [Using Semaphore](../../using-semaphore/jobs) page. Here you will find the complete handbook for all Semaphore operations.
 

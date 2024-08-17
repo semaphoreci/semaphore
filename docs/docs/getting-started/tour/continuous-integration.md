@@ -10,7 +10,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-With the basics covered, we're ready to tackle a more CI on a more complete project.
+With the basics covered, we're ready to tackle more CI on a more complete project.
 
 In this section you will learn about:
 
@@ -28,14 +28,14 @@ For this part of the tutorial you will need:
 
 ## Something to build
 
-On most cases, the first step in CI is building the application. This proves that the main trunk is not broken and usually gives us a target to test. 
+In most cases, the first step in CI is building the application. This proves that the main trunk is not broken and usually gives us a target to test. 
 
 So, our first task is to have something to build. In this case, we'll build a "Hello, World!" HTTP server in Go.
 
 <Steps>
 
 1. [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to your machine
-2. Fetch the `setup-semaphore` branch, which was created in the [Hello World](./hello-world) part of the tutorial
+2. Fetch the `setup-semaphore` branch, which was created in the [Hello World](./hello-world) part of the tour
 
     ```shell
     git fetch origin setup-semaphore
@@ -127,7 +127,7 @@ Now that we have something to build, let's create a build job in Semaphore.
 
 </Steps>
 
-The build should complete successfully. If at any point you come into an error, see [debugging with SSH](#debug).
+The build should finish without error. If at any point you come into a problem, see [debugging with SSH](#debug).
 
 ## Keeping the build artifact
 
@@ -148,7 +148,7 @@ Run the workflow again. Once it has completed, you should be able to see the bin
 
 ![Viewing the artifacts](./img/artifacts1.jpg)
 
-Artifacts can also be used to share files between jobs. You could download the binary in any other jobs with:
+Artifacts can also be used to share files between jobs. You could download the binary in any other job with:
 
 ```shell
 artifact pull workflow hello-go
@@ -195,7 +195,7 @@ Sooner or later you'll find that a command that runs fine in your machine fails 
 
 Fortunately, Semaphore provides a great way to debug jobs. You can actually SSH into the CI environment to run the commands interactively, dig around, and try solutions. Once you find what's wrong, you can update the jobs to fix the error.
 
-Before you can perform SSH debugging, you need to setup the Semaphore Command Line:
+Before you can perform SSH debugging, you need to set the Semaphore Command Line:
 
 <Steps>
 
@@ -247,4 +247,4 @@ The next time you encounter a failing job, follow these steps:
 
 ## What's next?
 
-In the next and last section we'll move to the Continuous Delivery territory by automating the release of our little Go program.
+In the next and last section, we'll move to the Continuous Delivery territory by automating the release of our little Go program.

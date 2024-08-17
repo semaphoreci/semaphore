@@ -13,7 +13,7 @@ import Steps from '@site/src/components/Steps';
 
 Projects allow Semaphore to perform user-defined actions every time there is a change in your Git repository. Projects can build and test your code, and release and deploy your applications.
 
-In this section you will:
+In this section, you will:
 
 - Create your first project
 - Invite contributors 
@@ -73,7 +73,7 @@ These are the steps to create your first project:
 
 </Steps>
 
-Once you're done these following things will happen:
+Once you're done the following things will happen:
 
 - The project is created and linked to your repository
 - The selected individuals are invited into your organization and granted access to the project
@@ -87,11 +87,11 @@ Once you're done these following things will happen:
 
 Pipelines are YAML files located in the `.semaphore` folder at the root of your project. They what actions Semaphore performs when a workflow starts.
 
-Press the **Edit Workflow** on the right. This will open the visual Workflow Editor. This will open a visual representation of the main or initial pipeline.
+Press the **Edit Workflow** on the right. This will open the Visual Workflow Editor. This will open a visual representation of the main or initial pipeline.
 
 ![Initial workflow](./img/initial-workflow1.jpg)
 
-Let's get our bearings. The highlighed element is a *block*. A block is a container for jobs. Currently, there is only one job in the block.
+Let's get our bearings. The highlighted element is a *block*. A block is a container for jobs. Currently, there is only one job in the block.
 
 On the right-side menu, you can see the block settings and the job command, which currently has one command (`checkout`). Every line here represents one command to run on a Bash shell.
 
@@ -111,7 +111,7 @@ A block can have many jobs. Let's add a second job by pressing **Edit Workflow**
 
 Add a few commands in the second job and press  **Run the workflow** > **Start**.
 
-The first thing you'll notice is that both job run in parallel. Job contained in the same block always run in concurrenlty.
+The first thing you'll notice is that both jobs run in parallel. Job contained in the same block always runs concurrently.
 
 ![Parallel jobs](./img/parallel-jobs.jpg)
 
@@ -133,13 +133,13 @@ Execute this workflow and see the output of the jobs. Both jobs should show the 
 
 As we've seen, you can invite people when you [create a project](#project). When you do this, you're also inviting them to your organization, since only organization members log in to Semaphore.
 
-But creating a project is not the only way to invite people to your organization.
+However, creating a project is not the only way to invite people to your organization.
 
-Open the organization menu and select **People**. The page shows all the members in your organization. Here you can remove them or change their roles.
+Open the organization menu and select **People**. The page shows all the members of your organization. Here you can remove them or change their roles.
 
 ![People tab in your organization](./img/people-tab.jpg)
 
-Press **Add people** to get to the invitation page. This page shows you individuals that have access to your repositories but have not yet been added to your organization.
+Press **Add people** to get to the invitation page. This page shows you individuals who have access to your repositories but have not yet been added to your organization.
 
 ![Invite people to the organization](./img/invite-people.jpg)
 
@@ -155,4 +155,4 @@ You can also add people without repository access by typing their GitHub usernam
 
 ## What's next?
 
-In the next section we'll do our first steps with Continuous Integration.
+In the next section, we'll do our first steps with Continuous Integration.

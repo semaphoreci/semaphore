@@ -61,7 +61,7 @@ Before you can start using Semaphore, you need to create an account:
     
     Your organization is the HQ for all your projects and teammates. 
     
-    The organization's name determines the URL for your Semaphore homepage. So, if your organization name is "keyboard-cowboys", your organization URL will be: `keyboard-cowboys.semaphoreci.com`
+    The organization's name determines the URL for your Semaphore homepage. My organization name is "keyboard-cowboys", so my URL is `keyboard-cowboys.semaphoreci.com`
 
     You can always change the organization name later.
 
@@ -83,7 +83,7 @@ Before you can start using Semaphore, you need to create an account:
 
 ## Semaphore homepage
 
-At this point you should be seeing your organization homepage. Let's get our bearings.
+At this point, you should be seeing your organization's homepage. Let's get our bearings.
 
 ![Semaphore homepage](./img/homepage.jpg)
 
@@ -92,20 +92,20 @@ On the top left side you'll find:
 - Project search box
 - Project creation button
 
-On the top right side there is:
+On the top right side, there is:
 
 - The account menu 
 - The organization menu
 
-On the middle of the screen you'll see the recent activity in your organization. Since we're just starting, there nothing happening yet.
+In the middle of the screen, you'll see the recent activity in your organization. Since we're just starting, nothing has happened yet.
 
 ## What is an organization?
 
-An organization the place where all your project and teammembers live. You account can have as many organization as you wish.
+An organization is the place where all your project and team members live. Your account can have as many organizations as you wish.
 
 ![Semaphore Organization components](./img/org-diagram.jpg)
 
-Since you created the organzation, you are its Owner. That means you can do pretty much anything. Including invite people, granting and removig roles, creating projects, and even deleting the whole organization.
+Since you created the organization, you are its Owner. That means you can do pretty much anything, including inviting people, granting and removing roles, creating projects, and even deleting the whole organization.
 
 ## What have you done so far?
 
@@ -115,4 +115,4 @@ Since you created the organzation, you are its Owner. That means you can do pret
 
 ## What's next?
 
-In the next section we'll create our first project.
+In the next section, we'll create our first project.
