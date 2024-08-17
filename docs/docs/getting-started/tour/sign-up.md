@@ -10,14 +10,14 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-You will need a Semaphore account to follow this guided tour. Don't worry, the only thing you need to sign up is a GitHub or BitBucket account.
-
+You will need a Semaphore account to follow this guided tour. Don't worry, the only thing you will need is an account on GitHub or BitBucket.
 
 In this section we'll learn about:
 
+- What's the purpose of CI/CD?
 - Creating an account
 - Creating an organization
-- Overview of the Semaphore hompage
+- Overview of the Semaphore homepage
 
 :::note
 
@@ -33,7 +33,7 @@ CI enables developers to frequently merge code changes, automatically test them,
 
 ![CI Workflow](./img/ci-workflow.jpg)
 
-Continuous Delivery and Continuous Deployment extend this process by providing a package you can release and deploy to the world. The whole process is automated and can be configured in way that does not require human intervention.
+Continuous Delivery and Continuous Deployment extend this process by providing a package you can release and deploy to the world. The whole thing is automated and can be set up to not need human intervention. No more stressing over deployment or releases!
 
 ![CD Workflow](./img/cd-workflow.jpg)
 
@@ -73,11 +73,11 @@ Before you can start using Semaphore, you need to create an account:
 
 7. Finally, select your plan
 
-    You can test one of the paid plans (no credit card required) or sign up with a free plan. You can change this later.
+    You can test one of the paid plans (no credit card required) or sign up with a free plan forever. You can change this later.
 
     ![Choose a plan](./img/select-plan.jpg)
 
-8. Congratulations and welcome to your new account
+8. Welcome to your new account
 
 </Steps>
 
@@ -88,29 +88,30 @@ At this point you should be seeing your organization homepage. Let's get our bea
 ![Semaphore homepage](./img/homepage.jpg)
 
 On the top left side you'll find:
+
 - Project search box
 - Project creation button
 
 On the top right side there is:
-- The account menu: here you logout and change account settings
-- The organization menu: let's you manage your organization
 
-On the middle you'll see the recent activity in your organization. Since we're just starting, there no activity yet.
+- The account menu 
+- The organization menu
+
+On the middle of the screen you'll see the recent activity in your organization. Since we're just starting, there nothing happening yet.
 
 ## What is an organization?
 
-An organization the place where all your project and teammembers live. You can create more organization as needed, each one can be tied to a different plan.
+An organization the place where all your project and teammembers live. You account can have as many organization as you wish.
 
 ![Semaphore Organization components](./img/org-diagram.jpg)
 
-Since you created the organzation, you have the Owner role for it. That means you can do pretty much anything. Including invite teammembers, create groups, grant permissions, and even delete the whole organization.
+Since you created the organzation, you are its Owner. That means you can do pretty much anything. Including invite people, granting and removig roles, creating projects, and even deleting the whole organization.
 
-## What have we learned?
+## What have you done so far?
 
-- How to create a Semaphore account
-- We created our first organization
-- Organizations are containers for projects and people. They are tied to a plan
-- We learned that we can create multiple organizations
+- Created a Semaphore account
+- Created your first organizations
+- Learned the basics of organizations
 
 ## What's next?
 

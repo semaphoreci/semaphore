@@ -10,23 +10,19 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Welcome to Semaphore 👋
+Welcome 👋 Thank you for trying out Semaphore. 
 
-Semaphore is a cloud-based [Continuous Integration](https://semaphoreci.com/continuous-integration) platform that's fast, easy to use, an incredibly scalable.
+**What is Semaphore?**
 
-This X-minute tutorial will give you 80% of ever need to use Semaphore effectively. No credit card required. You can try out Semaphore with no strings attached.
+Semaphore is a cloud-based [Continuous Integration](https://semaphoreci.com/continuous-integration) (CI) platform that's fast, easy to use, an incredibly scalable.
 
-1. [Sign up](tour/sign-up): How to sign up and add your teammates
-2. [First project](tour/hello-world): The hello world of CI/CD
-3. [Continuous Integration](tour/continuous-integration): Firsts steps with CI
-4. [Continuous Delivery](tour/continuous-delivery): Goes throug automated release, secrets, and promotions
+This 20-minute tutorial will give you 80% of ever need to use Semaphore effectively. No strings attached. No credit card required. This is our promise.
 
-## Where is Semaphore a good fit?
+**What will you learn?**
 
-## Where is not a good fit?
+1. [Sign up](tour/sign-up): sign up and create an organization
+2. [First project](tour/hello-world): a "Hello, World!" of CI, invite your teammates to your project  
+3. [Continuous Integration](tour/continuous-integration): a real example of CI with build and test steps
+4. [Continuous Delivery](tour/continuous-delivery): almost everything you need to release or deploy your apps
 
-Notes on demo:
-- With a build step
-- With tests
-- With environment varaibles
-- Can be uploaded to GitHub release/packages
+Let's dive in!

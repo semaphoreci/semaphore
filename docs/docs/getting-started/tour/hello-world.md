@@ -11,7 +11,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Projects allow Semaphore to perform actions every time there is a change in your Git repository.
+Projects allow Semaphore to perform user-defined actions every time there is a change in your Git repository. Projects can build and test your code, and release and deploy your applications.
 
 In this section you will:
 
@@ -26,11 +26,11 @@ In this section you will:
 
 ## What is a project? {#project}
 
-A project connects Semaphore to your Git repository. Every project on Semaphore is connected to one and only one repository on GitHub or BitBucket.
+A project connects Semaphore to your Git repository. Every project on Semaphore must be connected to one repository to work. Repositories can be hosted on GitHub or BitBucket.
 
 ![Every project is related to a repository](./img/project-repo.jpg)
 
-Every time *something* changes in the repository, Semaphore initiates a workflow. The workflow runs all the pipelines you have configured. These pipelines can virtually do anything, including building your application, testing it, and deploying it to your servers.
+Every time *something* changes in the repository, Semaphore initiates a workflow. The workflow runs all the pipelines you have configured (we'll get to that in a bit). These pipelines can virtually do anything, including building your application, testing it, and deploying it to your servers.
 
 By default, a workflow can be initiated by any of these events:
 
@@ -59,7 +59,9 @@ These are the steps to create your first project:
 
      ![Give access to repositories](./img/give-access.jpg)
 
-5. Next, you'll see a list with all the repository contributors. 
+5. Wait a few moments for Semaphore to connect to your repository and set up the project
+
+6. Next, you'll see a list with all the existing contributors in the repository. These are all individuals with some level of access to your GitHub or BitBucket repository.
 
     Select the individuals you wish to invite to the project and press **Add selected** 
 
@@ -67,11 +69,11 @@ These are the steps to create your first project:
 
     ![Adding people to the project](./img/add-people-project.jpg)
 
-6. Press **Looks good, Start**
+7. You'll be presented with a list of pre-defined pipelines. For now, let's stick with the default one. Press **Looks good, Start**
 
 </Steps>
 
-Once you're done these following thins will happen:
+Once you're done these following things will happen:
 
 - The project is created and linked to your repository
 - The selected individuals are invited into your organization and granted access to the project
@@ -81,13 +83,15 @@ Once you're done these following thins will happen:
 
 ![First workflow](./img/first-workflow.jpg)
 
-## Editing your pipelines {#workflow-editor}
+## Working with pipelines {#workflow-editor}
 
-Press the **Edit Workflow** on the right. This will open the visual Workflow Editor.
+Pipelines are YAML files located in the `.semaphore` folder at the root of your project. They what actions Semaphore performs when a workflow starts.
+
+Press the **Edit Workflow** on the right. This will open the visual Workflow Editor. This will open a visual representation of the main or initial pipeline.
 
 ![Initial workflow](./img/initial-workflow1.jpg)
 
-Let's get our bearings. The element highlighed is a block. A block is a container for job. Currently, there is only one job in the block. The container for the block is called the pipeline and this will be important in the Continuous Delivery section.
+Let's get our bearings. The highlighed element is a *block*. A block is a container for jobs. Currently, there is only one job in the block.
 
 On the right-side menu, you can see the block settings and the job. The job currently has one command. Every line here represents one command to run on the Bash shell.
 
