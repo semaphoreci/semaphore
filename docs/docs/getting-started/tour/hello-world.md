@@ -85,6 +85,8 @@ Once you're done the following things will happen:
 
 ## Working with pipelines {#workflow-editor}
 
+<VideoTutorial src="https://www.youtube.com/embed/dg2jDQmYJ_4?si=bg8jqKwVgtpxa6k-" title="Workflow Editor Overview"/>
+
 Pipelines are YAML files located in the `.semaphore` folder at the root of your project. They what actions Semaphore performs when a workflow starts.
 
 Press the **Edit Workflow** on the right. This will open the Visual Workflow Editor. This will open a visual representation of the main or initial pipeline.

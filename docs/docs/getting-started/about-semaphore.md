@@ -20,9 +20,9 @@ Continuous Delivery and Continuous Deployment extend this process by providing a
 
 ## Ways to run Semaphore
 
-- **Semaphore Cloud**: fully managed CI/CD solution that runs fully on the cloud. Just sign-up and being using it. No infrastructure to maintain.
-- **Semaphore Hybrid**: run workflows fully or partly on your own hardware, allowing you to leverage your infrastructure while letting Semaphore orchestrate the workfload
-- **On-Premise**: run Semaphore fully behind a firewall using your infrastrucure
+- **Semaphore Cloud**: fully managed CI/CD solution that runs fully on the cloud. Just sign up and begin using it. No infrastructure to maintain.
+- **Semaphore Hybrid**: run workflows fully or partly on your own hardware, allowing you to leverage your infrastructure while letting Semaphore orchestrate the workload
+- **On-Premise**: run Semaphore fully behind a firewall using your infrastructure
 
 ## Features
 
@@ -36,7 +36,7 @@ Continuous Delivery and Continuous Deployment extend this process by providing a
 - Project metrics to track your productivity
 - Test insights and flaky test detector
 - Parameterized deployments
-- Role based access control
+- Role-based access control
 - User groups
 - Granular deployment permissions
 - Audit logs
@@ -46,9 +46,9 @@ Continuous Delivery and Continuous Deployment extend this process by providing a
 
 ## Where to go next?
 
-If you want to give Semaphore a go, head to the [Guided Tour](./guided-tour). You can try Semaphore for free, no strings attached.
+If you want to give Semaphore a go, head to the [Guided Tour](./guided-tour). You can try Semaphore for free, with no strings attached.
 
 You can find the complete Semaphore handbook in the [Using Semaphore](../using-semaphore/jobs) section.
 
-And if you want to dive deep into Semaphore inner workings check out the [Reference pages](../reference/semaphore-cli) and the [API documentation](../openapi-spec/semaphore-public-api.info.mdx).
+And if you want to dive deep into Semaphore's inner workings check out the [Reference pages](../reference/semaphore-cli) and the [API documentation](../openapi-spec/semaphore-public-api.info.mdx).
 
