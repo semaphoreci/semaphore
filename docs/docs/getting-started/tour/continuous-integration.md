@@ -127,7 +127,7 @@ Now that we have something to build, let's create a build job in Semaphore.
 
 </Steps>
 
-The build should finish without error. If at any point you come into a problem, see [debugging with SSH](#sh).
+The build should finish without error. If at any point you come into a problem, see [debugging with SSH](#ssh).
 
 ## Keeping the build artifact {#artifact}
 

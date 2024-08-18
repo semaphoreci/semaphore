@@ -158,7 +158,7 @@ If 0, the agent never disconnects due to idleness. To force disconnection after 
 This setting controls if the job logs are to be uploaded to the [job artifact storage](../using-semaphore/artifacts#jobs). There are three possible options:
 
 - `never`: job logs are never uploaded
-- `when-trimmed`: job logs are only uploaded if they were trimmed due to exceeding the [log 16MB limit](./quotas-and-limits#logs)
+- `when-trimmed`: job logs are only uploaded if they were trimmed for exceeding the 16MB limit
 - `always`: job logs are always uploaded
 
 The logs are uploaded to the path `agent/job_logs.txt` in the job artifact storage.

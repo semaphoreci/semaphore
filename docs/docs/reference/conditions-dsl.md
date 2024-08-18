@@ -115,7 +115,7 @@ Regexp follows Perl Compatible Regular Expression syntax.
 
 :::info 
 
-Pipelines with `change_in` expressions require a [pipeline initialization](../pipelines#init-job) step before the workflow starts.
+Pipelines with `change_in` expressions require a [pipeline initialization](../using-semaphore/pipelines#init-job) step before the workflow starts.
 
 :::
 
@@ -235,6 +235,6 @@ identifier = ? string that matches [a-zA-Z][a-zA-Z0-9_\-]* regex, e.g. foo-bar_1
 
 ## See also
 
-- [Monorepo support](../using-semaphore/optimization/monorepo.md)
+- [Monorepo support](../using-semaphore/optimization/monorepo)
 - [Environment variable reference](./env-vars)
-- [Pipeline YAML reference](./pipeline-yaml.md)
+- [Pipeline YAML reference](./pipeline-yaml)

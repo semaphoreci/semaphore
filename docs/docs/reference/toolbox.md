@@ -206,7 +206,7 @@ The checkout command uses the following environment variables.
 
 - [`SEMAPHORE_GIT_URL`](./env-vars#git-url)
 - [`SEMAPHORE_GIT_DIR`](./env-vars#git-dir)
-- [`SEMAPHORE_GIT_SHA`](./env-vars#git-sha)
+- [`SEMAPHORE_GIT_SHA`](./env-vars#commit-sha)
 - [`SEMAPHORE_GIT_DEPTH`](./env-vars#git-depth)
 - [`SEMAPHORE_GIT_CACHE_AGE`](./env-vars#git-cache-age) (only available after using `--use-cache`)
 - [`SEMAPHORE_GIT_CACHE_KEEP`](./env-vars#git-cache-keep) (only available after using `--use-cache`)

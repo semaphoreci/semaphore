@@ -333,7 +333,7 @@ spec:
 
 - [Jobs YAML reference](./jobs-yaml)
 - [Pipeline YAML reference](./pipeline-yaml)
-- [Secrets YAML reference](./secrets-yaml)
+- [Secrets YAML reference](./secret-yaml)
 - [Deployment targets YAML reference](./deployment-target-yaml)
 - [Agents YAML reference](./agent-yaml)
 - [Notifications YAML reference](./notifications-yaml)
