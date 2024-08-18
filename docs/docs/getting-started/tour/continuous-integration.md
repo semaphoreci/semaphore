@@ -26,7 +26,7 @@ For this part of the tutorial you will need:
 - The `git` command line tool
 - The [Golang toolchain](https://go.dev)
 
-## Something to build
+## Something to build {#demo}
 
 In most cases, the first step in CI is building the application. This proves that the main trunk is not broken and usually gives us a target to test. 
 
@@ -102,7 +102,7 @@ So, our first task is to have something to build. In this case, we'll build a "H
 </Steps>
 
 
-## The build job
+## The build job {#build}
 
 Now that we have something to build, let's create a build job in Semaphore.
 
@@ -127,9 +127,9 @@ Now that we have something to build, let's create a build job in Semaphore.
 
 </Steps>
 
-The build should finish without error. If at any point you come into a problem, see [debugging with SSH](#debug).
+The build should finish without error. If at any point you come into a problem, see [debugging with SSH](#sh).
 
-## Keeping the build artifact
+## Keeping the build artifact {#artifact}
 
 A very important fact about Semaphore jobs is that the CI environment is scrapped once the job ends. This means that the compiled binary we built is completely lost when the workflow finishes.
 

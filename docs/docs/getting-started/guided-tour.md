@@ -12,10 +12,6 @@ import Steps from '@site/src/components/Steps';
 
 Welcome 👋 Thank you for trying out Semaphore. 
 
-**What is Semaphore?**
-
-Semaphore is a cloud-based [Continuous Integration](https://semaphoreci.com/continuous-integration) (CI) platform that's fast, easy to use, and incredibly scalable.
-
 This 20-minute tutorial will give you 80% of the time needed to use Semaphore effectively. No strings attached. No credit card is required. This is our promise.
 
 **What will you learn?**

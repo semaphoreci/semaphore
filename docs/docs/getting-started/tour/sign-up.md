@@ -25,18 +25,6 @@ If you already have or have been invited to an organization, you can skip direct
 
 :::
 
-## Why do I need CI/CD?
-
-Continuous Integration (CI) is an automated process of regularly merging code changes, running tests, and providing rapid feedback to developers.
-
-CI enables developers to frequently merge code changes, automatically test them, and detect integration issues early, leading to faster development cycles and higher-quality software.
-
-![CI Workflow](./img/ci-workflow.jpg)
-
-Continuous Delivery and Continuous Deployment extend this process by providing a package you can release and deploy to the world. The whole thing is automated and can be set up to not need human intervention. No more stressing over deployment or releases!
-
-![CD Workflow](./img/cd-workflow.jpg)
-
 ## Prerequisites
 
 To create your Semaphore account you need a [GitHub](https://github) or [BitBucket](https://bitbucket.org) account.

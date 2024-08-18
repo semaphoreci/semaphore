@@ -29,7 +29,7 @@ For this part of the tutorial you will need:
 
 The goal is to automatically deploy the built binary to the GitHub repository so people can download and enjoy our program. Next, we're going to add a job that automatically uploads the binary to the repository every time we tag a release with `git tag`
 
-## Creating a Secret
+## Creating a Secret {#secret}
 
 In order to upload files from the Semaphore job we need to authenticate with your GitHub account. For that, we'll need an access token.
 
@@ -55,7 +55,7 @@ To create a secret, follow these steps:
 
 </Steps>
 
-## Release job
+## Release job {#release}
 
 Now we're ready to add a release job. We can use the [gh command line tool](https://cli.github.com/) to automate the release from a Semaphore job.
 
@@ -93,7 +93,7 @@ This works, however, there are quite a few problems with this approach:
 
 What we need is to split the pipeline in two: Continuous Integration and Continuous Delivery. For that, we need to learn about *promotions*.
 
-## What are promotions?
+## What are promotions? {#promotion}
 
 By now, you know what a pipeline is. But you might not know that a project can have multiple pipelines. Logically, every pipeline has one goal or fulfills one task: test, release, deploy, and so forth. 
 
@@ -146,7 +146,7 @@ The push will initiate a new workflow related to the tag we just pushed. Check t
 
 If you check your GitHub repository, you should now find a release correctly tagged as "v1.0.0"
 
-## Automating releases
+## Automating releases {#autopromotion}
 
 Releasing packages by pressing a button is great. But you know what's even better? Doing it automatically. Especially if you have a very robust test suite that gives you confidence in the build.
 
