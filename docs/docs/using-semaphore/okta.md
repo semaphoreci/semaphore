@@ -25,6 +25,12 @@ To use the Okta integration you need the following:
 - A [Semaphore organization](./organizations)
 - Admin access to Okta and Semaphore
 
+:::warning
+
+If you set up and later remove the Okta integration, all the users created during the integration are deleted from Semaphore.
+
+:::
+
 ## How to integrate Okta with Semaphore
 
 The process of integrating Okta with Semaphore involves three steps:
@@ -153,6 +159,8 @@ The last step is to enable provisioning on Okta. To do this:
 
 ## How to create users and groups in Okta
 
+User creation is not immediate. There can be a few minutes of lag before an added user appears on Semaphore. On big organizations the sync process can take up to one hour.
+
 To create a user or a group in Semaphore using the Okta integration, follow these steps:
 
 1. Go to your Okta organization and enter the admin dashboard
@@ -174,7 +182,7 @@ You can see the number of connected users in the **Okta integration** settings p
 
 :::note
 
-Provisioning happens in the background and in batches. If your organization is big, the provisioning process may take some time up to one hour.
+Okta can lead to duplicate users when the integration is added on an organization that already had users. To solve the duplicated users, see the [troubleshooting section](#troubleshooting).
 
 :::
 
@@ -193,6 +201,15 @@ To log in using SSO, follow these steps:
 Semaphore asks new users logging in via SSO to [connect their GitHub](./connect-github) or [connect their BitBucket](./connect-bitbucket) accounts. This is an optional step. Users can click on **Connect** to link their BitBucket or GitHub accounts to Semaphore.
 
 ![Connect Git](./img/connect-git.jpg)
+
+## Troubleshooting duplicated users {#troubleshooting}
+
+Semaphore does not check if users added via Okta already exist on Semaphore. This can lead to user duplication. To solve this issue there are two options:
+
+- Send us a list of duplicate users to the Semaphore teamm and we'll fix it for you
+- Ensure users set up their corporate email addresses in their GitHub or BitBucket accounts. Once done, please get in touch with us to run the re-sync process and remove duplicates.
+
+In either case, please contact us at `support@semaphoreci.com` for help.
 
 ## See also
 
