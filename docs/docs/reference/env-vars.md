@@ -103,8 +103,8 @@ Describes the ending state of the job. The possible states are:
 Describes why the current job was created. The possible values are:
 
 - `pipeline_job`: a regular job created by Semaphore as part of the workflow
-- `project_debug_job`: job created with [`sem debug project`](./semaphore-cli#debug-project)
-- `debug_job`: job created with [`sem debug job`](./semaphore-cli#debug-job)
+- `project_debug_job`: job created with [`sem debug project`](./semaphore-cli#sem-debug-project)
+- `debug_job`: job created with [`sem debug job`](./semaphore-cli#sem-debug)
 
 ### Organization URL {#organization-url}
 

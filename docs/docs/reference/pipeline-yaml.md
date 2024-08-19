@@ -338,7 +338,7 @@ There are two queueing strategies:
 - **Direct assignment**: assigns all pipelines from the current pipeline file to a shared queue
 - **Conditional assignment**: defines assignment rules based on conditions
 
-See [Pipeline Queues](../using-semaphore/pipelines#queues) for more information.
+See [Pipeline Queues](../using-semaphore/pipelines#pipeline-queues) for more information.
 
 ### Direct assignment {#direct-in-queue}
 
@@ -371,7 +371,7 @@ The evaluation is stopped as soon as one of the `when` conditions is evaluated a
 
 This means that the order of the items in the array is important and that items should be ordered so that those with the most specific conditions are defined first, followed by those with more generalized conditions (e.g. items with conditions such as `branch = 'develop'` should be ordered before those with `branch != 'master'`).
 
-If none of the conditions are evaluated as true, the [default queue behavior](../using-semaphore/pipelines#queues) is used.
+b
 
 ## auto_cancel {#auto-cancel}
 

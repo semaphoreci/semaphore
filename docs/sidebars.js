@@ -20,14 +20,28 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'Get Started',
-        description: 'Learn Semaphore in 5 minutes!',
+        description: 'Your first steps with Semaphore',
         // slug: '/getting-started',
         keywords: ['quickstart'],
         // image: '/img/docusaurus.png',
       },
       items: [
-          'getting-started/howto',
-          'getting-started/guided-tour',
+          'getting-started/about-semaphore',
+          {
+            type: 'category',
+            label: 'Guided Tour',
+            link: {
+              type: 'doc',
+              id: 'getting-started/guided-tour'
+            },
+            collapsed: false,
+            items: [
+              'getting-started/tour/sign-up',
+              'getting-started/tour/hello-world',
+              'getting-started/tour/continuous-integration',
+              'getting-started/tour/continuous-delivery'
+            ]
+          },
         ],
     },
   ],

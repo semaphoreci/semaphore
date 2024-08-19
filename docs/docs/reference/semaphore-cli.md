@@ -180,7 +180,7 @@ sem create secret example-secret \
  -f /Users/John/hello.txt:/home/semaphore/hello.txt
 ```
 
-You can supply the `-p <project-name>` to create the secret as [project level secret](../using-semaphore/secrets#project-secrets).
+You can supply the `-p <project-name>` to create the secret as [project level secret](../using-semaphore/secrets#create-project-secrets).
 
 :::info
 
