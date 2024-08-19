@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Projects are repositories [continuosly integrated](https://semaphoreci.com/continuous-integration) through Semaphore. A project links your Git repository with Semaphore, so it can run [jobs](./jobs) to test, build, or deploy your application. 
+Projects are codebases developed and managed through Semaphore [Continuous Integration](https://semaphoreci.com/continuous-integration). A project links your Git repository with Semaphore, so it can run [jobs](./jobs) to test, build, or deploy your application. 
 
 This page explains how to set up projects and what settings are available.
 
-## Create a project {#project-creation}
+## Create a project {#create-project}
 
 <VideoTutorial title="Create a Project" src="https://www.youtube.com/embed/Y4Ac5EJpzEc?si=INZVrNw4LTWg3l6k"/>
 
@@ -40,7 +40,7 @@ Go to Semaphore, press **+Create New** 1 and then press **Choose repository**
     ![Select repository](./img/create-project-2.jpg)
     </div>
     </details>
-3. [Admins and Owners](./rbac#org) may optionally invite repository memebrs to your Semaphore organization and project. Press **Continue**
+3. Optionally, [add people](./organizations#people) to the project. Press **Continue**
     <details>
     <summary>Show me</summary>
     <div>
@@ -120,85 +120,30 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 </TabItem>
 </Tabs>
 
-## How to add people {#people}
+## Workflow triggers {#triggers}
 
-Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level.
+The following actions in the repository can trigger Semaphore to start the project's pipelines.
 
-You can only add people to the project if:
+- Pushing commits into any branch
+- Pushing Git tags
+- Creating pull requests from the same repository
+- Creating pull requests originating from a forked repository
+- Updating any of the project's pipelines using the [visual editor](./jobs#workflow editor)
+- Pressing the Run button on the Semaphore website
+- Requesting a re-run [using the API](../openapi-spec/workflows-reschedule)
+- Scheduling workflows [using Tasks](./tasks)
 
-- The person has been already invited to your Semaphore organization. Only [Admins and Owners](./rbac#org) can do this
-- The person already has access to the GitHub or BitBucket repository
+The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
 
-People added to the project can take actions according to their [project-level permisions](./rbac#project). To add a person, open the project on Semaphore and go to the **People** tab:
+### How pull requests are handled {#pr}
 
-1. Press **Add People**
-2. Select the user from the list of options
-3. Select the role
-4. Press **Add Selected**
-
-![Adding a member to the project](./img/add-user-2.jpg)
-
-If none of the pre-defined roles suit your needs, you can create [custom project roles](#custom).
+Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
 
 :::note
 
-The people you add during [project creation](#project-creation) are assigned roles depending on their permission level on the repository. See [project roles](./rbac#project) to learn how repository roles are mapped to project roles.
+Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
 
 :::
-
-## Project roles {#project-roles}
-
-Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:
-
-1. Open the Organization **Settings** menu
-2. Select **Roles**
-    ![Settings Role location](./img/settings-roles.jpg)
-3. Scroll down to **Project Roles**
-4. Press the eye button next to the role you want to examine
-
-The actions with enabled checkbox are allowed for that role.
-
-![Project admin allowed actions](./img/project-admin-roles.jpg)
-
-### Custom project roles {#custom}
-
-Create custom roles to give your users the precise permissions they need. 
-
-1. Open the Organization **Settings** menu
-2. Select **Roles**
-3. Scroll down to **Project Roles**
-4. Press **New Role**
-5. Give a name a description to the new role
-6. Enable the permissions allowed to the role. You can use the search box to narrow down options
-7. Press **Save changes**
-
-![Creating a new project role](./img/create-custom-project-role.jpg)
-
-## How to change people roles {#people-roles}
-
-To change the role for the project, open your project and go to the **People** tab:
-
-1. Press the **Change role** next to the project member
-2. Select the new role
-
-![Changing a members role](./img/change-role.jpg)
-
-## How to add groups to projects {#groups-projects}
-
-<Available plans={['Scaleup']}/>
-
-Add an [organization group](./organizations#add-groups) to your project to grant all group members access to the project.
-
-To add a group to a project, open the project on Semaphore and go to the **People** tab:
-
-1. Press **Add Groups**
-2. Type the name of an existing group
-3. Select the role
-4. Press **Add Selected**
-
-The group members are granted access to the group and gain the permissions inherited from the selected role.
-
-![Add a group to the project](./img/add-group-to-project.jpg)
 
 ## Project tabs {#manage-projects}
 
@@ -210,33 +155,89 @@ Project members can view or manage the following project elements:
 - **Artifacts**: shows the [project-level artifacts](./artifacts#projects) and [retention policy](./artifacts#retention)
 - **Tasks**: shows the [tasks](./tasks)
 - **Flaky Tests**: shows the [flaky tests](./tests/flaky-tests) detected in the project
-- **People**: shows the [project members](#people)
+- **People**: shows or changes the [project members](#people)
 - **Settings**: shows the [project-level settings](#settings)
 
 ![Project tabs](./img/project-tabs.jpg)
+
+## How to add/remove people to the project {#people}
+
+:::note
+
+You must add individuals to your Git repository and to your [Semaphore organization](./organizations#people) before you can add them to your project.
+
+:::
+
+Open your project and go to the **People** tab
+
+1. Press **Add People**
+2. Select the user from the list of options
+3. Select the role
+4. Press **Add Selected**
+
+![Adding a member to the project](./img/add-user-2.jpg)
+
+See [project roles](./rbac#project-roles) for more information what actions can each role perform.
+
+### How to change permissions {#people-roles}
+
+Open your project and go to the **People** tab
+
+1. Press the **Change role** next to the project member
+2. Select the new role
+
+![Changing a members role](./img/change-role.jpg)
+
+### How to change the project's owner {#owner-change}
+
+Open the [project settings](#settings), under **Project Owner** type the username and press **Change**. The user must already have been [invited to the organization](./organizations#add-people).
+
+![Changing project owner](./img/change-project-owner.jpg)
+
+:::note
+
+Transferring ownership does not automatically grant [project roles](./rbac#project) on the project. You must still manually grant the [admin role](./rbac#project-admin) to allow the new owner manage the project.
+
+:::
 
 ## Settings {#settings}
 
 The **Settings** tab in your project allows you to customize your project settings, add project-level secrets, and manage [artifacts](./artifacts)
 
-### General settings {#general}
+### Project settings {#general}
 
 In the general project settings, you can: 
 
-- Change the owner of the project. The new owner [must be already part](#people) of the project.
-- Change the visibility and make the project publicly-viewable
+- [Change the owner](#owner-change) of the project
+- Change the visibility of the project
 - Change the project name or description
 - Delete the project
 
 ![General settings](./img/project-general-settings-1.jpg)
 
-In addition, you can select when the project is triggered:
+### Workflow triggers {#settings-triggers}
 
-- **Do not run on any events** disables automatic runs on Semaphore. You can still run workflows manually or with [tasks](./tasks)
-- **Run on** lets you enable or disable running workflows on Semaphore on branches, tags, pull requests, and forked pull requests.
-- You can create an allow list for branches and tags
+The **What to build** section allows you to configure [workflow triggers](#triggers).
 
-![General settings](./img/project-general-settings-2.jpg)
+Selecting **Do not run on any events** disables all triggers, effectively pausing the project. You can, however, still run workflows manually or with [tasks](./tasks).
+
+Selecting **Run on** allows you to configure what triggers are enabled for the project.
+
+- The **Branches** option allows you to run workflows on all branches or configure an allow list with branch names. Regular expressions are supported
+- The **Tags** options work the same but for Git tags
+
+![Branch and tag triggers](./img/project-general-settings-2.jpg)
+
+- Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
+- The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
+  
+![Pull request triggers](./img/project-general-settings-3.jpg)
+
+:::note
+
+You can still approve blocked pull requests by adding a comment in the pull request containing the message `/sem-approve`. Anyone who would normally be able to run a forked pull request can also approve one.  Approving forked pull requests is limited to new comments only and is impossible for comment edits.
+
+:::
 
 ### Repository {#settings-repo}
 
@@ -256,7 +257,7 @@ To learn how to create project secrets, see the [secrets documentation page](./s
 
 Project roles: https://docs.semaphoreci.com/security/default-roles/
 
-### Badges
+### Badges {#badges}
 
 The **Badge** settings page shows you [shields](https://shields.io/) embed codes for your README or any webpage, allowing team members and users about the build status of your project.
 
@@ -269,7 +270,7 @@ To get a badge embed code:
 
 ![Using project badges](./img/project-badges.jpg)
 
-### Artifacts
+### Artifacts {#artifacts}
 
 The **Artifacts** settings page lets you configure the [artifact](./artifacts) retention policy.
 
@@ -325,7 +326,6 @@ This setting overrides the [organization-wide initialization agent](./organizati
 
 ## See also
 
-- [Role Based Access Control](./rbac)
 - [Organization pre-flight checks](./org-preflight)
 - [How to manage organizations](./organizations.md)
 - [How to configure test reports](./tests/test-reports)
