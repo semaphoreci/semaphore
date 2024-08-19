@@ -149,7 +149,7 @@ Following the link shows the complete job log.
 
 [Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
 
-The workflow always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
+The [workflow](./workflows) always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
 
 ![A workflow with 3 pipelines](./img/workflows1.jpg)
 
@@ -655,7 +655,7 @@ Queues allow you to control the order in which pipelines Semaphore can run pipel
 
 Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
-In other words, every you rerun a workflow, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
+In other words, every time you re-run a workflow, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
 
 ![Default queue behavior](./img/default-queues.jpg)
 
