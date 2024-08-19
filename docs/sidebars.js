@@ -58,6 +58,7 @@ const sidebars = {
         // image: '/img/docusaurus.png',
       },
       items: [
+        'using-semaphore/workflows',
         'using-semaphore/jobs',
         'using-semaphore/pipelines',
         'using-semaphore/artifacts',

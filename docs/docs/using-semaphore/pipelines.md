@@ -70,8 +70,7 @@ blocks:
 </TabItem>
 </Tabs>
 
-
-## Workflow execution order {#dependencies}
+## Block execution order {#dependencies}
 
 In the same way that a block is a group of [jobs](./jobs), a pipeline is a group of blocks. Pipelines connect blocks using dependencies. Semaphore derives the execution order from these dependencies.
 
@@ -153,28 +152,6 @@ The workflow always starts with the default pipeline (located at `.semaphore/sem
 ![A workflow with 3 pipelines](./img/workflows.jpg)
 
 For more information, see the [Promotions documentation](./promotions).
-
-## How to skip commits {#skip}
-
-If you don't want to start a Semaphore workflow for type one of the following options in the commit message. The skip message doesn't work on [pushed tags](./promotions#tagged).
-
-- `[ci skip]`
-- `[skip ci]`
-
-For example, this push does not trigger a Semaphore pipeline execution, it is completely ignored:
-
-```shell title="Skipping a commit"
-git add -A
-git commit -m "[skip ci] Initial commit"
-git push origin main
-```
-
-:::note
-
-Merging a pull request with the squash commit option is also ignored unless the skip message is removed manually.
-
-:::
-
 
 ## Pipeline settings {#settings}
 

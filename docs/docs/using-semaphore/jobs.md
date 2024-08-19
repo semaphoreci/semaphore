@@ -30,17 +30,17 @@ Agents can be non-ephemeral when using [self-hosted agents](./self-hosted).
 
 :::
 
-## Visual workflow editor {#workflow-editor}
+## Pipelines, blocks, and jobs {#jobs-blocks}
 
-You can define your jobs and most aspect of your workflows using the visual editor. To access the visual editor, open your [project](./projects) on the Semaphore website and press **Edit Workflow**.
+The relation between pipelines, blocks and jobs is as follows:
 
-All your changes are stored as YAML pipeline definitions on your Git repository. You can make changes using the visual editor, or edit the YAML directly by clicking on the pipeline YAML file.
+- A pipeline is made of jobs connected with dependencies
+- A block is made of one or more jobs
+- Jobs define the commands to run
 
-![Workflow editor button](./img/workflow-editor.jpg)
+![Pipeline, block and job](./img/pipeline-block-job.jpg)
 
-## Jobs and blocks {#jobs-blocks}
-
-Jobs are grouped into blocks. A job always exists inside a block and a block may contain one or more jobs. Jobs in the same block run in parallel and [share common settings](#block-settings).
+Job in the same block always run in parallel and [share common block settings](#block-settings).
 
 ## How to create a job {#job-create}
 
