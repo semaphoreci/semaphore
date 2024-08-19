@@ -10,26 +10,32 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-A workflow is the series of automated steps to build, test, release, or deploy your application. This page explains workflows in details, how they are triggered and their settings.
+A workflow is the series of teps to build, test, release, or deploy your application. This page explains workflows, how they are triggered and their settings.
+
+:::tip
 
 If this is your first time using Semaphore, check out [Guided Tour](../getting-started/guided-tour).
 
+:::
+
 ## Overview
 
-In the context of Continuous Integration and Delivery (CI/CD) a a workflow represents the automated steps or processes that define how code changes are handled from development to deployment.
+In the context of Continuous Integration and Delivery (CI/CD) a workflow implements the automation to manage development cycle from code to deployment.
 
-Workflows in Semaphore consists of one or more [pipelines](./pipelines). A pipeline typically has one goal such as build, release, or deploy. Pipelines define the sequence of tasks to achive said goal.
+Workflows in Semaphore consists of one or more [pipelines](./pipelines). A pipeline defines the sequence of task to achieve goals like build, release or deploy to production.
 
 ![Workflows in Semaphore](./img/workflows.jpg)
 
 Before you can run a workflow in Semaphore you need:
 
-- A Semaphore account connected to GitHub or BitBucket
+- A Semaphore account
 - A repository on GitHub or BitBucket
-- A [project](./projects) to link the repository with Semaphore
-- One or more [pipelines](./pipelines)
+- A Semaphore project linked to the repository
+- One or more pipelines
 
-You can see all the running and past workflows by opening your [project page](./projects#view-projects).
+The [project page](./projects#view-projects) shows all the recent workflows for the project. 
+
+![Types of workflows](./img/workflow-types.jpg)
 
 ## Visual workflow editor {#workflow-editor}
 
@@ -47,12 +53,14 @@ The following events or actions trigger workflows by default:
 
 - Pushing commits into any branch
 - Pushing Git tags
-- Creating pull requests
 - Changing any pipelines
 - Manually re-running workflows 
 - Running pipelines using [Tasks](./tasks)
 
-The defaults are meant to work for most scenarios, but you can always customize the triggers.
+Aditionally, you can configure workflows to be triggered by:
+
+- Pull requests
+- Pull request on forked repositories
 
 ### How to customize triggers {#project-triggers}
 
@@ -89,10 +97,11 @@ Selecting **Run on** allows you to configure what triggers are enabled for the p
 
 ## How to skip commits {#skip}
 
-If you don't want to start a Semaphore workflow for type one of the following options in the commit message. The skip message doesn't work on [pushed tags](./promotions#tagged).
+If you don't want to start a workflow, type one of the following strings in the commit message. 
 
 - `[ci skip]`
 - `[skip ci]`
+
 
 For example, this push does not trigger a Semaphore pipeline execution, it is completely ignored:
 
@@ -102,8 +111,9 @@ git commit -m "[skip ci] Initial commit"
 git push origin main
 ```
 
-:::note
+:::note notes
 
-Merging a pull request with the squash commit option is also ignored unless the skip message is removed manually.
+- Skip doesn't work when [pushing tags](./promotions#tagged)
+- Be careful when squashing commits as they can contain skip messages
 
 :::
