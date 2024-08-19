@@ -99,16 +99,18 @@ Before Semaphore can start running the jobs in the pipeline, the pipeline YAML f
 
 There are two types of pipelines:
 
-- **Static**: pipelines that don't require runtime evaluations. Semaphore uses the pipeline directly as is to start the workflow
-- **Dynamic**: contain elements that must be evaluated at runtime. Semaphore compiles it to generate a new pipeline that's used to start the workflow
+- **Static**: pipelines that don't require runtime evaluations. Semaphore uses the pipeline as-is
+- **Dynamic**: contain elements that must be evaluated at runtime
 
-If one or more of these elements are present, the pipeline is dynamic and must be compiled using an *initialization job*:
+The presence of one of the following elements make the pipeline dynamic.
 
-- [Change detection for monorepos](./optimization/monorepo): since Semaphore needs to evaluate the Git commit history to determine which files have changed
+- [Change detection (monorepos)](./optimization/monorepo): since Semaphore needs to evaluate the Git commit history to determine which files have changed
 - [Job matrices](./jobs#matrix): since Semaphore needs to compute all the variable permutations
 - [Parameterized promotions](./promotions#parameters): since parameter values are user-selected
 - [Organization pre-flight checks](./org-preflight): because these commands must be  executed before the pipeline begins processing
 - [Project pre-flight checks](./projects#preflight): because these commands must be executed before the pipeline begins processing
+
+Dynamic pipelines are evaluated in the initialization job.
 
 ### Initialization job {#init-job}
 
@@ -116,8 +118,8 @@ The initialization job runs in a dedicated [initialization agent](#init-agent) a
 
 1. Clones the repository using Git
 2. Compiles the YAML tree with [Semaphore Pipeline Compiler](https://github.com/semaphoreci/spc) (spc)
-3. Executes organization pre-flight checks, if any
-4. Executes project pre-flight checks, if any
+3. Executes [organization pre-flight checks](./org-preflight), if any
+4. Executes [project pre-flight checks](./projects#preflight), if any
 5. Saves the job output log
 
 :::info
@@ -128,7 +130,7 @@ The Semaphore Pipeline Compiler (spc) is an open-source component. You can find 
 
 ### How to change the init agent {#init-agent}
 
-You can change the agent that runs the initialization job in two instances:
+You can change the agent that runs the initialization job in two ways:
 
 - **Organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
 - **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
@@ -149,7 +151,7 @@ Following the link shows the complete job log.
 
 The workflow always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
 
-![A workflow with 3 pipelines](./img/workflows.jpg)
+![A workflow with 3 pipelines](./img/workflows1.jpg)
 
 For more information, see the [Promotions documentation](./promotions).
 
