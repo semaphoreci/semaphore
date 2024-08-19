@@ -10,7 +10,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-A workflow is the series of teps to build, test, release, or deploy your application. This page explains workflows, how they are triggered and their settings.
+A workflow is a series of steps to build, test, release, or deploy your application. This page explains workflows, how they are triggered, and their settings.
 
 :::tip
 
@@ -20,9 +20,9 @@ If this is your first time using Semaphore, check out [Guided Tour](../getting-s
 
 ## Overview
 
-In the context of Continuous Integration and Delivery (CI/CD) a workflow implements the automation to manage development cycle from code to deployment.
+In the context of Continuous Integration and Delivery (CI/CD) a workflow implements automation to manage the development cycle from code to deployment.
 
-Workflows in Semaphore consists of one or more [pipelines](./pipelines). A pipeline defines the sequence of task to achieve goals like build, release or deploy to production.
+Workflows in Semaphore consist of one or more [pipelines](./pipelines). A pipeline defines the sequence of tasks to achieve goals like build, release, or deploy to production.
 
 ![Workflows in Semaphore](./img/workflows.jpg)
 
@@ -39,13 +39,13 @@ The [project page](./projects#view-projects) shows all the recent workflows for 
 
 ## Visual workflow editor {#workflow-editor}
 
-You can define most aspect of your workflows using the visual editor. 
+You can define most aspects of your workflows using the visual editor. 
 
 To access the editor, open one of your projects on and press **Edit Workflow**. All your changes are stored as YAML pipeline definitions on your Git repository. You can make changes using the visual editor, or edit the YAML directly by clicking on the pipeline YAML file.
 
 ![Workflow editor button](./img/workflow-editor.jpg)
 
-See the [jobs page](./jobs) to learn how define jobs and blocks.
+See the [jobs page](./jobs) to learn how to define jobs and blocks.
 
 ## Workflow triggers
 
@@ -57,7 +57,7 @@ The following events or actions trigger workflows by default:
 - Manually re-running workflows 
 - Running pipelines using [Tasks](./tasks)
 
-Aditionally, you can configure workflows to be triggered by:
+Additionally, you can configure workflows to be triggered by:
 
 - Pull requests
 - Pull request on forked repositories
@@ -71,7 +71,7 @@ Triggers are configured in the [project settings](./projects#general). To change
 1. Open your project on Semaphore
 2. Go to the **Settings** tab
 
-    ![General Settings](./img/project-settings.jpg)
+ ![General Settings](./img/project-settings.jpg)
 
 3. In the **General** section scroll down to **What to build**
 4. Change the settings and press **Save**

@@ -8,39 +8,37 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-Jobs get stuff done. This page explains how jobs and blocks work, how you can configure them, and what settings are available.
+Jobs get stuff done. This page explains to create and configure jobs.
 
 ## Job lifecycle {#job-lifecycle}
 
-Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents are ephemeral Docker containers, Kubernetes pods, or x86/ARM VMs running Linux, macOS, or [Windows](./self-hosted-install#windows).
+Jobs run arbitrary shell commands inside a dedicated environment called an [agent](./pipelines#agents). Agents can take many forms, including ephemeral Docker containers, Kubernetes pods, or x86/ARM Virtual Machines.
 
 When a job is scheduled, the following happens:
 
-1. **Allocate agent**: pick a suitable agent from the warm pool of agents
+1. **Allocate agent**: pick a suitable agent from the pool of warm agents
 2. **Initialize**: execute setup steps such as importing environment variables, loading SSH keys, mounting [secrets](./secrets), and installing the [Semaphore toolbox](#toolbox)
 3. **Run commands**: execute your commands
 4. **End job and save logs**: the job activity log is saved for future inspection
-5. **Destroy agent**: the used agent is *discarded*, along with all its contents
+5. **Destroy agent**: the used agent is *discarded* along with all its contents
 
 ![Job Lifecycle](./img/job-lifecycle.jpg)
 
 :::note
 
-Agents can be non-ephemeral when using [self-hosted agents](./self-hosted).
+You can get non-ephemeral agents with [self-hosted agents](./self-hosted).
 
 :::
 
-## Pipelines, blocks, and jobs {#jobs-blocks}
+## Jobs, blocks and pipelines {#jobs-blocks}
 
-The relation between pipelines, blocks and jobs is as follows:
+Semaphore uses jobs, blocks and pipelines to structure the [workflow](./workflows).
 
-- A pipeline is made of jobs connected with dependencies
-- A block is made of one or more jobs
-- Jobs define the commands to run
+- **Job**: the minimum unit of work, a sequence of commands. Every job exists inside a block
+- **Block**: contains one of more jobs. Jobs in the same block run concurrently and [share properties](#block-settings)
+- **Pipeline**: a group of blocks connected by dependencies. A workflow may span multiple pipelines
 
 ![Pipeline, block and job](./img/pipeline-block-job.jpg)
-
-Job in the same block always run in parallel and [share common block settings](#block-settings).
 
 ## How to create a job {#job-create}
 
@@ -100,13 +98,13 @@ Semaphore automatically starts the job when the file is saved. Click the running
 
 :::tip
 
-Do not use `exit` in the job commands. Doing so terminates the terminal session and marks the job as failed. If you want force a non-exit status code use `return` instead.
+Do not use `exit` in the job commands. Doing so terminates the terminal session and marks the job as failed. If you want force a non-exit status code use `return <int>` instead.
 
 :::
 
 ### Run jobs in parallel {#jobs-parallel}
 
-Jobs added to the same block not only [share settings](#block-settings), but also *run in parallel*.
+Jobs in the same block always run in parallel.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -155,15 +153,15 @@ blocks:
 </TabItem>
 </Tabs>
 
-:::info
+:::note
 
-You can't share files between jobs living in the same block. This is because each job is allocated to a separate [agent](./pipelines#agents).
+You can't share files between jobs living in the same block.
 
 :::
 
 ### Run jobs in sequence {#jobs-sequence}
 
-If you want to run jobs one after the other, i.e. not in parallel, you must define them in separate blocks.
+If you want to run jobs in sequence, i.e. not in parallel, you must define them in separate blocks.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -213,18 +211,17 @@ blocks:
 
 :::tip
 
-All files are lost when the job ends. This happens because each jobs are allocated to different agents. If you want to share files between jobs, use the [checkout](#checkout) and [artifact](#artifact) commands.
+All files are lost when the job ends. This happens because each jobs are allocated to different agents. Use [cache](#cache) or [artifact](#artifact) to preserve files and directories between jobs.
 
 :::
 
-### Connecting blocks
+### Using dependencies
 
-A group of connected blocks constitutes a *pipeline*. We use dependencies to control the order in which blocks run. Dependencies are explained in detail in the [pipelines page](./pipelines#dependencies).
-
+You can use block depedencies to control the execution flow of the workflow. See [block dependencies](./pipelines#dependencies) to learn more.
 
 ## Semaphore toolbox {#toolbox}
 
-The [Semaphore toolbox](../reference/toolbox) is a set of command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
+The [Semaphore toolbox](../reference/toolbox) is a set of built-in command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
 
 The most-used tools in the Semaphore toolbox are: 
 
@@ -279,7 +276,7 @@ blocks:
 <details>
  <summary>How does checkout work?</summary>
  <div>
- During agent initialization, Semaphore sets four [environment variables](#environment-variables) that define how checkout works:
+ Semaphore defines four [environment variables](#environment-variables) to control how checkout works:
  - [`SEMAPHORE_GIT_URL`](../reference/env-vars#git-url): the URL of the repository (e.g. git@github.com:mycompany/myproject.git).
  - [`SEMAPHORE_GIT_DIR`](../reference/env-vars#git-dir): the path where the repository is to be cloned (e.g. `/home/semaphore/myproject`)
  - [`SEMAPHORE_GIT_SHA`](../reference/env-vars#commit-sha): the SHA key for the HEAD used for `git reset -q --hard`
@@ -297,7 +294,7 @@ Using `cache` in [self-hosted agents](./self-hosted) requires additional setup s
 
 The main function of the [cache](../reference/toolbox#cache) is to speed up job execution by caching downloaded files.
 
-The `cache store` and `cache restore` commands can detect well-known files and folders. Let's say we want to speed up `npm install`, here is how to do it:
+The `cache store` and `cache restore` commands can detect well-known dependency managers and persist files autoatically. Let's say we want to speed up `npm install`, here is how to do it:
 
 ```shell
 checkout
@@ -310,8 +307,8 @@ cache store
 
 The highlighted lines show how to use the cache:
 
-- **cache store**: saves `node_modules` to non-ephemeral storage. It knows it's a Node project because it found `package.json` in the working folder.
-- **cache restore**: retrieves the cached copy of `node_modules` to the working directory.
+- **cache store**: saves `node_modules` to non-ephemeral storage. It knows it's a Node project because it found `package.json` in the working folderx.
+- **cache restore**: retrieves the cached copy of `node_modules` to the working directoryx.
 
 Cache is not limited to Node.js. It works with several languages and frameworks. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments](../reference/toolbox#cache)
 
@@ -359,7 +356,7 @@ artifact push project hello.exe
     Semaphore uses three separate namespaces of artifacts: job, workflow, and project. The syntax is:
 
     ```shell
-    artifact pull|push job|workflow|project /path/to/file/or/folder
+    artifact <pull|push> <job|workflow|project> </path/to/file/or/folder>
     ```
 
     The namespace used controls at what level the artifact is accessible:
@@ -376,7 +373,7 @@ artifact push project hello.exe
 
 ## Debugging jobs {#debug-jobs}
 
-Semaphore makes it easy to troubleshoot jobs. You can debug a job [interactively with an SSH session](#ssh-into-agent) or see the job output in real-time.
+This section shows tips to detect and debug failing jobs.
 
 ### Why my job has failed? {#debug-job}
 
@@ -501,7 +498,7 @@ Port-forwarding only works for Virtual Machine-based agents. It's not available 
 
 ## Block settings {#block-settings}
 
-Block settings apply to every job in the block.
+The settings you configure on the block are applied to all the contained jobs.
 
 ### Prologue {#prologue}
 
@@ -1145,9 +1142,9 @@ See the [pipeline YAML reference](../reference/pipeline-yaml) for more details.
 
 ## Job and block limits {#limits}
 
-Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
+Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from consuming too many resources.
 
-This section describes the limits that Semaphore applies to jobs and blocks. See [pipelines limits](./pipelines#limits) to see limits that apply to pipelines.
+This section describes the limits that Semaphore applies to jobs and blocks. See [pipelines limits](./pipelines#limits) to see limits that for pipelines.
 
 ### Job duration {#job-duration}
 
@@ -1205,7 +1202,7 @@ If you have a use case in which this limit is too constraining, please contact u
 
 Job logs have a limit of 16 megabytes, which is roughly 100,000 lines. This limit is not configurable.
 
-The following message reveals that the job has exceeded the limit:
+The following log message indicates that the job has exceeded the limit:
 
 ```text
 Content of the log is bigger than 16MB. Log is trimmed.
@@ -1216,8 +1213,6 @@ You can workaround this limitation by setting the following [environment variabl
 ```text
 SEMAPHORE_AGENT_UPLOAD_JOB_LOGS=when-trimmed
 ```
-
-See the [upload-job-logs reference](../reference/self-hosted-config#upload-job-logs) for more details.
 
 ## See also
 
