@@ -866,12 +866,16 @@ blocks:
 
 ## Job parallelism {#job-parallelism}
 
-Job parallelism is a feature to multiplicate a job using parameters. When coupled with a test partitioning strategy, parallelism allows you to speed up large tests suite by horizontally scaling the tests. In other words, each job runs a portion of your tests.
+Job parallelism expands a job into multiple parallel jobs. You can use this feature to run a test suite faster by spreading the load among multiple agents.
+
+To take full advantage of job parallelism you need to partition your test suite. Semaphore does not partition tests automatically, but it enables 3rd party test runners like [Knapsack](https://github.com/KnapsackPro/knapsack) or [Semaphore Test Booster](https://github.com/renderedtext/test-boosters) (Ruby) to even the load with a partition strategy that you can configure.
+
+When coupled your own partitioning strategy, test parallelism allows you to speed up large tests suite by horizontally scaling the tests.
 
 When job parallelism is enabled two new environment variables are available in the job environment:
 
-- `SEMAPHORE_JOB_COUNT`: the total number of jobs running on the parallelism set
-- `SEMAPHORE_JOB_INDEX`: a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
+- [`SEMAPHORE_JOB_COUNT`](../reference/env-vars#job-count): the total number of jobs running on the parallelism set
+- [`SEMAPHORE_JOB_INDEX`](../reference/env-vars#job-index): a value between 1 and `$SEMAPHORE_JOB_COUNT` representing the current job instance of the parallelism set
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -1023,7 +1027,12 @@ Using job matrices causes Semaphore to run an [initialization job](./pipelines#i
 
 ## Job priority {#priority}
 
-Every job in Semaphore has an internal priority value from 0 to 100. The priority is used to decide what jobs to run when a [job limit](#limits) is reached. Jobs with higher priority run first when the organization reaches their quota limits.
+Every job in Semaphore has an internal priority value from 0 to 100. Job prioritization determines which jobs will get a machine assigned first when all agents are in use.
+
+The priority of a job matters when there are more jobs than available agents. Because paid plans do not enforce limits on the number of available agents, the job priority value is only useful in two situations:
+
+- For projects on organizations on free and open source plans. These plans enforce concurrency limits
+- For projects running on a limited number of [self-hosted agents](./self-hosted)
 
 ### Default priorities {#default-priority}
 

@@ -83,6 +83,24 @@ You can view all the job IDs using the [sem CLI](./semaphore-cli):
 
 A string with a user-supplied name for the job.
 
+### Job count {#job-count}
+
+- **Environment variable**: `SEMAPHORE_JOB_COUNT`
+- **Example**: 4
+
+Only available when [job parallelism](../using-semaphore/jobs#job-parallelism) is enabled. This variable holds the total number of jobs configured in job parallelism. 
+
+It can be used to configure a test partitioning strategy using a 3rd party test runner.
+
+### Job index {#job-index}
+
+- **Environment variable**: `SEMAPHORE_JOB_INDEX`
+- **Example**: 1
+
+Only available when [job parallelism](../using-semaphore/jobs#job-parallelism) is enabled. This is a 1-based index that represents the current job instance in parallel set. The value ranges between 1 and [`SEMAPHORE_JOB_COUNT`](#job-count).
+
+It can be used to configure a test partitioning strategy using a 3rd party test runner.
+
 ### Job result {#job-result}
 
 - **Environment variable**: `SEMAPHORE_JOB_RESULT`
