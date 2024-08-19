@@ -68,7 +68,7 @@ To connect a GitHub repository with Semaphore using OAuth, you must have admin a
 
 To create a connection using OAuth, follow these steps:
 
-1. Create a [new project](./projects#create-a-project)
+1. Create a [new project](./projects#create-project)
 2. Select the **GitHub Personal Token** tab
  ![Selecting the personal token tab](./img/oauth-personal-token.jpg)
 3. Choose **Public repositories** or **All repositories**

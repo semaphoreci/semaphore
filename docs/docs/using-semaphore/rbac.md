@@ -60,7 +60,7 @@ Among other actions, members can:
 - View and manage [secrets](./secrets)
 - View and manage [self-hosted agents](./self-hosted)
 
-For the full list of member permissions, see [organization roles](./organizations#roles).
+For the full list of member permissions, see [organization roles](./organizations#org-roles).
 
 ### Admin {#org-admin}
 
@@ -78,7 +78,7 @@ In addition to the [member permissions](#org-member), admins can:
 - View and manage [pre-flight checks](./org-preflight)
 - View and manage [usage policy for secrets](./secrets#secret-access-policy)
 
-For the full list of admin permissions, see [organization roles](./organizations#roles).
+For the full list of admin permissions, see [organization roles](./organizations#org-roles).
 
 ### Owner {#org-owner}
 
@@ -86,7 +86,7 @@ The owner of the organization is the person that created it. An organization can
 
 Only Admins and Owners can invite users to the organization.
 
-For the full list of owner permissions, see [organization roles](./organizations#roles).
+For the full list of owner permissions, see [organization roles](./organizations#org-roles).
 
 ### Organization groups {#org-groups}
 
@@ -128,7 +128,7 @@ Readers have:
 - View project notifications
 - View project [pre-flight checks](./projects#preflight)
 
-For the full list of reader permissions, see [project roles](./project#roles).
+For the full list of reader permissions, see [project roles](./projects#project-roles).
 
 ### Contributor {#project-contributor}
 
@@ -142,7 +142,7 @@ In addition to the [reader permisions](#project-reader), contributors can:
 - Manage [test reports](./tests/test-reports) and [flaky tests](./tests/flaky-tests)
 - Manage [tasks](./tasks)
 
-For the full list of contributor permissions, see [project roles](./project#roles).
+For the full list of contributor permissions, see [project roles](./projects#project-roles).
 
 ### Admin {#project-admin}
 
@@ -154,8 +154,8 @@ In addition to the pre-defined roles provided by Semaphore, you can create your 
 
 To manage custom roles, see the following pages:
 
-- [How to manage organization custom roles](./organizations#custom-roles)
-- [How to manage project custom roles](./project#custom-roles)
+- [How to manage organization custom roles](./organizations#custom)
+- [How to manage project custom roles](./projects#custom-roles)
 
 ## See also
 

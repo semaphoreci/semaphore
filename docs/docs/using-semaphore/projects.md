@@ -177,7 +177,7 @@ Open your project and go to the **People** tab
 
 ![Adding a member to the project](./img/add-user-2.jpg)
 
-See [project roles](./rbac#project-roles) for more information what actions can each role perform.
+See [project roles](./rbac#project) for more information what actions can each role perform.
 
 ### How to change permissions {#people-roles}
 
@@ -187,6 +187,29 @@ Open your project and go to the **People** tab
 2. Select the new role
 
 ![Changing a members role](./img/change-role.jpg)
+
+### How to view pre-defined roles {#project-roles}
+
+Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+    ![Settings Role location](./img/settings-roles.jpg)
+3. Scroll down to **Project roles**
+4. Press the eye button next to the role you want to examine
+
+The actions with enabled checkbox are allowed for that role.
+
+### How to create custom roles {#custom-roles}
+
+Create custom roles to give your users the precise permissions they need. 
+
+1. Open the Organization **Settings** menu
+2. Select **Roles**
+3. On the **Project Roles** section, press **New Role**
+4. Give a name a description to the new role
+5. Enable the permissions allowed to the role. You can use the search box to narrow down options
+6. Press **Save changes**
 
 ### How to change the project's owner {#owner-change}
 

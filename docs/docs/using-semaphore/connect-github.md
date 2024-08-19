@@ -35,7 +35,7 @@ To connect a repository via the GitHub App, you must:
 
 To create a connection using [GitHub App](https://github.com/apps/semaphore-ci-cd), follow this steps:
 
-1. Create a [new project](./projects#create-a-project)
+1. Create a [new project](./projects#create-project)
 2. Select the **GitHub App** tab
  ![Selecting the GitHub app tab](./img/github-app.jpg)
 3. Press **Give access to more repositories**
