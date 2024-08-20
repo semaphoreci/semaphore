@@ -216,6 +216,57 @@ Use the proper verb to act on elements:
 
 We use some non-standard React components and Markdown extensions.
 
+### Steps
+
+We have a `<Steps>` component to decorate and make **numbered** step guides more readable.
+
+To use this component, first import it:
+
+```js
+import Steps from '@site/src/components/Steps';
+```
+
+To use it, wrap the normal numbered markdown lists in `<Steps>`. For example:
+
+```md
+
+<Steps>
+
+1. Do this
+2. Then do this other thing
+3. Finally, you can use that
+
+</Steps>
+
+```
+
+You can also put elements between numbered bullet points using indentation (at least 4 spaces). You can intercalate unnumbered lists, pictures, and any other elements. For example:
+
+```md
+
+1. Open your project on Semaphore
+2. Go to the **Settings** tab
+
+    ![Description](image.jpg)
+
+3. In the **General** section scroll down to **What to build**
+
+    - Instruction 1
+    - Instruction 2
+
+4. Change the settings and press **Save**
+
+    <details>
+    <summary>Show me</summary>
+    <div>
+    Other elements are supported
+    </div>
+    </details>
+
+5. Finish
+
+```
+
 ### Tabs
 
 Use tabs to show multiple ways of achieving the same task. For example, in the [jobs page](http://localhost:3000/docs/using-semaphore/jobs) we use tabs to show how to configure jobs using the visual editor and the YAML. In the [tasks page](http://localhost:3000/docs/using-semaphore/tasks) we use tabs to show how to create a task using the UI and the CLI.
