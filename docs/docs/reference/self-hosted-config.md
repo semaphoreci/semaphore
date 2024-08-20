@@ -64,12 +64,12 @@ A pre-signed AWS STS GetCallerIdentity URL can also be used if the [agent type](
 
 This is the upper limit for the autoscaling group for a given agent type. When defined, no more that this number of agents for the type will be spun up.
 
-### Autoscaler min size {#as-mix-size}
+### Autoscaler min size {#asg-min-size}
 
-- **argument name**: `asg-max-size`
+- **argument name**: `asg-min-size`
 - **mandatory**: no
 - **default value**: undefined
-- **environment variable**: `SEMAPHORE_AGENT_ASG_MAX_SIZE`
+- **environment variable**: `SEMAPHORE_AGENT_ASG_MIN_SIZE`
 
  This is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0, this number of agents will be kept idling and warm.
 

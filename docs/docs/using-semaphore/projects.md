@@ -419,7 +419,7 @@ A deploy key can be invalidated if:
 
 - it was manually removed from the repository
 - access via OAuth or GitHub App was revoked
-- the repository's original owner no longer has access to it (only for projects added [via OAuth](#oauth))
+- the repository's original owner no longer has access to it (only for projects added [via OAuth](./connect-github-oauth)
 
 :::
 
