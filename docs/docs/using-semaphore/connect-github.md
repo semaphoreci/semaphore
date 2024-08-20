@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 GitHub users need to provide access to Semaphore so it can read their repositories.
 
@@ -19,11 +20,15 @@ Semaphore accesses your GitHub repositories using the [Semaphore GitHub App](htt
 
 To install the GitHub App in your organization:
 
+<Steps>
+
 1. Navigate to [Semaphore GitHub App](https://github.com/apps/semaphore-ci-cd)
 2. Press **Install**
 3. Select an organization
 4. Select the repository access, you can grant access to all or some of your repositories
- ![Install GitHub App](./img/install-ghapp.jpg)
+    ![Install GitHub App](./img/install-ghapp.jpg)
+
+</Steps>
 
 ### Connect repositories via GitHub App {#ghapp}
 
@@ -35,13 +40,17 @@ To connect a repository via the GitHub App, you must:
 
 To create a connection using [GitHub App](https://github.com/apps/semaphore-ci-cd), follow this steps:
 
+<Steps>
+
 1. Create a [new project](./projects#create-project)
 2. Select the **GitHub App** tab
- ![Selecting the GitHub app tab](./img/github-app.jpg)
+    ![Selecting the GitHub app tab](./img/github-app.jpg)
 3. Press **Give access to more repositories**
- ![Give access button for GitHub app](./img/github-app-give-access.jpg)
+    ![Give access button for GitHub app](./img/github-app-give-access.jpg)
 4. Select **All repositories** or pick individual repositories
 5. Select a repository from the list and finish the [project setup](./projects)
+
+</Steps>
 
 :::note
 
@@ -55,10 +64,14 @@ Projects [connected via the OAuth App](./connect-github-oauth) can be transferre
 
 To transfer projects, follow these steps:
 
+<Steps>
+
 1. Open the Semaphore [project](./projects) you want to transfer
 2. Go to [Project Settings](./projects#settings) and select **Repository**
 3. Press the button **Switch to GitHub App**
- ![Switching from OAuth to GitHub App](./img/switch-ghapp.jpg)
+    ![Switching from OAuth to GitHub App](./img/switch-ghapp.jpg)
+
+</Steps>
 
 If the project was transferred successfully, you should get a message that says **Project connection type switched to GitHub app**.
 
@@ -70,10 +83,14 @@ If your project is using a personal token to connect to the repository, you will
 
 If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between GitHub and Semaphore.
 
+<Steps>
+
 1. Navigate to your [Semaphore account](https://me.semaphoreci.com/account)
 2. Read the status next to GitHub
- ![Connection status green](./img/account-gh-bb-access.jpg)
+    ![Connection status green](./img/account-gh-bb-access.jpg)
 3. If the status is disconnected, click on **Grant public access** or **Grant private access**
+
+</Steps>
 
 You can check and change the permissions of your OAuth App connection in the [Semaphore OAuth page](https://github.com/settings/connections/applications/328c742132e5407abd7d).
 
@@ -89,9 +106,13 @@ fatal: Could not read from remote repository.
 ```
 To verify the status of a deploy key:
 
+<Steps>
+
 1. Open your [project settings](./projects#settings)
 2. If there isn't a green check next to **Deploy Key**, the key is invalid
- ![Checking the status of the deploy key](./img/deploy-key.jpg)
+![Checking the status of the deploy key](./img/deploy-key.jpg)
+
+</Steps>
 
 To deploy a new key, click on **Regenerate**
 
@@ -111,9 +132,13 @@ Semaphore uses a webhook to detect changes in your repository. When the webhook 
 
 To verify the status of a webhook:
 
+<Steps>
+
 1. Open your [project settings](./projects#settings)
 2. If there isn't a green check next to **Deploy Key**, the key is invalid
- ![Checking the status of the deploy key](./img/webhook.jpg)
+    ![Checking the status of the deploy key](./img/webhook.jpg)
+
+</Steps>
 
 To fix the broken webhook, click on **Regenerate**. This should generate a new webhook and repair the connection between Semaphore and GitHub.
 
@@ -128,10 +153,14 @@ There are several actions that can break the connection between GitHub and Semap
 
 When this happens, you must update the URL of the repository in Semaphore. To do this:
 
+<Steps>
+
 1. Open your [project settings](./projects#settings)
 2. Type the new repository URL
 3. Press **Change**
- ![Changing the repository URL in Semaphore](./img/repository-url.jpg)
+    ![Changing the repository URL in Semaphore](./img/repository-url.jpg)
+
+</Steps>
 
 After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
 
@@ -143,10 +172,14 @@ To authorize Semaphore to access repositories hosted on GitHub SSO, you need to 
 
 Here is how you authorize Semaphore:
 
+<Steps>
+
 1. Navigate to your [GitHub Profile Settings](https://github.com/settings/profile)
 2. On the left-hand side menu, click **Applications**
 3. Open the **Authorized OAuth Apps** tab
 4. Under "Organization access", choose your private organization and click either **Grant** or **Request Access**
+
+</Steps>
 
 If you click "Request Access" in step 5, the admin of the organization will receive an email showing your request.
 

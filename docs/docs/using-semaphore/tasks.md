@@ -6,6 +6,9 @@ description: Schedule pipelines
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Available from '@site/src/components/Available';
+import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Task allow you to trigger specific [pipelines](./pipelines) on a schedule or manually. This page explains how to create and run tasks, and what settings are available.
 
@@ -32,58 +35,47 @@ Scheduled tasks have some limitations:
 
 ## How to create a task {#manage-tasks}
 
-To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI.
-
-TODO: add an API tab to manage tasks via the API with examples. link to the main API ref
+To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI. Additionally, you can use the [Semaphore Task API](../openapi-spec/tasks-list) to manage tasks.
 
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">
 
+<Steps>
+
 1. Select the **Tasks** tab
 2. Press **New task**
-        <details>
-        <summary>Show me</summary>
-        <div>
-            ![Creating a new task](./img/task-create.jpg)
-        </div>
-        </details>  
+
+    ![Creating a new task](./img/task-create.jpg)
+
 3. Type the task's name and description
 4. Press **Next**
-    <details>
-        <summary>Show me</summary>
-        <div>
-        ![Task creation step 1: name and description](./img/task-create-1.jpg)
-        </div>
-    </details>
+
+    ![Task creation step 1: name and description](./img/task-create-1.jpg)
+
 5. Type the repository branch and [pipeline](./pipelines) file to execute. The only requisite is that the pipeline file exists in that branch. It doesn't need (but it can) to be conencted with a promotion to any other pipeline
 6. Press **Next**
-    <details>
-        <summary>Show me</summary>
-        <div>
-        ![Task creation step 2: branch and pipeline](./img/task-create-2.jpg)
-        </div>
-    </details>
+
+    ![Task creation step 2: branch and pipeline](./img/task-create-2.jpg)
+
 7. Optionally, you can add parameters. These work exacly the same as [parameterized promotions](./promotions#parameters)
-    <details>
-        <summary>Show me</summary>
-        <div>
-        ![Task creation step 3: parameters](./img/task-create-3.jpg)
-        </div>
-    </details>
+
+    ![Task creation step 3: parameters](./img/task-create-3.jpg)
+
 8. Press **Next**
 9. Define the schedule using [crontab syntax](https://crontab.guru/). The example below is running Check the option "Unscheduled" if you want to only run the task manually
-    <details>
-        <summary>Show me</summary>
-        <div>
-        ![Task creation step 4: schedule](./img/task-create-4.jpg)
-        </div>
-    </details>
+
+    ![Task creation step 4: schedule](./img/task-create-4.jpg)
+
 10. Press **Next** and **Create**
+
+</Steps>
 
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-You can add tasks by editing the project using the [Semaphore command line tool].
+You can add tasks by editing the project using the [Semaphore command line tool](../reference/semaphore-cli).
+
+<Steps>
 
 1. Run `sem edit project <project-name>`
 2. An editor should open showing the project settings. For example, this is a project called "hello-semaphore"
@@ -123,6 +115,8 @@ You can add tasks by editing the project using the [Semaphore command line tool]
 
 4. Save the file to submit your changes
 
+</Steps>
+
 </TabItem>
 </Tabs>
 
@@ -151,11 +145,15 @@ Deactivating a task disables the schedule. Deactivated tasks can still be run ma
 
 Go to the **Tasks** tab in your project and:
 
+<Steps>
+
 1. Locate the task you want to deactivate.
 2. Click the **Deactivate** link
 3. Confirm the prompt
 
-![Deactivating a task](./img/deactivate-task.jpg)
+    ![Deactivating a task](./img/deactivate-task.jpg)
+
+</Steps>
 
 ## How to delete a task {#delete-task}
 
@@ -167,6 +165,5 @@ To delete the task, go to the **Tasks** tab in your project and press the **Dele
 
 ## See also
 
-- [Task API reference](../reference/task-api)
 - [Semaphore CLI reference](../reference/semaphore-cli)
 - [Plan job and block execution with pipelines](./pipelines)

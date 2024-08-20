@@ -2,7 +2,7 @@
 description: Secrets YAML reference
 ---
 
-# Secrets YAML reference 
+# Secrets YAML 
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

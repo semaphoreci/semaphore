@@ -4,12 +4,13 @@ description: OIDC secures access to cloud providers
 
 # OpenID Connect
 
-OpenID Connect (OICD) allows you to establish a more secure trust relationship between Semaphore and cloud providers such as AWS or Google Cloud.
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
+
+OpenID Connect (OICD) allows you to establish a more secure trust relationship between Semaphore and cloud providers such as AWS or Google Cloud.
 
 ## Overview
 
@@ -33,6 +34,9 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 <summary>Step 1: Create identity provider</summary>
 <div>
 
+
+<Steps>
+
 1. Log in to the [AWS IAM Console](https://console.aws.amazon.com/iam/)
 2. Under **Access management**, select **Identity providers**
 3. Press **Add provider**
@@ -40,7 +44,9 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 5. In **Provider URL** and **Audience** type your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 6. Press **Add provider**
    
-![Creating an OIDC Identity Provider](./img/aws-identity-provider.jpg)
+    ![Creating an OIDC Identity Provider](./img/aws-identity-provider.jpg)
+
+</Steps>
 
 </div>
 </details>
@@ -48,6 +54,9 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 <details>
 <summary>Step 2: Configure a role and trust policy</summary>
 <div>
+
+
+<Steps>
 
 1. Log in to the [AWS IAM Console](https://console.aws.amazon.com/iam/)
 2. Under **Access management**, select **Roles**
@@ -60,9 +69,14 @@ To connect to Amazon Web Services (AWS) from Semaphore using OpenID Connect, you
 9. Type the **Role name** and an optional description
 10. Press **Create role**
 
-![Adding an OIDC role](./img/add-oidc-role.jpg)
+    ![Adding an OIDC role](./img/add-oidc-role.jpg)
+
+</Steps>
 
 Next, edit the trust policy as follows:
+
+
+<Steps>
 
 1. Select the newly created Role by name. You may need to use the search box to locate it
 2. Select the **Trust relationships** tab
@@ -70,6 +84,7 @@ Next, edit the trust policy as follows:
 4. Edit the `Condition` section (see below for details)
 5. Press **Update policy**
 
+</Steps>
 
 The trust policy uses JSON to configure what projects and branches can access the resources assigned to this role. 
     
@@ -116,9 +131,9 @@ The next example shows how to grant permissions to:
 <summary>Step 3: Use OICD in your Semaphore pipelines</summary>
 <div>
 
-You can now use OICD to access your AWS resources from any of your pipelines.
+You can now use OICD to access your AWS resources from any of your pipelines.  
 
-In order authenticate with AWS, add these commands to the Semaphore [job](./jobs) that needs access.
+In order authenticate with AWS add these commands to the Semaphore [job](./jobs) that needs access.
 
 ```shell "Job commands to authenticate"
 export ROLE_ARN="YOUR_AWS_ROLE_NAME"
@@ -148,6 +163,9 @@ To configure OIDC identity provider in GCP, you will perform the following actio
 <summary>Step 1: Create a new identity pool</summary>
 <div>
 
+
+<Steps>
+
 1. Define a `POOL_ID` name. This unique name served to identify a Google Cloud IAM pool. For example: `semaphoreci-com-identity-pool`
 2. Store the pool in an environment variable, e.g `semaphoreci-com-identity-pool`
 
@@ -164,6 +182,8 @@ To configure OIDC identity provider in GCP, you will perform the following actio
     --display-name=$POOL_ID
     ```
 
+</Steps>
+
 </div>
 </details>
 
@@ -173,6 +193,9 @@ To configure OIDC identity provider in GCP, you will perform the following actio
 <div>
 
 Next, we need to map fields from the Semaphore OIDC provider to Google Cloud attributes and set conditions where Semaphore can access the identity pool. See [attribute mapping](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#mappings-and-conditions) and [condition mapping](https://cloud.google.com/iam/docs/configuring-workload-identity-federation#mappings-and-conditions) to learn more.
+
+
+<Steps>
 
 1. Define `PROVIDER_ID` with a unique name for the OIDC provider, for example: `semaphoreci-com`. The variable `ISSUER_URI` should contain your [organization URL](./organizations#general-settings), e.g. `https://my-org.semaphoreci.com`
 
@@ -198,6 +221,8 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
     --attribute-condition="'semaphore::<PROJECT_NAME>::<BRANCH>' == google.subject"
     ```
 
+</Steps>
+
 </div>
 </details>
 
@@ -207,6 +232,9 @@ Next, we need to map fields from the Semaphore OIDC provider to Google Cloud att
 <div>
 
 Connecting to the pool allows Semaphore to impersonate your Google Cloud service account. To create the connection follow these steps:
+
+
+<Steps>
 
 1. Define environment variables:
     - `<REPOSITORY>` is the repository name, e.g. `web`
@@ -228,6 +256,8 @@ Connecting to the pool allows Semaphore to impersonate your Google Cloud service
         --role=roles/iam.workloadIdentityUser \
      --member="MEMBER_ID"
     ```
+
+</Steps>
 
 See [Granting external identities impersonation permissions](https://cloud.google.com/iam/docs/using-workload-identity-federation#impersonate) to learn more about service accounts.
 </div>
@@ -264,7 +294,9 @@ To use OIDC to access [HashiCorp Vault], you need to set up a trust relationship
 <summary>Step 1: Enable JWT Support on HashiCorp Vault</summary>
 <div>
 
-The first step is to enable JWT authentication support on the Vault
+The first step is to enable JWT authentication support on the Vault:
+
+<Steps>
 
 1. Execute the following command to enable JWT on your vault
 
@@ -284,6 +316,8 @@ The first step is to enable JWT authentication support on the Vault
     vault write auth/jwt/config bound_issuer="$PROVIDER_URL" oidc_discovery_url="$PROVIDER_URL"
     ```
 
+</Steps>
+
 </div>
 </details>
 <details>
@@ -291,20 +325,24 @@ The first step is to enable JWT authentication support on the Vault
 <div>
 Configure a policy that grants access to specific paths that will be accessed by your Semaphore pipelines. For more details, read Vault's Policies documentation.
 
+
+<Steps>
+
 1. Create a policy granting access to paths in your Vault. See [Vault policies](https://developer.hashicorp.com/vault/docs/concepts/policies) to learn more about this feature
 
- ```shell title="Setting read-only permissions to secret/data/production folder"
+    ```shell title="Setting read-only permissions to secret/data/production folder"
     vault policy write example-policy - <<EOF
     path "secret/data/production/*" {
     capabilities = [ "read" ]
     }
     EOF
+    ```
 
 2. Create a role to access the Vault resources
     - Replace `<REPOSITORY>` with your repository
     - Replace `<BRANCH>` with the branch that can access the Vault
 
- ```shell title="Creating a role"
+    ```shell title="Creating a role"
     vault write auth/jwt/role/example-role -<<EOF
     {
     "role_type": "jwt",
@@ -317,6 +355,10 @@ Configure a policy that grants access to specific paths that will be accessed by
     "ttl": "5m"
     }
     EOF
+    ```
+
+</Steps>
+
 </div>
 </details>
 

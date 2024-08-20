@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Semaphore Hybrid lets you run jobs on your own hardware. This page explains what self-hosted agents are and how to install them on several platforms.
 
@@ -140,12 +141,16 @@ Once you have [installed](./self-hosted-install) and [configured](./self-hosted-
 
 To run jobs on a self-hosted agent, follow these steps:
 
+<Steps>
+
 1. Open your Semaphore [project](./projects) and press **Edit Workflow**
 2. Select the pipeline
 3. Under **Environment Type** select **Self-hosted machine**
 4. Select the machine from the selection list
 
-![Selecting a self-hosted agent](./img/use-self-hosted-agent.jpg)
+  ![Selecting a self-hosted agent](./img/use-self-hosted-agent.jpg)
+
+</Steps>
 
 You can also change the agent for a single job using the [agent override option](./jobs#agent-override).
 
@@ -154,10 +159,14 @@ You can also change the agent for a single job using the [agent override option]
 
 To run jobs on a self-hosted agent, follow these steps:
 
+<Steps>
+
 1. Edit the [pipeline YAML](./pipelines)
 2. In `agent.machine.type` add the agent type
 3. Leave `os_image` as an empty string
 4. Push the new YAML file to your repository
+
+</Steps>
 
 ```yaml title="Semaphore pipeline"
 version: v1.0

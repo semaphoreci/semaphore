@@ -7,6 +7,9 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Available from '@site/src/components/Available';
+import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 The flaky test dashboard shows unreliable tests in your [projects](../projects). This page explains how they work and how to interpret the flaky test dashboard.
 
@@ -76,11 +79,16 @@ To create a filter, type the [filter key](#filter-keys) in the filter box and pr
 
 Once you have filter key you like, you can save it by:
 
+<Steps>
+
 1. Pressing the Create new filter button
 2. Typing your filter name
 3. Pressing **Save**
 
-![Creating filters](./img/creating-filters.jpg)
+  ![Creating filters](./img/creating-filters.jpg)
+
+</Steps>
+
 
 ### Filter keys {#filter-keys}
 
@@ -165,9 +173,13 @@ You can take the following actions on these:
 
 To add labels to a flaky test:
 
+<Steps>
+
 1. Press the **+Add label** button
 2. Type the label
 3. Press **OK**
+
+</Steps>
 
 To add more labels, repeat the same steps. You can have up to three labels per test.
 
@@ -185,8 +197,12 @@ Pressing the **Open ticket** action button lets you link the test to an issue. L
 
 To use this feature, create a ticket in your tool of choice, e.g. GitHub and:
 
+<Steps>
+
 1. Copy and paste the ticket URL
 2. Press **Save**
+
+</Steps>
 
 The ticket window shows details on Markdown you can use to create your ticket.
 
@@ -210,13 +226,17 @@ You can send webhook-based notifications when new flaky test is detected.
 
 Notifications can be enabled from the main Flaky Test dashboard:
 
+<Steps>
+
 1. Press the bell icon
 2. Enter the webhook url, only HTTPs is allowed
 3. Optionally, type the branch names for which you want to receive notifications. Leave blank to enable all branches
 4. Press **Activate**
 5. Press **Save**
 
-![Enabling notifications for flaky tests](./img/flaky-test-notifications.jpg)
+  ![Enabling notifications for flaky tests](./img/flaky-test-notifications.jpg)
+
+</Steps>
 
 :::note
 

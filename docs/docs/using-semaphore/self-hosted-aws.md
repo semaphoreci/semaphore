@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
@@ -44,6 +45,9 @@ The AWS agent stack requires the following:
 ## How to deploy AWS agents {#deploy}
 
 Follow these steps to deploy self-hosted agents in AWS.
+
+
+<Steps>
 
 1. Install the [latest AWS stack](https://github.com/renderedtext/agent-aws-stack/releases) and dependencies
 
@@ -111,10 +115,7 @@ Follow these steps to deploy self-hosted agents in AWS.
 
     The registration token created when registering the agent must be encrypted on AWS using [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
 
-    To create an SSM secret, run the following command replacing:
-
-    - `<ssm-parameter-name>` with the name for the secret, e.g. `semaphore-registration-token`
-    - `<token>` with the registration token obtained during [agent registration](./self-hosted-install#register-agent)
+    To create an SSM secret, run the following command:
 
     ```shell title="Creating an SSM secret"
     aws ssm put-parameter \
@@ -122,6 +123,12 @@ Follow these steps to deploy self-hosted agents in AWS.
         --value "<token>" \
         --type SecureString
     ```
+
+    Replace:
+
+    - `<ssm-parameter-name>` with the name for the secret, e.g. `semaphore-registration-token`
+    - `<token>` with the registration token obtained during [agent registration](./self-hosted-install#register-agent)
+
 
 4. Create an execution policy for Cloudformation
 
@@ -212,10 +219,6 @@ Follow these steps to deploy self-hosted agents in AWS.
 6. Bootstrap the CDK application
 
     Open the file `execution-policy.json` created in Step 4 and copy the ARN value. 
-    Replace:
-    - `<Arn>` with the value from the policy file
-    - `<AWS_ACCOUNT_ID>` your AWS account id
-    - `<AWS_REGION>` your AWS region
 
     ```shell title="Bootstrapping the CDK application"
     SEMAPHORE_AGENT_STACK_CONFIG=config.json \
@@ -223,11 +226,13 @@ Follow these steps to deploy self-hosted agents in AWS.
         --cloudformation-execution-policies <Arn>
     ```
 
-    :::note
+    Replace:
+
+    - `<Arn>` with the value from the policy file
+    - `<AWS_ACCOUNT_ID>` your AWS account id
+    - `<AWS_REGION>` your AWS region
 
     If you omit the option `--cloudformation-execution-policies` the stack will be deployed using full AdministratorAccess policies
-
-    :::
 
 7. Deploy the stack
 
@@ -236,6 +241,8 @@ Follow these steps to deploy self-hosted agents in AWS.
     ```shell title="Deploy the stack"
     SEMAPHORE_AGENT_STACK_CONFIG=config.json npm run deploy
     ```
+
+</Steps>
 
 ## How to upgrade self-hosted agents
 
@@ -286,9 +293,9 @@ When there are more running agents than jobs over a period of time, the function
 You con control the autoscaling behavior using the following parameters in `config.json`:
 
 - [`SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`](../reference/self-hosted-config#disconnect-after-idle-timeout) time in minutes allowed for the agent to idle before being shutdown. Default is 5 minutes. Setting this value to 0 prevents the agent from ever shutting down
-- `SEMAPHORE_AGENT_ASG_MAX_SIZE` this is the upper limit for the autoscaling group for a given agent type. The Lambda function will never spin up more than this number of machines
-- `SEMAPHORE_AGENT_ASG_MIN_SIZE` this is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0 the Lambda function will leave this number of agents idling without shuttind them down
-- `SEMAPHORE_AGENT_USE_DYNAMIC_SCALING` when set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running
+- [`SEMAPHORE_AGENT_ASG_MAX_SIZE`](../reference/self-hosted-config#asg-max-size) this is the upper limit for the autoscaling group for a given agent type. The Lambda function will never spin up more than this number of machines
+- [`SEMAPHORE_AGENT_ASG_MIN_SIZE`](../reference/self-hosted-config#asg-min-size) this is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0 the Lambda function will leave this number of agents idling without shutting them down
+- [`SEMAPHORE_AGENT_USE_DYNAMIC_SCALING`](../reference/self-hosted-config#use-dynamic-scaling) when set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running
 
 ### Multiple agent types {#stacks}
 
@@ -347,11 +354,15 @@ You can access your EC2 machines in two ways:
 
 If you experience agent registration errors, follow these steps to troubleshoot:
 
+<Steps>
+
 1. Go to the CloudWatch console
 2. Select Log Groups
 3. Select the `semaphore/agent` log group
 4. Select the EC2 instance id for the instance running your agent
 5. Verify that the agent is running. If not, check for messages about failed registration requests
+
+</Steps>
 
 ## See also
 

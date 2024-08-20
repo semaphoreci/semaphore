@@ -2,7 +2,7 @@
 description: Jobs YAML reference
 ---
 
-# Jobs YAML Reference
+# Jobs YAML
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

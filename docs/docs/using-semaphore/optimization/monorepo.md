@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Semaphore features a repository change detection strategy to optimize monorepo pipelines. This page explains how to configure monorepo pipelines to reduce time and costs.
 
@@ -126,13 +127,18 @@ To enable change detection, follow these steps.
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+
+<Steps>
+
 1. Open the **Workflow Editor** for your Semaphore project
 2. Select the block
 3. Open the **Skip/run conditions** on the right side
 4. Select **Run this block when conditions are met**
 5. In the **When?** field type the [change condition](#condition), e.g. `change_in("/frontend", {default_branch: "main"})`
 
-![Setting up change conditions](./img/change-conditions-first.jpg)
+  ![Setting up change conditions](./img/change-conditions-first.jpg)
+
+</Steps>
 
 Repeat the procedure for the rest of the blocks. For example, for the Backend block, we could use the condition `change_in("/backend", {default_branch: "main"})`
 
@@ -143,12 +149,16 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Open your pipeline YAML file
 2. Locate the block you wish to add change conditions to
 3. Add `run.when` under the block
 4. Type the [change condition](#condition), e.g. `change_in("/frontend", {default_branch: "main"})`
 5. Repeat the process for the other blocks that need conditions
 6. Push the pipeline file to the remote repository 
+
+</Steps>
 
 Conditions are ignored by default when you change the pipeline file. So, the very next run executes all blocks. Subsequent pushes should respect your change detection conditions.
 
@@ -222,12 +232,16 @@ With change detection on promotions, you can activate the correct deployment pip
 
 To activate change detection on promotions, follow these steps:
 
+<Steps>
+
 1. Open the **Workflow Editor** for your Semaphore project
 2. Create or select the [promotion](../pipelines#connecting-pipelines)
 3. Check the option **Enable automatic promotion**
 4. Type the [change condition](#condition), e.g. `branch = "main" AND result = "passed" AND change_in("/backend", {default_branch: "main"})`
 
-![Change conditions for promotions](./img/change-condition-promotion.jpg)
+  ![Change conditions for promotions](./img/change-condition-promotion.jpg)
+
+</Steps>
 
 Repeat the procedure for the rest of the promotions. For example, for the Frontend block, we could use the condition `change_in("/frontend", {default_branch: "main"}) and branch = "main" AND result = "passed"`
 
@@ -238,12 +252,16 @@ Repeat the procedure for the rest of the promotions. For example, for the Fronte
 
 To use change detection, follow these steps:
 
+<Steps>
+
 1. Open your pipeline YAML file
 2. Locate or create the [promotion block](../pipelines#connecting-pipelines) you wish to add conditions to
 3. Add `auto_promote.when` under the block
 4. Type the [change condition](#condition), e.g. `change_in("/frontend", {default_branch: "main"})`
 5. Repeat the process for the other promotions that need conditions
 6. Push the pipeline file to the remote repository 
+
+</Steps>
 
 ```yaml title="Change conditions for promotions"
 version: v1.0

@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <Available/>
 
@@ -65,6 +66,8 @@ Linux-based machines support nested virtualization. You can create virtual machi
 
 Follow these commands to use nested virtualization:
 
+<Steps>
+
 1. Check that nested virtualization is supported. The output should be `0`
     ```shell
     grep -cw vmx /proc/cpuinfo
@@ -99,6 +102,7 @@ Follow these commands to use nested virtualization:
     ```shell
     sshpass -p "ubuntu" -v  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ubuntu@$IP -t 'uname -a'
     ```
+</Steps>
 
 The predefined default network for nested virtualization is 192.168.123.0/24. The base VM provides virbr0 interface with the IP address: 192.168.123.1.
 

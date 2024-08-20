@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Use Semaphore to build, test, store, and deploy Docker images to production. This page explains how to use Docker inside Semaphore.
 
@@ -93,6 +94,8 @@ The example above assumes there are a [secret](../secrets) containing your Docke
 
 To access your AWS Elastic Container Registry (ECR) images:
 
+<Steps>
+
 1. Create a [secret](../secrets) containing the variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
 2. Enable the secret in your job
 3. Define the [environment variables](../jobs#environment-variables) `AWS_DEFAULT_REGION` and `ECR_REGISTRY`
@@ -112,9 +115,13 @@ To access your AWS Elastic Container Registry (ECR) images:
     docker push "${ECR_REGISTRY}"
     ```
 
+</Steps>
+
 ### Using Google Cloud GCR
 
 To access your Google Cloud Container Registry (GCR) images:
+
+<Steps>
 
 1. Create a [secret](../secrets) with your Google Cloud access credential file (`$HOME/.config/gcloud/application_default_credentials.json`)
 2. Enable the secret in your job
@@ -134,6 +141,8 @@ To access your Google Cloud Container Registry (GCR) images:
     docker tag example "${GCR_URL}/${GCP_PROJECT_ID}/example"
     docker push "${GCR_URL}/${GCP_PROJECT_ID}/example"
     ```
+
+</Steps>
 
 ### Using other registries {#registries}
 

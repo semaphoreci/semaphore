@@ -6,7 +6,9 @@ description: Jobs and blocks are the basic unit of work
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Jobs get stuff done. This page explains to create and configure jobs.
 
@@ -51,14 +53,20 @@ Open your [project](./projects) on Semaphore and press **Edit Workflow**.
 
 ![Screenshot of the project opened in Semaphore. The Edit Workflow button is highlighted](./img/edit-workflow.jpg)
 
+<Steps>
+
 1. Select the first block
 2. Type your shell commands
 3. Press **Run the workflow**, then press **Looks good, Start →**
+
+</Steps>
 
 ![New job being edited](./img/create-a-job-1.jpg)
  
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+<Steps>
 
 1. Create a file called `.semaphore/semaphore.yml` at the repository's root
 2. Add the pipeline `name`
@@ -68,6 +76,8 @@ Open your [project](./projects) on Semaphore and press **Edit Workflow**.
 6. Type the job's `name`
 7. Add the job's `commands`. The value is a list of shell commands (one line per list item)
 8. Save the file, commit and push it to your remote repository
+
+</Steps>
 
 You can use the following code as a starting point:
 
@@ -111,9 +121,14 @@ Jobs in the same block always run in parallel.
 
 To run two jobs in parallel:
 
+<Steps>
+
 1. Select the block
 2. Press **+ Add job**
 3. Type the job name and commands
+
+</Steps>
+
 
 ![Adding a second job](./img/jobs-parallel.jpg)
 
@@ -124,9 +139,15 @@ Here you can also:
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+
+<Steps>
+
 1. Add a new `name` item under `jobs`
 2. Add your shell commands (one per line) under `commands`
 3. Save the file, commit and push it to your repository
+
+</Steps>
+
 
 ```yaml title=".semaphore/semaphore.yaml"
 version: v1.0
@@ -166,19 +187,27 @@ If you want to run jobs in sequence, i.e. not in parallel, you must define them 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Click on **+Add Block**
 2. Type the name of the block
 3. Adjust dependencies to define execution order
 4. Type the name and commands for the job
+
+</Steps>
 
 ![Adding a second job and using dependencies to define execution order](./img/add-block.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Add a new job entry under `blocks`
 2. Add a `dependencies`. List the names of the dependent blocks.
  
+</Steps>
+
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
 name: Initial Pipeline
@@ -410,9 +439,13 @@ If this is the first time using an interactive session you need to [install and 
 
 To open an interactive session, open the job log and:
 
+<Steps>
+
 1. Click on **SSH Debug**
 2. Copy the command shown
 3. Run the command in a terminal
+
+</Steps>
 
 ![How to connect with SSH for the first time](./img/sem-debug.jpg)
 
@@ -507,8 +540,12 @@ Commands in the *prologue* run before each job in the block. Use this to run com
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the block
 2. Open the prologue section and add your shell commands. 
+
+</Steps>
 
 In the example below we use [checkout](#checkout) to clone the repository at the start of every job in the block.
 
@@ -517,9 +554,13 @@ In the example below we use [checkout](#checkout) to clone the repository at the
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Locate the block you wish to add the prologue to
 2. Add the `prologue` under `tasks`
 3. The `commands` are prepended to all jobs in the block. 
+
+</Steps>
 
 In the example below we use [checkout](#checkout) to clone the repository at the start of every job in the block.
 
@@ -562,8 +603,12 @@ Commands in the *epilogue* are executed after each job in the job ends. There ar
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the block
 2. Open the epilogue section (you may need to scroll down) and add your commands
+
+</Steps>
 
 In the example below we use [artifact](#artifact) to save build artifacts and log files.
 
@@ -572,8 +617,12 @@ In the example below we use [artifact](#artifact) to save build artifacts and lo
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Find the block where you wish to add the epilogue
 2. Add the `epilogue` types you wish key under `tasks`
+
+</Steps>
 
 In the example below we use [artifact](#artifact) to save build artifacts or log files.
 
@@ -626,19 +675,29 @@ Environment variables are exported into the shell environment of every job in th
 <TabItem value="editor" label="Editor">
 
 To add an environment variable:
+
+
+<Steps>
+
 1. Select the block
 2. Open the **Environment Variables** section (you may need to scroll down)
 3. Set your variable name and value
 4. Press **+Add env vars** if you need more variables
+
+</Steps>
 
 ![Environment variables](./img/env-vars.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Locate the block where you add the environment variables
 2. Add `env_vars` key under `task`
 3. Edit the variables `name` and `value`. You can have many variables under `env_vars`
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -695,9 +754,13 @@ To enable existing secrets in a block:
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the block 
 2. Open the **Secrets** section (you may need to scroll down)
 3. Enable the checkbox next to the secret
+
+</Steps>
 
 The secret values are now available for all jobs in the block.
 
@@ -706,9 +769,13 @@ The secret values are now available for all jobs in the block.
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Locate the block where you want to add the secrets
 2. Add a `secrets` key under `tasks`
 3. List the names of the secrets to import
+
+</Steps>
 
 The secret values are now available for all jobs in the block.
 
@@ -746,19 +813,27 @@ Use cases for this feature include skipping a block on certain branches, or work
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the block
 2. Open the **Skip/Run conditions** section (you may need to scroll down)
 3. Select **Run this block when...** or **Skip this block when...**
 4. Type the [conditions](../reference/conditions-dsl.md) to run or skip the block
+
+</Steps>
 
 ![Editing skip/run conditions](./img/conditions.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML (Run/When)">
 
+<Steps>
+
 1. Select the block where to edit the conditions
 2. Under the block `name` add `run` and `when`
 3. Type the [condition](../reference/conditions-dsl) that causes the block to run
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -785,10 +860,13 @@ blocks:
 </TabItem>
 <TabItem value="yaml2" label="YAML (Skip/When)">
 
+<Steps>
 
 1. Select the block where to edit the conditions
 2. Under the block `name`, add `skip` and `when` keys
 3. Type the [condition](../reference/conditions-dsl) that causes the block to be skipped
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -823,20 +901,29 @@ Here you can override the pipeline-level [agent](./pipelines#agents) for a speci
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+
+<Steps>
+
 1. Select the block
 2. Open the **Agent** section (you may need to scroll down)
 3. Select the **Environment Type**
 4. Select the **OS Image**
 5. Select the **Machine Type**
 
+</Steps>
+
 ![Overriding the global agent](./img/agent.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Select the block where you want to override the agent.
 2. Add an `agent` key under the `task`
 3. Set the `machine` and `os_image`
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yaml"
 version: v1.0
@@ -883,6 +970,8 @@ When job parallelism is enabled two new environment variables are available in t
 
 To use job parallelism, follow these steps:
 
+<Steps>
+
 1. Open the workflow editor
 2. Select or create a job
 3. Open the section under the job **Configure parallelism or a job matrix**
@@ -891,6 +980,8 @@ To use job parallelism, follow these steps:
 6. Type the commands, you can use the variable counter as environment variables
 7. Press **Run the workflow**, then **Start**
 
+</Steps>
+
 ![Setting up job parallalelism](./img/job-parallelism-4.jpg)
 
 </TabItem>
@@ -898,11 +989,15 @@ To use job parallelism, follow these steps:
 
 To enable job parallelism, follow these steps:
 
+<Steps>
+
 1. Open the pipeline YAML
 2. Locate or create the job
 3. Type the commands
 4. Add a `parallelism` key with the desired job parallelism value
 5. Save the file and push it to the repository
+
+</Steps>
 
 The following example creates four jobs, each printing a differnt line in the log:
 
@@ -956,6 +1051,8 @@ We have a total of 6 possible test jobs when we take into account all permutatio
 
 To create a job matrix, follow these steps:
 
+<Steps>
+
 1. Open the workflow editor
 2. Select or create the job
 3. Open the section under the job **Configure parallelism or a job matrix**
@@ -966,6 +1063,8 @@ To create a job matrix, follow these steps:
 8. Type the commands. The variables are available as environment variables
 9. Press **Run the workflow**, then **Start**
 
+</Steps>
+
 Semaphore automatically expands all possible permutations and adds the variables part of the job name
 
 ![Configuring job matrix](./img/job-matrix.jpg)
@@ -975,6 +1074,8 @@ Semaphore automatically expands all possible permutations and adds the variables
 
 To use a job matrix, follow these steps:
 
+<Steps>
+
 1. Open the pipeline YAML
 2. Locate or create the job
 3. Add a `matrix` key
@@ -982,6 +1083,8 @@ To use a job matrix, follow these steps:
 5. Add `values` and a list of values for the variable
 6. Type the job commands, you can use the variable names as environment variables
 7. Save the file and push it to the repository
+
+</Steps>
 
 The following example runs a 2 x 3 matrix with variables `NODE_VER` and `PKG_MNGR`. Semaphore expands the job into 6 parametererized jobs:
 
@@ -1056,11 +1159,15 @@ The priorities are assigned automatically according to the table below, but they
 
 To assign a different priority to a specific job, follow these steps:
 
+<Steps>
+
 1. Open the pipeline YAML
 2. Locate the jobs
 3. Create a `priority` key
 4. Define a `value` and a [condition](../reference/conditions-dsl)
 5. Save the file and push it to the repository
+
+</Steps>
 
 The following example shows how to assign a higher priority to specific jobs when the branch is master:
 
@@ -1100,12 +1207,16 @@ blocks:
 
 To change the priority to all jobs in a pipeline, follow these steps:
 
+<Steps>
+
 1. Open the pipeline YAML
 2. Locate the jobs
 3. Add a `global_job_config` key at the root of the YAM
 4. Create a `priority` key
 5. Define a `value` and a [condition](../reference/conditions-dsl)
 6. Save the file and push it to the repository
+
+</Steps>
 
 The following example does the same as the one above, but using a global config:
 
@@ -1154,11 +1265,15 @@ You can change the limit up to a maximum value of *24 hours*.
 
 To change the maximum duration for a single job:
 
+<Steps>
+
 1. Open the pipeline YAML
 2. Locate the job
 3. Add and `execution_time_limit` element
 4. Add `hours` or `minutes`, set the new value
 5. Save the file and push it to the repository
+
+</Steps>
 
 ```shell title="Changing max duration for a single job"
 version: v1.0

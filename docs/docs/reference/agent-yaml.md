@@ -2,7 +2,7 @@
 description: Agent Types YAML reference
 ---
 
-# Agent Types YAML reference
+# Agent Types YAML
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

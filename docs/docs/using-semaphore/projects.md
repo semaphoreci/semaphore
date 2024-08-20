@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Projects are codebases developed and managed through Semaphore [Continuous Integration](https://semaphoreci.com/continuous-integration). A project links your Git repository with Semaphore, so it can run [jobs](./jobs) to test, build, or deploy your application. 
 
@@ -32,28 +33,37 @@ Go to Semaphore, press **+Create New** 1 and then press **Choose repository**
 
 ![Creating a new project](./img/create-project-1.jpg)
 
+<Steps>
+
 1. Select the GitHub or Bitbucket tab. You may need to press the **Connect account** button if this is the first time
 2. Select the repository from the list and press on **Choose**
+
     <details>
     <summary>Show me</summary>
     <div>
     ![Select repository](./img/create-project-2.jpg)
     </div>
     </details>
+
 3. Optionally, [add people](./organizations#people) to the project. Press **Continue**
+
     <details>
     <summary>Show me</summary>
     <div>
     ![Add people](./img/create-project-3.jpg)
     </div>
     </details>
+
 4. Select a started workflow. If in doubt, select **Single Job** and **Start**
+
     <details>
     <summary>Show me</summary>
     <div>
     ![Add people](./img/create-project-4.jpg)
     </div>
     </details>
+
+</Steps>
 
 Semaphore creates a new [pipeline](./pipelines) file in the `.semaphore` folder in the repository and starts working.
 
@@ -64,17 +74,21 @@ Semaphore creates a new [pipeline](./pipelines) file in the `.semaphore` folder 
 
 After installing and connecting the [Semaphore command line](../reference/semaphore-cli):
 
+<Steps>
+
 1. Clone the repository in your machine
 2. Run `sem init` at the root of the repository
 3. Push a change to get Semaphore working
  
- ```shell title="Push pipeline to the repository
+    ```shell title="Push pipeline to the repository
     git add .semaphore
     git commit "Initalize Semaphore"
     git push origin main
- ```
+    ```
 
-![Project created](./img/project-created.jpg)
+    ![Project created](./img/project-created.jpg)
+
+</Steps>
 
 You can override the project name and URL by using [additional options](../reference/semaphore-cli#sem-edit)
 
@@ -107,15 +121,19 @@ Semaphore shows the latest activity in the last few days when logging in.
 
 To get the list of the projects in your organization:
 
+<Steps>
+
 1. If needed, [switch the context](./organizations#org-selection) to your organization
 2. Run [sem get](../reference/semaphore-cli) to list your projects
 
-```shell
-$ sem get project
-NAME                                 REPOSITORY
-semaphore-demo-flutter               git@github.com:semaphoreci-demos/semaphore-demo-flutter.git
-hello-semaphore                      git@github.com:semaphoreci-demos/hello-semaphore.git
-```
+    ```shell
+    $ sem get project
+    NAME                                 REPOSITORY
+    semaphore-demo-flutter               git@github.com:semaphoreci-demos/semaphore-demo-flutter.git
+    hello-semaphore                      git@github.com:semaphoreci-demos/hello-semaphore.git
+    ```
+
+</Steps>
 
 </TabItem>
 </Tabs>
@@ -172,12 +190,16 @@ You must add individuals to your Git repository and to your [Semaphore organizat
 
 Open your project and go to the **People** tab
 
+<Steps>
+
 1. Press **Add People**
 2. Select the user from the list of options
 3. Select the role
 4. Press **Add Selected**
 
-![Adding a member to the project](./img/add-user-2.jpg)
+    ![Adding a member to the project](./img/add-user-2.jpg)
+
+</Steps>
 
 See [project roles](./rbac#project) for more information what actions can each role perform.
 
@@ -185,14 +207,20 @@ See [project roles](./rbac#project) for more information what actions can each r
 
 Open your project and go to the **People** tab
 
+<Steps>
+
 1. Press the **Change role** next to the project member
 2. Select the new role
 
-![Changing a members role](./img/change-role.jpg)
+    ![Changing a members role](./img/change-role.jpg)
+
+</Steps>
 
 ### How to view pre-defined roles {#project-roles}
 
 Semaphore provides pre-defined roles for projects. You can see what actions each role can perform by following these steps:
+
+<Steps>
 
 1. Open the Organization **Settings** menu
 2. Select **Roles**
@@ -200,11 +228,15 @@ Semaphore provides pre-defined roles for projects. You can see what actions each
 3. Scroll down to **Project roles**
 4. Press the eye button next to the role you want to examine
 
+</Steps>
+
 The actions with enabled checkbox are allowed for that role.
 
 ### How to create custom roles {#custom-roles}
 
 Create custom roles to give your users the precise permissions they need. 
+
+<Steps>
 
 1. Open the Organization **Settings** menu
 2. Select **Roles**
@@ -212,6 +244,8 @@ Create custom roles to give your users the precise permissions they need.
 4. Give a name a description to the new role
 5. Enable the permissions allowed to the role. You can use the search box to narrow down options
 6. Press **Save changes**
+
+</Steps>
 
 ### How to change the project's owner {#owner-change}
 
@@ -268,12 +302,16 @@ The **Badge** settings page shows you [shields](https://shields.io/) embed codes
 
 To get a badge embed code:
 
+<Steps>
+
 1. Type the branch name you want to show the status for. This is typically "main" or "master"
 2. Select a badge style. This is only a style choice
 3. Choose the file format where you will embed the badge
 4. Copy the code into your README or webpage
 
-![Using project badges](./img/project-badges.jpg)
+    ![Using project badges](./img/project-badges.jpg)
+
+</Steps>
 
 ### Artifacts {#artifacts}
 
@@ -297,6 +335,8 @@ If you want to run commands for all pipelines in your organization, see [organiz
 
 To create, edit, or delete project pre-flight checks, follow these steps:
 
+<Steps>
+
 1. Open the project on Semaphore
 2. Go to the **Settings** tab
 3. Select **Pre-flight checks**
@@ -304,7 +344,9 @@ To create, edit, or delete project pre-flight checks, follow these steps:
 5. Optionally, type the name of [secrets](./secrets) to be injected during the initialization job
 6. Press **Save changes**
 
-![Setting up pre-flight checks for project](./img/project-preflight.jpg)
+    ![Setting up pre-flight checks for project](./img/project-preflight.jpg)
+
+</Steps>
 
 See the [organization pre-flight page](./org-preflight#env-vars) to learn about the available environment variables and see examples of pre-flight checks.
 
@@ -314,6 +356,9 @@ You can change the agent in which the initialization and pre-flight commands run
 
 To change the initialization for the project, follow these steps:
 
+
+<Steps>
+
 1. Go to the [Pre-flight settings page](#preflight-add)
 2. Check the box **Override default agent configuration**
 3. Select an **Environment type**
@@ -321,13 +366,100 @@ To change the initialization for the project, follow these steps:
 5. Select an **OS image**
 6. Press **Save changes**
 
-![Changing the initialization agent for the project](./img/override-project-init-agent.jpg)
+    ![Changing the initialization agent for the project](./img/override-project-init-agent.jpg)
+
+</Steps>
 
 :::note
 
 This setting overrides the [organization-wide initialization agent](./organizations#init-agent).
 
 :::
+
+## Troubleshooting guide
+
+If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between GitHub and Semaphore.
+
+<Steps>
+
+1. Navigate to your [Semaphore account](https://me.semaphoreci.com/account)
+2. Read the status next to GitHub
+    ![Connection status green](./img/account-gh-bb-access.jpg)
+3. If the status is disconnected, click on **Grant public access** or **Grant private access**
+
+</Steps>
+
+You can check and change the permissions of your OAuth App connection in the [Semaphore OAuth page](https://github.com/settings/connections/applications/328c742132e5407abd7d).
+
+### Verify deploy key health {#deploy-key}
+
+Semaphore generates a [deploy key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) when a [project](./projects) is created. This means there is a deploy key per repository connected to Semaphore.
+
+When a deploy key is broken or invalid, Semaphore shows the following error message:
+
+```text
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+```
+To verify the status of a deploy key:
+
+<Steps>
+
+1. Open your [project settings](./projects#settings)
+2. If there isn't a green check next to **Deploy Key**, the key is invalid
+    ![Checking the status of the deploy key](./img/deploy-key.jpg)
+
+</Steps>
+
+To deploy a new key, click on **Regenerate**
+
+:::info
+
+A deploy key can be invalidated if:
+
+- it was manually removed from the repository
+- access via OAuth or GitHub App was revoked
+- the repository's original owner no longer has access to it (only for projects added [via OAuth](./connect-github-oauth)
+
+:::
+
+### Verify webhook health {#webhook}
+
+Semaphore uses a webhook to detect changes in your repository. When the webhook is broken, Semaphore can't trigger new workflows.
+
+To verify the status of a webhook:
+
+<Steps>
+
+1. Open your [project settings](./projects#settings)
+2. If there isn't a green check next to **Deploy Key**, the key is invalid
+    ![Checking the status of the deploy key](./img/webhook.jpg)
+
+</Steps>
+
+To fix the broken webhook, click on **Regenerate**. This should generate a new webhook and repair the connection between Semaphore and GitHub.
+
+### Reconnecting moved or renamed projects
+
+There are several actions that can break the connection between GitHub and Semaphore. For example:
+
+- moving the repository to a different location
+- renaming the repository
+- renaming the GitHub user account
+- renaming the GitHub organization
+
+When this happens, you must update the URL of the repository in Semaphore. To do this:
+
+<Steps>
+
+1. Open your [project settings](./projects#settings)
+2. Type the new repository URL
+3. Press **Change**
+    ![Changing the repository URL in Semaphore](./img/repository-url.jpg)
+
+</Steps>
+
+After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
 
 ## See also
 

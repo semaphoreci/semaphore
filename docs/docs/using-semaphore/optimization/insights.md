@@ -5,6 +5,12 @@ sidebar_position: 2
 
 # Project Insights
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Available from '@site/src/components/Available';
+import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
+
 Project Insights provides productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average and the number of workflow runs in a given period. Use this information to assess the productivity of your development team.
 
 ## How to view project insights {#view}
@@ -30,6 +36,8 @@ The Project Insights settings are split into two sections:
 
 Follow the steps below to set up Project Insights:
 
+<Steps>
+
 1. Open the **Insights** tab
 2. Click on the Gear Icon on the left side
 3. Set the main branch name for your project in the **Continuous Integration** and **Continuous Deployment** sections
@@ -37,6 +45,8 @@ Follow the steps below to set up Project Insights:
 5. Press **Save Changes**
 
 ![Settings for Project Insights](./img/insights-settings.jpg)
+
+</Steps>
 
 :::note
 
@@ -92,15 +102,22 @@ Create your own visualization with custom dashboards. You can add any metric alr
 
 To create a Dashboard:
 
+<Steps>
+
 1. Open the Project Insights
 2. On the left side, click on the plus sign (+)
 3. Enter the name of the dashboard
- ![Creating a custom dashboard](./img/custom-create.jpg)
+    ![Creating a custom dashboard](./img/custom-create.jpg)
 4. Press **Create**
+
+</Steps>
 
 You can also create dashboards using the command line. See [Semaphore Command Line](../../reference/semaphore-cli) and [Dashboard YAML reference](../../reference/dashboard-yaml) for more details.
 
 Once created, you can add metrics to the dashboard following these steps:
+
+
+<Steps>
 
 1. Open the custom dashboard on the left side
 2. Press the **Add metric** button
@@ -112,7 +129,9 @@ Once created, you can add metrics to the dashboard following these steps:
     - (E) Type an optional description
 4. Press **Save**
 
-![Adding a metric to a custom dashboard](./img/add-metric.jpg)
+    ![Adding a metric to a custom dashboard](./img/add-metric.jpg)
+
+</Steps>
 
 :::note
 
