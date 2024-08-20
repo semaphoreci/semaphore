@@ -13,7 +13,7 @@ This page describes the formal pipeline YAML specification for Semaphore.
 
 ## Overview
 
-Semaphore uses YAML for the definition of [pipeline](../using-semaphore/pipelines). Every Semaphore project requires at least one pipeline to work. If you don't want to write pipelines by hand, you can use the [visual workflow editor](../using-semaphore/jobs#workflow-editor).
+Semaphore uses YAML for the definition of [pipeline](../using-semaphore/pipelines). Every Semaphore project requires at least one pipeline to work. If you don't want to write pipelines by hand, you can use the [visual workflow editor](../using-semaphore/workflows#workflow-editor).
 
 ### Execution order {#order}
 

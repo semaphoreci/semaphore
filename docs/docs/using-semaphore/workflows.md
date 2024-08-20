@@ -66,7 +66,7 @@ The reason for the trigger can be determined at runtime by examining the Semapho
 
 ### How pull requests are handled {#pr}
 
-Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
+Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#project-triggers) with the secrets you want to expose in the project settings.
 
 :::note
 
