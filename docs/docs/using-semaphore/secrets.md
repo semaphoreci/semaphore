@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
-
+import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use secrets" src="https://www.youtube.com/embed/rAJIRX81DeA"/>
 
@@ -54,21 +54,25 @@ You can create secrets using the UI or the command line.
 
 To create an organization secret, go to the [organization settings](./organizations#general-settings) and:
 
+
+<Steps>
+
 1. Select **Secrets**
 2. Press **New Secret**
 
-![Organization secrets menu](./img/organization-secrets-menu.jpg)
+    ![Organization secrets menu](./img/organization-secrets-menu.jpg)
 
-1. Enter the name of the secret
-2. Add an optional description
-3. To add a key value, add the secret name and value
-4. Add more variables as needed
-5. To add a file, add the path and upload the file
-6. Add more files as needed
+3. Enter the name of the secret
+4. Add an optional description
+5. To add a key value, add the secret name and value
+6. Add more variables as needed
+7. To add a file, add the path and upload the file
+8. Add more files as needed
+9. Press **Save secret** or continue to [access policy](#secret-access-policy)
 
-Press **Save secret** or continue to [access policy](#secret-access-policy)
+    ![Creating a new organization secret](./img/save-secret.jpg)
 
-![Creating a new organization secret](./img/save-secret.jpg)
+</Steps>
 
 </TabItem>
 <TabItem value="cli" label="CLI">
@@ -126,9 +130,14 @@ data:
 
 To edit a secret:
 
+
+<Steps>
+
 1. Run `sem edit secret <secret-name>`
 2. Make your changes in the editor
 3. When done, save and exit the editor to save your changes
+
+</Steps>
 
 </TabItem>
 </Tabs>
@@ -166,20 +175,24 @@ Project secrets are only available to the [project](./projects) it is tied to.
 To create a project secret, navigate to your project and select the **Settings** tab.
 
 
+<Steps>
+
 1. Select **Secrets**
 2. Press **Add**
 
-![Secrets settings for project](./img/secret-settings-projects.jpg)
+    ![Secrets settings for project](./img/secret-settings-projects.jpg)
 
-1. Type the name of the secret
-2. Type a description
-3. To add a key value, add the secret name and value
-4. Add more values as needed
-5. To add a file, add the path and upload the file
-6. Add more files as needed
-7. Press **Save secret**
+3. Type the name of the secret
+4. Type a description
+5. To add a key value, add the secret name and value
+6. Add more values as needed
+7. To add a file, add the path and upload the file
+8. Add more files as needed
+9. Press **Save secret**
 
-![Creating a project secret](./img/secret-projects-create.jpg)
+    ![Creating a project secret](./img/secret-projects-create.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="cli" label="CLI">
@@ -245,9 +258,13 @@ data:
 
 To edit a secret:
 
+<Steps>
+
 1. Run `sem edit secret -p <project-name> <secret-name>`
 2. Make your changes in the editor
 3. When done, save and exit the editor to save your changes
+
+</Steps>
 
 </TabItem>
 </Tabs>

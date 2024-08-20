@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to integrate with Okta" src="https://www.youtube.com/embed/2_am8-e0UTc?si=_XEDoQgiEAsnaFCb"/>
 
@@ -45,70 +46,87 @@ The set up steps are explained in this section.
 
 To create an Okta app integration:
 
+
+<Steps>
+
 1. Log in to your Okta organization
 2. Press the **Admin** button to access the administrator dashboard
 3. On the left side, select **Applications** > **Applications**
 4. Press **Create App Integration**
 
-![Creating an app integration on Okta](./img/create-app-integration.jpg)
+    ![Creating an app integration on Okta](./img/create-app-integration.jpg)
 
-On the next screen, select **SAML 2.0** and press **Next**:
 
-![Saml 2.0 selected](./img/select-saml2.jpg)
+5. On the next screen, select **SAML 2.0** and press **Next**:
 
-In **General Settings**, fill in the following values and then press **Next**:
+    ![Saml 2.0 selected](./img/select-saml2.jpg)
 
-- **App name**: use a descriptive name, e.g. "Semaphore"
-- **App logo**: optional logo image
-- **App visibility**: leave unchecked the option (this is the default)
+    In **General Settings**, fill in the following values and then press **Next**:
 
-![General settings](./img/app-general-settings.jpg)
+    - **App name**: use a descriptive name, e.g. "Semaphore"
+    - **App logo**: optional logo image
+    - **App visibility**: leave unchecked the option (this is the default)
 
-On the **Configure SAML** page, fill in the following values and press **Next**:
+    ![General settings](./img/app-general-settings.jpg)
 
-- **Single Sign On URL**: this is the [URL of your Semaphore organization](./organizations#general-settings) followed by `/okta/auth`. For example, if your organization URL is `https://my-org.semaphoreci.com`, you must fill in the value `https://my-org.semaphoreci.com/okta/auth`
-- Leave the option **Use this for Recipient URL and Destination URL** checked (default)
-- **Audience URL**: this is the [URL of your Semaphore organization](./organizations#general-settings). For example `https://my-org.semaphoreci.com`
-- **Application username**: choose **Email** from the selection box
+6. On the **Configure SAML** page, fill in the following values and press **Next**:
 
-![Configure SAML page](./img/configure-saml.jpg)
+    - **Single Sign On URL**: this is the [URL of your Semaphore organization](./organizations#general-settings) followed by `/okta/auth`. For example, if your organization URL is `https://my-org.semaphoreci.com`, you must fill in the value `https://my-org.semaphoreci.com/okta/auth`
+    - Leave the option **Use this for Recipient URL and Destination URL** checked (default)
+    - **Audience URL**: this is the [URL of your Semaphore organization](./organizations#general-settings). For example `https://my-org.semaphoreci.com`
+    - **Application username**: choose **Email** from the selection box
 
-On the **Feedback** page, select **I'm an Okta customer adding an internal app**
+    ![Configure SAML page](./img/configure-saml.jpg)
 
-![Select the feedback option](./img/feedback.jpg)
+7. On the **Feedback** page, select **I'm an Okta customer adding an internal app**
 
-You can leave the rest of the settings in their default values. Press **Finish** to complete the setup.
+    ![Select the feedback option](./img/feedback.jpg)
 
-You should see the new Semaphore application on your Okta applications page.
+    You can leave the rest of the settings in their default values. Press **Finish** to complete the setup.
 
-![Semaphore app configured on Okta](./img/application-configured.jpg)
+    You should see the new Semaphore application on your Okta applications page.
+
+    ![Semaphore app configured on Okta](./img/application-configured.jpg)
+
+</Steps>
 
 ### Step 2: Connect with Semaphore {#token}
 
 The second step is to connect Semaphore with Okta. Before you can do this, you need to copy some values from the Okta application page:
 
+<Steps>
+
 1. Navigate to the Okta Application you created earlier
 2. Go to the **Sign On** tab
 3. Press **View SAML setup instructions** on the bottom-right corner
 
-![View SAML setup instructions](./img/setup-instructions.jpg)
+    ![View SAML setup instructions](./img/setup-instructions.jpg)
 
-Copy the values shown on the screen. You will need them next.
+4. Copy the values shown on the screen. You will need them next.
 
-![SAML Setup URL and certificates](./img/saml-values.jpg)
+    ![SAML Setup URL and certificates](./img/saml-values.jpg)
+
+</Steps>
 
 To create the connection between Semaphore and Okta, follow these steps:
+
+<Steps>
 
 1. Log in your Semaphore organization using an admin account
 2. Open the organization menu on the top-right corner and select **Settings**
 3. Go to **Okta Integration** and press **Set up**
 4. Paste the **Single Sign On URL**, **SAML Issuer** and **SAML Certificate** values from the Okta SAML setup instructions
 
-![Set up SAML values on Semaphore](./img/setup-okta-values.jpg)
+    ![Set up SAML values on Semaphore](./img/setup-okta-values.jpg)
 
-Once you press **Save**, Semaphore shows your **SCIM AUthorization token**. This value is only shown once, so be sure to copy and store it in a safe place as you will need it during the next step.
 
-![Semaphore showing authorization token](./img/token.jpg)
+5. Once you press **Save**, Semaphore shows your **SCIM AUthorization token**. 
+
+    This value is only shown once, so be sure to copy and store it in a safe place as you will need it during the next step.
+
+    ![Semaphore showing authorization token](./img/token.jpg)
+
+</Steps>
 
 Semaphore is now connected to Okta. You can enable user provisioning in the next step.
 
@@ -120,48 +138,60 @@ To enable user management in Okta, open the Okta application you created earlier
 
 ![Opening the Okta application](./img/okta-application.jpg)
 
-Under **General** tab, click on **Edit**.
+<Steps>
 
-![Edit general settings in Okta](./img/okta-edit-general-settings.jpg)
+1. Under **General** tab, click on **Edit**.
 
-Choose **SCIM** as the provisioning option. Press **Save**
+    ![Edit general settings in Okta](./img/okta-edit-general-settings.jpg)
 
-![Choosing SCIM](./img/scim-enable.jpg)
+2. Choose **SCIM** as the provisioning option. Press **Save**
 
-A new tab should have appeared called **Provisioning**. Open that tab and click on **Edit**.
+    ![Choosing SCIM](./img/scim-enable.jpg)
 
-![Edit provisioning options](./img/okta-edit-provisioning.jpg)
+3. A new tab should have appeared called **Provisioning**. Open that tab and click on **Edit**.
 
-Fill in the following values:
+    ![Edit provisioning options](./img/okta-edit-provisioning.jpg)
 
-- **SCIM connector base URL**: this is your [organization URL](./organizations#general-settings) followed by `/okta/scrim`. For example, if your organization URL is `https://my-org.semaphoreci.com`, the value for this field is `https://my-org.semaphoreci.com/okta/scim`
-- **Unique identifier field for users**: type the string "email"
-- **Supported provisioning actions**: select **Push New Users**, **Push Profile Updates**, and **Push Groups**
-- **Authentication Mode**: select **HTTP Header**
-- **Authorization**: paste the [token that Semaphore showed earlier](#token)
+4. Fill in the following values:
 
-![Configuring user provisioning on Okta](./img/user-provisioning.jpg)
+    - **SCIM connector base URL**: this is your [organization URL](./organizations#general-settings) followed by `/okta/scrim`. For example, if your organization URL is `https://my-org.semaphoreci.com`, the value for this field is `https://my-org.semaphoreci.com/okta/scim`
+    - **Unique identifier field for users**: type the string "email"
+    - **Supported provisioning actions**: select **Push New Users**, **Push Profile Updates**, and **Push Groups**
+    - **Authentication Mode**: select **HTTP Header**
+    - **Authorization**: paste the [token that Semaphore showed earlier](#token)
 
-Press the **Test Configuration** button to test the connection. Press **Save** to save your changes.
+    ![Configuring user provisioning on Okta](./img/user-provisioning.jpg)
 
-The test connection screen should show green checkmarks next to **Create Users**, **Update User Attributes**, and **Push Groups**
+5. Press the **Test Configuration** button to test the connection. Press **Save** to save your changes.
 
-![Testing the connection](./img/test-connection.jpg)
+    The test connection screen should show green checkmarks next to **Create Users**, **Update User Attributes**, and **Push Groups**
 
-The last step is to enable provisioning on Okta. To do this:
+    ![Testing the connection](./img/test-connection.jpg)
+
+</Steps>
+
+The last step is to enable provisioning on Okta. Follow these steps:
+
+
+<Steps>
 
 1. Select the **Provisioning** tab
 2. Click on **Edit**
 3. Check **Enable** next to **Create Users**, **Update User Attributes**, and **Deactivate Users**
 4. Press **Save**
 
-![Enabling user provisioning in Okta](./img/enable-provisioning.jpg)
+    ![Enabling user provisioning in Okta](./img/enable-provisioning.jpg)
+
+</Steps>
+
 
 ## How to create users and groups in Okta
 
 User creation is not immediate. There can be a few minutes of lag before an added user appears on Semaphore. On big organizations the sync process can take up to one hour.
 
 To create a user or a group in Semaphore using the Okta integration, follow these steps:
+
+<Steps>
 
 1. Go to your Okta organization and enter the admin dashboard
 2. Select **Applications** from the left menu
@@ -170,11 +200,14 @@ To create a user or a group in Semaphore using the Okta integration, follow thes
 5. Press the **Assign** button
 6. Select **People** or **Groups** from the selection menu
 
-![Pressing the Assign button](./img/assign-button.jpg)
+    ![Pressing the Assign button](./img/assign-button.jpg)
 
-Press **Asign** next to the People or Groups you wish to add to Semaphore.
 
-![Assigning people to Semaphore](./img/assign-people.jpg)
+7. Press **Asign** next to the People or Groups you wish to add to Semaphore.
+
+    ![Assigning people to Semaphore](./img/assign-people.jpg)
+
+</Steps>
 
 You can see the number of connected users in the **Okta integration** settings page in Semaphore.
 
@@ -190,7 +223,7 @@ Okta can lead to duplicate users when the integration is added on an organizatio
 
 Your users can now log in to Semaphore via Okta Single Sign On (SSO).
 
-To log in using SSO, follow these steps:
+The process for SSO login is as follows:
 
 1. The user logs in to Okta
 2. The user opens the Semaphore Application in Okta

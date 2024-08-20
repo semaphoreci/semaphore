@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
@@ -21,6 +22,8 @@ The agent type is the name assigned to agents running on the same hardware or pl
 
 To register a self-hosted agent type, follow these steps:
 
+<Steps>
+
 1. Open the [organization](./organizations) menu on the top-right corner
 2. Select **Self-hosted agents**
 3. Press **Add self-hosted agent type**
@@ -29,7 +32,9 @@ To register a self-hosted agent type, follow these steps:
 6. Select [when the agent name is released](#name-release)
 7. Press **Register**
 
-![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
+    ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
+
+</Steps>
 
 The next page shows detailed instructions to install and register the self-hosted. Select the platform you're using and press **Reveal** to view the registration token. Save it in a safe place for the next step.
 
@@ -66,6 +71,8 @@ agent start --name my-agent-name
 
 You may need to edit the configuration file of the service manager to change the name. For example, to change the agent name when using systemd, follow these steps:
 
+<Steps>
+
 1. Edit the service file
 
     ```shell
@@ -86,7 +93,9 @@ You may need to edit the configuration file of the service manager to change the
     sudo systemctl restart semaphore-agent
     ```
 
-:::info
+</Steps>
+
+:::note
 
 Agent names should have between 8 and 80 characters.
 
@@ -110,13 +119,17 @@ sequenceDiagram
 
 To use AWS STS name assignments, follow these steps:
 
+<Steps>
+
 1. Create an IAM user on AWS with permissions to create and delete EC2 instances
 2. Select the option **Agent name is assigned from a pre-signed AWS STS GetCallerIdentity URL** during [agent registration](#register-agent)
 3. Type your AWS account ID
 4. Type the list of roles the [IAM user is allowed to assume](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 5. Press **Save**
 
-![Configuring AWS STS names](./img/self-hosted-sts.jpg)
+    ![Configuring AWS STS names](./img/self-hosted-sts.jpg)
+
+</Steps>
 
 ## Name release {#name-release}
 
@@ -148,6 +161,8 @@ Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to
 
 To install the Semaphore custom controller, follow these steps:
 
+<Steps>
+
 1. Install [Helm](https://helm.sh/)
 2. Add the Semaphore Helm chart
 
@@ -157,10 +172,6 @@ To install the Semaphore custom controller, follow these steps:
 
 3. Install the [agent-k8s-controller](https://github.com/renderedtext/agent-k8s-controller) with Helm
 
-    Replace:
-    - `<my-org.semaphoreci.com>` with your [organization URL](./organizations#general-settings)
-    - `<token>` with the [registration token](#register-agent) you received earlier
-
     ```shell title="Install agent-k8s-controller"
     helm upgrade --install semaphore-controller renderedtext/controller \
     --namespace semaphore \
@@ -169,12 +180,13 @@ To install the Semaphore custom controller, follow these steps:
     --set apiToken=<token>
     ```
 
+    Replace:
+
+    - `<my-org.semaphoreci.com>` with your [organization URL](./organizations#general-settings)
+    - `<token>` with the [registration token](#register-agent) you received earlier
+
 4. Create a secret to register the agent type in the Kubernetes cluster. Create a new YAML resource file.
 
-     Replace: 
-     - `<AGENT_TYPE>` with the type you [created during registration](#register-agent)
-     - `<AGENT_TYPE_REGISTRATION_TOKEN>` with the token you received during registration
-     - The custom controllers looks for the `label` shown below to know what secret is relevant to this connection
 
     ```yaml title="semaphore-secret.yml"
     apiVersion: v1
@@ -189,11 +201,19 @@ To install the Semaphore custom controller, follow these steps:
         registrationToken: <AGENT_TYPE_REGISTRATION_TOKEN>
     ```
 
+     Replace: 
+
+     - `<AGENT_TYPE>` with the type you [created during registration](#register-agent)
+     - `<AGENT_TYPE_REGISTRATION_TOKEN>` with the token you received during registration
+     - The custom controllers looks for the `label` shown below to know what secret is relevant to this connection
+
 5. Create the secret in Kubernetes
 
     ```shell
     kubectl apply -f semaphore-secret.yml
     ```
+
+</Steps>
 
 The Helm chart provides a few additional configuration options so you can tweak your installation to best suit your needs. Run `helm show values renderedtext/controller` to view all available settings.
 
@@ -202,6 +222,8 @@ See the [Helm chart repo](https://github.com/renderedtext/helm-charts/tree/main/
 ### Ubuntu/Debian {#ubuntu}
 
 Follow these steps to install self-hosted agent in Ubuntu or Debian:
+
+<Steps>
 
 1. Create a user with sudo permissions to run the agent service, e.g. `semaphore`
 
@@ -292,11 +314,15 @@ Follow these steps to install self-hosted agent in Ubuntu or Debian:
     Jul 12 14:09:33 selfhosted agent[5157]: Jul 12 14:09:33.331 sywinVS8IgIkZzgIgk2D : SYNC request (state: waiting-for-jobs)
     ```
 
+</Steps>
+
 See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup. If the installation fails, try the [Generic Linux installation](#linux) or [installing from source](#rhel).
 
 ### Generic Linux {#linux}
 
 Follow these steps to install self-hosted agent in any Linux distribution:
+
+<Steps>
 
 1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
 2. Log in or switch to the agent service user
@@ -366,6 +392,8 @@ Follow these steps to install self-hosted agent in any Linux distribution:
     agent start --config-file config.yaml
     ```
 
+</Steps>
+
 See [self-hosted agent configuration](./self-hosted-configure) to see the next steps in the setup.
 
 ### Red Hat Enterprise Linux (RHEL) {#rhel}
@@ -373,6 +401,8 @@ See [self-hosted agent configuration](./self-hosted-configure) to see the next s
 In order to run the self-hosted agent in FIPS-enabled Red Hat Enterprise Linux (RHEL), you must compile the binary from source. 
 
 To compile the agent, follow these steps:
+
+<Steps>
 
 1. Verify the host has FIPS mode enabled
 
@@ -403,11 +433,17 @@ To compile the agent, follow these steps:
 
 5. Install???
 
+</Steps>
+
 To finish the setup, follow these instructions:
+
+TODO
 
 ### macOS {#macos}
 
 To install the Semaphore self-hosted agent in macOS
+
+<Steps>
 
 1. Create a user to run the agent service with sudo permissions, e.g. `semaphore`
 2. Log in or switch to the agent service user
@@ -464,7 +500,14 @@ To install the Semaphore self-hosted agent in macOS
     ssh -T git@github.com
     ```
 
+</Steps>
+
 ### macOS (Homebrew) {#homebrew}
+
+You can install the macOS agent using Homebrew. Follow these steps:
+
+<Steps>
+
 
 1. Install [Homebrew](https://brew.sh/)
 2. Install the Semaphore self-hosted agent
@@ -511,9 +554,13 @@ To install the Semaphore self-hosted agent in macOS
     agent start --endpoint my-org.semaphoreci.com --token <TOKEN>
     ```
 
+</Steps>
+
 ### Windows {#windows}
 
 To install the self-hosted agent in Windows, follow these steps:
+
+<Steps>
 
 1. Prepare your machine
 
@@ -536,6 +583,8 @@ To install the self-hosted agent in Windows, follow these steps:
     $env:SemaphoreRegistrationToken = "<your-agent-type-registration-token>"
     .\install.ps1
     ```
+
+</Steps>
 
 ### AWS {#aws}
 

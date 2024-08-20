@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Get notified via Slack or any other webhook-based service when important things happen.
 
@@ -28,6 +29,8 @@ Always use [Incoming Webhooks app](https://semaphore.slack.com/apps/A0F7XDUAZ-in
 
 To create a notification, navigate to **Notifications** and press **New Notification**
 
+<Steps>
+
 1. Type the name of the notification
 2. Type the name of the rule to fires the notification
 3. You can supply optional filters for this rule:
@@ -36,12 +39,17 @@ To create a notification, navigate to **Notifications** and press **New Notifica
    - **Pipelines**: comma-separated list [pipeline](./pipelines) YAML files that need to run in order to fire the notification
    - **Results**: comma-separated list of results. Valid values are: "passed", "failed", "stopped", or "canceled"
 
-<details>
-<summary>Show me</summary>
-<div>
-![Creating a new notification](./img/notifications-setup-1.jpg)
-</div>
-</details>
+    <br/>
+
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Creating a new notification](./img/notifications-setup-1.jpg)
+    </div>
+    </details>
+
+</Steps>
+
 
 :::note
 
@@ -51,28 +59,37 @@ Regular expressions must wrapped in forward slashes, e.g. `/.*/` matches all val
 
 To send Slack notifications:
 
+<Steps>
+
 1. Copy the [Slack webhook](https://slack.com/help/articles/360041352714-Build-a-workflow--Create-a-workflow-that-starts-outside-of-Slack) for your Slack Workspace
 2. Type the comma-separated list of channels to receive the message
 
-<details>
-<summary>Show me</summary>
-<div>
-![Adding an Slack webhook](./img/notifications-setup-2.jpg)
-</div>
-</details>
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Adding an Slack webhook](./img/notifications-setup-2.jpg)
+    </div>
+    </details>
+
+</Steps>
 
 To send notifications to other webhook-based services:
+
+
+<Steps>
 
 1. Create a organization [secret](./secrets#org-secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
 2. Copy the URL of the webhook that receives the notification
 3. Type the name of the secret created on step 1, e.g. "mywebhook-secret"
 
-<details>
-<summary>Show me</summary>
-<div>
-![Adding a webhook-based service](./img/notifications-setup-3.jpg)
-</div>
-</details>
+    <details>
+    <summary>Show me</summary>
+    <div>
+    ![Adding a webhook-based service](./img/notifications-setup-3.jpg)
+    </div>
+    </details>
+
+</Steps>
 
 :::note
 
@@ -154,6 +171,10 @@ sem create notification <name> \
 You can secure the notification by adding a secret. That way, the receving endpoint can validate the payload. 
 
 To add a password to your notification:
+
+
+<Steps>
+
 1. Create a organization [secret](./secrets#org-secrets) containing the environment variable `WEBHOOK_SECRET` and a secret value. Remember the name of this secret, e.g. "mywebhook-secret"
 2. Add `--webhook-secret` to the command:
     ```shell title="Securing a webhook-based notification"
@@ -162,14 +183,19 @@ To add a password to your notification:
         --webhook-secret <semaphore-secret-name>
     ```
 
+</Steps>
+
 :::info
 
 Semaphore includes the signature in the `X-Semaphore-Signature-256` header when the webhook secret is present. Semaphore uses an HMAC-SHA256 to compute the signature of the request body.
 
 :::
 
+
 </TabItem>
 </Tabs>
+
+
 
 ## Manage notifications from the CLI
 

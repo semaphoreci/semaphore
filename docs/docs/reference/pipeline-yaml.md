@@ -790,9 +790,9 @@ Please notice that a pipeline *will not fail* if one or more commands in the `ep
 
 There are three types of epilogue commands:
 
-1. Epilogue commands that are always executed. Defined with `always` in the epilogue section.
-2. Epilogue commands that are executed when the job passes. Defined with `on_pass` in the epilogue section.
-3. Epilogue commands that are executed when the job fails. Defined with `on_fail` in the epilogue sections.
+- **Always executed**: defined with `always` in the epilogue section.
+- **Executed when the job passes**: defined with `on_pass` in the epilogue section.
+- **Executed when the job fails**: defined with `on_fail` in the epilogue sections.
 
 The order of command execution is as follows:
 

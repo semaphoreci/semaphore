@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 OAuth is the legacy method to access your GitHub repositories. This feature might be deprecated in the following releases. Semaphore recommends using [GitHub App](./connect-github) instead of the method described here.
 
@@ -37,21 +38,29 @@ If you are creating a new Semaphore account, you can sign in with GitHub to crea
 
 Follow these steps to create a Semaphore account using GitHub:
 
+<Steps>
+
 1. Log in to your GitHub account
 2. Navigate to the [Semaphore login page](https://semaphoreci.com/login)
 3. Select **Log in with GitHub**
 4. Grant access to the Semaphore [OAuth App](https://github.com/settings/connections/applications/328c742132e5407abd7d) in GitHub
 5. Finish the Semaphore setup
 
+</Steps>
+
 ## How to authorize OAuth App {#connect-oauth}
 
 The connection between Semaphore and GitHub should be configured automatically when you sign up. However, this connection can be severed for different reasons. If you don't see your repositories when trying to create a [project](./projects), follow these steps:
 
+<Steps>
+
 1. Navigate to your [Semaphore account page](https://me.semaphoreci.com/account)
 2. Click on **Grant public access** or **Grant private access** to grant access to only public or all of your repositories on GitHub
- ![Connecting Semaphore to your Git provider](./img/connect-gh-bb.jpg)
+    ![Connecting Semaphore to your Git provider](./img/connect-gh-bb.jpg)
 3. Press **Authorize semaphoreci**
- ![Authorize access to GitHub account](./img/authorize-gh.jpg)
+    ![Authorize access to GitHub account](./img/authorize-gh.jpg)
+
+</Steps>
 
 The possible connection status is:
 
@@ -68,12 +77,16 @@ To connect a GitHub repository with Semaphore using OAuth, you must have admin a
 
 To create a connection using OAuth, follow these steps:
 
+<Steps>
+
 1. Create a [new project](./projects#create-project)
 2. Select the **GitHub Personal Token** tab
- ![Selecting the personal token tab](./img/oauth-personal-token.jpg)
+    ![Selecting the personal token tab](./img/oauth-personal-token.jpg)
 3. Choose **Public repositories** or **All repositories**
- ![OAuth permission options](./img/oauth-permissions.jpg)
+    ![OAuth permission options](./img/oauth-permissions.jpg)
 4. Select a repository from the list and finish the [project setup](./projects)
+
+</Steps>
 
 You can only use this method on repositories you have admin-level access to (unavailable repositories are greyed out).
 
@@ -84,75 +97,6 @@ Depending on the GitHub organization settings, its owner may need to [authorize 
 If you have given full access to Semaphore but only see your personal repositories, it might mean that the GitHub organization's owner hasn't granted Semaphore access to the organization yet.
 
 :::
-
-## Troubleshooting guide
-
-If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between GitHub and Semaphore.
-
-1. Navigate to your [Semaphore account](https://me.semaphoreci.com/account)
-2. Read the status next to GitHub
- ![Connection status green](./img/account-gh-bb-access.jpg)
-3. If the status is disconnected, click on **Grant public access** or **Grant private access**
-
-You can check and change the permissions of your OAuth App connection in the [Semaphore OAuth page](https://github.com/settings/connections/applications/328c742132e5407abd7d).
-
-### Verify deploy key health {#deploy-key}
-
-Semaphore generates a [deploy key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) when a [project](./projects) is created. This means there is a deploy key per repository connected to Semaphore.
-
-When a deploy key is broken or invalid, Semaphore shows the following error message:
-
-```text
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
-```
-To verify the status of a deploy key:
-
-1. Open your [project settings](./projects#settings)
-2. If there isn't a green check next to **Deploy Key**, the key is invalid
- ![Checking the status of the deploy key](./img/deploy-key.jpg)
-
-To deploy a new key, click on **Regenerate**
-
-:::info
-
-A deploy key can be invalidated if:
-
-- it was manually removed from the repository
-- access via OAuth or GitHub App was revoked
-- the repository's original owner no longer has access to it (only for projects added [via OAuth](#oauth))
-
-:::
-
-### Verify webhook health {#webhook}
-
-Semaphore uses a webhook to detect changes in your repository. When the webhook is broken, Semaphore can't trigger new workflows.
-
-To verify the status of a webhook:
-
-1. Open your [project settings](./projects#settings)
-2. If there isn't a green check next to **Deploy Key**, the key is invalid
- ![Checking the status of the deploy key](./img/webhook.jpg)
-
-To fix the broken webhook, click on **Regenerate**. This should generate a new webhook and repair the connection between Semaphore and GitHub.
-
-### Reconnecting moved or renamed projects
-
-There are several actions that can break the connection between GitHub and Semaphore. For example:
-
-- moving the repository to a different location
-- renaming the repository
-- renaming the GitHub user account
-- renaming the GitHub organization
-
-When this happens, you must update the URL of the repository in Semaphore. To do this:
-
-1. Open your [project settings](./projects#settings)
-2. Type the new repository URL
-3. Press **Change**
- ![Changing the repository URL in Semaphore](./img/repository-url.jpg)
-
-After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
 
 ## See also
 

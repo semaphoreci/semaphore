@@ -55,6 +55,32 @@ Agents generate a random name when this argument is empty. Set this value to for
 
 A pre-signed AWS STS GetCallerIdentity URL can also be used if the [agent type](../using-semaphore/self-hosted)] allows it.
 
+### Autoscaler max size {#asg-max-size}
+
+- **argument name**: `asg-max-size`
+- **mandatory**: no
+- **default value**: undefined
+- **environment variable**: `SEMAPHORE_AGENT_ASG_MAX_SIZE`
+
+This is the upper limit for the autoscaling group for a given agent type. When defined, no more that this number of agents for the type will be spun up.
+
+### Autoscaler min size {#as-mix-size}
+
+- **argument name**: `asg-max-size`
+- **mandatory**: no
+- **default value**: undefined
+- **environment variable**: `SEMAPHORE_AGENT_ASG_MAX_SIZE`
+
+ This is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0, this number of agents will be kept idling and warm.
+
+### Use dynamic scaling {#use-dynamic-scaling}
+
+- **argument name**: `use-dynamic-scaling`
+- **mandatory**: yes
+- **default value**: true
+- **environment variable**: `SEMAPHORE_AGENT_USE_DYNAMIC_SCALING`
+
+When set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running.
 
 ### Environment variables {#env-vars}
 

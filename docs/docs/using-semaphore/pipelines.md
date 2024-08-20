@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 A pipeline is a group of connected blocks. This page explains what pipelines are, how they organize workflow execution order, and what settings are available.
 
@@ -176,10 +177,14 @@ To select the agent running your jobs in a pipeline:
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the pipeline
 2. Select the **Environment Type**
 3. Select the **Operating System**
 4. Select the [machine type](../reference/machine-types)
+
+</Steps>
 
 The available hardware changes depending on the type of environment you selected.
 
@@ -187,10 +192,15 @@ The available hardware changes depending on the type of environment you selected
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-(../reference/machine-types)
+
+
+<Steps>
+
 1. Add the `agent` and `machine` keys
 2. Add the hardware `type`. The value must be one of the supported [machine types](../reference/machine-types)
 3. Add the `os_image`. The value must be one of the supported operating systems
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -241,6 +251,8 @@ To run the job inside a Docker container:
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the pipeline
 2. In **Environment Types** select **Docker Container(s)**
 3. Select the [machine type](../reference/machine-types)
@@ -248,10 +260,14 @@ To run the job inside a Docker container:
 5. Optionally, add environment variables
 6. Optionally, add more containers
 
-![Setting Docker environments](./img/agent-docker.jpg)
+  ![Setting Docker environments](./img/agent-docker.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+<Steps>
 
 1. Add the `agent` and `machine`
 2. Add a `containers` key
@@ -259,6 +275,8 @@ To run the job inside a Docker container:
 4. Add the `image`
 5. Optionally, add `env_vars`
 6. Optionally, add more containers
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -589,20 +607,28 @@ You can add after-pipeline jobs using YAML or the editor.
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Press **+Add After Jobs**
 2. Type the name of the job
 3. Add your commands
 4. Optionally, you can add more jobs
 5. To delete them, click the X next to the job
 
-![Adding an after pipeline job with the visual editor](./img/after-pipeline.jpg)
+  ![Adding an after pipeline job with the visual editor](./img/after-pipeline.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Add `after_pipeline` key at the top level of the YAML.
 2. Create a `task.jobs` key
 3. Add the list of jobs with `name` and `commands`
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -671,9 +697,13 @@ Queues can only be defined using the [pipeline YAML](../reference/pipeline-yaml)
 
 To assign a pipeline to a named queue, follow these steps:
 
+<Steps>
+
 1. Open the pipeline file
 2. Add `queue`, `name` and `scope` at the root level of the YAML
 3. Save the file and push it to the repository
+
+</Steps>
 
 The following example shows how to assign the pipeline to project-level queue called "Deployment queue".
 
@@ -725,9 +755,13 @@ You can force pipelines to run in parallel by disabling queuing. This can help t
 
 To disable queue for a pipeline, follow these steps:
 
+<Steps>
+
 1. Open the pipeline file
 2. Add `queue`, `processing: parallel` at the root level of the YAML
 3. Save the file and push it to the repository
+
+</Steps>
 
 The following example shows a pipeline that always runs in parallel. So, the pipeline starts as soon as an agent is available to take the jobs.
 
@@ -819,21 +853,30 @@ You can change the limit up to a maximum value of *24 hours*.
 
 To change the global time limit for all jobs in a pipeline, follow these steps:
 
+<Steps>
+
 1. Open the workflow editor
 2. Select the pipeline
 3. Scroll down to **Execution time limit** on the right-side menu
 4. Select a new value in **Hours** or **Minutes**
 5. Press **Run the workflow**, then **Start**
 
-![Changing global job limit duration](./img/global-job-duration.jpg)
+  ![Changing global job limit duration](./img/global-job-duration.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+
+<Steps>
 
 1. Open the pipeline YAML
 2. Add and `execution_time_limit` element at the root of the pipeline
 3. Add `hours` or `minutes`, set the new value
 4. Save the file and push it to the repository
+
+</Steps>
 
 ```shell title="Changing max duration for a single job"
 version: v1.0

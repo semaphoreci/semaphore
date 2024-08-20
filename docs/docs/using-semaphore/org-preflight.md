@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <Available plans={['Scaleup']}/>
 
@@ -42,6 +43,8 @@ Semaphore encourages you to be cautious and familiar with the CI/CD platform bef
 
 To access the organization's pre-flight checks, follow these steps:
 
+<Steps>
+
 1. Open the [organization settings](./organizations#org-settings)
 2. Select **Initialization jobs**
 3. Scroll down to **Pre-flight checks**
@@ -49,7 +52,9 @@ To access the organization's pre-flight checks, follow these steps:
 5. Optionally, add [secrets](./secrets) needed during initialization
 6. Press **Save changes**
 
-![Configuring pre-flight checks for the organization](./img/org-preflight-screen.jpg)
+    ![Configuring pre-flight checks for the organization](./img/org-preflight-screen.jpg)
+
+</Steps>
 
 On the same screen, you can delete the existing pre-flight check by pressing the **Delete pre-flight checks** button.
 

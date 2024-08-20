@@ -133,7 +133,6 @@ const sidebars = {
             },
           ],
         },
-        'using-semaphore/account-and-security',
       ],
     },
   ],

@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <Available plans={['Startup (Hybrid)', 'Scaleup (Hybrid)']}/>
 
@@ -77,30 +78,33 @@ Self-hosted agents do not provide cache storage for the [cache command](../refer
 
 First, create an S3 bucket in your region of choice. In the example, we'll call the bucket "semaphore-cache" and use the region "us-east-1". Update the values depending on your needs.
 
+:::note
+
+If you are using the [aws-agent-stack](./self-hosted-aws), only perform step 1. After that, the only thing remaining is to initialize `SEMAPHORE_AGENT_CACHE_BUCKET_NAME` with the name of the bucket and you're all set.
+
+:::
+
 To create the AWS resources, follow these steps:
+
+<Steps>
 
 1. Create the S3 bucket and block public access
 
     Execute these following commands to create the bucket.
 
-```shell title="Creating an S3 bucket on AWS"
-aws s3api create-bucket \
-  --region us-east-1 \
-  --bucket semaphore-cache
+    ```shell title="Creating an S3 bucket on AWS"
+    aws s3api create-bucket \
+    --region us-east-1 \
+    --bucket semaphore-cache
 
-aws s3api put-public-access-block \
-  --bucket semaphore-cache \
-  --public-access-block-configuration \
-BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
-```
+    aws s3api put-public-access-block \
+    --bucket semaphore-cache \
+    --public-access-block-configuration \
+    BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
+    ```
 
-:::note
 
-If you are using the [aws-agent-stack](./self-hosted-aws), you're done after performing this step. The only thing remaining is to initialize `SEMAPHORE_AGENT_CACHE_BUCKET_NAME` with the name of the bucket and you're all set.
-
-:::
-
-1. Create an IAM policy
+2. Create an IAM policy
 
     The self-hosted agent only needs the following permissions:
 
@@ -158,7 +162,7 @@ If you are using the [aws-agent-stack](./self-hosted-aws), you're done after per
 
     Copy the value `"Arn"` value returned by `aws iam create-policy`. You will need this value in the following steps.
 
-2. Create the AWS IAM user
+3. Create the AWS IAM user
 
     Execute the following commands to create an IAM user to access the bucket. The name of the user in this example is "semaphore"
 
@@ -181,7 +185,7 @@ If you are using the [aws-agent-stack](./self-hosted-aws), you're done after per
 
     Take note of the `"SecretAccessKey"` and `"AccessKeyId"` returned. You'll need these values later.
 
-3. Attach the AWS IAM policy to the AWS IAM user
+4. Attach the AWS IAM policy to the AWS IAM user
 
     Execute this command to attach the policy to the "semaphore" user. Replace `<ARN>` with the Arn value obtained in Step 1.
 
@@ -191,11 +195,16 @@ If you are using the [aws-agent-stack](./self-hosted-aws), you're done after per
         --policy-arn "<ARN>"
     ```
 
+</Steps>
+
 ### Configure the agent
 
 Now that we have the AWS resources and user ready, we can configure the agent to use the AWS credentials to access the bucket.
 
 Follow these steps to finish the cache storage set up:
+
+
+<Steps>
 
 1. Log in to the self-hosted agent machine as the user running the agent
 2. Initialize the aws folder
@@ -229,6 +238,8 @@ Follow these steps to finish the cache storage set up:
     ```
 
 4. Restart the agent service
+
+</Steps>
 
 ## See also
 

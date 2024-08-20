@@ -220,6 +220,8 @@ We use some non-standard React components and Markdown extensions.
 
 We have a `<Steps>` component to decorate and make **numbered** step guides more readable.
 
+Use this component for step-by-step guides. Do not use it for listing processes steps. This component indicates user action and guides users to follow steps.
+
 To use this component, first import it:
 
 ```js

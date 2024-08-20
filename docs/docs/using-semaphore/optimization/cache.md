@@ -9,6 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 The cache provides fast and convenient storage for your jobs. Use the cache to store project dependencies to speed up builds. This page explains in detail how the cache works and shows examples.
 
@@ -50,9 +51,14 @@ The cache tools recognize the following languages and dependency managers. See [
 
 When using one of the supported dependency managers:
 
+
+<Steps>
+
 1. Run `cache restore` to restore the latest files from the cache
 2. Execute the usual command to install dependencies, e.g. `npm install`
 3. Run `cache store` to save any updates in the cache
+
+</Steps>
 
 This ensures you always have the latest updated while reducing the time to download cached files.
 
@@ -185,6 +191,8 @@ You can use an AWS S3 bucket as cache storage.
 
 To provision the storage, follow these steps:
 
+<Steps>
+
 1. Create and configure an S3 bucket as explained in [How to set up caching on self-hosted agents](../self-hosted-configure#aws-cache)
 2. Configure the following [environment variables](../jobs#environment-variables) in your job
     - `SEMAPHORE_CACHE_BACKEND` set its value to "s3"
@@ -194,17 +202,23 @@ To provision the storage, follow these steps:
     - `AWS_SECRET_ACCESS_KEY`: the secret key for the account
     - `AWS_DEFAULT_REGION`: the region where the bucket is located
 
+</Steps>
+
 ### Google Cloud {#gcp}
 
 You can use Google Cloud to provide custom storage for the cache.
 
 To provision storage, follow these steps
 
+<Steps>
+
 1. [Create a Google Cloud Bucket](https://cloud.google.com/storage/docs/creating-buckets)
 2. Configure the following [environment variables](../jobs#environment-variables) in your job
     - `SEMAPHORE_CACHE_BACKEND` set it to "gcs"
     - `SEMAPHORE_CACHE_GCS_BUCKET` set it to your Google Cloud bucket name
 3. Provide the Google Cloud Application Default Credentials. See [How Application Default Credentials work](https://cloud.google.com/docs/authentication/application-default-credentials) to learn more
+
+</Steps>
 
 ### Secure FTP (SFTP) {#sftp}
 

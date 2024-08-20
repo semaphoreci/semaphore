@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Organizations are the administrative unit for Semaphore. This page explains how to set up [notifications](./notifications), manage users, and what settings are available.
 
@@ -38,6 +39,8 @@ To view or create other organizations, open the organization menu on the top rig
 
 You must install and connect the [Semaphore command line](../reference/semaphore-cli) to access your organizations
 
+<Steps>
+
 1. Run `sem context` to show the organizations connected to the tool. The active organization has an asterisk (*) next to it
     ```shell title="View connected organizations"
     $ sem context
@@ -51,6 +54,8 @@ You must install and connect the [Semaphore command line](../reference/semaphore
     $ sem context myorg1_semaphoreci_com
     switched to context "myorg1_semaphoreci_com"
     ```
+
+</Steps>
 
 </TabItem>
 </Tabs>
@@ -95,12 +100,16 @@ User groups allows you to manage users in bulk. You can create organization-leve
 
 To create a group, open the organization menu and select **People**. 
 
+<Steps>
+
 1. Press on **Create group**
 2. Type in the group name and description
 3. Type the names of the persons to add to the group
 4. Press **Save changes** to create the group
 
-![Add group](./img/add-group.jpg)
+  ![Add group](./img/add-group.jpg)
+
+</Steps>
 
 The new group starts with the [member](./rbac#org-member) role. You can change it by pressing the **Modify Role** button and selecting a different role.
 
@@ -126,10 +135,14 @@ To add or remove users in a group, press the **Modify group** button next to it.
 
 Semaphore provides pre-defined roles for organizations. You can see what actions each role can perform by following these steps:
 
+<Steps>
+
 1. Open the Organization **Settings** menu
 2. Select **Roles**
     ![Settings Role location](./img/settings-roles.jpg)
 3. In the **Organization Roles** section, press the eye button next to the role you want to examine
+
+</Steps>
 
 The actions with enabled checkbox are allowed for that role.
 
@@ -139,6 +152,8 @@ The actions with enabled checkbox are allowed for that role.
 
 Create custom roles to give your users the precise permissions they need. 
 
+<Steps>
+
 1. Open the Organization **Settings** menu
 2. Select **Roles**
 3. On the **Organization Roles** section, press **New Role**
@@ -146,7 +161,9 @@ Create custom roles to give your users the precise permissions they need.
 5. Enable the permissions allowed to the role. You can use the search box to narrow down options
 6. Press **Save changes**
 
-![Creating a new organization role](./img/org-role-create-custom.jpg)
+  ![Creating a new organization role](./img/org-role-create-custom.jpg)
+
+</Steps>
 
 ## Organization settings {#org-settings}
 
@@ -180,13 +197,17 @@ Semaphore tries to pick the best type of agent automatically but you change it f
 
 To change the initialization job agent for all your [projects](./projects) in your organization, follow these steps:
 
+<Steps>
+
 1. Select **Initialization job** from the settings menu
 2. Select the **Environment type**
 3. Select the **Machine type**
 4. Select the **OS image**
 5. Press **Save**
 
-![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
+  ![Customizing a the initialization job agent](./img/organization-settings-initialization.jpg)
+
+</Steps>
 
 To change the initialization agent for a single project, see [project pre-flight checks](./projects#preflight).
 
@@ -243,13 +264,17 @@ To export the logs as CSV, press the **Export as CSV** button.
 
 To configure streaming to an S3-compatible bucket, press the **Configure Streaming** button and:
 
+<Steps>
+
 1. Select between AWS and Google Cloud
 2. Type the region (AWS only)
 3. Type the bucket name
 4. Type the access token. They should have write access to the bucket
 5. Press **Looks Good**
 
-![Configuring Audit log streaming](./img/audit-log-streaming.jpg)
+  ![Configuring Audit log streaming](./img/audit-log-streaming.jpg)
+
+</Steps>
 
 :::info
 
@@ -291,9 +316,13 @@ Before you can transfer of an organization, the following conditions need to hap
 
 To promote a new owner to the organization:
 
+<Steps>
+
 1. Go to the organization **People** tab
 2. Press the **Change Role** button
 3. Select **Owner**
+
+</Steps>
 
 It might take several minutes for the update to be completed.
 

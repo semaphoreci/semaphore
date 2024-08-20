@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 Promotions connect [pipelines](./pipelines) to implement continuous delivery and deployment, or any other kind of automations such as [blue-green](https://semaphoreci.com/blog/blue-green-deployment) deployments and [canary](https://semaphoreci.com/blog/what-is-canary-deployment) deployments. 
 
@@ -38,22 +39,30 @@ Promotions are defined as pointers to the next pipelines down the chain. You can
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Press **+Add Promotion** 
 2. Set a descriptive name for the promotion
 3. Configure the new pipeline and add jobs as needed
 
-Press **Delete Promotion** to completely delete the promotion along with *all its child pipelines*.
+  ![Adding a manual promotion](./img/promotion-add-manual.jpg)
 
-![Adding a manual promotion](./img/promotion-add-manual.jpg)
+</Steps>
+
+Press **Delete Promotion** to completely delete the promotion along with *all its child pipelines*.
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+<Steps>
 
 1. Create a new pipeline file in the `.semaphore` folder, e.g. `deploy.yml`
 2. Edit the pipeline from which the new one (from step 1) branches off, e.g. `semaphore.yml` 
 3. Add the `promotions` key at the root level of the YAML
 4. Type the `name` of the promotion
 5. Type the `pipeline_file` filename of the pipeline created in step 1.
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -90,18 +99,26 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Open the promotion you wish to autostart
 2. Enable the checkbox **Enable automatic promotion**
 3. Type in the [start conditions](../reference/conditions-dsl)
 
-![Setting autostart conditions on a promotion](./img/promotion-auto.jpg)
+  ![Setting autostart conditions on a promotion](./img/promotion-auto.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Open the pipeline file containing the promotion you wish to autostart
 2. Add an `auto_promote` key
 3. Add a child `when` key. Type in the [start conditions]
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -205,15 +222,12 @@ To add parameters to a promotion, follow these steps:
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Press the promotion you wish to add parameters to
 2. Click **+Add Environment Variable**
 
-    <details>
-    <summary>Show me</summary>
-    <div>
     ![Add parameter to promotion](./img/parameter-1.jpg)
-    </div>
-    </details>
 
 3. Set the variable name 
 4. Set an optional description
@@ -222,15 +236,14 @@ To add parameters to a promotion, follow these steps:
 7. Set a default value (only when the parameter is mandatory)
 8. Add more parameters as needed
 
-    <details>
-    <summary>Show me</summary>
-    <div>
     ![Setting up parameters](./img/parameter-2.jpg)
-    </div>
-    </details>
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+<Steps>
 
 1. Edit the file where you wish to add the parameters
 2. Add a `parameters.env_vars` key
@@ -239,6 +252,8 @@ To add parameters to a promotion, follow these steps:
 5. Optionally set `required` to `true|false`
 6. Optionally set `options`. Each item in the list is a valid option. Leave blank to input value as freeform text
 7. If `required: true`, set the `default_value`. Optional parameters don't have a default value
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 # ...
@@ -274,9 +289,13 @@ When a pipeline is triggered with [automatic promotions](#automatic-promotions) 
 
 Once you have [added a parameter](#parameters-add), you can select its value from the Semaphore UI.
 
+<Steps>
+
 1. Press the promotion button
 2. Select or type in the value. Optional parameters can be left blank
 3. Press **Start promotion**
+
+</Steps>
 
 <Tabs>
 <TabItem value="options" label="Select value from options">
@@ -453,15 +472,13 @@ Configuring a deployment target is a two-step process:
 Environments can be defined once and used in multiple promotions in a project.
 
 To create an environment, navigate to your Semaphore project and:
+
+<Steps>
+
 1. Go to the **Deployment Targets** tab
 2. Press **Create your first Deployment Target**
 
-    <details>
-    <summary>Show me</summary>
-    <div>
     ![Creating a deployment target](./img/deployment-target-create.jpg)
-    </div>
-    </details>
 
 3. Fill in the deployment details:
     - Name of the deployment
@@ -470,10 +487,9 @@ To create an environment, navigate to your Semaphore project and:
     - Optional bookmarks
 4. Press **Next**
 
-    <details>
-    <summary>Show me</summary>
-    <div>![Example deployment target](./img/deployment-target-1.jpg)</div>
-    </details>
+    ![Example deployment target](./img/deployment-target-1.jpg)
+
+</Steps>
 
 The bookmarks are useful when using [parameterized promotions](#parameters). You can add up to three bookmarks matching the names of the parameters in the promotions. Think of the bookmarks as additional filters available in the deployment history view. 
 
@@ -484,6 +500,8 @@ Credentials are a restricted type of [secrets](./secrets) that are only accessib
 In the second part, we can define environment variables and upload files that will be accessible to the promoted pipelines. All information will be encrypted once saved.
 
 Credentials are optional. Go to the next step if you don't need them.
+
+<Steps>
 
 1. Set the environment variable name and value
 2. Add more variables as needed
@@ -498,6 +516,8 @@ Credentials are optional. Go to the next step if you don't need them.
     </div>
     </details>
 
+</Steps>
+
 ### Granular permissions {#granular-permissions}
 
 <Available plans={['Scaleup']} />
@@ -505,6 +525,8 @@ Credentials are optional. Go to the next step if you don't need them.
 In the "Who can deploy?" section you can define the users and roles that can manually start the promotion. Granular permission is optional. You can go to the next section if you don't need to restrict access to the promotion.
 
 By default, everyone can start the promotion linked to this environment. To restrict access:
+
+<Steps>
 
 1. Select "Allow only particular users to deploy"
 2. Optionally, select the roles that can deploy from the list
@@ -519,11 +541,16 @@ By default, everyone can start the promotion linked to this environment. To rest
     </div>
     </details>
 
+</Steps>
+
 ### Git-based permissions {#git-permissions}
 
 In the fourth part, you can restrict which Git branches and tags are allowed to start a promotion. Here you can also block promotions coming from pull requests. This section is optional.
 
 To restrict Git-based access:
+
+<Steps>
+
 1. Select which branches are enabled for promotions: all, none, or list of allowed branches
 2. Select which Git tags are enabled: all, none, or a list of allowed tags
 3. Enable or disable pull requests from triggering promotions
@@ -536,6 +563,8 @@ To restrict Git-based access:
     ![Setting up Git-based permissions](./img/deployment-target-4.jpg)
     </div>
     </details>
+
+</Steps>
 
 Once done, you can see the created environment in the **Deployments** tab.
 
@@ -585,17 +614,26 @@ Once you have created at least one environment, you can associate it with a [pro
 <TabItem value="editor" label="Editor">
 
 Press **Edit workflow** to open the visual editor and:
+
+<Steps>
+
 1. Select or create a promotion
 2. In **Deployment target**, select the target from the dropdown list
 
-Select **No target** to remove the association between the deployment target and the promotion.
-![Associating a deployment target with a promotion](./img/promotion-target.jpg)
+  Select **No target** to remove the association between the deployment target and the promotion.
+  ![Associating a deployment target with a promotion](./img/promotion-target.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Edit the pipeline file with the promotion you wish to target
 2. Add a `deployment_target` key to the promotion. The value is the name of the environment  you wish to associate with this promotion
+
+</Steps>
 
 Delete `deployment_target` to remove the association between the environment and the promotion.
 

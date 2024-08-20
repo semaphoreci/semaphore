@@ -7,7 +7,9 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to set up test reports" src="https://www.youtube.com/embed/9L0Z9xcKiYU?si=IdSsYfGLU7btYVwq" />
 
@@ -118,6 +120,8 @@ gotestsum --junitfile report.xml
 
 To generate JUnit reports for your Elixir project, follow these steps:
 
+<Steps>
+
 1. Add [junit-formatter](https://github.com/victorolinasc/junit-formatter) to your `mix.exs`
 
     ```elixir title="mix.exs"
@@ -161,6 +165,8 @@ To generate JUnit reports for your Elixir project, follow these steps:
     mv /tmp/report.xml .
     ```
 
+</Steps>
+
 </div>
 </details>
 
@@ -199,17 +205,25 @@ To simplify this step, you can add a [pipeline epilogue](../pipelines#settings) 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Select the pipeline with the test jobs
 2. Add the publish command in the "Execute always" box of the Epilogue
 
-![The epilogue is executed in every job in the pipeline](./img/test-report-publish.jpg)
+    ![The epilogue is executed in every job in the pipeline](./img/test-report-publish.jpg)
+
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
+<Steps>
+
 1. Open the pipeline file with the test jobs
 2. Add a `global_job_config` key at the YAML root
 3. Type the publish command under `epilogue.always.commands`
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 # ...
@@ -231,19 +245,28 @@ The final step is to merge and process all report files. This is achieved using 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Press **+Add After Jobs**
 2. Type a name for the job
 3. Type the command `test-results gen-pipeline-report`
 
-![Creating an after-pipeline job](./img/test-report-after-pipeline-job.jpg)
+    ![Creating an after-pipeline job](./img/test-report-after-pipeline-job.jpg)
+
+</Steps>
+
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
+
+<Steps>
 
 1. Open the pipeline with the test jobs
 2. Add an `after_pipeline` key at the YAML root
 3. Add the `name` under `task.jobs`
 4. Type the merge command `test-results gen-pipeline-report` in the `commands` section
+
+</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 # ...

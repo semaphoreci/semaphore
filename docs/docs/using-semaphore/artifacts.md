@@ -8,6 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
+import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use artifacts" src="https://www.youtube.com/embed/yHzZOKwyaAA?si=7qVathl09Cd3d-Gq"/>
 
@@ -69,7 +70,6 @@ The following example shows a common combination of job and workflow artifacts:
 
 1. We use the workflow artifact to pass the compiled application from the build to the test jobs
 2. Each test job pushes its test log to the job artifact
-
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -318,9 +318,13 @@ The retention policy menu lets you create rules for all the [artifact namespaces
 
 To create a retention rule:
 
+<Steps>
+
 1. Type the file selector
 2. Select the maximum age
-3. Click **+ Add retention policy** to add more rules
+3. Click **Add retention policy** to add more rules
+
+</Steps>
 
 ![Setting up project artifact retention policies](./img/retention-project.jpg)
 
