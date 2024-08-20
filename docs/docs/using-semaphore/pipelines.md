@@ -14,7 +14,7 @@ A pipeline is a group of connected blocks. This page explains what pipelines are
 
 ## Overview {#overview}
 
-The purpose of a pipeline is to connect blocks using dependencies. This lets you plan the execution order.
+Pipelines are groups of blocks that can be connected via dependencies to define their execution order.
 
 Pipelines are also the *unit of configuration*. Each pipeline is encoded as separate a YAML file in the `.semaphore` folder. 
 
@@ -72,16 +72,16 @@ blocks:
 
 ## Block execution order {#dependencies}
 
-In the same way that a block is a group of [jobs](./jobs), a pipeline is a group of blocks. Pipelines connect blocks using dependencies. Semaphore derives the execution order from these dependencies.
+In the same way that a block is a group of [jobs](./jobs), a pipeline is a group of blocks. Blocks can be connected using dependencies, which Semaphore uses to determine the execution order.
 
 Take the following example:
 
 - Blocks B and C depend on Block A
 - Block D depends on both Blocks B and C
 
-In this scenario, Block B and C wait until Block A is done. Block D in turn, waits for Blocks B and C to be finished.
-
 ![Pipeline execution order](./img/pipeline-execution-order.jpg)
+
+In this scenario, Block B and C wait until Block A is done. Block D in turn, waits for Blocks B and C to be finished.
 
 You can reorder blocks by changing their dependencies using the visual editor.
 
@@ -89,35 +89,34 @@ You can reorder blocks by changing their dependencies using the visual editor.
 
 <details>
  <summary>What if we removed all dependencies?</summary>
- <div>If we removed dependencies between blocks, then all of them would run in parallel. 
- Functionally, it would be the same as having all jobs in one big block</div>
+ <div>If we removed dependencies between blocks, then all of them would run in parallel.</div>
 </details>
 
 ## Pipeline initialization {#init}
 
-Before Semaphore can start running the jobs in the pipeline, the pipeline YAML file needs to be parsed from the repository. As a first step, Semaphore retrieves the file using the GitHub or BitBucket API and inspects its contents.
+Before Semaphore can start running the jobs in the pipeline, the pipeline YAML file needs to be retrieved from the repository. As a first step, Semaphore request the file via the GitHub or BitBucket API and inspects its contents.
 
 There are two types of pipelines:
 
-- **Static**: pipelines that don't require runtime evaluations. Semaphore uses the pipeline as-is
+- **Static**: they don't require runtime evaluations and can be used as-is
 - **Dynamic**: contain elements that must be evaluated at runtime
 
-The presence of one of the following elements make the pipeline dynamic.
+Dynamic pipelines contain at least one of these elements:
 
-- [Change detection (monorepos)](./optimization/monorepo): since Semaphore needs to evaluate the Git commit history to determine which files have changed
-- [Job matrices](./jobs#matrix): since Semaphore needs to compute all the variable permutations
-- [Parameterized promotions](./promotions#parameters): since parameter values are user-selected
-- [Organization pre-flight checks](./org-preflight): because these commands must be  executed before the pipeline begins processing
-- [Project pre-flight checks](./projects#preflight): because these commands must be executed before the pipeline begins processing
+- [Change detection (monorepos)](./optimization/monorepo)
+- [Job matrices](./jobs#matrix)
+- [Parameterized promotions](./promotions#parameters)
+- [Organization pre-flight checks](./org-preflight)
+- [Project pre-flight checks](./projects#preflight)
 
 Dynamic pipelines are evaluated in the initialization job.
 
 ### Initialization job {#init-job}
 
-The initialization job runs in a dedicated [initialization agent](#init-agent) and performs the following steps:
+The initialization job only takes place for dynamic pipelines. It runs in a dedicated [initialization agent](#init-agent) and performs the following steps:
 
 1. Clones the repository using Git
-2. Compiles the YAML tree with [Semaphore Pipeline Compiler](https://github.com/semaphoreci/spc) (spc)
+2. Parses and evaluates conditions in the input YAML file using Semaphore Pipeline Compiler (spc)
 3. Executes [organization pre-flight checks](./org-preflight), if any
 4. Executes [project pre-flight checks](./projects#preflight), if any
 5. Saves the job output log
@@ -128,32 +127,32 @@ The Semaphore Pipeline Compiler (spc) is an open-source component. You can find 
 
 :::
 
-### How to change the init agent {#init-agent}
+### How to change the agent for init jobs {#init-agent}
 
 You can change the agent that runs the initialization job in two ways:
 
-- **Organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
-- **Project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
+- **For the organization**: affects all projects in the organization. See [organization init agent](./organizations#init-agent) to learn how to change this setting
+- **For the project**: changes the agent running initialization for a single project. See [project pre-flight checks](./projects#preflight) to learn how to change this setting
 
 ### How to access init logs {#init-logs}
 
-Semaphore shows an **Initializing** message for pipelines that require an initialization job. You can see the log by clicking on the **See log** link at the top of the pipeline.
+Semaphore shows an **Initializing** message for pipelines with an initialization job. You can see the log by clicking on the **See log** link at the top of the pipeline.
 
 ![See logs link](./img/init-log.jpg)
 
-Following the link shows the complete job log.
+Here you can see the how spc evaluated the pipeline and all the actions taken during initialization.
 
 ![Example init job log](./img/init-log-example.jpg)
 
-## Connecting pipelines {#connecting-pipelines}
+## Connecting pipelines with promotions {#connecting-pipelines}
 
-[Promotions](./promotions) connect pipelines to implement continuous delivery and deployment, or any other kind of automation. Multiple pipelines can be chained to create branching workflows to automate almost any task.
+Your project can have multiple pipelines to perform different tasks such as build, release, or test. [Promotions](./promotions) connect pipelines. Multiple pipelines can be chained to create branching workflows to automate almost any task.
 
 The [workflow](./workflows) always starts with the default pipeline (located at `.semaphore/semaphore.yml`) and flows from left to right following promotions.
 
 ![A workflow with 3 pipelines](./img/workflows1.jpg)
 
-For more information, see the [Promotions documentation](./promotions).
+For more information, see the [Promotions page](./promotions).
 
 ## Pipeline settings {#settings}
 
@@ -161,21 +160,18 @@ Pipeline settings are applied to all its blocks. You can change pipeline setting
 
 ### Agents {#agents}
 
-Agents are the environment where jobs run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.
+An agent is the machine and operating system where a job run. Semaphore keeps a pool of warm agents to ensure there's always one ready to work.
 
 Semaphore Cloud provides the following agent types in x86 and ARM architectures:
 
-- [Linux Machines](../reference/machine-types#linux) presented as VMs or [Docker containers](#docker-environments)
-- [Apple macOS Machines](../reference/machine-types#macos)
-- [Windows Machines](./self-hosted-install#windows) (only for self-hosted agents) 
+- [Linux](../reference/machine-types#linux) Virtual Machines
+- [Docker containers](#docker-environments) running on Linux
+- [Apple macOS](../reference/machine-types#macos) Machines
+- [Windows](./self-hosted-install#windows) Virtuak Machines (only for self-hosted agents) 
 
-:::info
+You can add your own machines by [installing self-hosted agents](./self-hosted).
 
-Register your own machines as agents by [installing self-hosted agents](./self-hosted).
-
-:::
-
-To select the agent running your jobs by default:
+To select the agent running your jobs in a pipeline:
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -294,15 +290,10 @@ blocks:
 </TabItem>
 </Tabs>
 
-:::warning
-
-Due to the introduction of [Docker Hub rate limits](./optimization/docker#dockerhub), Semaphore automatically redirects image pulls from the Docker Hub repository to the [Semaphore Container Registry](./optimization/container-registry).
-
-:::
 
 ### Prologue {#prologue}
 
-Commands in the *prologue* run before the commands in all blocks. Semaphore will preprend these commands to every job contained in the pipeline. This works like the [block prologue](./jobs#prologue) but for all blocks in the pipeline.
+Commands in the *prologue* run before the jobs in the block start. Semaphore preprends these commands to every job contained in the pipeline. This works like the [block prologue](./jobs#prologue) but for all blocks in the pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -349,7 +340,7 @@ blocks:
 
 ### Epilogue {#epilogue}
 
-Commands in the *epilogue* run at the end of the jobs in all blocks. Semaphore will append these commands to every job contained in the pipeline.  This works like the [block epilogue](./jobs#epilogue) but for all blocks in the pipeline.
+Commands in the *epilogue* run at the end of the jobs in all blocks. Semaphore appends these commands to every job contained in the pipeline.  This works like the [block epilogue](./jobs#epilogue) but for all blocks in the pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -453,9 +444,9 @@ The available strategies are:
 
 - **Do nothing**: fail fast is disabled
 - **Stop all remaining jobs**: stops the jobs
-- **Cancel pending jobs**: cancels the jobs
-- **Stop remaining jobs, unless on the master branch**: stops the jobs except when the current branch is "master"
-- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. Uses the [conditions DSL](../reference/conditions-dsl)
+- **Cancel pending jobs**: cancels the jobs that have not yet started
+- **Stop remaining jobs, unless on the master branch**: stops the jobs when the current branch is not "master"
+- **Run a custom fail-fast strategy**: define custom conditions for stop and cancel. See [conditions DSL](../reference/conditions-dsl)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -589,7 +580,7 @@ blocks:
 
 ### After pipeline jobs {#after-pipeline-job}
 
-You can configure jobs to run once a pipeline stops, even if it ended due to a failure, stopped, or canceled.
+You can configure jobs to run once a pipeline stops. After pipeline jobs always run, even when jobs are canceled or have failed.
 
 After-pipeline jobs are executed in parallel. Typical use cases for after-pipeline jobs are sending notifications, collecting [test reports](./tests/test-reports), or submitting metrics to an external server.
 
@@ -649,11 +640,11 @@ after_pipeline:
 
 ## Pipeline queues {#pipeline-queues}
 
-Queues allow you to control the order in which pipelines Semaphore can run pipelines sequentially or in parallel depending on the queue configuration. For example, you can run pipelines in parallel on the main branch, while limiting only one production deploy pipeline to run at a time to prevent deployment conflicts.
+Queues allow you to control the order in which pipelines run. Semaphore pipelines can run sequentially or in parallel. For example, you can run CI pipelines in parallel on the main branch, while limiting deployment pipelines to run one at at time to prevent conflicts or race conditions.
 
 ### Default and named queues {#named-queues}
 
-Semaphore creates a queue for each Git push or a pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
+Semaphore creates a queue for each Git push or pull requests. All workflows sharing the same commit SHA belong in the same queue and run sequentially. 
 
 In other words, every time you re-run a workflow, create a pull request, push a tag, or start a [promotion](./pipelines#connecting-pipelines), the pipeline is added to the end of the same-commit queue.
 
@@ -665,7 +656,7 @@ You can avoid conflics with named queues. Named queues allow you to manually ass
 
 ![Named queued used to avoid deployment conflicts](./img/named-queues.jpg)
 
-In the example above we have two queues. The "main" queue runs continuous integration pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
+In the example above we have two queues. The "main" queue runs CI pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
 
 ### Queue scopes {#queue-scopes}
 
@@ -738,7 +729,7 @@ To disable queue for a pipeline, follow these steps:
 2. Add `queue`, `processing: parallel` at the root level of the YAML
 3. Save the file and push it to the repository
 
-The following example shows a pipeline that always runs in parallel. As soon as an agent is available, the pipeline starts.
+The following example shows a pipeline that always runs in parallel. So, the pipeline starts as soon as an agent is available to take the jobs.
 
 ```yaml title="Pipeline that always runs in parallel"
 version: v1.0
