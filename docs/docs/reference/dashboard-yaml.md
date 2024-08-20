@@ -2,7 +2,7 @@
 description: Dashboards YAML reference
 ---
 
-# Dashboards YAML reference
+# Dashboards YAML
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

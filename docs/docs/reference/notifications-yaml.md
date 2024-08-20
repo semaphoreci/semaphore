@@ -2,7 +2,7 @@
 description: Notifications YAML reference
 ---
 
-# Notifications YAML Reference
+# Notifications YAML
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
