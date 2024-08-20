@@ -15,7 +15,7 @@ Artifacts provide persistent storage for files and folders. This page explains h
 
 :::warning
 
-Using artifacts can cost money. We recommend reading the [usage principles](#usage) and setting up [retention policies](#retention).
+Artifacts storage can affect your billing.. We recommend reading on [artifact usage](#usage) and setting up [retention policies](#retention).
 
 :::
 
@@ -36,15 +36,13 @@ Using artifacts in [self-hosted agents](./self-hosted) requires additional setup
 
 ## Artifact usage {#usage}
 
-The `artifact` command is available in all [agents](./pipelines#agents). 
-
-The syntax to send files or folders to the store is:
+The syntax to store files or folders in the artifact store is:
 
 ```shell
 artifact push <namespace> /path/to/file/or/folder
 ```
 
-To retrieve files or folders from the store:
+To retrieve files or folders from the store we use:
 
 ```shell
 artifact pull <namespace> <file or folder name>
@@ -57,8 +55,8 @@ Add the `--force` option to overwrite files or folders with the pull or push act
 
 The artifact store is partitioned into three namespaces:
 
-- **job**: each job gets a dedicated namespace on every run. Job artifacts are suitable for collecting debug data
-- **workflow**: accessible to jobs for all [pipelines](./pipelines) in a run. Workflow artifacts are ideal for passing data between jobs
+- **job**: each job gets a dedicated namespace on every run. Job artifacts are suitable for collecting debug data, logs, or screenshots for end-to-end tests
+- **workflow**: accessible to all pipelines in the same [workflow](./workflows). Workflow artifacts are ideal for passing data between jobs
 - **project**: a global namespace for the project. Project artifacts are ideal for storing final deliverables.
 
 ### Job artifacts {#jobs}
@@ -126,13 +124,13 @@ blocks:
 </TabItem>
 </Tabs>
 
-See the YAML to view the commands used in the example.
+See the YAML tab to view the commands used in the example.
 
 ### Workflow artifacts {#workflows}
 
-The workflow artifact is used to pass data between jobs in the same run. This namespace is accessible to all pipelines, even those connected with [promotions](./promotions).
+The [workflow](./workflows) artifact is used to pass data between jobs in the same run. This namespace is accessible to all pipelines, even those connected with [promotions](./promotions).
 
-The following example shows how to use the workflow artifact to pass a compiled binary between the build, test, and deploy jobs. Note that the deploy job can access the workflow artifact even if found in a different pipeline.
+The following example shows how to use the workflow artifact to pass a compiled binary between the build, test, and deploy jobs. Note that the deploy job can access the workflow artifact even when it is on a different pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -195,7 +193,7 @@ blocks:
 </TabItem>
 </Tabs>
 
-See the YAML to view the commands used in the example.
+See the YAML tab to view the commands used in the example.
 
 ### Project artifacts {#projects}
 
@@ -255,11 +253,11 @@ blocks:
 </TabItem>
 </Tabs>
 
-See the YAML to view the commands used in the example.
+See the YAML tab to view the commands used in the example.
 
 ## How to view artifacts {#view-artifacts}
 
-In addition to accessing artifacts from the job using the `artifact` command, you can view, delete, and download artifacts from the website.
+In addition to accessing artifacts from the job using the `artifact` command, you can view, delete, and download artifacts from the Semaphore project page.
 
 ### Job artifacts {#view-job}
 
@@ -360,7 +358,7 @@ For more information, see [Plans and Pricing](https://semaphoreci.com/pricing)
 
 :::note
 
-If you're using [self-hosted agents](./self-hosted), prices may differ.
+When using [self-hosted agents](./self-hosted), you're in charge of setting up the artifact storage bucket. Storage and transfer costs are charged by your cloud provider and depend on your infrastructure setup.
 
 :::
 

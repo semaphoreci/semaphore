@@ -122,6 +122,8 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 
 ## Workflow triggers {#triggers}
 
+See [workflow triggers](./workflows#project-triggers)
+
 The following actions in the repository can trigger Semaphore to start the project's pipelines.
 
 - Pushing commits into any branch
@@ -240,27 +242,7 @@ In the general project settings, you can:
 
 ### Workflow triggers {#settings-triggers}
 
-The **What to build** section allows you to configure [workflow triggers](#triggers).
-
-Selecting **Do not run on any events** disables all triggers, effectively pausing the project. You can, however, still run workflows manually or with [tasks](./tasks).
-
-Selecting **Run on** allows you to configure what triggers are enabled for the project.
-
-- The **Branches** option allows you to run workflows on all branches or configure an allow list with branch names. Regular expressions are supported
-- The **Tags** options work the same but for Git tags
-
-![Branch and tag triggers](./img/project-general-settings-2.jpg)
-
-- Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
-- The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
-  
-![Pull request triggers](./img/project-general-settings-3.jpg)
-
-:::note
-
-You can still approve blocked pull requests by adding a comment in the pull request containing the message `/sem-approve`. Anyone who would normally be able to run a forked pull request can also approve one.  Approving forked pull requests is limited to new comments only and is impossible for comment edits.
-
-:::
+See [workflow triggers](./workflows#project-triggers) to learn how to customize what actions trigger a workflow.
 
 ### Repository {#settings-repo}
 

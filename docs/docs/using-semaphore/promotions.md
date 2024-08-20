@@ -15,36 +15,28 @@ This page explains what promotions are, how to use them to connect pipelines, an
 
 ## Connecting pipelines {#promotions}
 
-If your [project](./projects) contains more than one pipeline, you can use promotions to chain them.  Promotions *connect pipelines* in the same way that [pipelines connect blocks](./pipelines#dependencies).
+If your [project](./projects) contains more than one pipeline, you can use promotions to chain them. 
 
 Using promotions we can create a tree-like structure where pipelines branch off other pipelines. The root of the tree is the default pipeline located at `.semaphore/semaphore.yml`.
 
 Promoted pipelines are typically used for continuous delivery and continuous deployment. The following example shows the initial pipeline branching into two continuous delivery pipelines: production and development. In each of these two, we define the sequence of [jobs](./jobs) needed to deploy the application in the respective environment.
 
-![A workflow with 3 pipelines](./img/workflows.jpg)
-
-
-:::tip
-
-You can also run specific pipelines with [tasks](./tasks).
-
-:::
+![A workflow with 3 pipelines](./img/workflows1.jpg)
 
 ## Promotion triggers {#triggers}
 
 Triggering a promotion means starting the next pipeline in the chain. There are three ways of triggering a promotion:
 
-- **Manual promotions**: the default. Start the next pipeline by pressing a button
-- **Auto promotions**: start on certain conditions such as when all tests have passed on the "master" branch
-- **Parameterized promotions**: pass values as environment variables into the next pipelines. Allows us to reuse the same pipeline configuration for different tasks
+- **Manual promotions**: the default. Start the next pipeline manually
+- **Auto promotions**: automatically start a promotion on pre-defined conditions
+- **Parameterized promotions**: allows you to pass values as environment variables into the next pipelines to re-use pipelines for different tasks
 
 ## How to add promotions {#create-promotions}
 
-Promotions connect two pipelines, which we'll call the parent and child. The promotion is defined on the parent pipeline and points to the next pipeline down the chain.
+Promotions are defined as pointers to the next pipelines down the chain. You can add create multiple promotions and nest pipelines as needed.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
-
 
 1. Press **+Add Promotion** 
 2. Set a descriptive name for the promotion
@@ -53,7 +45,6 @@ Promotions connect two pipelines, which we'll call the parent and child. The pro
 Press **Delete Promotion** to completely delete the promotion along with *all its child pipelines*.
 
 ![Adding a manual promotion](./img/promotion-add-manual.jpg)
-
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
@@ -201,7 +192,7 @@ Parameterized promotions allow you to propagate environment variables on all job
 
 Use parameters to reduce the amount of pipeline duplication. For example, if you create a parametrized pipeline that reads the target environment from a variable, you can reuse it to deploy an application to production and testing environments. Parameters work with [manual](#manual-promotions) and [automatic](#automatic-promotions) promotions.
 
-:::info
+:::note
 
 Parameterized promotions causes Semaphore to run an [initialization job](./pipelines#init-job) before the pipeline starts.
 
@@ -562,7 +553,7 @@ The **Deployment** tab allows you to track your previous deployments. In this ta
 
 - how started the last deployment
 - which commit was used
-- what workflow does the deployment belong to
+- what [workflow](./workflows) does the deployment belong to
 
 You can also stop a running pipeline or rerun a promotion if you have the right to do so.
 
