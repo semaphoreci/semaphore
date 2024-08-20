@@ -156,7 +156,7 @@ To access your organization settings, open the organization menu and click on **
 
 ### General settings {#general-settings}
 
-Your organization main settings.  Here, you can change its name, its URL, and control how workflows run. 
+Your organization main settings.  Here, you can change its name, its URL, and control how [workflows](./workflows) run. 
 
 ![General settings](./img/organization-settings-general.jpg)
 

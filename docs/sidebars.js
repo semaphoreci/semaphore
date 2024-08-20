@@ -44,6 +44,8 @@ const sidebars = {
           },
         ],
     },
+    'getting-started/faq',
+    'getting-started/changelog'
   ],
   coreSidebar: [
     {
@@ -52,7 +54,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'How to use Semaphore',
-        description: 'Semaphore Handbook',
+        description: 'Semaphore Operations Guide',
         // slug: '/using-semaphore',
         keywords: ['handbook'],
         // image: '/img/docusaurus.png',
@@ -106,7 +108,6 @@ const sidebars = {
             },
           ],
         },
-        'using-semaphore/observability',
         {
           type: 'category',
           label: 'Self-hosted Agents',
@@ -144,7 +145,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'Semaphore API',
-        description: 'API Specification of the new Semaphore API',
+        description: 'Semaphore API Specification',
         // slug: '/using-semaphore',
         keywords: ['api'],
         // image: '/img/docusaurus.png',
@@ -167,7 +168,7 @@ const sidebars = {
       link: {
         type: 'generated-index',
         title: 'Semaphore Reference',
-        description: 'Reference for API, YAML and CLI',
+        description: 'Reference for YAML resources and command line tools',
         // slug: '/using-semaphore',
         keywords: ['reference'],
         // image: '/img/docusaurus.png',

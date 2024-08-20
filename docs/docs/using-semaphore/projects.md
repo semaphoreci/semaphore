@@ -122,28 +122,7 @@ hello-semaphore                      git@github.com:semaphoreci-demos/hello-sema
 
 ## Workflow triggers {#triggers}
 
-The following actions in the repository can trigger Semaphore to start the project's pipelines.
-
-- Pushing commits into any branch
-- Pushing Git tags
-- Creating pull requests from the same repository
-- Creating pull requests originating from a forked repository
-- Updating any of the project's pipelines using the [visual editor](./jobs#workflow editor)
-- Pressing the Run button on the Semaphore website
-- Requesting a re-run [using the API](../openapi-spec/workflows-reschedule)
-- Scheduling workflows [using Tasks](./tasks)
-
-The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
-
-### How pull requests are handled {#pr}
-
-Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
-
-:::note
-
-Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
-
-:::
+See [workflow triggers](./workflows#triggers) to see what actions trigger a workflow for a project.
 
 ## Project tabs {#manage-projects}
 
@@ -234,13 +213,10 @@ In the general project settings, you can:
 - [Change the owner](#owner-change) of the project
 - Change the visibility of the project
 - Change the project name or description
+- [Change workflow triggers](./workflows#triggers)
 - Delete the project
 
 ![General settings](./img/project-general-settings-1.jpg)
-
-### Workflow triggers {#settings-triggers}
-
-See [workflow triggers](./workflow#project-triggers) to learn how to customize what actions trigger a workflow.
 
 ### Repository {#settings-repo}
 

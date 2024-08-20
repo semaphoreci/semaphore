@@ -16,7 +16,7 @@ Secrets store sensitive data such as API keys, passwords, or SSH keys. This page
 
 ## Overview {#overview}
 
-Secrets are encrypted on creation and decrypted on runtime, only when they are enabled in [jobs](./jobs#secrets). Once a secret is created, its contents are no longer visible to users.
+Secrets are encrypted on creation and decrypted on runtime when required for [jobs](./jobs#secrets). Once a secret is created, its contents are no longer visible to users.
 
 Secrets implement two kinds of values:
 
@@ -27,7 +27,7 @@ Secrets can be created in three scopes:
 
 - [Organization](./organizations): organization secrets are available in all projects in your organization
 - [Project](./projects): project secrets are available only to a single project
-- [Environment credentials](./promotions#credentials): environment credentials are available only to pipelines targeted by [environments](./promotions#deployment-targets)
+- [Environment credentials](./promotions#credentials): environment credentials are available only to pipelines targeted by [deployment targets (environments)](./promotions#deployment-targets)
 
 <details>
 <summary>How are secret collisions managed?</summary>
@@ -44,11 +44,7 @@ A collision happens when secrets with the same name are defined on multiple leve
 
 ## How to create organization secrets {#org-secrets}
 
-:::tip
-
 Organization secrets are available to all the [projects](./projects) in the organization. If you need more fine-grained control, you can set up [secret access policies](#secret-access-policy) or use the [credentials in environments](./promotions#credentials) instead.
-
-:::
 
 You can create secrets using the UI or the command line.
 

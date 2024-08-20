@@ -62,6 +62,18 @@ Additionally, you can configure workflows to be triggered by:
 - Pull requests
 - Pull request on forked repositories
 
+The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
+
+### How pull requests are handled {#pr}
+
+Semaphore starts a workflow for every push to a pull request originating from a forked repository. For security reasons, secrets are disabled in jobs triggered in this way. You can [create an allow list](#settings-triggers) with the secrets you want to expose in the project settings.
+
+:::note
+
+Instead of pushing the HEAD commit to the pull request, Semaphore uses the MERGE commit between the source and the upstream branch. You can find the SHA of the HEAD commit of the Pull Request in the [`SEMAPHORE_GIT_PR_SHA`](../reference/env-vars#pr-sha) environment variable.
+
+:::
+
 ### How to customize triggers {#project-triggers}
 
 Triggers are configured in the [project settings](./projects#general). To change what actions can trigger a workflow, follow these steps:
@@ -71,7 +83,7 @@ Triggers are configured in the [project settings](./projects#general). To change
 1. Open your project on Semaphore
 2. Go to the **Settings** tab
 
- ![General Settings](./img/project-settings.jpg)
+    ![General Settings](./img/project-settings.jpg)
 
 3. In the **General** section scroll down to **What to build**
 4. Change the settings and press **Save**

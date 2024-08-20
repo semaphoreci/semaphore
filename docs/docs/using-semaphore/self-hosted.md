@@ -17,7 +17,7 @@ Semaphore Hybrid lets you run jobs on your own hardware. This page explains what
 
 An [agent](./pipelines#agents) is a physical or virtual machine you own that can be dedicated to running Semaphore [jobs](./jobs). You can mix and match your own agents with the [machines provided by Semaphore](../reference/machine-types).
 
-Self-hosted agents allow you to run workflows on machines that are not currently available as part of Semaphore Cloud plans, such as GPU-enabled machines for machine learning workloads.
+Self-hosted agents allow you to run [workflows](./workflows) on machines that are not currently available as part of Semaphore Cloud plans, such as GPU-enabled machines for machine learning workloads.
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
