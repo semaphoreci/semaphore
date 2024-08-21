@@ -146,6 +146,8 @@ To create secrets with the Semaphore API, see the [API reference page](../refere
 
 ### Access policy {#secret-access-policy}
 
+<VideoTutorial title="How to configure secret access policu" src="https://www.youtube.com/embed/gB1Oat4HwTo?si=_dvCKllE0bPgtDFe" />
+
 <Available plans={['Scaleup']}/>
 
 Access policies let you control how and who can use [organization secrets](#org-secrets). 

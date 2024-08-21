@@ -39,6 +39,8 @@ The [project page](./projects#view-projects) shows all the recent workflows for 
 
 ## Visual workflow editor {#workflow-editor}
 
+<VideoTutorial title="How to use the worflow builder" src="https://www.youtube.com/embed/vrv3jI-85L0?si=JLRw6FDTEF7KtPx_" />
+
 You can define most aspects of your workflows using the visual editor. 
 
 To access the editor, open one of your projects on and press **Edit Workflow**. All your changes are stored as YAML pipeline definitions on your Git repository. You can make changes using the visual editor, or edit the YAML directly by clicking on the pipeline YAML file.

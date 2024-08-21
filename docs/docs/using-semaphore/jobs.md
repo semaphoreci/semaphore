@@ -402,6 +402,8 @@ artifact push project hello.exe
 
 ## Debugging jobs {#debug-jobs}
 
+<VideoTutorial title="Debugging tools" src="https://www.youtube.com/embed/S10pilLnsQI?si=Mgs3SD3yn9VoUfvm" />
+
 This section shows tips to detect and debug failing jobs.
 
 ### Why my job has failed? {#debug-job}
@@ -668,6 +670,8 @@ blocks:
 
 
 ### Environment variables {#environment-variables}
+
+<VideoTutorial title="How to use environment variables" src="https://www.youtube.com/embed/gB02RreOd7E?si=35xbE6tOoiUAYiwk" />
 
 Environment variables are exported into the shell environment of every job in the block. You must supply the variable name and value.
 

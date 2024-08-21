@@ -10,6 +10,8 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
+<VideoTutorial title="How to use promotions" src="https://www.youtube.com/embed/rbf2jb3Uh-E?si=UH-_74icf4KdGYCf" />
+
 Promotions connect [pipelines](./pipelines) to implement continuous delivery and deployment, or any other kind of automations such as [blue-green](https://semaphoreci.com/blog/blue-green-deployment) deployments and [canary](https://semaphoreci.com/blog/what-is-canary-deployment) deployments. 
 
 This page explains what promotions are, how to use them to connect pipelines, and what settings are available.

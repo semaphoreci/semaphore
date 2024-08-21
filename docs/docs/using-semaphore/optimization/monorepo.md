@@ -11,6 +11,8 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
+<VideoTutorial title="How to use monorepos on Semaphore" src="https://www.youtube.com/embed/DPsQg215Efo?si=UheVJSwMZvuOn7O7" />
+
 Semaphore features a repository change detection strategy to optimize monorepo pipelines. This page explains how to configure monorepo pipelines to reduce time and costs.
 
 ## Overview

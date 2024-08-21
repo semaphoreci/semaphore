@@ -11,6 +11,8 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
+<VideoTutorial title="How to use flaky test detector" src="https://www.youtube.com/embed/sNdxdugrETw?si=ZNAEBLob-CZOEEqi" />
+
 The flaky test dashboard shows unreliable tests in your [projects](../projects). This page explains how they work and how to interpret the flaky test dashboard.
 
 ## Overview {#overview}
