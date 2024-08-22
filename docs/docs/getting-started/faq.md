@@ -40,7 +40,7 @@ Yes. To use private Docker registry with a self-signed SSL certificate you must:
 
 This will allow a connection to a private remote registry using the provided certificate.
 
-## Billing questions
+## Billing
 
 ### How do I track spending?
 
@@ -119,25 +119,96 @@ We will, however, consider requests for refunds in extenuating circumstances. If
 
 Please include the affected Workflow ID when contacting our Billing team regarding refunds.
 
+### Why are you still charging my old credit card?
 
-CONTINUE HERE:
+If you’ve added a new credit card to the subscription, but the old one is still being charged, it means that the new credit card wasn't properly marked for usage. 
 
-Here: https://docs.semaphoreci.com/account-management/billing-faq/
-- Why can't I remove my old credit card after adding a new one?
-- Why are you still charging my old credit card when I added a new default credit card?
+Here’s how to do that:
 
----
+<Steps>
+
+1. Open the organization menu
+2. Select **Plans & Billing**
+3. Under **Payment details** click on **Update**
+
+    ![Update payment method](./img/update-payment.jpg)
+
+4. Go to the **Subscriptions** tag
+5. Press **Manage** and then **Update payment method**
+6. Press **Use this** next to the credit card you'd like to use
+
+</Steps>
+
+After that, you can also remove the old credit card if you don't need it anymore.
+
+### Why can't I remove my old credit card?
+
+If you run into this situation, it means that the old credit card is still in use. In order to mark the new credit card for usage, you can:
+
+<Steps>
+
+1. Open the organization menu
+2. Select **Plans & Billing**
+3. Under **Payment details** click on **Update**
+
+    ![Update payment method](./img/update-payment.jpg)
+
+4. Go to the **Subscriptions** tag
+5. Press **Manage** and then **Update payment method**
+6. Press **Use this** next to the credit card you'd like to use
+
+</Steps>
+
+After that, you’ll be able to remove the old credit card.
 
 ## Git, GitHub and BitBucket
 
-- How can I build a project with git submodules?
-- How can I redeliver webhooks from Github to Semaphore?
-- How can I add repositories that belong to my GitHub organization?
-- How to comment on Github's pull requests from a workflow?
+### Can I build a project with git submodules?
 
-## Organization
+Yes. To do that, follow these steps:
 
-- How do I transfere ownership of an organization
+<Steps>
+
+1. Append the these commands in the [prologue](../using-semaphore/jobs#prologue)
+
+    ```shell
+    git submodule init
+    git submodule update
+    ```
+2. Append the these commands in the [epilogue](../using-semaphore/jobs#epilogue)
+
+    ```shell
+    git submodule deinit --force .
+    ```
+
+</Steps>
+
+Make sure that Semaphore has permissions to clone your submodules repository. 
+
+### Can I redeliver webhooks from Github to Semaphore?
+
+Yes. Rarely Semaphore does not receive a webhook from Github. This results in a workflow not being triggered. When this happens, you can redeliver the webhook totrigger the workflow. 
+
+These are the steps to redeliver webhooks from Github:
+
+1. Go to your repository on GitHub
+2. Click **Settings**
+3. Click **Webhooks**
+4. Click **Edit** for the webhook you want to redeliver
+5. Scroll down to Recent Deliveries and search for the one that failed
+6. Press the ... symbol, then Press **Redeliver**
+
+### Can I send a comment on a pull request on GitHub from a workflow?
+
+Yes. You can use the [GitHub API](https://docs.github.com/en/rest/issues?apiVersion=2022-11-28#create-an-issue-comment) to comment on pull requests. 
+
+For example:
+
+```shell
+curl -X POST -H "Authorization: token <OAUTH_TOKEN>" \
+    https://api.github.com/repos/<owner>/<repo-name>/issues/<number>/comments \
+    -d '{"body":"body"}'
+```
 
 ## Pipelines
 
@@ -154,10 +225,62 @@ Here: https://docs.semaphoreci.com/account-management/billing-faq/
 
 ## Project
 
-- How to make the project visible/private?
-- What does it mean a project is visible?
-- How do I rename a project?
-- How do I transfer ownership of a project
+### Can I transfer ownership of a project?
+
+Yes. The following conditions need to be met:
+
+- The new project owner needs to have [Admin role](../using-semaphore/rbac) for the repository
+- The new owner needs to ensure that the [GitHub connection](../using-semaphore/connect-github) or [BitBucket connection](../using-semaphore/connect-bitbucket) is working
+
+To change the project ownership:
+
+1. Open to the project
+2. Go to **Settings**
+3. In the **General** section, under **Project Owner** type the name of the new owner
+4. Press **Change**
+
+After project ownership has been transferred, you need to push a new commit. Old workflows cannot be re-run after transferring ownership.
+
+If you come accross any issues, please reach out to support@semaphoreci.com and include the name of the project and the GitHub/Bitbucket username of the new owner in your message.
+
+### Can I rename a project?
+
+Yes. To do that, follow these steps:
+
+1. Open the project you want to rename
+2. Go to **Settings**
+3. Type the new name for the project
+4. Press **Save Changes**
+
+This can also be performed from the CLI by using the [sem edit](../reference/semaphore-cli#sem-edit) command.
+
+### Can I delete a project?
+
+Yes. In order to delete a project:
+
+1. Open the project you want to rename
+2. Go to **Settings**
+3. At the bottom of the page, click on the link in the Delete project section.
+4. Fill in the delete reason details
+5. Enter the project name for final confirmation.
+6. Press the **Delete** project button.
+
+If you prefer using CLI, you can delete a project by using the [sem delete](../reference/semaphore-cli#sem-delete) command.
+
+:::danger
+
+Deleting a project cannot be reversed.
+
+:::
+
+
+### Can I change the visibility of a project?
+
+### Why I can't I make the project public/private?
+
+There was a problem related to free plan???
+
+----
 
 ## Workflows
 
