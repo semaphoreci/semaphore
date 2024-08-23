@@ -416,28 +416,68 @@ To compile the agent, follow these steps:
     sudo yum install go-toolset
     ```
 
-3. Download the source and compile it. Find the [latest release](https://github.com/semaphoreci/agent/releases/) and downlad the source package
+3. Create a user for the Semaphore service with `sudo` permissions
+
+    ```shell
+    adduser semaphore
+    passwd semaphore
+    usermod -aG wheel semaphore
+    su - semaphore
+    ```
+
+4. Download the source and compile it. Find the [latest release](https://github.com/semaphoreci/agent/releases/) and download the source package
 
     ```shell
     curl -L https://github.com/semaphoreci/agent/archive/refs/tags/v2.2.23.tar.gz -o agent.tar.gz
     tar -xf agent.tar.gz
     cd agent-2.2.23
-    go build -ldflags='-s -w -X "main.VERSION=v2.2.23"' -o build/agent main.go
+    make build
     ```
 
-4. Verify that the binary is FIPS compatible
+5. Verify that the binary is FIPS compatible
 
     ```shell
     go tool nm ./build/agent | grep FIPS
     ```
 
-5. Install???
+6. Install and follow the prompts
+
+    ```shell
+    make install
+    $ sudo ./install
+    Enter organization: my-org
+    Enter registration token: <access token>
+    Enter user [root]: <local-service-user>
+    Downloading toolbox from https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar...
+    [sudo] password for semaphore: 
+    Creating agent config file at /opt/semaphore/agent/config.yaml...
+    Creating /etc/systemd/system/semaphore-agent.service...
+    Starting semaphore-agent service...
+    ```
+
+
+7. Add GitHub and BitBucket SSH fingerprints
+
+    ```shell
+    sudo mkdir -p /home/$USER/.ssh
+    sudo chown -R $USER:$USER /home/$USER/.ssh
+
+    curl -sL https://api.github.com/meta | jq -r ".ssh_keys[]" | sed 's/^/github.com /' | tee -a /home/$USER/.ssh/known_hosts
+    curl -sL https://bitbucket.org/site/ssh | tee -a /home/$USER/.ssh/known_hosts
+
+    chmod 700 /home/$USER/.ssh
+    chmod 600 /home/$USER/.ssh/known_hosts
+    ```
+
+8. Add your SSH private keys into the `~/.ssh/` folder
+9. Test SSH connection to GitHub or BitBucket
+
+    ```shell title="Testing SSH connection"
+    ssh -T git@bitbucket.org
+    ssh -T git@github.com
+    ```
 
 </Steps>
-
-To finish the setup, follow these instructions:
-
-TODO
 
 ### macOS {#macos}
 
@@ -586,13 +626,9 @@ To install the self-hosted agent in Windows, follow these steps:
 
 </Steps>
 
-### AWS {#aws}
+### AWS Autoscaler {#aws}
 
 With AWS (or any other cloud), you can spin up an EC2 instance and install the [Ubuntu](#ubuntu), [Linux](#linux), [macOS](#macos), or [Windows](#windows) agents. 
-
-TODO: explain the role of STS for AWS naming agents, and the options when name is assigned from a pre-signed AWS STS GetCallerIdentity URL:
-- What is the AWS account ID?
-- What are the AWS IAM role names allowed?
 
 Semaphore, however, also provides an AWS stack to run an auto-scaling fleet of agents. To learn how this feature works, see the [Autoscaling agents in AWS page](./self-hosted-aws.md).
 
