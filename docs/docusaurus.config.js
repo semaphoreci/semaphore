@@ -19,14 +19,7 @@ const config = {
   // extra themes
   themes: [
     "docusaurus-theme-openapi-docs",
-    // required for search
-    // Disabled for now, it's not working with hash router
     '@docusaurus/theme-mermaid',
-    // ["@easyops-cn/docusaurus-search-local",
-    // {
-    //   hashed: 'filename',
-    //   language: ["en"]
-    // }],
   ],
   // mermaid support doesn't work with canary version
   markdown: {
@@ -72,6 +65,7 @@ const config = {
   ],
 
   plugins: [
+    'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -104,11 +98,6 @@ const config = {
       //     src: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
       //     async: true,
       //   },
-      // ],
-
-      // load plugins here
-      // plugins: [[
-      //   ]
       // ],
 
       navbar: {
@@ -224,7 +213,7 @@ const config = {
       },
     }),
   future: {
-    experimental_router: 'hash', // default to "browser",
+    experimental_router: 'hash', // default to "browser", comment this line to enable search
     experimental_storage: {
       type: 'localStorage',
       namespace: true,
