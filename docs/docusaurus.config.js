@@ -34,7 +34,7 @@ const config = {
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',
-  projectName: 'docs',
+  projectName: 'semaphore',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -52,10 +52,8 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/semaphoreci/semaphore/tree/main/docs/'
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -65,7 +63,7 @@ const config = {
   ],
 
   plugins: [
-    'docusaurus-lunr-search', // this works when the hash router is disabled
+    // 'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -155,7 +153,7 @@ const config = {
       // This is an optional announcement bar. It goes on the top of the page
       announcementBar: {
         id: `announcementBar-1`,
-        content: `⭐️ If you like Semaphore, <b>give it a star</b> on <a target="_blank" rel="noopener noreferrer" href="https://github.com/facebook/docusaurus">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/semaphoreci">X</a>`,
+        content: `⭐️ If you like Semaphore, <b>give it a star</b> on <a target="_blank" rel="noopener noreferrer" href="https://github.com/semaphoreci/semaphore">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/semaphoreci">X (Twitter)</a>`,
       },
       footer: {
         style: 'dark',
