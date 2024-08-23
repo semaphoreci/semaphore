@@ -65,7 +65,7 @@ const config = {
   ],
 
   plugins: [
-    'docusaurus-lunr-search', // this works when the hash router is disabled
+    // 'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
       {

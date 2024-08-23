@@ -33,7 +33,7 @@ Triggering a promotion means starting the next pipeline in the chain. There are 
 - **Manual promotions**: This is the default. Start the next pipeline manually.
 - **Auto promotions**: Automatically start a promotion based on predefined conditions.
 - **Parameterized promotions**: Allow you to pass values as environment variables into the next pipelines, enabling pipeline reuse for different tasks.
-- 
+ 
 ## How to add promotions {#create-promotions}
 
 Promotions are defined as pointers to the next pipelines in the chain. You can create multiple promotions and nest pipelines as needed.
