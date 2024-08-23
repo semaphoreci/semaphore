@@ -25,7 +25,7 @@ Yes. With the Semaphore [Hybrid Plan](https://semaphoreci.com/pricing) you can a
 
 ### Can I run Semaphore On-Premise?
 
-Yes. The Semaphore [On-Premise Plan] allows you to host a separater installation of Semaphore behind your firewall, allowing you to run CI/CD on completely on your own infrastructure.
+Yes. The Semaphore [On-Premise Plan](https://semaphoreci.com/pricing) allows you to host a separater installation of Semaphore behind your firewall, allowing you to run CI/CD on completely on your own infrastructure.
 
 ### Can I use a self-signed certificates with a private Docker registries?
 
@@ -284,9 +284,38 @@ There was a problem related to free plan???
 
 ## Workflows
 
-- How do I approve blocked workflow triggers?
-- What is the cause of ### "Revision: COMMIT_SHA not found .... Exiting"
-- Why are my workflows not running in parallel?
-- Why did my workflow stop without explanation?
-- Why aren't workflows triggering on pull requests?
-- Why does my code contain tags that have already been deleted?
+### Can I approve blocked workflow triggers?
+
+If you are using a [filter for contributors](../using-semaphore/workflows#project-triggers), you can still review and approve blocked pull requests by commenting with a `/sem-approve` message. Anyone who can run a forked pull request can also approve one.
+
+Approving forked pull requests is limited to new comments only and is not possible for comment edits. Due to security concerns, `/sem-approve` will work only once. Subsequent pushes to the forked pull request must to be approved again.
+
+
+### How do I fix the error "Revision: COMMIT_SHA not found. Exiting"
+
+This happens when the repository receives pushed while Semaphore is still processing the incoming webhook. For example, when someone modifies or removes with a `git rebase` or `git commit --amend` commands followed with a `git push --force` shortly after.
+
+You can prevent this error by enabling the [auto-cancel](../using-semaphore/pipelines#auto-cancel) option in the pipeline.
+ 
+### Why are my workflows not running in parallel?
+
+Git pushes to the same branch are [queued](../using-semaphore/pipelines#queue) by default. Pushes to different branches do run in parallel. You can use [named queues in your pipelines](../using-semaphore/pipelines#named-queues) to better control how workflows are parallelized or activate [auto-cancel](../using-semaphore/pipelines#auto-cancel) to stop running pipelines when new pushes arrive to the queue.
+
+### Why did my workflow stop without explanation?
+
+The [auto-cancel](../using-semaphore/pipelines#auto-cancel) can stop running workflows when new pushes arrive. Check if this feature is enabled and what strategy are you using to ensure important workflows are not cancelled.
+
+### Why aren't workflows triggering on pull requests?
+
+Check that [pull request triggers](../using-semaphore/workflows#project-triggers) are enabled for the project. If they are, check if the pull request can be merged. Since Semaphore uses the merge commit to run the workflows, merge conflicts can prevent workflows from starting.
+
+### Why does my code contain tags that have already been deleted?
+
+This may be due to using [`checkout --use-cache`](../reference/toolbox#checkout). When used in this fashion, code is cached and might contain stale tags.
+
+You can solve the issue by not using the cache, i.e. using `checkout` without arguents, or by deducing the value of [`SEMAPHORE_GIT_CACHE_AGE`](../reference/env-vars#git-cache-age). For example:
+
+```shell
+# set cache age to 12 hours
+export SEMAPHORE_GIT_CACHE_AGE=43200
+```
