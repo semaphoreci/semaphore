@@ -313,6 +313,31 @@ To get a badge embed code:
 
 </Steps>
 
+Badge URLs follow the following format for the "master" branch:
+
+```text
+https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>.svg
+```
+
+On other branches the format is:
+
+```text
+https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>/branches/<BRANCH-NAME>.svg
+```
+
+The visual style of the badge can also be customized. There are two styles:
+
+| Style | Example |
+|--|--|
+| Semaphore (default) | ![Semaphore Badge](./img/semaphore.svg) |
+| Shields | ![Semaphore Badge](./img/shields.svg) |
+
+The Semaphore style is the default. To use shields style, add `?style=shields` to the URL. For example:
+
+```text
+https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>.svg?style=shields
+```
+
 ### Artifacts {#artifacts}
 
 The **Artifacts** settings page lets you configure the [artifact](./artifacts) retention policy.

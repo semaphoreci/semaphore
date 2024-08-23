@@ -78,6 +78,7 @@ const sidebars = {
             'using-semaphore/connect-github',
             'using-semaphore/connect-github-oauth',
             'using-semaphore/connect-bitbucket',
+            'using-semaphore/insights',
           ]
         },
         {
@@ -90,6 +91,7 @@ const sidebars = {
           collapsed: false,
           items: [
             'using-semaphore/rbac',
+            'using-semaphore/org-health',
             'using-semaphore/org-preflight',
             'using-semaphore/notifications',
             'using-semaphore/okta',

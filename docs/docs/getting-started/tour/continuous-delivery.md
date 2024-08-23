@@ -197,6 +197,6 @@ That's all for the guided tour. What you've learned here will serve you well to 
 
 There is, of course, a lot more to learn. Semaphore is packed with features that do more with less work and optimizations to greatly speed up your workflows.
 
-We recommend going next to the [Using Semaphore](../../using-semaphore/jobs) page. Here you will find the complete handbook for all Semaphore operations.
+We recommend going next to the [Using Semaphore](../../using-semaphore/workflows) page. Here you will find the complete handbook for all Semaphore operations.
 
 Thank you for trying out Semaphore and happy building!
