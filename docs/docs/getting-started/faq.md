@@ -16,15 +16,15 @@ This page contains Frequently Asked Questions.
 
 ### Can I use my own machines to run workflows?
 
-Yes. With the Semaphore [Hybrid Plan](https://semaphoreci.com/pricing) you can add your own machines as [self-hosted agents](../using-semaphore/self-hosted). You cam use a mix of Semaphore Cloud and your own machines for your workflows.
+Yes. With the Semaphore [Hybrid Plan](https://semaphoreci.com/pricing) you can add your own machines as [self-hosted agents](../using-semaphore/self-hosted). You can use a mix of Semaphore Cloud and your own machines for your workflows.
 
 ### Can I run Semaphore On-Premise?
 
-Yes. The Semaphore [On-Premise Plan](https://semaphoreci.com/pricing) allows you to host a separater installation of Semaphore behind your firewall, allowing you to run CI/CD on completely on your own infrastructure.
+Yes. The Semaphore [On-Premise Plan](https://semaphoreci.com/pricing) allows you to host a separate installation of Semaphore behind your firewall, allowing you to run CI/CD completely on your own infrastructure.
 
-### Can I use a self-signed certificates with a private Docker registries?
+### Can I use self-signed certificates with private Docker registries?
 
-Yes. To use private Docker registry with a self-signed SSL certificate you must:
+Yes. To use a private Docker registry with a self-signed SSL certificate you must:
 
 1. Import the self-signed certificate files as a [secret](../using-semaphore/secrets) with the filename `domain.crt`
 2. Use the following command to your pipeline:
@@ -39,11 +39,11 @@ This will allow a connection to a private remote registry using the provided cer
 
 ### How do I track spending?
 
-You can get insights about your spending, past invoices, and update your plan on the Plans & Billing page.
+You can get insights about your spending, and past invoices, and update your plan on the Plans & Billing page.
 
 To access this page:
 
-1. Open on your organization menu
+1. Open your organization menu
 2. Select **Plans & Billing**
 
 ### Can I set budget alerts?
@@ -92,13 +92,13 @@ In order to change your credit card or PayPal information, follow these steps:
 
 ### Can I change my billing information?
 
-Yes. If you want to change the recipient name, company name, address, phone number, billing email, VAT ID, or country on the invoice, please contact us at: support@semaphoreci.com
+Yes. If you want to change the recipient name, company name, address, phone number, billing email, VAT ID, or country on the invoice, please get in touch with us at: support@semaphoreci.com
 
 ### Can I change my VAT number?
 
-Not directly from the Semaphore website. After a subscription has been purchased, it is not possible for users to add or change VAT number (VAT ID) from the UI. 
+Not directly from the Semaphore website. After a subscription has been purchased, users can't add or change a VAT number (VAT ID) from the UI. 
 
-If you wish to change the VAT number associated with your subscription, please reach out to support@semaphoreci.com with the VAT number you want to add and we will gladly make it happen.
+If you wish to change the VAT number associated with your subscription, please get in touch with support@semaphoreci.com with the VAT number you want to add and we will gladly make it happen.
 
 ### Will I get an invoice?
 
@@ -182,7 +182,7 @@ Make sure that Semaphore has permissions to clone your submodules repository.
 
 ### Can I redeliver webhooks from Github to Semaphore?
 
-Yes. Rarely Semaphore does not receive a webhook from Github. This results in a workflow not being triggered. When this happens, you can redeliver the webhook totrigger the workflow. 
+Yes. Rarely Semaphore does not receive a webhook from GitHub. This results in a workflow not being triggered. When this happens, you can redeliver the webhook to trigger the workflow. 
 
 These are the steps to redeliver webhooks from Github:
 
@@ -226,7 +226,7 @@ There are two other indicators you can use:
 
 - **Block Style Indicator**: The block style indicates how new lines inside the block should behave. If you want to keep each line as a new line, use the literal style, indicated by a pipe `|`. If you want them to be replaced by spaces instead, use the folded style, indicated by a right angle bracket `>`.
 
-- **Block Chomping Indicator**: The chomping indicator controls what should happen with new lines at the end of the string. The default, clip, puts a single new line at the end of the string. To remove all new lines, strip them by putting a minus sign `-` after the style indicator. Both clip and strip ignore how many new lines are actually at the end of the block; to keep them all, put a plus sign `+` after the style indicator.
+- **Block Chomping Indicator**: The chomping indicator controls what should happen with new lines at the end of the string. The default, clip, puts a single newline at the end of the string. To remove all new lines, strip them by putting a minus sign `-` after the style indicator. Both clip and strip ignore how many new lines are actually at the end of the block; to keep them all put a plus sign `+` after the style indicator.
 
 ### Can I use different agents in the same pipeline?
 
@@ -272,19 +272,19 @@ blocks:
 
 ### Can I change the timezone?
 
-The default timezone in UTC. The timezone can be changed in 2 ways in Linux agents: 
+The default timezone is UTC. The timezone can be changed in 2 ways in Linux agents: 
 
-- Assign a different value to TZ environment variable:
+- Assign a different value to the TZ environment variable:
 
-    ```shell
+ ```shell
     export TZ=Europe/Belgrade
-    ```
+ ```
 
 - Create a symlink in `/etc/localtime` to one of the available timezones:
 
-    ```shell
+ ```shell
     sudo ln -sf /usr/share/zoneinfo/Europe/Belgrade /etc/localtime
-    ```
+ ```
 
 ### Can I change the PostgreSQL locale?
 
@@ -332,7 +332,7 @@ CI_NODE_TOTAL=$SEMAPHORE_JOB_COUNT CI_NODE_INDEX=$((SEMAPHORE_JOB_INDEX-1)) bund
 
 The most common reason for stalled builds is a process that refuses to shut down properly. This is most likely a debug statement or a cleanup procedure in the catch procedure.
 
-To debug the problem, first attach a terminal to the stalled job with [sem attach](../reference/semaphore-cli#sem-attach)
+To debug the problem, first, attach a terminal to the stalled job with [sem attach](../reference/semaphore-cli#sem-attach)
 
 Check the following possible causes:
 
@@ -350,7 +350,7 @@ While an issue is ongoing, you might consider using a shorter [execution_time_li
 :::
 
 
-### Why is my job failing if all commands passed?
+### Why is my job failing if all commands have passed?
 
 This can happen because of code coverage tools, e.g. simplecov, which can be set to fail the test suite if a [minimum coverage level is not achieved](https://github.com/simplecov-ruby/simplecov#minimum-coverage).
 
@@ -363,7 +363,7 @@ To achieve this, use [sem-service](../reference/toolbox#sem-service), [sem-versi
 
 If you are using Docker containers when performing tests, it's possible that, while the command itself runs instantly, the process will not be completely started, leading to certain endpoints not being available. Using a minimum `sleep 10` can help in this scenario. Cypress has a [wait-on](https://docs.cypress.io/guides/continuous-integration/introduction.html#Boot-your-server) module that provides similar functionality.
 
-If the test passed and fails randomly with the same commit SHA, then you might be facing a [flaky test](../using-semaphore/tests/flaky-tests).
+If the test passes and fails randomly with the same commit SHA, then you might be facing a [flaky test](../using-semaphore/tests/flaky-tests).
 
 ### Why my job is not starting?
 
@@ -418,11 +418,11 @@ This can also be performed from the CLI by using the [sem edit](../reference/sem
 
 ### Can I delete a project?
 
-Yes. In order to delete a project:
+Yes. To delete a project:
 
 1. Open the project you want to rename
 2. Go to **Settings**
-3. At the bottom of the page, click on the link in the Delete project section.
+3. At the bottom of the page, click on the link in the Delete Project section.
 4. Fill in the delete reason details
 5. Enter the project name for final confirmation.
 6. Press the **Delete** project button.
@@ -446,9 +446,9 @@ Yes. To make the project visible or private follow these steps:
 4. Press **Save Changes**
 
 
-### Why I can't I make my project private?
+### Why can't I make my project private?
 
-This might be limitation related to the plan your organization is using. Open-source and free plans cannot create private projects.
+This might be a limitation related to the plan your organization is using. Open-source and free plans cannot create private projects.
 
 ## Workflows
 
@@ -456,12 +456,12 @@ This might be limitation related to the plan your organization is using. Open-so
 
 If you are using a [filter for contributors](../using-semaphore/workflows#project-triggers), you can still review and approve blocked pull requests by commenting with a `/sem-approve` message. Anyone who can run a forked pull request can also approve one.
 
-Approving forked pull requests is limited to new comments only and is not possible for comment edits. Due to security concerns, `/sem-approve` will work only once. Subsequent pushes to the forked pull request must to be approved again.
+Approving forked pull requests is limited to new comments only and is not possible for comment edits. Due to security concerns, `/sem-approve` will work only once. Subsequent pushes to the forked pull request must be approved again.
 
 
 ### How do I fix the error "Revision: COMMIT_SHA not found. Exiting"
 
-This happens when the repository receives pushed while Semaphore is still processing the incoming webhook. For example, when someone modifies or removes with a `git rebase` or `git commit --amend` commands followed with a `git push --force` shortly after.
+This happens when the repository receives pushed while Semaphore is still processing the incoming webhook. For example, when someone modifies or removes with a `git rebase` or `git commit --amend` command followed by a `git push --force` shortly after.
 
 You can prevent this error by enabling the [auto-cancel](../using-semaphore/pipelines#auto-cancel) option in the pipeline.
  
@@ -471,7 +471,7 @@ Git pushes to the same branch are [queued](../using-semaphore/pipelines#queue) b
 
 ### Why did my workflow stop without explanation?
 
-The [auto-cancel](../using-semaphore/pipelines#auto-cancel) can stop running workflows when new pushes arrive. Check if this feature is enabled and what strategy are you using to ensure important workflows are not cancelled.
+The [auto-cancel](../using-semaphore/pipelines#auto-cancel) can stop running workflows when new pushes arrive. Check if this feature is enabled and what strategy are you using to ensure important workflows are not canceled.
 
 ### Why aren't workflows triggering on pull requests?
 
@@ -481,7 +481,7 @@ Check that [pull request triggers](../using-semaphore/workflows#project-triggers
 
 This may be due to using [`checkout --use-cache`](../reference/toolbox#checkout). When used in this fashion, code is cached and might contain stale tags.
 
-You can solve the issue by not using the cache, i.e. using `checkout` without arguents, or by deducing the value of [`SEMAPHORE_GIT_CACHE_AGE`](../reference/env-vars#git-cache-age). For example:
+You can solve the issue by not using the cache, i.e. using `checkout` without arguments, or by deducing the value of [`SEMAPHORE_GIT_CACHE_AGE`](../reference/env-vars#git-cache-age). For example:
 
 ```shell
 # set cache age to 12 hours
