@@ -1,5 +1,5 @@
 ---
-description: Secrets!
+description: Store and use sensitive data
 ---
 
 # Secrets
@@ -275,11 +275,46 @@ It's worth noting that if you define a secret with the same name at both the org
 
 To create secrets with the Semaphore API, see the [API reference page](../reference/api#secrets)
 
-## Environment credentials
+## Deployment Targets credentials {#dt-credentials}
 
-Environment credentials are active only for specific pipelines attached to environments.
+Deployment target (environments) credentials are active only for specific pipelines attached to environments.
 
 For more information, see the [promotions and environments](./promotions#credentials)
+
+## Private repositories and dependencies {#private-dependencies}
+
+Sometimes you need to access dependencies from private Git repositories. Dependency mangagers like Bundler, Yarn, and Go modules can access private repositories if you provide an authenticated SSH key in your CI job.
+
+### Configuring an SSH keypair {#ssh-keys}
+
+In order to access a private repository, the dependency manager might need to authenticate with SSH. 
+
+Follow these steps to setup authentication:
+
+<Steps>
+
+1. Create an SSH keypair. For example:
+
+    ```shell
+    ssh-keygen -t rsa -f id_rsa_semaphoreci
+    ```
+
+2. Add the SSH public key to GitHub or BitBucket. See [deploy keys](https://developer.github.com/v3/guides/managing-deploy-keys/) for more information
+
+3. Add the SSH private key as a secret in Semaphore
+
+    For example, upload the private key as a secret to the path `.ssh/id_rsa_semaphoreci`
+
+4. Import the secret in your job and use the dependency manager as usual. For example:
+
+    ```shell
+    checkout
+    chmod 0600 ~/.ssh/id_rsa_semaphoreci
+    ssh-add ~/.ssh/id_rsa_semaphoreci
+    bundle install
+    ```
+  
+</Steps>
 
 ## See also
 
