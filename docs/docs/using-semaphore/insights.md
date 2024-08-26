@@ -1,6 +1,5 @@
 ---
 description: View your pipeline productivity
-sidebar_position: 2
 ---
 
 # Project Insights
@@ -13,7 +12,7 @@ import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use Project Insights" src="https://www.youtube.com/embed/LKEy2ow7Shw?si=FaMnvO6lU2ZV5c3R" />
 
-Project Insights provides productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average and the number of workflow runs in a given period. Use this information to assess the productivity of your development team.
+Project Insights provides productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average or create a dashboard to track deployment activity.
 
 ## How to view project insights {#view}
 

@@ -274,7 +274,13 @@ Following gems are pre-installed:
 </div>
 </details>
 
-## macOS Monterey (Xcode 14) {#mac-14}
+## (DEPRECATED) Monterey Xcode 14  {#mac-14}
+
+The macOS Monterey (Xcode 14) was deprecated on September 2024.
+
+<details>
+<summary>Show me the deprecated information</summary>
+<div>
 
 System version:
 
@@ -282,14 +288,10 @@ System version:
 - BuildVersion: 21G651
 - Kernel Version: Darwin 21.6.0
 
-### Version control
-
 The following version control tools are pre-installed:
 
 - Git (2.x)
 - Git LFS (Git Large File Storage)
-
-### Utilities
 
 The following utilities are pre-installed:
 
@@ -302,7 +304,6 @@ The following utilities are pre-installed:
 - jq
 - carthage
 
-### Browsers
 
 The following browsers are pre-installed:
 
@@ -311,12 +312,9 @@ The following browsers are pre-installed:
 - firefox
 - microsoft-edge
 
-### Languages
-
 <details>
 <summary>Xcode</summary>
 <div>
-
 
 Installed versions:
 
@@ -398,6 +396,9 @@ The following gems are pre-installed:
 <div>
 
 - 3.10.5
+
+</div>
+</details>
 
 </div>
 </details>
