@@ -207,7 +207,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['elixir'],
+        additionalLanguages: ['elixir', 'java', 'groovy'],
       },
     }),
   future: {

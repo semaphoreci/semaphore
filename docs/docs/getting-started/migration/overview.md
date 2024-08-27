@@ -46,7 +46,7 @@ Here is the recommended plan to migrate from any CI provider to Semaphore.
 
 3. Choose a billing plan
 
-    Every organization can have a different billing plan. Explore the available plans and features to find the one that fits your organization best.
+    Every organization can have a different [billing plan](https://semaphoreci.com/pricing). Explore the available plans and features to find the one that fits your organization best.
 
 4. Connect your organization to your Git provider
 

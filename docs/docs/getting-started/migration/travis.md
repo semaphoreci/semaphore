@@ -15,7 +15,9 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
-### Caching: Travis CI vs Semaphore
+## Travis CI vs Semaphore
+
+### Caching
 
 Both Travis CI and Semaphore support manually caching files. See comparison in the tabs below.
 
@@ -50,7 +52,7 @@ See [caching](../../using-semaphore/optimization/cache) for more details.
 </TabItem>
 </Tabs>
 
-### Artifacts: Travis CI vs Semaphore
+### Artifacts
 
 Both Travis CI and Semaphore support a method to persist data between jobs called Artifacts.
 
@@ -91,7 +93,7 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 </TabItem>
 </Tabs>
 
-### Language versions: Travis CI vs Semaphore
+### Language versions
 
 
 Both Travis CI and Semaphore allow you to use specific language versions. 
@@ -123,7 +125,7 @@ sem-version ruby 3.3.4
 </TabItem>
 </Tabs>
 
-### Database and Services: Travis CI vs Semaphore
+### Database and services
 
 Both Travis CI and Semaphore support starting a databases and services. Semaphore uses Docker containers for this.
 

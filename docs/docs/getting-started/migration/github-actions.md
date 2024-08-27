@@ -15,46 +15,12 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
-### Caching: GitHub Actions vs Semaphore
+## GitHub Actions vs Semaphore
 
-Both Github Actions and Semaphore support manually caching files. See comparison in the tabs below.
+### Checkout
 
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="GitHub Actions">
 
-GitHub Actions has a cache action to cache files. 
-
-The following example caches Gems in a Ruby project:
-
-```yaml
-- name: Cache gems
-  uses: actions/cache@v2
-  with:
-    path: vendor/bundle
-    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-```
-
-</TabItem>
-<TabItem value="semaphore" label="Semaphore">
-
-In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
-
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
-
-```shell
-checkout
-cache restore
-bundle install
-cache store
-```
-
-See [caching](../../using-semaphore/optimization/cache) for more details.
-
-</TabItem>
-</Tabs>
-
-### Artifacts: GitHub Actions vs Semaphore
+### Artifacts
 
 Both Github Actions and Semaphore support a method to persist data between jobs called Artifacts.
 
@@ -99,7 +65,47 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 </TabItem>
 </Tabs>
 
-### Language versions: GitHub Actions vs Semaphore
+
+### Caching
+
+Both Github Actions and Semaphore support manually caching files. See comparison in the tabs below.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="GitHub Actions">
+
+GitHub Actions has a cache action to cache files. 
+
+The following example caches Gems in a Ruby project:
+
+```yaml
+- name: Cache gems
+  uses: actions/cache@v2
+  with:
+    path: vendor/bundle
+    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+
+The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+
+```shell
+checkout
+cache restore
+bundle install
+cache store
+```
+
+See [caching](../../using-semaphore/optimization/cache) for more details.
+
+</TabItem>
+</Tabs>
+
+### Language versions
 
 Both Github Actions and Semaphore allow you to use specific language versions. 
 
@@ -130,7 +136,7 @@ sem-version ruby 3.3.4
 </TabItem>
 </Tabs>
 
-### Database and Services: GitHub Actions vs Semaphore
+### Database and services
 
 Both Github Actions and Semaphore support starting a databases and services via Docker containers.
 
@@ -163,6 +169,8 @@ sem-service start redis
     
 </TabItem>
 </Tabs>
+
+### Secrets
 
 ### Complete example
 
