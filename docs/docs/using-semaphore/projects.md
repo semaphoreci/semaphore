@@ -401,6 +401,88 @@ This setting overrides the [organization-wide initialization agent](./organizati
 
 :::
 
+
+## How to configure status checks {#status-checks}
+
+Semaphore sends status checks to your GitHub or BitBucket repositories. Status checks show the latest Semaphore activity right in your repository.
+
+Status checks appear in the commit messages.
+
+![CI failed](./img/ci-passed1.jpg)
+
+And also on pull requests.
+
+![PR Passed](./img/pr-passed.jpg)
+
+Semaphore only report status checks on the initial pipeline (`.semaphore/semaphore.yml`). But you can configure status checks on any other pipelines in the workflows or even on blocks.
+
+### Edit status checks
+
+Status checks can only be configured using the [Semaphore Command Line](../reference/semaphore-cli#sem-edit).
+
+To add status checks on other non-initial pipelines, follow these steps:
+
+<Steps>
+
+1. Edit your project resource using `sem edit` on a terminal
+
+    ```shell
+    sem edit project <project-name>
+    ```
+
+2. The project configuration is opened in the default text editor. For example:
+
+
+        ```yaml
+        apiVersion: v1alpha
+        kind: Project
+        metadata:
+          name: example
+        
+        spec:
+          repository:
+            url: "git@{github|bitbucket}.com:renderedtext/example.git"
+            run: true
+            run_on:
+              - branches
+              - tags
+            pipeline_file: ".semaphore/semaphore.yml"
+        
+            # highlight-start
+            status:
+              pipeline_files:
+                - path: ".semaphore/semaphore.yml"
+                  level: "pipeline"
+            # highlight-end
+        ```
+
+3. Add more items under the `status.pipeline_files`. The following example sends status checks for the `semaphore.yml` and `staging-deploy.yml` pipelines
+
+            ```yaml
+            status:
+              pipeline_files:
+                - path: ".semaphore/semaphore.yml"
+                  level: "pipeline"
+                  # highlight-start
+                - path: ".semaphore/staging-deploy.yml"
+                  level: "pipeline"
+                  # highlight-end
+            ```
+    
+4. You can even send block-level status checks by using `level: "block"`. For example:
+
+            ```yaml
+            status:
+              pipeline_files:
+                - path: ".semaphore/semaphore.yml"
+                  level: "pipeline"
+                - path: ".semaphore/staging-deploy.yml"
+                # highlight-start
+                  level: "block"
+                # highlight-end
+            ```
+</Steps>
+
 ## Troubleshooting guide
 
 If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between GitHub and Semaphore.
@@ -485,6 +567,7 @@ When this happens, you must update the URL of the repository in Semaphore. To do
 </Steps>
 
 After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
+
 
 ## See also
 
