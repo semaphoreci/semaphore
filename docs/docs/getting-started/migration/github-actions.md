@@ -3,7 +3,7 @@ description: Migrate from GitHub Actions
 sidebar_position: 3
 ---
 
-# Migrate from GitHub Actions
+# GitHub Actions
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -238,6 +238,10 @@ bundle exec rake
 </TabItem>
 </Tabs>
 
+
 ## See also
 
-- [Migrate from Travis CI](./travis)
+- [Migration guide for Jenkins](./jenkins)
+- [Migration guide for Travis CI](./travis)
+- [Migration guide for BitBucket Pipelines](./bitbucket)
+- 

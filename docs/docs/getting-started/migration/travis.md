@@ -1,9 +1,9 @@
 ---
 description: Migrate from Travis CI
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Migrate from Travis CI
+# Travis CI
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -206,4 +206,6 @@ bundle exec rake test:system
 
 ## See also
 
-- [Migrate from GitHub Actions](./github-actions)
+- [Migration guide for Jenkins](./jenkins)
+- [Migration guide for GitHub Actions](./github-actions)
+- [Migration guide for BitBucket Pipelines](./bitbucket)
