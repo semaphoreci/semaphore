@@ -1,6 +1,6 @@
 ---
 description: Migrate from GitHub Actions
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Migrate from GitHub Actions
@@ -13,22 +13,7 @@ import Steps from '@site/src/components/Steps';
 
 This page explains the core concepts and feature mapping you need to migrate from GitHub Actions to Semaphore.
 
-## Workflow editor {#wf}
-
-One of the key advantages Semaphore users have over GitHub Actions is that Semaphore provides a [Visual Workflow Editor](../../using-semaphore/workflows#workflow-editor). GitHub, instead, only lets you configure workflows using YAML, which requires learning the syntax. As a result, Semaphore provides a gentler learning curve to create any workflow faster.
-
-## Feature parity
-
-If you come from GitHub Actions and a bit lost on Semaphore use the following guide to find what you need:
-
-- [How to use Environment variables](../../using-semaphore/jobs#environment-variables)
-- [Use Secrets to protect sensitive data](../../using-semaphore/secrets)
-- [How to use the Cache](../../using-semaphore/optimization/cache)
-- [How to use Artifacts](../../using-semaphore/artifacts)
-- [How to use Docker Environments](../../using-semaphore/pipelines#docker-environments)
-- [How to specify language versions](../../reference/toolbox#sem-version)
-
-See a few comparison examples below.
+## Overview
 
 ### Caching: GitHub Actions vs Semaphore
 
