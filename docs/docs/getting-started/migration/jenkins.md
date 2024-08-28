@@ -51,6 +51,7 @@ When we create a project in Semaphore, the Git repository is automatically linke
 
 ```shell
 checkout
+# now the code is the current working directory
 cat README.md
 ```
 
@@ -273,7 +274,9 @@ environment {
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-In Semaphore, we create the [secret] at the organization or project level and activate it on a block. The secret contents are automatically injected as environment variables in all jobs contained on that block.
+In Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret contents are automatically injected as environment variables in all jobs contained on that block.
 
 ![Using secrets on Semaphore](./img/secrets.jpg)
 

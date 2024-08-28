@@ -15,7 +15,15 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
+Travis CI a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+
+Semaphore [cloud machines](../../reference/machine-types) also provide a 2x speed boost and a much better reliability when compared with Travis CI.
+
 ## Travis CI vs Semaphore
+
+This section describes how to implement common Travis CI functionalities in Semaphore.
+
+### Checkout
 
 ### Caching
 

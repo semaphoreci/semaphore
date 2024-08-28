@@ -15,10 +15,46 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
+GitHub Actions use a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+
+Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times. Semaphore in addition, provides extra features like full customizable [Role Based Access Control](../../using-semaphore/rbac), and features like [parameterized promotions](../../using-semaphore/promotions#parameters) and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
+
 ## GitHub Actions vs Semaphore
+
+This section describes how to implement common GitHub Actions functionalities in Semaphore.
 
 ### Checkout
 
+Checkout clones the repository in the CI environment.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="GitHub Actions">
+
+In GitHub Actions you must use the Checkout action in every step and job that require a copy of the repository.
+
+```yaml
+jobs:
+  my_job:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+    # rest of the steps
+```
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
+
+```shell
+checkout
+# now the code is the current working directory
+cat README.md
+```
+
+</TabItem>
+</Tabs>
 
 ### Artifacts
 
@@ -171,6 +207,35 @@ sem-service start redis
 </Tabs>
 
 ### Secrets
+
+Secrets inject sensitive data and credentials into the workflow securely.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="GitHub Actions">
+
+To use secrets in GitHub Actions, you must create the secret with its value in the repository or organization. Then, you can use it on your jobs using the `${{ secret.SECRET_NAME }}` syntax.
+
+```yaml
+steps:
+  - name: Hello world action
+    with: # Set the secret as an input
+      super_secret: ${{ secrets.SuperSecret }}
+    env: # Or as an environment variable
+      super_secret: ${{ secrets.SuperSecret }}
+```
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+In Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret contents are automatically injected as environment variables in all jobs contained on that block.
+
+![Using secrets on Semaphore](./img/secrets.jpg)
+
+
+</TabItem>
+</Tabs>
 
 ### Complete example
 
