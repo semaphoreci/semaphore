@@ -25,37 +25,26 @@ This section describes how to implement common Travis CI functionalities in Sema
 
 ### Checkout
 
-### Caching
+Checkout clones the repository in the CI environment.
 
-Both Travis CI and Semaphore support manually caching files. See comparison in the tabs below.
+<Tabs groupId="migration">
+<TabItem value="old" label="Jenkins">
 
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="Travis CI">
-
-Travis CI has a cache keyword to cache files and dependencies.
-
-The following example caches Gems in a Ruby project:
-
-```yaml
-language: ruby
-cache: bundler
-```
+Checkout is implicit in all Travis CI workflows by default.
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="new" label="Semaphore">
 
-In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customizet the cloning process.
 
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+
+To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
 checkout
-cache restore
-bundle install
-cache store
+# now the code is the current working directory
+cat README.md
 ```
-
-See [caching](../../using-semaphore/optimization/cache) for more details.
 
 </TabItem>
 </Tabs>
@@ -101,8 +90,42 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 </TabItem>
 </Tabs>
 
-### Language versions
+### Caching
 
+Both Travis CI and Semaphore support manually caching files. See comparison in the tabs below.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="Travis CI">
+
+Travis CI has a cache keyword to cache files and dependencies.
+
+The following example caches Gems in a Ruby project:
+
+```yaml
+language: ruby
+cache: bundler
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+
+The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+
+```shell
+checkout
+cache restore
+bundle install
+cache store
+```
+
+See [caching](../../using-semaphore/optimization/cache) for more details.
+
+</TabItem>
+</Tabs>
+
+### Language versions
 
 Both Travis CI and Semaphore allow you to use specific language versions. 
 
@@ -161,6 +184,38 @@ sem-service start redis
 </TabItem>
 </Tabs>
 
+### Secrets
+
+Secrets inject sensitive data and credentials into the workflow securely.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="Jenkins">
+
+In Travis CI we encrypt sensitive data using the Travis CLI. Travis uses asymetric encryption to put the encrypted values in the YAML pipeline.
+
+to access the values, we use the `secure` keyword, which tells Travis to decrypt the value on runtime.
+
+```yaml
+env:
+  global:
+    - secure: "... long encrypted string ..."
+```
+
+Using encrypted files uses a different system that's a bit more convoluted.
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+In Semaphore, secrets are stored on the Semaphore organization or project. Encryption and decryption is automatically handled for environment variables and files.
+
+First, we create a [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret contents are automatically injected as environment variables in all jobs contained on that block.
+
+![Using secrets on Semaphore](./img/secrets.jpg)
+</TabItem>
+</Tabs>
+
 ### Complete example
 
 The following comparison shows how to build and test a Ruby project on Travis CI and on Semaphore.
@@ -172,23 +227,51 @@ On Travis CI, we need several actions to start services, manage Gems, and run th
 
 ```yaml
 language: ruby
+
 rvm:
-  - 3.3.4
-cache:
-  - bundler
-  - yarn
-services:
-  - postgresql
-before_install:
-  - nvm install --lts
-before_script:
-  - bundle install --jobs=3 --retry=3
-  - yarn
-  - bundle exec rake db:create
-  - bundle exec rake db:schema:load
-script:
-  - bundle exec rake test
-  - bundle exec rake test:system
+  - $(cat .ruby-version)
+
+cache: bundler
+
+addons:
+  apt:
+    packages:
+      - curl
+      - libjemalloc2
+      - libvips
+      - sqlite3
+
+branches:
+  only:
+    - main
+
+jobs:
+  include:
+    - stage: security_scans
+      name: "Scan Ruby"
+      script:
+        - bin/brakeman --no-pager
+
+    - stage: security_scans
+      name: "Scan JS"
+      script:
+        - bin/importmap audit
+
+    - stage: lint
+      script:
+        - bin/rubocop -f github
+
+    - stage: test
+      before_script:
+        - cp .sample.env .env
+        - bundle exec rake db:setup
+      script:
+        - bundle exec rake
+        - bin/rails db:test:prepare test test:system
+
+env:
+  global:
+    - RAILS_ENV=test
 ```
 
 </TabItem>
