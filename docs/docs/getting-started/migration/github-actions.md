@@ -174,7 +174,7 @@ sem-service start redis
 
 ### Complete example
 
-The following comparison shows how to build and test a Ruby project on GitHub Actions and on Semaphore.
+The following comparison shows how to build and test a Ruby on Rails project on GitHub Actions and on Semaphore.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
@@ -182,65 +182,111 @@ The following comparison shows how to build and test a Ruby project on GitHub Ac
 On GitHub Actions, we need several actions to start services, manage Gems, and run the build and test commands.
 
 ```yaml
-name: Containers
-on: [push]
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
 jobs:
-  build:
+  scan_ruby:
     runs-on: ubuntu-latest
-    env:
-      PGHOST: localhost
-      PGUSER: administrate
-      RAILS_ENV: test
-    services:
-      postgres:
-        image: postgres:16.4-alpine
-        env:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby25
-          POSTGRES_PASSWORD: ""
-        ports:
-          - 5432:5432
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Ruby
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ‘3.3.4’
-      - name: Cache dependencies
-        uses: actions/cache@v2
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Install postgres headers
-        run: |
-          sudo apt-get update
-          sudo apt-get install libpq-dev
-      - name: Install dependencies
-        run: bundle install --path vendor/bundle
-      - name: Setup environment configuration
-        run: cp .sample.env .env
-      - name: Setup database
-        run: bundle exec rake db:setup
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for security vulnerabilities in JavaScript dependencies
+        run: bin/importmap audit
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run Rake
+        env:
+          RAILS_ENV: test 
+        run: | 
+          cp .sample.env .env
+          bundle exec rake db:setup
+          bundle exec rake
+
       - name: Run tests
-        run: bundle exec rake
+        env:
+          RAILS_ENV: test
+        run: bin/rails db:test:prepare test test:system
 ```
 
 </TabItem>
 <TabItem value="semaphore" label="Semaphore">
 
-We can achieve the same results in a single job on Semaphore by using these commands:
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests in different jobs.
 
 ```shell
+sudo apt-get update
+sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+sem-version ruby 3.3.4
 checkout
 cache restore
-sem-version ruby 3.3.4
-sem-service start postgres 16.4
-sudo apt-get update
-sudo apt-get install libpq-dev
 bundle install --path vendor/bundle
+cache store
 cp .sample.env .env
 bundle exec rake db:setup
 bundle exec rake
+bin/brakeman --no-pager
+bin/importmap audit
+bin/rubocop -f github
+bin/rails db:test:prepare test test:system
 ```
 
 </TabItem>

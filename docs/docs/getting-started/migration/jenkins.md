@@ -283,7 +283,135 @@ In Semaphore, we create the [secret] at the organization or project level and ac
 
 ### Complete example
 
-TODO
+The following comparison shows how to build and test a Ruby on Rails project on Jenkins and on Semaphore.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="Jenkins">
+
+```groovy
+pipeline {
+    agent any
+
+    environment {
+        RAILS_ENV = 'test'
+    }
+
+    stages {
+        stage('Scan Ruby') {
+            agent { label 'ubuntu' }
+            steps {
+                // Checkout code
+                checkout scm
+
+                // Set up Ruby
+                sh '''
+                    curl -sSL https://get.rvm.io | bash -s stable --ruby=$(cat .ruby-version)
+                    source /usr/local/rvm/scripts/rvm
+                    bundle install
+                '''
+
+                // Scan for common Rails security vulnerabilities
+                sh 'bin/brakeman --no-pager'
+            }
+        }
+
+        stage('Scan JS') {
+            agent { label 'ubuntu' }
+            steps {
+                // Checkout code
+                checkout scm
+
+                // Set up Ruby
+                sh '''
+                    curl -sSL https://get.rvm.io | bash -s stable --ruby=$(cat .ruby-version)
+                    source /usr/local/rvm/scripts/rvm
+                    bundle install
+                '''
+
+                // Scan for security vulnerabilities in JavaScript dependencies
+                sh 'bin/importmap audit'
+            }
+        }
+
+        stage('Lint') {
+            agent { label 'ubuntu' }
+            steps {
+                // Checkout code
+                checkout scm
+
+                // Set up Ruby
+                sh '''
+                    curl -sSL https://get.rvm.io | bash -s stable --ruby=$(cat .ruby-version)
+                    source /usr/local/rvm/scripts/rvm
+                    bundle install
+                '''
+
+                // Lint code for consistent style
+                sh 'bin/rubocop -f github'
+            }
+        }
+
+        stage('Test') {
+            agent { label 'ubuntu' }
+            steps {
+                // Install packages
+                sh 'sudo apt-get update && sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3'
+
+                // Checkout code
+                checkout scm
+
+                // Set up Ruby
+                sh '''
+                    curl -sSL https://get.rvm.io | bash -s stable --ruby=$(cat .ruby-version)
+                    source /usr/local/rvm/scripts/rvm
+                    bundle install
+                '''
+
+                // Run Rake tasks
+                sh '''
+                    cp .sample.env .env
+                    bundle exec rake db:setup
+                    bundle exec rake
+                '''
+
+                // Run tests
+                sh 'bin/rails db:test:prepare test test:system'
+            }
+        }
+    }
+    post {
+        always {
+            // Clean up
+            deleteDir()
+        }
+    }
+}
+```
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests in different jobs.
+
+```shell
+sudo apt-get update
+sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+sem-version ruby 3.3.4
+checkout
+cache restore
+bundle install --path vendor/bundle
+cache store
+cp .sample.env .env
+bundle exec rake db:setup
+bundle exec rake
+bin/brakeman --no-pager
+bin/importmap audit
+bin/rubocop -f github
+bin/rails db:test:prepare test test:system
+```
+
+</TabItem>
+</Tabs>
 
 ## See also
 
