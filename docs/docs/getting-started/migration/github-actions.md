@@ -36,8 +36,10 @@ In GitHub Actions you must use the Checkout action in every step and job that re
 jobs:
   my_job:
     steps:
+    # highlight-start
       - name: Checkout code
         uses: actions/checkout@v4
+    # highlight-end
       
     # rest of the steps
 ```
@@ -48,6 +50,7 @@ jobs:
 To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
+# highlight-next-line
 checkout
 # now the code is the current working directory
 cat README.md
@@ -69,11 +72,13 @@ The following example uploads and downloads `test.log`
 
 ```yaml
 - name: Upload test.log
+# highlight-next-line
   uses: actions/upload-artifact@v2
   with:
     name: Make
     path: test.log
 - name: Download test.log
+# highlight-next-line
   uses: actions/download-artifact@v2
   with:
     name: Unit tests
@@ -115,6 +120,7 @@ The following example caches Gems in a Ruby project:
 
 ```yaml
 - name: Cache gems
+# highlight-next-line
   uses: actions/cache@v2
   with:
     path: vendor/bundle
@@ -154,6 +160,7 @@ The following example sets the Ruby version to `3.3.4`
 
 ```yaml
 steps:
+# highlight-next-line
 - uses: ruby/setup-ruby@v1
   with:
     ruby-version: '3.3.4'
@@ -185,11 +192,13 @@ Github Actions uses service containers. The following example starts Redis on po
 jobs:
   runner-job:
     runs-on: ubuntu-latest
+    # highlight-start
     services:
       redis:
         image: redis
         ports:
           - 6379:6379
+    # highlight-end
 ```
 
 </TabItem>
@@ -218,10 +227,10 @@ To use secrets in GitHub Actions, you must create the secret with its value in t
 ```yaml
 steps:
   - name: Hello world action
-    with: # Set the secret as an input
+  # highlight-start
+    env:
       super_secret: ${{ secrets.SuperSecret }}
-    env: # Or as an environment variable
-      super_secret: ${{ secrets.SuperSecret }}
+  # highlight-end
 ```
 
 </TabItem>
@@ -363,4 +372,3 @@ bin/rails db:test:prepare test test:system
 - [Migration guide for Jenkins](./jenkins)
 - [Migration guide for Travis CI](./travis)
 - [Migration guide for BitBucket Pipelines](./bitbucket)
-- 

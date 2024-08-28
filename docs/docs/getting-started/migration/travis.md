@@ -41,6 +41,7 @@ Semaphore does not clone the repository by default. This is because there are ce
 To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
+# highlight-next-line
 checkout
 # now the code is the current working directory
 cat README.md
@@ -62,10 +63,11 @@ The following example uploads and downloads `test.log`
 
 ```yaml
 addons:
+# highlight-start
   artifacts:
-    # ⋮
     paths:
     - $HOME/project/test.log
+# highlight-end
 ```    
 
 </TabItem>

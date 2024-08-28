@@ -35,9 +35,11 @@ In Jenkins we use the the Git plugin to connect and retrieve the repository hist
 ```groovy
 stage('Checkout repository') {
     steps {
+        // highlight-start
         git branch: 'main',
             credentialsId: '<my-repo-auth>',
             url: 'git@github.com:<owner>/<project-name>.git'
+        // highlight-end
 
         sh "cat README.md"
     }
@@ -50,6 +52,7 @@ stage('Checkout repository') {
 When we create a project in Semaphore, the Git repository is automatically linked to the project. To clone the repository we only need to execute [`checkout`](../../reference/toolbox#checkout) near the beginning of the job.
 
 ```shell
+# highlight-next-line
 checkout
 # now the code is the current working directory
 cat README.md
@@ -73,7 +76,7 @@ stage('Build') {
         // Your build steps here
         // ...
         
-        // Archive artifacts
+        // highlight-next-line
         archiveArtifacts artifacts: 'build/output/**/*.jar', fingerprint: true
     }
 }
@@ -84,6 +87,7 @@ And `copyArtifacts` to retrieve them:
 ```groovy
 stage('Deploy') {
     steps {
+        // highlight-next-line
         copyArtifacts(projectName: 'MyProject', filter: '**/*.jar', target: 'deploy-directory')
     }
 }
@@ -122,6 +126,7 @@ In Jenkins we need to install the [jobcacher](https://plugins.jenkins.io/jobcach
 ```groovy
 stage('Cache Dependencies') {
      steps {
+        // highlight-next-line
          cache(maxCacheSize: 250, caches: [
              [$class: 'ArbitraryFileCache', 
               includes: ['**/node_modules/**'], 
@@ -143,8 +148,10 @@ Semaphore provides an integrated cache that can be accessed with the [cache](../
 
 ```shell
 checkout
+# highlight-next-line
 cache restore
 npm install
+# highlight-next-line
 cache store
 ```
 
@@ -186,6 +193,7 @@ stage('Build') {
 Semaphore provides the [sem-version](../../reference/toolbox#sem-version) tool to install and activate languages and tools.
 
 ```shell
+# highlight-next-line
 sem-version go 1.21
 checkout
 go version
@@ -208,6 +216,7 @@ Jenkins has plugins for various databases and services. It also supports running
 
 ```groovy
 stages {
+    // highlight-start
     stage('Start Database') {
         steps {
             sh 'docker run --name test-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres'
@@ -215,6 +224,7 @@ stages {
             sh 'sleep 10'
         }
     }
+    // highlight-end
     
     stage('Run Tests') {
         steps {
@@ -239,6 +249,7 @@ Semaphore provides the [sem-service](../../reference/toolbox#sem-service) tool w
 There is no need to clean-up or stop the service once used as the job environment is scrapped once the commands are done.
 
 ```shell
+# highlight-next-line
 sem-service start postgres
 checkout
 npm test

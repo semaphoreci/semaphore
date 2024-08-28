@@ -13,6 +13,10 @@ import Steps from '@site/src/components/Steps';
 
 ## Overview
 
+BitBucket Pipelines use a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+
+Semaphore is great at modeling complex delivery workflows for fast feedback with chainable pipelines, parallel execution, and dependency management.BitBucket Pipelines require some rather creative juggling to accomplish relatively trivial tasks.
+
 ## BitBucket Pipelines vs Semaphore
 
 This section describes how to implement common BitBucket Pipelines functionalities in Semaphore.
@@ -36,6 +40,7 @@ Semaphore does not clone the repository by default. This is because there are ce
 To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
+# highlight-next-line
 checkout
 # now the code is the current working directory
 cat README.md
@@ -60,8 +65,6 @@ pipelines:
     - step:
         name: Build and test
         image: node:10.15.0
-        caches:
-          - node
         script:
           - npm install
           - npm test
@@ -125,8 +128,10 @@ In this example we cache Node dependencies:
 pipelines:
   default:
     - step:
+    # highlight-start
         caches:
           - node
+    # highlight-end
         script:
           - npm install
           - npm test
@@ -141,8 +146,10 @@ The following commands, when added to a job downloads, caches, and installs Gems
 
 ```shell
 checkout
+# highlight-next-line
 cache restore
 bundle install
+# highlight-next-line
 cache store
 ```
 
@@ -161,6 +168,7 @@ We often need to activate specific language or tool versions to ensure consisten
 BitBucket Pipelines uses pre-built Docker versions to run commands in specific language and runtime versions.
 
 ```yaml
+# highlight-next-line
 image: node:20.17.0
 pipelines:
   default:
@@ -175,6 +183,7 @@ pipelines:
 Semaphore provides the [sem-version](../../reference/toolbox#sem-version) tool to install and activate languages and tools. It doesn't depend on Docker so you can use it several times in the same job to activate different languages at once.
 
 ```shell
+# highlight-next-line
 sem-version go 1.21
 checkout
 go version
@@ -195,6 +204,7 @@ BitBucket Pipelines uses Docker images to run databases and services.
 
 ```yaml
 definitions:
+# highlight-start
   services:
     redis:
       image: redis:3.2
@@ -203,6 +213,7 @@ definitions:
       variables:
         MYSQL_DATABASE: my-db
         MYSQL_ROOT_PASSWORD: $password
+# highlight-end
 
 ```
 
@@ -214,8 +225,10 @@ Semaphore also uses Docker images to start databases and services. You can start
 Semaphore provides the [sem-service](../../reference/toolbox#sem-service) tool which uses Docker containers to automatically start and manage popular databases and other services.
 
 ```shell
+# highlight-start
 sem-service start mysql --db=my-db --password=superSekret1
 sem-service start redis
+# highlight-end
 checkout
 npm test
 ```
@@ -237,8 +250,10 @@ pipelines:
   default:
     - step:
         script:
+    # highlight-start
           - expr 10 / $MY_HIDDEN_NUMBER
           - echo $MY_HIDDEN_NUMBER
+    # highlight-end
 ```
 
 </TabItem>
