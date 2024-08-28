@@ -28,7 +28,7 @@ This section describes how to implement common Travis CI functionalities in Sema
 Checkout clones the repository in the CI environment.
 
 <Tabs groupId="migration">
-<TabItem value="old" label="Jenkins">
+<TabItem value="old" label="Travis CI">
 
 Checkout is implicit in all Travis CI workflows by default.
 
@@ -189,7 +189,7 @@ sem-service start redis
 Secrets inject sensitive data and credentials into the workflow securely.
 
 <Tabs groupId="migration">
-<TabItem value="old" label="Jenkins">
+<TabItem value="old" label="Travis CI">
 
 In Travis CI we encrypt sensitive data using the Travis CLI. Travis uses asymetric encryption to put the encrypted values in the YAML pipeline.
 
