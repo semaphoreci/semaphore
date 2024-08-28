@@ -13,7 +13,7 @@ import Steps from '@site/src/components/Steps';
 
 ## Overview
 
-BitBucket Pipelines use a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+BitBucket Pipelines uses a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
 
 Semaphore is great at modeling complex delivery workflows for fast feedback with chainable pipelines, parallel execution, and dependency management.BitBucket Pipelines require some rather creative juggling to accomplish relatively trivial tasks.
 
@@ -34,7 +34,7 @@ Checkout is implicit in all Travis CI workflows by default.
 <TabItem value="new" label="Semaphore">
 
 
-Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customizet the cloning process.
+Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customize the cloning process.
 
 
 To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
@@ -115,14 +115,14 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 
 ### Caching
 
-Caching speeds up the workflows by storing downladed files in a hot cache.
+Caching speeds up the workflows by storing downloaded files in a hot cache.
 
 <Tabs groupId="migration">
 <TabItem value="old" label="BitBucket Pipelines">
 
 BitBucket Pipelines provide predefined caches to multiple build systems and dependency managers. You can also define custom cache stores to store arbitrary data.
 
-In this example we cache Node dependencies:
+In this example, we cache Node dependencies:
 
 ```yaml
 pipelines:
@@ -142,7 +142,7 @@ pipelines:
 
 In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files. Like BitBucket Pipelines, the `cache` command integrates with popular languages and dependency managers automatically. It can also store arbitrary data using key-value pairs.
 
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
 
 ```shell
 checkout
@@ -180,11 +180,13 @@ pipelines:
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-Semaphore provides the [sem-version](../../reference/toolbox#sem-version) tool to install and activate languages and tools. It doesn't depend on Docker so you can use it several times in the same job to activate different languages at once.
+Semaphore provides the [sem-version](../../reference/toolbox#sem-version) tool to install and activate languages and tools. It doesn't depend on Docker so you can use it several times in the same job to activate different languages simultaneously.
 
 ```shell
 # highlight-next-line
 sem-version go 1.21
+# highlight-next-line
+sem-version node 20.10
 checkout
 go version
 go build
@@ -277,6 +279,8 @@ The following comparison shows how to build and test a Ruby on Rails project on 
 <Tabs groupId="migration">
 <TabItem value="old" label="BitBucket Pipelines">
 
+This pipeline runs steps in parallel. Each step installs Ruby and the Gems before running the test commands.
+
 ```yaml
 pipelines:
   pull-requests:
@@ -367,7 +371,7 @@ pipelines:
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests in different jobs.
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
 
 ```shell
 sudo apt-get update

@@ -15,9 +15,9 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
-GitHub Actions use a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+GitHub Actions uses a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
 
-Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times. Semaphore in addition, provides extra features like full customizable [Role Based Access Control](../../using-semaphore/rbac), and features like [parameterized promotions](../../using-semaphore/promotions#parameters) and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
+Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times. Semaphore in addition provides extra features like fully customizable [Role Based Access Control](../../using-semaphore/rbac), and features like [parameterized promotions](../../using-semaphore/promotions#parameters) and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
 
 ## GitHub Actions vs Semaphore
 
@@ -30,7 +30,7 @@ Checkout clones the repository in the CI environment.
 <Tabs groupId="migration">
 <TabItem value="old" label="GitHub Actions">
 
-In GitHub Actions you must use the Checkout action in every step and job that require a copy of the repository.
+In GitHub Actions, you must use the Checkout action in every step and job that requires a copy of the repository.
 
 ```yaml
 jobs:
@@ -109,7 +109,7 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 
 ### Caching
 
-Both Github Actions and Semaphore support manually caching files. See comparison in the tabs below.
+Both Github Actions and Semaphore support manually caching files. See the comparison below.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
@@ -133,12 +133,14 @@ The following example caches Gems in a Ruby project:
 
 In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
 
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
 
 ```shell
 checkout
+# highlight-next-line
 cache restore
 bundle install
+# highlight-next-line
 cache store
 ```
 
@@ -154,7 +156,7 @@ Both Github Actions and Semaphore allow you to use specific language versions.
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
 
-Github Actions uses the a language-specific setup action. 
+GitHub Actions uses a language-specific setup action. 
 
 The following example sets the Ruby version to `3.3.4`
 
@@ -181,12 +183,12 @@ sem-version ruby 3.3.4
 
 ### Database and services
 
-Both Github Actions and Semaphore support starting a databases and services via Docker containers.
+Both Github Actions and Semaphore support starting databases and services via Docker containers.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
 
-Github Actions uses service containers. The following example starts Redis on port 6379
+GitHub Actions uses service containers. The following example starts Redis on port 6379
 
 ```yaml
 jobs:
@@ -344,7 +346,7 @@ jobs:
 </TabItem>
 <TabItem value="semaphore" label="Semaphore">
 
-The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests in different jobs.
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
 
 ```shell
 sudo apt-get update

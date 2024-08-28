@@ -11,15 +11,15 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Migrating a Continuous Integration and Delivery (CI/CD) platfrom can be straightforward or very challenging. Every project, every team is a world; for some is trivial while for others is a big effort. In any case, it is our dearest hope that the effort yields benefits for you and your team.
+Migrating a Continuous Integration and Delivery (CI/CD) platform can be straightforward or very challenging. Every project, every team is a world; for some is trivial while for others is a big effort. In any case, it is our dearest hope that the effort yields benefits for you and your team.
 
 These guides will help you migrate from other CI systems to Semaphore. In this page, we'll review the basis for the migration process, as several migration steps are common for all CI systems.
 
-We recommend going through the [Guided Tour](../guided-tour) pages to familiarize yourself to Semaphore before starting the migration plan.
+We recommend going through the [Guided Tour](../guided-tour) pages to familiarize yourself with Semaphore before starting the migration plan.
 
 ## Workflow visual editor {#wf}
 
-One of the key advantages Semaphore users have over other CI providers that Semaphore provides a [Visual Workflow Editor](../../using-semaphore/workflows#workflow-editor). Most alternatives to Semaphore require you to learn some special syntax to use.
+One of the key advantages Semaphore users have over other CI providers is that Semaphore provides a [Visual Workflow Editor](../../using-semaphore/workflows#workflow-editor). Most alternatives to Semaphore require you to learn some special syntax to use.
 
 As a result, Semaphore provides a gentler learning curve to create any workflow faster.
 
@@ -55,20 +55,19 @@ Here is the recommended plan to migrate from any CI provider to Semaphore.
     For more details see:
 
     - [How to install GitHub App](../../using-semaphore/connect-github): if you are a GitHub user, read this to install the GitHub app and allow Semaphore to read your repositories
-    - [How to connect GitHub OAuth](../../using-semaphore/connect-github-oauth): an alternative way to connect to GitHub. We recommend using GitHub App instead since it gives you more granular access to repositories
+    - [How to connect GitHub OAuth](../../using-semaphore/connect-github-oauth): an alternative way to connect to GitHub. We recommend using the GitHub App instead since it gives you more granular access to repositories
     - [How to connect to BitBucket](../../using-semaphore/connect-bitbucket): read this guide if your are a BitBucket user
 
 5. Migrate your secrets
 
-    [Secrets](../../using-semaphore/secrets) are used to store sensitive data such as SSH keys, database passwords, deployment keys, API keys. If your CI/CD workflows connect to external services, secrets can help you keep these confidential details secure.
+    [Secrets](../../using-semaphore/secrets) are used to store sensitive data such as SSH keys, database passwords, deployment keys, and API keys. If your CI/CD workflows connect to external services, secrets can help you keep these confidential details secure.
 
-    For example, let's say you build Docker images in your CI/CD and push them to Docker Hub. This action requires authenticating with the Docker registry, your scripts or workflow will  need some authentication token or username and password. Secrets are specifically designed to store this kind of information.
+    For example, let's say you build Docker images in your CI/CD and push them to Docker Hub. This action requires authenticating with the Docker registry, your scripts or workflow will need some authentication token or username and password. Secrets are specifically designed to store this kind of information.
 
     We recommend creating a new set of credentials for Semaphore access instead of just copying the credentials you were using in your previous CI system. Once the migration is complete, you can disable or delete the older credentials without disrupting your Semaphore workflows.
 
 6. Create your projects
     
-
     [Projects](../../using-semaphore/projects) connect Semaphore to your repositories. When you create a project two things happen:
 
         - An initial pipeline is created on a dedicated branch
@@ -80,7 +79,7 @@ Here is the recommended plan to migrate from any CI provider to Semaphore.
 
 8. Migrate your workflows
 
-    This is the step that requires more effort and planning. You must convert the jobs and workflows from your old CI system to Semaphore. In the following pages you'll find provider-specific guidelines to help you.
+    This is the step that requires more effort and planning. You must convert the jobs and workflows from your old CI system to Semaphore. In the following pages, you'll find provider-specific guidelines to help you.
 
     Most of the basics are covered in the [Guided Tour](../guided-tour). In addition, these pages describe key features of Semaphore
 
@@ -93,7 +92,7 @@ Here is the recommended plan to migrate from any CI provider to Semaphore.
 
 9. Decomission old CI
 
-    Once you are satisfied with the migration and are satisfied with the new workflows on Semaphore, you can deactivate the old CI. Remember to deactivate or delete the old secrets connected to the decomissioned systems.
+    Once you are satisfied with the migration and are satisfied with the new workflows on Semaphore, you can deactivate the old CI. Remember to deactivate or delete the old secrets connected to the decommissioned systems.
 
 </Steps>
 

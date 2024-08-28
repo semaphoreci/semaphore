@@ -15,7 +15,7 @@ import Steps from '@site/src/components/Steps';
 
 The main difference between Jenkins and Semaphore is that Semaphore is a managed service while Jenkins is purely self-hosted.
 
-In Jenkins you are in charge of configuring everything, installing plugins for all the functionality you need, manage the agents to run the workflows, create the connections to the Git providers, manage the Jenkins instance, the list goes on. 
+In Jenkins you are in charge of configuring everything, installing plugins for all the functionality you need, managing the agents to run the workflows, creating the connections to the Git providers, managing the Jenkins instance, and the list goes on. 
 
 Semaphore is always ready to use, once you create an account and connect your Git provider you're ready to go. There is nothing to manage and you get first-class support.
 
@@ -30,7 +30,7 @@ Checkout clones the repository in the CI system. This is usually near the beginn
 <Tabs groupId="migration">
 <TabItem value="old" label="Jenkins">
 
-In Jenkins we use the the Git plugin to connect and retrieve the repository history. You need to add authentication credentials on the Jenkins instance and use them in the stage.
+In Jenkins, we use the Git plugin to connect and retrieve the repository history. You need to add authentication credentials on the Jenkins instance and use them in the stage.
 
 ```groovy
 stage('Checkout repository') {
@@ -121,7 +121,7 @@ The cache speeds up workflows by keeping a copy of dependencies in storage.
 <Tabs groupId="migration">
 <TabItem value="old" label="Jenkins">
 
-In Jenkins we need to install the [jobcacher](https://plugins.jenkins.io/jobcacher/) plugin to enable the cache. Then, we a cache stage to the workflow before building the project.
+In Jenkins, we need to install the [jobcacher](https://plugins.jenkins.io/jobcacher/) plugin to enable the cache. Then, we a cache stage to the workflow before building the project.
 
 ```groovy
 stage('Cache Dependencies') {
@@ -206,7 +206,7 @@ go build
 
 ### Databases and services
 
-Testing sometimes require disposable databases and services in the CI environment.
+Testing sometimes requires disposable databases and services in the CI environment.
 
 <Tabs groupId="migration">
 <TabItem value="old" label="Jenkins">
@@ -301,6 +301,8 @@ The following comparison shows how to build and test a Ruby on Rails project on 
 
 <Tabs groupId="migration">
 <TabItem value="old" label="Jenkins">
+
+This pipeline runs all the tests in different sequential stages.
 
 ```groovy
 pipeline {
@@ -405,7 +407,7 @@ pipeline {
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests in different jobs.
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
 
 ```shell
 sudo apt-get update

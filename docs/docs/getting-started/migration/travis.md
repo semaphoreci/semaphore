@@ -15,9 +15,9 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
-Travis CI a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+Travis CI is a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
 
-Semaphore [cloud machines](../../reference/machine-types) also provide a 2x speed boost and a much better reliability when compared with Travis CI.
+Semaphore [cloud machines](../../reference/machine-types) also provide a 2x speed boost and much better reliability when compared with Travis CI.
 
 ## Travis CI vs Semaphore
 
@@ -35,7 +35,7 @@ Checkout is implicit in all Travis CI workflows by default.
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customizet the cloning process.
+Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customize the cloning process.
 
 
 To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
@@ -94,7 +94,7 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 
 ### Caching
 
-Both Travis CI and Semaphore support manually caching files. See comparison in the tabs below.
+Both Travis CI and Semaphore support manually caching files. See the comparison below.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="Travis CI">
@@ -113,7 +113,7 @@ cache: bundler
 
 In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
 
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
 
 ```shell
 checkout
@@ -134,7 +134,7 @@ Both Travis CI and Semaphore allow you to use specific language versions.
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="Travis CI">
 
-Travis CI uses the a language-specific setup keyword. 
+Travis CI uses a language-specific setup keyword. 
 
 The following example sets the Ruby version to `3.3.4`
 
@@ -193,14 +193,14 @@ Secrets inject sensitive data and credentials into the workflow securely.
 <Tabs groupId="migration">
 <TabItem value="old" label="Travis CI">
 
-In Travis CI we encrypt sensitive data using the Travis CLI. Travis uses asymetric encryption to put the encrypted values in the YAML pipeline.
+In Travis CI we encrypt sensitive data using the Travis CLI. Travis uses asymmetric encryption to put the encrypted values in the YAML pipeline.
 
 to access the values, we use the `secure` keyword, which tells Travis to decrypt the value on runtime.
 
 ```yaml
 env:
   global:
-    - secure: "... long encrypted string ..."
+ - secure: "... long encrypted string ..."
 ```
 
 Using encrypted files uses a different system that's a bit more convoluted.
@@ -220,7 +220,7 @@ The secret contents are automatically injected as environment variables in all j
 
 ### Complete example
 
-The following comparison shows how to build and test a Ruby project on Travis CI and on Semaphore.
+The following comparison shows how to build and test a Ruby project on Travis CI and in Semaphore.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="Travis CI">
