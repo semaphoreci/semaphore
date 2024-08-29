@@ -134,7 +134,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Languages',
+          label: 'Language Guides',
           collapsed: true,
           items: [
             {
