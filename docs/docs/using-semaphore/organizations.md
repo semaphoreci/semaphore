@@ -269,7 +269,13 @@ To configure streaming to an S3-compatible bucket, press the **Configure Streami
 1. Select between AWS and Google Cloud
 2. Type the region (AWS only)
 3. Type the bucket name
-4. Type the access token. They should have write access to the bucket
+4. Type the access token
+
+    - **AWS**: provide the Access Key ID and Access Key Secret for the IAM account
+    - **Google Cloud**: provide the [HMAC Key](https://cloud.google.com/storage/docs/authentication/managing-hmackeys#command-line) for a service account
+
+    The service account credentials provided must have write and read access to the bucket
+
 5. Press **Looks Good**
 
   ![Configuring Audit log streaming](./img/audit-log-streaming.jpg)
