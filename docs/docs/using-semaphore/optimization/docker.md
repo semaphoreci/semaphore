@@ -71,6 +71,50 @@ Due to the introduction of [Docker Hub rate limits](https://www.docker.com/incre
 
 :::
 
+### Docker layer caching {#caching}
+
+Docker images are organized as layers, which you can leverage to speed up the build process on large images. 
+
+In order to leverave layer caching you can modify your Docker build job as follows
+
+<Steps>
+
+1. Authenticate with the [Docker registry](#auth) of your choice. For example for [Docker Hub](#dockerhub):
+
+    ```shell
+    echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+    ```
+
+2. Download the base or latest image from the Docker registry
+
+    ```shell
+    docker pull "$DOCKER_USERNAME"/my-image-name:latest
+    ```
+
+
+3. Add the `--cache-from` argument to the build command
+
+    ```shell
+    checkout
+    docker build \
+        --cache-from "$DOCKER_USERNAME"/my-image-name:latest \
+        -t "$DOCKER_USERNAME"/my-image-name:$SEMAPHORE_WORKFLOW_ID .
+    ```
+
+    In this example, we're using the [`SEMAPHORE_WORKFLOW_ID`](../../reference/env-vars#workflow-id) because it provides a unique ID for each build but you can use any other tagging strategy.
+
+    See [Semaphore Environment Variables](../../reference/env-vars) for other available variables you might use in the build like `$SEMAPHORE_GIT_BRANCH`.
+
+4. Push the latest build to the Docker registry
+
+    ```shell
+    docker tag "$DOCKER_USERNAME"/my-image-name:$SEMAPHORE_WORKFLOW_ID "$DOCKER_USERNAME"/my-image-name:latest
+    docker push "$DOCKER_USERNAME"/my-image-name:latest
+    ```
+
+</Steps>
+
+The build command should complete faster as only the layers that changed in the Dockerfile need to be rebuilt.
 
 ## How to authenticate to Docker registries {#auth}
 
@@ -88,7 +132,16 @@ docker tag hello-app "$DOCKER_USERNAME"/hello-app
 docker push "$DOCKER_USERNAME"/hello-app
 ```
 
-The example above assumes there are a [secret](../secrets) containing your DockerHub credentials using the environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD`.
+The example above assumes there are a [secret](../secrets) containing your DockerHub credentials using the environment variables `DOCKER_USERNAME` and `DOCKER_PASSWORD`. The password field can either contain your account password or a [Docker Access Token](https://docs.docker.com/security/for-developers/access-tokens/), the command remains the same.
+
+![DockerHub Secret](./img/dockerhub-secret.jpg)
+
+You can verify that you have successfully logged by running:
+
+```shell
+$ docker login
+Login Succeeded
+```
 
 ### Using AWS ECR
 
