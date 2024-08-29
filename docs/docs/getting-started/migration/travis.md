@@ -1,9 +1,9 @@
 ---
 description: Migrate from Travis CI
-sidebar_position: 2
+sidebar_position: 4
 ---
 
-# Migrate from Travis CI
+# Travis CI
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -13,59 +13,44 @@ import Steps from '@site/src/components/Steps';
 
 This page explains the core concepts and feature mapping you need to migrate from Travis CI to Semaphore.
 
-## Workflow editor {#wf}
+## Overview
 
-One of the key advantages Semaphore users have over Travis CI is that Semaphore provides a [Visual Workflow Editor](../../using-semaphore/workflows#workflow-editor). Travis, instead, only lets you configure workflows using YAML or JSON, which requires learning the syntax. As a result, Semaphore provides a gentler learning curve to create any workflow faster.
+Travis CI is a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
 
-## Feature parity
+Semaphore [cloud machines](../../reference/machine-types) also provide a 2x speed boost and much better reliability when compared with Travis CI.
 
-If you come from Travis CI and a bit lost on Semaphore use the following guide to find what you need:
+## Travis CI vs Semaphore
 
-- [How to use Environment variables](../../using-semaphore/jobs#environment-variables)
-- [Use Secrets to protect sensitive data](../../using-semaphore/secrets)
-- [How to use the Cache](../../using-semaphore/optimization/cache)
-- [How to use Artifacts](../../using-semaphore/artifacts)
-- [How to use Docker Environments](../../using-semaphore/pipelines#docker-environments)
-- [How to specify language versions](../../reference/toolbox#sem-version)
+This section describes how to implement common Travis CI functionalities in Semaphore.
 
-See a few comparison examples below.
+### Checkout
 
-### Caching: Travis CI vs Semaphore
+Checkout clones the repository in the CI environment.
 
-Both Travis CI and Semaphore support manually caching files. See comparison in the tabs below.
+<Tabs groupId="migration">
+<TabItem value="old" label="Travis CI">
 
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="Travis CI">
-
-Travis CI has a cache keyword to cache files and dependencies.
-
-The following example caches Gems in a Ruby project:
-
-```yaml
-language: ruby
-cache: bundler
-```
+Checkout is implicit in all Travis CI workflows by default.
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="new" label="Semaphore">
 
-In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+Semaphore does not clone the repository by default. This is because there are certain scenarios in which you don't need the code or you want to customize the cloning process.
 
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+
+To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
+# highlight-next-line
 checkout
-cache restore
-bundle install
-cache store
+# now the code is the current working directory
+cat README.md
 ```
-
-See [caching](../../using-semaphore/optimization/cache) for more details.
 
 </TabItem>
 </Tabs>
 
-### Artifacts: Travis CI vs Semaphore
+### Artifacts
 
 Both Travis CI and Semaphore support a method to persist data between jobs called Artifacts.
 
@@ -78,10 +63,11 @@ The following example uploads and downloads `test.log`
 
 ```yaml
 addons:
+# highlight-start
   artifacts:
-    # ⋮
     paths:
     - $HOME/project/test.log
+# highlight-end
 ```    
 
 </TabItem>
@@ -106,15 +92,49 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 </TabItem>
 </Tabs>
 
-### Language versions: Travis CI vs Semaphore
+### Caching
 
+Both Travis CI and Semaphore support manually caching files. See the comparison below.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="Travis CI">
+
+Travis CI has a cache keyword to cache files and dependencies.
+
+The following example caches Gems in a Ruby project:
+
+```yaml
+language: ruby
+cache: bundler
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+
+The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
+
+```shell
+checkout
+cache restore
+bundle install
+cache store
+```
+
+See [caching](../../using-semaphore/optimization/cache) for more details.
+
+</TabItem>
+</Tabs>
+
+### Language versions
 
 Both Travis CI and Semaphore allow you to use specific language versions. 
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="Travis CI">
 
-Travis CI uses the a language-specific setup keyword. 
+Travis CI uses a language-specific setup keyword. 
 
 The following example sets the Ruby version to `3.3.4`
 
@@ -138,7 +158,7 @@ sem-version ruby 3.3.4
 </TabItem>
 </Tabs>
 
-### Database and Services: Travis CI vs Semaphore
+### Database and services
 
 Both Travis CI and Semaphore support starting a databases and services. Semaphore uses Docker containers for this.
 
@@ -166,9 +186,41 @@ sem-service start redis
 </TabItem>
 </Tabs>
 
+### Secrets
+
+Secrets inject sensitive data and credentials into the workflow securely.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="Travis CI">
+
+In Travis CI we encrypt sensitive data using the Travis CLI. Travis uses asymmetric encryption to put the encrypted values in the YAML pipeline.
+
+to access the values, we use the `secure` keyword, which tells Travis to decrypt the value on runtime.
+
+```yaml
+env:
+  global:
+ - secure: "... long encrypted string ..."
+```
+
+Using encrypted files uses a different system that's a bit more convoluted.
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+In Semaphore, secrets are stored on the Semaphore organization or project. Encryption and decryption is automatically handled for environment variables and files.
+
+First, we create a [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret contents are automatically injected as environment variables in all jobs contained on that block.
+
+![Using secrets on Semaphore](./img/secrets.jpg)
+</TabItem>
+</Tabs>
+
 ### Complete example
 
-The following comparison shows how to build and test a Ruby project on Travis CI and on Semaphore.
+The following comparison shows how to build and test a Ruby project on Travis CI and in Semaphore.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="Travis CI">
@@ -177,23 +229,51 @@ On Travis CI, we need several actions to start services, manage Gems, and run th
 
 ```yaml
 language: ruby
+
 rvm:
-  - 3.3.4
-cache:
-  - bundler
-  - yarn
-services:
-  - postgresql
-before_install:
-  - nvm install --lts
-before_script:
-  - bundle install --jobs=3 --retry=3
-  - yarn
-  - bundle exec rake db:create
-  - bundle exec rake db:schema:load
-script:
-  - bundle exec rake test
-  - bundle exec rake test:system
+  - $(cat .ruby-version)
+
+cache: bundler
+
+addons:
+  apt:
+    packages:
+      - curl
+      - libjemalloc2
+      - libvips
+      - sqlite3
+
+branches:
+  only:
+    - main
+
+jobs:
+  include:
+    - stage: security_scans
+      name: "Scan Ruby"
+      script:
+        - bin/brakeman --no-pager
+
+    - stage: security_scans
+      name: "Scan JS"
+      script:
+        - bin/importmap audit
+
+    - stage: lint
+      script:
+        - bin/rubocop -f github
+
+    - stage: test
+      before_script:
+        - cp .sample.env .env
+        - bundle exec rake db:setup
+      script:
+        - bundle exec rake
+        - bin/rails db:test:prepare test test:system
+
+env:
+  global:
+    - RAILS_ENV=test
 ```
 
 </TabItem>
@@ -221,4 +301,6 @@ bundle exec rake test:system
 
 ## See also
 
-- [Migrate from GitHub Actions](./github-actions)
+- [Migration guide for Jenkins](./jenkins)
+- [Migration guide for GitHub Actions](./github-actions)
+- [Migration guide for BitBucket Pipelines](./bitbucket)

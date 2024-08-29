@@ -1,9 +1,9 @@
 ---
 description: Migrate from GitHub Actions
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# Migrate from GitHub Actions
+# GitHub Actions
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -13,63 +13,53 @@ import Steps from '@site/src/components/Steps';
 
 This page explains the core concepts and feature mapping you need to migrate from GitHub Actions to Semaphore.
 
-## Workflow editor {#wf}
+## Overview
 
-One of the key advantages Semaphore users have over GitHub Actions is that Semaphore provides a [Visual Workflow Editor](../../using-semaphore/workflows#workflow-editor). GitHub, instead, only lets you configure workflows using YAML, which requires learning the syntax. As a result, Semaphore provides a gentler learning curve to create any workflow faster.
+GitHub Actions uses a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
 
-## Feature parity
+Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times. Semaphore in addition provides extra features like fully customizable [Role Based Access Control](../../using-semaphore/rbac), and features like [parameterized promotions](../../using-semaphore/promotions#parameters) and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
 
-If you come from GitHub Actions and a bit lost on Semaphore use the following guide to find what you need:
+## GitHub Actions vs Semaphore
 
-- [How to use Environment variables](../../using-semaphore/jobs#environment-variables)
-- [Use Secrets to protect sensitive data](../../using-semaphore/secrets)
-- [How to use the Cache](../../using-semaphore/optimization/cache)
-- [How to use Artifacts](../../using-semaphore/artifacts)
-- [How to use Docker Environments](../../using-semaphore/pipelines#docker-environments)
-- [How to specify language versions](../../reference/toolbox#sem-version)
+This section describes how to implement common GitHub Actions functionalities in Semaphore.
 
-See a few comparison examples below.
+### Checkout
 
-### Caching: GitHub Actions vs Semaphore
+Checkout clones the repository in the CI environment.
 
-Both Github Actions and Semaphore support manually caching files. See comparison in the tabs below.
+<Tabs groupId="migration">
+<TabItem value="old" label="GitHub Actions">
 
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="GitHub Actions">
-
-GitHub Actions has a cache action to cache files. 
-
-The following example caches Gems in a Ruby project:
+In GitHub Actions, you must use the Checkout action in every step and job that requires a copy of the repository.
 
 ```yaml
-- name: Cache gems
-  uses: actions/cache@v2
-  with:
-    path: vendor/bundle
-    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+jobs:
+  my_job:
+    steps:
+    # highlight-start
+      - name: Checkout code
+        uses: actions/checkout@v4
+    # highlight-end
+      
+    # rest of the steps
 ```
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="new" label="Semaphore">
 
-In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
-
-The following commands, when added to a job downloads, caches, and installs Gems in a Ruby project:
+To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
 
 ```shell
+# highlight-next-line
 checkout
-cache restore
-bundle install
-cache store
+# now the code is the current working directory
+cat README.md
 ```
-
-See [caching](../../using-semaphore/optimization/cache) for more details.
 
 </TabItem>
 </Tabs>
 
-### Artifacts: GitHub Actions vs Semaphore
+### Artifacts
 
 Both Github Actions and Semaphore support a method to persist data between jobs called Artifacts.
 
@@ -82,11 +72,13 @@ The following example uploads and downloads `test.log`
 
 ```yaml
 - name: Upload test.log
+# highlight-next-line
   uses: actions/upload-artifact@v2
   with:
     name: Make
     path: test.log
 - name: Download test.log
+# highlight-next-line
   uses: actions/download-artifact@v2
   with:
     name: Unit tests
@@ -114,19 +106,63 @@ See [artifacts](../../using-semaphore/artifacts) for more details.
 </TabItem>
 </Tabs>
 
-### Language versions: GitHub Actions vs Semaphore
+
+### Caching
+
+Both Github Actions and Semaphore support manually caching files. See the comparison below.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="GitHub Actions">
+
+GitHub Actions has a cache action to cache files. 
+
+The following example caches Gems in a Ruby project:
+
+```yaml
+- name: Cache gems
+# highlight-next-line
+  uses: actions/cache@v2
+  with:
+    path: vendor/bundle
+    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+
+The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
+
+```shell
+checkout
+# highlight-next-line
+cache restore
+bundle install
+# highlight-next-line
+cache store
+```
+
+See [caching](../../using-semaphore/optimization/cache) for more details.
+
+</TabItem>
+</Tabs>
+
+### Language versions
 
 Both Github Actions and Semaphore allow you to use specific language versions. 
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
 
-Github Actions uses the a language-specific setup action. 
+GitHub Actions uses a language-specific setup action. 
 
 The following example sets the Ruby version to `3.3.4`
 
 ```yaml
 steps:
+# highlight-next-line
 - uses: ruby/setup-ruby@v1
   with:
     ruby-version: '3.3.4'
@@ -145,24 +181,26 @@ sem-version ruby 3.3.4
 </TabItem>
 </Tabs>
 
-### Database and Services: GitHub Actions vs Semaphore
+### Database and services
 
-Both Github Actions and Semaphore support starting a databases and services via Docker containers.
+Both Github Actions and Semaphore support starting databases and services via Docker containers.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
 
-Github Actions uses service containers. The following example starts Redis on port 6379
+GitHub Actions uses service containers. The following example starts Redis on port 6379
 
 ```yaml
 jobs:
   runner-job:
     runs-on: ubuntu-latest
+    # highlight-start
     services:
       redis:
         image: redis
         ports:
           - 6379:6379
+    # highlight-end
 ```
 
 </TabItem>
@@ -179,9 +217,40 @@ sem-service start redis
 </TabItem>
 </Tabs>
 
+### Secrets
+
+Secrets inject sensitive data and credentials into the workflow securely.
+
+<Tabs groupId="migration">
+<TabItem value="old" label="GitHub Actions">
+
+To use secrets in GitHub Actions, you must create the secret with its value in the repository or organization. Then, you can use it on your jobs using the `${{ secret.SECRET_NAME }}` syntax.
+
+```yaml
+steps:
+  - name: Hello world action
+  # highlight-start
+    env:
+      super_secret: ${{ secrets.SuperSecret }}
+  # highlight-end
+```
+
+</TabItem>
+<TabItem value="new" label="Semaphore">
+
+In Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret contents are automatically injected as environment variables in all jobs contained on that block.
+
+![Using secrets on Semaphore](./img/secrets.jpg)
+
+
+</TabItem>
+</Tabs>
+
 ### Complete example
 
-The following comparison shows how to build and test a Ruby project on GitHub Actions and on Semaphore.
+The following comparison shows how to build and test a Ruby on Rails project on GitHub Actions and on Semaphore.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
@@ -189,70 +258,119 @@ The following comparison shows how to build and test a Ruby project on GitHub Ac
 On GitHub Actions, we need several actions to start services, manage Gems, and run the build and test commands.
 
 ```yaml
-name: Containers
-on: [push]
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
 jobs:
-  build:
+  scan_ruby:
     runs-on: ubuntu-latest
-    env:
-      PGHOST: localhost
-      PGUSER: administrate
-      RAILS_ENV: test
-    services:
-      postgres:
-        image: postgres:16.4-alpine
-        env:
-          POSTGRES_USER: administrate
-          POSTGRES_DB: ruby25
-          POSTGRES_PASSWORD: ""
-        ports:
-          - 5432:5432
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Ruby
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ‘3.3.4’
-      - name: Cache dependencies
-        uses: actions/cache@v2
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Install postgres headers
-        run: |
-          sudo apt-get update
-          sudo apt-get install libpq-dev
-      - name: Install dependencies
-        run: bundle install --path vendor/bundle
-      - name: Setup environment configuration
-        run: cp .sample.env .env
-      - name: Setup database
-        run: bundle exec rake db:setup
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for security vulnerabilities in JavaScript dependencies
+        run: bin/importmap audit
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run Rake
+        env:
+          RAILS_ENV: test 
+        run: | 
+          cp .sample.env .env
+          bundle exec rake db:setup
+          bundle exec rake
+
       - name: Run tests
-        run: bundle exec rake
+        env:
+          RAILS_ENV: test
+        run: bin/rails db:test:prepare test test:system
 ```
 
 </TabItem>
 <TabItem value="semaphore" label="Semaphore">
 
-We can achieve the same results in a single job on Semaphore by using these commands:
+The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
 
 ```shell
+sudo apt-get update
+sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+sem-version ruby 3.3.4
 checkout
 cache restore
-sem-version ruby 3.3.4
-sem-service start postgres 16.4
-sudo apt-get update
-sudo apt-get install libpq-dev
 bundle install --path vendor/bundle
+cache store
 cp .sample.env .env
 bundle exec rake db:setup
 bundle exec rake
+bin/brakeman --no-pager
+bin/importmap audit
+bin/rubocop -f github
+bin/rails db:test:prepare test test:system
 ```
 
 </TabItem>
 </Tabs>
 
+
 ## See also
 
-- [Migrate from Travis CI](./travis)
+- [Migration guide for Jenkins](./jenkins)
+- [Migration guide for Travis CI](./travis)
+- [Migration guide for BitBucket Pipelines](./bitbucket)

@@ -101,6 +101,7 @@ If you have given full access to Semaphore but only see your personal repositori
 ## See also
 
 - [Projects](./projects)
+- [Connecting to GitHub using GitHub App](./connect-github)
 - [Getting Started Guide](../getting-started/guided-tour)
 - [Semaphore Organizations](./organizations)
 - [How to connect with BitBucket](./connect-bitbucket)

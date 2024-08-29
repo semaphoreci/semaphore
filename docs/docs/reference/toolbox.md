@@ -422,7 +422,7 @@ When starting `mysql` or `postgres` services you can provide the following optio
 - `--username=<username>`: user with admin permissions on the instance
   - On `mysql` defaults to "root"
   - On `postgres` defaults to "postgres"
-- `--password=<username>`: password for the admin user
+- `--password=<password>`: password for the admin user
   - On `mysql` defaults to "test"
   - On `postgres` defaults to a blank string
 - `--db=<name>` database name to create and default to
