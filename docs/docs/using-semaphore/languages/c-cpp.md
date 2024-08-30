@@ -13,6 +13,10 @@ import Steps from '@site/src/components/Steps';
 
 This guide provides tips and hints for building C and C++ projects.
 
+## Overview
+
+GNU C and C++ compilers are pre-installed in the Semaphore environment. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version) on Linux machines.
+
 ## Compiling C {#compile-c}
 
 The [Ubuntu](../../reference/machine-types#linux) Linux machines ship with the GNU C compiler.
@@ -90,7 +94,7 @@ See [artifacts](../artifacts) to learn how to save and persist the built binary.
 
 ### Changing the gcc version {#gcc-version}
 
-Use [sem-version](../../reference/toolbox#sem-version) to switch between gcc compiler versions.
+Use [sem-version](../../reference/toolbox#sem-version) to switch between gcc compiler versions on Linux. Changing gcc compilers on macOS is not supported.
 
 ```shell
 # use gcc 10.5
@@ -103,6 +107,14 @@ sem-version c 9
 $ gcc --version
 gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
 ```
+
+:::note
+
+The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
+
+Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
+
+:::
 
 ## Compiling C++ {#cpp}
 
@@ -181,7 +193,7 @@ See [artifacts](../artifacts) to learn how to save and persist the built binary.
 
 ### Changing the g++ version {#gcc-version}
 
-Use [sem-version](../../reference/toolbox#sem-version) to switch between g++ compiler versions.
+Use [sem-version](../../reference/toolbox#sem-version) to switch between g++ compiler versions on Linux. Changing gcc compilers on macOS is not supported..
 
 ```shell
 # use gcc 10.5
@@ -194,3 +206,11 @@ sem-version cpp 9
 $ g++ --version
 g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
 ```
+
+:::note
+
+The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
+
+Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
+
+:::
