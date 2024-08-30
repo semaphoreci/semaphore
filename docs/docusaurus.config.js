@@ -202,12 +202,12 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RenderedText. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Continuous Integration Solutions Ltd. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['elixir', 'java', 'groovy'],
+        additionalLanguages: ['elixir', 'java', 'groovy' ],
       },
     }),
   future: {

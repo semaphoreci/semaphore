@@ -11,6 +11,8 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
+This guide will help build Go projects on Semaphore.
+
 ## Overview
 
 The Go toolchain is pre-installed in Linux machines. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version).
@@ -46,7 +48,7 @@ You can use the pre-build [Go images](../../using-semaphore/optimization/contain
 
 For Go versions 1.11 and below you have to prepare the GOPATH directory structure that Go expects. Run this commands before using Go in the CI environment if you're using Go 1.11 of lower:
 
-```shell
+```shell title="GOPATH setup for Go 1.11 or lower"
 export "SEMAPHORE_GIT_DIR=$(go env GOPATH)/src/github.com/${SEMAPHORE_PROJECT_NAME}"
 export "PATH=$(go env GOPATH)/bin:${PATH}"
 mkdir -vp "${SEMAPHORE_GIT_DIR}" "$(go env GOPATH)/bin"
@@ -66,7 +68,7 @@ cache store
 go build
 ```
 
-The rest of the jobs can use the cachre directly:
+The rest of the jobs can use the cache directly:
 
 ```shell
 checkout
@@ -74,4 +76,53 @@ cache restore
 go build
 ```
 
-## How to configure test reports {#test}
+## How to set up test reports {#test-results}
+
+This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for Go and GoTestSum.
+
+<Steps>
+
+1. Install GoTestSum: `go get gotest.tools/gotestsum`
+2. Run GoTestSum with JUnit format output
+
+    ```shell
+    gotestsum --junitfile junit.xml ./...
+    ```
+
+3. Follow Step 2 for every job in your pipeline that executes tests
+4. Create an [after_pipeline job](../../using-semaphore/pipelines#after-pipeline-job) with the following command:
+
+    ```shell
+    test-results publish junit.xml
+    ```
+
+</Steps>
+
+<details>
+<summary>Example pipeline definition</summary>
+<div>
+
+
+
+```yaml title="Using test reports on Go"
+- name: Tests
+  task:
+    prologue:
+      commands:
+        - checkout
+        - sem-version go 1.16
+        - go get ./...
+
+    job:
+      name: "Tests"
+      commands:
+        - gotestsum --junitfile junit.xml ./...
+
+    epilogue:
+      always:
+        commands:
+          - test-results publish junit.xml
+```
+
+</div>
+</details>

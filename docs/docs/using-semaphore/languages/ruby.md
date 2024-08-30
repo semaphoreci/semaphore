@@ -11,11 +11,11 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-This guide will help build Ruby and Ruby on Rails projects on Semaphore.
+This guide will help build Ruby projects on Semaphore.
 
 ## Overview
 
-Ruby interpresetrs are pre-installed in the Semaphore environment. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository.
+Ruby interpresetrs are pre-installed in the Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository.
 
 ## How to select Ruby version {#switch}
 
