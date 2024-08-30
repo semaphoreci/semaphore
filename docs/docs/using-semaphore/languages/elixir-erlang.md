@@ -15,7 +15,7 @@ This guide will help build Elixir and Erlang projects on Semaphore.
 
 ## Overview
 
-The Elixir and Earlang toolchains are pre-installed in Linux machines. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version).
+The Elixir and Erlang toolchains are pre-installed in Linux machines. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version).
 
 ## How to change Elixir versions {#elixir-version}
 
@@ -126,3 +126,40 @@ This section explains how to set up [test reports](../../using-semaphore/tests/t
 
 </div>
 </details>
+
+
+## How to change Erlang versions {#erlang-version}
+
+Elixir is available on Linux [Ubuntu](../../reference/os-ubuntu) machines and [Docker Environments](../../using-semaphore/pipelines#docker-environments).
+
+On Linux machines use `sem-version`. For example to switch to v25
+
+```shell
+sem-version erlang 25
+```
+
+## How to run Erlang projects {#erlang-run}
+
+Use `earlc` to compile an Erlang source code to binary.
+
+For instance, with source file called `hello.erl`:
+
+```earlang
+%% Programmer: Mihalis Tsoukalos
+%% Date: Friday 21 December 2018
+
+-module(hello).
+-export([helloWorld/0]).
+
+helloWorld() -> io:fwrite("hello, world\n").
+```
+
+We can compile and run with:
+
+```shell
+checkout
+sem-version erlang 25
+erlc hello.erl
+erl -noshell -s hello helloWorld -s init stop
+```
+
