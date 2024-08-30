@@ -31,7 +31,7 @@ Semaphore uses `rbenv` to switch versions for Ruby. The available Ruby versions 
 
 The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
 
-Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
+You can use the pre-build [Ruby images](../../using-semaphore/optimization/container-registry#ruby) or build your own. Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
 
 ## How to cache Gems {#caching}
 
@@ -54,7 +54,7 @@ cache restore
 bundle install --deployment --path vendor/bundle
 ```
 
-## How to set up test results {#test-results}
+## How to set up test reports {#test-results}
 
 This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for Ruby and RSpec.
 
