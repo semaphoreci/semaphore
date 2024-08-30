@@ -30,9 +30,9 @@ Promoted pipelines are typically used for continuous delivery and continuous dep
 
 Triggering a promotion means starting the next pipeline in the chain. There are three ways of triggering a promotion:
 
-- **Manual promotions**: This is the default. Start the next pipeline manually.
-- **Auto promotions**: Automatically start a promotion based on predefined conditions.
-- **Parameterized promotions**: Allow you to pass values as environment variables into the next pipelines, enabling pipeline reuse for different tasks.
+- **Manual promotions**: this is the default. Start the next pipeline manually
+- **Auto promotions**: automatically start a promotion based on predefined conditions
+- **Parameterized promotions**: allow you to pass values as environment variables into the next pipelines, enabling pipeline reuse for different tasks
  
 ## How to add promotions {#create-promotions}
 
@@ -44,9 +44,9 @@ Promotions are defined as pointers to the next pipelines in the chain. You can c
 
 <Steps>
 
-1. Press **+Add Promotion**. 
-2. Set a descriptive name for the promotion.
-3. Configure the new pipeline and add jobs as needed.
+1. Press **+Add Promotion**
+2. Set a descriptive name for the promotion
+3. Configure the new pipeline and add jobs as needed
 
   ![Adding a manual promotion](./img/promotion-add-manual.jpg)
 
@@ -59,11 +59,11 @@ Press **Delete Promotion** to completely delete the promotion along with *all it
 
 <Steps>
 
-1. Create a new pipeline file in the `.semaphore` folder, e.g., `deploy.yml`.
-2. Edit the pipeline from which the new one (from step 1) branches off, e.g., `semaphore.yml`.
-3. Add the `promotions` key at the root level of the YAML.
-4. Type the `name` of the promotion.
-5. Type the `pipeline_file` filename of the pipeline created in step 1.
+1. Create a new pipeline file in the `.semaphore` folder, e.g., `deploy.yml`
+2. Edit the pipeline from which the new one (from step 1) branches off, e.g., `semaphore.yml`
+3. Add the `promotions` key at the root level of the YAML
+4. Type the `name` of the promotion
+5. Type the `pipeline_file` filename of the pipeline created in step 1
 
 </Steps>
 
@@ -104,9 +104,9 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 
 <Steps>
 
-1. Open the promotion you want to autostart.
-2. Enable the checkbox **Enable automatic promotion**.
-3. Type in the [start conditions](../reference/conditions-dsl).
+1. Open the promotion you want to autostart
+2. Enable the checkbox **Enable automatic promotion**
+3. Type in the [start conditions](../reference/conditions-dsl)
 
   ![Setting autostart conditions on a promotion](./img/promotion-auto.jpg)
 
@@ -117,9 +117,9 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 
 <Steps>
 
-1. Open the pipeline file containing the promotion you want to autostart.
-2. Add an `auto_promote` key.
-3. Add a child `when` key. Type in the [start conditions](../reference/conditions-dsl).
+1. Open the pipeline file containing the promotion you want to autostart
+2. Add an `auto_promote` key
+3. Add a child `when` key. Type in the [start conditions](../reference/conditions-dsl)
 
 </Steps>
 
@@ -157,8 +157,8 @@ Many teams use Git tags to manage their release cycles. To auto-trigger a promot
 
 For example:
 
-- `tag =~ '.*'` matches all tags. The presence of any Git tag alone is enough to match the condition.
-- `tag =~ '^v1\.'` matches any tag starting with "v1".
+- `tag =~ '.*'` matches all tags. The presence of any Git tag alone is enough to match the condition
+- `tag =~ '^v1\.'` matches any tag starting with "v1"
 
 You can mix tags and other conditions to trigger promotions with a high level of control.
 
@@ -226,17 +226,17 @@ To add parameters to a promotion, follow these steps:
 
 <Steps>
 
-1. Select the promotion to which you want to add parameters.
-2. Click **+Add Environment Variable**.
+1. Select the promotion to which you want to add parameters
+2. Click **+Add Environment Variable**
 
     ![Add parameter to promotion](./img/parameter-1.jpg)
 
-3. Set the variable name.
-4. Set an optional description.
-5. Set optional valid options. Leave blank to input value as freeform text.
-6. Enable the "This is a required parameter" checkbox if the parameter is mandatory.
-7. Set a default value (only when the parameter is mandatory).
-8. Add more parameters as needed.
+3. Set the variable name
+4. Set an optional description
+5. Set optional valid options. Leave blank to input value as freeform text
+6. Enable the "This is a required parameter" checkbox if the parameter is mandatory
+7. Set a default value (only when the parameter is mandatory)
+8. Add more parameters as needed
 
     ![Setting up parameters](./img/parameter-2.jpg)
 
@@ -247,13 +247,13 @@ To add parameters to a promotion, follow these steps:
 
 <Steps>
 
-1. Edit the file where you want to add the parameters.
-2. Add a `parameters.env_vars` key.
-3. Every list item is a new parameter. Set the `name` of the environment variable.
-4. Type an optional `description`.
-5. Optionally set `required` to `true|false`.
-6. Optionally set `options`. Each item in the list is a valid option. Leave blank to input value as freeform text.
-7. If `required: true`, set the `default_value`. Optional parameters don't have a default value.
+1. Edit the file where you want to add the parameters
+2. Add a `parameters.env_vars` key
+3. Every list item is a new parameter. Set the `name` of the environment variable
+4. Type an optional `description`
+5. Optionally set `required` to `true|false`
+6. Optionally set `options`. Each item in the list is a valid option. Leave blank to input value as freeform text
+7. If `required: true`, set the `default_value`. Optional parameters don't have a default value
 
 </Steps>
 
@@ -282,8 +282,8 @@ promotions:
 
 When a pipeline is triggered with [automatic promotions](#automatic-promotions) the parameter values are automatically filled following these rules:
 
-- Mandatory parameters use the default value.
-- Optional parameters are left blank.
+- Mandatory parameters use the default value
+- Optional parameters are left blank
 
 :::
 
@@ -293,9 +293,9 @@ Once you have [added a parameter](#parameters-add), you can select its value fro
 
 <Steps>
 
-1. Press the promotion button.
-2. Select or type in the value. Optional parameters can be left blank.
-3. Press **Start promotion**.
+1. Press the promotion button
+2. Select or type in the value. Optional parameters can be left blank
+3. Press **Start promotion**
 
 </Steps>
 
@@ -316,7 +316,7 @@ Once you have [added a parameter](#parameters-add), you can select its value fro
 
 <Available/>
 
-You can pass parameter values to the promotion when it is triggered using the [Semaphore API](../reference/api).
+You can pass parameter values to the promotion when it's triggered using the [Semaphore API](../reference/api).
 
 The following is an example of a curl call that includes parameters:
 
@@ -375,9 +375,9 @@ ${{parameters.ENVIRONMENT}}
 
 Parameters are available in the following places:
 
-- Pipeline `name`.
-- Pipeline [queue name](../reference/pipeline-yaml#queue) (only available via YAML).
-- As the name of a [secret in the job](./jobs#secrets) (only available in YAML).
+- Pipeline `name`
+- Pipeline [queue name](../reference/pipeline-yaml#queue) (only available via YAML)
+- As the name of a [secret in the job](./jobs#secrets) (only available in YAML)
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -466,8 +466,8 @@ Environments also provide a convenient way to [view the history of your deployme
 
 Configuring a deployment target is a two-step process:
 
-1. Create a deployment target.
-2. Associate the target with a promotion.
+1. Create a deployment target
+2. Associate the target with a promotion
 
 ### How to create an environment {#create-environment}
 
@@ -477,16 +477,16 @@ To create an environment, navigate to your Semaphore project and:
 
 <Steps>
 
-1. Go to the **Deployment Targets** tab.
-2. Press **Create your first Deployment Target**.
+1. Go to the **Deployment Targets** tab
+2. Press **Create your first Deployment Target**
 
     ![Creating a deployment target](./img/deployment-target-create.jpg)
 
 3. Fill in the deployment details:
-    - Name of the deployment.
-    - Optional description.
-    - Optional URL of the deployed application.
-    - Optional bookmarks.
+    - Name of the deployment
+    - Optional description
+    - Optional URL of the deployed application
+    - Optional bookmarks
 4. Press **Next**
 
     ![Example deployment target](./img/deployment-target-1.jpg)
@@ -505,11 +505,11 @@ Credentials are optional. Go to the next step if you don't need them.
 
 <Steps>
 
-1. Set the environment variable name and value.
-2. Add more variables as needed.
-3. Upload a file and set where to put it in the [agent](./pipelines#agents).
-4. Add more files as needed.
-5. Press **Next**.
+1. Set the environment variable name and value
+2. Add more variables as needed
+3. Upload a file and set where to put it in the [agent](./pipelines#agents)
+4. Add more files as needed
+5. Press **Next**
 
     <details>
     <summary>Show me</summary>
@@ -530,11 +530,11 @@ By default, everyone can start the promotion linked to this environment. To rest
 
 <Steps>
 
-1. Select **Allow only particular users to deploy**.
-2. Optionally, select the roles that can deploy from the list.
-3. Optionally, select the members of your organization that can deploy.
-4. Uncheck the **Allow automatic promotions from target** option to disallow [automatic promotions](#automatic-promotions).
-5. Press **Next**.
+1. Select **Allow only particular users to deploy**
+2. Optionally, select the roles that can deploy from the list
+3. Optionally, select the members of your organization that can deploy
+4. Uncheck the **Allow automatic promotions from target** option to disallow [automatic promotions](#automatic-promotions)
+5. Press **Next**
 
     <details>
     <summary>Show me</summary>
@@ -553,11 +553,11 @@ To restrict Git-based access:
 
 <Steps>
 
-1. Select which branches are enabled for promotions: all, none, or a list of allowed branches.
-2. Select which Git tags are enabled: all, none, or a list of allowed tags.
-3. Enable or disable pull requests from triggering promotions.
-4. Press **Next**.
-5. Press **Create**.
+1. Select which branches are enabled for promotions: all, none, or a list of allowed branches
+2. Select which Git tags are enabled: all, none, or a list of allowed tags
+3. Enable or disable pull requests from triggering promotions
+4. Press **Next**
+5. Press **Create**
 
     <details>
     <summary>Show me</summary>
@@ -573,8 +573,8 @@ Once done, you can see the created environment in the **Deployments** tab.
 :::tip Exact match or regular expressions?
 
 Branches and tags can be matched in two ways:
-- **Exact match**: strings must match exactly.
-- **Regex match**: strings are matched using Perl-compatible regular expressions. See the [Erlang re module documentation](https://www.erlang.org/doc/man/re.html) to see more details on the syntax.
+- **Exact match**: strings must match exactly
+- **Regex match**: strings are matched using Perl-compatible regular expressions. See the [Erlang re module documentation](https://www.erlang.org/doc/man/re.html) to see more details on the syntax
 
 :::
 
@@ -582,9 +582,9 @@ Branches and tags can be matched in two ways:
 
 The **Deployment** tab allows you to track your previous deployments. In this tab, you can see:
 
-- Who started the last deployment.
-- Which commit was used.
-- Which [workflow](./workflows) the deployment belongs to.
+- Who started the last deployment
+- Which commit was used
+- Which [workflow](./workflows) the deployment belongs to
 
 You can also stop a running pipeline or rerun a promotion if you have the rights to do so.
 
@@ -597,10 +597,10 @@ Press **View full history** to see the latest deployments in reverse chronologic
 Use **Newer** and **Older** buttons to navigate to other pages. You can also jump to a specific date.
 
 You can also filter deployments by:
-- **Type**: View branches, tags, pull requests, or everything.
-- **Author**: Everyone or just you.
-- **Origin**: Branch, tag, or pull request.
-- **Promotion parameters**: These are the [bookmarks](#create-environment) added to the environment target.
+- **Type**: View branches, tags, pull requests, or everything
+- **Author**: Everyone or just you
+- **Origin**: Branch, tag, or pull request
+- **Promotion parameters**: These are the [bookmarks](#create-environment) added to the environment target
 
 To filter using promotion parameters, type the value of the parameter and press Enter. This feature is useful when you have [parameterized promotions](#promotions).
 
@@ -619,8 +619,8 @@ Press **Edit workflow** to open the visual editor and:
 
 <Steps>
 
-1. Select or create a promotion.
-2. In **Deployment target**, select the target from the dropdown list.
+1. Select or create a promotion
+2. In **Deployment target**, select the target from the dropdown list
 
   Select **No target** to remove the association between the deployment target and the promotion.
   ![Associating a deployment target with a promotion](./img/promotion-target.jpg)
@@ -632,8 +632,8 @@ Press **Edit workflow** to open the visual editor and:
 
 <Steps>
 
-1. Edit the pipeline file with the promotion you want to target.
-2. Add a `deployment_target` key to the promotion. The value is the name of the environment you want to associate with this promotion.
+1. Edit the pipeline file with the promotion you want to target
+2. Add a `deployment_target` key to the promotion. The value is the name of the environment you want to associate with this promotion
 
 </Steps>
 
@@ -680,10 +680,10 @@ Anyone with write access to the repository can edit the pipeline file and remove
 
 Once a [promotion](#promotions) is targeted, you may be locked out from starting it. The most common reasons that a promotion appears as blocked are:
 
-- You don't have the correct permissions to deploy to the bound [environment](#overview-environments).
-- You are on a Git branch, tag, or pull request that is not allowed.
-- You are not logged in, or you are viewing a build of a public project.
-- The environment is deactivated or deleted.
+- You don't have the correct permissions to deploy to the bound [environment](#overview-environments)
+- You are on a Git branch, tag, or pull request that isn't allowed
+- You are not logged in, or you are viewing a build of a public project
+- The environment is deactivated or deleted
 
 ### Promoting environments via API {#promotion-api}
 
