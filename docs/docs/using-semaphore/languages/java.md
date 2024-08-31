@@ -55,12 +55,47 @@ checkout
 cache restore
 ```
 
-## Complete example
+## How to set up test reports {#test}
 
-The following pipeline builds and tests a Java project.
+
+This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for Java and Maven.
+
+<Steps>
+
+1. Add the Surefire plugin to the `pom.xml`
+
+    ```xml
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <reportFormat>xml</reportFormat>
+                    <outputDirectory>/tmp</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    ```
+
+2. Run the tests
+
+    ```shell
+    mvn test
+    ```
+
+3. Create an [after_pipeline job](../../using-semaphore/pipelines#after-pipeline-job) with the following command:
+
+    ```shell
+    test-results publish /tmp/junit.xml
+    ```
+
+</Steps>
 
 <details>
-<summary>Show me</summary>
+<summary>Complete example</summary>
 <div>
 
 ```yaml
@@ -100,9 +135,12 @@ blocks:
       jobs:
         - name: Everything
           commands:
-            # Again, -q to reduce output spam. Replace with command
-            # that executes tests
+            - mvn test
             - mvn -q package
+    epilogue:
+      always:
+        commands:
+          - test-results publish /tmp/junit.xml
 ```
 
 </div>

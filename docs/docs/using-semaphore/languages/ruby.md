@@ -15,7 +15,7 @@ This guide will help build Ruby projects on Semaphore.
 
 ## Overview
 
-Ruby interpresetrs are pre-installed in the Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository.
+Ruby interpreter are pre-installed in the Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). You may also use Docker images.
 
 ## How to select Ruby version {#switch}
 
