@@ -20,7 +20,7 @@ The Python interpreter is pre-installed in the Linux and macOS Semaphore environ
 
 ## How to select Python versions {#switch}
 
-Change the active Ruby versions on Linux with [sem-version](../../reference/toolbox#sem-version).
+Change the active Python versions on Linux with [sem-version](../../reference/toolbox#sem-version).
 
 ```shell
 sem-version python 3.12

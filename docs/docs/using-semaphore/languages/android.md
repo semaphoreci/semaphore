@@ -92,6 +92,8 @@ This section shows how to configure a pipeline to build and test a React Native 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
+<Steps>
+
 1. Use an [Android container](#containers). You need one of the image variants that ship with Node.js, e.g. `android:34-node`
 2. Create a Build/Install block with the following commands
 
@@ -123,6 +125,7 @@ This section shows how to configure a pipeline to build and test a React Native 
 5. Optionally, add more test jobs as needed
 6. Press **Run the workflow**
 
+</Steps>
 
 </TabItem>
 <TabItem value="yaml" label="YAML">

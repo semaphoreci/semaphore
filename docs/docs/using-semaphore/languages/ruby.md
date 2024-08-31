@@ -25,7 +25,11 @@ Change the active Ruby versions on Linux and macOS with [sem-version](../../refe
 sem-version ruby 3.2.2
 ```
 
-Semaphore uses `rbenv` to switch versions for Ruby. The available Ruby versions depend on the OS image you're using. You can check the available Ruby versions by executing `rbenv install --list` inside a Semaphore job.
+Semaphore uses `rbenv` to switch versions for Ruby. The available Ruby versions depend on the OS image you're using. You can check the available Ruby versions by executing the following command inside a Semaphore job:
+
+```shell
+rbenv install --list
+```
 
 ### Using Docker containers {#containers}
 

@@ -450,7 +450,8 @@ checkout
 npm install
 npm test
 ```
-See the [toolbox](../reference/toolbox#sem-service) to view all services supported by this tool. 
+
+You don't need to manually stop services at the end of the job. They are terminated automatically. See the [toolbox](../reference/toolbox#sem-service) to view all services supported by this tool. 
 
 ## Debugging jobs {#debug-jobs}
 

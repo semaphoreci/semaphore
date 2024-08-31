@@ -16,7 +16,7 @@ This guide will help build Scala projects on Semaphore.
 
 ## Overview
 
-The Go toolchain is pre-installed in Linux machines. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version).
+The Scala toolchain is pre-installed in Linux machines. You can switch the active compiler using [sem-version](../../reference/toolbox#sem-version).
 
 ## How to switch Scala versions {#versions}
 

@@ -15,12 +15,14 @@ This guide will help build JavaScript projects on Semaphore.
 
 ## Overview
 
-Node.js is pre-installed in the Linux and macOS Semaphore environments. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository. You may also use Docker images.
+Node.js is pre-installed in the Linux and macOS Semaphore environments. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version).
+
+You may also use Docker images.
 
 
 ## How to select Node versions {#switch}
 
-Change the active Node.js versions on Linux and macOS with [sem-version](../../reference/toolbox#sem-version). This command ignores `.ruby-versions`
+Change the active Node.js versions on Linux and macOS with [sem-version](../../reference/toolbox#sem-version).
 
 ```shell
 sem-version node 20.17.0
@@ -43,7 +45,7 @@ sem-version node --lts carbon
 
 The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
 
-You can use the pre-build [Node images](../../using-semaphore/optimization/container-registry#node) or build your own. Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
+You can use the pre-built [Node images](../../using-semaphore/optimization/container-registry#node) or build your own. Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
 
 
 ## How to cache Node dependencies {#cache}

@@ -108,13 +108,12 @@ $ gcc --version
 gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
 ```
 
-:::note
 
-The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
+### Using Docker containers {#containers}
 
-Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
+The `sem-version` tool does not work on Docker containers. If the compiler you need is not shipped in the Semaphore Linux or macOS image, you must build a Docker image and run jobs using [Docker environments](../../using-semaphore/pipelines#docker-environments).
 
-:::
+Semaphore does not provide pre-built C and C++ Docker images. Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
 
 ## How to compile C++ {#cpp}
 
@@ -206,11 +205,3 @@ sem-version cpp 9
 $ g++ --version
 g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
 ```
-
-:::note
-
-The `sem-version` tool does not work on Docker containers. You must use a pre-built Docker image with the language versions you need and run the job using [Docker environments](../../using-semaphore/pipelines#docker-environments).
-
-You can customize the pre-build [Ubuntu image](../../using-semaphore/optimization/container-registry#ubuntu) or build your own. Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
-
-:::
