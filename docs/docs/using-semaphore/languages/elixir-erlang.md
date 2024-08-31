@@ -56,7 +56,7 @@ cache restore
 ```
 
 
-## How to set up Elixir test reports {#test-results1}
+## How to set up test reports {#test-results1}
 
 This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for Elixir and mix.
 
