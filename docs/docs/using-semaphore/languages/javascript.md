@@ -15,7 +15,7 @@ This guide will help build JavaScript projects on Semaphore.
 
 ## Overview
 
-Node.js is pre-installed in the Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository. You may also use Docker images.
+Node.js is pre-installed in the Linux and macOS Semaphore environments. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). Semaphore can also pick the Ruby version from the `.ruby-version` file at the root of the repository. You may also use Docker images.
 
 
 ## How to select Node versions {#switch}

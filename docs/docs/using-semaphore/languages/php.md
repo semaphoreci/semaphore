@@ -16,12 +16,12 @@ This guide will help build PHP projects on Semaphore.
 
 ## Overview
 
-The PHP interpreter is pre-installed in the Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). You may also use Docker images.
+The PHP interpreter is pre-installed in the Linux and macOS Semaphore environments. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). You may also use Docker images.
 
 
 ## How to select PHP version {#switch}
 
-Change the active Ruby versions on Linux and macOS with [sem-version](../../reference/toolbox#sem-version). This command ignores `.ruby-versions`
+Change the active Ruby versions on Linux with [sem-version](../../reference/toolbox#sem-version).
 
 ```shell
 sem-version php 8.2.20
