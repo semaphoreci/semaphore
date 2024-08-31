@@ -46,7 +46,7 @@ You can use the pre-build [Go images](../../using-semaphore/optimization/contain
 
 ## How to use GOPATH {#gopath}
 
-For Go versions 1.11 and below you have to prepare the GOPATH directory structure that Go expects. Run this commands before using Go in the CI environment if you're using Go 1.11 of lower:
+For Go versions 1.11 and below you have to prepare the GOPATH directory structure that Go expects. Run these commands before using Go in the CI environment if you're using Go 1.11 or lower:
 
 ```shell title="GOPATH setup for Go 1.11 or lower"
 export "SEMAPHORE_GIT_DIR=$(go env GOPATH)/src/github.com/${SEMAPHORE_PROJECT_NAME}"
@@ -101,8 +101,6 @@ This section explains how to set up [test reports](../../using-semaphore/tests/t
 <details>
 <summary>Example pipeline definition</summary>
 <div>
-
-
 
 ```yaml title="Using test reports on Go"
 - name: Tests

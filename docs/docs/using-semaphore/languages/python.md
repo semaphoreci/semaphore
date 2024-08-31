@@ -17,7 +17,6 @@ This guide will help build Python projects on Semaphore.
 
 The Python interpreter is pre-installed in the Linux and macOS Semaphore environments. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). You may also use Docker images.
 
-
 ## How to select Python versions {#switch}
 
 Change the active Python versions on Linux with [sem-version](../../reference/toolbox#sem-version).

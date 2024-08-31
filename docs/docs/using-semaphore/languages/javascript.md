@@ -61,7 +61,6 @@ npm install
 cache store
 ```
 
-
 All successive jobs can reuse `node_modules` from the cache with:
 
 ```shell
@@ -70,7 +69,6 @@ cache restore
 ```
 
 You can alternative use `yarn` instead of `npm` and the cache should work correctly.
-
 
 ## How to set up test reports {#test-results}
 

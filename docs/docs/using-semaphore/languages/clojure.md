@@ -21,7 +21,7 @@ The Leiningen tool is pre-installed in Linux machines. You can switch the active
 
 Leiningen reads the Clojure version number from `project.clj`. The correct version is activated automatically.
 
-For example the presence this project file activates Clojure v1.10.0:
+For example the presence of this project file activates Clojure v1.10.0:
 
 ```clojure
 (defproject hw "0.1.0-SNAPSHOT"

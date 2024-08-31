@@ -31,13 +31,13 @@ See [artifacts](../artifacts) to learn how to save and persist the built JARs.
 
 ### Using Docker containers {#containers}
 
-Semaphore does not distribute pre-build images for Java. You, can however, build your own images and use them with [Docker Environments](../../using-semaphore/pipelines#docker-environments).
+Semaphore does not distribute pre-build images for Java. You, can, however, build your own images and use them with [Docker Environments](../../using-semaphore/pipelines#docker-environments).
 
 See the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository for examples of Dockerfiles.
 
 ## How to cache dependencies in Java {#cache}
 
-The [cache](../../reference/toolbox#cache) tool automatically detects the presence Maven directories and caches dependencies.
+The [cache](../../reference/toolbox#cache) tool automatically detects the presence of Maven directories and cache dependencies.
 
 The first job in the pipeline must cache the dependencies:
 
@@ -58,7 +58,6 @@ cache restore
 ```
 
 ## How to set up test reports {#test}
-
 
 This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for Java and Maven.
 

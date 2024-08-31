@@ -21,17 +21,6 @@ GNU C and C++ compilers are pre-installed in the Semaphore environment. You can 
 
 The [Ubuntu](../../reference/machine-types#linux) Linux machines ship with the GNU C compiler.
 
-Let's build the following C program in Semaphore:
-
-```c title="hello.c"
-#include <stdio.h>
-
-int main() { 
-    printf("Hello world"); 
-    return 0; 
-}
-```
-
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
 
@@ -118,17 +107,6 @@ Semaphore does not provide pre-built C and C++ Docker images. Find Dockerfiles t
 ## How to compile C++ {#cpp}
 
 The [Ubuntu](../../reference/machine-types#linux) Linux machines ship with the GNU C++ compiler.
-
-Let's build the following C++ program in Semaphore:
-
-```c title="hello.cc"
-#include <iostream>
-
-int main() { 
-    std::cout << "Hello world"; 
-    return 0; 
-}
-```
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">

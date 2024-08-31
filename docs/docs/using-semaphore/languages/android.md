@@ -47,7 +47,6 @@ To use an Android container in your pipeline, follow these steps:
 
 To configure your Android container using YAML, follow these steps:
 
-
 <Steps>
 
 1. Open the pipeline file
@@ -87,7 +86,7 @@ To configure your Android container using YAML, follow these steps:
 
 ### Example for React Native {#react-native}
 
-This section shows how to configure a pipeline to build and test a React Native project using the Android containers.
+This section shows how to configure a pipeline to build and test a React Native project using Android containers.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -187,7 +186,7 @@ blocks:
 
 You can find the pre-build Android images in the [Semaphore Container Registry](../optimization/container-registry).
 
-The image definition and Dockerfiles for these images can be found at the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository. Clone this repository to build your own image variants.
+The image definition and Dockerfiles for these images can be found in the repository [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images). Clone this repository to build your own image variants.
 
 There are Docker images for each recent version of Android. There are also variants with Node.js preinstalled for React Native development:
 

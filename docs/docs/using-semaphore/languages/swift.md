@@ -11,7 +11,6 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-
 This guide will help build Swift projects on Semaphore.
 
 ## Overview

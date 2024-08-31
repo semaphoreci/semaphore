@@ -11,13 +11,11 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-
 This guide will help build PHP projects on Semaphore.
 
 ## Overview
 
 The PHP interpreter is pre-installed in the Linux Semaphore environment. You can switch the active interpreter using [sem-version](../../reference/toolbox#sem-version). You may also use Docker images.
-
 
 ## How to select PHP version {#switch}
 
@@ -32,7 +30,6 @@ You can also use `phpbrew` to build a specific PHP version from source. This is 
 ```shell
 phpbrew --no-progress install 8.2.20
 ```
-
 
 ### Using Docker containers {#containers}
 
@@ -61,11 +58,9 @@ cache restore
 export PATH=$PWD/vendor/bin:${PATH}
 ```
 
-
 ## How to set up test reports {#test-results}
 
 This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for PHP and PHPUnit.
-
 
 <Steps>
 

@@ -144,7 +144,7 @@ sem-version erlang 25
 
 Use `earlc` to compile an Erlang source code to binary.
 
-For instance, with source file called `hello.erl`:
+For instance, with a source file called `hello.erl`:
 
 ```earlang
 %% Programmer: Mihalis Tsoukalos
