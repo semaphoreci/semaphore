@@ -27,6 +27,8 @@ On Linux machines use `sem-version`. For example to switch to v1.16:
 sem-version elixir 1.16
 ```
 
+### Using Docker containers {#containers}
+
 Semaphore distributes the pre-built `semaphoreci:elixir` image on the [Semaphore Container Registry](../../using-semaphore/optimization/container-registry#elixir). Find Dockerfiles to build your custom images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.
 
 ## How to cache Elixir dependencies {#cache}
