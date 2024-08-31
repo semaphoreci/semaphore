@@ -134,7 +134,7 @@ This section explains how to set up [test reports](../../using-semaphore/tests/t
 
 ## How to parallelize tests
 
-You can run RSpec and Cucumber tests in parallel automatically using [job parallelism](../../using-semaphore/jobs#parallelism). 
+You can run RSpec and Cucumber tests in parallel automatically using [job parallelism](../../using-semaphore/jobs#job-parallelism). 
 
 For RSpec, follow these steps:
 

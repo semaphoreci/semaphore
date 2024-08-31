@@ -99,7 +99,6 @@ const sidebars = {
           items: [
             'using-semaphore/connect-github',
             'using-semaphore/connect-github-oauth',
-            'using-semaphore/github-sso',
             'using-semaphore/connect-bitbucket',
             'using-semaphore/insights',
           ]
@@ -117,6 +116,7 @@ const sidebars = {
             'using-semaphore/org-health',
             'using-semaphore/org-preflight',
             'using-semaphore/notifications',
+            'using-semaphore/github-sso',
             'using-semaphore/okta',
             'using-semaphore/openid',
           ]

@@ -171,7 +171,7 @@ Project members can view or manage the following project elements:
 
 - **Activity**: shows the latest [pipeline](./pipelines) runs
 - **Deployments**: access the [project's environment](./promotions#deployment-targets) (formerly deployment targets)
-- **Insights**: shows the [insights](./optimization/insights)
+- **Insights**: shows the [insights](./insights)
 - **Artifacts**: shows the [project-level artifacts](./artifacts#projects) and [retention policy](./artifacts#retention)
 - **Tasks**: shows the [tasks](./tasks)
 - **Flaky Tests**: shows the [flaky tests](./tests/flaky-tests) detected in the project

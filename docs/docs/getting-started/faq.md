@@ -467,7 +467,7 @@ You can prevent this error by enabling the [auto-cancel](../using-semaphore/pipe
  
 ### Why are my workflows not running in parallel?
 
-Git pushes to the same branch are [queued](../using-semaphore/pipelines#queue) by default. Pushes to different branches do run in parallel. You can use [named queues in your pipelines](../using-semaphore/pipelines#named-queues) to better control how workflows are parallelized or activate [auto-cancel](../using-semaphore/pipelines#auto-cancel) to stop running pipelines when new pushes arrive to the queue.
+Git pushes to the same branch are [queued](../using-semaphore/pipelines#pipeline-queues) by default. Pushes to different branches do run in parallel. You can use [named queues in your pipelines](../using-semaphore/pipelines#named-queues) to better control how workflows are parallelized or activate [auto-cancel](../using-semaphore/pipelines#auto-cancel) to stop running pipelines when new pushes arrive to the queue.
 
 ### Why did my workflow stop without explanation?
 
