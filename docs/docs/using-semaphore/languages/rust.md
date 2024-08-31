@@ -43,5 +43,6 @@ You may use one of the pre-built [Rust images](../../using-semaphore/optimizatio
 
 </Steps>
 
+See [artifacts](../artifacts) to learn how to save and persist the built binary.
 
 Find Dockerfiles to build your custom Rust images in the [semaphoreci/docker-images](https://github.com/semaphoreci/docker-images) repository.

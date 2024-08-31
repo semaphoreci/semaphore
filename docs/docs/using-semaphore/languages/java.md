@@ -27,6 +27,8 @@ Java is available on Linux [Ubuntu](../../reference/os-ubuntu) machines. To chan
 sem-version java 11
 ```
 
+See [artifacts](../artifacts) to learn how to save and persist the built JARs.
+
 ### Using Docker containers {#containers}
 
 Semaphore does not distribute pre-build images for Java. You, can however, build your own images and use them with [Docker Environments](../../using-semaphore/pipelines#docker-environments).
