@@ -32,13 +32,12 @@ This guide outlines the process for making changes to the documentation, whether
 
 ### Provide Feedback
 
-We consider any feedback a valuable contribution. Before opening a new [issue](./) or [discussion](./), please check and review the existing ones to avoid duplication.
+We consider any feedback a valuable contribution. Before opening a new [issue](https://github.com/semaphoreci/semaphore/issues) or [discussion](https://github.com/semaphoreci/semaphore/discussions), please check and review the existing ones to avoid duplication.
 
 If you want to contribute by providing feedback, you can:
 
-1. Report an inaccuracy, lack of clarity, or missing information: [new issue template](./)
-2. Discuss the current state of the content or ask for clarification on any topic: [new discussion](./)
-3. Propose a new topic, page, or section: [new content proposal template](./)
+1. Propose new topic, report an inaccuracy, lack of clarity, or missing information: [new issue template](https://github.com/semaphoreci/semaphore/issues/new?assignees=TomFern%2CAleksandarCole&labels=documentation&projects=semaphoreci%2F2&template=DOCS_ISSUE.yml&title=%5BDocs%5D%3A+)
+2. Discuss the current state of the content or ask for clarification on any topic: [new discussion](https://github.com/semaphoreci/semaphore/discussions/new/choose)
 
 ### Update Documentation Content
 
@@ -46,7 +45,7 @@ If you are interested in updating the documentation content, here are a few path
 
 1. Read through the rest of this guide to learn how to contribute through PRs.
 2. Pick the right topic:
-   1. Browse our list of [ready for work](./) issues and pick one.
+   1. Browse our list of [help wanted](https://github.com/orgs/semaphoreci/projects/2/views/7) issues and pick one.
    2. Already have an improvement in mind? Feel free to move to the next step.
 3. Create your first pull request by following this guide.
 
@@ -67,7 +66,7 @@ To set up a local environment for contributing to Semaphore documentation:
 
 1. Open a terminal shell on your computer.
 
-2. Clone the [semaphoreci/semaphore](./) repository by running the following command:
+2. Clone the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository by running the following command:
   
    ```bash
    git clone https://github.com/semaphoreci/semaphore 
@@ -183,7 +182,7 @@ To ensure a smooth review process, please follow these best practices for your p
 
 ### Internal Contributors
 
-If you're an internal contributor with permission to access the [semaphoreci/semaphore](./) repository, you can commit changes and push branches directly to the repository.
+If you're an internal contributor with permission to access the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository, you can commit changes and push branches directly to the repository.
 
 1. Add files and commit changes to your local branch periodically with commands similar to the following:
 
@@ -209,7 +208,7 @@ If you're an internal contributor with permission to access the [semaphoreci/sem
 
 ### External Contributors
 
-If you are an external contributor, you must commit your changes to your branch and push your branch to a fork of the [semaphoreci/semaphore](./) repository.
+If you are an external contributor, you must commit your changes to your branch and push your branch to a fork of the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository.
 
 To push changes as an external contributor:
 
@@ -240,7 +239,7 @@ To push changes as an external contributor:
    git push --set-upstream fork my-branch
    ```
 
-7. Open the [semaphoreci/semaphore](./) repository, select your branch as the branch to merge into `main`, then click **New pull request**.
+7. Open the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository, select your branch as the branch to merge into `main`, then click **New pull request**.
    
    Reviewers are automatically assigned based on the branch protection rules and the `CODEOWNERS` file. To ensure that your pull request is merged, you should respond to reviewer feedback in a timely manner.
 
@@ -254,5 +253,5 @@ To push changes as an external contributor:
 
 ## Next Steps
 
-Refer to the [style guide](STYLE_GUIDE.md) to maintain consistency across your documentation page with the rest of the documentation.
-Explore the [UI components reference guide](UI-REFERENCE.md) to discover suitable UI components for your requirements.
+- Refer to the [style guide](STYLE_GUIDE.md) to maintain consistency across your documentation page with the rest of the documentation.
+- Explore the [UI components reference guide](UI-REFERENCE.md) to discover suitable UI components for your requirements.
