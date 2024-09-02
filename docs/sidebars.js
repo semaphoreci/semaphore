@@ -101,6 +101,7 @@ const sidebars = {
             'using-semaphore/connect-github-oauth',
             'using-semaphore/connect-bitbucket',
             'using-semaphore/insights',
+            'using-semaphore/monorepo',
           ]
         },
         {

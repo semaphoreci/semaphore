@@ -23,7 +23,7 @@ Semaphore can detect changes between commits, allowing you to set up fine-graine
 
 :::note 
 
-The `change_in` expressions are evaluated in the [pipeline initialization job](../pipelines#init-job).
+The `change_in` expressions are evaluated in the [pipeline initialization job](./pipelines#init-job).
 
 :::
 
@@ -97,7 +97,7 @@ For pull requests the commit range starts at the common ancestor between the bra
 
 In addition, these conditions force the job to run even if no files were changed:
 
-- [Pipeline changes](../pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
+- [Pipeline changes](./pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
 - **Pushed tags**: all jobs run by default in the push include Git tags. This can be [disabled](#condition)
 
 :::note
@@ -226,9 +226,9 @@ All paths are relative to the root of the repository.
 
 ### Change detection in promotions {#promotions}
 
-You can use change detection in [promotions](../pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project change.
+You can use change detection in [promotions](./pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project change.
 
-With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for a web app you might use a [Docker container](./docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
+With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for a web app you might use a [Docker container](./optimization/docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
 
 With change detection on promotions, you can activate the correct deployment pipeline based on what component has changed in the last push.
 
@@ -237,7 +237,7 @@ To activate change detection on promotions, follow these steps:
 <Steps>
 
 1. Open the **Workflow Editor** for your Semaphore project
-2. Create or select the [promotion](../pipelines#connecting-pipelines)
+2. Create or select the [promotion](./pipelines#connecting-pipelines)
 3. Check the option **Enable automatic promotion**
 4. Type the [change condition](#condition), e.g. `branch = "main" AND result = "passed" AND change_in("/backend", {default_branch: "main"})`
 
@@ -257,7 +257,7 @@ To use change detection, follow these steps:
 <Steps>
 
 1. Open your pipeline YAML file
-2. Locate or create the [promotion block](../pipelines#connecting-pipelines) you wish to add conditions to
+2. Locate or create the [promotion block](./pipelines#connecting-pipelines) you wish to add conditions to
 3. Add `auto_promote.when` under the block
 4. Type the [change condition](#condition), e.g. `change_in("/frontend", {default_branch: "main"})`
 5. Repeat the process for the other promotions that need conditions
@@ -332,7 +332,7 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 
 ## Conditions options {#condition}
 
-This section describes the available options for change detection. Note that the conditions are not limited to `change_in`. See the [conditions DSL reference](../../reference/conditions-dsl) to view all available conditions.
+This section describes the available options for change detection. Note that the conditions are not limited to `change_in`. See the [conditions DSL reference](../reference/conditions-dsl) to view all available conditions.
 
 ### Skip vs Run {#skip-run}
 
@@ -441,7 +441,7 @@ The supported options are:
 |`pipeline_file` | `track` | If value is `ignore` changes in the pipeline file are ignored. Otherwise, they always cause jobs and promotions to run |
 | `exclude` | Empty | A list of globs to exclude from the file matches. Files matching the glob are not taken into account when evaluating changes |
 
-See the [change_in conditions DSL referece](../../reference/conditions-dsl#change-in) to view all available options.
+See the [change_in conditions DSL referece](../reference/conditions-dsl#change-in) to view all available options.
 
 ### Examples {#examples}
 
@@ -452,7 +452,7 @@ change_in("/backend/", {default_branch: "master"})
 ```
 
 ```text title="When a file changes"
-change_in("../Gemfile.lock", {default_branch: "master"})
+change_in("./Gemfile.lock", {default_branch: "master"})
 ```
 
 ```text title="Trunk is main instead of master"
@@ -477,6 +477,6 @@ branch =~ "^hotfix/" and change_in("/backend/", default_branch: "main")
 
 ## See also
 
-- [How to create pipelines](../pipelines)
-- [How to create jobs](../jobs)
-- [change_in DSL reference](../../reference/conditions-dsl#change-in)
+- [How to create pipelines](./pipelines)
+- [How to create jobs](./jobs)
+- [change_in DSL reference](../reference/conditions-dsl#change-in)
