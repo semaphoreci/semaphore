@@ -475,6 +475,125 @@ change_in("/", {exclude: ["/docs"], default_branch: "main"})
 branch =~ "^hotfix/" and change_in("/backend/", default_branch: "main") 
 ```
 
+## Demo project {#demo}
+
+This section showcases how to use `change_in` in a workind demo project. 
+
+The project is a microservice application consisting on three components. Each component is located on a separate folder:
+
+- `services/billing`: a billing system written in Go. Provides an HTTP endpoint
+- `services/user`: a user account management application. Written in Ruby, it employs an in-memory database and uses Sinatra to expose an HTTP endpoint
+- `services/ui`: the Elixir-based Web application component.
+
+The code is located at [semaphoreci-demos/semaphore-demo-monorepo](https://github.com/semaphoreci-demos/semaphore-demo-monorepo)
+
+To run it:
+
+1. Fork the repository
+2. Clone the repository to your machine
+3. Start it with: `bash start.sh`
+
+### Monorepo pipeline {#demo-pipeline}
+
+The pipeline consists of three blocks. Each block performs the following tests in each of the three components:
+
+- **Lint**: uses a linting tool to detect potential errors in the source code
+- **Test**: runs the application's unit tests
+
+The components are uncoupled and self-contained in their own folder. So we use `change_in` to skip the blocks when the underlying code has not changed.
+
+Edit the workflow and view the **Skip/run** section. Each component has different change conditions:
+
+| Component | Change condition |
+|--|--|
+| Billing | `change_in('/services/billing')` |
+| User | `change_in('/services/user')` |
+| UI | `change_in('/services/ui')` |
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+![Change conditions monorepo](./img/change-conditions.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+```yaml title="Full pipeline"
+version: v1.0
+name: Monorepo Demo
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: "UI Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/ui'', {exclude: ''/services/ui/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/ui
+          - sem-version elixir 1.9
+          - cache restore
+          - mix local.hex --force
+          - mix local.rebar --force
+          - mix deps.get
+          - mix deps.compile
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - mix credo
+        - name: Test
+          commands:
+            - mix test
+  - name: "User Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/users'', {exclude: ''/services/users/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/users
+          - sem-version ruby 2.5
+          - cache restore
+          - bundle install
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - bundle exec rubocop
+        - name: Test
+          commands:
+            - bundle exec ruby test.rb
+  - name: "Billing Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/billing'', {exclude: ''/services/billing/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/billing
+          - sem-version go 1.14
+          - cache restore
+          - go get ./...
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - gofmt -l .
+        - name: Test
+          commands:
+            - go test ./...
+```
+</TabItem>
+</Tabs>
+
+
 ## See also
 
 - [How to create pipelines](./pipelines)
