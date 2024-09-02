@@ -477,9 +477,9 @@ branch =~ "^hotfix/" and change_in("/backend/", default_branch: "main")
 
 ## Demo project {#demo}
 
-This section showcases how to use `change_in` in a workind demo project. 
+This section showcases how to use `change_in` in a working demo project. 
 
-The project is a microservice application consisting on three components. Each component is located on a separate folder:
+The project is a microservice application consisting of three components. Each component is located in a separate folder:
 
 - `services/billing`: a billing system written in Go. Provides an HTTP endpoint
 - `services/user`: a user account management application. Written in Ruby, it employs an in-memory database and uses Sinatra to expose an HTTP endpoint
