@@ -116,7 +116,7 @@ To perform semantic releases, follow these steps
 
 </Steps>
 
-See [`sem-semantic-release`](../reference/toolbox#sem-semantic-release) for more details on the tool.
+See [`sem-semantic-release`](../../reference/toolbox#sem-semantic-release) for more details on the tool.
 
 ## How to set up test reports {#test-results}
 
