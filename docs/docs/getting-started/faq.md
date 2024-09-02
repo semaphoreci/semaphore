@@ -487,3 +487,33 @@ You can solve the issue by not using the cache, i.e. using `checkout` without ar
 # set cache age to 12 hours
 export SEMAPHORE_GIT_CACHE_AGE=43200
 ```
+
+### Why does my SSH debug job fail to start?
+
+There are several possible error messages that appead when trying to initiate an SSH session. For example:
+
+```shell
+sem debug job 46490d81-2d0b-42ee-a2b0-371880dd5d9c
+* Creating debug session for job '46490d81-2d0b-42ee-a2b0-371880dd5d9c'
+* Setting duration to 60 minutes
+error: http status 401 with message "Unauthorized" received from upstream
+```
+
+Or:
+
+```shell
+ sem debug job 46490d81-2d0b-42ee-a2b0-371880dd5d9c
+* Creating debug session for job '46490d81-2d0b-42ee-a2b0-371880dd5d9c'
+* Setting duration to 60 minutes
+error: http status 404 with message "{"code":5, "message":"Job 46490d81-2d0b-42ee-a2b0-371880dd5d9c not found", "details":[]}" received from upstream
+```
+
+The are several causes for these messages:
+
+- You might have a typo in the job id
+- You may need to [connect the `sem` tool](../using-semaphore/jobs#debug-jobs) to your organization
+- You may need to use [`sem context`](../reference/semaphore-cli#sem-context) to switch to the organization containing the project you want to debug
+
+The message indicates that the SSH session cannot be initiated for the provided job id. For example:
+
+```shell

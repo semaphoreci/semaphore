@@ -70,6 +70,54 @@ cache restore
 
 You can alternative use `yarn` instead of `npm` and the cache should work correctly.
 
+## How to perform semantic releases? {#semantic}
+
+Semaphore provides integration with [semantic-release](https://github.com/semantic-release/semantic-release) to automate the workflow Node package releases.
+
+If you continuously release packages, Docker images, or libraries, this guide can help you automate the release process:
+
+- determine the next version number
+- generate release notes
+- publish the package to the GitHub repository
+
+To perform semantic releases, follow these steps
+
+<Steps>
+
+1. Create a [Secret] with your GitHub Token. 
+
+    - The token should have write permissions on the repository
+    - The secret name should be `semantic-release-credentials`
+    - Prefer to use [project secrets](../secrets#create-project-secrets)
+    - The secret must contain the environment variable `GH_TOKEN` or `GITHUB_TOKEN`
+2. Configure a continuous delivery pipeline
+
+    - Use [promotions](../promotions) to create a new release pipeline
+    - Consider using auto-promotions and Git tags to automate the process
+
+3. Optionally, [configure Semantic Release](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#configuration)
+  
+4. Create a release job with the following contents
+
+    ```shell
+    checkout
+    sem-semantic-release
+    ```
+
+5. Create a release to test the process
+
+    ```shell
+    git pull
+    git commit -m "Commit message"
+    # optionally add a tag
+    git tag -a v2.1.0 -m "xyz feature is released in this tag."
+    git push origin v2.1.0
+    ```
+
+</Steps>
+
+See [`sem-semantic-release`](../reference/toolbox#sem-semantic-release) for more details on the tool.
+
 ## How to set up test reports {#test-results}
 
 This section explains how to set up [test reports](../../using-semaphore/tests/test-reports) (and flaky tests) for JavaScript and Jest.

@@ -533,6 +533,50 @@ docker run -v $(pwd):/app test-runner run-specs
 test-results publish junit.xml
 ```
 
+## sem-semantic-release {#sem-semantic-release}
+
+`sem-semantic-release` wraps the [semantic release CLI] and exports the release information to the rest of your delivery process using [sem-context put](#sem-context-put). This information can later be retrieved with [sem-context get](#sem-context-get).
+
+It is handy when you want to continue the delivery process once the release has been created. A common example would be to build a Docker image tagged with the release version, or add an annotation to a Kubernetes deployment manifest.
+
+General usage in CI:
+
+```shell
+checkout
+sem-semantic-release
+```
+
+Usage options:
+
+```shell
+Usage: sem-semantic-release [OPTION]...
+
+Options:
+  --dry-run   runs semantic-release without publishing version
+  --plugins   npm plugins and extensions to be installed
+  --branches  branches to run semantic release for
+  --version   semantic-release version
+```
+
+The `sem-semantic-release` exports the following values to `sem-context`
+
+| Key                 | Description                                             |
+|--|--|
+| `ReleasePublished`    | Whether a new release was published (`"true"` or `"false"`) |
+| `ReleaseVersion`      | Version of the new release. (e.g. `"1.3.0"`)                |
+| `ReleaseMajorVersion` | Major version of the new release. (e.g. `"1"`)              |
+| `ReleaseMinorVersion` | Minor version of the new release. (e.g. `"3"`)              |
+| `ReleasePatchVersion` | Patch version of the new release. (e.g. `"0"`)              |
+
+You can use these values in your pipeline to automatically figure version numbers. For example:
+
+```shell
+docker build . -t my-app:$(sem-context get ReleaseVersion)
+docker push
+sed -i "s/IMAGE/$(sem-context get ReleaseVersion)" deployment.yml
+kubectl apply -f deployment.yml
+```
+
 ## See also
 
 - [Semaphore command line tool reference](./semaphore-cli)
