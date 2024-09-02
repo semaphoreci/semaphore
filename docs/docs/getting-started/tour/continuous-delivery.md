@@ -41,7 +41,7 @@ To create a secret, follow these steps:
 
 <Steps>
 
-1. Open the Organization menu and select **Settings**
+1. Open the project in Semaphore and go to the **Settings** tab
 2. Go to **Secrets**
 3. Press **New Secret**
 4. Type a name for the secret, e.g. `github-release`
@@ -145,6 +145,20 @@ The push will initiate a new workflow related to the tag we just pushed. Check t
 ![Releasing using CD pipeline](./img/release3.jpg)
 
 If you check your GitHub repository, you should now find a release correctly tagged as "v1.0.0"
+
+<details>
+<summary>Semaphore environment variables</summary>
+<div>
+
+Semaphore provides several environment variables you can use in your scripts. In the examples we have used:
+
+- `$SEMAPHORE_WORKFLOW_ID` a unique ID for every workflow
+- `$SEMAPHORE_GIT_TAG_NAME` contains the name for the pushed Git tag
+
+See [environment variables](../../reference/env-vars) for a list of all the variable available in the CI environment.
+
+</div>
+</details>
 
 ## Automating releases {#autopromotion}
 
