@@ -135,7 +135,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Language Guides',
+          label: 'Languages and Databases',
           collapsed: true,
           items: [
             {

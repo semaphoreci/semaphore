@@ -15,7 +15,7 @@ This page explains how to use databases and other services inside the CI environ
 
 ## Overview
 
-Starting databases and service in [Linux environments](../../reference/os-ubuntu) is easy with the [`sem-service`](../../reference/toolbox#sem-service) tool. Once started, create users, tables, and populate the database with data so you can run your test suite.
+Starting databases and service in [Linux environments](../../reference/os-ubuntu) is easy with the [`sem-service`](../../reference/toolbox#sem-service) tool. Once started, create users, and tables, and populate the database with data so you can run your test suite.
 
 ### Postgres {#postgres}
 
@@ -25,7 +25,7 @@ You can start a PostgreSQL service with:
 sem-service start postgres
 ```
 
-To create a users in PostgreSQL:
+To create users in PostgreSQL:
 
 ```shell
 # normal user
@@ -79,9 +79,9 @@ sem-service start redis
 To interact with the Redis service, use the following commands:
 
 ```shell
-sem-service start redit
+sem-service start redis
 sudo apt install redis-tools -y
-# now you can use the redis-cli, e.g.
+# Now you can use the redis-cli, e.g.
 redis-cli incr mycounter
 ```
 
