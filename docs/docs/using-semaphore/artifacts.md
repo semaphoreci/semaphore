@@ -12,11 +12,11 @@ import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use artifacts" src="https://www.youtube.com/embed/yHzZOKwyaAA?si=7qVathl09Cd3d-Gq"/>
 
-Artifacts provide persistent storage for files and folders. This page explains how to store, retrieve, and view artifacts and how to manage retention policies.
+Artifacts provide persistent storage for files and folders. This page explains how to store, retrieve, and view artifacts, and how to manage retention policies.
 
 :::warning
 
-Artifacts storage can affect your billing.. We recommend reading on [artifact usage](#usage) and setting up [retention policies](#retention).
+Artifact storage can affect your billing. We recommend learning about [artifact usage](#usage) and setting up [retention policies](#retention).
 
 :::
 
@@ -24,32 +24,32 @@ Artifacts storage can affect your billing.. We recommend reading on [artifact us
 
 Artifacts provide a persistent file store for all your [projects](./projects). Artifacts are ideal for:
 
-- passing files between [jobs](./jobs) like build artifacts or compiled executables
-- long-term storage for final deliverables
-- collecting debug data from your jobs like screenshots and build logs
-- store test results for processing [Test Reports](./tests/test-reports) and [Flaky Tests](./tests/flaky-tests)
+- passing files between [jobs](./jobs), like build artifacts or compiled executables
+- long-term storage of final deliverables
+- collecting debug data from your jobs, such as screenshots and build logs
+- storing test results for processing [Test Reports](./tests/test-reports) and [Flaky Tests](./tests/flaky-tests)
 
 :::note
 
-Using artifacts in [self-hosted agents](./self-hosted) requires additional setup steps.
+Using artifacts on [self-hosted agents](./self-hosted) requires additional setup steps.
 
 :::
 
 ## Artifact usage {#usage}
 
-The syntax to store files or folders in the artifact store is:
+The syntax for storing files or folders in the artifact store is:
 
 ```shell
 artifact push <namespace> /path/to/file/or/folder
 ```
 
-To retrieve files or folders from the store we use:
+To retrieve files or folders from the store, use:
 
 ```shell
 artifact pull <namespace> <file or folder name>
 ```
 
-Add the `--force` option to overwrite files or folders with the pull or push actions. For more information on syntax, see the [Semaphore toolbox page](../reference/toolbox).
+Add the `--force` option to overwrite files or folders during pull or push actions. For more information on syntax, see the [Semaphore toolbox page](../reference/toolbox).
 
 
 ## Artifact namespaces {#namespaces}
@@ -58,17 +58,17 @@ The artifact store is partitioned into three namespaces:
 
 - **job**: each job gets a dedicated namespace on every run. Job artifacts are suitable for collecting debug data, logs, or screenshots for end-to-end tests
 - **workflow**: accessible to all pipelines in the same [workflow](./workflows). Workflow artifacts are ideal for passing data between jobs
-- **project**: a global namespace for the project. Project artifacts are ideal for storing final deliverables.
+- **project**: a global namespace for the project. Project artifacts are ideal for storing final deliverables
 
 ### Job artifacts {#jobs}
 
-The job namespace is not shared between jobs. Instead, each job gets assigned a dedicated namespace in every run.
+The job namespace is not shared between jobs. Instead, each job is assigned a dedicated namespace for every run.
 
-Job artifacts are great for storing debugging data such as build logs, screenshots, and screencasts. In other words, any situation where you don't need to share data with other jobs.
+Job artifacts are ideal for storing debugging data, such as build logs, screenshots, and screencasts. In other words, use them when you don't need to share data with other jobs.
 
 The following example shows a common combination of job and workflow artifacts:
 
-1. We use the workflow artifact to pass the compiled application from the build to the test jobs
+1. Use the workflow artifact to pass the compiled application from the build to the test jobs
 2. Each test job pushes its test log to the job artifact
 
 <Tabs groupId="editor-yaml">
@@ -84,7 +84,7 @@ version: v1.0
 name: Continuous Integration Pipelines
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Build
@@ -128,9 +128,9 @@ See the YAML tab to view the commands used in the example.
 
 ### Workflow artifacts {#workflows}
 
-The [workflow](./workflows) artifact is used to pass data between jobs in the same run. This namespace is accessible to all pipelines, even those connected with [promotions](./promotions).
+The [workflow](./workflows) artifact is used to pass data between jobs in the same run. This namespace is accessible to all pipelines, including those connected with [promotions](./promotions).
 
-The following example shows how to use the workflow artifact to pass a compiled binary between the build, test, and deploy jobs. Note that the deploy job can access the workflow artifact even when it is on a different pipeline.
+The following example shows how to use the workflow artifact to pass a compiled binary between the build, test, and deploy jobs. Note that the deploy job can access the workflow artifact even if it is in a different pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -144,7 +144,7 @@ version: v1.0
 name: Continuous Integration Pipelines
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Build
@@ -178,7 +178,7 @@ version: v1.0
 name: Deploy to production
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Deploy
@@ -197,11 +197,11 @@ See the YAML tab to view the commands used in the example.
 
 ### Project artifacts {#projects}
 
-The project namespace is globally shared for all runs in a given [project](./projects). This namespace is used to store final deliverables such as compiled binaries.
+The project namespace is globally shared across all runs in a given [project](./projects). This namespace is used to store final deliverables, such as compiled binaries.
 
-In the following example, we use the workflow and project artifacts:
+In the following example, we use both workflow and project artifacts:
 
-1. The workflow artifact is used to pass the compiled binary between the build and the other jobs
+1. The workflow artifact is used to pass the compiled binary between the build and other jobs
 2. Once tests pass, the binary is tagged with the version number and stored in the project artifact
 
 <Tabs groupId="editor-yaml">
@@ -216,7 +216,7 @@ version: v1.0
 name: Continuous Integration Pipelines
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Build
@@ -243,7 +243,7 @@ blocks:
       - Test
     task:
       jobs:
-        - name: Save relase
+        - name: Save release
           commands:
             - artifact pull workflow app
             - mv app app-$SEMAPHORE_GIT_TAG_NAME
@@ -261,13 +261,13 @@ In addition to accessing artifacts from the job using the `artifact` command, yo
 
 ### Job artifacts {#view-job}
 
-Open the job log and go to the **Artifacts** tab. All the artifacts for this job are shown.
+Open the job log and go to the **Artifacts** tab. All artifacts for this job are displayed.
 
 ![View job artifacts](./img/view-job-artifacts.jpg)
 
 Here you can:
 
-- Open folders and view their contents
+- Open folders and view their content
 - Click on files to download them
 - Press **Delete** to delete the artifact
 - Press **Delete Everything** to delete all the files in the current folder
@@ -281,7 +281,7 @@ To view the workflow artifacts, open the workflow and go to **Artifacts**.
 
 Here you can:
 
-- Open folders and view their contents
+- Open folders and view their content
 - Click on files to download them
 - Press **Delete** to delete the artifact
 - Press **Delete Everything** to delete all the files in the current folder
@@ -295,7 +295,7 @@ To view the project artifacts, open your project in Semaphore and select **Artif
 
 Here you can:
 
-- Open folders and view their contents
+- Open folders and view their content
 - Click on files to download them
 - Press **Delete** to delete the artifact
 - Press **Delete Everything** to delete all the files in the current folder
@@ -305,7 +305,7 @@ Here you can:
 
 Semaphore will never delete your artifacts automatically. To control usage and [costs](#usage), it's recommended to set up retention policies to automatically delete old artifacts.
 
-Retention policies are rule-based and namespace-scoped. You must create one or more rules with file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
+Retention policies are rule-based and scoped to namespaces. You must create one or more rules with file selectors and ages. Semaphore attempts to match each rule to existing files and delete them if they exceed the maximum age.
 
 ### How to create retention policies
 
@@ -332,13 +332,13 @@ Repeat the process for the workflow artifacts:
 
 ![Setting up workflow artifact retention policies](./img/retention-workflow.jpg)
 
-And, finally, set up retention policies for the job artifacts:
+And finally, set up retention policies for job artifacts:
 
 ![Setting up job artifact retention policies](./img/retention-job.jpg)
 
 :::info
 
-Semaphore checks and applies the rules the retention policies in your project once every day.
+Semaphore checks and applies the retention policy rules in your project once every day.
 
 :::
 
@@ -347,22 +347,22 @@ Semaphore checks and applies the rules the retention policies in your project on
 The file selector accepts star (`*`) and double-star (`**`) glob patterns. For example:
 
 - `/**/*` matches all files and folders in the namespace. We recommend setting this rule at the end of the list
-- `/logs/**/*.txt` matches all files with txt extension in the logs folder or any subfolders
-- `/screenshots/**/*.png` matches all PNG files in the screenshots folder and subfolders
+- `/logs/**/*.txt` matches all files with a `.txt` extension in the logs folder or any subfolders
+- `/screenshots/**/*.png` matches all files with a `.png` in the screenshots folder and subfolders
 - `build.log` matches the file exactly
 
 ## Usage pricing {#usage}
 
-Artifacts on the Semaphore Cloud are charged on the basis of:
+Artifacts on Semaphore Cloud are charged based on:
 
-- **Storage**: the amount of data stored, charged on a GB per month basis
-- **Traffic**: download network traffic in jobs or from the website, charged in total GB of data per month
+- **Storage**: the amount of data stored, charged on a GB-per-month basis
+- **Traffic**: download network traffic in jobs or from the website, charged by the total GB of data per month
 
 For more information, see [Plans and Pricing](https://semaphoreci.com/pricing)
 
 :::note
 
-When using [self-hosted agents](./self-hosted), you're in charge of setting up the artifact storage bucket. Storage and transfer costs are charged by your cloud provider and depend on your infrastructure setup.
+When using [self-hosted agents](./self-hosted), you're responsible for setting up the artifact storage bucket. Storage and transfer costs are charged by your cloud provider and depend on your infrastructure setup.
 
 :::
 

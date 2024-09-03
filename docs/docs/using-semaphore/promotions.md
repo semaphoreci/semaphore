@@ -72,7 +72,7 @@ version: v1.0
 name: Initial Pipeline
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Build
@@ -128,7 +128,7 @@ version: v1.0
 name: Initial Pipeline
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: 'Block #1'
@@ -179,7 +179,7 @@ version: v1.0
 name: Continuous Integration Pipeline
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Install
@@ -347,7 +347,7 @@ version: v1.0
 name: Deployment pipeline
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 blocks:
   - name: Deploy
@@ -396,7 +396,7 @@ name: '${{parameters.ENVIRONMENT}} deployment of the release: ${{parameters.RELE
 # highlight-end
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 queue:
   # highlight-start
@@ -419,7 +419,7 @@ version: v1.0
 name: '${{parameters.ENVIRONMENT}} deployment of the release: ${{parameters.RELEASE}}'
 agent:
   machine:
-    type: e1-standard-2
+    type: f1-standard-2
     os_image: ubuntu2004
 # highlight-start
 queue:
