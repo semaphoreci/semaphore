@@ -7,6 +7,9 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
+// import LinkCard from '@site/src/components/LinkCard';
+import FlashyCard from '@site/src/components/FlashyCard';
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   const githubStarsUrl=`https://ghbtns.com/github-btn.html?user=${siteConfig.organizationName}&repo=${siteConfig.projectName}&type=star&count=true&size=large`;
@@ -21,8 +24,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--primary button--lg"
-            to="/docs/category/getting-started">
-            Get Started
+            to="/getting-started/guided-tour">
+            Guided Tour
           </Link>
           <span className={styles.indexCtasGitHubButtonWrapper}>
             <iframe
@@ -40,6 +43,8 @@ function HomepageHeader() {
   );
 }
 
+import {PlaygroundCardsRow} from '@site/src/components/Playground';
+
 
 // Original content inside main: <HomepageFeatures />
 export default function Home() {
@@ -50,7 +55,20 @@ export default function Home() {
       description={siteConfig.tagline} >
       <HomepageHeader />
       <main>
-      <div style={{margin: "auto", width: "5%"}}>🚧🚧🚧</div>
+<PlaygroundCardsRow />
+      <FlashyCard
+        icon={
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+            <path d="M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8 12h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        }
+        title="Custom Title"
+        description="This is a custom description for the flashy card."
+        linkText="Custom Link"
+        linkUrl="https://example.com"
+      />
       </main>
     </Layout>
   );

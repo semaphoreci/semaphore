@@ -12,8 +12,8 @@ const config = {
   // disable this setting when the site goes to production to allow Google to index
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: true,
-  title: 'Semaphore CI/CD',
-  tagline: 'Continuous Integration To Maximize Developer Happiness',
+  title: 'Semaphore',
+  tagline: 'A CI/CD solution to streamline developer workflows',
   favicon: 'img/favicon.ico',
 
   // extra themes
@@ -65,7 +65,7 @@ const config = {
   ],
 
   plugins: [
-    // '@docusaurus/plugin-ideal-image',
+    '@docusaurus/plugin-ideal-image',
     // 'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',

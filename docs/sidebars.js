@@ -17,6 +17,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Getting Started',
+      collapsed: false,
       link: {
         type: 'generated-index',
         title: 'Get Started',
@@ -66,9 +67,6 @@ const sidebars = {
         type: 'generated-index',
         title: 'How to use Semaphore',
         description: 'Semaphore Operations Guide',
-        // slug: '/using-semaphore',
-        keywords: ['handbook'],
-        // image: '/img/docusaurus.png',
       },
       items: [
         {
