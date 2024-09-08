@@ -19,7 +19,7 @@ The first time you log in to Semaphore you'll be prompted to create an *organiza
 Organizations have:
 
 - zero or more [projects](./projects)
-- a [billing plan](./plans)
+- a billing plan
 - one or more owners
 - users and groups with role-based permissions
 

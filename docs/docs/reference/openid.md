@@ -50,4 +50,3 @@ If the cloud provider is configured to accept OIDC tokens, it will receive the t
 ## See also
 
 - [Pipeline YAML](./pipeline-yaml)
-- [API Reference](./api)
