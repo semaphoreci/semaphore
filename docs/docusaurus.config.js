@@ -12,8 +12,8 @@ const config = {
   // disable this setting when the site goes to production to allow Google to index
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: true,
-  title: 'Semaphore',
-  tagline: 'A CI/CD solution to streamline developer workflows',
+  title: 'Semaphore CI/CD',
+  tagline: 'Continuous Integration To Maximize Developer Happiness',
   favicon: 'img/favicon.ico',
 
   // extra themes

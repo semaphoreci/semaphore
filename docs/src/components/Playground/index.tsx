@@ -14,38 +14,84 @@ import Link from '@docusaurus/Link';
 import Image from '@theme/IdealImage';
 import Heading from '@theme/Heading';
 
+/* 
+
+Features to highlight:
+- Visual Editor
+- Flaky Tests
+- Self hosted agents
+- SSH Debugging
+- Okta Integration
+- OpenID Connect
+
+*/
+
+// 320x170
+
 const Playgrounds = [
   {
-    name: '📦 CodeSandbox',
-    image: require('@site/static/img/docusaurus.png'),
-    url: 'https://docusaurus.new/codesandbox',
-    urlTS: 'https://docusaurus.new/codesandbox-ts',
+    name: '👁️ Visual Editor',
+    image: require('@site/static/img/workflow-editor-animation.gif'),
+    url: 'using-semaphore/workflows#workflow-editor',
     description: (
-      <Translate id="playground.codesandbox.description">
-        CodeSandbox is an online code editor and development environment that
-        allows developers to create, share and collaborate on web development
-        projects in a browser-based environment
+      <Translate id="homepage.visualeditor.description">
+        Create your workflows visually. Finally WYSYGYG for CI!
+        No need to learn yet another YAML syntax just to run your tests.
       </Translate>
     ),
   },
   {
-    name: '⚡ StackBlitz 🆕',
+    name: '❅ Flaky Test Detector',
     image: require('@site/static/img/docusaurus.png'),
-    url: 'https://docusaurus.new/stackblitz',
-    urlTS: 'https://docusaurus.new/stackblitz-ts',
+    url: 'using-semaphore/tests/flaky-tests',
     description: (
-      <Translate
-        id="playground.stackblitz.description"
-        values={{
-          webContainersLink: (
-            <Link href="https://blog.stackblitz.com/posts/introducing-webcontainers/">
-              WebContainers
-            </Link>
-          ),
-        }}>
-        {
-          'StackBlitz uses a novel {webContainersLink} technology to run Docusaurus directly in your browser.'
-        }
+      <Translate id="playground.codesandbox.description">
+        Built-in test reports and flaky test detector.
+        Semaphore will let you know when a a tests begins to flake.
+      </Translate>
+    ),
+  },
+  {
+    name: '☁ Self-hosted Agents',
+    image: require('@site/static/img/docusaurus.png'),
+    url: 'using-semaphore/self-hosted',
+    description: (
+      <Translate id="playground.codesandbox.description">
+        Run the workflows on your own hardware. 
+        Or mix and match Semaphore Cloud machines with your own.
+      </Translate>
+    ),
+  },
+  {
+    name: '💻 SSH Debugging',
+    image: require('@site/static/img/docusaurus.png'),
+    url: 'using-semaphore/jobs#debug-jobs',
+    description: (
+      <Translate id="playground.codesandbox.description">
+        If a job is giving trouble, just jump into an interactive
+        SSH session. Debug your CI on the spot and quickly solve issues.
+      </Translate>
+    ),
+  },
+  {
+    name: '🏢 Enterprise Ready',
+    image: require('@site/static/img/docusaurus.png'),
+    url: 'using-semaphore/github-sso',
+    description: (
+      <Translate id="playground.stackblitz.description">
+        Everything for your Enterprise needs: 
+        GitHub SSO, Okta Integration via SCIM/SAML, OpenID Integration
+      </Translate>
+    ),
+  },
+  {
+    name: '🌐 On Premise',
+    image: require('@site/static/img/docusaurus.png'),
+    url: 'https://semaphoreci.com/pricing',
+    description: (
+      <Translate id="playground.codesandbox.description">
+        Run Semaphore on your hardware with the On-Premise Edition.
+        CI/CD workflows completely behind your firewall.
       </Translate>
     ),
   },
@@ -61,7 +107,7 @@ interface Props {
 
 function PlaygroundCard({name, image, url, urlTS, description}: Props) {
   return (
-    <div className="col col--6 margin-bottom--lg">
+    <div className="col col--4 margin-bottom--lg">
       <div className={clsx('card')}>
         <div className={clsx('card__image')}>
           <Link to={url}>
@@ -73,17 +119,9 @@ function PlaygroundCard({name, image, url, urlTS, description}: Props) {
           <p>{description}</p>
         </div>
         <div className="card__footer">
-          <div style={{textAlign: 'center'}}>
-            <b>
-              <Translate id="playground.tryItButton">Try it now!</Translate>
-            </b>
-          </div>
           <div className="button-group button-group--block">
             <Link className="button button--secondary" to={url}>
-              JavaScript
-            </Link>
-            <Link className="button button--secondary" to={urlTS}>
-              TypeScript
+              Learn more →
             </Link>
           </div>
         </div>

@@ -45,7 +45,6 @@ function HomepageHeader() {
 
 import {PlaygroundCardsRow} from '@site/src/components/Playground';
 
-
 // Original content inside main: <HomepageFeatures />
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
@@ -55,7 +54,16 @@ export default function Home() {
       description={siteConfig.tagline} >
       <HomepageHeader />
       <main>
-<PlaygroundCardsRow />
+      <PlaygroundCardsRow />
+      </main>
+    </Layout>
+  );
+}
+
+
+
+/*
+
       <FlashyCard
         icon={
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +77,4 @@ export default function Home() {
         linkText="Custom Link"
         linkUrl="https://example.com"
       />
-      </main>
-    </Layout>
-  );
-}
+      */
