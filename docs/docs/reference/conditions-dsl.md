@@ -31,7 +31,7 @@ You can use conditions in the following situations:
 - In the [auto cancel](../using-semaphore/pipelines#auto-cancel) policy
 - To [fail faist](../using-semaphore/pipelines#fail-fast) pipelines
 - As block [skip/run conditions](../using-semaphore/jobs#skip-run)
-- With [monorepo projects](../using-semaphore/optimization/monorepo) using the [change_in function](#change-in)
+- With [monorepo projects](../using-semaphore/monorepo) using the [change_in function](#change-in)
 
 ## Basic syntax
 
@@ -119,7 +119,7 @@ Pipelines with `change_in` expressions require a [pipeline initialization](../us
 
 :::
 
-You can use the `change_in` function to detect changes in files and directories in recent commits. This function is a key component in [monorepo support](../using-semaphore/optimization/monorepo).
+You can use the `change_in` function to detect changes in files and directories in recent commits. This function is a key component in [monorepo support](../using-semaphore/monorepo).
 
 The function is evaluated at runtime and, depending on the [skip/run conditions of the block](../using-semaphore/jobs#skip-run), will either run or skip the jobs. 
 
@@ -151,11 +151,11 @@ The supported options are:
 
 ### Change detection strategies {#strategies}
 
-See [change detection strategy](../using-semaphore/optimization/monorepo#strategies) to learn what's the default behavior of `change_in`.
+See [change detection strategy](../using-semaphore/monorepo#strategies) to learn what's the default behavior of `change_in`.
 
 ### Examples {#examples}
 
-See [change detection examples](../using-semaphore/optimization/monorepo#examples) for more `change_in` examples.
+See [change detection examples](../using-semaphore/monorepo#examples) for more `change_in` examples.
 
 ## Formal syntax definition {#definition}
 
@@ -235,6 +235,6 @@ identifier = ? string that matches [a-zA-Z][a-zA-Z0-9_\-]* regex, e.g. foo-bar_1
 
 ## See also
 
-- [Monorepo support](../using-semaphore/optimization/monorepo)
+- [Monorepo support](../using-semaphore/monorepo)
 - [Environment variable reference](./env-vars)
 - [Pipeline YAML reference](./pipeline-yaml)

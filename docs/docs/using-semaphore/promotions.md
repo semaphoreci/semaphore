@@ -446,11 +446,11 @@ blocks:
 </TabItem>
 </Tabs>
 
-## Environments (deployment targets) {#deployment-targets}
+## Deployment targets {#deployment-targets}
 
 <VideoTutorial title="How to Use Environments" src="https://www.youtube.com/embed/xId2H2wlKx4?si=0IXKyNNUVVjDDvHz" />
 
-Environments provide additional controls over [pipelines](./pipelines). You can limit who can trigger a pipeline and when, or define fine-grained secrets and environment variables.
+Deployment targets (also known as Environments) provide additional controls over [pipelines](./pipelines). You can limit who can trigger a pipeline and when, or define fine-grained secrets and environment variables.
 
 :::note
 

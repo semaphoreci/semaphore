@@ -52,12 +52,13 @@ These are the steps to create your first project:
     ![Create new button location](./img/create-new.jpg)
 
 2. Press **Choose repository**
-3. Select the tab corresponding to your provider: GitHub or BitBucket
-4. Select a repository from the list.
+3. Select the tab corresponding to your provider: GitHub or BitBucket.  Press **Give access** or **Connect**
 
-     If the list is empty, press **Give access** or **Connect** to give Semaphore access to your repositories
+    ![Give access to repositories](./img/grant-access.jpg)
 
-     ![Give access to repositories](./img/give-access.jpg)
+4. Back in Semaphore, select a repository from the list
+
+    ![Choose a repo](./img/choose-repo.jpg)
 
 5. Wait a few moments for Semaphore to connect to your repository and set up the project
 
@@ -131,6 +132,14 @@ Execute this workflow and see the output of the jobs. Both jobs should show the 
 
 ![The output of one of the jobs. The other one is exactly the same](./img/env-vars-log.jpg)
 
+:::warning No sensitive data in environment variables
+
+Do not put sensitive data such as passwords or API tokens in environment variables. Environment variables are not secure. They are stored in plain text in the pipeline file. So, anyone with read permissions in the repository can view your environment variables.
+
+Use [Secrets](../../using-semaphore/secrets) to for sensitive data. We'll use secrets in the last part of the guided tour [Continuous Delivery](./continuous-delivery)
+
+:::
+
 ## Inviting people to the organization {#people}
 
 As we've seen, you can invite people when you [create a project](#project). When you do this, you're also inviting them to your organization, since only organization members log in to Semaphore.
@@ -146,6 +155,8 @@ Press **Add people** to get to the invitation page. This page shows you individu
 ![Invite people to the organization](./img/invite-people.jpg)
 
 You can also add people without repository access by typing their GitHub usernames on the top input box and pressing **Invite**.
+
+See the [Okta integration](../../using-semaphore/okta) page to learn how you can manage users in bulk using SAML/SCIM.
 
 ## What have we learned?
 

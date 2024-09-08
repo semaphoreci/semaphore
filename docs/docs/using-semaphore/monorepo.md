@@ -23,7 +23,7 @@ Semaphore can detect changes between commits, allowing you to set up fine-graine
 
 :::note 
 
-The `change_in` expressions are evaluated in the [pipeline initialization job](../pipelines#init-job).
+The `change_in` expressions are evaluated in the [pipeline initialization job](./pipelines#init-job).
 
 :::
 
@@ -97,7 +97,7 @@ For pull requests the commit range starts at the common ancestor between the bra
 
 In addition, these conditions force the job to run even if no files were changed:
 
-- [Pipeline changes](../pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
+- [Pipeline changes](./pipelines#overview): if the pipeline YAML changes, all jobs run by default. This can be [disabled](#condition)
 - **Pushed tags**: all jobs run by default in the push include Git tags. This can be [disabled](#condition)
 
 :::note
@@ -226,9 +226,9 @@ All paths are relative to the root of the repository.
 
 ### Change detection in promotions {#promotions}
 
-You can use change detection in [promotions](../pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project change.
+You can use change detection in [promotions](./pipelines#connecting-pipelines). This is useful when you have continuous delivery or deployment pipelines that only need to run when certain folders or files in your project change.
 
-With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for a web app you might use a [Docker container](./docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
+With change detection, you can set up smarter deployment pipelines. Imagine you have web and mobile apps in the same repository. The process for deploying each component is different: for a web app you might use a [Docker container](./optimization/docker), the Android app is deployed to the Google Store, while the iOS version goes to Apple.
 
 With change detection on promotions, you can activate the correct deployment pipeline based on what component has changed in the last push.
 
@@ -237,7 +237,7 @@ To activate change detection on promotions, follow these steps:
 <Steps>
 
 1. Open the **Workflow Editor** for your Semaphore project
-2. Create or select the [promotion](../pipelines#connecting-pipelines)
+2. Create or select the [promotion](./pipelines#connecting-pipelines)
 3. Check the option **Enable automatic promotion**
 4. Type the [change condition](#condition), e.g. `branch = "main" AND result = "passed" AND change_in("/backend", {default_branch: "main"})`
 
@@ -257,7 +257,7 @@ To use change detection, follow these steps:
 <Steps>
 
 1. Open your pipeline YAML file
-2. Locate or create the [promotion block](../pipelines#connecting-pipelines) you wish to add conditions to
+2. Locate or create the [promotion block](./pipelines#connecting-pipelines) you wish to add conditions to
 3. Add `auto_promote.when` under the block
 4. Type the [change condition](#condition), e.g. `change_in("/frontend", {default_branch: "main"})`
 5. Repeat the process for the other promotions that need conditions
@@ -332,7 +332,7 @@ Conditions are ignored by default when you change the pipeline file. So, the ver
 
 ## Conditions options {#condition}
 
-This section describes the available options for change detection. Note that the conditions are not limited to `change_in`. See the [conditions DSL reference](../../reference/conditions-dsl) to view all available conditions.
+This section describes the available options for change detection. Note that the conditions are not limited to `change_in`. See the [conditions DSL reference](../reference/conditions-dsl) to view all available conditions.
 
 ### Skip vs Run {#skip-run}
 
@@ -441,7 +441,7 @@ The supported options are:
 |`pipeline_file` | `track` | If value is `ignore` changes in the pipeline file are ignored. Otherwise, they always cause jobs and promotions to run |
 | `exclude` | Empty | A list of globs to exclude from the file matches. Files matching the glob are not taken into account when evaluating changes |
 
-See the [change_in conditions DSL referece](../../reference/conditions-dsl#change-in) to view all available options.
+See the [change_in conditions DSL referece](../reference/conditions-dsl#change-in) to view all available options.
 
 ### Examples {#examples}
 
@@ -452,7 +452,7 @@ change_in("/backend/", {default_branch: "master"})
 ```
 
 ```text title="When a file changes"
-change_in("../Gemfile.lock", {default_branch: "master"})
+change_in("./Gemfile.lock", {default_branch: "master"})
 ```
 
 ```text title="Trunk is main instead of master"
@@ -475,8 +475,127 @@ change_in("/", {exclude: ["/docs"], default_branch: "main"})
 branch =~ "^hotfix/" and change_in("/backend/", default_branch: "main") 
 ```
 
+## Demo project {#demo}
+
+This section showcases how to use `change_in` in a working demo project. 
+
+The project is a microservice application consisting of three components. Each component is located in a separate folder:
+
+- `services/billing`: a billing system written in Go. Provides an HTTP endpoint
+- `services/user`: a user account management application. Written in Ruby, it employs an in-memory database and uses Sinatra to expose an HTTP endpoint
+- `services/ui`: the Elixir-based Web application component.
+
+The code is located at [semaphoreci-demos/semaphore-demo-monorepo](https://github.com/semaphoreci-demos/semaphore-demo-monorepo)
+
+To run it:
+
+1. Fork the repository
+2. Clone the repository to your machine
+3. Start it with: `bash start.sh`
+
+### Monorepo pipeline {#demo-pipeline}
+
+The pipeline consists of three blocks. Each block performs the following tests in each of the three components:
+
+- **Lint**: uses a linting tool to detect potential errors in the source code
+- **Test**: runs the application's unit tests
+
+The components are uncoupled and self-contained in their own folder. So we use `change_in` to skip the blocks when the underlying code has not changed.
+
+Edit the workflow and view the **Skip/run** section. Each component has different change conditions:
+
+| Component | Change condition |
+|--|--|
+| Billing | `change_in('/services/billing')` |
+| User | `change_in('/services/user')` |
+| UI | `change_in('/services/ui')` |
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+![Change conditions monorepo](./img/change-conditions.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+```yaml title="Full pipeline"
+version: v1.0
+name: Monorepo Demo
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: "UI Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/ui'', {exclude: ''/services/ui/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/ui
+          - sem-version elixir 1.9
+          - cache restore
+          - mix local.hex --force
+          - mix local.rebar --force
+          - mix deps.get
+          - mix deps.compile
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - mix credo
+        - name: Test
+          commands:
+            - mix test
+  - name: "User Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/users'', {exclude: ''/services/users/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/users
+          - sem-version ruby 2.5
+          - cache restore
+          - bundle install
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - bundle exec rubocop
+        - name: Test
+          commands:
+            - bundle exec ruby test.rb
+  - name: "Billing Service"
+    dependencies: []
+    run:
+      when: 'change_in(''/services/billing'', {exclude: ''/services/billing/**/*.md''})'
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cd services/billing
+          - sem-version go 1.14
+          - cache restore
+          - go get ./...
+          - cache store
+      jobs:
+        - name: Lint
+          commands:
+            - gofmt -l .
+        - name: Test
+          commands:
+            - go test ./...
+```
+</TabItem>
+</Tabs>
+
+
 ## See also
 
-- [How to create pipelines](../pipelines)
-- [How to create jobs](../jobs)
-- [change_in DSL reference](../../reference/conditions-dsl#change-in)
+- [How to create pipelines](./pipelines)
+- [How to create jobs](./jobs)
+- [change_in DSL reference](../reference/conditions-dsl#change-in)

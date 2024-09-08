@@ -63,7 +63,7 @@ const config = {
   ],
 
   plugins: [
-    // 'docusaurus-lunr-search', // this works when the hash router is disabled
+    'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -211,7 +211,7 @@ const config = {
       },
     }),
   future: {
-    experimental_router: 'hash', // default to "browser", comment this line to enable search
+    // experimental_router: 'hash', // default to "browser", comment this line to enable search
     experimental_storage: {
       type: 'localStorage',
       namespace: true,

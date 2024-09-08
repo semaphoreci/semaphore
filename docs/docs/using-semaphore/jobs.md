@@ -257,6 +257,8 @@ The most-used tools in the Semaphore toolbox are:
 - [checkout](#checkout) clones the remote Git repository
 - [cache](#cache) speeds up jobs by caching downloaded files
 - [artifact](#artifact) saves and moves files between jobs
+- [sem-version](#sem-version) changes the active version for a language or runtime
+- [sem-service](#sem-service) starts database and services for testing
 
 ### checkout {#checkout}
 
@@ -399,6 +401,57 @@ artifact push project hello.exe
  </div>
 </details>
 
+### sem-version {#sem-version}
+
+The [`sem-version`](../reference/toolbox#sem-version) is a Linux utility to change the active language or runtime.
+
+The syntax is:
+
+```shell
+sem-version <target> <version>
+```
+
+
+For example, to use Node.js version v20.9.0:
+
+```shell
+sem-version node 20.9.0
+node --version
+checkout
+npm install
+npm test
+```
+
+See the [toolbox](../reference/toolbox#sem-version) to view all languages supported by this tool. 
+
+See [languages](./languages/javascript) for language-specific guidance.
+
+:::tip
+
+If the language you need is not available in the pre-built images, you can still any language version with [Docker Environments](./pipelines#docker-environments).
+
+:::
+
+### sem-service {#sem-service}
+
+The [`sem-service`](../reference/toolbox#sem-service) utility is used to start and stop databases and other popular services.
+
+The syntax is:
+
+```shell
+sem-service <command> <service-name> <version>
+```
+
+For example, to start a PostgreSQL v16:
+
+```shell
+sem-service start postgres 16
+checkout
+npm install
+npm test
+```
+
+You don't need to manually stop services at the end of the job. They are terminated automatically. See the [toolbox](../reference/toolbox#sem-service) to view all services supported by this tool. 
 
 ## Debugging jobs {#debug-jobs}
 
@@ -812,7 +865,7 @@ blocks:
 
 You can choose to skip or run the block only under certain conditions. Skipping a block means that none of its job are executed.
 
-Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects](./optimization/monorepo).
+Use cases for this feature include skipping a block on certain branches, or working with [monorepo projects](./monorepo).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
