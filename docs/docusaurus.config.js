@@ -12,8 +12,8 @@ const config = {
   // disable this setting when the site goes to production to allow Google to index
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: true,
-  title: 'Semaphore Docs',
-  tagline: 'Intuitive Continuous Integration and Delivery',
+  title: 'Semaphore CI/CD',
+  tagline: 'Continuous Integration To Maximize Developer Happiness',
   favicon: 'img/favicon.ico',
 
   // extra themes
@@ -50,11 +50,13 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: '/', // move docs to the website root
           sidebarPath: './sidebars.js',
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
           editUrl:
             'https://github.com/semaphoreci/semaphore/tree/main/docs/'
         },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -63,6 +65,7 @@ const config = {
   ],
 
   plugins: [
+    // '@docusaurus/plugin-ideal-image',
     // 'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
@@ -207,7 +210,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['elixir', 'java', 'groovy' ],
+        additionalLanguages: ['elixir', 'java', 'groovy'],
       },
     }),
   future: {
