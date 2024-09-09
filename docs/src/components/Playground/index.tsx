@@ -41,30 +41,30 @@ const Playgrounds = [
     ),
   },
   {
-    name: '❅ Flaky Test Detector',
-    image: require('@site/static/img/docusaurus.png'),
-    url: 'using-semaphore/tests/flaky-tests',
+    name: '📈 Metrics and observability',
+    image: require('@site/static/img/metrics.jpg'),
+    url: 'using-semaphore/tests/test-reports',
     description: (
       <Translate id="playground.codesandbox.description">
         Built-in test reports and flaky test detector.
-        Semaphore will let you know when a a tests begins to flake.
+        Address error-prone tasks and unpredictable tests that could cause sporadic build failures.
       </Translate>
     ),
   },
   {
-    name: '☁ Self-hosted Agents',
-    image: require('@site/static/img/docusaurus.png'),
+    name: '🔐 Security',
+    image: require('@site/static/img/security.jpg'),
     url: 'using-semaphore/self-hosted',
     description: (
       <Translate id="playground.codesandbox.description">
-        Run the workflows on your own hardware. 
-        Or mix and match Semaphore Cloud machines with your own.
+        Set-up roles and access levels to your engineering teams.
+        Gain regulatory compliance with audit trails for system-wide actions.
       </Translate>
     ),
   },
   {
     name: '💻 SSH Debugging',
-    image: require('@site/static/img/docusaurus.png'),
+    image: require('@site/static/img/ssh-debugging.png'),
     url: 'using-semaphore/jobs#debug-jobs',
     description: (
       <Translate id="playground.codesandbox.description">
@@ -74,24 +74,24 @@ const Playgrounds = [
     ),
   },
   {
-    name: '🏢 Enterprise Ready',
-    image: require('@site/static/img/docusaurus.png'),
+    name: '🤖 Deployment and Automation',
+    image: require('@site/static/img/deployments.jpg'),
     url: 'using-semaphore/github-sso',
     description: (
       <Translate id="playground.stackblitz.description">
-        Everything for your Enterprise needs: 
-        GitHub SSO, Okta Integration via SCIM/SAML, OpenID Integration
+        Orchestrate your deployment strategies. Automate common infrastructure tasks.
+        Maintain deployment integrity.
       </Translate>
     ),
   },
   {
-    name: '🌐 On Premise',
-    image: require('@site/static/img/docusaurus.png'),
+    name: '🌐 Make it Yours',
+    image: require('@site/static/img/api.jpg'),
     url: 'https://semaphoreci.com/pricing',
     description: (
       <Translate id="playground.codesandbox.description">
-        Run Semaphore on your hardware with the On-Premise Edition.
-        CI/CD workflows completely behind your firewall.
+        Make your custom integrations using the API.
+        Create and manage your projects and resources using the CLI.
       </Translate>
     ),
   },
