@@ -15,9 +15,9 @@ This page explains the core concepts and feature mapping you need to migrate fro
 
 ## Overview
 
-GitHub Actions uses a YAML-based syntax to define pipelines and actions. In Semaphore, you can use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to more easily configure and preview pipelines.
+GitHub Actions uses a YAML-based syntax to define pipelines and actions. With Semaphore, in addition to this method, you can also use the [visual workflow editor](../../using-semaphore/workflows#workflow-editor) to easily configure and preview pipelines.
 
-Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times. Semaphore in addition provides extra features like fully customizable [Role Based Access Control](../../using-semaphore/rbac), and features like [parameterized promotions](../../using-semaphore/promotions#parameters) and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
+Semaphore provides [top-of-market machines](../../reference/machine-types) for faster build times, along with extra features like fully customizable [Role Based Access Control](../../using-semaphore/rbac), [parameterized promotions](../../using-semaphore/promotions#parameters), and [SSH debugging](../../using-semaphore/jobs#ssh-into-agent).
 
 ## GitHub Actions vs Semaphore
 
@@ -25,12 +25,44 @@ This section describes how to implement common GitHub Actions functionalities in
 
 ### Checkout
 
+<table>
+<tr>
+<td> GitHub Actions </td><td> Semaphore </td>
+</tr>
+<tr>
+<td>
+```yaml
+jobs:
+  my_job:
+    steps:
+    # highlight-start
+      - name: Checkout code
+        uses: actions/checkout@v4
+    # highlight-end
+    # rest of the steps
+```
+</td>
+<td>
+```yaml
+jobs:
+  - name: CI
+    commands:
+      - bundle exec ruby .gitlab/configure_environment.rb
+      - 'bundle exec rake zammad:db:init'
+```
+</td>  
+</tr>
+</table>
+
+
+
+
 Checkout clones the repository in the CI environment.
 
 <Tabs groupId="migration">
 <TabItem value="old" label="GitHub Actions">
 
-In GitHub Actions, you must use the Checkout action in every step and job that requires a copy of the repository.
+In GitHub Actions, you use the Checkout action in every step and job that requires a copy of the repository.
 
 ```yaml
 jobs:
