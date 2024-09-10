@@ -25,53 +25,21 @@ This section describes how to implement common GitHub Actions functionalities in
 
 ### Checkout
 
-<table>
-<tr>
-<td> GitHub Actions </td><td> Semaphore </td>
-</tr>
-<tr>
-<td>
-```yaml
-jobs:
-  my_job:
-    steps:
-    # highlight-start
-      - name: Checkout code
-        uses: actions/checkout@v4
-    # highlight-end
-    # rest of the steps
-```
-</td>
-<td>
-```yaml
-jobs:
-  - name: CI
-    commands:
-      - bundle exec ruby .gitlab/configure_environment.rb
-      - 'bundle exec rake zammad:db:init'
-```
-</td>  
-</tr>
-</table>
-
-
-
+#### Option A 
 
 Checkout clones the repository in the CI environment.
 
 <Tabs groupId="migration">
 <TabItem value="old" label="GitHub Actions">
 
-In GitHub Actions, you use the Checkout action in every step and job that requires a copy of the repository.
+GitHub Actions uses the Checkout action in every step and job that requires a copy of the repository.
 
 ```yaml
 jobs:
   my_job:
     steps:
-    # highlight-start
       - name: Checkout code
         uses: actions/checkout@v4
-    # highlight-end
       
     # rest of the steps
 ```
@@ -79,107 +47,59 @@ jobs:
 </TabItem>
 <TabItem value="new" label="Semaphore">
 
-To clone the repository in Semaphore we only need to execute [`checkout`](../../reference/toolbox#checkout).
-
-```shell
-# highlight-next-line
-checkout
-# now the code is the current working directory
-cat README.md
-```
-
-</TabItem>
-</Tabs>
-
-### Artifacts
-
-Both Github Actions and Semaphore support a method to persist data between jobs called Artifacts.
-
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="GitHub Actions">
-
-In GitHub Actions we use the actions `upload-artifact` and `download-artifact` to manage artifacts.
-
-The following example uploads and downloads `test.log`
+To clone the repository in Semaphore execute [`checkout`](../../reference/toolbox#checkout).
 
 ```yaml
-- name: Upload test.log
-# highlight-next-line
-  uses: actions/upload-artifact@v2
-  with:
-    name: Make
-    path: test.log
-- name: Download test.log
-# highlight-next-line
-  uses: actions/download-artifact@v2
-  with:
-    name: Unit tests
+jobs:
+  - name: my_job
+    commands:
+      - checkout
+      # rest of the commands
 ```
 
-</TabItem>
-<TabItem value="semaphore" label="Semaphore">
-
-In Semaphore, we use the [artifact](../../reference/toolbox#artifact) command to download and upload files to the artifact store.
-
-The following command stores `test.log` from any job:
-
-```shell
-artifact push workflow test.log
-```
-
-To retrieve the file from any other job, we use:
-
-```shell
-artifact pull workflow test.log
-```
-
-See [artifacts](../../using-semaphore/artifacts) for more details.
-
-</TabItem>
-</Tabs>
-
-
-### Caching
-
-Both Github Actions and Semaphore support manually caching files. See the comparison below.
-
-<Tabs groupId="editor-yaml">
-<TabItem value="ga" label="GitHub Actions">
-
-GitHub Actions has a cache action to cache files. 
-
-The following example caches Gems in a Ruby project:
+In addition, by using [`prologue`](placeholder) and [`global_job_config`](placeholder) you can declare the `checkout` for all jobs.
 
 ```yaml
-- name: Cache gems
-# highlight-next-line
-  uses: actions/cache@v2
-  with:
-    path: vendor/bundle
-    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+global_job_config:
+  prologue:
+    commands:
+      - checkout
 ```
-
-</TabItem>
-<TabItem value="semaphore" label="Semaphore">
-
-In Semaphore, we use the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
-
-The following commands, when added to a job downloads, cache, and installs Gems in a Ruby project:
-
-```shell
-checkout
-# highlight-next-line
-cache restore
-bundle install
-# highlight-next-line
-cache store
-```
-
-See [caching](../../using-semaphore/optimization/cache) for more details.
 
 </TabItem>
 </Tabs>
+
+#### Option B
+
+<table>
+  <thead>
+    <tr>
+      <th>GitHub Actions</th>
+      <th>Semaphore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  my_job:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        </code></pre>
+      </td>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  - name: my_job
+    commands:
+      - checkout
+        </code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### Language versions
 
@@ -193,11 +113,12 @@ GitHub Actions uses a language-specific setup action.
 The following example sets the Ruby version to `3.3.4`
 
 ```yaml
-steps:
-# highlight-next-line
-- uses: ruby/setup-ruby@v1
-  with:
-    ruby-version: '3.3.4'
+jobs:
+  my_job:
+    steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.4'
 ```
 </TabItem>
 <TabItem value="semaphore" label="Semaphore">
@@ -206,12 +127,122 @@ Semaphore uses [sem-version](../../reference/toolbox#sem-version) to activate or
 
 The following example activates Ruby v3.3.4, any commands after the example run on this Ruby version.
 
-```shell
-sem-version ruby 3.3.4
+```yaml
+jobs:
+  - name: my_job
+    commands:
+      - sem-version ruby 3.3.4
 ```
 
 </TabItem>
 </Tabs>
+
+#### Option B
+
+<table>
+  <thead>
+    <tr>
+      <th>GitHub Actions</th>
+      <th>Semaphore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  my_job:
+    steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.4'
+        </code></pre>
+      </td>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  - name: my_job
+    commands:
+      - sem-version ruby 3.3.4
+        </code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+### Caching
+
+Both GitHub Actions and Semaphore support manually caching files.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="GitHub Actions">
+
+GitHub Actions has a cache action to cache files. The following example caches Gems in a Ruby project:
+
+```yaml
+- name: Cache gems
+  uses: actions/cache@v2
+  with:
+    path: vendor/bundle
+    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+Semaphore uses the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
+
+The following commands, when added to a job downloads, cache, and install Gems in a Ruby project:
+
+```yaml
+- name: Cache gems
+  commands:
+    - cache restore 
+    - bundle install --deployment --path vendor/bundle
+    - cache store 
+```
+
+See [caching](../../using-semaphore/optimization/cache) for more details.
+
+</TabItem>
+</Tabs>
+
+#### Option B: 
+
+<table>
+  <thead>
+    <tr>
+      <th>GitHub Actions</th>
+      <th>Semaphore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre><code class="language-yaml">
+- name: Cache gems
+  uses: actions/cache@v2
+  with:
+    path: vendor/bundle
+    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
+        </code></pre>
+      </td>
+      <td>
+        <pre><code class="language-yaml">
+- name: Cache gems
+  commands:
+    - cache restore 
+    - bundle install --deployment --path vendor/bundle
+    - cache store 
+        </code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### Database and services
 
@@ -220,19 +251,21 @@ Both Github Actions and Semaphore support starting databases and services via Do
 <Tabs groupId="editor-yaml">
 <TabItem value="ga" label="GitHub Actions">
 
-GitHub Actions uses service containers. The following example starts Redis on port 6379
+GitHub Actions uses service containers. The following example starts service containers for both Postgres and Redis.
 
 ```yaml
 jobs:
-  runner-job:
-    runs-on: ubuntu-latest
-    # highlight-start
+  my_job:
+    runs-on: ubuntu-20.04
     services:
+      postgresql:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
       redis:
-        image: redis
-        ports:
-          - 6379:6379
-    # highlight-end
+        image: redis:5
+        env:
+          REDIS_URL: redis://redis:6379
 ```
 
 </TabItem>
@@ -240,14 +273,146 @@ jobs:
 
 On Semaphore, we use [sem-service](../../reference/toolbox#sem-service) to start and stop services in the CI environment.
 
-The following example starts Redis on the default port (6379)
+The following example starts Postgrest and Redis on the default port (6379).
 
-```shell
-sem-service start redis
+```yaml
+jobs:
+  - name: my_job
+    commands:
+      - sem-service start postgres
+      - sem-service start redis
 ```
     
 </TabItem>
 </Tabs>
+
+#### Option B: 
+
+<table>
+  <thead>
+    <tr>
+      <th>GitHub Actions</th>
+      <th>Semaphore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  my_job:
+    runs-on: ubuntu-20.04
+    services:
+      postgresql:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+      redis:
+        image: redis:5
+        env:
+          REDIS_URL: redis://redis:6379
+        </code></pre>
+      </td>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  - name: my_job
+    commands:
+      - sem-service start postgres
+      - sem-service start redis
+        </code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Artifacts
+
+Both Github Actions and Semaphore support persistent Artifacts storage.
+
+<Tabs groupId="editor-yaml">
+<TabItem value="ga" label="GitHub Actions">
+
+GitHub Actions uses the actions `upload-artifact` and `download-artifact` to manage artifacts.
+
+The following example uploads and downloads `test.log`
+
+```yaml
+- name: Upload test.log
+  uses: actions/upload-artifact@v2
+  with:
+    name: Make
+    path: test.log
+- name: Download test.log
+  uses: actions/download-artifact@v2
+  with:
+    name: Unit tests
+```
+
+</TabItem>
+<TabItem value="semaphore" label="Semaphore">
+
+Semaphore uses the [artifact](../../reference/toolbox#artifact) command to download and upload files to the artifact store.
+
+The following command stores `test.log` from any job:
+
+```yaml
+jobs:
+  - name: my_job
+    commands:
+      - artifact push workflow test.log
+```
+
+To retrieve the file from any other job, use:
+
+```yaml
+jobs:
+  - name: my_job
+    commands:
+      - artifact pull workflow test.log
+```
+
+See [artifacts](../../using-semaphore/artifacts) for more details.
+
+</TabItem>
+</Tabs>
+
+#### Option B: 
+
+<table>
+  <thead>
+    <tr>
+      <th>GitHub Actions</th>
+      <th>Semaphore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <pre><code class="language-yaml">
+- name: Upload test.log
+  uses: actions/upload-artifact@v2
+  with:
+    name: Make
+    path: test.log
+- name: Download test.log
+  uses: actions/download-artifact@v2
+  with:
+    name: Unit tests
+        </code></pre>
+      </td>
+      <td>
+        <pre><code class="language-yaml">
+jobs:
+  - name: my_job
+    commands:
+      - artifact push workflow test.log
+      - artifact pull workflow test.log
+        </code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### Secrets
 
