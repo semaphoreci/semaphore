@@ -104,7 +104,7 @@ There are two types of pipelines:
 
 Dynamic pipelines contain at least one of these elements:
 
-- [Change detection (monorepos)](./optimization/monorepo)
+- [Change detection (monorepos)](./monorepo)
 - [Job matrices](./jobs#matrix)
 - [Parameterized promotions](./promotions#parameters)
 - [Organization pre-flight checks](./org-preflight)

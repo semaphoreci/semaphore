@@ -18,7 +18,7 @@ The Organization Health dashboard summarizes all your [Project Insights](./insig
 
 ## Overview
 
-Organization Health provides a central location to view the Project Insights across all the projects in your [organization](../organizations). For instance, you can see the lower-performing projects in the last 30 days to find optimization opportunities.
+Organization Health provides a central location to view the Project Insights across all the projects in your [organization](./organizations). For instance, you can see the lower-performing projects in the last 30 days to find optimization opportunities.
 
 ## How to view Organization Health
 
@@ -50,6 +50,6 @@ Metrics are calculated every few hours, so Last Run might not always be accurate
 ## See also
 
 - [Project Insights dashboard](./insights)
-- [Test reports dashboard](../tests/test-reports)
-- [Flaky test detection dashboard](../tests/flaky-tests)
+- [Test reports dashboard](./tests/test-reports)
+- [Flaky test detection dashboard](./tests/flaky-tests)
 

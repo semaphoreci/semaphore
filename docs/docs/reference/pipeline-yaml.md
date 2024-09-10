@@ -1305,7 +1305,7 @@ You can define conditions based on values for the following properties of the or
 - `branch`: the name of the branch for which the pipeline is initiated (empty in the case of a tag or pull request)
 - `tag`: the name of the tag for which the pipeline is initiated (empty in the case of branch or pull requests)
 - `pull request`: the number of pull requests for which the pipeline is initiated (empty in the case of a branch or tag)
-- `change_in`: at least one file has changed in a given path (used for [monorepo workflows](../using-semaphore/optimization/monorepo). See [Conditions DSL](./conditions-dsl) for more details
+- `change_in`: at least one file has changed in a given path (used for [monorepo workflows](../using-semaphore/monorepo). See [Conditions DSL](./conditions-dsl) for more details
 - `result`: the result of a pipeline's execution (see possible values below)
 - `result_reason`: the reason for a specific pipeline execution result (see possible values for each result type below)
 

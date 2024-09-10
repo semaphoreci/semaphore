@@ -12,11 +12,11 @@ import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use Project Insights" src="https://www.youtube.com/embed/LKEy2ow7Shw?si=FaMnvO6lU2ZV5c3R" />
 
-Project Insights provides productivity metrics about your [CI pipelines](../pipelines). You can, for instance, how long your pipelines take on average or create a dashboard to track deployment activity.
+Project Insights provides productivity metrics about your [CI pipelines](./pipelines). You can, for instance, how long your pipelines take on average or create a dashboard to track deployment activity.
 
 ## How to view project insights {#view}
 
-Project Insights are available in the **Insights** tab on your [project](../projects). Data is loaded automatically from your CI workflow activity, however, you can [configure Insights](#configure) to ensure you're seeing the data accurately.
+Project Insights are available in the **Insights** tab on your [project](./projects). Data is loaded automatically from your CI workflow activity, however, you can [configure Insights](#configure) to ensure you're seeing the data accurately.
 
 ![Location of the insights tab](./img/insights-tab.jpg)
 
@@ -28,7 +28,7 @@ On the right side, you can change the date range for the data shown.
 
 ### How to configure insights {#configure}
 
-Semaphore tries to guess which is the main branch in your project. However, to be sure the metrics are shown accurately, it's recommended to configure the branch and [pipeline file](../pipelines#overview) in the settings menu.
+Semaphore tries to guess which is the main branch in your project. However, to be sure the metrics are shown accurately, it's recommended to configure the branch and [pipeline file](./pipelines#overview) in the settings menu.
 
 The Project Insights settings are split into two sections:
 
@@ -89,7 +89,7 @@ If you have [configured Continuous Deployment insights](#configure), you can als
 
 ### Reliability
 
-Reliability metrics provide an overview of the pipeline pass rate. In other words, it tells you how frequently the pipeline was disrupted by a [job](../jobs) failure. The graph also shows the mean time it takes to recover from a failed pipeline run and when the last successful run was.
+Reliability metrics provide an overview of the pipeline pass rate. In other words, it tells you how frequently the pipeline was disrupted by a [job](./jobs) failure. The graph also shows the mean time it takes to recover from a failed pipeline run and when the last successful run was.
 
 ![CI reliability](./img/rel-ci.jpg)
 
@@ -113,7 +113,7 @@ To create a Dashboard:
 
 </Steps>
 
-You can also create dashboards using the command line. See [Semaphore Command Line](../../reference/semaphore-cli) and [Dashboard YAML reference](../../reference/dashboard-yaml) for more details.
+You can also create dashboards using the command line. See [Semaphore Command Line](./../reference/semaphore-cli) and [Dashboard YAML reference](./../reference/dashboard-yaml) for more details.
 
 Once created, you can add metrics to the dashboard following these steps:
 
@@ -145,6 +145,6 @@ After you save, a new Metric chart will appear on the Dashboard. It may take up 
 ## See also
 
 - [Organization health dashboard](./org-health)
-- [Test reports dashboard](../tests/test-reports)
-- [Flaky test detection dashboard](../tests/flaky-tests)
-- [Dashboards YAML refence](../../reference/dashboard-yaml)
+- [Test reports dashboard](./tests/test-reports)
+- [Flaky test detection dashboard](./tests/flaky-tests)
+- [Dashboards YAML refence](./../reference/dashboard-yaml)
