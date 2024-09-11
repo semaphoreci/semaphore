@@ -257,7 +257,7 @@ jobs:
 See [artifacts](../../using-semaphore/artifacts) for more details.
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore YAML">
+<TabItem value="ui" label="Semaphore Editor">
 
 ![Pushing and pulling artifacts](./img/artifacts.jpg)
 
