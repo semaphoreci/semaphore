@@ -108,7 +108,7 @@ interface Props {
 function PlaygroundCard({name, image, url, urlTS, description}: Props) {
   return (
     <div className="col col--4 margin-bottom--lg">
-      <div className={clsx('card')}>
+      <div className={clsx('card')} style={{height: "500px"}}>
         <div className={clsx('card__image')}>
           <Link to={url}>
             <Image img={image} alt={`${name}'s image`} />
