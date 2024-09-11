@@ -21,16 +21,14 @@ Semaphore provides [top-of-market machines](../../reference/machine-types) for f
 
 ## GitHub Actions vs Semaphore
 
-This section describes how to implement common GitHub Actions functionalities in Semaphore.
+This section describes how to implement common GitHub Actions functionalities on Semaphore.
 
 ### Checkout
-
-#### Option A 
 
 Checkout clones the repository in the CI environment.
 
 <Tabs groupId="migration">
-<TabItem value="old" label="GitHub Actions">
+<TabItem value="ga" label="GitHub Actions">
 
 GitHub Actions uses the Checkout action in every step and job that requires a copy of the repository.
 
@@ -38,74 +36,49 @@ GitHub Actions uses the Checkout action in every step and job that requires a co
 jobs:
   my_job:
     steps:
+    # highlight-start
       - name: Checkout code
         uses: actions/checkout@v4
-      
-    # rest of the steps
+    # highlight-end
 ```
 
 </TabItem>
-<TabItem value="new" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
-To clone the repository in Semaphore execute [`checkout`](../../reference/toolbox#checkout).
+To clone the repository on Semaphore, execute [`checkout`](../../reference/toolbox#checkout).
 
 ```yaml
 jobs:
   - name: my_job
     commands:
+      # highlight-next-line
       - checkout
-      # rest of the commands
 ```
 
-In addition, by using [`prologue`](placeholder) and [`global_job_config`](placeholder) you can declare the `checkout` for all jobs.
+In addition, by using [`prologue`](../../reference/pipeline-yaml#prologue-in-task) and [`global_job_config`](../../reference/pipeline-yaml#global-job-config) you can declare the `checkout` for all jobs.
 
 ```yaml
+# highlight-start
 global_job_config:
   prologue:
+# highlight-end
     commands:
       - checkout
 ```
 
 </TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+![Checking out the repository](./img/checkout.jpg)
+
 </Tabs>
 
-#### Option B
-
-<table>
-  <thead>
-    <tr>
-      <th>GitHub Actions</th>
-      <th>Semaphore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  my_job:
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        </code></pre>
-      </td>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  - name: my_job
-    commands:
-      - checkout
-        </code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 ### Language versions
 
 Both Github Actions and Semaphore allow you to use specific language versions. 
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="migration">
 <TabItem value="ga" label="GitHub Actions">
 
 GitHub Actions uses a language-specific setup action. 
@@ -121,7 +94,7 @@ jobs:
           ruby-version: '3.3.4'
 ```
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
 Semaphore uses [sem-version](../../reference/toolbox#sem-version) to activate or switch language versions in the CI environment. 
 
@@ -135,47 +108,19 @@ jobs:
 ```
 
 </TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+![Changing Ruby version](./img/language.jpg)
+
+</TabItem>
 </Tabs>
-
-#### Option B
-
-<table>
-  <thead>
-    <tr>
-      <th>GitHub Actions</th>
-      <th>Semaphore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  my_job:
-    steps:
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3.4'
-        </code></pre>
-      </td>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  - name: my_job
-    commands:
-      - sem-version ruby 3.3.4
-        </code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 
 ### Caching
 
-Both GitHub Actions and Semaphore support manually caching files.
+Both GitHub Actions and Semaphore support manual file caching.
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="migration">
 <TabItem value="ga" label="GitHub Actions">
 
 GitHub Actions has a cache action to cache files. The following example caches Gems in a Ruby project:
@@ -190,7 +135,7 @@ GitHub Actions has a cache action to cache files. The following example caches G
 ```
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
 Semaphore uses the [cache](../../reference/toolbox#cache) command to cache dependencies and files.
 
@@ -207,48 +152,19 @@ The following commands, when added to a job downloads, cache, and install Gems i
 See [caching](../../using-semaphore/optimization/cache) for more details.
 
 </TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+![Caching gems](./img/caching.jpg)
+
+</TabItem>
 </Tabs>
-
-#### Option B: 
-
-<table>
-  <thead>
-    <tr>
-      <th>GitHub Actions</th>
-      <th>Semaphore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <pre><code class="language-yaml">
-- name: Cache gems
-  uses: actions/cache@v2
-  with:
-    path: vendor/bundle
-    key: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-    restore-keys: bundle-gems-${{ hashFiles('**/Gemfile.lock') }}
-        </code></pre>
-      </td>
-      <td>
-        <pre><code class="language-yaml">
-- name: Cache gems
-  commands:
-    - cache restore 
-    - bundle install --deployment --path vendor/bundle
-    - cache store 
-        </code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 
 ### Database and services
 
 Both Github Actions and Semaphore support starting databases and services via Docker containers.
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="migration">
 <TabItem value="ga" label="GitHub Actions">
 
 GitHub Actions uses service containers. The following example starts service containers for both Postgres and Redis.
@@ -269,7 +185,7 @@ jobs:
 ```
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
 On Semaphore, we use [sem-service](../../reference/toolbox#sem-service) to start and stop services in the CI environment.
 
@@ -284,53 +200,18 @@ jobs:
 ```
     
 </TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+![Starting services](./img/services.jpg)
+
+</TabItem>
 </Tabs>
-
-#### Option B: 
-
-<table>
-  <thead>
-    <tr>
-      <th>GitHub Actions</th>
-      <th>Semaphore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  my_job:
-    runs-on: ubuntu-20.04
-    services:
-      postgresql:
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-      redis:
-        image: redis:5
-        env:
-          REDIS_URL: redis://redis:6379
-        </code></pre>
-      </td>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  - name: my_job
-    commands:
-      - sem-service start postgres
-      - sem-service start redis
-        </code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 ### Artifacts
 
 Both Github Actions and Semaphore support persistent Artifacts storage.
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="migration">
 <TabItem value="ga" label="GitHub Actions">
 
 GitHub Actions uses the actions `upload-artifact` and `download-artifact` to manage artifacts.
@@ -350,7 +231,7 @@ The following example uploads and downloads `test.log`
 ```
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
 Semaphore uses the [artifact](../../reference/toolbox#artifact) command to download and upload files to the artifact store.
 
@@ -375,53 +256,21 @@ jobs:
 See [artifacts](../../using-semaphore/artifacts) for more details.
 
 </TabItem>
+<TabItem value="semaphore" label="Semaphore YAML">
+
+![Pushing and pulling artifacts](./img/artifacts.jpg)
+
+</TabItem>
 </Tabs>
-
-#### Option B: 
-
-<table>
-  <thead>
-    <tr>
-      <th>GitHub Actions</th>
-      <th>Semaphore</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <pre><code class="language-yaml">
-- name: Upload test.log
-  uses: actions/upload-artifact@v2
-  with:
-    name: Make
-    path: test.log
-- name: Download test.log
-  uses: actions/download-artifact@v2
-  with:
-    name: Unit tests
-        </code></pre>
-      </td>
-      <td>
-        <pre><code class="language-yaml">
-jobs:
-  - name: my_job
-    commands:
-      - artifact push workflow test.log
-      - artifact pull workflow test.log
-        </code></pre>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
 ### Secrets
 
 Secrets inject sensitive data and credentials into the workflow securely.
 
 <Tabs groupId="migration">
-<TabItem value="old" label="GitHub Actions">
+<TabItem value="ga" label="GitHub Actions">
 
-To use secrets in GitHub Actions, you must create the secret with its value in the repository or organization. Then, you can use it on your jobs using the `${{ secret.SECRET_NAME }}` syntax.
+To use secrets in GitHub Actions, you must create the secret with its value in the repository or organization. Then, you can use it in your jobs using the `${{ secrets.SECRET_NAME }}` syntax.
 
 ```yaml
 steps:
@@ -433,11 +282,36 @@ steps:
 ```
 
 </TabItem>
-<TabItem value="new" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
-In Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+On Semaphore you can connect secrets to all jobs in a block.
 
-The secret contents are automatically injected as environment variables in all jobs contained on that block.
+```yaml
+blocks:
+  - name: Test
+    task:
+    # highlight-start
+      secrets:
+        - name: awskey
+    # highlight-end
+```
+
+Additionally, it's possible to connect secrets to all jobs in the pipeline by using [`global_job_config`](../../reference/pipeline-yaml#global-job-config).
+
+```yaml
+global_job_config:
+  # highlight-start
+  secrets:
+    - name: awskey
+  # highlight-end
+```
+
+</TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+On Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret's contents are automatically injected as environment variables in all jobs in that block.
 
 ![Using secrets on Semaphore](./img/secrets.jpg)
 
@@ -447,9 +321,9 @@ The secret contents are automatically injected as environment variables in all j
 
 ### Complete example
 
-The following comparison shows how to build and test a Ruby on Rails project on GitHub Actions and on Semaphore.
+The following comparison shows how to build and test a Ruby on Rails project on GitHub Actions and Semaphore.
 
-<Tabs groupId="editor-yaml">
+<Tabs groupId="migration">
 <TabItem value="ga" label="GitHub Actions">
 
 On GitHub Actions, we need several actions to start services, manage Gems, and run the build and test commands.
@@ -541,26 +415,65 @@ jobs:
 ```
 
 </TabItem>
-<TabItem value="semaphore" label="Semaphore">
+<TabItem value="semaphore" label="Semaphore YAML">
 
-The following commands in a job run the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
+The following example runs the same CI procedure. You can optimize for speed by splitting the tests into different jobs.
 
-```shell
-sudo apt-get update
-sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
-sem-version ruby 3.3.4
-checkout
-cache restore
-bundle install --path vendor/bundle
-cache store
-cp .sample.env .env
-bundle exec rake db:setup
-bundle exec rake
-bin/brakeman --no-pager
-bin/importmap audit
-bin/rubocop -f github
-bin/rails db:test:prepare test test:system
+```yaml
+version: v1.0
+name: CI Pipeline
+agent:
+  machine:
+    type: f1-standard-2
+    os_image: ubuntu2004
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+      - sem-version ruby $(cat .ruby-version)
+      - cache restore
+      - bundle install --jobs 4 --retry 3
+      - cache store
+blocks:
+  - name: Scan Ruby
+    task:
+      jobs:
+        - name: Run Brakeman
+          commands:
+            - bin/brakeman --no-pager
+    dependencies: []
+  - name: Scan JS
+    task:
+      jobs:
+        - name: Run JavaScript Security Audit
+          commands:
+            - bin/importmap audit
+    dependencies: []
+  - name: Lint
+    task:
+      jobs:
+        - name: Run RuboCop
+          commands:
+            - bundle exec rubocop -f github
+    dependencies: []
+  - name: Run Tests
+    task:
+      jobs:
+        - name: Install Dependencies and Run Tests
+          commands:
+            - sudo apt-get update
+            - sudo apt-get install --no-install-recommends -y curl libjemalloc2 libvips sqlite3
+            - cp .sample.env .env
+            - 'bundle exec rake db:setup'
+            - bundle exec rake
+            - 'bin/rails db:test:prepare test test:system'
+    dependencies: []
 ```
+
+</TabItem>
+<TabItem value="ui" label="Semaphore Editor">
+
+![Semaphore complete example](./img/example.jpg)
 
 </TabItem>
 </Tabs>
@@ -568,6 +481,7 @@ bin/rails db:test:prepare test test:system
 
 ## See also
 
+- [Migration guide for CircleCI](./circle)
 - [Migration guide for Jenkins](./jenkins)
 - [Migration guide for Travis CI](./travis)
 - [Migration guide for BitBucket Pipelines](./bitbucket)
