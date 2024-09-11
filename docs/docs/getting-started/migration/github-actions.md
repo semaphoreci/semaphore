@@ -71,6 +71,7 @@ global_job_config:
 
 ![Checking out the repository](./img/checkout.jpg)
 
+</TabItem>
 </Tabs>
 
 
