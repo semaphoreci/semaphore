@@ -163,7 +163,9 @@ curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id"
 ```
 
-### Listing workflows
+### List workflows
+
+Request: 
 
 ```
 GET https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows?project_id=:project_id
@@ -1823,3 +1825,4 @@ HTTP status: 200
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id"
 ```
+
