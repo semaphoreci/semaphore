@@ -37,7 +37,9 @@ Scheduled tasks have some limitations:
 
 ## How to create a task {#manage-tasks}
 
-To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI. Additionally, you can use the [Semaphore Task API](../openapi-spec/tasks-list) to manage tasks.
+To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI. Additionally, you can use the  [Semaphore API](../reference/api) to manage tasks.
+
+<!-- new api: [Semaphore Task API](../openapi-spec/tasks-list) -->
 
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">

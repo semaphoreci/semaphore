@@ -121,7 +121,7 @@ curl -i -H "Authorization: Token {api_token}" \
      -X POST  "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows"
 ```
 
-### Describe workflow
+### Describe a workflow
 
 Request: 
 
@@ -167,16 +167,16 @@ curl -i -H "Authorization: Token {api_token}" \
 
 Request: 
 
-```
+```text
 GET https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows?project_id=:project_id
 ```
 
-**Params**
+Parameters:
 
 - `project_id` (**required**) - ID of a project.
 - `branch_name` (*optional*) - Name of branch (used as a filter).
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -213,25 +213,25 @@ HTTP status: 200
 ]
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows\?project_id\=:project_id"
 ```
 
-### Rerunning a workflow
+### Rerun a workflow
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule?request_token=:request_token
 ```
 
-**Params**
+Parameters:
 
 - `workflow_id` (**required**) - ID of the workflow that you want to rerun.
 - `request_token` (**required**) - Idempotency token (can be any string).
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -242,50 +242,50 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
         "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule\?request_token\=:request_token"
 ```
 
-### Stopping a workflow
+### Stop a workflow
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate
 ```
 
-**Params**
+Parameters:
 
 - `workflow_id` (**required**) - ID of the workflow that you want to stop.
 
-**Response**
+Response:
 
-```
+```text
 HTTP status: 200
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
         "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate"
 ```
 
 ## Pipelines
 
-### Describing a pipeline
+### Describe a pipeline
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
 ```
 
-**Params**
+Parameters:
 
 - `pipeline_id` (**required**) - ID of a pipeline.
-- `detailed` (*optional*) - Default: `false`, which includes all information about all blocks and jobs. This option is much more expensive--if you are only interested in the status of a pipeline, don't set detailed to `true`.
+- `detailed` (*optional*) - Default: `false`, which includes all information about all blocks and jobs. This option is much more expensive—if you are only interested in the status of a pipeline, don't set detailed to `true`.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -295,34 +295,17 @@ HTTP status: 200
     "yaml_file_name": "semaphore.yml",
     "working_directory": ".semaphore",
     "wf_id": "965d3c3d-bbe6-4ff7-b62a-1ff51a92bdc0",
-    "terminated_by": "",
-    "terminate_request": "",
-    "switch_id": "",
-    "stopping_at": "1970-01-01 00:00:00.000000Z",
     "state": "done",
-    "snapshot_id": "",
-    "running_at": "2019-10-14 18:31:20.232006Z",
-    "result_reason": "test",
     "result": "passed",
-    "queuing_at": "2019-10-14 18:31:18.553131Z",
-    "project_id": "162987ba-bda7-4e54-9c45-977a8cc6087d",
-    "ppl_id": "6cf4569c-f76c-4dea-b293-3e4282ba1153",
-    "pending_at": "2019-10-14 18:31:18.527207Z",
     "name": "First pipeline example",
-    "hook_id": "788fd118-fb8f-45f9-9c18-07163721640b",
-    "error_description": "",
-    "done_at": "2019-10-14 18:31:32.507034Z",
-    "created_at": "2019-10-14 18:31:17.293456Z",
-    "commit_sha": "a38c3e1506d12fb1510e4b1bca2682abd9681984",
     "branch_name": "master",
-    "branch_id": "b032fd6b-8d2d-4ac7-83b4-0a8bc1db192b"
+    "created_at": "2019-10-14 18:31:17.293456Z"
   },
-  "blocks": [
-  ]
+  "blocks": []
 }
 ```
 
-A response with the `detailed` param set to `true` is shown below:
+Response with `detailed=true`:
 
 ```json
 HTTP status: 200
@@ -332,32 +315,15 @@ HTTP status: 200
     "yaml_file_name": "semaphore.yml",
     "working_directory": ".semaphore",
     "wf_id": "965d3c3d-bbe6-4ff7-b62a-1ff51a92bdc0",
-    "terminated_by": "",
-    "terminate_request": "",
-    "switch_id": "",
-    "stopping_at": "1970-01-01 00:00:00.000000Z",
     "state": "done",
-    "snapshot_id": "",
-    "running_at": "2019-10-14 18:31:20.232006Z",
-    "result_reason": "test",
     "result": "passed",
-    "queuing_at": "2019-10-14 18:31:18.553131Z",
-    "project_id": "162987ba-bda7-4e54-9c45-977a8cc6087d",
-    "ppl_id": "6cf4569c-f76c-4dea-b293-3e4282ba1153",
-    "pending_at": "2019-10-14 18:31:18.527207Z",
     "name": "First pipeline example",
-    "hook_id": "788fd118-fb8f-45f9-9c18-07163721640b",
-    "error_description": "",
-    "done_at": "2019-10-14 18:31:32.507034Z",
-    "created_at": "2019-10-14 18:31:17.293456Z",
-    "commit_sha": "a38c3e1506d12fb1510e4b1bca2682abd9681984",
     "branch_name": "master",
-    "branch_id": "b032fd6b-8d2d-4ac7-83b4-0a8bc1db192b"
+    "created_at": "2019-10-14 18:31:17.293456Z"
   },
   "blocks": [
     {
       "state": "done",
-      "result_reason": "test",
       "result": "passed",
       "name": "RSpec",
       "jobs": [
@@ -365,79 +331,28 @@ HTTP status: 200
           "status": "FINISHED",
           "result": "PASSED",
           "name": "Push results - 2/11",
-          "job_id": "31094182-03bf-4e39-acfe-ed1058d7eb6c",
-          "index": 1
-        },
-        {
-          "status": "FINISHED",
-          "result": "PASSED",
-          "name": "Push results - 4/11",
-          "job_id": "97bfb7ad-0b31-4a74-877a-b4ef1f357c5f",
-          "index": 3
-        },
-        {
-          "status": "FINISHED",
-          "result": "PASSED",
-          "name": "Push results - 3/11",
-          "job_id": "a7e072d0-7996-4aee-b719-72c95e53a3b2",
-          "index": 2
-        },
-        {
-          "status": "FINISHED",
-          "result": "PASSED",
-          "name": "Push results - 1/11",
-          "job_id": "4629b620-f7b0-44e7-b3fb-c2802899b1ea",
-          "index": 0
-        },
-      ],
-      "error_description": "",
-      "build_req_id": "4a45fe07-6dd0-49b9-88a4-1cf49746b642",
-      "block_id": "83b79652-bdfa-439c-a210-a3f0d07bbca6"
-    },
-    {
-      "state": "done",
-      "result_reason": "test",
-      "result": "passed",
-      "name": "ExUnit",
-      "jobs": [
-        {
-          "status": "FINISHED",
-          "result": "PASSED",
-          "name": "All passed",
-          "job_id": "6f90f363-dd85-408b-a656-e37244daf8c7",
-          "index": 0
-        },
-        {
-          "status": "FINISHED",
-          "result": "PASSED",
-          "name": "Failures",
-          "job_id": "54976a64-867f-4d02-997f-fc6a31a5dfe0",
-          "index": 1
+          "job_id": "31094182-03bf-4e39-acfe-ed1058d7eb6c"
         }
-      ],
-      "error_description": "",
-      "build_req_id": "5e563b94-b133-48c5-ac9d-d3a04650f457",
-      "block_id": "58911c16-04f1-4084-9a01-d3948df1bd49"
+      ]
     }
   ]
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
 ```
 
+### List pipelines
 
-### Listing pipelines
-
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/pipelines?project_id=:project_id
 ```
 
-**Params**
+Parameters:
 
 - `project_id` (**required, optional if** `wf_id` **is present**) - ID of a project.
 - `wf_id` (**required, optional if** `project_id` **is present**) - ID of a workflow.
@@ -448,8 +363,7 @@ GET <org_name>.semaphoreci.com/api/v1alpha/pipelines?project_id=:project_id
 - `done_after` (*optional*) - Only pipelines finished after this Unix timestamp will be returned.
 - `done_before` (*optional*) - Only pipelines finished before this Unix timestamp will be returned.
 
-
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -459,102 +373,71 @@ HTTP status: 200
     "yaml_file_name": "semaphore.yml",
     "working_directory": ".semaphore",
     "wf_id": "484e263a-424a-4820-bff0-bba436c54042",
-    "terminated_by": "",
-    "terminate_request": "",
-    "switch_id": "c3e752e9-74ab-4207-bda9-4a9ce4ef17a0",
-    "stopping_at": {
-      "seconds": 0,
-      "nanos": 0
-    },
     "state": "DONE",
-    "snapshot_id": "",
-    "running_at": {
-      "seconds": 1571076845,
-      "nanos": 810862000
-    },
     "result": "FAILED",
-    "result_reason":"TEST",
-    "queuing_at": {
-      "seconds": 1571076843,
-      "nanos": 878741000
-    },
-    "project_id": "c394d20b-b3c6-4c90-b743-a9a65fa95a78",
-    "ppl_id": "0a9563f9-09a3-4450-a9bf-75b75373881a",
-    "pending_at": {
-      "seconds": 1571076843,
-      "nanos": 868054000
-    },
     "name": "Pipeline",
-    "hook_id": "cd7f6162-9b6e-435a-89a7-3968b542e9c7",
-    "error_description": "",
-    "done_at": {
-      "seconds": 1571076991,
-      "nanos": 166159000
-    },
+    "branch_name": "ms/another-test-branch",
     "created_at": {
       "seconds": 1571076843,
       "nanos": 537730000
-    },
-    "commit_sha": "ac3f9796df42db976814e3fee670e11e3fd4b98a",
-    "branch_name": "ms\/another-test-branch",
-    "branch_id": "a79557f2-dc4e-4807-ba89-601401eb3b1e"
+    }
   }
 ]
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines\?project_id\=:project_id"
 ```
 
-### Stopping a pipeline
+### Stop a pipeline
 
-```
+```text
 PATCH <org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
 ```
 
-**Params**
+Parameters:
 
 - `pipeline_id` (**required**) - ID of a pipeline.
 - `terminate_request` (**required**) - Must be set to `true`.
 
-**Response**
+Response:
 
-```
+```text
 HTTP status: 200
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X PATCH  -H "Authorization: Token {api_token}" \
      --header "Accept: application/json"  --header "Content-Type: application/json" \
      --data '{"terminate_request": true}' \
      "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
 ```
 
-### Validating a pipeline YAML
+### Validate a pipeline YAML
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/yaml
 ```
 
-**Params**
+Parameters:
 
-- `yaml_definition` (**required**) - the YAML document for the pipeline
+- `yaml_definition` (**required**) - The YAML document for the pipeline.
 
-**Response**
+Response:
 
-```
+```json
 HTTP status: 200
 {"pipeline_id":"","message":"YAML definition is valid."}
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X POST \
         -H "Authorization: Token {api_token}" \
         -H "Content-Type: application/json" \
@@ -564,17 +447,17 @@ curl -i -X POST \
 
 ## Promotions
 
-### Listing promotions
+### List promotions
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/promotions?pipeline_id=:pipeline_id
 ```
 
-**Params**
+Parameters:
 
 - `pipeline_id` (**required**) - ID of a pipeline.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -582,51 +465,41 @@ HTTP status: 200
 [
   {
     "triggered_by": "Pipeline Done request",
-    "triggered_at": {
-      "seconds": 1571065763,
-      "nanos": 817290000
-    },
     "status": "passed",
-    "scheduled_pipeline_id": "d605c1ed-5664-4ce3-8419-14d3d7337c35",
-    "scheduled_at": {
-      "seconds": 1571065764,
-      "nanos": 900999000
-    },
-    "override": false,
     "name": "production"
   }
 ]
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/promotions\?pipeline_id\=:pipeline_id"
 ```
 
-### Triggering a promotion
+### Trigger a promotion
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/promotions
 ```
 
-**Params**
+Parameters:
 
 - `pipeline_id` (**required**) - ID of a pipeline.
 - `name` (**required**) - Name of the promotion, e.g. `Production deployment`.
 - `override` (*optional*) - Boolean safeguard flag that needs to be set to `true` if you want to trigger a promotion for a pipeline that has failed or is still running.
-- *parameter_name* - (*optional*) - name of the parameter used in the [parameterized promotion](/essentials/parameterized-promotions/#setting-the-values-via-the-api)
+- *parameter_name* - (*optional*) - Name of the parameter used in the [parameterized promotion](/essentials/parameterized-promotions/#setting-the-values-via-the-api).
 
-**Response**
+Response:
 
-```
+```text
 HTTP status: 200
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -H "Authorization: Token {api_token}"  \
      -d "name=:promotion_name&pipeline_id=:pipeline_id"  \
      -X POST  "https://<org_name>.semaphoreci.com/api/v1alpha/promotions"
@@ -634,13 +507,13 @@ curl -H "Authorization: Token {api_token}"  \
 
 ## Jobs
 
-### Describing a job
+### Describe a job
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id
 ```
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -650,98 +523,53 @@ HTTP status: 200
     "name": "Job #1",
     "id": "bc8826bd-dbb2-4d28-8c90-7f370ce478fe",
     "create_time": "1571083003",
-    "update_time": "1571083507",
     "start_time": "1571083006",
     "finish_time": "1571083507"
   },
-  "spec": {
-    "project_id": "162987ba-bda7-4e54-9c45-977a8cc6087d",
-    "agent": {
-      "machine": {
-        "type": "e1-standard-2",
-        "os_image": "ubuntu2004"
-      }
-    },
-    "env_vars": [
-      {
-        "name": "SEMAPHORE_WORKFLOW_ID",
-        "value": "59b32e16-3c4a-4940-899e-348c28396884"
-      },
-      {
-        "name": "SEMAPHORE_WORKFLOW_NUMBER",
-        "value": "2"
-      },
-      {
-        "name": "SEMAPHORE_PIPELINE_ARTEFACT_ID",
-        "value": "abb4fb87-309d-490a-bf0d-84972641b130"
-      },
-      {
-        "name": "SEMAPHORE_PIPELINE_ID",
-        "value": "abb4fb87-309d-490a-bf0d-84972641b130"
-      },
-      {
-        "name": "SEMAPHORE_PIPELINE_0_ARTEFACT_ID",
-        "value": "abb4fb87-309d-490a-bf0d-84972641b130"
-      }
-    ],
-    "commands": [
-      "sleep 3600"
-    ]
-  },
   "status": {
     "result": "STOPPED",
-    "state": "FINISHED",
-    "agent": {
-      "ip": "88.99.26.221",
-      "name": "",
-      "ports": [
-        {
-          "name": "ssh",
-          "number": 30000
-        }
-      ]
-    }
+    "state": "FINISHED"
   }
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id"
 ```
 
-### Stopping a job
+### Stop a job
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop
 ```
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop"
 ```
 
-### Getting job logs
+### Get job logs
 
 NOTE: Instead of using the API to fetch job logs, you can also use [sem cli tool](/reference/sem-command-line-tool/#sem-logs) to perform the same action.
 
-```
+```text
 GET https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id
 ```
 
-**Response**
+Response:
 
-```
+```json
 HTTP status: 200
 
 {
@@ -787,22 +615,24 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id"
 ```
 
-## Self-hosted agent types
 
-### Listing agent types
 
-```
+### Self-hosted agent types
+
+#### Listing agent types
+
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
 ```
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -849,29 +679,31 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
 ```
 
-### Create an agent type
 
-```
+
+#### Create an agent type
+
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
 ```
 
-**Params**
+Parameters:
 
 - `metadata.name` (**required**) - the name of the agent type to be created.
 - `spec.agent_name_settings.assignment_origin` (*optional*) - the origin of the agent name assignment during its registration. The possible values are: `assignment_origin_agent` (*default*) and `assignment_origin_aws_sts`.
 - `spec.agent_name_settings.release_after` (*optional*) - how long to hold the agent name after its disconnection, not allowing other agents to register with its name. By default, this is 0.
-- `spec.agent_name_settings.aws.account_id` (**required** if `assignment_origin_aws_sts` is used)
+- `spec.agent_name_settings.aws.account_id` (**required** if `assignment_origin_aws_sts` is used).
 - `spec.agent_name_settings.aws.role_name_patterns` (**required** if `assignment_origin_aws_sts` is used) - comma-separated list of AWS role names. Wildcards (*) can be used too.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -899,9 +731,9 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   -H "Content-Type: application/json" \
@@ -910,21 +742,23 @@ curl -i \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
 ```
 
-### Update an agent type
 
-```
+
+#### Update an agent type
+
+```text
 PATCH <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
-**Params**
+Parameters:
 
 - `agent_type_name` (**required**) - the name of the agent type to describe.
 
-**Request body**
+Request body:
 
 The request body should be a JSON object, encapsulating details about the agent type to be updated. The available fields are the same as those for creating an agent type.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -951,9 +785,9 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -X PATCH -i \
   -H "Authorization: Token {api_token}" \
   -H "Content-Type: application/json" \
@@ -962,17 +796,18 @@ curl -X PATCH -i \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
-### Describe an agent type
 
-```
+#### Describe an agent type
+
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
-**Params**
+Parameters:
 
 - `agent_type_name` (**required**) - the name of the agent type to describe.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -995,81 +830,85 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
-### Delete an agent type
 
-```
+
+#### Delete an agent type
+
+```text
 DELETE <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
-**Params**
+Parameters:
 
 - `agent_type_name` (**required**) - the name of the agent type to delete.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
 {}
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X DELETE \
   -H "Authorization: Token {api_token}" \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
-### Disable agents for an agent type
 
-```
+
+#### Disable agents for an agent type
+
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name/disable_all
 ```
 
-**Params**
+Parameters:
 
 - `agent_type_name` (**required**) - the name of the agent type to disable agents for.
 - `only_idle` (*optional*) - a boolean flag that controls whether all agents are disabled or only idle ones. By default, this is set to `true`.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
 {}
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   -d 'only_idle=false' \
   "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small/disable_all"
 ```
 
-## Self-hosted agents
+### Self-hosted agents
 
-### Listing agents for an agent type
+#### List agents for an agent type
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/agents?agent_type=:agent_type&page_size=:page_size&cursor=:cursor
 ```
 
-**Params**
+Parameters:
 
 - `agent_type` (*optional*) - the name of the agent type to filter for. If not specified, agents for all agent types will be returned.
 - `page_size` (*optional*) - the number of agents to return per page. By default, this is 200. If the current number of agents is more than the page size, the response will contain a non-empty `cursor` field.
 - `cursor` (*optional*) - a cursor used to return agents for the next page.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1113,9 +952,9 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   "https://<org_name>.semaphoreci.com/api/v1alpha/agents"
@@ -1123,15 +962,15 @@ curl -i \
 
 ### Describe an agent
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/agents/:agent_name
 ```
 
-**Params**
+Parameters:
 
 - `agent_name` (**required**) - the name of the agent to describe.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1154,29 +993,29 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
   "https://<org_name>.semaphoreci.com/api/v1alpha/agents/{agent_name}"
 ```
 
-
 ## Deployment targets
 
-### Listing targets
+### List targets
 
 This API endpoint provides a list of deployment targets linked to a given project.
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
 ```
-**Params**
+
+Parameters:
 
 - `project_id` (**required**) - UUID of the project for which deployment targets are to be listed.
 
-**Response**
+Response:
 
 The response is a JSON object comprising an array of deployment target objects for the specified project ID.
 
@@ -1229,26 +1068,26 @@ HTTP status: 200
 ]
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id"
 ```
 
-### Describing a target
+### Describe a target
 
 This API endpoint retrieves the details about a deployment target specified by its UUID.
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
 ```
 
-**Params**
+Parameters:
 
 - `target_id` (**required**) - The UUID of the deployment target.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1297,27 +1136,27 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id"
 ```
 
-#### Describing by name and project UUID
+#### Describe by name and project UUID
 
 This API endpoint retrieves a deployment target based on its name and the UUID of the project it is linked to.
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name
 ```
 
-**Params**
+Parameters:
 
 - `project_id` (**required**) - The UUID of the project to which the deployment target is linked.
 - `target_name` (**required**) - The name of the deployment target.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1368,39 +1207,39 @@ HTTP status: 200
 ]
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name"
 ```
 
-### Creating a target
+### Create a target
 
 This API endpoint allows you to create a new deployment target and assign it to a specific project.
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
 ```
 
-**Request Body**
+Request Body:
 
 The request body should be a JSON object, encapsulating details about the deployment target to be created. The available fields are as follows:
 
-  - `name` (**required**) - Unique name for the target within the project.
-  - `project_id` (**required**) - UUID of the project.
-  - `unique_token` (**required**) - Idempotency UUID token.
-  - `description` (*optional*) - A description of the target.
-  - `url` (*optional*) - The URL of the target.
-  - `bookmark_parameter1`, `bookmark_parameter2`, `bookmark_parameter3` (*optional*) - Bookmark parameters - string values that represent the names of the promotion parameters. You can later use values of these parameters to [filter deployments in deployment history](/reference/deployment-targets-yaml-reference/#bookmark_parameter1-bookmark_parameter2-bookmark_parameter3).
-  - `subject_rules` (*optional*) - Configures **who** can trigger a promotion of the given deployment target. It should be a list of elements structured as `{"type": RULE_TYPE, "subject_id": ID}`. The `RULE_TYPE` can be one of `"ANY"`, `"USER"`, `"ROLE"`, `"AUTO"` and the `ID` should be the name of the role (which must be valid for the project) or the UUID of a user. For the `USER` type you can use `{"type": "USER", "git_login": GITLOGIN}` where `GITLOGIN` is the user's git handle. The user must be assigned to the project to be used in the rule. The `AUTO` rule configures the behavior of auto-promotions. The auto-promotions will not start, even if all the conditions are met, if this rule is not present. In the case of `ANY` and `AUTO` rules, there is no need to specify the `subject_id`.
-  - `object_rules` (*optional*) - Configures **which git references** are allowed for a promotion of the given deployment target. It should be a list of elements structured as `{"type": RULE_TYPE, "match_mode": MODE, "pattern": PATTERN}`. The `RULE_TYPE` can be `"BRANCH"`, `"TAG"`, or `"PR"`, and the `MODE` can be `"ALL"`, `"EXACT"`, or `"REGEX"`. When using the `PR` rule type, the `match_mode` and `pattern` parameters cannot be utilized. Simply including `PR` in the `object_rules` is sufficient to ensure that any pull request will automatically trigger a promotion.
-  - `env_vars` (*optional*) - A list of environment variables structured as `{"name": NAME, "value": VALUE}`, where `NAME` is the variable name and `VALUE` is its value.
-  - `files` (*optional*) - A list of files structured as `{"path": PATH, "content": CONTENT}`, where `PATH` is the file path and `CONTENT` is its base64-encoded content.
+- `name` (**required**) - Unique name for the target within the project.
+- `project_id` (**required**) - UUID of the project.
+- `unique_token` (**required**) - Idempotency UUID token.
+- `description` (*optional*) - A description of the target.
+- `url` (*optional*) - The URL of the target.
+- `bookmark_parameter1`, `bookmark_parameter2`, `bookmark_parameter3` (*optional*) - Bookmark parameters for filtering deployments.
+- `subject_rules` (*optional*) - Configures **who** can trigger a promotion of the given deployment target
 
-You can find more details about each parameter in the [Deployment Targets YAML Reference](/reference/deployment-targets-yaml-reference)
+.
+- `object_rules` (*optional*) - Configures **which git references** are allowed for a promotion of the given deployment target.
+- `env_vars` (*optional*) - A list of environment variables.
+- `files` (*optional*) - A list of files with paths and base64-encoded content.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1447,39 +1286,38 @@ HTTP status: 200
   "bookmark_parameter1": "my book 1",
   "active": true
 }
-
 ```
 
-**Example request**
+Example request:
 
-```
+```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id" \
      -H "Content-Type: application/json" \
      -d '<json object>' 
 ```
-```
+
+```shell
 curl -XPOST <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=a426b4db-1919-483d-926d-06ba1320b209 -H "Authorization: Token {api_token}" -H "Content-Type: application/json" --data '{ "name": "testTarget", "description": "Target description", "url": "www.myurl.zyx","bookmark_parameter1": "my book 1", "unique_token": "6063dd03-ecfb-11ed-b539-0045e2f582b7",  "env_vars": [ {"name": "env1","value": "val1" }  ],  "files": [ {"path": "/etc/my.conf","content": "'"$(base64 -w 0 /home/pc/proj/someconf.conf)"'" }  ]}'
 ```
 
-
-### Updating a target
+### Update a target
 
 This API endpoint allows you to update an existing deployment target.
 
-```
+```text
 PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
 ```
 
-**Parameters**
+Parameters:
 
-  - `target_id` (**required**) - UUID of the deployment target to be updated.
+- `target_id` (**required**) - UUID of the deployment target to be updated.
 
-**Request Body**
+Request Body:
 
 The request body should be a JSON object, encapsulating details about the deployment target to be updated. The available fields are the same as those for creating a target. The difference here is that all fields are optional.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1528,35 +1366,36 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}"  \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id" \
      -H "Content-Type: application/json" \
      -d '<json object>'
 ```
-```
+
+```shell
 curl -X PATCH https://<org_name>.semaphoreci.com/deployment_targets/3a9196d7-f740-4451-b8f2-9d19b10a4520 \
      -H "Authorization: Token {api_token}" \
      -d'{"name": "testTargetChanged", "description": "Target description changed", "url": "www.myurl2.zyx","bookmark_parameter1": "my book 1c", "unique_token": "6063dd03-ecfb-11ed-b539-0045e2f582b8",  "env_vars": [ {"name": "env1","value": "val2" }  ],  "files": [ {"path": "/etc/my.conf","content": "'"$(base64 -w 0 /home/pc/proje/updated.conf)"'" }]}' \
      -H "Content-Type: application/json"
 ```
 
-### Deleting a target
+### Delete a target
 
 This API endpoint allows you to delete a specific deployment target.
 
-```
+```text
 DELETE <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token
 ```
 
-**Params**
+Parameters:
 
 - `target_id` (**required**) - The UUID of the deployment target to be deleted.
 - `unique_token` (**required**) - The idempotency UUID token.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1564,26 +1403,26 @@ HTTP status: 200
 {"target_id":"38572f07-15ec-459e-a122-eefa2bd19230"}
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X DELETE -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token"
 ```
 
-### Deactivating a target
+### Deactivate a target
 
 This API endpoint allows you to deactivate a specific deployment target.
 
-```
+```text
 PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate
 ```
 
-**Params**
+Parameters:
 
 - `target_id` (**required**) - The UUID of the deployment target to be deactivated.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1594,27 +1433,28 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate"
 ```
 
-
-### Activating a target
+### Activate a target
 
 This API endpoint allows you to (re)activate a specific deployment target.
 
-```
+```text
 PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate
 ```
 
+Parameters:
+
 - `target_id` (**required**) - The UUID of the deployment target to be (re)activated.
 
-**Response**
+Response:
 
-```
+```json
 HTTP status: 200
 
 {
@@ -1623,22 +1463,22 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate"
 ```
 
-### Retrieving deployment history
+### Retrieve deployment history
 
 This endpoint provides the deployment history for a specific deployment target.
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history
 ```
 
-**Params**
+Parameters:
 
 - `target_id` (**required**) - The UUID of the deployment target for which the deployment history is being retrieved.
 - `cursor_type` (*optional*) - Specifies the starting point for data retrieval. Valid values include `"FIRST"`, `"AFTER"`, and `"BEFORE"`. If not specified, `FIRST` is used, which retrieves the latest deployments.
@@ -1649,7 +1489,7 @@ GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history
 
 The response includes `cursor_before` and `cursor_after` values that allow you to navigate by moving backward or forward accordingly. The response contains at most `10` deployments.
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1681,7 +1521,9 @@ HTTP status: 200
       "target_id": "410bf56b-b0dc-46d2-b939-87c88a21bb84",
       "switch_id": "8b751422-1322-4a9c-b3ab-e97c451cfbdc",
       "state_message": "",
-      "state": "STARTED",
+      "state":
+
+ "STARTED",
       "prev_pipeline_id": "f65a5c7a-6d69-4f3e-8251-adcae6c4d6d7",
       "pipeline_id": "f4e1413b-2fac-4ba6-9625-921f66ef1802",
       "id": "9ef2194e-d13d-432e-8c97-c8fda64c4aa1",
@@ -1698,13 +1540,12 @@ HTTP status: 200
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history"
 ```
-
 
 ## Artifact retention policies
 
@@ -1714,30 +1555,30 @@ This API endpoint allows you to configure the artifact retention policy for a pr
 
 By default, artifacts are persisted and never automatically deleted. The artifact retention policy allows you to configure the lifetime of artifacts in your projects.
 
-```
+```text
 POST <org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies
 ```
 
-**Request Body**
+Request Body:
 
 The request body should be a JSON object, encapsulating details about the artifact retention policies to be configured. The available fields are as follows:
 
-  - `project_id` (**required**) - UUID of the project.
-  - `project_level_retention_policies` (*optional*) - List of retention rules for project-level artifacts.
-  - `workflow_level_retention_policies` (*optional*) - List of retention rules for workflow-level artifacts.
-  - `job_level_retention_policies` (*optional*) - List of retention rules for job-level artifacts.
+- `project_id` (**required**) - UUID of the project.
+- `project_level_retention_policies` (*optional*) - List of retention rules for project-level artifacts.
+- `workflow_level_retention_policies` (*optional*) - List of retention rules for workflow-level artifacts.
+- `job_level_retention_policies` (*optional*) - List of retention rules for job-level artifacts.
 
 At least one of the `project_level_retention_policies`, `workflow_level_retention_policies`, and `job_level_retention_policies` lists needs to contain valid list items for a request to be valid.
 
 The list items for each of the retention policy fields from above should be JSON objects with the following properties:
-  - `selector` (**required**) - a double-star glob pattern used for identifying the artifacts paths.
-  - `age` (**required**) - the time after which the artifacts on the path from the `selector` field should be automatically deleted. Values should consist of a number from 1 to 12 followed by a space and one of the following: week(s), month(s), or year(s). Examples: 1 week, 2 weeks, 3 months, 4 years.
+- `selector` (**required**) - a double-star glob pattern used for identifying the artifacts paths.
+- `age` (**required**) - the time after which the artifacts on the path from the `selector` field should be automatically deleted. Values should consist of a number from 1 to 12 followed by a space and one of the following: week(s), month(s), or year(s). Examples: 1 week, 2 weeks, 3 months, 4 years.
 
 When evaluating retention policies for an artifact on a particular path, the system will iterate through the list of the policy rules and apply the first one with a selector that matches the path of that artifact. 
 
-You can find more details about artifacts retention policy in the [Artifact Retention Policies Reference](/reference/artifact-retention-policies)
+You can find more details about artifacts retention policy in the [Artifact Retention Policies Reference](/reference/artifact-retention-policies).
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1758,25 +1599,25 @@ HTTP status: 200
     {
       "selector": "/logs/**/*.txt",
       "age": "3 months"
-    },
+    }
   ]
 }
-
 ```
 
-**Example request**
+Example request:
 
-```
+```shell
 curl -X POST -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
      -H "Content-Type: application/json" \
      -d '<json object>' 
 ```
-```
+
+```shell
 curl -X POST -H "Authorization: Token {api_token}" \ 
      "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
      -H "Content-Type: application/json" \
-     -d '{"project_id":"3796efe0-81a0-4157-8774-7ad72d41ac28","job_level_retention_policies":[{"selector":"/screenshots/**/*.png","age":"2  weeks"},{"selector":"/logs/**/*.txt","age":"3 months"}]}'
+     -d '{"project_id":"3796efe0-81a0-4157-8774-7ad72d41ac28","job_level_retention_policies":[{"selector":"/screenshots/**/*.png","age":"2 weeks"},{"selector":"/logs/**/*.txt","age":"3 months"}]}'
 ```
 
 ### Describe retention policy
@@ -1785,15 +1626,15 @@ This API endpoint retrieves the details about an artifacts retention policy that
 
 By default, projects do not have an artifacts retention policy configured so a response in this case will have a policy with an empty set of retention rules for all artifacts levels.
 
-```
+```text
 GET <org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id
 ```
 
-**Params**
+Parameters:
 
 - `project_id` (**required**) - The UUID of the project
 
-**Response**
+Response:
 
 ```json
 HTTP status: 200
@@ -1814,15 +1655,16 @@ HTTP status: 200
     {
       "selector": "/logs/**/*.txt",
       "age": "3 months"
-    },
+    }
   ]
 }
 ```
 
-**Example**
+Example:
 
-```
+```shell
 curl -i -H "Authorization: Token {api_token}" \
      "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id"
 ```
+
 
