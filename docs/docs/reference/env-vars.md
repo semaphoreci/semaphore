@@ -212,7 +212,10 @@ Determines the GitHub or BitBucket username for the individual who promoted the 
 - **Environment variable**: `SEMAPHORE_WORKFLOW_TRIGGERED_BY_API`
 - **Example**: `true`
 
-Holds `true` if the workflow was triggered using the [Semaphore API](../openapi-spec/workflows-schedule).
+Holds `true` if the workflow was triggered using the [Semaphore API](../reference/api)
+
+<!-- new api: [Semaphore API](../openapi-spec/workflows-schedule) -->
+
 
 The variable is `false` if the workflow is triggered by a Git push, pull request, or via [Tasks](../using-semaphore/tasks).
 

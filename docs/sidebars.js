@@ -204,11 +204,9 @@ const sidebars = {
         type: 'generated-index',
         title: 'Semaphore Reference',
         description: 'Reference for YAML resources and command line tools',
-        // slug: '/using-semaphore',
-        keywords: ['reference'],
-        // image: '/img/docusaurus.png',
       },
       items: [
+        'reference/api',
         'reference/semaphore-cli',
         'reference/toolbox',
         'reference/env-vars',

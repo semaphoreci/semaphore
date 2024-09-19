@@ -314,7 +314,9 @@ Once you have [added a parameter](#parameters-add), you can select its value fro
 
 ### Promoting with the API {#api-promotions}
 
-You can pass parameter values to the promotion when it's triggered using the [Semaphore API](../openapi-spec/semaphore-public-api) to trigger promotions. If a promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+You can pass parameter values to the promotion when it's triggered using [Semaphore API](../reference/api) the to trigger promotions. If a promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+
+<!-- new api: [Semaphore API](../openapi-spec/semaphore-public-api)  -->
 
 The following is an example of a curl call that includes parameters:
 
@@ -685,7 +687,9 @@ Once a [promotion](#promotions) is targeted, you may be locked out from starting
 
 ### Promoting environments via API {#promotion-api}
 
-You can also use the [Public API](../openapi-spec/semaphore-public-api) to trigger promotions. If a promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+You can also use the [Semaphore API](../reference/api) to trigger promotions. If a promotion is forbidden by the environment, you will receive an `HTTP 400 Bad Request` response with a reason in the body.
+
+<!-- new api: [Public API](../openapi-spec/semaphore-public-api) -->
 
 ## See also
 

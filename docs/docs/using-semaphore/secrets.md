@@ -142,7 +142,9 @@ To edit a secret:
 </TabItem>
 </Tabs>
 
-To create secrets with the Semaphore API, see the [API reference page](../openapi-spec/secrets-list).
+To create secrets with the Semaphore API, see the [API reference](../reference/api).
+
+<!-- new api: [API reference page](../openapi-spec/secrets-list)-->
 
 ### Access policy {#secret-access-policy}
 
@@ -273,7 +275,9 @@ To edit a secret:
 
 Note that if a secret is defined with the same name at both the organization and project levels, the project-level secret overrides the organization-level secret.
 
-To create secrets with the Semaphore API, see the [API reference page](../openapi-spec/project-secrets-list).
+To create secrets with the Semaphore API, see the [Semaphore API](../reference/api).
+
+<!-- new api: [API reference page](../openapi-spec/project-secrets-list) -->
 
 ## Deployment Targets credentials {#dt-credentials}
 
@@ -320,4 +324,10 @@ Follow these steps to set up authentication:
 
 - [How to create secrets with the Semaphore CLI](../reference/toolbox)
 - [How to manage organization secrets](./organizations.md)
+- [Semaphore API](../reference/api)
+
+<!-- new api: 
+
 - [How to create secrets with the Semaphore API](../openapi-spec/secrets-list)
+
+-->

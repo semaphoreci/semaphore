@@ -50,5 +50,7 @@ If you want to give Semaphore a go, head to the [Guided Tour](./guided-tour). Yo
 
 You can find the complete Semaphore handbook in the [Using Semaphore](../using-semaphore/jobs) section.
 
-And if you want to dive deep into Semaphore's inner workings check out the [Reference pages](../reference/semaphore-cli) and the [API documentation](../openapi-spec/semaphore-public-api.info.mdx).
+And if you want to dive deep into Semaphore's inner workings check out the [Reference pages](../reference/semaphore-cli) and the [Semaphore API reference](../reference/api).
+
+<!-- new api: [API documentation](../openapi-spec/semaphore-public-api.info.mdx) --->
 
