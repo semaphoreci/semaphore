@@ -83,7 +83,7 @@ Both CircleCI and Semaphore allow you to use specific language versions.
 <Tabs groupId="migration">
 <TabItem value="circle" label="CircleCI">
 
-CircleCI uses a language-specific setup action. 
+CircleCI uses a language-specific setup orb. 
 
 The following example sets the Ruby version to `3.3.4`
 
@@ -235,7 +235,7 @@ Both CircleCI and Semaphore support persistent Artifacts storage.
 <Tabs groupId="migration">
 <TabItem value="circle" label="CircleCI">
 
-CircleCI uses the actions `upload-artifact` and `download-artifact` to manage artifacts.
+CircleCI uses the actions `store_artifacts` to upload and the API to download artifacts.
 
 The following example uploads and downloads `test.log`
 
@@ -308,7 +308,9 @@ workflows:
 </TabItem>
 <TabItem value="semaphore" label="Semaphore YAML">
 
-On Semaphore you can connect secrets to all jobs in a block.
+On Semaphore, we create the [secret](../../using-semaphore/secrets) at the organization or project level and activate it on a block. 
+
+The secret's contents are automatically injected as environment variables in all jobs in that block.
 
 ```yaml
 blocks:
