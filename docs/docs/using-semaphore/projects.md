@@ -150,8 +150,10 @@ The following actions in the repository can trigger Semaphore to start the proje
 - Creating pull requests originating from a forked repository
 - Updating any of the project's pipelines using the [visual editor](./jobs#workflow editor)
 - Pressing the Run button on the Semaphore website
-- Requesting a re-run [using the API](../openapi-spec/workflows-reschedule)
+- Request a re-run using the [Semaphore API](../reference/api)
 - Scheduling workflows [using Tasks](./tasks)
+
+<!-- new api: Requesting a re-run [using the API](../openapi-spec/workflows-reschedule) -->
 
 The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
 
