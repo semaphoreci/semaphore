@@ -21,17 +21,32 @@ import { Icon } from '@iconify-icon/react';
 
 /* 
 
-Features to highlight:
-- Visual Editor
-- Flaky Tests
-- Self hosted agents
-- SSH Debugging
-- Okta Integration
-- OpenID Connect
+Playground cards 
+
+515x286 - too blurry
+~1300x860 - seems good enough
+
+Image dimensions: 1030×572 pixels
+Image width:      1030 pixels
+Image height:     572 pixels
+Orientation:      horizontal (landscape)
+
+Image format:     png
+Total pixels:     589160
+Aspect ratio:     515:286
+Image size:       169,330 bytes (165.36kb)
+
+Image dimensions: 1030×571 pixels
+Image width:      1030 pixels
+Image height:     571 pixels
+Orientation:      horizontal (landscape)
+
+Image format:     png
+Total pixels:     588130
+Aspect ratio:     1030:571
+Image size:       155,471 bytes (151.83kb)
 
 */
-
-// 320x170
 
 const Features = [
   {
@@ -104,7 +119,7 @@ const Features = [
         <Translate id='features.debug.title'>Debug with SSH</Translate>
       </span>
     ),
-    image: require('@site/static/img/ssh-debugging.png'),
+    image: require('@site/static/img/ssh-debugging.jpg'),
     url: 'using-semaphore/jobs#debug-jobs',
     description: (
       <Translate id="features.debug.description">
@@ -120,7 +135,7 @@ const Features = [
         <Translate id='features.rbac.title'>RBAC and Compliance</Translate>
       </span>
     ),
-    image: require('@site/static/img/ssh-debugging.png'),
+    image: require('@site/static/img/ssh-debugging.jpg'),
     url: 'using-semaphore/jobs#debug-jobs',
     description: (
       <Translate id="features.rbac.description">
