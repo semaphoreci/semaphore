@@ -131,15 +131,15 @@ const Features = [
   },
 ];
 
-interface Props {
-  name: string;
-  image: string;
-  url: string;
-  urlTS: string;
-  description: JSX.Element;
-}
+// interface Props {
+//   name: string;
+//   image: string;
+//   url: string;
+//   urlTS: string;
+//   description: JSX.Element;
+// }
 
-function LandingPageCard({name, image, url, urlTS, description}: Props) {
+function FeatureCard({name, image, url, urlTS, description}) {
   return (
     <div className="col col--4 margin-bottom--lg">
       <div className={clsx('card')} style={{height: "500px"}}>
@@ -164,11 +164,11 @@ function LandingPageCard({name, image, url, urlTS, description}: Props) {
   );
 }
 
-export function LandingPageCardsRow(): JSX.Element {
+export function FeatureCardsRow() {
   return (
     <div className="row">
-      {Features.map((playground) => (
-        <LandingPageCard key={playground.name} {...playground} />
+      {Features.map((feature) => (
+        <FeatureCard key={feature.name} {...feature} />
       ))}
     </div>
   );

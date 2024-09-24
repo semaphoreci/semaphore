@@ -8,7 +8,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 // import LinkCard from '@site/src/components/LinkCard';
-import FlashyCard from '@site/src/components/FlashyCard';
+// import FlashyCard from '@site/src/components/FlashyCard';
 
 
 function HomepageHeader() {
@@ -44,7 +44,7 @@ function HomepageHeader() {
   );
 }
 
-import {LandingPageCardsRow} from '@site/src/components/Playground';
+import {FeatureCardsRow} from '@site/src/components/FeatureCards';
 
 // Original content inside main: <HomepageFeatures />
 export default function Home() {
@@ -55,7 +55,7 @@ export default function Home() {
       description={siteConfig.tagline} >
       <HomepageHeader />
       <main>
-      <LandingPageCardsRow />
+      <FeatureCardsRow />
       </main>
     </Layout>
   );
