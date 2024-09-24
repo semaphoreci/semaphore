@@ -10,6 +10,7 @@ import styles from './index.module.css';
 // import LinkCard from '@site/src/components/LinkCard';
 import FlashyCard from '@site/src/components/FlashyCard';
 
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   const githubStarsUrl=`https://ghbtns.com/github-btn.html?user=${siteConfig.organizationName}&repo=${siteConfig.projectName}&type=star&count=true&size=large`;
@@ -43,7 +44,7 @@ function HomepageHeader() {
   );
 }
 
-import {PlaygroundCardsRow} from '@site/src/components/Playground';
+import {LandingPageCardsRow} from '@site/src/components/Playground';
 
 // Original content inside main: <HomepageFeatures />
 export default function Home() {
@@ -54,7 +55,7 @@ export default function Home() {
       description={siteConfig.tagline} >
       <HomepageHeader />
       <main>
-      <PlaygroundCardsRow />
+      <LandingPageCardsRow />
       </main>
     </Layout>
   );
