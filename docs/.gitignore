@@ -4,6 +4,8 @@
 # Production
 /build
 
+.DS_Store
+
 # Generated files
 .docusaurus
 .cache-loader
