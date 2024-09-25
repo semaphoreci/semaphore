@@ -150,6 +150,8 @@ The actions with enabled checkbox are allowed for that role.
 
 ### How to create custom roles {#custom}
 
+<Available plans={['Scaleup']}/>
+
 Create custom roles to give your users the precise permissions they need. 
 
 <Steps>

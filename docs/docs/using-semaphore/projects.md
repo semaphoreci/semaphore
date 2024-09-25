@@ -236,6 +236,8 @@ The actions with enabled checkbox are allowed for that role.
 
 ### How to create custom roles {#custom-roles}
 
+<Available plans={['Scaleup']}/>
+
 Create custom roles to give your users the precise permissions they need. 
 
 <Steps>
@@ -246,6 +248,8 @@ Create custom roles to give your users the precise permissions they need.
 4. Give a name a description to the new role
 5. Enable the permissions allowed to the role. You can use the search box to narrow down options
 6. Press **Save changes**
+
+    ![Creating a project custom role](./img/project-custom-roles1.jpg)
 
 </Steps>
 

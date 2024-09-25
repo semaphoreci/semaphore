@@ -12,11 +12,11 @@ import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use Role Based Access Control" src="https://www.youtube.com/embed/YQ3LP5_UmpA?si=9GXkhLkPwT9lMpYJ" />
 
-Role Based Access Control (RBAC) allows you to manage user permissions in the organization and its projects. This page describes gives an overview of RBAC and the existing roles in Semaphore.
+Manage user permissions in your organization and projects with Role Based Access Control (RBAC). This page describes gives an overview of RBAC, how to assign roles to users and groups, and how to create custom roles.
 
 ## Overview
 
-Semaphore uses a Role Based Access Control model to manage user permissions and access within the organizations and projects.
+Semaphore uses a RBAC model to determine what actions users can take in organizations and projects.
 
 An organization [Admin](#org-admin) or [Owner](#org-owner) must invite users via their GitHub or BitBucket accounts before they can access the Semaphore organization or any of the projects.
 
@@ -24,29 +24,28 @@ An organization [Admin](#org-admin) or [Owner](#org-owner) must invite users via
 
 Semaphore manages roles on two levels:
 
-- [Organization](#org): these roles allow users to perform various organizational tasks. Users need to be added to the organization before they can access projects.
+- [Organization](#org): these roles allow users to perform various organizational actions. Users need to be added to the organization before they can access projects.
 - [Project](#project): these roles give access to a [project](./projects) within the organization. Users need to have access to the repository connected to the project.
 
 Roles can be gained in three ways:
 
 - **Direct**: you can directly assign up to one organization role and one project role to the user
-- **Group**: you add users to [groups](#org-groups). Group members gain the role assigned to the group
-- **Repository**: users with access to repositories linked to projects may gain [project roles](#project)
+- **Group**: you can grant roles to [groups](#org-groups). Group members gain the role assigned to the group
+- **Repository**: users may gain project permissions based on their roles in the related repository (only on GitHub)
 
 ![RBAC authentication relations](./img/rbac-diagram.jpg)
 
 ### Permissions are additive {#additive}
 
-Permissions are additive. Users gaining permissions through multiple ways obtain the sum of all the permissions.
+Permissions are additive. Users gaining permissions through multiple ways obtain the combined total of all permissions.
 
-For example, let's say Ana has [admin](#org-admin) role in the organization. This gives her admin access to all the projects in the organization. If someone gives her the [reader](#project-reader) role in one project, she is still admin to that project. In other words, roles never substract permissions.
+For example, let's say Pam has [admin](#org-admin) role in the organization. This gives her unfettered access to all the projects in the organization. If Kevin gives her the [reader](#project-reader) role in one project, she is still effectively admin in that project. In other words, roles never substract permissions.
 
 ## Organization roles {#org}
 
 Organization roles control what actions the users may perform in Semaphore. Users need to be added to the organization via their GitHub or BitBucket usernames before they can be granted a role. Only users who are part of the organization can log in to Semaphore.
 
 The only exception is when a user is added via the [Okta integration](./okta).
-
 
 ### Member {#org-member}
 
@@ -117,7 +116,6 @@ The role given when a user is added to the project depends on their repository-l
 |Push|Write|[Contributor](#project-contributor)|
 |Admin|Admin|[Contributor](#project-contributor)|
 
-
 ### Reader {#project-reader}
 
 Readers can access the project page, and view workflows, their results, and job logs. They cannot make any modifications to the project.
@@ -153,7 +151,9 @@ Admins have the authority to modify any setting within the projects, including t
 
 ## Custom roles {#custom-roles}
 
-In addition to the pre-defined roles provided by Semaphore, you can create your own roles. Custom roles let you follow the principle of least privilege when managing using permissions.
+<Available plans={['Scaleup']}/>
+
+In addition to the pre-defined roles provided by Semaphore, you can create your custom own roles. Custom roles let you follow the principle of least privilege when managing using permissions.
 
 To manage custom roles, see the following pages:
 
