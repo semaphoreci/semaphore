@@ -16,37 +16,8 @@ import Translate from '@docusaurus/Translate';
 import Link from '@docusaurus/Link';
 import Image from '@theme/IdealImage';
 import Heading from '@theme/Heading';
-// import { Icon } from '@iconify/react';
 import { Icon } from '@iconify-icon/react';
 
-/* 
-
-Playground cards 
-
-515x286 - too blurry
-~1300x860 - seems good enough
-
-Image dimensions: 1030×572 pixels
-Image width:      1030 pixels
-Image height:     572 pixels
-Orientation:      horizontal (landscape)
-
-Image format:     png
-Total pixels:     589160
-Aspect ratio:     515:286
-Image size:       169,330 bytes (165.36kb)
-
-Image dimensions: 1030×571 pixels
-Image width:      1030 pixels
-Image height:     571 pixels
-Orientation:      horizontal (landscape)
-
-Image format:     png
-Total pixels:     588130
-Aspect ratio:     1030:571
-Image size:       155,471 bytes (151.83kb)
-
-*/
 
 const Features = [
   {
@@ -56,10 +27,10 @@ const Features = [
         <Translate id='features.visualeditor.title'>Visual Editor</Translate>
         </span>
     ),
-    image: require('@site/static/img/workflow-editor-animation.gif'),
+    image: require('@site/static/img/wf1.gif'),
     url: 'using-semaphore/workflows#workflow-editor',
     description: (
-      <Translate id="landing.visualeditor.description">
+      <Translate id="feature.visualeditor.description">
         Create workflows visually. No need to learn yet another YAML syntax. Use the shell commands you know and love directly in your jobs.
       </Translate>
     ),
@@ -72,7 +43,7 @@ const Features = [
         <Translate id='features.gitvendor.title'>GitHub and BitBucket</Translate>
       </span>
     ),
-    image: require('@site/static/img/metrics.jpg'),
+    image: require('@site/static/img/repo.jpg'),
     url: 'using-semaphore/tests/test-reports',
     description: (
       <Translate id="features.gitvendor.description">
@@ -115,6 +86,22 @@ const Features = [
   {
     name: (
       <span>
+        <Icon icon="fluent-mdl2:permissions" width="1.2em" height="1.2em" />
+        <Translate id='features.rbac.title'>RBAC and Compliance</Translate>
+      </span>
+    ),
+    image: require('@site/static/img/rbac.jpg'),
+    url: 'using-semaphore/jobs#debug-jobs',
+    description: (
+      <Translate id="features.rbac.description">
+        Set-up roles and access levels to your engineering teams.
+        Gain regulatory compliance with audit trails for system-wide actions.
+      </Translate>
+    ),
+  },
+  {
+    name: (
+      <span>
         <Icon icon="streamline:bug-antivirus-debugging" width="1.2em" height="1.2em" />
         <Translate id='features.debug.title'>Debug with SSH</Translate>
       </span>
@@ -128,31 +115,8 @@ const Features = [
       </Translate>
     ),
   },
-  {
-    name: (
-      <span>
-        <Icon icon="fluent-mdl2:permissions" width="1.2em" height="1.2em" />
-        <Translate id='features.rbac.title'>RBAC and Compliance</Translate>
-      </span>
-    ),
-    image: require('@site/static/img/ssh-debugging.jpg'),
-    url: 'using-semaphore/jobs#debug-jobs',
-    description: (
-      <Translate id="features.rbac.description">
-        Set-up roles and access levels to your engineering teams.
-        Gain regulatory compliance with audit trails for system-wide actions.
-      </Translate>
-    ),
-  },
+  
 ];
-
-// interface Props {
-//   name: string;
-//   image: string;
-//   url: string;
-//   urlTS: string;
-//   description: JSX.Element;
-// }
 
 function FeatureCard({name, image, url, urlTS, description}) {
   return (
