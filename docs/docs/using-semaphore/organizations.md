@@ -16,7 +16,7 @@ Organizations are the administrative unit for Semaphore. This page explains how 
 
 In order to access any non-public resources on Semaphore you must be invited to the organization your team or company has created. 
 
-If you are trying out Semaphore for the first time, we suggest trying out the [Guided Tour](../getting-started/guided-tour), where we show how to create your first organization.
+If you are trying out Semaphore for the first time, we suggest the [Guided Tour](../getting-started/guided-tour), where we show how to create your first organization.
 
 Organizations have:
 
@@ -24,7 +24,7 @@ Organizations have:
 - a billing plan
 - one or more owners
 - users and groups with [role-based permissions](./rbac)
-- a dedicated URL, for example `https://my-org.semaphoreci.com` 
+- a dedicated URL, for example, `https://my-org.semaphoreci.com` 
 
 ## How to change organizations {#org-selection}
 
@@ -33,7 +33,7 @@ Switch the active organization to change its settings or view its projects.
 <Tabs groupId="ui-cli">
 <TabItem value="ui" label="UI">
 
-To view or create other organizations, open the organization menu on the top right corner and select **Change Organization**.
+To view or create other organizations, open the organization menu in the top right corner and select **Change Organization**.
 
 ![Organization menu location](./img/organization-menu.jpg)
 
@@ -99,7 +99,12 @@ See [organization roles](./rbac#org) to learn what roles are available.
 
 <Available plans={['Scaleup']}/>
 
-User groups allows you to manage users in bulk. Once a group is created, you can add members and assign a role to the group. Everyone in the group gains the permissions allowed in the role.
+User groups streamline user management by allowing bulk actions. After creating a group, you can:
+
+- Add members to the group
+- Assign a role to the group
+
+All members of the group automatically inherit the permissions associated with the assigned role.
 
 As an example, let's say you want to give the Finance team access to the [Billing pages](#plans) in your organization. To achieve that you can:
 
@@ -107,7 +112,7 @@ As an example, let's say you want to give the Finance team access to the [Billin
 2. Create a Finance group
 3. Assign the new custom role to the group
 4. Add everyone in the Finance team to the group
-5. As the team changes, yo0u can add or delete persons from the group
+5. As the team changes, you can add or delete persons from the group
 
 To create a group, open the organization menu and select **People**. 
 

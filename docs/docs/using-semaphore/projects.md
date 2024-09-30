@@ -184,9 +184,9 @@ Project members can view or manage the following project elements:
 
 ## How manage access to projects {#people}
 
-Semaphore periodically syncs users from GitHub. You can add and remove people to the project by inviting them or removing them from the related repository.
+Semaphore periodically syncs users from GitHub. You can add and remove people from the project by inviting or removing them from the related repository.
 
-Users with [Admin](./rbac#org-admin) or [Owner](./rbac#org-owner) roles can access every project in their organizations even if they don't have access to the related repository.
+Users with [Admin](./rbac#org-admin) or [Owner](./rbac#org-owner) roles can access every project in their organizations — even if they don't have access to the related repository.
 
 ### About project permissions {#about}
 
