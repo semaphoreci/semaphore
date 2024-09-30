@@ -182,15 +182,26 @@ Project members can view or manage the following project elements:
 
 ![Project tabs](./img/project-tabs.jpg)
 
-## How to add/remove people to the project {#people}
+## How manage access to projects {#people}
 
-:::note
+Semaphore periodically syncs users from GitHub. You can add and remove people to the project by inviting them or removing them from the related repository.
 
-You must add individuals to your Git repository and to your [Semaphore organization](./organizations#people) before you can add them to your project.
+Users with [Admin](./rbac#org-admin) or [Owner](./rbac#org-owner) roles can access every project in their organizations even if they don't have access to the related repository.
 
-:::
+### About project permissions {#about}
 
-Open your project and go to the **People** tab
+Users can be granted access and permissions on a project by different means:
+
+- **Repository-level access**: Semaphore automatically syncs user permissions from GitHub. See [project roles](./rbac#project) to learn how repository permissions are mapped to project permissions
+- **Direct access**: users can be [directly added to and removed from the project](#manual). Their permissions are managed with [project roles](./rbac#project)
+- **Role access**: users with [Admin](./rbac#org-admin) or [Owner](./rbac#org-owner) roles can access every project in their organizations
+- **Group access**: [groups](./rbac#org-groups) can grant their members access to projects, provided the group itself has been given access to those projects
+
+### How to manually add/remove members to projects {#manual}
+
+<Available plans={['Scaleup']}/>
+
+Scaleup plan users can manually add and remove people from a project. To manage users, ppen your project and go to the **People** tab
 
 <Steps>
 
@@ -206,6 +217,8 @@ Open your project and go to the **People** tab
 See [project roles](./rbac#project) for more information what actions can each role perform.
 
 ### How to change permissions {#people-roles}
+
+<Available plans={['Scaleup']}/>
 
 Open your project and go to the **People** tab
 
