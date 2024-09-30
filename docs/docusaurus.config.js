@@ -166,13 +166,29 @@ const config = {
             items: [
               {
                 label: 'Get Started',
-                to: '/docs/category/getting-started',
+                to: 'category/getting-started',
+              },
+              {
+                label: 'Using Semaphore',
+                to: 'category/using-semaphore',
+              },
+              {
+                label: 'Reference',
+                to: 'category/reference',
+              },
+              {
+                label: 'API',
+                to: 'reference/api',
               },
             ],
           },
           {
             title: 'Community',
             items: [
+              {
+                label: 'YouTube',
+                href: 'https://www.youtube.com/c/SemaphoreCI',
+              },
               {
                 label: 'Discord',
                 href: 'https://discord.gg/aBqJDR8ADH',
@@ -185,22 +201,26 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/semaphoreci',
               },
+              {
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/company/rendered-text/',
+              },
             ],
           },
           {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: 'https://semaphoreci.com/blog',
+                label: 'Semaphore Blog',
+                href: 'https://semaphoreci.com/blog',
               },
               {
-                label: 'YouTube',
-                to: 'https://www.youtube.com/c/SemaphoreCI',
+                label: 'Guides and E-Books',
+                href: 'https://semaphoreci.com/resources',
               },
               {
-                label: 'LinkedIn',
-                to: 'https://www.linkedin.com/company/rendered-text/',
+                label: 'CI/CD Learning Tool',
+                href: 'https://semaphoreci.com/cicd-learning-hub',
               },
             ],
           },

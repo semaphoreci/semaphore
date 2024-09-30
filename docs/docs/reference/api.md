@@ -489,7 +489,7 @@ Parameters:
 - `pipeline_id` (**required**) - ID of a pipeline.
 - `name` (**required**) - Name of the promotion, e.g. `Production deployment`.
 - `override` (*optional*) - Boolean safeguard flag that needs to be set to `true` if you want to trigger a promotion for a pipeline that has failed or is still running.
-- *parameter_name* - (*optional*) - Name of the parameter used in the [parameterized promotion](/essentials/parameterized-promotions/#setting-the-values-via-the-api).
+- *parameter_name* - (*optional*) - Name of the parameter used in the [parameterized promotion](../using-semaphore/promotions#parameters).
 
 Response:
 
@@ -561,7 +561,7 @@ curl -i -X POST -H "Authorization: Token {api_token}" \
 
 ### Get job logs
 
-NOTE: Instead of using the API to fetch job logs, you can also use [sem cli tool](/reference/sem-command-line-tool/#sem-logs) to perform the same action.
+NOTE: Instead of using the API to fetch job logs, you can also use [Semaphore CLI tool](./semaphore-cli#sem-logs) to perform the same action.
 
 ```text
 GET https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id
@@ -1576,7 +1576,7 @@ The list items for each of the retention policy fields from above should be JSON
 
 When evaluating retention policies for an artifact on a particular path, the system will iterate through the list of the policy rules and apply the first one with a selector that matches the path of that artifact. 
 
-You can find more details about artifacts retention policy in the [Artifact Retention Policies Reference](/reference/artifact-retention-policies).
+You can find more details about artifacts retention policy in the [Artifact Retention Policies Reference](../using-semaphore/artifacts#retention).
 
 Response:
 
