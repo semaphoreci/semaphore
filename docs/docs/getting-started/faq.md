@@ -375,7 +375,7 @@ You might be hitting the quota limitation. To see your activity across the organ
 
 You can also run [`sem get jobs`](../reference/semaphore-cli#sem-get-job) to display all running jobs to confirm how much of the quota is being used. 
 
-- Why does my job fail when I specify "exit 0" in commands?
+### Why does my job fail when I specify "exit 0" in commands?
 
 Using the exit command closes the PTY and causes the job to fail. If this isn't the desired behavior, you can use the `return 130` command and manually set [`SEMAPHORE_JOB_RESULT`](../reference/env-vars#job-result) environmental variable.
 
@@ -384,6 +384,13 @@ To set the job as:
 - **Stopped**: execute `return 130`
 - **Stopped and successful**: `export SEMAPHORE_JOB_RESULT=passed; return 130`
 - **Stopped and failed**: `export SEMAPHORE_JOB_RESULT=failed; return 130`
+
+::: note
+
+Some commands like `bash -e` or `set -x otrace` may override this behavior and make it not function correctly.
+
+:::
+
 
 ## Project
 
@@ -514,6 +521,9 @@ The are several causes for these messages:
 - You may need to [connect the `sem` tool](../using-semaphore/jobs#debug-jobs) to your organization
 - You may need to use [`sem context`](../reference/semaphore-cli#sem-context) to switch to the organization containing the project you want to debug
 
-The message indicates that the SSH session cannot be initiated for the provided job id. For example:
+The message indicates that the SSH session cannot be initiated for the provided job id.
 
-```shell
+### Why are my secrets empty?
+
+We have discontinued exposing secret content via the CLI, API, and web interface to ensure enhanced security measures. Retrieval of secret values is now exclusively available through the job mechanism.
+

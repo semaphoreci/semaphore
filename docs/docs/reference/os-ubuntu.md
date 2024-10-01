@@ -108,6 +108,12 @@ The predefined default network for nested virtualization is 192.168.123.0/24. Th
 
 ## Ubuntu 22.04 (x86_64) {#ubuntu2204-x86}
 
+:::note
+
+The Ubuntu 22.04 images is not available for the older generation agent type [e1-standard](./machine-types#e1). This OS version is in technical preview and versions of preinstalled software are subject to change.
+
+:::
+
 This is a customized x86_64 image based on [Ubuntu 22.04](https://wiki.ubuntu.com/JammyJellyfish/ReleaseNotes) (Jammy Jellyfish LTS).
 
 This section describes the software pre-installed on the image.
@@ -116,9 +122,9 @@ This section describes the software pre-installed on the image.
 
 The following version control tools are pre-installed:
 
-- Git 2.43.0
-- Git LFS (Git Large File Storage) 3.4.1
-- GitHub CLI 2.44.1
+- Git 2.46.0
+- Git LFS (Git Large File Storage) 3.5.1
+- GitHub CLI 2.55.0
 - Mercurial 6.1.1
 - Svn 1.14.1
 
@@ -137,10 +143,10 @@ The following browsers and headless browsers are pre-installed. Chrome and Firef
 
 Docker toolset is installed and the following versions are available:
 
-- Docker 25.0.2
+- Docker 27.2.0
 - Docker-compose 1.29.2 (used as `docker-compose --version`)
-- Docker-compose 2.24.5 (used as `docker compose version`)
-- Docker-buildx 0.12.1
+- Docker-compose 2.29.2 (used as `docker compose version`)
+- Docker-buildx 0.16.2
 - Docker-machine 0.16.2
 - Dockerize 0.7.0
 - Buildah 1.23.1
@@ -151,26 +157,25 @@ Docker toolset is installed and the following versions are available:
 
 The following cloud tools are pre-installed:
 
-- Aws-cli 2.15.17 (used as `aws`)
-- Azure-cli 2.57.0
-- Eb-cli 3.20.10
+- Aws-cli 2.17.40 (used as `aws`)
+- Azure-cli 2.64.0
 - Ecs-cli 1.21.0
-- Doctl 1.104.0
-- Gcloud 425.0.0
-- Gke-gcloud-auth-plugin 425.0.0
+- Doctl 1.111.0
+- Gcloud 492.0.0
+- Gke-gcloud-auth-plugin 492.0.0
 - Kubectl 1.29.1
-- Heroku 8.7.1
-- Terraform 1.7.2
-- Helm 3.14.0
+- Heroku 9.2.1
+- Terraform 1.9.5
+- Helm 3.15.4
 
 ### Utilities
 
 The following utilities are pre-installed:
 
 - Httpie 3.2.2
-- Curl 7.81.0
+- Curl 8.5.0
 - Rsync 3.2.7
-- gcc 11 (default), and gcc 12
+- gcc 11, 12, and 13 (default)
 
 ### Languages
 
@@ -186,8 +191,8 @@ You can install any version you need with `nvm install <version>`.
 
 Pre-installed tools:
 
-- Node.js: v20.11.0 includes npm 10.2.4
-- Yarn: 1.22.19
+- Node.js: v20.17.0 (set as default, with alias 20.17), includes npm 10.8.2
+- Yarn: 1.22.22
 
 </div>
 </details>
@@ -200,17 +205,15 @@ Pre-installed tools:
 Python versions are installed and managed by
 [virtualenv](https://virtualenv.pypa.io/en/stable/). Installed versions:
 
-- 3.10.12
-- 3.11.7
-- 3.12.1
+- 3.10.14
+- 3.11.9
+- 3.12.3
 
 Supporting libraries:
 
-- pypy: 7.3.9
-- pypy3: 7.3.15
-- pip: 24.0
-- venv: 20.25.0
-
+- pypy3: 7.3.17
+- pip: 24.2
+- venv: 20.26.3
 
 </div>
 </details>
@@ -221,13 +224,13 @@ Supporting libraries:
 
 Available versions:
 
-- 3.0.0 to 3.0.7
-- 3.1.0 to 3.1.6
-- 3.2.0 to 3.2.4
-- 3.3.0 to 3.3.4
+- 3.0.x
+- 3.1.x
+- 3.2.x
+- 3.3.x
 - jruby-9.4.1.0
 
-The default installed Ruby version is `3.2.3`.
+The default installed Ruby version is `3.3.4`
 
 </div>
 </details>
@@ -239,9 +242,9 @@ The default installed Ruby version is `3.2.3`.
 Erlang versions are installed and managed via [kerl](https://github.com/kerl/kerl).
 Elixir versions are installed with [kiex](https://github.com/taylor/kiex).
 
-- Erlang: 24.3, 25.0, 25.1, 25.2, 25.3 (default), 26.0, 26.1, 26.2, 27.0
-- Elixir: 1.9.x, 1.10.x, 1.11.x, 1.12.x, 1.13.x, 1.14.x (1.14.5 as default), 1.15.x, 1.16.x, 1.17.x
-
+- Erlang: 24.3, 25.0, 25.1, 25.2, 25.3, 26.0, 26.1, 26.2, 27.0 (default)
+- Elixir: 1.12.x, 1.13.x, 1.14.x, 1.15.x, 1.16.x, 1.17.x (1.17.2 as default)
+ 
 Additional libraries:
 
 - Rebar3: 3.22.1
@@ -264,9 +267,10 @@ Additional libraries:
 - 1.18.x
 - 1.19.x
 - 1.20.x
-- 1.21.x (1.21.6 as default)
+- 1.21.x
 - 1.22.x
-- 
+- 1.23.x (1.23.0 as default)
+
 </div>
 </details>
 
@@ -274,17 +278,17 @@ Additional libraries:
 <summary>Java and JVM languages</summary>
 <div>
 
-- Java: 11.0.21, 17.0.9 (default)
+- Java: 11.0.24, 17.0.12 (default), 21.0.4
 - Scala: 3.2.2
-- Leiningen: 2.11.1 (Clojure)
-- Sbt 1.9.8
+- Leiningen: 2.11.2 (Clojure)
+- Sbt 1.10.1
 
 Build tools:
 
 - Maven: 3.9.6
-- Gradle: 8.3
-- Bazel: 7.0.2
-
+- Gradle: 8.10
+- Bazel: 7.3.1
+ 
 </div>
 </details>
 
@@ -296,11 +300,11 @@ Build tools:
 PHP versions are managed by [phpbrew](https://github.com/phpbrew/phpbrew).
 Available versions:
 
-- 8.1.20 and above
+- 8.1.x
 - 8.2.x
 - 8.3.x
 
-The default installed PHP version is `8.1.27`.
+The default installed PHP version is `8.1.29`
 
 Additional tools:
 
@@ -313,7 +317,7 @@ Additional tools:
 <summary>Rust</summary>
 <div>
 
-- 1.75.0
+- 1.81.0
 
 </div>
 </details>
@@ -529,9 +533,9 @@ This section describes the software pre-installed on the image.
 
 The following version control tools are pre-installed:
 
-- Git 2.43.0
-- Git LFS (Git Large File Storage) 3.4.1
-- GitHub CLI 2.43.1
+- Git 2.46.0
+- Git LFS (Git Large File Storage) 3.5.1
+- GitHub CLI 2.55.0
 - Mercurial 5.3.1
 - Svn 1.13.0
 
@@ -541,8 +545,8 @@ The following browsers and headless browsers are pre-installed. Chrome and Firef
 
 - Firefox 68.9 (`68`, `esr-old`), 78.1 (`78`, `default`, `esr`), 102.11.0 (`102`, `esr-new`, `esr-latest`)
 - Geckodriver 0.33.0
-- Google Chrome 121
-- ChromeDriver 121
+- Google Chrome 128
+- ChromeDriver 128
 - Xvfb (X Virtual Framebuffer)
 - Phantomjs 2.1.1
 

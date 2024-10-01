@@ -97,6 +97,12 @@ If you have [configured Continuous Deployment insights](#configure), you can als
 
 ![CI reliability](./img/rel-cd.jpg)
 
+:::note
+
+Although you can specify a branch when creating a reliability metric, the actual branch used is defined under the "Insight" settings in a project.
+
+:::
+
 ## How to create custom dashboards {#custom}
 
 Create your own visualization with custom dashboards. You can add any metric already available on the Project Insights page to the dashboard.

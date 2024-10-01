@@ -33,6 +33,8 @@ You can use conditions in the following situations:
 - As block [skip/run conditions](../using-semaphore/jobs#skip-run)
 - With [monorepo projects](../using-semaphore/monorepo) using the [change_in function](#change-in)
 
+You can find detailed information about the `when` keyword in our [library repository](https://github.com/renderedtext/when?tab=readme-ov-file#when-library).
+
 ## Basic syntax
 
 The basic syntax for conditions is:
