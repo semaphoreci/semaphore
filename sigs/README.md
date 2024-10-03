@@ -17,9 +17,9 @@ SIGs serve as a bridge between the core Semaphore team and the wider community, 
 
 Semaphore currently has several active Special Interest Groups, each focusing on a specific area of the product. These SIGs are open for anyone to join and contribute to with the approval of sig owner. Below is a list of our current SIGs, their purposes, owners, and links to their respective spaces.
 
-| Name | Purpose | Owners | Link to SIG Space |
+| Name | Purpose | Maintainers | Link to SIG Space |
 |------|---------|--------|-------------------|
-| SIG-API and extensibility| Focuses on API development, and explores venues of extending Semaphore with various integrations | @radwo | [SIG-API Space](./api-and-extensibility/README.md) |
+| SIG-API and extensibility| Focuses on API development, and explores venues of extending Semaphore with various integrations | [@radwo](https://github.com/radwo) | [SIG-API Space](./api-and-extensibility/README.md) |
 | SIG-Documentation | Ensures comprehensive and up-to-date Semaphore documentation | @TomFern | [SIG-Documentation Space](../docs/README.md) |
 
 Each SIG meets regularly to discuss ongoing projects, address challenges, and plan future developments. We encourage you to explore these SIGs and join the ones that align with your interests or expertise.
