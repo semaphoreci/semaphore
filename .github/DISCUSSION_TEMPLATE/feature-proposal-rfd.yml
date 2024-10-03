@@ -1,10 +1,12 @@
-title: "[Feature Proposal (RFD)] "
+title: "[RFD] "
 labels: ["General Introduction"]
 body:
   - type: markdown
     attributes:
       value: |
-        This is text that will show up in the template!
+        | Authors       | State    |
+        |---------------|----------|
+        | @darkofabijan <br> @AleksandarCole <br> @DamjanBecirovic  | `Draft`   |
   - type: textarea
     id: improvements
     attributes:
@@ -41,14 +43,13 @@ body:
         - Release cadence
     validations:
       required: true
-   - type: checkboxes
-    id: terms
+  - type: checkboxes
     attributes:
-      label: Code of Conduct
-      description: By submitting this, you agree to follow our [Code of Conduct](https://github.com/semaphoreci/semaphore/tree/main?tab=coc-ov-file). 
+      label: Check that box!
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: This one!
           required: true
+        - label: I won't stop you if you check this one, too
   - type: markdown
     attributes:
       value: |
