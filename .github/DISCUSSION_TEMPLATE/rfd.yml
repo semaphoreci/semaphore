@@ -1,0 +1,74 @@
+title: "[RFD - 0001] - short description"
+body:
+  - type: markdown
+    attributes:
+      value: 
+  - type: textarea
+    id: improvements
+    attributes:
+      label: Metadata
+      description: "Please add and update the details of the RFD state"
+      value: |
+        | Authors       | State    |
+        |---------------|----------|
+        | @user1 <br> @user2 | `Draft`   |
+      render: bash
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+      ## Summary
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: "Please add a brief summary on what this RFD is about"
+      value: |
+        [Brief explanation]
+      render: bash
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+      ## Problems
+  - type: textarea
+    id: problems
+    attributes:
+      label: Problems
+      description: "List the problems you would like to address."
+      value: |
+        - **Problem 1** - description
+        - **Problem 2** - description
+        - ...
+      render: bash
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+      ## User Stories
+  - type: textarea
+    id: stories
+    attributes:
+      label: User Stories
+      description: "Provide some usecases and user stories that you would like to support."
+      value: |
+        - **Use-case 1** - description
+        - **Use-case 2** - description
+        - ...
+      render: bash
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## RFC (optional)
+  - type: input
+    id: rfc
+    attributes:
+      label: RFC link
+      description: Provide the link to the RFC if available.
+    validations:
+      required: false
