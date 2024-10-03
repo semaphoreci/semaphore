@@ -56,7 +56,7 @@ This is a required field for project-level secrets. It must contain either the p
 
 ## org_config {#org-config}
 
-<Available plans={'Scaleup']}/>
+<Available plans={['Scaleup']}/>
 
 The `org_config` property holds organization access policy fields, which are enabled for organizations on a Startup plan or higher. 
 

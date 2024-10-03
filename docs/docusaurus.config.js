@@ -12,7 +12,7 @@ const config = {
   // disable this setting when the site goes to production to allow Google to index
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: true,
-  title: 'Semaphore CI/CD',
+  title: 'Semaphore',
   tagline: 'A CI/CD solution to elevate developer workflows',
   favicon: 'img/favicon.ico',
 
@@ -225,7 +225,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Continuous Integration Solutions Ltd. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Semaphore Technologies doo. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
