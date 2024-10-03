@@ -1,5 +1,7 @@
 # SIG - API and extensibility
 
+**SIG Maintaner:** [@radwo](https://github.com/radwo)
+ 
 The API and Extensibility Special Interest Group is dedicated to improving and expanding Semaphore's API capabilities and its integration ecosystem. This SIG plays a crucial role in ensuring that Semaphore remains flexible, powerful, and developer-friendly.
 
 **Key Focus Areas:**
@@ -34,8 +36,8 @@ This SIG is currently working on designing the new version of Semaphore API and 
 
 **Resouces:**
 
-- [API v2 RFD](#)
-- [API v2 RFC](#)
+- [API v2 RFD](https://github.com/semaphoreci/semaphore/discussions/225)
+- [API v2 RFC](https://github.com/semaphoreci/semaphore/pull/224)
 
 ## Top Contributors
 
