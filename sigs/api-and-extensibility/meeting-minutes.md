@@ -17,6 +17,10 @@
 - Improvements to Project and Workflow API
 - Future-proofing the API for extensibility
 
+### Changes Discussed
+
+The changes discussed in this meeting can be found in the following commit: [Commit with changes](https://github.com/semaphoreci/semaphore/pull/224/commits/0e1ae444af66d50f8a0102d12e0ca96a2d0723f3).
+
 ### Notes
 
 1. Task Restructuring
