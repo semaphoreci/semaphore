@@ -6,7 +6,7 @@ https://semaphore.semaphoreci.com/api/v2/workflows/{id}
 
 - list
 - describe
-- create project_id reference + (commit_sha pipeline_file)
+- create project_id reference + (commit_sha pipeline_file) # or maybe remove it? and add it as a trigger?
 
 Custom Methods
 
@@ -30,44 +30,61 @@ Custom Methods
   },
   "spec": {
     "initial_pipeline": { "id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" },
+
+
+    # should rerun be a trigger as well?
     "rerun_of": {"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" }
 
-    "trigger": {
+    # better name for this?
+    "trigger_call": {
       "type": "HOOK",
+      #"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0",
 
-      "payload": {
-        "github or git": {
-          "reference": "refs/heads/master",
-          "commit_sha": "60a2df0a7e8f27d044350cbfe12c040f36f042f2",
-          "pr_head_branch": "feature-branch",
-          "pr_target_branch": "master"
-        }
-      }
-    },
+      "pipeline_file": ".semaphore/semaphore.yml",
+      # user connected to SCM account
+      "triggered_by": {"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" }
+    }
+
+    "trigger_call": {
+      "type": "TASK",
+      #"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0",
 
 
-    "trigger": {
+      "task": {"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" }
+      "triggered_by": {"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" }
+
+
+
+      "pipeline_file": ".semaphore/semaphore.yml",
+
+      "parameters": [
+        {"key": "ENV_VAR_X", "value": "blabla"},
+        {"key": "ENV_VAR_Y", "value": "blablay"}
+      ],
+      "reference": "refs/heads/master"
+      # User/Service Account that manually triggered the task (UI or API)
+    }
+
+    "trigger_call": {
       "type": "API",
+      "id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0",
+      "pipeline_file": ".semaphore/semaphore.yml"
 
-      "paylaod": {
-        "github or git": {
-          "reference": "refs/heads/master",
-          "commit_sha": "60a2df0a7e8f27d044350cbfe12c040f36f042f2",
-          "pr_head_branch": "feature-branch",
-          "pr_target_branch": "master"
-        },
+      "reference": "refs/heads/master",
+      "commit_sha": "60a2df0a7e8f27d044350cbfe12c040f36f042f2",
 
-        # FROM API
-        "parameters": [
-          {"key": "ENV_VAR_X",
-           "value": "blabla"},
-          {"key": "ENV_VAR_Y",
-           "value": "blablay"}
-        ]
-      }
-    },
+      # User/Service Account that manually triggered the API
+      "triggered_by": {"id": "f850cdcf-d3de-4d50-91bf-b6190fa5f9c0" }
+    }
 
-    "pipeline_file": ".semaphore/semaphore.yml"
+    "repository": {
+      "reference": "refs/heads/master",
+      "commit_sha": "60a2df0a7e8f27d044350cbfe12c040f36f042f2",
+
+      # github specific stuff
+      "pr_head_branch": "feature-branch",
+      "pr_target_branch": "master"
+    }
   }
 }
  ```

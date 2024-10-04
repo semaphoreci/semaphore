@@ -27,8 +27,7 @@ Resource:
   },
 
   "spec": {
-    "target_name": "Sxmoon",
-
+    "promotion_name": "Sxmoon",
     "override": false,
     "parameters": [
       {
@@ -37,7 +36,6 @@ Resource:
       }
     ]
   },
-
   "status": {
     "status": "PASSED",
     "triggered_pipeline": { "id": "d605c1ed-5664-4ce3-8419-14d3d7337c35" },
@@ -45,6 +43,5 @@ Resource:
       "triggered_at": "2024-07-12T11:02:50.116Z"
     }
   }
-
 }
 ```

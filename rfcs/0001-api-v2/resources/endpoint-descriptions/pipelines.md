@@ -50,7 +50,6 @@ Resource:
     "queue": {
         "type": 0, # this looks like enum
         "scope": "project",
-        "id": "8d17eb69-b841-4b69-9e12-f43a535d54a5",
         "name": "master-.semaphore/repohub-prod.yml"
     },
 
@@ -95,6 +94,5 @@ Resource:
       ]
     }],
   }
-
 }
 ```

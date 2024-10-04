@@ -12,8 +12,10 @@ Custom Methods
 
 - terminate POST on /jobs/{id}/terminate
 - log_events GET on /jobs/{id}/log_events
-- debug_ssh_key GET on /jobs/{id}/debug_ssh_key
-- debug POST on /jobs/{id}/debug + agent and execution_time_limit
+- ssh_key GET on /jobs/{id}/ssh_key
+
+- debug_job POST on /jobs/debug_job + job_id agent and execution_time_limit
+- debug_project POST on /jobs/debug_project + project_id agent and execution_time_limit
 
 Resource
 

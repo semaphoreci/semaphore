@@ -1,5 +1,7 @@
 TaskTriggers
 
+# Will be replaces with project triggers calls
+
 Standard Methods
 
 https://semaphore.semaphoreci.com/api/v2/projects/{name_or_id}/tasks/{name_or_id}/triggers
@@ -26,7 +28,7 @@ Resource
     }
   },
   "spec": {
-    "branch": "master",
+    "reference": "refs/heads/master", # or keep it branch?
     "parameters": [
       {
         "name": "Parameter name",

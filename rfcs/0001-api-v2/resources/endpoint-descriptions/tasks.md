@@ -1,5 +1,7 @@
 Tasks
 
+# Will be replaces with project triggers
+
 Standard Methods
 
 https://semaphore.semaphoreci.com/api/v2/projects/{name_or_id}/tasks/{name_or_id}
@@ -30,14 +32,16 @@ Resource
     }
   },
   "spec": {
-    "title": "Periodic task",
-    "branch": "master",
-    "cron_schedule": "0 0 * * *",
+    "display_name": "Periodic task",
     "description": "Periodic task description",
 
+    "cron_schedule": "0 0 * * *",
     "scheduled": false,
     "suspended": false,
     "paused": false,
+
+    "branch": "master",
+    "pipeline_file": ".semaphore/pipeline.yml",
 
     "parameters": [
       {
@@ -49,8 +53,7 @@ Resource
           "string"
         ],
       }
-    ],
-    "pipeline_file": ".semaphore/pipeline.yml"
+    ]
   }
 
   "status": {

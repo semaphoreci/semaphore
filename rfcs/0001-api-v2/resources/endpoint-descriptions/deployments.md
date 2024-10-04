@@ -40,7 +40,7 @@ Resource
     ],
 
     "origin_pipeline": {"id": "97ba55d1-90d7-40b9-a2dd-bdbd02389b58" },
-    "promotion_target_name": "string"
+    "promotion_name": "Sxmoon"
   },
 
   "status": {
