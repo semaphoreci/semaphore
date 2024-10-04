@@ -410,7 +410,7 @@ Present only for builds where `SEMAPHORE_GIT_REF_TYPE=pull-request`
 ### Pull request slug {#pr-slug}
 
 - **Environment variable**: `SEMAPHORE_GIT_PR_SLUG`
-- **Example**: `renderedtext/docs`
+- **Example**: `semaphoreci/semaphore`
 
 The name in the format `owner_name/repo_name` of the repository from which the Pull Request originated.
 

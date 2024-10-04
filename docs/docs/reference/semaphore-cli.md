@@ -211,6 +211,18 @@ For example:
 sem edit secret mysecret
 ```
 
+To edit a [project secret](../using-semaphore/projects#secrets), add `-p <project-name>`:
+
+```shell
+sem get secret -p myproject mysecret
+```
+
+:::note
+
+For security reasons, `sem edit secret` does not provide the contents of the secret. Partial edits are not allowed, so the above commands will overwrite the contents of the secret.
+
+:::
+
 You can add the `-p <project-name>` argument to edit project-level secrets.
 
 The following examples show how to edit other types of resources

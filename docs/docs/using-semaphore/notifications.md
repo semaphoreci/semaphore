@@ -222,8 +222,8 @@ The payload contains all the information related to a pipeline.
         "id": "91e34570-bebe-42b6-b47a-ca710b2b8927"
     },
     "repository": {
-        "url": "https://github.com/renderedtext/notifications",
-        "slug": "renderedtext/notifications"
+        "url": "https://github.com/semaphoreci/myproject",
+        "slug": "semaphoreci/notifications"
     },
     "revision": {
         "tag": null,
@@ -303,7 +303,7 @@ Sample `pull_request` object:
 
 ```json title="Pull request object"
 "pull_request": {
-  "head_repo_slug": "renderedtext/notifications",
+  "head_repo_slug": "semaphoreci/notifications",
   "number": 2,
   "name": "Add docs for webhook notifications",
   "head_sha": "9872252e00ac5a6b5870cdf94efe0e04770ad104",

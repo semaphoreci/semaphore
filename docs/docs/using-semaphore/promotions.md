@@ -261,7 +261,7 @@ To add parameters to a promotion, follow these steps:
 # ...
 promotions:
   - name: Push to Prod
-    pipeline_file: pipeline_8.yml
+    pipeline_file: deploy.yml
     parameters:
       # highlight-start
       env_vars:
@@ -274,6 +274,8 @@ promotions:
           name: ENVIRONMENT
       # highlight-end
 ```
+
+In the example above, if auto-promotion is triggered, the value for `$ENVIRONMENT` is `Stage` by default.
 
 </TabItem>
 </Tabs>

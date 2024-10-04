@@ -561,7 +561,11 @@ curl -i -X POST -H "Authorization: Token {api_token}" \
 
 ### Get job logs
 
-NOTE: Instead of using the API to fetch job logs, you can also use [Semaphore CLI tool](./semaphore-cli#sem-logs) to perform the same action.
+:::note
+
+Instead of using the API to fetch job logs, you can also use [Semaphore CLI tool](./semaphore-cli#sem-logs) to perform the same action.
+
+:::
 
 ```text
 GET https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id

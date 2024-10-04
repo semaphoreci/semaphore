@@ -47,6 +47,8 @@ The E1 generation is presented in the following types:
 | `e1-standard-4` | 4 | 8 | 35 |
 | `e1-standard-8` | 8 | 16 | 45 |
 
+E1 Generation machine types can be paired with [Ubuntu 20.04 image](./os-ubuntu#ubuntu-2204-x86_64-ubuntu2204-x86) and [Docker-based environment](../using-semaphore/pipelines#docker-environments).
+
 ### E2 generation {#e2}
 
 The E2 generation balances power with cost. It is a good choice for most tasks.
@@ -63,6 +65,8 @@ The E2 generation is presented in the following types:
 |--|--|--|--|
 | `e2-standard-2` | 2 | 8 | 45 |
 | `e2-standard-4` | 4 | 16 | 65 |
+
+E2 machines can also be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu-2204-x86_64-ubuntu2204-x86), [Ubuntu 20.04 image](./os-ubuntu#ubuntu-2004-x86_64-ubuntu2004), and [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 ### F1 generation {#f1}
 
@@ -82,6 +86,8 @@ The F1 generation is presented in the following types:
 | `f1-standard-2` | 2 | 8 | 45 |
 | `f1-standard-4` | 4 | 16 | 65 |
 
+F1 machines can also be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu-2204-x86_64-ubuntu2204-x86), [Ubuntu 20.04 image](./os-ubuntu#ubuntu-2004-x86_64-ubuntu2004), and [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+
 ### R1 generation {#r1}
 
 These are ARM machines. They currently in the **Technical Preview stage**. If you're interested in trying them out, please contact our support team.
@@ -97,6 +103,8 @@ The r1 generation is presented in the following types:
 | Type | Virtual CPUs | Memory (GB) | Disk (GB) |
 |--|--|--|--|
 | `r1-standard-4` | 4 | 10 | 65 |
+
+R1 Generation machine types can only be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu-2204-x86_64-ubuntu2204-x86).
 
 ## Apple machines {#macos}
 

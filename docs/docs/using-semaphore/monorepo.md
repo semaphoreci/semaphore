@@ -451,6 +451,10 @@ This section shows examples of common change detection scenarios.
 change_in("/backend/", {default_branch: "master"})
 ```
 
+```text title="When a directory in a list changes"
+change_in(["/web-app/","/lib/"])
+```
+
 ```text title="When a file changes"
 change_in("./Gemfile.lock", {default_branch: "master"})
 ```

@@ -503,7 +503,7 @@ The available commands are:
 
 - `combine`: combines multiples JSON report files into one file summary
 - `compile`: parses JUnit XML files to a well-defined JSON report file
-- `gen-pipeline-report`: fetches and combines workflow-level JUnit report files
+- `gen-pipeline-report`: fetches and combines workflow-level JUnit report and combines them
 - `publish`: parses XML JUnit file to a well-defined JSON schema and publishes results to artifacts storage
 
 The available flags are:
@@ -513,6 +513,8 @@ The available flags are:
 - `--parser <name>` or `-p <name>`: override the parser used. Defaults to "auto"
 - `--suite-prefix <name>` or `-S <name>`: add a prefix for the test suite name
 - `--trace`: provide trace logging
+
+The test-results CLI is open-sourced and available on [semaphoreci/test-results](https://github.com/semaphoreci/test-results). You can access the source code, contribute, and report issues there.
 
 ### Merging test results {#test-result-merge}
 
