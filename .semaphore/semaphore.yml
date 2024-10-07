@@ -41,6 +41,8 @@ blocks:
   - name: Docs build image
     dependencies: [Docs build]
     task:
+      secrets:
+        - name: container-registry-writer
       prologue:
         commands:
           - checkout
