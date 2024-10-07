@@ -9,10 +9,15 @@ blocks:
     task:
       secrets:
         - name: launchpad-robot
+        - name: container-registry-writer
       jobs:
         - name: Deploy
           commands:
             - checkout
+            - make configure.gcloud
+            - make nginx.build
+            - make nginx.test
+            - make nginx.push
             - export COMPONENT_ENV=prod
             - export COMPONENT_MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ')
             - export COMPONENT_NAME=docs-v2
