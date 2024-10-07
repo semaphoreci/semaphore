@@ -1,0 +1,26 @@
+version: v1.0
+name: Production
+agent:
+  machine:
+    type: e2-standard-2
+    os_image: ubuntu2004
+blocks:
+  - name: Deploy to sxmoon
+    task:
+      secrets:
+        - name: launchpad-robot
+      jobs:
+        - name: Deploy
+          commands:
+            - checkout
+            - export COMPONENT_ENV=sxmoon
+            - export COMPONENT_MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ')
+            - export COMPONENT_NAME=docs-v2
+            - 'export COMPONENT_TAG=$(echo -n $SEMAPHORE_GIT_BRANCH | sed s/[^a-z]//g)-$SEMAPHORE_WORKFLOW_ID-sha-$SEMAPHORE_GIT_SHA'
+            - 'echo [$COMPONENT_ENV]: $COMPONENT_NAME:$COMPONENT_TAG $COMPONENT_MESSAGE'
+            - 'export PPL_ID=$(curl -fsS -H "Authorization: Token $LAUNCHPAD_ROBOT_AUTH_TOKEN" -d "project_id=a552245a-9791-438d-9d53-f3b7710276ba&reference=refs/heads/master&pipeline_file=.semaphore/component_init.yml" -X POST  https://semaphore.semaphoreci.com/api/v1alpha/plumber-workflows | jq .pipeline_id | tr -d \");'
+            - echo $PPL_ID
+            - sleep 10s
+            - 'export PROMOTION_MESSAGE=$(curl -fsS -H "Authorization: Token $LAUNCHPAD_ROBOT_AUTH_TOKEN" -d "name=Update&pipeline_id=$PPL_ID&COMPONENT_NAME=$COMPONENT_NAME&COMPONENT_TAG=$COMPONENT_TAG&COMPONENT_MESSAGE=$COMPONENT_MESSAGE&COMPONENT_ENV=$COMPONENT_ENV&override=true" -X POST https://semaphore.semaphoreci.com/api/v1alpha/promotions);'
+            - echo $PROMOTION_MESSAGE
+            - '[[ $PROMOTION_MESSAGE =~ "Promotion successfully triggered." ]] || exit 1'

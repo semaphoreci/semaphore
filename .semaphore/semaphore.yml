@@ -37,3 +37,25 @@ blocks:
         - name: Build
           commands:
             - npm run build
+
+  - name: Docs build image
+    dependencies: [Docs build]
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sem-version node 20.12
+          - cd docs
+          - cache restore
+          - npm install
+      jobs:
+        - name: Build image
+          commands:
+            - make configure.gcloud
+            - make nginx.build
+            - make nginx.test
+            - make nginx.push
+
+promotions:
+  - name: Sxmoon
+    pipeline_file: sxmoon.yml
