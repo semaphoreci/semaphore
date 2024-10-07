@@ -9,9 +9,9 @@ import * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  // disable this setting when the site goes to production to allow Google to index
+  // this setting controls if pages can be indexed by search engines
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
-  noIndex: true,
+  noIndex: false,
   title: 'Semaphore',
   tagline: 'A CI/CD solution to elevate developer workflows',
   favicon: 'img/favicon.ico',
@@ -127,12 +127,12 @@ const config = {
             position: 'left',
             label: 'Reference',
           },
-          {
-            type: 'docSidebar',
-            sidebarId: 'apiSidebar',
-            position: 'left',
-            label: 'API Specification',
-          },
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'apiSidebar',
+          //   position: 'left',
+          //   label: 'API Specification',
+          // },
           {
             href: 'https://github.com/semaphoreci/docs',
             className: 'header-github-link',
@@ -233,13 +233,13 @@ const config = {
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
     }),
-  future: {
-    experimental_router: 'hash', // default to "browser", comment this line to enable search
-    experimental_storage: {
-      type: 'localStorage',
-      namespace: true,
-    },
-  }
+  // future: {
+  //   experimental_router: 'hash', // default to "browser", comment this line to enable search
+  //   experimental_storage: {
+  //     type: 'localStorage',
+  //     namespace: true,
+  //   },
+  // }
 };
 
 export default config;
