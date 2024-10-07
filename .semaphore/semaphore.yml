@@ -61,3 +61,7 @@ blocks:
 promotions:
   - name: Sxmoon
     pipeline_file: sxmoon.yml
+  - name: Production
+    pipeline_file: prod.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"

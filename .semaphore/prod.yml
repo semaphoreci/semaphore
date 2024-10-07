@@ -1,11 +1,11 @@
 version: v1.0
-name: Sxmoon
+name: Production
 agent:
   machine:
     type: e2-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: Deploy to sxmoon
+  - name: Deploy to production
     task:
       secrets:
         - name: launchpad-robot
@@ -13,7 +13,7 @@ blocks:
         - name: Deploy
           commands:
             - checkout
-            - export COMPONENT_ENV=sxmoon
+            - export COMPONENT_ENV=prod
             - export COMPONENT_MESSAGE=$(git log -1 --pretty=%B | tr '\n' ' ')
             - export COMPONENT_NAME=docs-v2
             - 'export COMPONENT_TAG=$(echo -n $SEMAPHORE_GIT_BRANCH | sed s/[^a-z]//g)-$SEMAPHORE_WORKFLOW_ID-sha-$SEMAPHORE_GIT_SHA'
