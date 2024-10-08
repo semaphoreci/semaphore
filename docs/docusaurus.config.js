@@ -65,7 +65,7 @@ const config = {
   ],
 
   plugins: [
-    '@docusaurus/plugin-ideal-image',
+      '@docusaurus/plugin-ideal-image',
     // 'docusaurus-lunr-search', // this works when the hash router is disabled
     [
       'docusaurus-plugin-openapi-docs',
@@ -134,7 +134,7 @@ const config = {
           //   label: 'API Specification',
           // },
           {
-            href: 'https://github.com/semaphoreci/docs',
+            href: 'https://github.com/semaphoreci/semaphore/tree/main/docs',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
             // label: 'GitHub',
