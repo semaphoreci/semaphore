@@ -14,6 +14,10 @@ blocks:
         - name: Deploy
           commands:
             - checkout
+            - sem-version node 20.12
+            - cd docs
+            - cache restore
+            - npm install
             - make configure.gcloud
             - make nginx.build
             - make nginx.test
