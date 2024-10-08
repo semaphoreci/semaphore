@@ -37,3 +37,16 @@ blocks:
         - name: Build
           commands:
             - npm run build
+
+        - name: Build image
+          commands:
+            - make nginx.build
+            - make nginx.test
+
+promotions:
+  - name: Sxmoon
+    pipeline_file: sxmoon.yml
+  - name: Production
+    pipeline_file: prod.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"
