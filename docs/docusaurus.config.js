@@ -27,7 +27,8 @@ const config = {
   },
 
   // Production url of your site here
-  url: 'https://docs.semaphoreci.com',
+  // url: 'https://docs.semaphoreci.com',
+  url: 'https://docs-v2.sxmoon.com/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
