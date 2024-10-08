@@ -4244,9 +4244,10 @@ The Ubuntu 18.04 image has been deprecated.
 :::
 
 ## Week of July 27, 2020
+
 **(Improved) Ubuntu 18.04 image update**  
 
-**(New)** Parallel version [20161222](https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/parallel_20161222-1_all.deb.html) was added to the image.
+**(New)** Parallel version 20161222 was added to the image.
 
 **(Updated)** Language versions:
   
