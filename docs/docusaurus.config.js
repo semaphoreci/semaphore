@@ -18,7 +18,7 @@ const config = {
 
   // extra themes
   themes: [
-    "docusaurus-theme-openapi-docs",
+    'docusaurus-theme-openapi-docs',
     '@docusaurus/theme-mermaid',
   ],
   // mermaid support doesn't work with canary version
@@ -101,7 +101,18 @@ const config = {
       //     async: true,
       //   },
       // ],
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'CWC61UM3R2',
 
+        // Public API key: it is safe to commit it
+        apiKey: '0d549865930d2c9ed8170f2087eb87ab',
+
+        indexName: 'semaphore-docs-sxmoon',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+      },
       navbar: {
         title: 'Semaphore Docs',
         logo: {
@@ -233,7 +244,7 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
-    }),
+    })
   // future: {
   //   experimental_router: 'hash', // default to "browser", comment this line to enable search
   //   experimental_storage: {
