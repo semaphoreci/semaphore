@@ -13,7 +13,7 @@ const config = {
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: false,
   title: 'Semaphore',
-  tagline: 'A CI/CD solution to elevate developer workflows',
+  tagline: 'A CI/CD solution to elevate developer workflows - trailingSlash is false',
   favicon: 'img/favicon.ico',
 
   // extra themes
