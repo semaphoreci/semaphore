@@ -13,7 +13,7 @@ const config = {
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: false,
   title: 'Semaphore',
-  tagline: 'A CI/CD solution to elevate developer workflows - trailingSlash is true',
+  tagline: 'A CI/CD solution to elevate developer workflows',
   favicon: 'img/favicon.ico',
 
   // extra themes
@@ -32,7 +32,8 @@ const config = {
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
-  trailingSlash: true,
+  // when true, the build breaks (default is undefined)
+  // trailingSlash: false,
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',
