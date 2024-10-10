@@ -13,7 +13,7 @@ const config = {
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: false,
   title: 'Semaphore',
-  tagline: 'A CI/CD solution to elevate developer workflows - nginx location /',
+  tagline: 'A CI/CD solution to elevate developer workflows - nginx configured',
   favicon: 'img/favicon.ico',
 
   // extra themes
@@ -95,23 +95,13 @@ const config = {
     ({
       // Social card image
       image: 'img/semaphore-social-card.jpg',
-
-      // FontAwesome imports
-      // scripts: [
-      //   {
-      //     src: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-      //     async: true,
-      //   },
-      // ],
+      // search config - these are tied to the domain
       algolia: {
         // The application ID provided by Algolia
-        appId: 'CWC61UM3R2',
-
+        appId: 'HJWFPD10QI',
         // Public API key: it is safe to commit it
-        apiKey: '0d549865930d2c9ed8170f2087eb87ab',
-
-        indexName: 'semaphore-docs-sxmoon',
-
+        apiKey: '5d6175600a64cf232ea5be2b88cd5cab',
+        indexName: 'v2-sxmoon',
         // Optional: see doc section below
         contextualSearch: true,
       },

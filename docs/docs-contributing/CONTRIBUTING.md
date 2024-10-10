@@ -132,10 +132,13 @@ Make sure your changes follow proper Markdown syntax and there are no broken lin
 Push your changes only when the next two commands pass.
 
 1. Run the linter to validate Markdown syntax
+   
    ```bash
    npm run lint
    ```
+
 2. Build a local bundle to detect broken links
+   
    ```bash
    npm run build
    ```
@@ -155,6 +158,16 @@ To test changes in your local environment:
    ```
 
 3. Open a web browser and navigate to the documentation using the URL `localhost:3000`. Most changes are reflected live without having to restart the server.
+
+4. Once satisfied, try running the docs in a Docker container
+
+   ```bash
+   make image.build
+   make image.run
+   ```
+
+   The site should be accessible on `localhost:3000`
+
 
 ## Step 4: Create a Pull Request
 
