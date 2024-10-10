@@ -170,19 +170,20 @@ const sidebars = {
       ],
     },
   ],
-  apiSidebar: [
-    {
-      type: 'category',
-      label: "API Specification",
-      link: {
-        type: 'generated-index',
-        title: 'Semaphore API',
-        description: 'Semaphore API Specification',
-        keywords: ['api'],
-      },
-      items: require("./docs/openapi-spec/sidebar.ts")
-    }
-  ],
+  // uncomment this when the new API is ready to publish
+  // apiSidebar: [
+  //   {
+  //     type: 'category',
+  //     label: "API Specification",
+  //     link: {
+  //       type: 'generated-index',
+  //       title: 'Semaphore API',
+  //       description: 'Semaphore API Specification',
+  //       keywords: ['api'],
+  //     },
+  //     items: require("./docs/openapi-spec/sidebar.ts")
+  //   }
+  // ],
   refSidebar: [
     {
       type: 'category',

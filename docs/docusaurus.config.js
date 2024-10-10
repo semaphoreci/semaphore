@@ -13,7 +13,7 @@ const config = {
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
   noIndex: false,
   title: 'Semaphore',
-  tagline: 'A CI/CD solution to elevate developer workflows - nginx configured',
+  tagline: 'A CI/CD solution to elevate developer workflows',
   favicon: 'img/favicon.ico',
 
   // extra themes
@@ -21,7 +21,6 @@ const config = {
     'docusaurus-theme-openapi-docs',
     '@docusaurus/theme-mermaid',
   ],
-  // mermaid support doesn't work with canary version
   markdown: {
     mermaid: true,
   },
@@ -69,25 +68,24 @@ const config = {
 
   plugins: [
       '@docusaurus/plugin-ideal-image',
-    // 'docusaurus-lunr-search', // this works when the hash router is disabled
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: "api", // plugin id
-        docsPluginId: "classic", // configured for preset-classic
-        config: {
-          semaphoreAPI: {
-            specPath: "https://docs.semaphoreci.com/v2/api-spec/openapi.yaml",
-            outputDir: "docs/openapi-spec",
-            downloadUrl: "https://docs.semaphoreci.com/v2/api-spec/openapi.json",
-            sidebarOptions: {
-              categoryLinkSource: "tag",
-              groupPathsBy: "tag",
+      [
+        'docusaurus-plugin-openapi-docs',
+        {
+          id: "api", // plugin id
+          docsPluginId: "classic", // configured for preset-classic
+          config: {
+            semaphoreAPI: {
+              specPath: "https://docs.semaphoreci.com/v2/api-spec/openapi.yaml",
+              outputDir: "docs/openapi-spec",
+              downloadUrl: "https://docs.semaphoreci.com/v2/api-spec/openapi.json",
+              sidebarOptions: {
+                categoryLinkSource: "tag",
+                groupPathsBy: "tag",
+              },
             },
-          },
-        }
-      },
-    ]
+          }
+        },
+      ]
   ],
 
   themeConfig:
@@ -131,6 +129,7 @@ const config = {
             position: 'left',
             label: 'Reference',
           },
+          // uncomment this when the new API is released
           // {
           //   type: 'docSidebar',
           //   sidebarId: 'apiSidebar',
