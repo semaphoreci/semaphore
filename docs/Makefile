@@ -1,4 +1,4 @@
-.PHONY: build dev test
+.PHONY: build dev test image.build image.run
 
 BRANCH=$(shell echo "$(SEMAPHORE_GIT_BRANCH)" | sed 's/[^a-z]//g')
 IMAGE="us.gcr.io/semaphore2-prod/docs-v2"
@@ -8,10 +8,18 @@ dev:
 	npm start
 
 test:
-	npm test
+	npm run lint
 
 build:
 	npm run build
+
+image.build:
+	# npm run clear
+	# npm run build
+	docker build -t semaphore-docs:latest . -f Dockerfile
+
+image.run:
+	docker run -it -p 3000:80 semaphore-docs:latest
 
 configure.gcloud:
 	gcloud auth activate-service-account $(GCP_REGISTRY_WRITER_EMAIL) --key-file ~/gce-registry-writer-key.json

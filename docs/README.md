@@ -13,11 +13,12 @@ To learn how to contribute to the Semaphore docs site, please refer to the follo
 - [Style Guide](./docs-contributing/STYLE_GUIDE.md): Guidelines for maintaining consistency in the Semaphore documentation.
 - [UI Reference](./docs-contributing/UI-REFERENCE.md): A reference for UI components available to documentation authors.
 
-
 ## Top Contributors
+
 Contributors list is WIP
 
 ## Ongoing work
+
 👉 [Help Wanted Board](https://github.com/orgs/semaphoreci/projects/2/views/7) 👈
 
 ## SIG meetings

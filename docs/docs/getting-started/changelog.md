@@ -71,7 +71,7 @@ Thank you for using Semaphore!  We continuously deploy changes that improve our 
 - Virtualenv 20.25.0 -> 20.26.3
 - Yarn 1.22.19 -> 1.22.22
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -122,7 +122,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Virtualenv 20.25.0 -> 20.26.3
 - Yarn 1.22.19 -> 1.22.22
 
-To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 ## Week of August 12, 2024
 
@@ -172,7 +172,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 
 - Ruby 3.1.6, 3.3.2
 
-To learn more about these images check our [Ubuntu 20.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/), [Ubuntu 22.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/) and [Ubuntu 22.04 ARM](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
 
 ## Week of May 27, 2024
 
@@ -195,7 +195,7 @@ To learn more about these images check our [Ubuntu 20.04](https://docs.semaphore
 - PHP 8.1.28, 8.2.17, 8.2.18, 8.2.19, 8.3.4, 8.3.6, 8.3.7
 - Ruby 3.0.7, 3.1.5, 3.2.4, 3.3.1
 
-To learn more about these images check our [Ubuntu 20.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/), [Ubuntu 22.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/) and [Ubuntu 22.04 ARM](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
 
 ## Week of March 11, 2024
 
@@ -209,14 +209,14 @@ To learn more about these images check our [Ubuntu 20.04](https://docs.semaphore
 - Elixir 1.16.2
 - PHP 8.2.16, 8.3.3
 
-To learn more about these images check our [Ubuntu 20.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/), [Ubuntu 22.04](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/) and [Ubuntu 22.04 ARM](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
 
 **(Improved) Toolbox**
 **(Updated)** Sem-service addons:
 
 - Redis 7.2.4
 
-You can find out more about Semaphore toolbox by checking the [Toolbox Reference](https://docs.semaphoreci.com/reference/toolbox-reference/#toolbox-reference) documentation.
+You can find out more about Semaphore toolbox by checking the [Toolbox Reference](../reference/toolbox) documentation.
 
 ## Week of February 5, 2024
 
@@ -247,7 +247,7 @@ You can find out more about Semaphore toolbox by checking the [Toolbox Reference
 - Sbt 1.9.7 -> 1.9.8
 - Terraform 1.7.0 -> 1.7.2
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -275,7 +275,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Sbt 1.9.7 -> 1.9.8
 - Terraform 1.7.0 -> 1.7.2
 
-To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 ### January 23, 2024
 
@@ -293,7 +293,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 
 **(Improved) Ubuntu 20.04 image update**
 
-- We disabled all custom added APT repositories, more info [here](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/#disabled-repositories).
+- We disabled all custom added APT repositories, more info [here](../reference/os-ubuntu#disabled-repos).
 
 **(New)** Packages:
 
@@ -326,11 +326,11 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 - Pypy3 7.3.13 -> 7.3.15
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 22.04 image update**
 
-- We disabled all custom added APT repositories, more info [here](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/#disabled-repositories).
+- We disabled all custom added APT repositories, more info [here](../reference/os-ubuntu#disabled-repos).
 
 **(New)** Packages:
 
@@ -364,11 +364,11 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Rust 1.74.1 -> 1.75.0
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
-- We disabled all custom added APT repositories, more info [here](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/#disabled-repositories).
+- We disabled all custom added APT repositories, more info [here](../reference/os-ubuntu#disabled-repos).
 
 **(New)** Packages:
 
@@ -403,7 +403,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 - Rust 1.74.1 -> 1.75.0
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
 
 ## Week of December 18, 2023
 
@@ -448,7 +448,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.s
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -495,7 +495,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
@@ -538,7 +538,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
 
 ## Week of October 09, 2023
 
@@ -588,7 +588,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.s
 - Terraform 1.5.2 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -635,7 +635,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Terraform 1.5.2 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
@@ -684,7 +684,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semap
 - Terraform 1.4.6 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-arm-image/)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
 
 ## Week of September 11, 2023
 
@@ -745,7 +745,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](https://docs.s
 - Terraform 1.3.7 -> 1.5.2
 - Virtualenv 20.17.1 -> 20.23.0
 
-To learn more about this image, check our [ubuntu 22.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-22.04-image/).
+To learn more about this image, check our [ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
 
 **(Improved) Ubuntu 20.04 image update**
 
@@ -791,7 +791,7 @@ To learn more about this image, check our [ubuntu 22.04 page](https://docs.semap
 - Sbt 1.8.3 -> 1.9.1
 - Terraform 1.4.6 -> 1.5.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -804,7 +804,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Gcloud 432.0.0 -> 425.0.0
 - Gke-gcloud-auth-plugin 432.0.0 -> 425.0.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 10, 2023
 
@@ -871,7 +875,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Sbt 1.8.2 -> 1.8.3
 - Terraform 1.4.4 -> 1.4.6
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -917,7 +921,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Sbt 1.8.2 -> 1.8.3
 - Terraform 1.4.4 -> 1.4.6
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of April 10, 2023
 
@@ -961,7 +969,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Python 3.10.10. -> 3.10.11
 - Python 3.11.2 -> 3.11.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -991,7 +999,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Kubectl 1.26.2 -> 1.26.3
 - Terraform 1.4.2 -> 1.4.4
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of March 20, 2023
 
@@ -1025,7 +1037,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Terraform 1.3.9 -> 1.4.2
 - Nodejs 18.14.2 -> 18.15.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1057,7 +1069,12 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Java OpenJDK 17.0.5 -> 17.0.6
 - Terraform 1.3.9 -> 1.4.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 27, 2023
 
@@ -1093,7 +1110,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Nodejs 18.13.0 -> 18.14.2
 - Npm 8.19.3 -> 9.5.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1125,7 +1142,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Pip 23.0 -> 23.0.1
 - Terraform 1.3.7 -> 1.3.9
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 06, 2023
 
@@ -1156,7 +1177,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Kubectl 1.26.0 -> 1.26.1
 - Pip 22.3.1 -> 23.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1185,7 +1206,12 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Kubectl 1.26.0 -> 1.26.1
 - Pip 22.3.1 -> 23.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of January 30, 2023
 
@@ -1233,7 +1259,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Nodejs 18.12.1 -> 18.13.0
 - Npm 8.19.2 -> 8.19.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1263,7 +1289,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Sbt 1.8.0 -> 1.8.2
 - Terraform 1.3.6 -> 1.3.7
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of December 26, 2022
 
@@ -1290,7 +1320,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - lein 2.9.10 -> 2.10.0
 - kubectl 1.25.4 -> 1.26.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1319,7 +1349,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 
 - Default `gcc` and `g++` changed from version `4.8.5` to `8.4.0`
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of December 12, 2022
 
@@ -1354,7 +1388,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Bundler 2.3.11 -> 2.3.26
 - Nodejs 18.12.0 -> 18.12.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1387,7 +1421,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Gem 3.3.11 -> 3.3.26
 - Bundler 2.3.11 -> 2.3.26
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 21, 2022
 
@@ -1416,7 +1454,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Terraform 1.3.3 -> 1.3.4
 - Heroku 7.65.0 -> 7.66.4
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1444,16 +1482,24 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Terraform 1.3.3 -> 1.3.4
 - Heroku 7.65.0 -> 7.66.4
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 14, 2022
 
-IMPORTANT: (Deprecated) MacOS Xcode 12
 
-The macOS Xcode 12 image will be removed at the end of November.
-We advise all users to switch to the macOS Xcode 13 image.
+:::info
 
-**(Improved) macos-xcode14 image released **
+macOS Xcode 12 is deprecated.
+
+:::
+
+The macOS Xcode 12 image will be removed at the end of November. We advise all users to switch to the macOS Xcode 13 image.
+
+**(Improved) macos-xcode14 image released**
 
 - Xcode 14.1 Beta (14B5024h) -> 14.1 Final (14B47b)
 
@@ -1461,7 +1507,7 @@ We advise all users to switch to the macOS Xcode 13 image.
 
 **(Improved) Ubuntu 20.04 image update**
 
-- [Disabled repositories](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/#disabled-repositories)
+- [Disabled repositories](../reference/os-ubuntu#disabled-repos)
 
 **(New)** Packages:
 
@@ -1494,11 +1540,15 @@ We advise all users to switch to the macOS Xcode 13 image.
 - Terraform 1.3.1 -> 1.3.3
 - Pip 22.2.2 -> 22.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
-- [Disabled repositories](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/#disabled-repositories)
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(New)** Packages:
 
@@ -1529,7 +1579,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Terraform 1.3.1 -> 1.3.3
 - Pip 22.2.2 -> 22.3 
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 10, 2022
 
@@ -1563,7 +1617,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Sbt 1.7.1 -> 1.7.2
 - Terraform 1.2.9 -> 1.3.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1595,7 +1649,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Sbt 1.7.1 -> 1.7.2
 - Terraform 1.2.9 -> 1.3.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 03, 2022
 
@@ -1621,7 +1679,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - tvOS SDK: 16.0
 - watchOS SDK: 9.0
 
-To learn more about this image, check our [macOS Xcode 14 page](https://docs.semaphoreci.com/ci-cd-environment/macos-xcode-14-image/).
+:::info
+
+The macOS Xcode 14 image is deprecated.
+
+:::
 
 ## Week of September 19, 2022
 
@@ -1639,7 +1701,7 @@ To learn more about this image, check our [macOS Xcode 14 page](https://docs.sem
 - Heroku 7.63.0 -> 7.63.4
 - Terraform 1.2.8 -> 1.2.9
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1655,7 +1717,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Heroku 7.63.0 -> 7.63.4
 - Terraform 1.2.8 -> 1.2.9
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of September 05, 2022
 
@@ -1711,7 +1777,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Firefox 78.1.0esr: `78`, `default`, `esr`
 - Firefox 102.2.0esr: `102`, `esr-new`, `esr-latest`
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1752,7 +1818,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Firefox 78.1.0esr: `78`, `default`, `esr`
 - Firefox 102.2.0esr: `102`, `esr-new`, `esr-latest`
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of August 08, 2022
 
@@ -1780,7 +1850,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Leiningen 2.9.1 -> 2.9.8
 - Terraform 1.2.5 -> 1.2.6
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1806,7 +1876,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Leiningen 2.9.1 -> 2.9.8
 - Terraform 1.2.5 -> 1.2.6
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 25, 2022
 
@@ -1835,7 +1909,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Sbt 1.6.2 -> 1.7.1
 - Terraform 1.2.4 -> 1.2.5
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1862,7 +1936,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Sbt 1.6.2 -> 1.7.1
 - Terraform 1.2.4 -> 1.2.5
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 11, 2022
 
@@ -1884,7 +1962,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Pip 22.1.1 -> 22.1.2
 - Terraform 1.2.3 -> 1.2.4
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1904,7 +1982,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Pip 22.1.1 -> 22.1.2
 - Terraform 1.2.3 -> 1.2.4
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of Jun 27, 2022
 
@@ -1928,7 +2010,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Httpie 0.9.8 -> 1.0.3
 - Terraform 1.2.2 -> 1.2.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1950,7 +2032,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Httpie 0.9.8 -> 1.0.3
 - Terraform 1.2.2 -> 1.2.3
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of Jun 13, 2022
 
@@ -1999,7 +2085,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Npm 8.5.5 -> 8.11.0
 - Terraform 1.2.1 -> 1.2.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2023,7 +2109,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Npm 8.5.5 -> 8.11.0
 - Terraform 1.2.1 -> 1.2.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of May 30, 2022
 
@@ -2054,7 +2144,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Pip 22.1 -> 22.1.1
 - Terraform 1.1.9 - > 1.2.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2076,7 +2166,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Pip 22.1 -> 22.1.1
 - Terraform 1.1.9 - > 1.2.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ### May 20, 2022
 
@@ -2091,7 +2185,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Aws-cli 2.6.4 -> 2.7.1
 - Yarn 1.22.18 -> 1.22.19
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of May 16, 2022
 
@@ -2141,7 +2239,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Scala 2.12.10 -> 2.12.15
 - Sbt 1.5.5 -> 1.6.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2171,7 +2269,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 
 - Scala 2.11.11
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of May 02, 2022
 
@@ -2196,7 +2298,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Heroku 7.60.1 -> 7.60.2
 - Terraform 1.1.8 -> 1.1.9
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2219,7 +2321,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Heroku 7.60.1 -> 7.60.2
 - Terraform 1.1.8 -> 1.1.9
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of April 18, 2022
 
@@ -2250,7 +2356,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Bundler 2.2.32 -> 2.3.11
 - Terraform 1.1.7 -> 1.1.8
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2279,7 +2385,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Bundler 2.2.32 -> 2.3.11
 - Terraform 1.1.7 -> 1.1.8
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of April 04, 2022
 
@@ -2322,7 +2432,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Github-cli 2.6.0 -> 2.7.0
 - Heroku 7.59.4 -> 7.60.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2346,7 +2456,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Github-cli 2.6.0 -> 2.7.0
 - Heroku 7.59.4 -> 7.60.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of March 21, 2022
 
@@ -2373,7 +2487,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Yarn 1.22.17 -> 1.22.18
 - Pip 22.0.3 -> 22.0.4
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2398,7 +2512,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Yarn 1.22.17 -> 1.22.18
 - Pip 22.0.3 -> 22.0.4
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of March 07, 2022
 
@@ -2406,8 +2524,8 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 The `--expire-in` flag in the Artifact CLI is deprecated in favor of the newly introduced Artifact Retention Policies.
 
 **(New) Artifact Retention Policy**
-From now on you can configure [retention policies for artifacts](/essentials/artifacts/#artifact-retention-policies)
-in your project. To set them up, go to Project Settings -> Artifacts.
+
+From now on you can configure [retention policies for artifacts](../using-semaphore/artifacts#retention) in your project. To set them up, go to Project Settings -> Artifacts.
 
 **(Improved) Ubuntu 20.04 image update**
 
@@ -2422,7 +2540,7 @@ in your project. To set them up, go to Project Settings -> Artifacts.
 - Google Chrome 98 -> 99
 - ChromeDriver 98 -> 99
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2437,7 +2555,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Google Chrome 98 -> 99
 - ChromeDriver 98 -> 99
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 21, 2022
 
@@ -2464,7 +2586,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Pypy 7.3.6 -> 7.3.8
 - Pypy3 7.3.7 > 7.3.8
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2489,7 +2611,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Pypy 7.3.6 -> 7.3.8
 - Pypy3 7.3.7 > 7.3.8
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 07, 2022
 
@@ -2510,7 +2636,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
   - 23.3.4.10 -> 23.3.4.11 
   - 24.2 -> 24.2.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2530,7 +2656,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
   - 23.3.4.10 -> 23.3.4.11
   - 24.2 -> 24.2.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/)
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of January 24, 2022
 
@@ -2549,7 +2679,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Pip 20.3.4 - > 21.3.1
 - Terraform 1.0.6 -> 1.1.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2566,7 +2696,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Pip 20.3.4 - > 21.3.1
 - Terraform 0.15.0 -> 1.1.3
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/)
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of January 10, 2022
 
@@ -2580,7 +2714,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - ChromeDriver 96 -> 97
 - NodeJS 16.13.1 -> 16.13.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2591,7 +2725,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - ChromeDriver 96 -> 97
 - NodeJS 16.13.1 -> 16.13.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/)
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of December 27, 2021
 
@@ -2618,7 +2756,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
   - 22.3.4.23-> 22.3.4.24
   - 23.3.4.9 -> 23.3.4.10
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2643,7 +2781,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
   - 22.3.4.23-> 22.3.4.24
   - 23.3.4.9 -> 23.3.4.10
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/)
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of December 20, 2021
 
@@ -2680,7 +2822,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Npm 8.1.0 -> 8.1.2
 - Phpbrew 1.25.3 -> 1.27.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2699,7 +2841,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Nodejs 16.13.0 -> 16.13.1
 - Npm 8.1.0 -> 8.1.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 29, 2021
 
@@ -2724,7 +2870,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Lftp 4.8.2 -> 4.9.2
 - Podman 3.3.1 -> 3.4.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2744,7 +2890,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Gem 3.2.23 -> 3.2.32
 - Bundler 2.2.23 -> 2.2.32
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 15, 2021
 
@@ -2766,7 +2916,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 
 Default Elixir version changed from 1.11.4 to 1.12.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2780,7 +2930,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
   - 23.3.4.8 -> 23.3.4.9 
   - 24.1.3 -> 24.1.5 (default)
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 01, 2021
 
@@ -2810,7 +2964,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Heroku 7.59.0 -> 7.59.1
 - Java OpenJDK 13.0.1 -> 17.0.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2832,7 +2986,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Heroku 7.59.0 -> 7.59.1
 - Java OpenJDK 16.0.1 -> 17.0.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 25, 2021
 
@@ -2864,7 +3022,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - NodeJS 14.18.0 -> 14.18.1
 - Pip 21.2.4 -> 21.3
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2877,7 +3035,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Npm 7.24.2 -> 8.1.0
 - Lftp 4.8.1 -> 4.9.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 4, 2021
 
@@ -2901,7 +3063,12 @@ To learn more about this image, check our macOS Xcode 12 page.
 **(Improved) macOS Xcode 13 image**
 
 A new agent-type has been released for the macOS platform with Xcode 13 pre-installed.
-To learn more about this, check our [macOS Xcode 13 page](https://docs.semaphoreci.com/ci-cd-environment/macos-xcode-13-image/).
+
+:::info
+
+The macOS Xcode 13 image is deprecated.
+
+:::
 
 **(Improved) Ubuntu 20.04 image update**
 
@@ -2921,7 +3088,7 @@ To learn more about this, check our [macOS Xcode 13 page](https://docs.semaphore
 - Git-lfs 2.13.3 -> 3.0.1
 - Kerl 2.1.0 -> 2.1.2
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2938,7 +3105,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Google Chrome 93 -> 94
 - ChromeDriver 93 -> 94
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of September 27, 2021
 
@@ -2978,7 +3149,7 @@ To learn more about this image, check our macOS Xcode 12 page.
 - Bundler 1.17.2 -> 2.2.23
 - Podman 3.2.3 -> 3.3.1
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2992,7 +3163,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Helm 3.6.3 -> 3.7.0
 - Npm 7.22.0 -> 7.24.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of September 6, 2021
 
@@ -3017,7 +3192,7 @@ We advise all users to switch to the macOS Xcode 12 image.
 - Pip 21.2.1 -> 21.2.4
 - Terraform 0.15.5 -> 1.0.6
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/)
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3035,7 +3210,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Heroku 7.57.0 -> 7.59.0
 - Kernel 4 -> 5
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of August 23, 2021
 
@@ -3054,7 +3233,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Git 2.32 -> 2.33
 - Bazel 4.1.0 - > 4.2.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of August 9, 2021
 
@@ -3086,7 +3269,11 @@ To learn more about this image, check our macOS Xcode 12 page.
 - NodeJS 14.17.3 -> 14.17.4
 - Npm 7.20.1 -> 7.20.5
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 26, 2021
 
@@ -3097,7 +3284,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Fixed ligatures that are displayed in test output.
 - More generic test result sample files.
 
-To learn how to set up a Test Summary check [our docummentation](https://docs.semaphoreci.com/essentials/test-summary/).
+To learn how to set up a Test Summary check [our docummentation](../using-semaphore/tests/test-reports).
 
 **(Improved) Ubuntu 20.04 image update**
 
@@ -3115,7 +3302,7 @@ To learn how to set up a Test Summary check [our docummentation](https://docs.se
 - Sbt 1.3.10 -> 1.5.5
 - Terraform 0.15.0 -> 0.15.5
 
-To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/)
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3134,7 +3321,11 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 - Google Chrome 91 -> 92
 - ChromeDriver 91 -> 92
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 12, 2021
 
@@ -3155,7 +3346,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Npm 7.18.1 -> 7.19.1
 - Heroku 7.54.1 -> 7.56.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 05, 2021
 
@@ -3169,7 +3364,7 @@ Take the advantage of this new feature now to:
 - Sort and filter the output of your tests however you see fit.
 - Search through big test suits to find what you're looking for.
 
-To learn more about how to configure the Test Summary feature, check our [docummentation](https://docs.semaphoreci.com/essentials/test-summary/).
+To learn more about how to configure the Test Summary feature, check our [docummentation](../using-semaphore/tests/test-reports).
 
 **(New) Parameterized promotions (beta)**  
 With parameterized promotions, you can re-use a single promotion pipeline and use environment variables to achieve different results based on the variable values. 
@@ -3195,9 +3390,14 @@ This feature is in **private beta**. If you would like to try it out, please [re
 - Node.js 14.16.1 -> 14.17.1
 - Npm 6.14.12 -> 7.18.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of Jun 14, 2021
+
 **(New) Offboarding page**  
 You can now access the new offboarding page that will appear when trying to remove a project's owner.  
 On this page you can:  
@@ -3222,7 +3422,7 @@ On this page you can:
 - Heroku 7.54.0 -> 7.54.1
 - Skopeo 1.2.3 -> 1.3.0
 
-To learn more about this image, check our [ubuntu 20.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/)
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
 
 **(Improved) Ubuntu 18.04 image update**  
 
@@ -3237,7 +3437,11 @@ To learn more about this image, check our [ubuntu 20.04 page](https://docs.semap
 - Git 2.31 -> 2.32
 - Heroku 7.54.0 -> 7.54.1
 
-To learn more about this image, check our [ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of June 7, 2021
 **(Improved) Ubuntu 18.04 image update**  
@@ -3257,7 +3461,7 @@ Semaphore [GitHub App](https://docs.semaphoreci.com/account-management/connectin
 
 Users can now connect Semaphore through the GitHub App instead of via personal access token, and choose which repositories they want to grant access to. 
 
-Find out more about the difference(s) between GitHub App and personal access token in our [documentation](https://docs.semaphoreci.com/account-management/connecting-github-and-semaphore/#oauth-app-vs-github-app).
+Find out more about the difference(s) between GitHub App and personal access token in our [documentation](../using-semaphore/connect-github).
 
 **(New) Change project owner**  
 Users can now change project owner in the UI, making user offboarding easier.  
@@ -3276,9 +3480,9 @@ Some of the improvements compared to the Ubuntu 18.04 image include:
 - **Expanded software stack** - 20.04 software stack will continue expanding with new packages, while new ones will not be added for 18.04.
 - **Containers** - The newest utilities can be installed (e.g. podman, skopeo, buildah).
 
-To find out more about the differences between the Ubuntu 18.04 and Ubuntu 20.04 images, check out our [migration guide](https://docs.semaphoreci.com/ci-cd-environment/agent-migration-to-ubuntu2004/).
+To find out more about the differences between the Ubuntu 18.04 and Ubuntu 20.04 images, check out our [Ubuntu page](../reference/os-ubuntu).
 
-You can read more about the image itself on the [Ubuntu 20.04 image page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-20.04-image/).
+You can read more about the image itself on the [Ubuntu 20.04 image page](../reference/os-ubuntu#ubuntu2004).
 
 **(Improved) Ubuntu 18.04 image update**  
 
@@ -3293,7 +3497,11 @@ You can read more about the image itself on the [Ubuntu 20.04 image page](https:
 - Pypy 7.3.4 -> 7.3.5
 - Pypy3 7.3.4 -> 7.3.5
 
-To learn more about this image, check our [ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of May 24, 2021
 **(Improved) Ubuntu 18.04 image update**  
@@ -3308,7 +3516,11 @@ To learn more about this image, check our [ubuntu 18.04 page](https://docs.semap
 - Bazel 4.0.0 -> 4.1.0
 - Heroku 7.53.1 -> 7.54.0
 
-To learn more about this image, check our [ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of May 17, 2021
 **(Improved) Ubuntu 18.04 image update**  
@@ -3321,7 +3533,11 @@ To learn more about this image, check our [ubuntu 18.04 page](https://docs.semap
 
 - Aws-cli 1.19.69 -> 1.19.74
 
-To learn more about this image, check our [ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(Updated) Toolbox**
 
@@ -3350,7 +3566,11 @@ To learn more about this image, check our [ubuntu 18.04 page](https://docs.semap
 - Java 8u282 -> 8u292
 - Java 11u10 -> 11u11
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(Improved) macOS Xcode 12 image update**  
 **(Updated)** MacOS Catalina upgraded to **Big Sur**
@@ -3377,6 +3597,7 @@ To learn more about this image, check our macOS Xcode 12 page.
 To learn more about this image, check our macOS Xcode 12 page.
 
 ## Week of April 19, 2021
+
 **(Improved) Ubuntu 18.04 image update**  
 **(New)**  Tools:
 
@@ -3393,16 +3614,25 @@ To learn more about this image, check our macOS Xcode 12 page.
 - Pypy 7.3.3 -> 7.3.4
 - Pypy3 7.3.3 -> 7.3.4
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 
 ## Week of April 12, 2021
+
 **(Improved) Ubuntu 18.04 image update**  
 **(New)**  New language version:
 
 - Ruby 2.5.9, 2.6.7, 2.7.3, 3.0.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(Improved) macOS Xcode 12 image update**  
 **(Updated)** Updated packages:
@@ -3413,11 +3643,14 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 To learn more about this image, check our macOS Xcode 12 page.
 
 **(Updated)** Docker image:  
-New convenience Docker images are available in the [Semaphore Container Registry](https://docs.semaphoreci.com/ci-cd-environment/semaphore-registry-images/).
+
+New convenience Docker images are available in the [Semaphore Container Registry](../using-semaphore/optimization/container-registry).
+
 A detailed list can be found in the [Docker images changelog](https://github.com/semaphoreci/docker-images/blob/master/CHANGELOG_04-2021).
 
 
 ## Week of April 5, 2021
+
 **(Improved) Monorepo support shipped to GA**  
 A new set of improvements focused on monorepo support were shipped:  
 
@@ -3433,11 +3666,12 @@ You can read more about this feature in this [blog post](https://semaphoreci.com
 Additional related reading:
 
 - [Example project](https://github.com/semaphoreci-demos/semaphore-demo-monorepo/)
-- [Monorepo docs](https://docs.semaphoreci.com/essentials/building-monorepo-projects/)
-- [change_in docs](https://docs.semaphoreci.com/reference/conditions-reference/#change_in)
+- [Monorepo docs](../using-semaphore/monorepo)
+- [change_in docs](../reference/conditions-dsl#change-in)
 
 
 ## Week of March 29, 2021
+
 **(Improved) Ubuntu 18.04 image update**  
 **(New)**  New language version:
 
@@ -3452,7 +3686,11 @@ Additional related reading:
 - Grunt 1.3.2 -> 1.4.1
 - Heroku  -> 7.51.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(Improved) Toolbox**  
 **(Updated)** Sem-service addons:  
@@ -3468,7 +3706,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 
 - PHP versions 7.3.x , 7.4.x, 8.0.x had their composer updated to version 2 (composer.json files might need to be updated also)
 
-You can find out more about Semaphore toolbox by checking the [Toolbox Reference](https://docs.semaphoreci.com/reference/toolbox-reference/#toolbox-reference) documentation.
+You can find out more about Semaphore toolbox by checking the [Toolbox Reference](../reference/toolbox).
 
 ## Week of March 22, 2021
 **(Improved) New UI updates**  
@@ -3493,7 +3731,11 @@ If you have any suggestions for further improvements to our UI, we encourage you
 - Google Chrome 88 -> 89
 - Heroku 7.49.1 -> 7.50.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of March 01, 2021
 **(Improved) Ubuntu 18.04 image update** 
@@ -3507,7 +3749,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Java 8u275 -> 8u282
 - Java 11.0.9 -> 11.0.10
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 22, 2021
 **(Improved) Artifacts CLI fixes and improvements:**
@@ -3518,7 +3764,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - If the `SEMAPHORE_WORKFLOW_ID` variable is not set, `artifact push workflow` will now fail.
 - Added a new alias for `artifact yank`; from now on artifacts can also be deleted by running `artifact delete`.
 
-Check our [Artifact CLI](https://docs.semaphoreci.com/reference/artifact-cli-reference/) documentation to learn more about artifacts.
+Check our [Artifact CLI](../reference/toolbox#artifact) documentation to learn more about artifacts.
 
 ## Week of February 15, 2021
 **(Improved) Ubuntu 18.04 image update**  
@@ -3537,7 +3783,11 @@ Check our [Artifact CLI](https://docs.semaphoreci.com/reference/artifact-cli-ref
 - Docker-compose 1.27.4 -> 1.28.2
 - Heroku 7.47.7 -> 7.47.12
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of February 1, 2021
 **(Improved) macOS Xcode 12 image update**  
@@ -3550,7 +3800,7 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 To learn more about this image, check our macOS Xcode 12 page.
 
 **(Updated)** Docker image:
-New convenience Docker images are available in the [Semaphore Container Registry](https://docs.semaphoreci.com/ci-cd-environment/semaphore-registry-images/).
+New convenience Docker images are available in the [Semaphore Container Registry](../using-semaphore/optimization/container-registry).
 A detailed list can be found in the [Docker images changelog](https://github.com/semaphoreci/docker-images/blob/master/CHANGELOG_02-2021#L237).
 
 **Minor improvements and fixes:**
@@ -3577,7 +3827,11 @@ Docker was reverted to the previous version due to degradation in performance an
 - PHP 7.4.13 -> 7.4.14
 - PHP 8.0.0 -> 8.0.1
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **Minor improvements and fixes:**
 
@@ -3608,7 +3862,11 @@ To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semap
 - Pip 20.2 -> 20.3.3
 
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 
 ## Week of December 21, 2020  
@@ -3635,7 +3893,11 @@ Note that the default Xcode version was changed to 12.3 for the macOS Xcode 12 i
 - PHP 7.3.25
 - PHP 7.4.13
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of December 7, 2020
 
@@ -3666,13 +3928,17 @@ To learn more about our image macOS images, check our macOS Xcode 12 and macOS X
 - Java 8u272 -> 8u275
 - PHP 7.4.11 -> 7.4.12
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of November 16, 2020
 **(New) Added ability to overwrite branch whitelist rules**  
 On the project page, click on the three dot icon in the top right corner of the workflow list to build a branch that is otherwise blocked by the whitelist rule. 
  
-Read our [Workflow triggers](https://docs.semaphoreci.com/essentials/project-workflow-trigger-options/#whitelist-branches) documentation to find out how the branch whitelist works.
+Read our [Workflow triggers](../using-semaphore/workflows#workflow-triggers) documentation to find out how the branch whitelist works.
  
 **(Improved) macOS Xcode 11 image update**  
 **(Updated)** Updated packages:  
@@ -3720,7 +3986,7 @@ We appreciate your feedback and encourage you to send any suggestions to [our fe
 **(New) Semaphore Container Registry**  
 For your convenience, we have introduced the Semaphore Container Registry. Inside the Semaphore environment, you can pull these Docker images without any restrictions or limitations.
 
-You can find the list of supported images in [our documentation](/ci-cd-environment/semaphore-registry-images/).
+You can find the list of supported images in [our documentation](../using-semaphore/optimization/container-registry).
 
 **(Improved) macOS Xcode 12 image update**  
 **(Updated)** Xcode 12.1 installed. To switch version simply use `xcversion select 12.1`  
@@ -3743,7 +4009,11 @@ To learn more about this image, check our macOS Xcode 12 page.
 - Openjdk 11.0.8 -> 11.0.9
 - PHP 7.3.23 -> 7.3.24
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 19, 2020
 **(Updated) New UI - Everyone's latest work page**  
@@ -3761,7 +4031,11 @@ If a user doesn't have access to a project, or the project was deleted, that pro
 - Go 1.15.2 ->1.15.3
 - Heroku 7.44.0 -> 7.46.0
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of October 12, 2020
 
@@ -3793,7 +4067,11 @@ To learn more about this image, check our macOS Xcode 12 page.
 - PHP 7.4.10 -> 7.4.11
 - Pypy 7.3.1 -> 7.3.2
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).  
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 **(New) New os_image - macOS Xcode 12**  
 New MacOS image is now available - `macos-xcode12`.  
@@ -3807,14 +4085,13 @@ Semaphore provides several different example projects that showcase the basic fe
 You can now easily fork these repositories in-app and run the example workflows provided.  
 You can access this feature by clicking on the _New project_ button in the top right corner.  
 
-Find more tutorials and examples [in our documentation](https://docs.semaphoreci.com/examples/tutorials-and-example-projects/).
-
 **(Improved) New UI fixes and upgrades**  
 **(Fixed)** - Fixed the issue causing some branches to be missing from search in various locations.  
 **(Stability)** - Reduced the number of errors and improved the stability of key pages in the new UI.  
 **(Stability)** - Load times have been improved on several key pages in the new UI.  
 
 ## Week of September 21, 2020
+
 **(New) Ubuntu 18.04 image additions** 
 
 - Added the ability to change `kubectl` version with the sem-version tool: `sem-version kubectl [version]`
@@ -3830,9 +4107,14 @@ Find more tutorials and examples [in our documentation](https://docs.semaphoreci
 - PHP 7.3.21 -> 7.3.22
 - PHP 7.4.9 -> 7.4.10
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of September 7, 2020  
+
 **(Improved) New UI improvements and fixes**  
 **(New)** Timestamps - in job logs you can now enable timestamps for command output lines.  
 **(Improved)** On the workflow page, it is now clearly specified if the pipeline was stopped by branch deletion.  
@@ -3867,7 +4149,11 @@ To learn more about this image, check our macOS Xcode 11 page.
 - Heroku 7.42.8 -> 7.42.13
 - Yarn 1.22.4 -> 1.22.5
 
-To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of August 31, 2020
 **(Improved) New Semaphore UI public beta release**  
@@ -3893,7 +4179,7 @@ To learn more about this image, check our macOS Xcode 11 page.
 **(New) Information on promoter is stored in related enviroment variable**  
 Inside a Semaphore job you can now see who initiated a promotion by checking the value of the `SEMAPHORE_PIPELINE_PROMOTED_BY` environment variable.
 
-Information on all available enviroment variables can be found in our [documentation](https://docs.semaphoreci.com/ci-cd-environment/environment-variables/#semaphore_pipeline_promoted_by).
+Information on all available enviroment variables can be found in our [documentation](../reference/env-vars).
   
 **(Improved) Ubuntu 18.04 image update**  
 **(Updated)** Language versions:
@@ -3906,7 +4192,11 @@ Information on all available enviroment variables can be found in our [documenta
   - PHP 7.4.8 -> 7.4.9
   - Pypy 5.8.0 -> 7.3.1
   
- To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).  
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
   
 **(Improved) macOS Xcode11 image update**  
 **(Updated)** Updated packages:  
@@ -3934,7 +4224,7 @@ Pipelines can be configured to run sequentially or in parallel, based on various
 
 For example, you can now configure a pipeline to run in parallel on the same branch or create a single queue across the whole organization for all pipelines that deploy to production.  
 
-To learn how to use this feature, check the [pipeline queues](https://docs.semaphoreci.com/essentials/pipeline-queues/) documentation.
+To learn how to use this feature, check the [pipeline queues](../using-semaphore/pipelines#pipeline-queues) documentation.
 
 **(Improved) Ubuntu 18.04 image update**  
 
@@ -3947,12 +4237,17 @@ Added ability to change firefox version with the `sem-version` tool: `sem-versio
   - Heroku 7.42.5 -> 7.42.6
   - Google-cloud-sdk downgraded 300 -> 297
   
-  To learn more about this image, check our [Ubuntu 18.04 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 27, 2020
+
 **(Improved) Ubuntu 18.04 image update**  
 
-**(New)** Parallel version [20161222](https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/parallel_20161222-1_all.deb.html) was added to the image.
+**(New)** Parallel version 20161222 was added to the image.
 
 **(Updated)** Language versions:
   
@@ -3966,25 +4261,31 @@ Added ability to change firefox version with the `sem-version` tool: `sem-versio
   - PHP 7.4.7 -> 7.4.8
   - Chrome_driver 83 > 84
 
-To learn more check our [Ubuntu1804 page](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/).
+:::info
+
+The Ubuntu 18.04 image has been deprecated.
+
+:::
 
 ## Week of July 20, 2020
-**(New) Job prioritization**  
-Job `priority` allows you to manage the order in which queued jobs run when the maximum [quota](https://docs.semaphoreci.com/reference/quotas-and-limits/) of parallel jobs for your organization is reached.  
 
-For more details on setting job priorities check the [prioritization page](https://docs.semaphoreci.com/essentials/prioritization/) documentation.
+**(New) Job prioritization**  
+
+[Job `priority`](../using-semaphore/jobs#priority) allows you to manage the order in which queued jobs run when the maximum quota of parallel jobs for your organization is reached.  
+
+For more details on setting job priorities check the [prioritization page](../using-semaphore/jobs#priority) documentation.
 
 **(Improved) GitHub Settings**  
 The option to check the health of GitHub deploy key and webhook has been added in the project settings UI.  
 These new settings also allow you to quickly repair connections between a Semaphore project and connected GitHub repositories.
 
-Read more about troubleshooting connections between Semaphore and GitHub in our [documentation](/account-management/connecting-github-and-semaphore/#verifying-deploy-key-health).
+Read more about troubleshooting connections between Semaphore and GitHub in our [documentation](../using-semaphore/projects#deploy-key).
 
 **(Improved) Cached Android docker images**  
 From now on, Android docker images for the two latest stable SDK versions will always be cached, meaning that the jobs using these images will now start up even faster.
 
-For more details see our documentation on [Android docker images](https://docs.semaphoreci.com/ci-cd-environment/android-images/).  
-For getting started with an Android project on Semaphore please see this [guide](https://docs.semaphoreci.com/programming-languages/android/).
+For more details see our documentation on [Android docker images](../using-semaphore/languages/android).
+For getting started with an Android project on Semaphore please see this [guide](../using-semaphore/languages/android).
 
 ## Week of July 13, 2020
 
@@ -4072,7 +4373,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 - Fixed: The secrets API was returning HTTP 404 for all Secrets with a colon in their name (example: `a:b:c`).
 - Semaphore will now log you out less often.
-- New: you can now run Pull Requests from outside contributors with [sem-approve](https://docs.semaphoreci.com/essentials/project-workflow-trigger-options/#approve-forked-pull-requests).
+- New: you can now run Pull Requests from outside contributors with [sem-approve](./faq#sem-approve).
 
 ## Week of May 03, 2020
 
@@ -4133,7 +4434,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
     - Git        2.25 -> 2.26
     - Heroku   7.39.0 -> 7.39.1
 - Semaphore Toolbox:
-    - [autocache](https://docs.semaphoreci.com/essentials/caching-dependencies-and-directories/#basic-usage) support for Golang (>= 1.11)
+    - [autocache](../using-semaphore/optimization/cache) support for Golang (>= 1.11)
 
 ## Week of March 16, 2020
 
@@ -4183,16 +4484,14 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of February 10, 2020
 
-- New: [The alpha version of the Semaphore 2.0 API](https://docs.semaphoreci.com/reference/api-v1alpha/)
+- New: [The alpha version of the Semaphore 2.0 API](../reference/api)
   is now available. The initial release focuses on the ability to control workflows.
-- Jobs export `SEMAPHORE_WORKFLOW_TRIGGERED_BY_*` [environment
-  variables](https://docs.semaphoreci.com/ci-cd-environment/environment-variables/).
+- Jobs export `SEMAPHORE_WORKFLOW_TRIGGERED_BY_*` [environment variables](../reference/env-vars).
 - With monorepos, when a block is skipped, Semaphore now shows a “skipped” badge.
-- You can now specify a MySQL and PostgreSQL username, password, and database when using
-  [sem-service](https://docs.semaphoreci.com/ci-cd-environment/sem-service-managing-databases-and-services-on-linux/).
+- You can now specify a MySQL and PostgreSQL username, password, and database when using [sem-service](../reference/toolbox#sem-service).
 - With monorepos, when a block is skipped, Semaphore now shows a “skipped” badge.
 - Jobs export `SEMAPHORE_WORKFLOW_TRIGGERED_BY_HOOK`, `SEMAPHORE_WORKFLOW_TRIGGERED_BY_SCHEDULE`, and
-  `SEMAPHORE_WORKFLOW_TRIGGERED_BY_API` [environment variables](https://docs.semaphoreci.com/ci-cd-environment/environment-variables/#semaphore_workflow_triggered_by_hook).
+  `SEMAPHORE_WORKFLOW_TRIGGERED_BY_API` [environment variables](../reference/env-vars).
 - Environment setup commands in jobs now have descriptive names. The new command names are:
     - `Exporting environment variables`
     - `Injecting Files`
@@ -4278,7 +4577,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of December 16, 2019
 
-- Android: [documentation](https://docs.semaphoreci.com/programming-languages/android/) for
+- Android: [documentation](../using-semaphore/languages/android) for
   getting started is available.
 - [A React Native example
   project](https://github.com/semaphoreci-demos/semaphore-demo-react-native) is
@@ -4294,16 +4593,12 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of December 9, 2019
 
-- New: [Webhooks](https://docs.semaphoreci.com/essentials/webhook-notifications/) on
-  success or failure of a pipeline.
+- New: [Webhooks](../using-semaphore/notifications) on success or failure of a pipeline.
 
 ## Week of December 2, 2019
 
-- New: [Open source organizations are
-  available](https://semaphoreci.com/blog/free-open-source-cicd).
-  Each open source organization receives unlimited CI/CD minutes for building
-  public repositories, including Linux, Docker, and macOS-based environments.
-- New: [Status badges](https://docs.semaphoreci.com/essentials/status-badges/).
+- New: [Open source organizations are available](https://semaphoreci.com/blog/free-open-source-cicd).  Each open source organization receives unlimited CI/CD minutes for building public repositories, including Linux, Docker, and macOS-based environments.
+- New: [Status badges](../using-semaphore/projects#badges).
 - Updates to the Ubuntu1804 image
     - Git-lfs 2.9.0  -> 2.9.1
     - Yarn    1.19.1 -> 1.19.2
@@ -4312,7 +4607,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of November 18, 2019
 
-- New: [Monorepo support](https://docs.semaphoreci.com/essentials/building-monorepo-projects/).
+- New: [Monorepo support](../using-semaphore/monorepo).
 - Updates to the Ubuntu1804 image
     - Git      2.23   -> 2.24
     - Heroku   7.33   -> 7.35
@@ -4330,11 +4625,10 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of November 4, 2019
 
- - [Status badges](https://docs.semaphoreci.com/essentials/status-badges/) are available.
+ - [Status badges](../using-semaphore/projects#badges) are available.
  - Semaphore toolbox:
    - Fixed an issue with cache corruption during parallel uploads.
- - New [environment variables available in Semaphore
-   jobs](https://docs.semaphoreci.com/ci-cd-environment/environment-variables/):
+ - New [environment variables available in Semaphore jobs](../reference/env-vars):
    - `SEMAPHORE_AGENT_MACHINE_TYPE`
    - `SEMAPHORE_AGENT_MACHINE_OS_IMAGE`
    - `SEMAPHORE_AGENT_MACHINE_ENVIRONMENT_TYPE`
@@ -4376,8 +4670,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 - Updates to the macOS image:
     - `macos-mojave-xcode11` Xcode 11.1 installed. To switch version use
     `xcversion select 11.1`, image spec macOS Mojave Xcode11
-- You can change which blocks and pipelines send status checks to pull requests
-  on GitHub. [See how here](https://docs.semaphoreci.com/reference/sem-command-line-tool/#changing-github-status-check-notifications).
+- You can change which blocks and pipelines send status checks to pull requests on GitHub. [See how here](../reference/semaphore-cli).
 
 ## Week of September 30, 2019
 
@@ -4390,12 +4683,8 @@ A detailed list can be found in the [Docker images changelog](https://github.com
   your organization. Compatibility of the CLI will be maintained at least up to the
   last 3 minor releases. Only in case of security issues will this
   compatibility policy be ignored.
-- Jobs generated with [parallelism](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#parallelism)
-  use a new naming scheme: `<job-name> - <index>/<job-count>`.
-  Example: `RSpec - 1/4`.
-- We introduced new syntax for configuring [auto-promotions](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#auto_promote)
-  which leverages our [Conditions DSL](https://docs.semaphoreci.com/reference/conditions-reference/)
-  to allow you to express conditions for pipeline auto-promotion in a much simpler way than before.
+- Jobs generated with [parallelism](../reference/pipeline-yaml#parallelism-in-jobs) use a new naming scheme: `<job-name> - <index>/<job-count>`. Example: `RSpec - 1/4`.
+- We introduced new syntax for configuring [auto-promotions](../reference/pipeline-yaml#auto-promote-in-promotions) which leverages our [Conditions DSL](../reference/conditions-dsl) to allow you to express conditions for pipeline auto-promotion in a much simpler way than before.
 
 ## Week of September 23, 2019
 
@@ -4407,16 +4696,8 @@ A detailed list can be found in the [Docker images changelog](https://github.com
     - ProductVersion: 10.14.6
     - BuildVersion: 18G95
     - Kernel Version: Darwin 18.7.0
-- You can now change the initial pipeline file of your project,
-  from `.semaphore/semaphore.yml` to a custom path. This allows
-  you to create multiple Semaphore projects based on the same GitHub
-  repository. The new option is available on the project settings
-  page, or [by editing pipeline_file property of a project](https://docs.semaphoreci.com/reference/sem-command-line-tool/#changing-the-initial-pipeline-file)
-  via the release v0.15.0 of the CLI.
-- Workflow Builder now supports setting [job parallelism](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#parallelism).
-  The new option is available by clicking on a block and expanding the advanced
-  configuration section for the job you want to replicate with the parallelism
-  feature.
+- You can now change the initial pipeline file of your project, from `.semaphore/semaphore.yml` to a custom path. This allows you to create multiple Semaphore projects based on the same GitHub repository. The new option is available on the project settings page, or [by editing pipeline_file property of a project](../reference/semaphore-cli#sem-edit) via the release v0.15.0 of the CLI.
+- Workflow Builder now supports setting [job parallelism](../reference/pipeline-yaml#parallelism-in-jobs).  The new option is available by clicking on a block and expanding the advanced configuration section for the job you want to replicate with the parallelism feature.
 - A new version of CLI v0.16.0 has been released.
    - You can change the initial pipeline file of your project.
    - A fix for debug jobs from Pull Request/Tags has been released. This bug
@@ -4425,10 +4706,8 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of September 16, 2019
 
-- New feature: Artifacts. Persistent storage of final CI/CD deliverables,
-  intermediary assets, and files for debugging. Now in public beta.
-    - [Learn more about use cases](https://docs.semaphoreci.com/essentials/artifacts/) and
-  [how to use the artifacts CLI](https://docs.semaphoreci.com/reference/artifact-cli-reference/).
+- New feature: Artifacts. Persistent storage of final CI/CD deliverables, intermediary assets, and files for debugging. Now in public beta.
+    - [Learn more about use cases](../using-semaphore/artifacts) and [how to use the artifacts CLI](../reference/toolbox#artifact).
 
 ## Week of September 9, 2019
 
@@ -4446,16 +4725,12 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of August 19, 2019
 
-- New feature: the [`parallelism`
-  property](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#parallelism), used
-  to easily generate parallel jobs.
-- Docker-based agents can now [use private container images from any
-  registry](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/#pulling-private-docker-images-from-generic-docker-registries).
+- New feature: the [`parallelism` property](../reference/pipeline-yaml#parallelism-in-jobs), used to easily generate parallel jobs.
+- Docker-based agents can now [use private container images from any registry](../using-semaphore/optimization/docker#registries).
 
 ## Week of August 12, 2019
 
-- Updates to the [Ubuntu 18.04 VM
-  image](https://docs.semaphoreci.com/ci-cd-environment/ubuntu-18.04-image/):
+- Updates to the Ubuntu 18.04 VM image:
     - Chrome and ChromeDriver updated to version 76
     - docker-ce updated to 19.03.1
     - git-lfs updated to 2.8.0
@@ -4468,39 +4743,22 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of August 5, 2019
 
-- New feature: [Global job
-  configuration](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#global_job_config).
-  Used to define common configuration and apply it across all blocks in a pipeline.
-- You can now whitelist contributors who can run
-  Semaphore workflows for your organization when they submit a pull request from a fork.
-  You can also whitelist secrets to be exposed. See your project's Settings in
+- New feature: [Global job configuration](../reference/pipeline-yaml#global-job-config).  Used to define common configuration and apply it across all blocks in a pipeline.
+- You can now whitelist contributors who can run Semaphore workflows for your organization when they submit a pull request from a fork.  You can also whitelist secrets to be exposed. See your project's Settings in
   the web UI to do this.
-- Docker-based agents can now use [private container images from Google
-  Container
-  Registry](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/#pulling-private-docker-images-from-google-gcr).
-- [Dependency caching](https://docs.semaphoreci.com/essentials/caching-dependencies-and-directories/) is now
-  much simpler. Just write `cache restore` and `cache store` and Semaphore will
-  configure for common language dependencies.
+- Docker-based agents can now use [private container images](../using-semaphore/optimization/docker#registries) from Google Container Registry.
+- [Dependency caching](../using-semaphore/optimization/cache) is now much simpler. Just write `cache restore` and `cache store` and Semaphore will configure for common language dependencies.
 - macOS platform:
     - Flutter version update to v1.8.3
     - New image spec - macOS Mojave
 
 ## Week of July 29, 2019
 
-- New features: [Pull request and Git tag
-  support](https://docs.semaphoreci.com/essentials/project-workflow-trigger-options/).
-  Have full control over which GitHub triggers new workflows.
-  Choose from default branch only, any push to any branch, push to pull
-  requests, and push to pull requests from forked repositories.
+- New features: [Pull request and Git tag support](../using-semaphore/workflows#workflow-triggers).  Have full control over which GitHub triggers new workflows.  Choose from default branch only, any push to any branch, push to pull requests, and push to pull requests from forked repositories.
     - As a bonus, you can turn off exposure of secrets in forked pull requests.
     - The project page can now show activity from branches, pull requests, and
       tags separately.
-- New feature: [Auto-cancel pipeline
-  strategies](https://docs.semaphoreci.com/essentials/auto-cancel-previous-pipelines-on-a-new-push/). You can stop
-  running a pipelines when there are newer commits in the repo. To do this use the new
-  [`auto_cancel`
-  property](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#auto_cancel)
-  in your pipeline configuration.
+- New feature: [Auto-cancel pipeline strategies](../reference/pipeline-yaml#auto-cancel). You can stop running a pipelines when there are newer commits in the repo. To do this use the new `auto_cancel` property in your pipeline configuration.
 - macOS platform:
     - Xcode 11 Beta version update 5 (11M382q).
     - Xcode 10.3 with default simulators preinstalled on Mojave image.
@@ -4508,8 +4766,7 @@ A detailed list can be found in the [Docker images changelog](https://github.com
     - Fastlane version updated to 2.128.1.
     - Cocoapods version updated to 1.7.5.
     - New image spec - macOS Mojave
-- New [environment variables available in Semaphore
-  jobs](https://docs.semaphoreci.com/ci-cd-environment/environment-variables/):
+- New [environment variables available in Semaphore jobs](../reference/env-vars):
     - `SEMAPHORE_GIT_REPO_SLUG`
     - `SEMAPHORE_GIT_REF_TYPE`
     - `SEMAPHORE_GIT_REF`
@@ -4523,49 +4780,29 @@ A detailed list can be found in the [Docker images changelog](https://github.com
 
 ## Week of July 22, 2019
 
-- New feature: model complex workflows with pipeline dependencies. Learn more in this
-  [blog post](https://semaphoreci.com/blog/introducing-cicd-pipeline-dependencies).
-- New feature: [fail-fast on the first
-  failure](https://docs.semaphoreci.com/essentials/fail-fast-stop-running-tests-on-the-first-failure/).
-  Now you can stop everything in your pipeline as soon as a failure is detected,
-  or stops only the jobs and blocks in your pipeline that haven't yet started.
-- A new global sidebar that uses less screen real estate, and lets you star
-  projects and dashboards so they appear on top of the list. Also, it loads really
-  fast.
+- New feature: model complex workflows with pipeline dependencies. Learn more in this [blog post](https://semaphoreci.com/blog/introducing-cicd-pipeline-dependencies).
+- New feature: [fail-fast on the first failure](../using-semaphore/pipelines#fail-fast).  Now you can stop everything in your pipeline as soon as a failure is detected, or stops only the jobs and blocks in your pipeline that haven't yet started.
+- A new global sidebar that uses less screen real estate, and lets you star projects and dashboards so they appear on top of the list. Also, it loads really fast.
 - A new version of CLI v0.14.1 has been released.
    - You can now configure pull-request related settings by editing the project
    - A fix for the race condition between toolbox installation and debug session
-     initialization has been released. This bug manifested as
-     "unknown command checkout" if the debug session entry happened before the
-     toolbox installation finished in the machine.
+     initialization has been released. This bug manifested as "unknown command checkout" if the debug session entry happened before the toolbox installation finished in the machine.
 
 ## Week of July 15, 2019
 
-- New feature: Scheduled CI/CD workflows, a.k.a. cron jobs.
-  Open your project, and find the new "Project Settings" button at the top-right.
-  From there you can create and edit your scheduled workflows using
-  the standard cron syntax.
-- You can also rename and delete your
-  project on the new Project Settings screen.
+- New feature: Scheduled CI/CD workflows, a.k.a. cron jobs.  Open your project, and find the new "Project Settings" button at the top-right.  From there you can create and edit your scheduled workflows using the standard cron syntax.
+- You can also rename and delete your project on the new Project Settings screen.
 
 ## Week of July 1, 2019
 
-- AWS ECR support for Docker-based environments: host your private Docker images
-  on AWS and use them to define your
-  [custom CI/CD environment](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/)
-  on Semaphore.
-- [Skip CI](https://docs.semaphoreci.com/essentials/skip-building-some-commits-with-ci-skip/):
-  If you add `[skip ci]` or `[ci skip]` to your Git commit message,
-  Semaphore will not trigger a new workflow.
-- The context of [Github Status checks](https://developer.github.com/v3/repos/statuses/)
-  has been changed to include information about build source, which
-  can be one of the following:
+- AWS ECR support for Docker-based environments: host your private Docker images on AWS and use them to define your [custom CI/CD environment](../using-semaphore/optimization/docker#registries) on Semaphore.
+- [Skip CI](../using-semaphore/workflows#skip): If you add `[skip ci]` or `[ci skip]` to your Git commit message, Semaphore will not trigger a new workflow.
+- The context of [Github Status checks](https://developer.github.com/v3/repos/statuses/) has been changed to include information about build source, which can be one of the following:
     - `ci/semaphoreci/push`
     - `ci/semaphoreci/pr`
     - `ci/semaphoreci/tag`
 
-[Please update your settings on GitHub](https://help.github.com/en/articles/enabling-required-status-checks)
-if you are using protected branches with required status checks.
+[Please update your settings on GitHub](https://help.github.com/en/articles/enabling-required-status-checks) if you are using protected branches with required status checks.
 
 ## Week of June 24, 2019
 
@@ -4575,25 +4812,14 @@ if you are using protected branches with required status checks.
 
 ## Week of June 10, 2019
 
-- The workflow page got a fresh new look. It shows the elapsed time
-  of each job, letting you easily spot inefficiencies.
-  This is also in preparation for some new features we'll announce
-  soon.
+- The workflow page got a fresh new look. It shows the elapsed time of each job, letting you easily spot inefficiencies.  This is also in preparation for some new features we'll announce soon.
 - Reduced the time it takes for a task to complete after the last job.
 
 ## Week of May 27, 2019
 
-- [Custom Docker-based CI/CD environments are in GA](https://semaphoreci.com/blog/define-your-cicd-with-docker)
-  Semaphore now supports custom CI/CD environments based on Docker containers.
-  Get started with [Custom CI/CD environment with Docker](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/).
-
-- Launched support for skipping blocks based on conditions, e.g. `branch != 'master'`.
-  Read more about [skipping blocks](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#skip-in-blocks)
-  and the introduction of the [Conditions domain specific language](https://docs.semaphoreci.com/reference/conditions-reference/)
-  that allows the expression of complex conditional rules in your pipelines.
-
-- Owners and admins can now set [Budget Alerts](/account-management/billing-faq/#how-can-i-set-up-budget-alerts).
-
+- [Custom Docker-based CI/CD environments are in GA](../using-semaphore/pipelines#docker-environments) Semaphore now supports custom CI/CD environments based on Docker containers.  Get started with [Custom CI/CD environment with Docker](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/).
+- Launched support for skipping blocks based on conditions, e.g. `branch != 'master'`. Read more about [skipping blocks](../using-semaphore/jobs#skip-run) and the introduction of the [Conditions domain specific language](../reference/conditions-dsl) that allows the expression of complex conditional rules in your pipelines.
+- Owners and admins can now set [Budget Alerts](./faq#budget-alerts).
 - New Semaphore approved convenience Docker images have been released:
     - [Alpine](https://hub.docker.com/r/semaphoreci/alpine)
     - [Android](https://hub.docker.com/r/semaphoreci/android)
@@ -4610,35 +4836,27 @@ if you are using protected branches with required status checks.
     - [Ubuntu](https://hub.docker.com/r/semaphoreci/ubuntu)
 
 - Version `v0.13.0` of the Semaphore CLI has been released.
-    - `sem debug job` works without configuring the CLI with an SSH key.
-    Keys are now generated server side.
-    - `sem attach` can attach to any running job without the need to inject
-    public SSH keys as part of your Pipeline configuration.
+    - `sem debug job` works without configuring the CLI with an SSH key.  Keys are now generated server side.
+    - `sem attach` can attach to any running job without the need to inject public SSH keys as part of your Pipeline configuration.
     - Debugging and attaching to jobs works for Docker-based CI/CD environments
-    - Read the updated documentation rearding [Debugging with SSH Access](https://docs.semaphoreci.com/essentials/debugging-with-ssh-access/).
+    - Read the updated documentation rearding [Debugging with SSH Access](../using-semaphore/jobs#debug-jobs).
 
 Upgrade to the latest CLI version:
 
-``` bash
+```shell
 curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 ```
 
 ## Week of May 13, 2019
 
-- [iOS support is in GA](https://semaphoreci.com/blog/introducing-ios-cicd):
-  Semaphore now supports building, testing, and deploying applications for any
-  Apple device.
-  Get started with this [Xcode tutorial](https://docs.semaphoreci.com/examples/ios-continuous-integration-with-xcode/)
-  and [example Swift project](https://github.com/semaphoreci-demos/semaphore-demo-ios-swift-xcode).
+- [iOS support is in GA](https://semaphoreci.com/blog/introducing-ios-cicd): Semaphore now supports building, testing, and deploying applications for any Apple device.
 - macOS platform:
     - Xcode upgraded to 10.2.1
-- New feature: [schedule CI/CD workflows](https://docs.semaphoreci.com/reference/projects-yaml-reference/#schedulers)
-  using standard Cron syntax.
+- New feature: [schedule CI/CD workflows](../using-semaphore/tasks) using standard Cron syntax.
 
 ## Week of Apr 22, 2019
 
-- [Fastlane plugin](https://github.com/semaphoreci/fastlane-plugin-semaphore) is
-  now available.
+- [Fastlane plugin](https://github.com/semaphoreci/fastlane-plugin-semaphore) is now available.
 - Platform updates:
     - Chrome 74, ChromeDriver 74
     - Heroku 7.24.1
@@ -4650,27 +4868,17 @@ curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 ## Week of Apr 15, 2019
 
 - Docker-based environment is now available to all organizations as a public beta.
-- New feature: [epilogue now has `on_pass` and `on_fail`
-  properties](https://docs.semaphoreci.com/reference/pipeline-yaml-reference/#the-epilogue-property)
-  which run commands based on the job's result.
-- sem CLI v0.10.0 has been released, with an option to [create a secret based on
-  environment variables](https://docs.semaphoreci.com/reference/sem-command-line-tool/#sem-create-secret-with-environment-variables-and-files)
-  in a single command.
-- Jobs now export `TERM=xterm`. This allows running tools that depend on
-  exported `TERM` settings, such as psql.
-- Jobs now export `PAGER=cat`. This prevents some commands from
-  waiting indefinitely for user input, such as `git log`.
+- New feature: [epilogue now has `on_pass` and `on_fail` properties](../reference/pipeline-yaml#epilogue-in-task) which run commands based on the job's result.
+- sem CLI v0.10.0 has been released, with an option to [create a secret based on environment variables](../reference/semaphore-cli#sem-create) in a single command.
+- Jobs now export `TERM=xterm`. This allows running tools that depend on exported `TERM` settings, such as psql.
+- Jobs now export `PAGER=cat`. This prevents some commands from waiting indefinitely for user input, such as `git log`.
 - Job logs are now fully UTF-8 compliant.
 
 
 ## Week of Apr 8, 2019
 
-- New feature: [Run jobs inside a custom Docker
-  container](https://docs.semaphoreci.com/ci-cd-environment/custom-ci-cd-environment-with-docker/) (beta).
-- Organization owners can promote members to an [Admin
-  role](https://docs.semaphoreci.com/account-management/permission-levels/),
-  to delegate billing, personnel, and project management.
-  See the `/people` page within your organization.
+- New feature: [Run jobs inside a custom Docker container](../using-semaphore/pipelines#docker-environments) (beta).
+- Organization owners can promote members to an [Admin role](../using-semaphore/rbac#org-admin), to delegate billing, personnel, and project management.  See the `/people` page within your organization.
 - Slack notifications can be created and managed in the UI.
 
 ## Week of Mar 25, 2019
@@ -4684,8 +4892,7 @@ curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
 ## Week of Mar 18, 2019
 
-- macOS, iOS support is in open beta: see this
-  [tutorial](https://docs.semaphoreci.com/examples/ios-continuous-integration-with-xcode/).
+- macOS, iOS support is in open beta.
 
 ## Week of Mar 12, 2019
 
@@ -4711,16 +4918,14 @@ curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
     - gradle 5.2
     - heroku to 7.22.2
     - sbt 0.13.17
-- Introduced [tutorials and example projects](https://docs.semaphoreci.com/examples/tutorials-and-example-projects/),
-  a handy page of practical examples of CI/CD pipelines, with links to open
-  source repositories that you can copy and use.
+  a handy page of practical examples of CI/CD pipelines, with links to open source repositories that you can copy and use.
 
 ## Week of Feb 18, 2019
 
 - Added contextual CLI widgets to the top-right corner of all pages. The `>_`
   widget shows CLI commands that you can run to perform the same actions that
   you see in the UI.
-- Slack notifications can be [filtered by pipeline result](https://docs.semaphoreci.com/essentials/slack-notifications/#filtering-by-pipeline-result).
+- Slack notifications can be [filtered by pipeline result](../using-semaphore/notifications).
 - macOS Mojave image introduced, with iOS/macOS support in [closed beta](https://semaphoreci.com/product/ios).
 - Syntax highlighting in docs.
 
@@ -4757,11 +4962,7 @@ curl https://storage.googleapis.com/sem-cli-releases/get.sh | bash
 
 ## Week of Dec 17, 2018
 
-- New feature: Restart workflow.
-  Available via the “Restart" button on the workflow page
-  or `sem rebuild workflow <id>` in CLI.
-- [checkout](https://docs.semaphoreci.com/reference/toolbox-reference/#libcheckout)
-  runs faster by doing a shallow git clone.
-- We improved the speed and stability of the UI, most notably on pages
-  that load workflows and jobs.
+- New feature: Restart workflow.  Available via the “Restart" button on the workflow page or `sem rebuild workflow <id>` in CLI.
+- [checkout](../reference/toolbox#checkout) runs faster by doing a shallow git clone.
+- We improved the speed and stability of the UI, most notably on pages that load workflows and jobs.
 - Changelog initiated. 🚀

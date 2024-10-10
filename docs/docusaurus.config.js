@@ -9,28 +9,30 @@ import * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  // disable this setting when the site goes to production to allow Google to index
+  // this setting controls if pages can be indexed by search engines
   // https://docusaurus.io/docs/next/api/docusaurus-config#noIndex
-  noIndex: true,
+  noIndex: false,
   title: 'Semaphore',
   tagline: 'A CI/CD solution to elevate developer workflows',
   favicon: 'img/favicon.ico',
 
   // extra themes
   themes: [
-    "docusaurus-theme-openapi-docs",
+    'docusaurus-theme-openapi-docs',
     '@docusaurus/theme-mermaid',
   ],
-  // mermaid support doesn't work with canary version
   markdown: {
     mermaid: true,
   },
 
   // Production url of your site here
-  url: 'https://docs.semaphoreci.com',
+  // url: 'https://docs.semaphoreci.com',
+  url: 'https://docs-v2.sxmoon.com/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
+  // when true, the build breaks (default is undefined)
+  // trailingSlash: false,
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',
@@ -65,26 +67,25 @@ const config = {
   ],
 
   plugins: [
-    '@docusaurus/plugin-ideal-image',
-    // 'docusaurus-lunr-search', // this works when the hash router is disabled
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: "api", // plugin id
-        docsPluginId: "classic", // configured for preset-classic
-        config: {
-          semaphoreAPI: {
-            specPath: "https://docs.semaphoreci.com/v2/api-spec/openapi.yaml",
-            outputDir: "docs/openapi-spec",
-            downloadUrl: "https://docs.semaphoreci.com/v2/api-spec/openapi.json",
-            sidebarOptions: {
-              categoryLinkSource: "tag",
-              groupPathsBy: "tag",
+      '@docusaurus/plugin-ideal-image',
+      [
+        'docusaurus-plugin-openapi-docs',
+        {
+          id: "api", // plugin id
+          docsPluginId: "classic", // configured for preset-classic
+          config: {
+            semaphoreAPI: {
+              specPath: "https://docs.semaphoreci.com/v2/api-spec/openapi.yaml",
+              outputDir: "docs/openapi-spec",
+              downloadUrl: "https://docs.semaphoreci.com/v2/api-spec/openapi.json",
+              sidebarOptions: {
+                categoryLinkSource: "tag",
+                groupPathsBy: "tag",
+              },
             },
-          },
-        }
-      },
-    ]
+          }
+        },
+      ]
   ],
 
   themeConfig:
@@ -92,15 +93,16 @@ const config = {
     ({
       // Social card image
       image: 'img/semaphore-social-card.jpg',
-
-      // FontAwesome imports
-      // scripts: [
-      //   {
-      //     src: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
-      //     async: true,
-      //   },
-      // ],
-
+      // search config - these are tied to the domain
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'HJWFPD10QI',
+        // Public API key: it is safe to commit it
+        apiKey: '5d6175600a64cf232ea5be2b88cd5cab',
+        indexName: 'v2-sxmoon',
+        // Optional: see doc section below
+        contextualSearch: true,
+      },
       navbar: {
         title: 'Semaphore Docs',
         logo: {
@@ -127,14 +129,15 @@ const config = {
             position: 'left',
             label: 'Reference',
           },
+          // uncomment this when the new API is released
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'apiSidebar',
+          //   position: 'left',
+          //   label: 'API Specification',
+          // },
           {
-            type: 'docSidebar',
-            sidebarId: 'apiSidebar',
-            position: 'left',
-            label: 'API Specification',
-          },
-          {
-            href: 'https://github.com/semaphoreci/docs',
+            href: 'https://github.com/semaphoreci/semaphore/tree/main/docs',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
             // label: 'GitHub',
@@ -232,14 +235,14 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
-    }),
-  future: {
-    experimental_router: 'hash', // default to "browser", comment this line to enable search
-    experimental_storage: {
-      type: 'localStorage',
-      namespace: true,
-    },
-  }
+    })
+  // future: {
+  //   experimental_router: 'hash', // default to "browser", comment this line to enable search
+  //   experimental_storage: {
+  //     type: 'localStorage',
+  //     namespace: true,
+  //   },
+  // }
 };
 
 export default config;

@@ -46,7 +46,7 @@ To access this page:
 1. Open your organization menu
 2. Select **Plans & Billing**
 
-### Can I set budget alerts?
+### Can I set budget alerts? {#budget-alerts}
 
 Yes. Organizations [Owners and Admins](../using-semaphore/rbac) can set up budget alerts.
 
@@ -459,7 +459,7 @@ This might be a limitation related to the plan your organization is using. Open-
 
 ## Workflows
 
-### Can I approve blocked workflow triggers?
+### Can I approve blocked workflow triggers? {#sem-approve}
 
 If you are using a [filter for contributors](../using-semaphore/workflows#project-triggers), you can still review and approve blocked pull requests by commenting with a `/sem-approve` message. Anyone who can run a forked pull request can also approve one.
 
