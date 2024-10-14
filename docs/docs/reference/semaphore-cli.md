@@ -211,7 +211,7 @@ For example:
 sem edit secret mysecret
 ```
 
-To edit a [project secret](../using-semaphore/projects#secrets), add `-p <project-name>`:
+To edit a [project secret](../using-semaphore/projects#project-secrets), add `-p <project-name>`:
 
 ```shell
 sem get secret -p myproject mysecret

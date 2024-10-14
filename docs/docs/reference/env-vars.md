@@ -226,7 +226,9 @@ The variable is `false` if the workflow is triggered by a Git push, pull request
 
 Holds `true` if the workflow was triggered by a Git push to the repository. It's also true for Git tags and pull requests.
 
-The variable is `false` when the workflow is triggered via the [Semaphore API](../category/api-specification) or using [Tasks](../using-semaphore/tasks).
+The variable is `false` when the workflow is triggered via the [Semaphore API](./api) or using [Tasks](../using-semaphore/tasks).
+
+<!-- [Semaphore API](../category/api-specification) -->
 
 ### Workflow is triggered manually {#workflow-triggered-by-manual-run}
 
@@ -235,7 +237,9 @@ The variable is `false` when the workflow is triggered via the [Semaphore API](.
 
 Holds `true` if the workflow was triggered by a user through the Semaphore UI.
 
-The variable is `false` when the workflow is triggered by Git push, pull request, Tasks, or the [Semaphore API](../category/api-specification).
+The variable is `false` when the workflow is triggered by Git push, pull request, Tasks, or the [Semaphore API](./api).
+
+<!-- [Semaphore API](../category/api-specification). -->
 
 ### Workflow is triggered by task {#workflow-triggered-by-schedule}
 

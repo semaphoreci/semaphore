@@ -46,7 +46,6 @@ function HomepageHeader() {
 
 import {FeatureCardsRow} from '@site/src/components/FeatureCards';
 
-// Original content inside main: <HomepageFeatures />
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -60,22 +59,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-
-
-/*
-
-      <FlashyCard
-        icon={
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-            <path d="M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M8 12h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        }
-        title="Custom Title"
-        description="This is a custom description for the flashy card."
-        linkText="Custom Link"
-        linkUrl="https://example.com"
-      />
-      */
