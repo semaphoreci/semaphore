@@ -96,10 +96,10 @@ const config = {
       // search config - these are tied to the domain
       algolia: {
         // The application ID provided by Algolia
-        appId: 'HJWFPD10QI',
+        appId: 'ZODOUMDCAK',
         // Public API key: it is safe to commit it
-        apiKey: '5d6175600a64cf232ea5be2b88cd5cab',
-        indexName: 'v2-sxmoon',
+        apiKey: '2d2c909198be4024219ce81d9be90370',
+        indexName: 'docs',
         // Optional: see doc section below
         contextualSearch: true,
       },
