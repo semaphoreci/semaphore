@@ -311,7 +311,7 @@ To create multiple stacks, follow the [deploy steps](#deploy) and:
 
 AWS stacks give you full job isolation out of the box since the agent will shutdown after executing a job. A new agent will be launched for the following job.
 
-Rotating EC2 instances in this way can be slow. You can opt for not shutting down the agent after a job by setting the [`SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`](../reference/self-hosted-config#disconnect-after-job) parameter.
+Rotating EC2 instances in this way can be slow. You can opt for not shutting down the agent after a job by setting the [`SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`](../reference/agent-aws-stack#disconnect-after-job) parameter.
 
 ### Network VPC
 

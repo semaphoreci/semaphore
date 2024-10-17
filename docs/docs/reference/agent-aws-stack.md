@@ -1,5 +1,5 @@
 ---
-description: AwS Autoscaler for self-hosted reference
+description: AWS Autoscaler for self-hosted reference
 ---
 
 # AWS Autoscaler Settings
@@ -21,7 +21,7 @@ The AWS Autoscaler Stack accepts configuration settings in two ways:
 
 - **Configuration file**: a JSON configuration file passed when you [deploy the AWS stack](../using-semaphore/self-hosted-aws#deploy)
 
-    For example, given this confiuration file for Linux agents:
+    For example, given this configuration file for Linux agents:
 
     ```json title="config.json"
     {
@@ -36,10 +36,10 @@ The AWS Autoscaler Stack accepts configuration settings in two ways:
 
     ```shell
     SEMAPHORE_AGENT_STACK_CONFIG=config.json \
-        npm run bootstrap -- aws://<YOUR_AWS_ACCOUNT_ID>/<YOUR_AWS_REGION> \
+        npm run bootstrap -- aws://<YOUR_AWS_ACCOUNT_ID>/<YOUR_AWS_REGION>
     ```
 
-- **Environment variables**: you can define the configuration variables s environment variables before running `npm run bootstrap`
+- **Environment variables**: you can define the configuration using environment variables before running `npm run bootstrap`
 
     For example:
 
@@ -78,14 +78,14 @@ If [`SEMAPHORE_ENDPOINT`] is not set, this parameter is used to generate the end
 
 - **Parameter name**: `SEMAPHORE_AGENT_STACK_NAME`
 
-The name of the stack. This is the stack name used in Cloudformation and as a prefix to name all the resources of the stack. When deploying multiple stacks for multiple agent types, different stack names are required.
+The name of the stack. This is the stack name used in Cloudformation and as a prefix to name all the stack resources. When deploying multiple stacks for multiple agent types, different stack names are required.
 
 
 ### Agent token {#agent-token}
 
 - **Parameter name**: `SEMAPHORE_AGENT_TOKEN_PARAMETER_NAME`
 
-The AWS SSM parameter name containing the Semaphore agent [registration token](../using-semaphore/self-hosted-install#register-agent).
+The AWS SSM parameter name contains the Semaphore agent [registration token](../using-semaphore/self-hosted-install#register-agent).
 
 
 ## Optional parameters
@@ -142,7 +142,7 @@ If true, use a lambda to dynamically scale the number of agents in the auto-scal
 
 - **Parameter name**: `SEMAPHORE_AGENT_SECURITY_GROUP_ID`
 
-Security Group ID to use for agent instances. If not specified, a security group is be created with:
+Security Group ID to use for agent instances. If not specified, a security group is to be created with the following:
 
 - an egress rule allowing all outbound traffic
 - an ingress rule for SSH if [`SEMAPHORE_AGENT_KEY_NAME`](#key-name) is specified
@@ -160,7 +160,7 @@ Key name to access agents through SSH. If not specified, no SSH inbound access i
 - **Parameter name**: `SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`
 - **default value**: `true`
 
-If the agent should shutdown or not after completing a job.
+If true, the agent disconnects after completing a job.
 
 
 ### Disconnect after idle timeout {#disconnect-after-idle-timeout}
@@ -168,9 +168,9 @@ If the agent should shutdown or not after completing a job.
 - **Parameter name**: `SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`
 - **default value**: `300`
 
-Number of seconds of idleness after which the agent is shutdown. 
+Number of seconds of idleness after which the agent is shut down. 
 
-Setting this to 0 disables the scaling down behavior for the stack, since the agents do not shutdown due to idleness.
+Setting this to 0 disables the scaling down behavior for the stack since the agents do not shutdown due to idleness.
 
 
 ### Cache bucket name {#cache-bucket-name}
@@ -191,23 +191,23 @@ KMS key id used to encrypt and decrypt `SEMAPHORE_AGENT_TOKEN_PARAMETER_NAME`. I
 
 - **Parameter name**: `SEMAPHORE_AGENT_VPC_ID`
 
-The id of an existing VPC to use when launching agent instances. By default, this is blank, and the default VPC on your AWS account is used.
+The ID of an existing VPC to use when launching agent instances. By default, this is blank, and the default VPC on your AWS account is used.
 
 
 ### Subnets {#subnets}
 
 - **Parameter name**: `SEMAPHORE_AGENT_SUBNETS`
 
-Comma-separated list of existing VPC subnet ids where EC2 instances are to run. This is required when using [`SEMAPHORE_AGENT_VPC_ID`](#vpc-id). 
+Comma-separated list of existing VPC subnet IDs where EC2 instances are to run. This is required when using [`SEMAPHORE_AGENT_VPC_ID`](#vpc-id). 
 
-If `SEMAPHORE_AGENT_SUBNETS` is set and [`SEMAPHORE_AGENT_VPC_ID`](#vpc-id) is blank, the subnets are ignored and the default VPC is be used. This means that orivate and public subnets are possible, but isolated subnets cannot be used.
+If `SEMAPHORE_AGENT_SUBNETS` is set and [`SEMAPHORE_AGENT_VPC_ID`](#vpc-id) is blank, the subnets are ignored, and the default VPC is used. This means that private and public subnets are possible, but isolated subnets cannot be used.
 
 
 ### AMI {#ami}
 
 - **Parameter name**: `SEMAPHORE_AGENT_AMI`
 
-The AMI used for all instances. If empty, the stack uses the default AMIs, looking them up by name. If the default AMI isn't sufficient, you can use your own AMIs, but they need to be based off of the stack's default AMI.
+The AMI is used for all instances. If empty, the stack uses the default AMIs, looking them up by name. If the default AMI isn't sufficient, you can use your own AMIs, but they need to be based on the stack's default AMI.
 
 
 ### OS type {#os-type}
@@ -236,7 +236,7 @@ The arch type for agents. Possible values:
 
 - **Parameter name**: `SEMAPHORE_AGENT_AZS`
 
-A comma-separated list of availability zones to use for the auto scaling group.
+A comma-separated list of availability zones to use for the auto-scaling group.
 
 
 ### Managed policy names {#managed-policy-names}
@@ -280,7 +280,7 @@ The EBS volume's size, in GB, when using [`SEMAPHORE_AGENT_VOLUME_NAME`](#volume
 
 - **Parameter name**: `SEMAPHORE_AGENT_LICENSE_CONFIGURATION_ARN`
 
-The license configuration ARN associated with the AMI used by the stack.
+The license configuration ARN is associated with the AMI used by the stack.
 
 
 ### Mac family {#mac-family}
