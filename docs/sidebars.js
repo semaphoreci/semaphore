@@ -200,6 +200,7 @@ const sidebars = {
         'reference/env-vars',
         'reference/conditions-dsl',
         'reference/self-hosted-config',
+        'reference/agent-aws-stack',
         'reference/audit-events',
         'reference/openid',
         {

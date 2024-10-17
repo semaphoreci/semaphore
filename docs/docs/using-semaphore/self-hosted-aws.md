@@ -207,7 +207,7 @@ Follow these steps to deploy self-hosted agents in AWS.
 
     When a macOS instance is terminated it may take a long time for new one to start in its place. This may affect the time to rotate agents.
 
-    macOS dedicated hosts are allocated for a minimum of 24 hours. It is recommended to set [`SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`](../reference/self-hosted-config#disconnect-after-idle-timeout) to at least 24 hours for macOS-based agents. This means that new instances started up due to a burst of demand may continue running idle for a long time before being shutdown.
+    macOS dedicated hosts are allocated for a minimum of 24 hours. It is recommended to set [`SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`](../reference/agent-aws-stack#disconnect-after-idle-timeout) to at least 24 hours for macOS-based agents. This means that new instances started up due to a burst of demand may continue running idle for a long time before being shutdown.
 
     See [Amazon EC2 Mac instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-mac-instances.html) for more information.
 
@@ -278,7 +278,7 @@ After deleting a macOS stack you need to manually delete the host resource group
 
 ## Configuration settings
 
-See the [self-hosted parameters reference](../reference/self-hosted-config) for all the available parameters.
+See the [AWS stack parameters reference](../reference/agent-aws-stack) for all the available parameters.
 
 ### Cache
 
@@ -292,10 +292,10 @@ When there are more running agents than jobs over a period of time, the function
 
 You con control the autoscaling behavior using the following parameters in `config.json`:
 
-- [`SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`](../reference/self-hosted-config#disconnect-after-idle-timeout) time in minutes allowed for the agent to idle before being shutdown. Default is 5 minutes. Setting this value to 0 prevents the agent from ever shutting down
-- [`SEMAPHORE_AGENT_ASG_MAX_SIZE`](../reference/self-hosted-config#asg-max-size) this is the upper limit for the autoscaling group for a given agent type. The Lambda function will never spin up more than this number of machines
-- [`SEMAPHORE_AGENT_ASG_MIN_SIZE`](../reference/self-hosted-config#asg-min-size) this is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0 the Lambda function will leave this number of agents idling without shutting them down
-- [`SEMAPHORE_AGENT_USE_DYNAMIC_SCALING`](../reference/self-hosted-config#use-dynamic-scaling) when set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running
+- [`SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT`](../reference/agent-aws-stack#disconnect-after-idle-timeout) time in minutes allowed for the agent to idle before being shutdown. Default is 5 minutes. Setting this value to 0 prevents the agent from ever shutting down
+- [`SEMAPHORE_AGENT_ASG_MAX_SIZE`](../reference/agent-aws-stack#asg-max-size) this is the upper limit for the autoscaling group for a given agent type. The Lambda function will never spin up more than this number of machines
+- [`SEMAPHORE_AGENT_ASG_MIN_SIZE`](../reference/agent-aws-stack#asg-min-size) this is the lower limit for the autoscaling group for a given agent type. When set to a value greater than 0 the Lambda function will leave this number of agents idling without shutting them down
+- [`SEMAPHORE_AGENT_USE_DYNAMIC_SCALING`](../reference/agent-aws-stack#use-dynamic-scaling) when set to false, the autoscaling is disabled. In this scenario, the stack consists of a static number of agents always running
 
 ### Multiple agent types {#stacks}
 
@@ -367,6 +367,7 @@ If you experience agent registration errors, follow these steps to troubleshoot:
 ## See also
 
 - [What are self-hosted agents](./self-hosted)
+- [AWS autoscaler stack reference](../reference/agent-aws-stack)
 - [Self-hosted agents configuration reference](../reference/self-hosted-config)
 - [Docker environments](./pipelines#docker-environments)
 
