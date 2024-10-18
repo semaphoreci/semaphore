@@ -236,7 +236,7 @@ To push changes as an external contributor:
    Alternatively, you can create a fork from the command-line by running a command similar to the following:
 
    ```bash
-   git remote add fork ssh://git@github.com/my-user/teleport
+   git remote add fork ssh://git@github.com/my-user/semaphoreci
    ```
    In this command, `my-user` represents your GitHub user name and `semaphore` is the name of your Semaphore repository fork.
 
