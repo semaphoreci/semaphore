@@ -14,6 +14,10 @@ This page contains Frequently Asked Questions.
 
 ## Architecture
 
+### Is there a list of the platform IPs used by Semaphore?
+
+Yes. The list of the platform IPs used by Semaphore is [publicly available](https://github.com/renderedtext/snippets/blob/master/ips-S2.txt). You may whitelist these IPs in your firewall to allow access to all Semaphore services.
+
 ### Can I use my own machines to run workflows?
 
 Yes. With the Semaphore [Hybrid Plan](https://semaphoreci.com/pricing) you can add your own machines as [self-hosted agents](../using-semaphore/self-hosted). You can use a mix of Semaphore Cloud and your own machines for your workflows.
