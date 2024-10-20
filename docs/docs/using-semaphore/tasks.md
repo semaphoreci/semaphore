@@ -143,6 +143,8 @@ Go to the **Tasks** tab in your project to view the configured tasks. Pressing *
 
 Here you can change the branch, pipeline file, and define parameter values. Press **Run** to start the task immediately.
 
+You may also trigger a task using the [Semaphore API](../reference/api#tasks)
+
 ## How to pause a task {#deactivate-task}
 
 Deactivating a task disables the schedule. Deactivated tasks can still be run manually. If you don't need the task or its history, [delete the task](#delete-task) instead.
