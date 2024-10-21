@@ -94,6 +94,12 @@ In order to change your credit card or PayPal information, follow these steps:
 
 Yes. If you want to change the recipient name, company name, address, phone number, billing email, VAT ID, or country on the invoice, please get in touch with us at: support@semaphoreci.com
 
+:::note
+
+Billing change requests must originate from a user with Admin or Owner permissions on the organization, or from the current Billing contact associated with the organization’s FastSpring subscription. This is for security reasons, ensuring that only authorized individuals can change the billing information.
+
+:::
+
 ### Can I change my VAT number?
 
 Not directly from the Semaphore website. After a subscription has been purchased, users can't add or change a VAT number (VAT ID) from the UI. 
