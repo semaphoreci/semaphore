@@ -77,15 +77,29 @@ To manage users in your organization, open the organization menu and select **Pe
 
 To invite a user to your organization, press the **Add people** button. You have two options:
 
-- By their GitHub handle
-  - Type their GitHub handle and press **Invite**
-  - Optionally, type their emails to receive notifications
-- By existing projects
-  - The list shows GitHub and BitBucket users that already have access to repositories but have not yet been added to the Semaphore project
+- **By their [GitHub username](https://docs.github.com/en/get-started/learning-about-github/github-glossary#username)**, e.g. `TomFern`
+
+  - Type their GitHub handle
+  - Press **Invite**
+
+  ![Adding users by their GitHub handle](./img/github-handle.jpg)
+
+  This option **does not allow email addresses** and doesn't send email notifications to users. To notify users via email, use the option below.
+
+- **By existing projects**
+  
+  The list shows GitHub and BitBucket users that already have access to repositories but have not yet been added to the Semaphore project
+
   - Select the users and optionally type an email
   - Press **Add selected** to add them to the organization and project
 
-![Adding users to the organization](./img/add-people.jpg)
+  ![Adding users to the organization](./img/add-people.jpg)
+
+:::note In case of delays
+
+In case of delays, click on the **Refresh** button in the top right corner of the page after sending an invite. This will trigger a sync between GitHub and Semaphore, which can typically last up to 2 to 5 minutes.
+
+:::
 
 ### How to change user roles {#roles-people}
 
