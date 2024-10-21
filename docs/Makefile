@@ -14,9 +14,9 @@ build:
 	npm run build
 
 image.build:
-	# npm run clear
-	# npm run build
-	docker build -t semaphore-docs:latest . -f Dockerfile
+	npm run clear
+	npm run build
+	docker build -t semaphore-docs:latest .
 
 image.run:
 	docker run -it -p 3000:80 semaphore-docs:latest
