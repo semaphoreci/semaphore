@@ -164,6 +164,12 @@ The logs are uploaded to the path `agent/job_logs.txt` in the job artifact stora
 
 The agent uses the [artifact CLI](./toolbox#artifact) to upload the logs to Semaphore. If the artifact CLI is not available to the agent, nothing will be uploaded.
 
+:::note
+
+When the job logs exceed 100MB, they are compressed for better efficiency. The following command can be used to decompress it: ```gunzip -c {file} > decompressed-file.txt```
+
+:::
+
 ### Pre job hook path {#prejob}
 
 - **argument name**: `pre-job-hook-path`
