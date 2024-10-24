@@ -916,6 +916,8 @@ If you have a use case in which this limit is too constraining, please contact u
 
 ### Max blocks per pipeline {#max-blocks}
 
+Semaphore has a limit of *100 blocks per pipeline*. This limit is not configurable.
+
 If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
 
 ## See also
