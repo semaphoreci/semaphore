@@ -22,8 +22,7 @@ This guide outlines the process for making changes to the documentation, whether
     - [Review Changes in Browser](#review-changes-in-browser)
   - [Step 4: Create a Pull Request](#step-4-create-a-pull-request)
     - [Pull Request Etiquette](#pull-request-etiquette)
-    - [Internal Contributors](#internal-contributors)
-    - [External Contributors](#external-contributors)
+    - [How to create a Pull Request](#how-to-create-a-pull-request)
   - [Next Steps](#next-steps)
 
 <!-- tocstop -->
@@ -66,11 +65,19 @@ To set up a local environment for contributing to Semaphore documentation:
 
 1. Open a terminal shell on your computer.
 
-2. Clone the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository by running the following command:
-  
+2. Clone or fork the repository
+
+   - **External Contributors** (no write access to upstream): navigate to [sempahoreci/semaphore](https://github.com/semaphoreci/semaphore), click **Fork**, then select **Create a new fork**. Run the following command to clone the repository:
+
    ```bash
-   git clone https://github.com/semaphoreci/semaphore 
+   git clone https://github.com/<your-github-username>/semaphore
    ```
+
+   - If you are an **internal contributor** (you have write access to upstream): clone the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository by running the following command:
+  
+      ```bash
+      git clone https://github.com/semaphoreci/semaphore 
+      ```
 
 3. Navigate to the `docs` directory:
    
@@ -95,7 +102,7 @@ To set up a local environment for contributing to Semaphore documentation:
 Create and switch to a new branch using the `git checkout -b` command:
 
 ```bash
-git checkout -b <new_branch_name>
+git checkout -b <my-branch-name>
 ```
 
 Follow this naming convention for your branch: `{group-token}/{issue number}/{concise-description}`
@@ -193,9 +200,7 @@ To ensure a smooth review process, please follow these best practices for your p
 
 6. **Be Ready for Feedback:** Be open to feedback and willing to make necessary changes. Engage in discussions constructively.
 
-### Internal Contributors
-
-If you're an internal contributor with permission to access the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository, you can commit changes and push branches directly to the repository.
+### How to create a Pull Request
 
 1. Add files and commit changes to your local branch periodically with commands similar to the following:
 
@@ -206,63 +211,27 @@ If you're an internal contributor with permission to access the [semaphoreci/sem
    git commit -m "Fix or feature description"   # Commit changes already added
    ```
 
-2. Push your branch to the [semaphoreci/semaphore](./) repository with a command similar to the following:
-   
-   ```bash
-   git push origin my-branch
-   ```
-
-3. Open the Semaphore repository, select your branch as the branch to merge into `main`, then click **New pull request**.
-   Reviewers are automatically assigned based on the `CODEOWNERS` file and branch protection rules. 
-
-4. Click the `preview` tab in the PR description form, select `Documentation` template and create the pull request after filling in the description.
-
-5. Wait for the minimum required approvals, then merge your pull request as soon as possible.
-
-### External Contributors
-
-If you are an external contributor, you must commit your changes to your branch and push your branch to a fork of the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository.
-
-To push changes as an external contributor:
-
-1. Verify that you have an SSH key pair and have stored your public key in GitHub.
-
-2. Open the Semaphore repository, click **Fork**, then select **Create a new fork**.
-
-3. Verify the owner and repository name.
-
-4. Click **Create fork**.
-   
-   Alternatively, you can create a fork from the command-line by running a command similar to the following:
+2. Push your branch to the remote repository:
 
    ```bash
-   git remote add fork ssh://git@github.com/my-user/semaphoreci
-   ```
-   In this command, `my-user` represents your GitHub user name and `semaphore` is the name of your Semaphore repository fork.
-
-5. Pull all of the changes from the remote repository into your local fork by running the following command:
-   
-   ```bash
-   git fetch origin
+   git push origin <my-branch-name>
    ```
 
-6. Push changes from your local branch to the remote fork of the Semaphore repository by running a command similar to the following:
-   
-   ```bash
-   git push --set-upstream fork my-branch
-   ```
+3. Create Pull Request
 
-7. Open the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository, select your branch as the branch to merge into `main`, then click **New pull request**.
-   
-   Reviewers are automatically assigned based on the branch protection rules and the `CODEOWNERS` file. To ensure that your pull request is merged, you should respond to reviewer feedback in a timely manner.
+   - Navigate to the [semaphoreci/semaphore](https://github.com/semaphoreci/semaphore) repository
 
-   The pull request has to pass all CI/CD checks and incorporate any reviewer feedback.
+   - Above the list of files, in the yellow banner, click Compare & pull request to create a pull request for the associated branch.
 
-   If you don't respond to reviewer feedback, your pull request is likely to be deemed inactive and closed.
+   - **External Contributors**: On the page to create a new pull request, **click compare across forks**. 
 
-8. Click the `preview` tab in the PR description form, select `Documentation` template and create the pull request after filling in the description.
+   - In the "base branch" dropdown menu, select the branch of the upstream repository you'd like to merge changes into.
+ 
+   - Select your branch as the branch to merge into `main`, then click **New pull request**.
 
-9. Wait for the minimum required approvals, then merge your pull request as soon as possible. 
+   - Click the `preview` tab in the PR description form, select `Documentation` template and create the pull request after filling in the description.
+
+4. Wait for the minimum required approvals, then merge your pull request as soon as possible. 
 
 ## Next Steps
 
