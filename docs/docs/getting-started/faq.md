@@ -395,7 +395,7 @@ To set the job as:
 - **Stopped and successful**: `export SEMAPHORE_JOB_RESULT=passed; return 130`
 - **Stopped and failed**: `export SEMAPHORE_JOB_RESULT=failed; return 130`
 
-::: note
+:::note
 
 Some commands like `bash -e` or `set -x otrace` may override this behavior and make it not function correctly.
 
