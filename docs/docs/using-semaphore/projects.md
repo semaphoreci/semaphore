@@ -182,7 +182,7 @@ Project members can view or manage the following project elements:
 
 ![Project tabs](./img/project-tabs.jpg)
 
-## How manage access to projects {#people}
+## How to manage access to projects {#people}
 
 Semaphore periodically syncs users from GitHub. You can add and remove people from the project by inviting or removing them from the related repository.
 
@@ -214,7 +214,7 @@ Scaleup plan users can manually add and remove people from a project. To manage 
 
 </Steps>
 
-See [project roles](./rbac#project) for more information what actions can each role perform.
+See [project roles](./rbac#project) for more information on what actions can each role perform.
 
 ### How to change permissions {#people-roles}
 
@@ -367,7 +367,7 @@ To learn more, see the [artifacts retention page](./artifacts#retention)
 
 <Available plans={['Scaleup']}/>
 
-Pre-flight checks are user-defined commands executed before the pipeline begins as part of the pipeline [initialization job](./pipelines#init-job). They checks allow you to define the type of agent running the initialization job and to manually run commands before a pipeline starts.
+Pre-flight checks are user-defined commands executed before the pipeline begins as part of the pipeline [initialization job](./pipelines#init-job). These checks allow you to define the type of agent running the initialization job and to manually run commands before a pipeline starts.
 
 :::note
 
@@ -433,7 +433,7 @@ And also on pull requests.
 
 ![PR Passed](./img/pr-passed.jpg)
 
-Semaphore only report status checks on the initial pipeline (`.semaphore/semaphore.yml`). But you can configure status checks on any other pipelines in the workflows or even on blocks.
+Semaphore only reports status checks on the initial pipeline (`.semaphore/semaphore.yml`). But you can configure status checks on any other pipelines in the workflows or even on blocks.
 
 ### Edit status checks
 
