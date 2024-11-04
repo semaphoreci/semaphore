@@ -25,10 +25,10 @@ Linux machines are provided in four generations. The following table shows what 
 
 | Generation | OS Supported | Docker environments |
 |--|--|--|
-| [E1](#e1) | Ubuntu 20.04 |  Yes |
-| [E2](#e2) | Ubuntu 22.04<br/>Ubuntu 20.04 | Yes |
-| [F1](#f1) |  Ubuntu 22.04<br/>Ubuntu 20.04 | Yes |
-| [R1](#r1) | Ubuntu 20.04 | No |
+| [E1](#e1) | [Ubuntu 20.04](./os-ubuntu#ubuntu2004) |  Yes |
+| [E2](#e2) | [Ubuntu 22.04](./os-ubuntu#ubuntu2204-x86)<br/>[Ubuntu 20.04](./os-ubuntu#ubuntu2004) | Yes |
+| [F1](#f1) |  [Ubuntu 22.04](./os-ubuntu#ubuntu2204-x86)<br/>[Ubuntu 20.04](./os-ubuntu#ubuntu2004) | Yes |
+| [R1](#r1) | [Ubuntu 22.04 ARM](./os-ubuntu#ubuntu2204-arm) | No |
 
 ### E1 generation {#e1}
 
@@ -47,7 +47,10 @@ The E1 generation is presented in the following types:
 | `e1-standard-4` | 4 | 8 | 35 |
 | `e1-standard-8` | 8 | 16 | 45 |
 
-E1 Generation machine types can be paired with [Ubuntu 20.04 image](./os-ubuntu#ubuntu2004) and [Docker-based environment](../using-semaphore/pipelines#docker-environments).
+E1 Generation machine types can be paired with:
+
+- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [Docker-based environment](../using-semaphore/pipelines#docker-environments).
 
 ### E2 generation {#e2}
 
@@ -66,7 +69,11 @@ The E2 generation is presented in the following types:
 | `e2-standard-2` | 2 | 8 | 45 |
 | `e2-standard-4` | 4 | 16 | 65 |
 
-E2 machines can also be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu2204-x86), [Ubuntu 20.04 image](./os-ubuntu#ubuntu2004), and [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+E2 machines can also be paired with:
+
+- [`ubuntu2204`](./os-ubuntu#ubuntu2204-x86)
+- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 ### F1 generation {#f1}
 
@@ -86,7 +93,11 @@ The F1 generation is presented in the following types:
 | `f1-standard-2` | 2 | 8 | 45 |
 | `f1-standard-4` | 4 | 16 | 65 |
 
-F1 machines can also be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu2204-x86), [Ubuntu 20.04 image](./os-ubuntu#ubuntu2004), and [Docker-based environments](../using-semaphore/pipelines#docker-environments).
+F1 machines can also be paired with:
+
+- [`ubuntu2204`](./os-ubuntu#ubuntu2204-x86)
+- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 ### R1 generation {#r1}
 
@@ -104,7 +115,9 @@ The r1 generation is presented in the following types:
 |--|--|--|--|
 | `r1-standard-4` | 4 | 10 | 65 |
 
-R1 Generation machine types can only be paired with [Ubuntu 22.04 image](./os-ubuntu#ubuntu2204-x86).
+R1 Generation machine types can only be paired with:
+
+- [`ubuntu2204`](./os-ubuntu#ubuntu2204-arm) ARM version
 
 ## Apple machines {#macos}
 
