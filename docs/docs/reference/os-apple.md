@@ -19,7 +19,33 @@ The Operating System image defines what OS and software are pre-installed in you
 
 This page describes OS images to run on Apple-based Semaphore Cloud [machines](./machine-types). You can add more OS options using [self-hosted agents](../using-semaphore/self-hosted).
 
-## macOS Sonoma (Xcode 16) {#mac-16}
+## macOS Xcode 16 {#mac-16}
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To use this operating system, choose `macos-xcode16` in the **OS Image** selector. This OS can be paired with [A2s Apple machine](./machine-types#macos).
+
+![Selecting the macOS Xcode16 using the workflow editor](./img/macos16-selector.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To use this operating system, use `macos-xcode16` as the `os_image`. This OS can be paired with [A2s Apple machine](./machine-types#macos).
+
+```yaml
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+  # highlight-start
+    type: a2-standard-4
+    os_image: macos-xcode16
+  # highlight-end
+```
+
+</TabItem>
+</Tabs>
 
 System version:
 
@@ -143,7 +169,34 @@ Following gems are pre-installed:
 </div>
 </details>
 
-## macOS Sonoma (Xcode 15) {#mac-15}
+## macOS Xcode 15 {#mac-15}
+
+<Tabs groupId="editor-yaml">
+<TabItem value="editor" label="Editor">
+
+To use this operating system, choose `macos-xcode15` in the **OS Image** selector. This OS can be paired with all [Apple machines](./machine-types#macos).
+
+![Selecting the macOS Xcode15 using the workflow editor](./img/macos15-selector.jpg)
+
+</TabItem>
+<TabItem value="yaml" label="YAML">
+
+To use this operating system, use `macos-xcode15` as the `os_image`. This OS can be paired with all [Apple machines](./machine-types#macos).
+
+```yaml
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+  # highlight-start
+    type: a1-standard-4
+    os_image: macos-xcode15
+  # highlight-end
+```
+
+</TabItem>
+</Tabs>
+
 
 System version:
 
@@ -288,7 +341,7 @@ Following gems are pre-installed:
 </div>
 </details>
 
-## (DEPRECATED) Monterey Xcode 14  {#mac-14}
+## (DEPRECATED) Monterey Xcode 14 {#mac-14}
 
 The macOS Monterey (Xcode 14) was deprecated on September 2024.
 
