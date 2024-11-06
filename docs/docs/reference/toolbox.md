@@ -29,6 +29,7 @@ The available commands are:
 
 - `help`: print help on the terminal
 - `pull`: pull a file or directory from the artifact store
+- `push`: push a file or directory to the artifact store
 - `yank`: pull and delete a file or directory from the artifact store
 
 The available namespaces are:
@@ -43,6 +44,25 @@ The optional flags are:
 - `--force` or `-f`: overwrite file or directory if already exists
 - `--destination` of `-d`: pull or yank the file into a different path
 - `--verbose` or `-v`: verbose logging
+
+### Examples
+
+```shell title="Artifact usage examples"
+# force push a final deliverable to the project level
+artifact push project app-v1.tar.gz --force
+
+# push a screenshot to the job level
+artifact push job screenshots/app.png
+
+# push a binary to the workflow level 
+artifact push workflow build/app
+
+# pull a binary from the workflow level 
+artifact pull workflow build/app
+
+# delete a binary from the workflow level 
+artifact yank workflow build/app
+```
 
 ### Supported filenames
 
@@ -67,25 +87,6 @@ To retrieve the files, use:
 ```shell title="Retrieving the tarball"
 artifact pull workflow example.tar.gz
 tar -xzf example.tar.gz
-```
-
-### Examples
-
-```shell title="Artifact usage examples"
-# force push a final deliverable to the project level
-artifact push project app-v1.tar.gz --force
-
-# push a screenshot to the job level
-artifact push job screenshots/app.png
-
-# push a binary to the workflow level 
-artifact push workflow build/app
-
-# pull a binary from the workflow level 
-artifact pull workflow build/app
-
-# delete a binary from the workflow level 
-artifact yank workflow build/app
 ```
 
 ## cache {#cache}
