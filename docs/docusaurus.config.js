@@ -236,13 +236,6 @@ const config = {
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
     })
-  // future: {
-  //   experimental_router: 'hash', // default to "browser", comment this line to enable search
-  //   experimental_storage: {
-  //     type: 'localStorage',
-  //     namespace: true,
-  //   },
-  // }
 };
 
 export default config;
