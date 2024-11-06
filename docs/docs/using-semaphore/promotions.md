@@ -57,15 +57,11 @@ Press **Delete Promotion** to completely delete the promotion along with *all it
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
-<Steps>
-
 1. Create a new pipeline file in the `.semaphore` folder, e.g., `deploy.yml`
 2. Edit the pipeline from which the new one (from step 1) branches off, e.g., `semaphore.yml`
 3. Add the `promotions` key at the root level of the YAML
 4. Type the `name` of the promotion
 5. Type the `pipeline_file` filename of the pipeline created in step 1
-
-</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -115,13 +111,9 @@ After [adding a promotion](#promotions), you can set automatic conditions. Whene
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
-<Steps>
-
 1. Open the pipeline file containing the promotion you want to autostart
 2. Add an `auto_promote` key
 3. Add a child `when` key. Type in the [start conditions](../reference/conditions-dsl)
-
-</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 version: v1.0
@@ -219,10 +211,11 @@ Parameterized promotions cause Semaphore to run an [initialization job](./pipeli
 
 ### How to add parameters {#parameters-add}
 
-To add parameters to a promotion, follow these steps:
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
+
+To add parameters to a promotion with the workflow editor, follow these steps:
 
 <Steps>
 
@@ -245,7 +238,7 @@ To add parameters to a promotion, follow these steps:
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
-<Steps>
+To add parameters to a promotion using YAML, follow these steps
 
 1. Edit the file where you want to add the parameters
 2. Add a `parameters.env_vars` key
@@ -254,8 +247,6 @@ To add parameters to a promotion, follow these steps:
 5. Optionally set `required` to `true|false`
 6. Optionally set `options`. Each item in the list is a valid option. Leave blank to input value as freeform text
 7. If `required: true`, set the `default_value`. Optional parameters don't have a default value
-
-</Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
 # ...
@@ -632,12 +623,8 @@ Press **Edit workflow** to open the visual editor and:
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
-<Steps>
-
 1. Edit the pipeline file with the promotion you want to target
 2. Add a `deployment_target` key to the promotion. The value is the name of the environment you want to associate with this promotion
-
-</Steps>
 
 Delete `deployment_target` to remove the association between the environment and the promotion.
 
