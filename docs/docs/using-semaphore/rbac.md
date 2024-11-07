@@ -84,11 +84,11 @@ For the full list of admin permissions, see [organization roles](./organizations
 
 ### Owner {#org-owner}
 
-The owner of the organization is the person that created it. An organization can have multiple owners.  Owners have access to all functionalities within the organization and any of its projects. They cannot be removed from the organization.
-
-Only Admins and Owners can invite users to the organization.
+The owner of the organization is the person that created it. An organization can have multiple owners.  Owners have access to all functionalities within the organization and any of its projects. Only Admins and Owners can invite users to the organization.
 
 For the full list of owner permissions, see [organization roles](./organizations#org-roles).
+
+To remove an owner, see [how to remove an owner](https://docs.semaphoreci.com/using-semaphore/organizations#remove-owner).
 
 ### Organization groups {#org-groups}
 
