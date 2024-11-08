@@ -272,6 +272,8 @@ Open the [project settings](#settings), under **Project Owner** type the usernam
 
 ![Changing project owner](./img/change-project-owner.jpg)
 
+After project ownership has been transferred, you need to push a new commit. Re-running old builds no longer works once the ownership of a project has changed.
+
 :::note
 
 Transferring ownership does not automatically grant [project roles](./rbac#project) on the project. You must still manually grant the [admin role](./rbac#project-admin) to allow the new owner manage the project.

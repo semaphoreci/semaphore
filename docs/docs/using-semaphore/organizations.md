@@ -69,7 +69,7 @@ Semaphore users a [Role Based Access Control](./rbac) model to manage permission
 
 You can only invite people with GitHub or BitBucket accounts to your organization.
 
-To manage users in your organization, open the organization menu and select **People**. This tab shows users and groups in your organization along with their:
+To manage users in your organization, open the organization menu and select **People**. This tab shows users and groups in your organization along with their roles and groups.
 
 ![The people tab](./img/people-tab.jpg)
 
@@ -98,6 +98,31 @@ To invite a user to your organization, press the **Add people** button. You have
 :::note In case of delays
 
 In case of delays, click on the **Refresh** button in the top right corner of the page after sending an invite. This will trigger a sync between GitHub and Semaphore, which can typically last up to 2 to 5 minutes.
+
+:::
+
+### How to remove users {#remove-users}
+
+Users can only be removed from the organization when they don't own any projects. You must [transfer the ownership](./projects#owner-change) of all the user's projects before they can be removed from the organization.
+
+To remove users from the organization:
+
+<Steps>
+
+1. Transfer any [project ownership](./projects#owner-change) the user may have to another individual. The user must not own any projects
+2. Open the organization menu
+3. Select **People**
+4. Press the **X** button next to the username of the user you want to remove
+
+  ![Removing a user from the organization](./img/remove-user.jpg)
+
+</Steps>
+   
+Upon removal, access to all projects in the organization are revoked.
+
+:::note
+
+Only an Admins, Owner, or dedicated [custom roles](./rbac#custom-roles) can remove users from the organization.
 
 :::
 
