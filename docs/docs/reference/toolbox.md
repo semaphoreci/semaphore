@@ -45,6 +45,7 @@ The optional flags are:
 - `--destination` of `-d`: pull or yank the file into a different path
 - `--verbose` or `-v`: verbose logging
 
+
 ### Examples
 
 ```shell title="Artifact usage examples"
@@ -63,6 +64,13 @@ artifact pull workflow build/app
 # delete a binary from the workflow level 
 artifact yank workflow build/app
 ```
+
+### Error status
+
+The `artifact pull` and `artifact yank` commands **exit with non-zero status** (ending the job with error) when:
+
+- the file or directory already exists locally (unless `-f` or `--force` is supplied)
+- the file or directory is not found in the specified namespace
 
 ### Supported filenames
 
