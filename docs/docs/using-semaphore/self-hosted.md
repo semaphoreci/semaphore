@@ -10,7 +10,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-Semaphore Hybrid lets you run jobs on your own hardware. This page explains what self-hosted agents are and how to install them on several platforms.
+**Semaphore Hybrid** lets you run jobs on your own hardware. This page explains what self-hosted agents are and how to install them on several platforms.
 
 ## Overview {#overview}
 
