@@ -23,11 +23,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="eos-icons:job" width="1.2em" height="1.2em" />
+        <Icon icon="hugeicons:workflow-square-02" width="1.2em" height="1.2em" />
         <Translate id='features.workflows.title'>Workflows</Translate>
       </span>
     ),
-    image: require('@site/static/img/wf1.gif'),
+    image: require('@site/static/home/workflows.png'),
     url: 'using-semaphore/workflows',
     description: (
       <Translate id="features.workflows.description">
@@ -38,11 +38,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="carbon:batch-job" width="1.2em" height="1.2em" />
+        <Icon icon="mdi:shape-rectangle-plus" width="1.2em" height="1.2em" />
         <Translate id='features.jobs.title'>Jobs</Translate>
         </span>
     ),
-    image: require('@site/static/img/job.jpg'),
+    image: require('@site/static/home/jobs.png'),
     url: 'using-semaphore/jobs',
     description: (
       <Translate id="feature.jobs.description">
@@ -53,11 +53,11 @@ const Features = [
   {
   name: (
     <span>
-      <Icon icon="carbon:batch-job" width="1.2em" height="1.2em" />
+      <Icon icon="mdi:folder-cog-outline" width="1.2em" height="1.2em" />
       <Translate id='features.projects.title'>Projects</Translate>
       </span>
   ),
-  image: require('@site/static/img/projects.jpg'),
+  image: require('@site/static/home/projects.png'),
   url: 'using-semaphore/projects',
   description: (
     <Translate id="feature.projects.description">
@@ -69,11 +69,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="carbon:migrate" width="1.2em" height="1.2em" />
+        <Icon icon="la:list-ol" width="1.2em" height="1.2em" />
         <Translate id='features.migration.title'>Migration Guides</Translate>
       </span>
     ),
-    image: require('@site/static/img/migration.jpg'),
+    image: require('@site/static/home/migration-guides.png'),
     url: 'getting-started/migration/overview',
     description: (
       <Translate id="features.migration.description">
@@ -84,11 +84,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="et:linegraph" width="1.2em" height="1.2em" />
+        <Icon icon="fluent-mdl2:b-i-dashboard" width="1.2em" height="1.2em" />
         <Translate id='features.metrics.title'>Dashboards</Translate>
       </span>
     ),
-    image: require('@site/static/img/metrics.jpg'),
+    image: require('@site/static/home/dashboards.png'),
     url: 'using-semaphore/insights',
     description: (
       <Translate id="features.metrics.description">
@@ -99,11 +99,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="grommet-icons:test" width="1.2em" height="1.2em" />
+        <Icon icon="ri:test-tube-line" width="1.2em" height="1.2em" />
         <Translate id='features.tests.title'>Test reports</Translate>
       </span>
     ),
-    image: require('@site/static/img/tests.jpg'),
+    image: require('@site/static/home/test-reports.png'),
     url: 'using-semaphore/tests/test-reports',
     description: (
       <Translate id="features.tests.description">
@@ -118,7 +118,7 @@ const Features = [
         <Translate id='features.api.title'>Public API</Translate>
       </span>
     ),
-    image: require('@site/static/img/api.jpg'),
+    image: require('@site/static/home/public-api.png'),
     url: 'reference/api',
     description: (
       <Translate id="features.api.description">
@@ -133,7 +133,7 @@ const Features = [
         <Translate id='features.orgs.title'>Organizations</Translate>
       </span>
     ),
-    image: require('@site/static/img/rbac.jpg'),
+    image: require('@site/static/home/organizations.png'),
     url: 'using-semaphore/organizations',
     description: (
       <Translate id="features.orgs.description">
@@ -144,11 +144,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="hugeicons:web-design-01" width="1.2em" height="1.2em" />
+        <Icon icon="fluent:slide-text-48-regular" width="1.2em" height="1.2em" />
         <Translate id='features.debug.title'>Language Guides</Translate>
       </span>
     ),
-    image: require('@site/static/img/code.jpg'),
+    image: require('@site/static/home/language-guides.png'),
     url: 'using-semaphore/languages/javascript',
     description: (
       <Translate id="features.debug.description">
@@ -159,11 +159,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="solar:server-2-broken" width="1.2em" height="1.2em" />
+        <Icon icon="lucide:server" width="1.2em" height="1.2em" />
         <Translate id='features.selfhosted.title'>Self-hosted Agents</Translate>
       </span>
     ),
-    image: require('@site/static/img/self-hosted.jpg'),
+    image: require('@site/static/home/self-hosted-agents.png'),
     url: 'using-semaphore/self-hosted',
     description: (
       <Translate id="features.selfhosted.description">
@@ -174,11 +174,11 @@ const Features = [
   {
     name: (
       <span>
-        <Icon icon="ri:speed-mini-line" width="1.2em" height="1.2em" />
+        <Icon icon="mdi:cog-play-outline" width="1.2em" height="1.2em" />
         <Translate id='features.optimization.title'>Optimization Guide</Translate>
       </span>
     ),
-    image: require('@site/static/img/optimization.jpg'),
+    image: require('@site/static/home/optimization-guide.png'),
     url: 'using-semaphore/optimization/cache',
     description: (
       <Translate id="features.optimization.description">
@@ -193,7 +193,7 @@ const Features = [
         <Translate id='features.monorepo.title'>Monorepo Workflows</Translate>
       </span>
     ),
-    image: require('@site/static/img/monorepo.jpg'),
+    image: require('@site/static/home/monorepo-workflows.png'),
     url: 'using-semaphore/monorepo',
     description: (
       <Translate id="features.monorepo.description">
@@ -219,11 +219,9 @@ function FeatureCard({name, image, url, urlTS, description}) {
           <p>{description}</p>
         </div>
         <div className="card__footer">
-          <div className="button-group button-group--block">
-            <Link className="button button--secondary" to={url}>
-              Learn more →
+            <Link to={url}>
+              Learn more
             </Link>
-          </div>
         </div>
       </div>
     </div>
