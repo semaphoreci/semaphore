@@ -235,14 +235,10 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
-    })
-  // future: {
-  //   experimental_router: 'hash', // default to "browser", comment this line to enable search
-  //   experimental_storage: {
-  //     type: 'localStorage',
-  //     namespace: true,
-  //   },
-  // }
+    }),
+    // future: {
+      // experimental_faster: true,
+    // },
 };
 
 export default config;

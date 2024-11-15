@@ -10,7 +10,7 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-A workflow is a series of steps to build, test, release, or deploy your application. This page explains workflows, how they are triggered, and their settings.
+A *workflow* is a series of steps to build, test, release, or deploy your application. This page explains workflows, how they are triggered, and their settings.
 
 :::tip
 
