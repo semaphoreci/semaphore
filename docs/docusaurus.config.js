@@ -160,6 +160,8 @@ const config = {
       announcementBar: {
         id: `announcementBar-1`,
         content: `⭐️ If you like Semaphore, <b>give it a star</b> on <a target="_blank" rel="noopener noreferrer" href="https://github.com/semaphoreci/semaphore">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/semaphoreci">X (Twitter)</a>`,
+        backgroundColor: '#49a26e',
+        textColor: '#f5f6f7'
       },
       footer: {
         style: 'dark',
