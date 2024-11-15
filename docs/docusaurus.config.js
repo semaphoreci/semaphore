@@ -235,7 +235,10 @@ const config = {
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['elixir', 'java', 'groovy'],
       },
-    })
+    }),
+    // future: {
+      // experimental_faster: true,
+    // },
 };
 
 export default config;
