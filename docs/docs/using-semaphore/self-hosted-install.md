@@ -183,7 +183,7 @@ To install the Semaphore custom controller, follow these steps:
     Replace:
 
     - `<my-org.semaphoreci.com>` with your [organization URL](./organizations#general-settings)
-    - `<token>` with the [registration token](#register-agent) you received earlier
+    - `<token>` with a valid [Semaphore API token](https://docs.semaphoreci.com/reference/api#authentication)
 
 4. Create a secret to register the agent type in the Kubernetes cluster. Create a new YAML resource file.
 
