@@ -25,7 +25,7 @@ Contributors list is WIP
 
 Documentation team meets weekly. Meeting agenda is always published one week prior. All contributors are welcome, open an issue to join the SIG and get a calendar invite.
 
-- 💬 [Join the Discord channel](https://discord.gg/Rvum6crB6z)
+- 💬 [Join the Discord channel](https://discord.gg/FBuUrV24NH)
 - 📆 Every `Monday` at `1pm UTC`
 - 📝 [Meeting minutes](https://github.com/semaphoreci/semaphore/blob/main/docs/docs-contributing/meeting-notes.md)
 - 🙋‍♂️ [Join the SIG](https://forms.gle/tcNpGA4Zyghnu7sh8) < select `SIG - Docummentation` when filling in form.
