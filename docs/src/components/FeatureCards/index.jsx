@@ -208,7 +208,7 @@ const Features = [
 function FeatureCard({name, image, url, urlTS, description}) {
   return (
     <div className="col col--4 margin-bottom--lg">
-      <div className={clsx('card')} style={{minHeight: "470px"}} >
+      <div className={clsx('card')} style={{minHeight: "400px"}} >
         <div className={clsx('card__image')}>
           <Link to={url}>
             <Image img={image} alt={`${name}'s image`} />
