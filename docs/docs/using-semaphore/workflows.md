@@ -99,9 +99,16 @@ Selecting **Do not run on any events** disables all triggers, effectively pausin
 Selecting **Run on** allows you to configure what triggers are enabled for the project.
 
 - The **Branches** option allows you to run workflows on all branches or configure an allow list with branch names. Regular expressions are supported
+
 - The **Tags** options work the same but for Git tags
 
 ![Branch and tag triggers](./img/project-general-settings-2.jpg)
+
+:::note
+
+**Whitelisted only** only affects branches and tags created *after* enabling this setting. Branches and tags that existed before the setting is enabled are not affected and are always built.
+
+:::
 
 - Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
 - The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
