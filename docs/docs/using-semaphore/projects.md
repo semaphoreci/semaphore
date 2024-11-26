@@ -589,6 +589,17 @@ When this happens, you must update the URL of the repository in Semaphore. To do
 
 After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
 
+:::info
+
+If you changed the name or the URL of your repository, please email Semaphore at [support@semaphoreci.com](mailto:support@semaphoreci.com) providing the following details:
+
+- Previous repository name and URL
+- New repository name and URL
+
+The Semaphore support team will relink the project to the new repository.
+
+:::
+
 
 ## See also
 
