@@ -304,7 +304,7 @@ Additional libraries:
 <summary>Java and JVM languages</summary>
 <div>
 
-- Java: 11.0.24, 17.0.12 (default), 21.0.4
+- Java: 11.0.24, 17.0.12 (default)
 - Scala: 3.2.2
 - Leiningen: 2.11.2 (Clojure)
 - Sbt 1.10.1
