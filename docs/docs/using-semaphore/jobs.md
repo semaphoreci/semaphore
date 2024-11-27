@@ -246,7 +246,7 @@ All files are lost when the job ends. This happens because each jobs are allocat
 
 ### Using dependencies
 
-You can use block depedencies to control the execution flow of the workflow. See [block dependencies](./pipelines#dependencies) to learn more.
+You can use block dependencies to control the execution flow of the workflow. See [block dependencies](./pipelines#dependencies) to learn more.
 
 ## Semaphore toolbox {#toolbox}
 
@@ -325,7 +325,7 @@ Using `cache` in [self-hosted agents](./self-hosted) requires additional setup s
 
 The main function of the [cache](../reference/toolbox#cache) is to speed up job execution by caching downloaded files.
 
-The `cache store` and `cache restore` commands can detect well-known dependency managers and persist files autoatically. Let's say we want to speed up `npm install`, here is how to do it:
+The `cache store` and `cache restore` commands can detect well-known dependency managers and persist files automatically. Let's say we want to speed up `npm install`, here is how to do it:
 
 ```shell
 checkout

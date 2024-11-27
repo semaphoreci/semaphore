@@ -85,7 +85,7 @@ This section explains how to set up [test reports](../../using-semaphore/tests/t
         --out junit.xml
         --format documentation
         ```
-    - Or, changing the `rspec` invokation
+    - Or, changing the `rspec` invocation
 
         ```shell
         bundle exec rspec --format RspecJunitFormatter --out junit.xml --format documentation

@@ -244,7 +244,7 @@ The *URL of your organization* is the URL that leads to the Home page in your Se
 
 You can set up Slack and other webhook-based notifications to get your team notified whenever there [project](./projects) finishes running.
 
-To learn more, see the [notificaction documentation](./notifications.md)
+To learn more, see the [notification documentation](./notifications.md)
 
 ### Initialization agent {#init-agent}
 

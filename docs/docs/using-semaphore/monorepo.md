@@ -441,7 +441,7 @@ The supported options are:
 |`pipeline_file` | `track` | If value is `ignore` changes in the pipeline file are ignored. Otherwise, they always cause jobs and promotions to run |
 | `exclude` | Empty | A list of globs to exclude from the file matches. Files matching the glob are not taken into account when evaluating changes |
 
-See the [change_in conditions DSL referece](../reference/conditions-dsl#change-in) to view all available options.
+See the [change_in conditions DSL reference](../reference/conditions-dsl#change-in) to view all available options.
 
 ### Examples {#examples}
 

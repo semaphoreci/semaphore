@@ -157,7 +157,7 @@ Scroll down to learn how to install the stack in your hardware.
 
 ### Kubernetes {#kubernetes}
 
-Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to run agents in a Kubernete cluster.
+Semaphore provides [Helm charts](https://github.com/renderedtext/helm-charts) to run agents in a Kubernetes cluster.
 
 To install the Semaphore custom controller, follow these steps:
 

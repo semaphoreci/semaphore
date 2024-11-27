@@ -37,7 +37,7 @@ Scheduled tasks have some limitations:
 
 ## How to create a task {#manage-tasks}
 
-To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semahore CLI. Additionally, you can use the  [Semaphore API](../reference/api) to manage tasks.
+To create a task, open your project and follow these steps. You can create tasks with the UI, or use Semaphore CLI. Additionally, you can use the  [Semaphore API](../reference/api) to manage tasks.
 
 <!-- new api: [Semaphore Task API](../openapi-spec/tasks-list) -->
 
@@ -56,12 +56,12 @@ To create a task, open your project and follow these steps. You can create tasks
 
     ![Task creation step 1: name and description](./img/task-create-1.jpg)
 
-5. Type the repository branch and [pipeline](./pipelines) file to execute. The only requisite is that the pipeline file exists in that branch. It doesn't need (but it can) to be conencted with a promotion to any other pipeline
+5. Type the repository branch and [pipeline](./pipelines) file to execute. The only requisite is that the pipeline file exists in that branch. It doesn't need (but it can) to be connected with a promotion to any other pipeline
 6. Press **Next**
 
     ![Task creation step 2: branch and pipeline](./img/task-create-2.jpg)
 
-7. Optionally, you can add parameters. These work exacly the same as [parameterized promotions](./promotions#parameters)
+7. Optionally, you can add parameters. These work exactly the same as [parameterized promotions](./promotions#parameters)
 
     ![Task creation step 3: parameters](./img/task-create-3.jpg)
 

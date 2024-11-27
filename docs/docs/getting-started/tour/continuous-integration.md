@@ -200,7 +200,7 @@ Before you can perform SSH debugging, you need to set the Semaphore Command Line
 <Steps>
 
 1. Go to your account menu and select **Profile Settings**
-2. Press the **Regerenate API Token** button 
+2. Press the **Regenerate API Token** button 
 
     ![Regenerate Token](./img/regen-api-token.jpg)
 

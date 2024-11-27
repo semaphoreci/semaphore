@@ -168,7 +168,7 @@ Semaphore Cloud provides the following agent types in x86 and ARM architectures:
 - [Linux](../reference/machine-types#linux) Virtual Machines
 - [Docker containers](#docker-environments) running on Linux
 - [Apple macOS](../reference/machine-types#macos) Machines
-- [Windows](./self-hosted-install#windows) Virtuak Machines (only for self-hosted agents) 
+- [Windows](./self-hosted-install#windows) Virtual Machines (only for self-hosted agents) 
 
 You can add your own machines by [installing self-hosted agents](./self-hosted).
 
@@ -676,13 +676,13 @@ In other words, every time you re-run a workflow, create a pull request, push a 
 
 ![Default queue behavior](./img/default-queues.jpg)
 
-The downside of this stategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
+The downside of this strategy is that it may create conflicts due to pipelines running in parallel. In the example above, two deploy pipelines may try to deploy conflicting versions into the same environment, leading to instability.
 
-You can avoid conflics with named queues. Named queues allow you to manually assign pipelines to specific queues to they always run in sequence.
+You can avoid conflicts with named queues. Named queues allow you to manually assign pipelines to specific queues to they always run in sequence.
 
 ![Named queued used to avoid deployment conflicts](./img/named-queues.jpg)
 
-In the example above we have two queues. The "main" queue runs CI pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflics due to parallelism.
+In the example above we have two queues. The "main" queue runs CI pipelines for all commits. The possibly-disrupting deployment pipelines are assigned to a separate "deployment" queue. Thus, deployments are forced to run in sequence, avoiding conflicts due to parallelism.
 
 ### Queue scopes {#queue-scopes}
 
@@ -840,7 +840,7 @@ See [conditional queue reference](../reference/pipeline-yaml#queue) for more det
 
 Semaphore enforces a few limits to prevent misconfigured jobs and runaway processes from using all the resources in your organization.
 
-This section describes the limits that Semaphore applies to pipeilnes. See [job limits](./jobs#limits) to see limits that apply to jobs.
+This section describes the limits that Semaphore applies to pipelines. See [job limits](./jobs#limits) to see limits that apply to jobs.
 
 ### Global job duration {#max-job-duration}
 
