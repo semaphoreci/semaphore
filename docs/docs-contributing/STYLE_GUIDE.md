@@ -32,12 +32,12 @@ The general guidelines to approach writing are:
 - Contractions: use contractions: it's, you'll, you're, let's.
 - Imperative: use imperative for steps, e.g. "Fork the repository and clone it to your machine"
 - Punctuation: skip periods (.), exclamation (!) and question (?) marks in titles, headings and bullet point lists 
-- Commas: when listing three or more items use a comma before the conjuction (Oxford comma), e.g. "apples, tomatoes, and pears"
+- Commas: when listing three or more items use a comma before the conjunction (Oxford comma), e.g. "apples, tomatoes, and pears"
 - Italics: use *italics* to draw attention to words.
 - Bold: use **bold** for UI elements.
 - Ampersand (&): don't use ampersand instead of "and", e.g. "Jobs and Pipelines"
 - Jargon: don't overuse jargon. Use plain English whenever possible.
-- Numbers: numbers lower than then must be spelled in words, e.g. "one, two, three". Number greater than 10 must be writen in numerals, e.g. "10, 25, 102"
+- Numbers: numbers lower than then must be spelled in words, e.g. "one, two, three". Number greater than 10 must be written in numerals, e.g. "10, 25, 102"
 
 ### Code
 
@@ -87,7 +87,7 @@ Use meaningful text in the link text. The reader should know where the link goes
 
 For example, instead of `Read [this](example.com) to learn more` use `Read the [Jobs page](jobs.example.com) to learn more`
 
-If the page you want to link doesn't exist yet in the docs, write the link text `[between square brackets]`. It will make it easier to idenfity what pages are missing
+If the page you want to link doesn't exist yet in the docs, write the link text `[between square brackets]`. It will make it easier to identify what pages are missing
 
 ## Headers
 

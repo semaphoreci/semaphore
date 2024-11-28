@@ -60,7 +60,7 @@ agent:
 
 :::note
 
-The default `agent` can be overriden [inside `tasks`](#agent-in-task).
+The default `agent` can be overridden [inside `tasks`](#agent-in-task).
 
 :::
 

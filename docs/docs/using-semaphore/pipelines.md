@@ -311,7 +311,7 @@ blocks:
 
 ### Prologue {#prologue}
 
-Commands in the *prologue* run before the jobs in the block start. Semaphore preprends these commands to every job contained in the pipeline. This works like the [block prologue](./jobs#prologue) but for all blocks in the pipeline.
+Commands in the *prologue* run before the jobs in the block start. Semaphore prepends these commands to every job contained in the pipeline. This works like the [block prologue](./jobs#prologue) but for all blocks in the pipeline.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -910,7 +910,7 @@ See [job time limit](./jobs#job-duration) to change the maximum duration for a s
 
 [Pipeline queues](#pipeline-queues) have a limit of *30 pipelines*. This limit is not configurable.
 
-You can workaround the queue limit by asigning pipelines to [named queues](#named-queues).
+You can workaround the queue limit by assigning pipelines to [named queues](#named-queues).
 
 If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
 

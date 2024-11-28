@@ -55,7 +55,7 @@ Special Interest Groups in Semaphore operate with a focus on collaboration, tran
 ### Decision Making
 
 1. **Consensus-based**: SIGs strive for consensus in decision-making.
-2. **Ownership**: When consensus cannot be reached, final decisions are left at the discression of SIG owner.
+2. **Ownership**: When consensus cannot be reached, final decisions are left at the discretion of SIG owner.
 3. **Transparency**: All significant decisions are documented and shared with the broader community.
 
 ### Deliverables

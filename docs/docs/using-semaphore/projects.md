@@ -201,7 +201,7 @@ Users can be granted access and permissions on a project by different means:
 
 <Available plans={['Scaleup']}/>
 
-Scaleup plan users can manually add and remove people from a project. To manage users, ppen your project and go to the **People** tab
+Scaleup plan users can manually add and remove people from a project. To manage users, open your project and go to the **People** tab
 
 <Steps>
 

@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const pricingUrl = "https://semaphoreci.com/pricing";
 
 /**
- * An reporpoused admonition to show plans that support the explained feature
+ * A repurposed admonition to show plans that support the explained feature
  * @param {array(string)} plans - (optional) Plans where feature is supported
  * @returns 
  */
