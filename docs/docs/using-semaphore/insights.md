@@ -153,4 +153,4 @@ After you save, a new Metric chart will appear on the Dashboard. It may take up 
 - [Organization health dashboard](./org-health)
 - [Test reports dashboard](./tests/test-reports)
 - [Flaky test detection dashboard](./tests/flaky-tests)
-- [Dashboards YAML refence](./../reference/dashboard-yaml)
+- [Dashboards YAML reference](./../reference/dashboard-yaml)

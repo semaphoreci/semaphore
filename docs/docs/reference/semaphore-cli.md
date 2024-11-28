@@ -83,7 +83,7 @@ This section explains how to connect and switch organizations.
 
 ### sem connect {#sem-connect}
 
-Before using any other commands, you need to conenct to your Semaphore organization.
+Before using any other commands, you need to connect to your Semaphore organization.
 
 The syntax to connect is:
 

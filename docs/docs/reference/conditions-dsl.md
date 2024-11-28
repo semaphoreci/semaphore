@@ -29,7 +29,7 @@ You can use conditions in the following situations:
 - To determine [job priorities](../using-semaphore/jobs#priority)
 - In [pipeline queues](../using-semaphore/pipelines#pipeline-queues)
 - In the [auto cancel](../using-semaphore/pipelines#auto-cancel) policy
-- To [fail faist](../using-semaphore/pipelines#fail-fast) pipelines
+- To [fail fast](../using-semaphore/pipelines#fail-fast) pipelines
 - As block [skip/run conditions](../using-semaphore/jobs#skip-run)
 - With [monorepo projects](../using-semaphore/monorepo) using the [change_in function](#change-in)
 

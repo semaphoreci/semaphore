@@ -217,7 +217,7 @@ curl -X POST -H "Authorization: token <OAUTH_TOKEN>" \
 
 ## Pipelines
 
-### Can I in  sert multiline commands?
+### Can I insert multiline commands?
 
 Yes. You can only add multiline commands by editing the pipeline YAML file directly.
 
@@ -420,7 +420,7 @@ To change the project ownership:
 
 After project ownership has been transferred, you need to push a new commit. Old workflows cannot be re-run after transferring ownership.
 
-If you come accross any issues, please reach out to support@semaphoreci.com and include the name of the project and the GitHub/Bitbucket username of the new owner in your message.
+If you come across any issues, please reach out to support@semaphoreci.com and include the name of the project and the GitHub/Bitbucket username of the new owner in your message.
 
 ### Can I rename a project?
 
@@ -507,7 +507,7 @@ export SEMAPHORE_GIT_CACHE_AGE=43200
 
 ### Why does my SSH debug job fail to start?
 
-There are several possible error messages that appead when trying to initiate an SSH session. For example:
+There are several possible error messages that appear when trying to initiate an SSH session. For example:
 
 ```shell
 sem debug job 46490d81-2d0b-42ee-a2b0-371880dd5d9c

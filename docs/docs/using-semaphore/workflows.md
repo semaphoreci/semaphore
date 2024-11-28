@@ -39,7 +39,7 @@ The [project page](./projects#view-projects) shows all the recent workflows for 
 
 ## Visual workflow editor {#workflow-editor}
 
-<VideoTutorial title="How to use the worflow builder" src="https://www.youtube.com/embed/vrv3jI-85L0?si=JLRw6FDTEF7KtPx_" />
+<VideoTutorial title="How to use the workflow builder" src="https://www.youtube.com/embed/vrv3jI-85L0?si=JLRw6FDTEF7KtPx_" />
 
 You can define most aspects of your workflows using the visual editor. 
 
@@ -94,7 +94,7 @@ Triggers are configured in the [project settings](./projects#general). To change
 
 Selecting **Do not run on any events** disables all triggers, effectively pausing the project. You can, however, still run workflows manually or with [tasks](./tasks).
 
-![Pausing the projet](./img/pause-project.jpg)
+![Pausing the project](./img/pause-project.jpg)
 
 Selecting **Run on** allows you to configure what triggers are enabled for the project.
 

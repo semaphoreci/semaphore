@@ -57,7 +57,7 @@ Before you can start using Semaphore, you need to create an account:
 
 6. Fill in the short survey. This helps us to know you and your needs better
 
-    ![Onboading survey](./img/onboarding-survery.jpg)
+    ![Onboarding survey](./img/onboarding-survery.jpg)
 
 7. Finally, select your plan
 

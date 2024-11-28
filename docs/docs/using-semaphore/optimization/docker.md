@@ -75,7 +75,7 @@ Due to the introduction of [Docker Hub rate limits](https://www.docker.com/incre
 
 Docker images are organized as layers, which you can leverage to speed up the build process on large images. 
 
-In order to leverave layer caching you can modify your Docker build job as follows
+In order to leverage layer caching you can modify your Docker build job as follows
 
 <Steps>
 

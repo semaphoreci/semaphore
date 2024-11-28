@@ -533,7 +533,7 @@ This is a PostgreSQL container extended with [PostGIS](https://postgis.net/).
 ### ElasticSearch
 
 <details>
-<summary>ElasticSeach images</summary>
+<summary>ElasticSearch images</summary>
 <div>
    
 | Image | Link |

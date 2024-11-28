@@ -147,7 +147,7 @@ Numeric keys accept:
 Examples include:
 
 - Test age: `@metric.age:<10` shows tests less than 10 days old
-- Distruptions: `@metric.disruptions:>30` show tests with more than 30 disruptions
+- Disruptions: `@metric.disruptions:>30` show tests with more than 30 disruptions
 - Pass rate: `@metric.pass_rate:>20` shows tests with greater than 20% pass rate
 
 ### Boolean filter keys {#boolean}

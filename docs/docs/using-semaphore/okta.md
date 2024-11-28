@@ -122,7 +122,7 @@ To create the connection between Semaphore and Okta, follow these steps:
     ![Set up SAML values on Semaphore](./img/setup-okta-values.jpg)
 
 
-5. Once you press **Save**, Semaphore shows your **SCIM AUthorization token**. 
+5. Once you press **Save**, Semaphore shows your **SCIM Authorization token**. 
 
     This value is only shown once, so be sure to copy and store it in a safe place as you will need it during the next step.
 
@@ -213,7 +213,7 @@ To create a user or a group in Semaphore using the Okta integration, follow thes
 
 You can see the number of connected users in the **Okta integration** settings page in Semaphore.
 
-![Okta connected memebers in Semaphore](./img/okta-users.jpg)
+![Okta connected members in Semaphore](./img/okta-users.jpg)
 
 :::note
 
@@ -241,7 +241,7 @@ Semaphore asks new users logging in via SSO to [connect their GitHub](./connect-
 
 Semaphore does not check if users added via Okta already exist on Semaphore. This can lead to user duplication. To solve this issue there are two options:
 
-- Send us a list of duplicate users to the Semaphore teamm and we'll fix it for you
+- Send us a list of duplicate users to the Semaphore team and we'll fix it for you
 - Ensure users set up their corporate email addresses in their GitHub or BitBucket accounts. Once done, please get in touch with us to run the re-sync process and remove duplicates.
 
 In either case, please contact us at `support@semaphoreci.com` for help.

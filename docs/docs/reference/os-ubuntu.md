@@ -654,7 +654,7 @@ The following cloud CLIs are pre-installed:
 - Terraform 1.7.0
 - Helm 3.13.3
 
-### Utilites
+### Utilities
 
 The following utilities are pre-installed:
 

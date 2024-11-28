@@ -168,7 +168,7 @@ sem create notification <name> \
     --webhook-endpoint <webhook-endpoint>
 ```
 
-You can secure the notification by adding a secret. That way, the receving endpoint can validate the payload. 
+You can secure the notification by adding a secret. That way, the receiving endpoint can validate the payload. 
 
 To add a password to your notification:
 

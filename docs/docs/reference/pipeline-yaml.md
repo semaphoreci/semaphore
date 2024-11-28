@@ -1742,5 +1742,5 @@ blocks:
 - [Deployment targets YAML reference](./deployment-target-yaml)
 - [Agents YAML reference](./agent-yaml)
 - [Notifications YAML reference](./notifications-yaml)
-- [Semapore Command Line reference](./semaphore-cli)
+- [Semaphore Command Line reference](./semaphore-cli)
 
