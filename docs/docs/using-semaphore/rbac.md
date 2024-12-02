@@ -39,7 +39,7 @@ Roles can be gained in three ways:
 
 Permissions are additive. Users gaining permissions through multiple ways obtain the combined total of all permissions.
 
-For example, let's say Pam has [admin](#org-admin) role in the organization. This gives her unfettered access to all the projects in the organization. If Kevin gives her the [reader](#project-reader) role in one project, she is still effectively admin in that project. In other words, roles never substract permissions.
+For example, let's say Pam has [admin](#org-admin) role in the organization. This gives her unfettered access to all the projects in the organization. If Kevin gives her the [reader](#project-reader) role in one project, she is still effectively admin in that project. In other words, roles never subtract permissions.
 
 ## Organization roles {#org}
 
@@ -135,7 +135,7 @@ For the full list of reader permissions, see [project roles](./projects#project-
 
 Contributors can view, rerun, change workflows, and SSH into jobs. Can promote and view insights, and run schedulers.
 
-In addition to the [reader permisions](#project-reader), contributors can:
+In addition to the [reader permissions](#project-reader), contributors can:
 
 - Delete the project
 - Change project settings

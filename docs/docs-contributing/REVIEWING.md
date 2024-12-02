@@ -61,4 +61,4 @@ Use the following checklist to ensure you've covered all the steps:
 - [ ] All examples and code snippets have been tested and are working
 - [ ] Language and formatting match the [Style Guide](https://github.com/semaphoreci/semaphore/blob/main/docs/docs-contributing/STYLE_GUIDE.md)
 - [ ] There are no broken links and page is properly segmented and easy to navigate
-- [ ] Final report has been submited in this issue
+- [ ] Final report has been submitted in this issue

@@ -25,7 +25,7 @@ const sidebar: SidebarsConfig = {
         {
           type: "doc",
           id: "openapi-spec/projects-update",
-          label: "Update a project settigns",
+          label: "Update a project settings",
           className: "api-method put",
         },
         {

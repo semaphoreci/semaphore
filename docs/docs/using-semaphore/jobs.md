@@ -1039,7 +1039,7 @@ To use job parallelism, follow these steps:
 
 </Steps>
 
-![Setting up job parallalelism](./img/job-parallelism-4.jpg)
+![Setting up job parallelism](./img/job-parallelism-4.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
@@ -1056,7 +1056,7 @@ To enable job parallelism, follow these steps:
 
 </Steps>
 
-The following example creates four jobs, each printing a differnt line in the log:
+The following example creates four jobs, each printing a different line in the log:
 
 - "Job 1 out of 4"
 - "Job 2 out of 4"

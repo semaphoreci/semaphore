@@ -205,7 +205,7 @@ To create a user or a group in Semaphore using the Okta integration, follow thes
     ![Pressing the Assign button](./img/assign-button.jpg)
 
 
-7. Press **Asign** next to the People or Groups you wish to add to Semaphore.
+7. Press **Assign** next to the People or Groups you wish to add to Semaphore.
 
     ![Assigning people to Semaphore](./img/assign-people.jpg)
 

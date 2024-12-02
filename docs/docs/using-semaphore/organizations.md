@@ -302,7 +302,7 @@ You can find audit logs in your organization settings under Audit Logs.
 
 ![Audit logs location](./img/audit-log-location.jpg)
 
-The audit logs shows all the [audited events](../reference/audit-events) in reverse cronological order. Latest events are shown first.
+The audit logs shows all the [audited events](../reference/audit-events) in reverse chronological order. Latest events are shown first.
 
 ![Audit log example](./img/audit-logs-example.jpg)
 
@@ -375,7 +375,7 @@ To see your spending:
 
 1. Open your organization menu
 2. Select **Plans & Billing**
-3. The overview tab shows your monthly spendings
+3. The overview tab shows your monthly spending
 
     ![Spending overview](./img/spending-overview.jpg)
 

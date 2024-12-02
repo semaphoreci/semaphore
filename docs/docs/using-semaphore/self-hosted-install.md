@@ -347,7 +347,7 @@ Follow these steps to install self-hosted agent in any Linux distribution:
     EOF
     ```
 
-5. Download and install the [Semaphore toolbox](https://github.com/semaphoreci/agent/releases/). Selec the correct platform and architecture
+5. Download and install the [Semaphore toolbox](https://github.com/semaphoreci/agent/releases/). Select the correct platform and architecture
 
     ```shell title="Install Semaphore toolbox"
     curl -L "https://github.com/semaphoreci/toolbox/releases/latest/download/self-hosted-linux.tar" -o toolbox.tar
