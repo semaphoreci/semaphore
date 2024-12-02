@@ -4,7 +4,26 @@ description: Semaphore change Log. This page is updated on a weekly basis.
 
 # Change Log
 
-Thank you for using Semaphore!  We continuously deploy changes that improve our product for our customers.  This page is updated on a weekly basis.
+Thank you for using Semaphore!
+We continuously deploy changes that improve our product for our customers.
+This page is updated on a weekly basis.
+
+## Week of December 2, 2024
+
+**(Improved) Ubuntu 20.04, Ubuntu 22.04 and Ubuntu 22.04 ARM image update**
+
+**(New)** Packages:
+
+- Elixir 1.17.3
+- PHP 8.1.30, 8.1.31, 8.2.24, 8.2.25, 8.2.26, 8.3.12, 8.3.13, 8.3.14
+- Ruby 3.2.6
+
+**(Updated)** Packages:
+
+- Erlang 24.3.4.15 -> 24.3.4.17 (aliased as 24.3)
+- Erlang 25.3.2.13 -> 25.3.2.15 (aliased as 25.3)
+- Erlang 26.2.5.2 -> 26.2.5.5 (aliased as 26.2)
+- Erlang 27.1 -> 27.1.2 (aliased as 27.1)
 
 ## Week of September 16, 2024
 
