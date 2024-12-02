@@ -466,6 +466,8 @@ This section lists utility images for [sem-service](../../reference/toolbox#sem-
 | postgres:15 | `registry.semaphoreci.com/postgres:15` |  
 | postgres:16 | `registry.semaphoreci.com/postgres:16` |  
 | postgres:17 | `registry.semaphoreci.com/postgres:17` |  
+| postgres:17.2 | `registry.semaphoreci.com/postgres:17.2` |  
+
 
 </div>
 </details>
