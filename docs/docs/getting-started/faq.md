@@ -106,9 +106,11 @@ Billing change requests must originate from a user with Admin or Owner permissio
 
 ### Can I change my VAT number?
 
-Not directly from the Semaphore website. After a subscription has been purchased, users can't add or change a VAT number (VAT ID) from the UI. 
+Not directly from the Semaphore website. After a subscription has been purchased, users can't add or change a VAT number (VAT ID) from the UI.
 
 If you wish to change the VAT number associated with your subscription, please get in touch with support@semaphoreci.com with the VAT number you want to add and we will gladly make it happen.
+
+For security reasons, these requests **must originate from an email** linked to a user with the [Owner role](../using-semaphore/rbac#org-owner), or from the current Billing contact associated with the organization’s FastSpring subscription. This ensuress that only authorized individuals can make changes to the billing information.
 
 ### Will I get an invoice?
 
