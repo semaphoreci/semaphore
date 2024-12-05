@@ -239,12 +239,9 @@ Semaphore asks new users logging in via SSO to [connect their GitHub](./connect-
 
 ## Troubleshooting duplicated users {#troubleshooting}
 
-Semaphore does not check if users added via Okta already exist on Semaphore. This can lead to user duplication. To solve this issue there are two options:
+Semaphore tries to match new users provisioned via SCIM to existing Semaphore users by the email address. If the email address associated with the SCIM request matches the email address of existing Semaphore users, the two accounts will be connected, and no new account will be provisioned. Email associated with Semaphore is the primary email fro GitHub or BitBucket.
 
-- Send us a list of duplicate users to the Semaphore team and we'll fix it for you
-- Ensure users set up their corporate email addresses in their GitHub or BitBucket accounts. Once done, please get in touch with us to run the re-sync process and remove duplicates.
-
-In either case, please contact us at `support@semaphoreci.com` for help.
+If you are not sure how many organization members have corporate email accounts, or have any other question, feel free to contact our support team at `support@semaphoreci.com` and we will help you update user emails and smoothly integrate our app with your SCIM/SAML provider.
 
 ## See also
 
