@@ -239,7 +239,7 @@ Semaphore asks new users logging in via SSO to [connect their GitHub](./connect-
 
 ## Troubleshooting duplicated users {#troubleshooting}
 
-Semaphore tries to match new users provisioned via SCIM to existing Semaphore users by the email address. If the email address associated with the SCIM request matches the email address of existing Semaphore users, the two accounts will be connected, and no new account will be provisioned. Email associated with Semaphore is the primary email fro GitHub or BitBucket.
+Semaphore tries to match new users provisioned via SCIM to existing Semaphore users by email address. If the email address associated with the SCIM request matches the email address of existing Semaphore users, the two accounts will be connected, and no new account will be provisioned. Email associated with Semaphore is the primary email from GitHub or BitBucket.
 
 If you are not sure how many organization members have corporate email accounts, or have any other question, feel free to contact our support team at `support@semaphoreci.com` and we will help you update user emails and smoothly integrate our app with your SCIM/SAML provider.
 
