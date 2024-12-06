@@ -535,6 +535,10 @@ The are several causes for these messages:
 
 The message indicates that the SSH session cannot be initiated for the provided job id.
 
+### Why does autocomplete does not work in my SSH session?
+
+Enabling the `set -e` option in the Bash shell causes autocomplete to fail and end the debugging session. Check that you are not using this option in any of your scripts and try again.
+
 ### Why are my secrets empty?
 
 We have discontinued exposing secret content via the CLI, API, and web interface to ensure enhanced security measures. Retrieval of secret values is now exclusively available through the job mechanism.

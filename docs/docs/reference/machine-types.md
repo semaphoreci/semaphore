@@ -25,10 +25,10 @@ Linux machines are provided in four generations. The following table shows what 
 
 | Generation | OS Supported | Docker environments |
 |--|--|--|
-| [E1](#e1) | [Ubuntu 20.04](./os-ubuntu#ubuntu2004) |  Yes |
-| [E2](#e2) | [Ubuntu 22.04](./os-ubuntu#ubuntu2204-x86)<br/>[Ubuntu 20.04](./os-ubuntu#ubuntu2004) | Yes |
-| [F1](#f1) |  [Ubuntu 22.04](./os-ubuntu#ubuntu2204-x86)<br/>[Ubuntu 20.04](./os-ubuntu#ubuntu2004) | Yes |
-| [R1](#r1) | [Ubuntu 22.04 ARM](./os-ubuntu#ubuntu2204-arm) | No |
+| [E1](#e1) | [Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) |  Yes |
+| [E2](#e2) | [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
+| [F1](#f1) |  [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
+| [R1](#r1) | [Ubuntu 22.04 ARM](./os-ubuntu-images/ubuntu-2204-arm-image) | No |
 
 ### E1 generation {#e1}
 
@@ -49,7 +49,7 @@ The E1 generation is presented in the following types:
 
 E1 Generation machine types can be paired with:
 
-- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environment](../using-semaphore/pipelines#docker-environments).
 
 ### E2 generation {#e2}
@@ -71,8 +71,8 @@ The E2 generation is presented in the following types:
 
 E2 machines can also be paired with:
 
-- [`ubuntu2204`](./os-ubuntu#ubuntu2204-x86)
-- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-image)
+- [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 ### F1 generation {#f1}
@@ -95,8 +95,8 @@ The F1 generation is presented in the following types:
 
 F1 machines can also be paired with:
 
-- [`ubuntu2204`](./os-ubuntu#ubuntu2204-x86)
-- [`ubuntu2004`](./os-ubuntu#ubuntu2004)
+- [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-image)
+- [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environments](../using-semaphore/pipelines#docker-environments).
 
 ### R1 generation {#r1}
@@ -117,7 +117,7 @@ The r1 generation is presented in the following types:
 
 R1 Generation machine types can only be paired with:
 
-- [`ubuntu2204`](./os-ubuntu#ubuntu2204-arm) ARM version
+- [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-arm-image) ARM version
 
 ## Apple machines {#macos}
 
