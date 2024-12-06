@@ -90,7 +90,7 @@ This page is updated on a weekly basis.
 - Virtualenv 20.25.0 -> 20.26.3
 - Yarn 1.22.19 -> 1.22.22
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -141,7 +141,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ub
 - Virtualenv 20.25.0 -> 20.26.3
 - Yarn 1.22.19 -> 1.22.22
 
-To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 ## Week of August 12, 2024
 
@@ -191,7 +191,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ub
 
 - Ruby 3.1.6, 3.3.2
 
-To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu-images/ubuntu-2004-image), [Ubuntu 22.04](../reference/os-ubuntu-images/ubuntu-2204-image) and [Ubuntu 22.04 ARM](../reference/os-ubuntu-images/ubuntu-2204-arm-image).
 
 ## Week of May 27, 2024
 
@@ -214,7 +214,7 @@ To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu
 - PHP 8.1.28, 8.2.17, 8.2.18, 8.2.19, 8.3.4, 8.3.6, 8.3.7
 - Ruby 3.0.7, 3.1.5, 3.2.4, 3.3.1
 
-To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu-images/ubuntu-2004-image), [Ubuntu 22.04](../reference/os-ubuntu-images/ubuntu-2204-image) and [Ubuntu 22.04 ARM](../reference/os-ubuntu-images/ubuntu-2204-arm-image).
 
 ## Week of March 11, 2024
 
@@ -228,7 +228,7 @@ To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu
 - Elixir 1.16.2
 - PHP 8.2.16, 8.3.3
 
-To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu#ubuntu2004), [Ubuntu 22.04](../reference/os-ubuntu#ubuntu2204-x86) and [Ubuntu 22.04 ARM](../reference/os-ubuntu#ubuntu2204-arm).
+To learn more about these images check our [Ubuntu 20.04](../reference/os-ubuntu-images/ubuntu-2004-image), [Ubuntu 22.04](../reference/os-ubuntu-images/ubuntu-2204-image) and [Ubuntu 22.04 ARM](../reference/os-ubuntu-images/ubuntu-2204-arm-image).
 
 **(Improved) Toolbox**
 **(Updated)** Sem-service addons:
@@ -266,7 +266,7 @@ You can find out more about Semaphore toolbox by checking the [Toolbox Reference
 - Sbt 1.9.7 -> 1.9.8
 - Terraform 1.7.0 -> 1.7.2
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -294,7 +294,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ub
 - Sbt 1.9.7 -> 1.9.8
 - Terraform 1.7.0 -> 1.7.2
 
-To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 ### January 23, 2024
 
@@ -345,7 +345,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ub
 - Pypy3 7.3.13 -> 7.3.15
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -383,7 +383,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ub
 - Rust 1.74.1 -> 1.75.0
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
@@ -422,7 +422,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ub
 - Rust 1.74.1 -> 1.75.0
 - Terraform 1.6.5 -> 1.7.0
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu-images/ubuntu-2204-arm-image)
 
 ## Week of December 18, 2023
 
@@ -467,7 +467,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/o
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -514,7 +514,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ub
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
@@ -557,7 +557,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ub
 - Terraform 1.5.7 -> 1.6.5
 - Vrtualenv 20.24.5 -> 20.25.0
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu-images/ubuntu-2204-arm-image)
 
 ## Week of October 09, 2023
 
@@ -607,7 +607,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/o
 - Terraform 1.5.2 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 22.04 image update**
 
@@ -654,7 +654,7 @@ To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ub
 - Terraform 1.5.2 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 **(Improved) Ubuntu 22.04 ARM image update**
 
@@ -703,7 +703,7 @@ To learn more about this image, check our [Ubuntu 22.04 page](../reference/os-ub
 - Terraform 1.4.6 -> 1.5.7
 - Vrtualenv 20.23.0 -> 20.24.5
 
-To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu#ubuntu2204-arm)
+To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/os-ubuntu-images/ubuntu-2204-arm-image)
 
 ## Week of September 11, 2023
 
@@ -764,7 +764,7 @@ To learn more about this image, check our [Ubuntu 22.04 ARM page](../reference/o
 - Terraform 1.3.7 -> 1.5.2
 - Virtualenv 20.17.1 -> 20.23.0
 
-To learn more about this image, check our [ubuntu 22.04 page](../reference/os-ubuntu#ubuntu2204-x86).
+To learn more about this image, check our [ubuntu 22.04 page](../reference/os-ubuntu-images/ubuntu-2204-image).
 
 **(Improved) Ubuntu 20.04 image update**
 
@@ -810,7 +810,7 @@ To learn more about this image, check our [ubuntu 22.04 page](../reference/os-ub
 - Sbt 1.8.3 -> 1.9.1
 - Terraform 1.4.6 -> 1.5.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -894,7 +894,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Sbt 1.8.2 -> 1.8.3
 - Terraform 1.4.4 -> 1.4.6
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -988,7 +988,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Python 3.10.10. -> 3.10.11
 - Python 3.11.2 -> 3.11.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1056,7 +1056,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Terraform 1.3.9 -> 1.4.2
 - Nodejs 18.14.2 -> 18.15.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1129,7 +1129,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Nodejs 18.13.0 -> 18.14.2
 - Npm 8.19.3 -> 9.5.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1196,7 +1196,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Kubectl 1.26.0 -> 1.26.1
 - Pip 22.3.1 -> 23.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1278,7 +1278,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Nodejs 18.12.1 -> 18.13.0
 - Npm 8.19.2 -> 8.19.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1339,7 +1339,7 @@ The Ubuntu 18.04 image has been deprecated.
 - lein 2.9.10 -> 2.10.0
 - kubectl 1.25.4 -> 1.26.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1407,7 +1407,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Bundler 2.3.11 -> 2.3.26
 - Nodejs 18.12.0 -> 18.12.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1473,7 +1473,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Terraform 1.3.3 -> 1.3.4
 - Heroku 7.65.0 -> 7.66.4
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1559,7 +1559,7 @@ The macOS Xcode 12 image will be removed at the end of November. We advise all u
 - Terraform 1.3.1 -> 1.3.3
 - Pip 22.2.2 -> 22.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1636,7 +1636,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Sbt 1.7.1 -> 1.7.2
 - Terraform 1.2.9 -> 1.3.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1720,7 +1720,7 @@ The macOS Xcode 14 image is deprecated.
 - Heroku 7.63.0 -> 7.63.4
 - Terraform 1.2.8 -> 1.2.9
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1796,7 +1796,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Firefox 78.1.0esr: `78`, `default`, `esr`
 - Firefox 102.2.0esr: `102`, `esr-new`, `esr-latest`
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1869,7 +1869,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Leiningen 2.9.1 -> 2.9.8
 - Terraform 1.2.5 -> 1.2.6
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1928,7 +1928,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Sbt 1.6.2 -> 1.7.1
 - Terraform 1.2.4 -> 1.2.5
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -1981,7 +1981,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Pip 22.1.1 -> 22.1.2
 - Terraform 1.2.3 -> 1.2.4
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2029,7 +2029,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Httpie 0.9.8 -> 1.0.3
 - Terraform 1.2.2 -> 1.2.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2104,7 +2104,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Npm 8.5.5 -> 8.11.0
 - Terraform 1.2.1 -> 1.2.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2163,7 +2163,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Pip 22.1 -> 22.1.1
 - Terraform 1.1.9 - > 1.2.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2258,7 +2258,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Scala 2.12.10 -> 2.12.15
 - Sbt 1.5.5 -> 1.6.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2317,7 +2317,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Heroku 7.60.1 -> 7.60.2
 - Terraform 1.1.8 -> 1.1.9
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2375,7 +2375,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Bundler 2.2.32 -> 2.3.11
 - Terraform 1.1.7 -> 1.1.8
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2451,7 +2451,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Github-cli 2.6.0 -> 2.7.0
 - Heroku 7.59.4 -> 7.60.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2506,7 +2506,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Yarn 1.22.17 -> 1.22.18
 - Pip 22.0.3 -> 22.0.4
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2559,7 +2559,7 @@ From now on you can configure [retention policies for artifacts](../using-semaph
 - Google Chrome 98 -> 99
 - ChromeDriver 98 -> 99
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2605,7 +2605,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Pypy 7.3.6 -> 7.3.8
 - Pypy3 7.3.7 > 7.3.8
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2655,7 +2655,7 @@ The Ubuntu 18.04 image has been deprecated.
   - 23.3.4.10 -> 23.3.4.11 
   - 24.2 -> 24.2.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2698,7 +2698,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Pip 20.3.4 - > 21.3.1
 - Terraform 1.0.6 -> 1.1.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2733,7 +2733,7 @@ The Ubuntu 18.04 image has been deprecated.
 - ChromeDriver 96 -> 97
 - NodeJS 16.13.1 -> 16.13.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2775,7 +2775,7 @@ The Ubuntu 18.04 image has been deprecated.
   - 22.3.4.23-> 22.3.4.24
   - 23.3.4.9 -> 23.3.4.10
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2841,7 +2841,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Npm 8.1.0 -> 8.1.2
 - Phpbrew 1.25.3 -> 1.27.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2889,7 +2889,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Lftp 4.8.2 -> 4.9.2
 - Podman 3.3.1 -> 3.4.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2935,7 +2935,7 @@ The Ubuntu 18.04 image has been deprecated.
 
 Default Elixir version changed from 1.11.4 to 1.12.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -2983,7 +2983,7 @@ The Ubuntu 18.04 image has been deprecated.
 - Heroku 7.59.0 -> 7.59.1
 - Java OpenJDK 13.0.1 -> 17.0.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3041,7 +3041,7 @@ The Ubuntu 18.04 image has been deprecated.
 - NodeJS 14.18.0 -> 14.18.1
 - Pip 21.2.4 -> 21.3
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3107,7 +3107,7 @@ The macOS Xcode 13 image is deprecated.
 - Git-lfs 2.13.3 -> 3.0.1
 - Kerl 2.1.0 -> 2.1.2
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3168,7 +3168,7 @@ To learn more about this image, check our macOS Xcode 12 page.
 - Bundler 1.17.2 -> 2.2.23
 - Podman 3.2.3 -> 3.3.1
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004).
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3211,7 +3211,7 @@ We advise all users to switch to the macOS Xcode 12 image.
 - Pip 21.2.1 -> 21.2.4
 - Terraform 0.15.5 -> 1.0.6
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image)
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3321,7 +3321,7 @@ To learn how to set up a Test Summary check [our docummentation](../using-semaph
 - Sbt 1.3.10 -> 1.5.5
 - Terraform 0.15.0 -> 0.15.5
 
-To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
+To learn more about this image, check our [Ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image)
 
 **(Improved) Ubuntu 18.04 image update**
 
@@ -3441,7 +3441,7 @@ On this page you can:
 - Heroku 7.54.0 -> 7.54.1
 - Skopeo 1.2.3 -> 1.3.0
 
-To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu#ubuntu2004)
+To learn more about this image, check our [ubuntu 20.04 page](../reference/os-ubuntu-images/ubuntu-2004-image)
 
 **(Improved) Ubuntu 18.04 image update**  
 
@@ -3501,7 +3501,7 @@ Some of the improvements compared to the Ubuntu 18.04 image include:
 
 To find out more about the differences between the Ubuntu 18.04 and Ubuntu 20.04 images, check out our [Ubuntu page](../reference/os-ubuntu).
 
-You can read more about the image itself on the [Ubuntu 20.04 image page](../reference/os-ubuntu#ubuntu2004).
+You can read more about the image itself on the [Ubuntu 20.04 image page](../reference/os-ubuntu-images/ubuntu-2004-image).
 
 **(Improved) Ubuntu 18.04 image update**  
 

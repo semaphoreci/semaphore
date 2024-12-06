@@ -203,17 +203,33 @@ const sidebars = {
         'reference/agent-aws-stack',
         'reference/audit-events',
         'reference/openid',
+        'reference/machine-types',
+        // {
+        //   type: 'category',
+        //   label: 'Machine Types',
+        //   link: {
+        //     type: 'doc',
+        //     id: 'reference/machine-types',
+        //   },
+        //   collapsed: false,
+        //   items: [
+        //     'reference/os-ubuntu',
+        //     'reference/os-apple',
+        //   ]
+        // },
+        'reference/os-apple',
         {
           type: 'category',
-          label: 'Machine Types',
+          label: 'Linux Ubuntu Images',
           link: {
             type: 'doc',
-            id: 'reference/machine-types',
+            id: 'reference/os-ubuntu',
           },
           collapsed: false,
           items: [
-            'reference/os-ubuntu',
-            'reference/os-apple',
+            'reference/os-ubuntu-images/ubuntu-2004-image',
+            'reference/os-ubuntu-images/ubuntu-2204-image',
+            'reference/os-ubuntu-images/ubuntu-2204-arm-image'
           ]
         },
         {
