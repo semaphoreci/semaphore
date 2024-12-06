@@ -4102,7 +4102,7 @@ To learn more about this image, check our macOS Xcode 12 page.
 **(New) Fork&Run example projects**  
 Semaphore provides several different example projects that showcase the basic features of our product.  
 You can now easily fork these repositories in-app and run the example workflows provided.  
-You can access this feature by clicking on the _New project_ button in the top right corner.  
+You can access this feature by clicking on the **New project** button in the top left corner.  
 
 **(Improved) New UI fixes and upgrades**  
 **(Fixed)** - Fixed the issue causing some branches to be missing from search in various locations.  

@@ -539,7 +539,8 @@ sem debug job <job-id> --duration 3h
 
 :::note
 
-Interactive sessions may be unavailable when [access policies for secrets](./secrets#secret-access-policy) is enabled.
+- Interactive sessions may be unavailable when [access policies for secrets](./secrets#secret-access-policy) is enabled.
+- Setting Bash option `set -e` disables shell autocompletion and causes the SSH session to exit with error.
 
 :::
 
