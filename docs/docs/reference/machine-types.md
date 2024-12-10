@@ -23,12 +23,12 @@ The machines described in this page only apply to Semaphore Cloud. You can add m
 
 Linux machines are provided in four generations. The following table shows what operating systems each generation supports and if they support [Docker environments](../using-semaphore/pipelines#docker-environments).
 
-| Generation | OS Supported | Docker environments |
-|--|--|--|
-| [E1](#e1) | [Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) |  Yes |
-| [E2](#e2) | [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
-| [F1](#f1) |  [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
-| [R1](#r1) | [Ubuntu 22.04 ARM](./os-ubuntu-images/ubuntu-2204-arm-image) | No |
+| Generation | Arch | OS Supported | Docker environments |
+|--|--|--|--|
+| [E1](#e1) | Intel x86_64 | [Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) |  Yes |
+| [E2](#e2) | Intel x86_64 | [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
+| [F1](#f1) | Intel x86_64 |[Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
+| [R1](#r1) | ARM | [Ubuntu 22.04 ARM](./os-ubuntu-images/ubuntu-2204-arm-image) | No |
 
 ### E1 generation {#e1}
 
@@ -95,6 +95,7 @@ The F1 generation is presented in the following types:
 
 F1 machines can also be paired with:
 
+- [`ubuntu2404`](../reference/os-ubuntu-images/ubuntu-2404-image)
 - [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-image)
 - [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environments](../using-semaphore/pipelines#docker-environments).
