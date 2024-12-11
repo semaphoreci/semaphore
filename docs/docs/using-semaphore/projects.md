@@ -576,30 +576,12 @@ There are several actions that can break the connection between GitHub and Semap
 - renaming the GitHub user account
 - renaming the GitHub organization
 
-When this happens, you must update the URL of the repository in Semaphore. To do this:
-
-<Steps>
-
-1. Open your [project settings](./projects#settings)
-2. Type the new repository URL
-3. Press **Change**
-    ![Changing the repository URL in Semaphore](./img/repository-url.jpg)
-
-</Steps>
-
-After changing the URL, double-check the status of the [deploy key](#deploy-key) and the [webhook](#webhook).
-
-:::info
-
-If you changed the name or the URL of your repository, please email Semaphore at [support@semaphoreci.com](mailto:support@semaphoreci.com) providing the following details:
+When this happens, please email Semaphore at [support@semaphoreci.com](mailto:support@semaphoreci.com) providing the following details:
 
 - Previous repository name and URL
 - New repository name and URL
 
 The Semaphore support team will relink the project to the new repository.
-
-:::
-
 
 ## See also
 
