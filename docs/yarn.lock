@@ -48,15 +48,15 @@
   dependencies:
     "@algolia/cache-common" "4.24.0"
 
-"@algolia/client-abtesting@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-abtesting/-/client-abtesting-5.14.0.tgz"
-  integrity sha512-HR4kbCmq4RO8vhafLrVcR11q3BvuPYA4o+Nn8hzJRgpDu2fauIlgIBgVDsoxaK90xuaPLSNdoT5tWXag+L8vCw==
+"@algolia/client-abtesting@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-abtesting/-/client-abtesting-5.17.0.tgz"
+  integrity sha512-6+7hPdOEPfJqjWNYPRaVcttLLAtVqQyp1U7xBA1e1uSya1ivIr9FtS/GBr31mfvwk2N2yxV4W7itxuBtST8SWg==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/client-account@4.24.0":
   version "4.24.0"
@@ -77,15 +77,15 @@
     "@algolia/requester-common" "4.24.0"
     "@algolia/transporter" "4.24.0"
 
-"@algolia/client-analytics@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-analytics/-/client-analytics-5.14.0.tgz"
-  integrity sha512-EnmouGUQdIvwmI8plglt3HP9hXwNNwCJshszfU/Hqi2n21//iwmWLmMb5gXDfiLhyMa6u8eya8c03QT79s3/tQ==
+"@algolia/client-analytics@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-analytics/-/client-analytics-5.17.0.tgz"
+  integrity sha512-nhJ+elL8h0Fts3xD9261zE2NvTs7nPMe9/SfAgMnWnbvxmuhJn7ZymnBsfm2VkTDb4Dy810ZAdBfzYEk7PjlAw==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/client-common@4.24.0":
   version "4.24.0"
@@ -95,20 +95,20 @@
     "@algolia/requester-common" "4.24.0"
     "@algolia/transporter" "4.24.0"
 
-"@algolia/client-common@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-common/-/client-common-5.14.0.tgz"
-  integrity sha512-xYaswEqv+mTeazOJV0PELs4LYXaETYGwlntQxvOTHsICaj1e+ylKeMr+C+ZvN74RpCRDoEN3a2n33bRU9/MHTw==
+"@algolia/client-common@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-common/-/client-common-5.17.0.tgz"
+  integrity sha512-9eC8i41/4xcQ/wI6fVM4LwC/ZGcDl3mToqjM0wTZzePWhXgRrdzOzqy/XgP+L1yYCDfkMFBZZsruNL5U8aEOag==
 
-"@algolia/client-insights@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-insights/-/client-insights-5.14.0.tgz"
-  integrity sha512-1dWxjTmpNCgLWLl6GSAaOACs55JvioAIdno7jvq7KVfpLLXehHaSaiij8ssbbIM8HqHZPwC8ShaUHtSt2jLdBg==
+"@algolia/client-insights@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-insights/-/client-insights-5.17.0.tgz"
+  integrity sha512-JL/vWNPUIuScsJubyC4aPHkpMftlK2qGqMiR2gy0rGvrh8v0w+ec6Ebq+efoFgE8wO55HJPTxiKeerE1DaQgvA==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/client-personalization@4.24.0":
   version "4.24.0"
@@ -119,35 +119,35 @@
     "@algolia/requester-common" "4.24.0"
     "@algolia/transporter" "4.24.0"
 
-"@algolia/client-personalization@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-personalization/-/client-personalization-5.14.0.tgz"
-  integrity sha512-HDOYm38nUwflxaemKrxlV91pYg3L9JkmLnuSQCJ7bzivqP+aBTZ8mGRvanFzwayNMRZWLuGsstJMpGET6FYaDQ==
+"@algolia/client-personalization@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-personalization/-/client-personalization-5.17.0.tgz"
+  integrity sha512-PkMUfww8QiRpyLkW4kzmc7IJDcW90sfUpnTgUOVlug5zEE2iv1ruHrJxdcNRTXkA0fgVpHu3oxXmCQL/ie2p7A==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
-"@algolia/client-query-suggestions@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-query-suggestions/-/client-query-suggestions-5.14.0.tgz"
-  integrity sha512-yDPf3E3MS2RUg1br7r1+PEqKOxUftxjLLtD35yW9voZ9oV45XZnAPnHCqgmyzjcK5/dM1dzXHhmZGf4VbjYn7Q==
+"@algolia/client-query-suggestions@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-query-suggestions/-/client-query-suggestions-5.17.0.tgz"
+  integrity sha512-bokfgPN2whetLuiX9NB6C6d7Eke+dvHuASOPiB+jdI8Z6hacLHkcJjYeZY4Mppj0/oJ1KlyNivj+8WNpZeGhYA==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
-"@algolia/client-search@>= 4.9.1 < 6", "@algolia/client-search@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/client-search/-/client-search-5.14.0.tgz"
-  integrity sha512-x5/GVLDyGad8aiWA/vfj8X4NXOZ3FlwXw/gb7t+Mxo3O0g3VxSFQdyrZ8Oduv/Y/Y8cxMVEOx1u3Azs6tlSZbg==
+"@algolia/client-search@>= 4.9.1 < 6", "@algolia/client-search@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/client-search/-/client-search-5.17.0.tgz"
+  integrity sha512-alY3U79fiEvlR/0optgt1LZp9MfthXFnuEA4GYS81svozDOF61gdvxgBjt6SYtmskmTQQZDWVgakvUvvHrDzMw==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/client-search@4.24.0":
   version "4.24.0"
@@ -163,15 +163,15 @@
   resolved "https://registry.npmjs.org/@algolia/events/-/events-4.0.1.tgz"
   integrity sha512-FQzvOCgoFXAbf5Y6mYozw2aj5KCJoA3m4heImceldzPSMbdyS4atVjJzXKMsfX3wnZTFYwkkt8/z8UesLHlSBQ==
 
-"@algolia/ingestion@1.14.0":
-  version "1.14.0"
-  resolved "https://registry.npmjs.org/@algolia/ingestion/-/ingestion-1.14.0.tgz"
-  integrity sha512-HU9AoZDFMEIT/+xzIa9l1XkPRTH7S0jWbYWrNkeb/62TxQFvL5x/XYEa6Yf/WCFU6Qa0W+ivua8NDzxL15NVGQ==
+"@algolia/ingestion@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.npmjs.org/@algolia/ingestion/-/ingestion-1.17.0.tgz"
+  integrity sha512-9+mO+FbIpWz6izh1lXzON9BcenBKx4K3qVjSWiFFmL8nv+7b7zpGq++LXWr/Lxv/bZ9+D71Go6QVL6AZQhFOmg==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/logger-common@4.24.0":
   version "4.24.0"
@@ -185,15 +185,15 @@
   dependencies:
     "@algolia/logger-common" "4.24.0"
 
-"@algolia/monitoring@1.14.0":
-  version "1.14.0"
-  resolved "https://registry.npmjs.org/@algolia/monitoring/-/monitoring-1.14.0.tgz"
-  integrity sha512-tGKip5Dvusw8z4ajIJBBYxdPUOGIqV1CGat55eCaAmX97Oko2adIOq9MKvdC3d7SMuQt3j28QIHpV6wvihnsKA==
+"@algolia/monitoring@1.17.0":
+  version "1.17.0"
+  resolved "https://registry.npmjs.org/@algolia/monitoring/-/monitoring-1.17.0.tgz"
+  integrity sha512-Db7Qh51zVchmHa8d9nQFzTz2Ta6H2D4dpCnPj1giC/LE6UG/6e3iOnRxUzV+9ZR7etHKIrri2hbnkyNrvbqA9A==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/recommend@4.24.0":
   version "4.24.0"
@@ -212,15 +212,15 @@
     "@algolia/requester-node-http" "4.24.0"
     "@algolia/transporter" "4.24.0"
 
-"@algolia/recommend@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/recommend/-/recommend-5.14.0.tgz"
-  integrity sha512-wXOWFG4L0Y/EyWKuDXQA7FoB7Ukuss+O8zaxZSlla4h19UGWak+22RcZ2eDFoAhVOJxC8RoLg9opMfDbZtPW9Q==
+"@algolia/recommend@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/recommend/-/recommend-5.17.0.tgz"
+  integrity sha512-7vM4+mfuLYbslj8+RNsP/ISwY7izu5HcQqQhA0l+q3EZRHF+PBeRaJXc3S1N0fTRxj8ystvwXWZPmjssB/xMLw==
   dependencies:
-    "@algolia/client-common" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 "@algolia/requester-browser-xhr@4.24.0":
   version "4.24.0"
@@ -229,24 +229,24 @@
   dependencies:
     "@algolia/requester-common" "4.24.0"
 
-"@algolia/requester-browser-xhr@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/requester-browser-xhr/-/requester-browser-xhr-5.14.0.tgz"
-  integrity sha512-5zk1sol+WTDskAx1AMBGGDChCVBHuPTmclGZO844/ljqH7AcJpkFnfUeAMXfx2m4tW3Ax+M+uaC+XjVoQRb9Hg==
+"@algolia/requester-browser-xhr@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/requester-browser-xhr/-/requester-browser-xhr-5.17.0.tgz"
+  integrity sha512-bXSiPL2R08s4e9qvNZsJA0bXZeyWH2A5D4shS8kRT22b8GgjtnGTuoZmi6MxtKOEaN0lpHPbjvjXAO7UIOhDog==
   dependencies:
-    "@algolia/client-common" "5.14.0"
+    "@algolia/client-common" "5.17.0"
 
 "@algolia/requester-common@4.24.0":
   version "4.24.0"
   resolved "https://registry.npmjs.org/@algolia/requester-common/-/requester-common-4.24.0.tgz"
   integrity sha512-k3CXJ2OVnvgE3HMwcojpvY6d9kgKMPRxs/kVohrwF5WMr2fnqojnycZkxPoEg+bXm8fi5BBfFmOqgYztRtHsQA==
 
-"@algolia/requester-fetch@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/requester-fetch/-/requester-fetch-5.14.0.tgz"
-  integrity sha512-B9grYSKH34UlJPkUdds14I/m8Yp7/a4PbqRuZsrP1L4kBW2FGinMtpQOK3N6gEy8YkVNA1iKlTC24yro8z8a8A==
+"@algolia/requester-fetch@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/requester-fetch/-/requester-fetch-5.17.0.tgz"
+  integrity sha512-mjJ6Xv7TlDDoZ6RLKrEzH1ved3g2GAq3YJjb94bA639INfxK1HM8A/wCAFSZ8ye+QM/jppwauDXe1PENkuareQ==
   dependencies:
-    "@algolia/client-common" "5.14.0"
+    "@algolia/client-common" "5.17.0"
 
 "@algolia/requester-node-http@4.24.0":
   version "4.24.0"
@@ -255,12 +255,12 @@
   dependencies:
     "@algolia/requester-common" "4.24.0"
 
-"@algolia/requester-node-http@5.14.0":
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/@algolia/requester-node-http/-/requester-node-http-5.14.0.tgz"
-  integrity sha512-2EPhRqbxWzrsSXX0/70jIGtjQTj8VILi+uqmgBweyQIzCNlGoNbyMs+E7iwHVtUSrE/9IDd8rrewkVHOI6h2IQ==
+"@algolia/requester-node-http@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@algolia/requester-node-http/-/requester-node-http-5.17.0.tgz"
+  integrity sha512-Z2BXTR7BctlGPNig21k2wf/5nlH+96lU2UElzXTKiptyn2iM8lDU8zdO+dRll0AxQUxUGWEnkBysst9xL3S2cg==
   dependencies:
-    "@algolia/client-common" "5.14.0"
+    "@algolia/client-common" "5.17.0"
 
 "@algolia/transporter@4.24.0":
   version "4.24.0"
@@ -1249,6 +1249,328 @@
   resolved "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
+"@csstools/cascade-layer-name-parser@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/@csstools/cascade-layer-name-parser/-/cascade-layer-name-parser-2.0.4.tgz"
+  integrity sha512-7DFHlPuIxviKYZrOiwVU/PiHLm3lLUR23OMuEEtfEOQTOp9hzQ2JjdY6X5H18RVuUPJqSCI+qNnD5iOLMVE0bA==
+
+"@csstools/color-helpers@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@csstools/color-helpers/-/color-helpers-5.0.1.tgz"
+  integrity sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==
+
+"@csstools/css-calc@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/@csstools/css-calc/-/css-calc-2.1.0.tgz"
+  integrity sha512-X69PmFOrjTZfN5ijxtI8hZ9kRADFSLrmmQ6hgDJ272Il049WGKpDY64KhrFm/7rbWve0z81QepawzjkKlqkNGw==
+
+"@csstools/css-color-parser@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/@csstools/css-color-parser/-/css-color-parser-3.0.6.tgz"
+  integrity sha512-S/IjXqTHdpI4EtzGoNCHfqraXF37x12ZZHA1Lk7zoT5pm2lMjFuqhX/89L7dqX4CcMacKK+6ZCs5TmEGb/+wKw==
+  dependencies:
+    "@csstools/color-helpers" "^5.0.1"
+    "@csstools/css-calc" "^2.1.0"
+
+"@csstools/css-parser-algorithms@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-3.0.4.tgz"
+  integrity sha512-Up7rBoV77rv29d3uKHUIVubz1BTcgyUK72IvCQAbfbMv584xHcGKCKbWh7i8hPrRJ7qU4Y8IO3IY9m+iTB7P3A==
+
+"@csstools/css-tokenizer@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-3.0.3.tgz"
+  integrity sha512-UJnjoFsmxfKUdNYdWgOB0mWUypuLvAfQPH1+pyvRJs6euowbFkFC6P13w1l8mJyi3vxYMxc9kld5jZEGRQs6bw==
+
+"@csstools/media-query-list-parser@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-4.0.2.tgz"
+  integrity sha512-EUos465uvVvMJehckATTlNqGj4UJWkTmdWuDMjqvSUkjGpmOyFZBVwb4knxCm/k2GMTXY+c/5RkdndzFYWeX5A==
+
+"@csstools/postcss-cascade-layers@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@csstools/postcss-cascade-layers/-/postcss-cascade-layers-5.0.1.tgz"
+  integrity sha512-XOfhI7GShVcKiKwmPAnWSqd2tBR0uxt+runAxttbSp/LY2U16yAVPmAf7e9q4JJ0d+xMNmpwNDLBXnmRCl3HMQ==
+  dependencies:
+    "@csstools/selector-specificity" "^5.0.0"
+    postcss-selector-parser "^7.0.0"
+
+"@csstools/postcss-color-function@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-color-function/-/postcss-color-function-4.0.6.tgz"
+  integrity sha512-EcvXfC60cTIumzpsxWuvVjb7rsJEHPvqn3jeMEBUaE3JSc4FRuP7mEQ+1eicxWmIrs3FtzMH9gR3sgA5TH+ebQ==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-color-mix-function@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-color-mix-function/-/postcss-color-mix-function-3.0.6.tgz"
+  integrity sha512-jVKdJn4+JkASYGhyPO+Wa5WXSx1+oUgaXb3JsjJn/BlrtFh5zjocCY7pwWi0nuP24V1fY7glQsxEYcYNy0dMFg==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-content-alt-text@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/@csstools/postcss-content-alt-text/-/postcss-content-alt-text-2.0.4.tgz"
+  integrity sha512-YItlZUOuZJCBlRaCf8Aucc1lgN41qYGALMly0qQllrxYJhiyzlI6RxOTMUvtWk+KhS8GphMDsDhKQ7KTPfEMSw==
+  dependencies:
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-exponential-functions@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/@csstools/postcss-exponential-functions/-/postcss-exponential-functions-2.0.5.tgz"
+  integrity sha512-mi8R6dVfA2nDoKM3wcEi64I8vOYEgQVtVKCfmLHXupeLpACfGAided5ddMt5f+CnEodNu4DifuVwb0I6fQDGGQ==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-font-format-keywords@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-font-format-keywords/-/postcss-font-format-keywords-4.0.0.tgz"
+  integrity sha512-usBzw9aCRDvchpok6C+4TXC57btc4bJtmKQWOHQxOVKen1ZfVqBUuCZ/wuqdX5GHsD0NRSr9XTP+5ID1ZZQBXw==
+  dependencies:
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-gamut-mapping@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-gamut-mapping/-/postcss-gamut-mapping-2.0.6.tgz"
+  integrity sha512-0ke7fmXfc8H+kysZz246yjirAH6JFhyX9GTlyRnM0exHO80XcA9zeJpy5pOp5zo/AZiC/q5Pf+Hw7Pd6/uAoYA==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-gradients-interpolation-method@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-gradients-interpolation-method/-/postcss-gradients-interpolation-method-5.0.6.tgz"
+  integrity sha512-Itrbx6SLUzsZ6Mz3VuOlxhbfuyLTogG5DwEF1V8dAi24iMuvQPIHd7Ti+pNDp7j6WixndJGZaoNR0f9VSzwuTg==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-hwb-function@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-hwb-function/-/postcss-hwb-function-4.0.6.tgz"
+  integrity sha512-927Pqy3a1uBP7U8sTfaNdZVB0mNXzIrJO/GZ8us9219q9n06gOqCdfZ0E6d1P66Fm0fYHvxfDbfcUuwAn5UwhQ==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-ic-unit@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-ic-unit/-/postcss-ic-unit-4.0.0.tgz"
+  integrity sha512-9QT5TDGgx7wD3EEMN3BSUG6ckb6Eh5gSPT5kZoVtUuAonfPmLDJyPhqR4ntPpMYhUKAMVKAg3I/AgzqHMSeLhA==
+  dependencies:
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-initial@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-initial/-/postcss-initial-2.0.0.tgz"
+  integrity sha512-dv2lNUKR+JV+OOhZm9paWzYBXOCi+rJPqJ2cJuhh9xd8USVrd0cBEPczla81HNOyThMQWeCcdln3gZkQV2kYxA==
+
+"@csstools/postcss-is-pseudo-class@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@csstools/postcss-is-pseudo-class/-/postcss-is-pseudo-class-5.0.1.tgz"
+  integrity sha512-JLp3POui4S1auhDR0n8wHd/zTOWmMsmK3nQd3hhL6FhWPaox5W7j1se6zXOG/aP07wV2ww0lxbKYGwbBszOtfQ==
+  dependencies:
+    "@csstools/selector-specificity" "^5.0.0"
+    postcss-selector-parser "^7.0.0"
+
+"@csstools/postcss-light-dark-function@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/@csstools/postcss-light-dark-function/-/postcss-light-dark-function-2.0.7.tgz"
+  integrity sha512-ZZ0rwlanYKOHekyIPaU+sVm3BEHCe+Ha0/px+bmHe62n0Uc1lL34vbwrLYn6ote8PHlsqzKeTQdIejQCJ05tfw==
+  dependencies:
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-logical-float-and-clear@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-logical-float-and-clear/-/postcss-logical-float-and-clear-3.0.0.tgz"
+  integrity sha512-SEmaHMszwakI2rqKRJgE+8rpotFfne1ZS6bZqBoQIicFyV+xT1UF42eORPxJkVJVrH9C0ctUgwMSn3BLOIZldQ==
+
+"@csstools/postcss-logical-overflow@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-logical-overflow/-/postcss-logical-overflow-2.0.0.tgz"
+  integrity sha512-spzR1MInxPuXKEX2csMamshR4LRaSZ3UXVaRGjeQxl70ySxOhMpP2252RAFsg8QyyBXBzuVOOdx1+bVO5bPIzA==
+
+"@csstools/postcss-logical-overscroll-behavior@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-logical-overscroll-behavior/-/postcss-logical-overscroll-behavior-2.0.0.tgz"
+  integrity sha512-e/webMjoGOSYfqLunyzByZj5KKe5oyVg/YSbie99VEaSDE2kimFm0q1f6t/6Jo+VVCQ/jbe2Xy+uX+C4xzWs4w==
+
+"@csstools/postcss-logical-resize@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-logical-resize/-/postcss-logical-resize-3.0.0.tgz"
+  integrity sha512-DFbHQOFW/+I+MY4Ycd/QN6Dg4Hcbb50elIJCfnwkRTCX05G11SwViI5BbBlg9iHRl4ytB7pmY5ieAFk3ws7yyg==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-logical-viewport-units@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@csstools/postcss-logical-viewport-units/-/postcss-logical-viewport-units-3.0.3.tgz"
+  integrity sha512-OC1IlG/yoGJdi0Y+7duz/kU/beCwO+Gua01sD6GtOtLi7ByQUpcIqs7UE/xuRPay4cHgOMatWdnDdsIDjnWpPw==
+  dependencies:
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-media-minmax@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/@csstools/postcss-media-minmax/-/postcss-media-minmax-2.0.5.tgz"
+  integrity sha512-sdh5i5GToZOIAiwhdntRWv77QDtsxP2r2gXW/WbLSCoLr00KTq/yiF1qlQ5XX2+lmiFa8rATKMcbwl3oXDMNew==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/media-query-list-parser" "^4.0.2"
+
+"@csstools/postcss-media-queries-aspect-ratio-number-values@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.npmjs.org/@csstools/postcss-media-queries-aspect-ratio-number-values/-/postcss-media-queries-aspect-ratio-number-values-3.0.4.tgz"
+  integrity sha512-AnGjVslHMm5xw9keusQYvjVWvuS7KWK+OJagaG0+m9QnIjZsrysD2kJP/tr/UJIyYtMCtu8OkUd+Rajb4DqtIQ==
+  dependencies:
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/media-query-list-parser" "^4.0.2"
+
+"@csstools/postcss-nested-calc@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-nested-calc/-/postcss-nested-calc-4.0.0.tgz"
+  integrity sha512-jMYDdqrQQxE7k9+KjstC3NbsmC063n1FTPLCgCRS2/qHUbHM0mNy9pIn4QIiQGs9I/Bg98vMqw7mJXBxa0N88A==
+  dependencies:
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-normalize-display-values@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-normalize-display-values/-/postcss-normalize-display-values-4.0.0.tgz"
+  integrity sha512-HlEoG0IDRoHXzXnkV4in47dzsxdsjdz6+j7MLjaACABX2NfvjFS6XVAnpaDyGesz9gK2SC7MbNwdCHusObKJ9Q==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-oklab-function@^4.0.6":
+  version "4.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-oklab-function/-/postcss-oklab-function-4.0.6.tgz"
+  integrity sha512-Hptoa0uX+XsNacFBCIQKTUBrFKDiplHan42X73EklG6XmQLG7/aIvxoNhvZ7PvOWMt67Pw3bIlUY2nD6p5vL8A==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-progressive-custom-properties@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-progressive-custom-properties/-/postcss-progressive-custom-properties-4.0.0.tgz"
+  integrity sha512-XQPtROaQjomnvLUSy/bALTR5VCtTVUFwYs1SblvYgLSeTo2a/bMNwUwo2piXw5rTv/FEYiy5yPSXBqg9OKUx7Q==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-random-function@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@csstools/postcss-random-function/-/postcss-random-function-1.0.1.tgz"
+  integrity sha512-Ab/tF8/RXktQlFwVhiC70UNfpFQRhtE5fQQoP2pO+KCPGLsLdWFiOuHgSRtBOqEshCVAzR4H6o38nhvRZq8deA==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-relative-color-syntax@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/@csstools/postcss-relative-color-syntax/-/postcss-relative-color-syntax-3.0.6.tgz"
+  integrity sha512-yxP618Xb+ji1I624jILaYM62uEmZcmbdmFoZHoaThw896sq0vU39kqTTF+ZNic9XyPtPMvq0vyvbgmHaszq8xg==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+"@csstools/postcss-scope-pseudo-class@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/@csstools/postcss-scope-pseudo-class/-/postcss-scope-pseudo-class-4.0.1.tgz"
+  integrity sha512-IMi9FwtH6LMNuLea1bjVMQAsUhFxJnyLSgOp/cpv5hrzWmrUYU5fm0EguNDIIOHUqzXode8F/1qkC/tEo/qN8Q==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
+
+"@csstools/postcss-sign-functions@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-sign-functions/-/postcss-sign-functions-1.1.0.tgz"
+  integrity sha512-SLcc20Nujx/kqbSwDmj6oaXgpy3UjFhBy1sfcqPgDkHfOIfUtUVH7OXO+j7BU4v/At5s61N5ZX6shvgPwluhsA==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-stepped-value-functions@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.npmjs.org/@csstools/postcss-stepped-value-functions/-/postcss-stepped-value-functions-4.0.5.tgz"
+  integrity sha512-G6SJ6hZJkhxo6UZojVlLo14MohH4J5J7z8CRBrxxUYy9JuZiIqUo5TBYyDGcE0PLdzpg63a7mHSJz3VD+gMwqw==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-text-decoration-shorthand@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/@csstools/postcss-text-decoration-shorthand/-/postcss-text-decoration-shorthand-4.0.1.tgz"
+  integrity sha512-xPZIikbx6jyzWvhms27uugIc0I4ykH4keRvoa3rxX5K7lEhkbd54rjj/dv60qOCTisoS+3bmwJTeyV1VNBrXaw==
+  dependencies:
+    "@csstools/color-helpers" "^5.0.1"
+    postcss-value-parser "^4.2.0"
+
+"@csstools/postcss-trigonometric-functions@^4.0.5":
+  version "4.0.5"
+  resolved "https://registry.npmjs.org/@csstools/postcss-trigonometric-functions/-/postcss-trigonometric-functions-4.0.5.tgz"
+  integrity sha512-/YQThYkt5MLvAmVu7zxjhceCYlKrYddK6LEmK5I4ojlS6BmO9u2yO4+xjXzu2+NPYmHSTtP4NFSamBCMmJ1NJA==
+  dependencies:
+    "@csstools/css-calc" "^2.1.0"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+
+"@csstools/postcss-unset-value@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@csstools/postcss-unset-value/-/postcss-unset-value-4.0.0.tgz"
+  integrity sha512-cBz3tOCI5Fw6NIFEwU3RiwK6mn3nKegjpJuzCndoGq3BZPkUjnsq7uQmIeMNeMbMk7YD2MfKcgCpZwX5jyXqCA==
+
+"@csstools/selector-resolve-nested@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@csstools/selector-resolve-nested/-/selector-resolve-nested-3.0.0.tgz"
+  integrity sha512-ZoK24Yku6VJU1gS79a5PFmC8yn3wIapiKmPgun0hZgEI5AOqgH2kiPRsPz1qkGv4HL+wuDLH83yQyk6inMYrJQ==
+
+"@csstools/selector-specificity@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-5.0.0.tgz"
+  integrity sha512-PCqQV3c4CoVm3kdPhyeZ07VmBRdH2EpMFA/pd9OASpOEC3aXNGoqPDAZ80D0cLpMBxnmk0+yNhGsEx31hq7Gtw==
+
+"@csstools/utilities@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@csstools/utilities/-/utilities-2.0.0.tgz"
+  integrity sha512-5VdOr0Z71u+Yp3ozOx8T11N703wIFGVRgOWbOZMKgglPJsWA54MRIoMNVMa7shUToIhx5J8vX4sOZgD2XiihiQ==
+
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
@@ -1269,10 +1591,10 @@
     "@docsearch/css" "3.8.0"
     algoliasearch "^5.12.0"
 
-"@docusaurus/babel@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/babel/-/babel-3.6.1.tgz"
-  integrity sha512-JcKaunW8Ml2nTnfnvFc55T00Y+aCpNWnf1KY/gG+wWxHYDH0IdXOOz+k6NAlEAerW8+VYLfUqRIqHZ7N/DVXvQ==
+"@docusaurus/babel@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/babel/-/babel-3.6.3.tgz"
+  integrity sha512-7dW9Hat9EHYCVicFXYA4hjxBY38+hPuCURL8oRF9fySRm7vzNWuEOghA1TXcykuXZp0HLG2td4RhDxCvGG7tNw==
   dependencies:
     "@babel/core" "^7.25.9"
     "@babel/generator" "^7.25.9"
@@ -1284,24 +1606,23 @@
     "@babel/runtime" "^7.25.9"
     "@babel/runtime-corejs3" "^7.25.9"
     "@babel/traverse" "^7.25.9"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
     babel-plugin-dynamic-import-node "^2.3.3"
     fs-extra "^11.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/bundler@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/bundler/-/bundler-3.6.1.tgz"
-  integrity sha512-vHSEx8Ku9x/gfIC6k4xb8J2nTxagLia0KvZkPZhxfkD1+n8i+Dj4BZPWTmv+kCA17RbgAvECG0XRZ0/ZEspQBQ==
+"@docusaurus/bundler@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/bundler/-/bundler-3.6.3.tgz"
+  integrity sha512-47JLuc8D4wA+6VOvmMd5fUC9rFppBQpQOnxDYiVXffm/DeV/wmm3sbpNd5Y+O+G2+nevLTRnvCm/qyancv0Y3A==
   dependencies:
     "@babel/core" "^7.25.9"
-    "@docusaurus/babel" "3.6.1"
-    "@docusaurus/cssnano-preset" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    autoprefixer "^10.4.14"
+    "@docusaurus/babel" "3.6.3"
+    "@docusaurus/cssnano-preset" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
     babel-loader "^9.2.1"
     clean-css "^5.3.2"
     copy-webpack-plugin "^11.0.0"
@@ -1314,6 +1635,7 @@
     null-loader "^4.0.1"
     postcss "^8.4.26"
     postcss-loader "^7.3.3"
+    postcss-preset-env "^10.1.0"
     react-dev-utils "^12.0.1"
     terser-webpack-plugin "^5.3.9"
     tslib "^2.6.0"
@@ -1321,18 +1643,18 @@
     webpack "^5.95.0"
     webpackbar "^6.0.1"
 
-"@docusaurus/core@^2.0.0-beta || ^3.0.0-alpha", "@docusaurus/core@^3.6.1", "@docusaurus/core@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/core/-/core-3.6.1.tgz"
-  integrity sha512-cDKxPihiM2z7G+4QtpTczS7uxNfNG6naSqM65OmAJET0CFRHbc9mDlLFtQF0lsVES91SHqfcGaaLZmi2FjdwWA==
+"@docusaurus/core@^2.0.0-beta || ^3.0.0-alpha", "@docusaurus/core@^3.6.3", "@docusaurus/core@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/core/-/core-3.6.3.tgz"
+  integrity sha512-xL7FRY9Jr5DWqB6pEnqgKqcMPJOX5V0pgWXi5lCiih11sUBmcFKM7c3+GyxcVeeWFxyYSDP3grLTWqJoP4P9Vw==
   dependencies:
-    "@docusaurus/babel" "3.6.1"
-    "@docusaurus/bundler" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/babel" "3.6.3"
+    "@docusaurus/bundler" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     boxen "^6.2.1"
     chalk "^4.1.2"
     chokidar "^3.5.3"
@@ -1370,58 +1692,43 @@
     webpack-dev-server "^4.15.2"
     webpack-merge "^6.0.1"
 
-"@docusaurus/cssnano-preset@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/cssnano-preset/-/cssnano-preset-3.6.1.tgz"
-  integrity sha512-ZxYUmNeyQHW2w4/PJ7d07jQDuxzmKr9uPAQ6IVe5dTkeIeV0mDBB3jOLeJkNoI42Ru9JKEqQ9aVDtM9ct6QHnw==
+"@docusaurus/cssnano-preset@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/cssnano-preset/-/cssnano-preset-3.6.3.tgz"
+  integrity sha512-qP7SXrwZ+23GFJdPN4aIHQrZW+oH/7tzwEuc/RNL0+BdZdmIjYQqUxdXsjE4lFxLNZjj0eUrSNYIS6xwfij+5Q==
   dependencies:
     cssnano-preset-advanced "^6.1.2"
     postcss "^8.4.38"
     postcss-sort-media-queries "^5.2.0"
     tslib "^2.6.0"
 
-"@docusaurus/faster@*":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/faster/-/faster-3.6.1.tgz"
-  integrity sha512-W3a9m7Q/fEeOpOw9/XktLCHRtp1sV2AdZWMCjH3kP1jY1TDyLFFiHJ0+1uwVpOw4/oPJqZSTRKP+IdW4+65NgQ==
-  dependencies:
-    "@docusaurus/types" "3.6.1"
-    "@rspack/core" "^1.0.14"
-    "@swc/core" "^1.7.39"
-    "@swc/html" "^1.7.39"
-    browserslist "^4.24.2"
-    lightningcss "^1.27.0"
-    swc-loader "^0.2.6"
-    tslib "^2.6.0"
-    webpack "^5.95.0"
-
-"@docusaurus/logger@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/logger/-/logger-3.6.1.tgz"
-  integrity sha512-OvetI/nnOMBSqCkUzKAQhnIjhxduECK4qTu3tq/8/h/qqvLsvKURojm04WPE54L+Uy+UXMas0hnbBJd8zDlEOw==
+"@docusaurus/logger@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/logger/-/logger-3.6.3.tgz"
+  integrity sha512-xSubJixcNyMV9wMV4q0s47CBz3Rlc5jbcCCuij8pfQP8qn/DIpt0ks8W6hQWzHAedg/J/EwxxUOUrnEoKzJo8g==
   dependencies:
     chalk "^4.1.2"
     tslib "^2.6.0"
 
-"@docusaurus/lqip-loader@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/lqip-loader/-/lqip-loader-3.6.1.tgz"
-  integrity sha512-H/VVvnvFupFhQ81FuTyA/XHxEZPKh99T6Wg6KgN+/yvcn7869RdgrlDhKDnXZ7j2u80eFsVNjAcPfW1cSAtK6A==
+"@docusaurus/lqip-loader@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/lqip-loader/-/lqip-loader-3.6.3.tgz"
+  integrity sha512-GlQIhVpskcD7T1Lm/eYR+T0ZurEly3291t/KIJCRZcl3ggVcpRlPDXVx3X2o6O5ESClEt5V5ev0i1J9UaCw8IQ==
   dependencies:
-    "@docusaurus/logger" "3.6.1"
+    "@docusaurus/logger" "3.6.3"
     file-loader "^6.2.0"
     lodash "^4.17.21"
     sharp "^0.32.3"
     tslib "^2.6.0"
 
-"@docusaurus/mdx-loader@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/mdx-loader/-/mdx-loader-3.6.1.tgz"
-  integrity sha512-KPIsYi0S3X3/rNrW3V1fgOu5t6ahYWc31zTHHod8pacFxdmk9Uf6uuw+Jd6Cly1ilgal+41Ku+s0gmMuqKqiqg==
+"@docusaurus/mdx-loader@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/mdx-loader/-/mdx-loader-3.6.3.tgz"
+  integrity sha512-3iJdiDz9540ppBseeI93tWTDtUGVkxzh59nMq4ignylxMuXBLK8dFqVeaEor23v1vx6TrGKZ2FuLaTB+U7C0QQ==
   dependencies:
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     "@mdx-js/mdx" "^3.0.0"
     "@slorber/remark-comment" "^1.0.0"
     escape-html "^1.0.3"
@@ -1444,12 +1751,12 @@
     vfile "^6.0.1"
     webpack "^5.88.1"
 
-"@docusaurus/module-type-aliases@^3.6.0", "@docusaurus/module-type-aliases@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/module-type-aliases/-/module-type-aliases-3.6.1.tgz"
-  integrity sha512-J+q1jgm7TnEfVIUZImSFeLA1rghb6nwtoB9siHdcgKpDqFJ9/S7xhQL2aEKE7iZMZYzpu+2F390E9A7GkdEJNA==
+"@docusaurus/module-type-aliases@^3.6.0", "@docusaurus/module-type-aliases@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/module-type-aliases/-/module-type-aliases-3.6.3.tgz"
+  integrity sha512-MjaXX9PN/k5ugNvfRZdWyKWq4FsrhN4LEXaj0pEmMebJuBNlFeGyKQUa9DRhJHpadNaiMLrbo9m3U7Ig5YlsZg==
   dependencies:
-    "@docusaurus/types" "3.6.1"
+    "@docusaurus/types" "3.6.3"
     "@types/history" "^4.7.11"
     "@types/react" "*"
     "@types/react-router-config" "*"
@@ -1457,19 +1764,19 @@
     react-helmet-async "*"
     react-loadable "npm:@docusaurus/react-loadable@6.0.0"
 
-"@docusaurus/plugin-content-blog@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-blog/-/plugin-content-blog-3.6.1.tgz"
-  integrity sha512-FUmsn3xg/XD/K/4FQd8XHrs92aQdZO5LUtpHnRvO1/6DY87SMz6B6ERAN9IGQQld//M2/LVTHkZy8oVhQZQHIQ==
+"@docusaurus/plugin-content-blog@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-blog/-/plugin-content-blog-3.6.3.tgz"
+  integrity sha512-k0ogWwwJU3pFRFfvW1kRVHxzf2DutLGaaLjAnHVEU6ju+aRP0Z5ap/13DHyPOfHeE4WKpn/M0TqjdwZAcY3kAw==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     cheerio "1.0.0-rc.12"
     feed "^4.2.2"
     fs-extra "^11.1.1"
@@ -1481,20 +1788,20 @@
     utility-types "^3.10.0"
     webpack "^5.88.1"
 
-"@docusaurus/plugin-content-docs@*", "@docusaurus/plugin-content-docs@^3.5.0", "@docusaurus/plugin-content-docs@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-docs/-/plugin-content-docs-3.6.1.tgz"
-  integrity sha512-Uq8kyn5DYCDmkUlB9sWChhWghS4lUFNiQU+RXcAXJ3qCVXsBpPsh6RF+npQG1N+j4wAbjydM1iLLJJzp+x3eMQ==
+"@docusaurus/plugin-content-docs@*", "@docusaurus/plugin-content-docs@^3.5.0", "@docusaurus/plugin-content-docs@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-docs/-/plugin-content-docs-3.6.3.tgz"
+  integrity sha512-r2wS8y/fsaDcxkm20W5bbYJFPzdWdEaTWVYjNxlHlcmX086eqQR1Fomlg9BHTJ0dLXPzAlbC8EN4XqMr3QzNCQ==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/module-type-aliases" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/module-type-aliases" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     "@types/react-router-config" "^5.0.7"
     combine-promises "^1.1.0"
     fs-extra "^11.1.1"
@@ -1504,113 +1811,113 @@
     utility-types "^3.10.0"
     webpack "^5.88.1"
 
-"@docusaurus/plugin-content-pages@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-pages/-/plugin-content-pages-3.6.1.tgz"
-  integrity sha512-TZtL+2zq20gqGalzoIT2rEF1T4YCZ26jTvlCJXs78+incIajfdHtmdOq7rQW0oV7oqTjpGllbp788nY/vY9jgw==
+"@docusaurus/plugin-content-pages@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-content-pages/-/plugin-content-pages-3.6.3.tgz"
+  integrity sha512-eHrmTgjgLZsuqfsYr5X2xEwyIcck0wseSofWrjTwT9FLOWp+KDmMAuVK+wRo7sFImWXZk3oV/xX/g9aZrhD7OA==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     fs-extra "^11.1.1"
     tslib "^2.6.0"
     webpack "^5.88.1"
 
-"@docusaurus/plugin-debug@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-debug/-/plugin-debug-3.6.1.tgz"
-  integrity sha512-DeKPZtoVExDSYCbzoz7y5Dhc6+YPqRWfVGwEEUyKopSyQYefp0OV8hvASmbJCn2WyThRgspOUhog3FSEhz+agw==
+"@docusaurus/plugin-debug@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-debug/-/plugin-debug-3.6.3.tgz"
+  integrity sha512-zB9GXfIZNPRfzKnNjU6xGVrqn9bPXuGhpjgsuc/YtcTDjnjhasg38NdYd5LEqXex5G/zIorQgWB3n6x/Ut62vQ==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
     fs-extra "^11.1.1"
     react-json-view-lite "^1.2.0"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-google-analytics@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-analytics/-/plugin-google-analytics-3.6.1.tgz"
-  integrity sha512-ZEoERiDHxSfhaEeT35ukQ892NzGHWiUvfxUsnPiRuGEhMoQlxMSp60shBuSZ1sUKuZlndoEl5qAXJg09Wls/Sg==
+"@docusaurus/plugin-google-analytics@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-analytics/-/plugin-google-analytics-3.6.3.tgz"
+  integrity sha512-rCDNy1QW8Dag7nZq67pcum0bpFLrwvxJhYuVprhFh8BMBDxV0bY+bAkGHbSf68P3Bk9C3hNOAXX1srGLIDvcTA==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-google-gtag@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-3.6.1.tgz"
-  integrity sha512-u/E9vXUsZxYaV6Brvfee8NiH/iR0cMml9P/ifz4EpH/Jfxdbw8rbCT0Nm/h7EFgEY48Uqkl5huSbIvFB9n8aTQ==
+"@docusaurus/plugin-google-gtag@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-3.6.3.tgz"
+  integrity sha512-+OyDvhM6rqVkQOmLVkQWVJAizEEfkPzVWtIHXlWPOCFGK9X4/AWeBSrU0WG4iMg9Z4zD4YDRrU+lvI4s6DSC+w==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     "@types/gtag.js" "^0.0.12"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-google-tag-manager@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-tag-manager/-/plugin-google-tag-manager-3.6.1.tgz"
-  integrity sha512-By+NKkGYV8tSo8/RyS1OXikOtqsko5jJZ/uioJfBjsBGgSbiMJ+Y/HogFBke0mgSvf7NPGKZTbYm5+FJ8YUtPQ==
+"@docusaurus/plugin-google-tag-manager@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-google-tag-manager/-/plugin-google-tag-manager-3.6.3.tgz"
+  integrity sha512-1M6UPB13gWUtN2UHX083/beTn85PlRI9ABItTl/JL1FJ5dJTWWFXXsHf9WW/6hrVwthwTeV/AGbGKvLKV+IlCA==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     tslib "^2.6.0"
 
-"@docusaurus/plugin-ideal-image@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-ideal-image/-/plugin-ideal-image-3.6.1.tgz"
-  integrity sha512-hiGRPPlsM02aEOPlQc9rVnrckbVR6HswG7yDpZOtBEhw+ysXFsl/8gzAxFBL4ogKjN28WrlMCn/6IIkxY/EyOQ==
+"@docusaurus/plugin-ideal-image@^3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-ideal-image/-/plugin-ideal-image-3.6.3.tgz"
+  integrity sha512-y5Pi4UH8wsFUEFPzjzo1GEtb9vfi5VfWTH/ONifDW84ldYaZBPzVM4AIVWcuNPlYG+p4eYwHE4eTuJFe2iupKQ==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/lqip-loader" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/lqip-loader" "3.6.3"
     "@docusaurus/responsive-loader" "^1.7.0"
-    "@docusaurus/theme-translations" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/theme-translations" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     "@slorber/react-ideal-image" "^0.0.12"
     react-waypoint "^10.3.0"
     sharp "^0.32.3"
     tslib "^2.6.0"
     webpack "^5.88.1"
 
-"@docusaurus/plugin-sitemap@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/plugin-sitemap/-/plugin-sitemap-3.6.1.tgz"
-  integrity sha512-i8R/GTKew4Cufb+7YQTwfPcNOhKTJzZ1VZ5OqQwI9c3pZK2TltQyhqKDVN94KCTbSSKvOYYytYfRAB2uPnH1/A==
+"@docusaurus/plugin-sitemap@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/plugin-sitemap/-/plugin-sitemap-3.6.3.tgz"
+  integrity sha512-94qOO4M9Fwv9KfVQJsgbe91k+fPJ4byf1L3Ez8TUa6TAFPo/BrLwQ80zclHkENlL1824TuxkcMKv33u6eydQCg==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     fs-extra "^11.1.1"
     sitemap "^7.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/preset-classic@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/preset-classic/-/preset-classic-3.6.1.tgz"
-  integrity sha512-b90Y1XRH9e+oa/E3NmiFEFOwgYUd+knFcZUy81nM3FJs038WbEA0T55NQsuPW0s7nOsCShQ7dVFyKxV+Wp31Nw==
+"@docusaurus/preset-classic@^3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/preset-classic/-/preset-classic-3.6.3.tgz"
+  integrity sha512-VHSYWROT3flvNNI1SrnMOtW1EsjeHNK9dhU6s9eY5hryZe79lUqnZJyze/ymDe2LXAqzyj6y5oYvyBoZZk6ErA==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/plugin-content-blog" "3.6.1"
-    "@docusaurus/plugin-content-docs" "3.6.1"
-    "@docusaurus/plugin-content-pages" "3.6.1"
-    "@docusaurus/plugin-debug" "3.6.1"
-    "@docusaurus/plugin-google-analytics" "3.6.1"
-    "@docusaurus/plugin-google-gtag" "3.6.1"
-    "@docusaurus/plugin-google-tag-manager" "3.6.1"
-    "@docusaurus/plugin-sitemap" "3.6.1"
-    "@docusaurus/theme-classic" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/theme-search-algolia" "3.6.1"
-    "@docusaurus/types" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/plugin-content-blog" "3.6.3"
+    "@docusaurus/plugin-content-docs" "3.6.3"
+    "@docusaurus/plugin-content-pages" "3.6.3"
+    "@docusaurus/plugin-debug" "3.6.3"
+    "@docusaurus/plugin-google-analytics" "3.6.3"
+    "@docusaurus/plugin-google-gtag" "3.6.3"
+    "@docusaurus/plugin-google-tag-manager" "3.6.3"
+    "@docusaurus/plugin-sitemap" "3.6.3"
+    "@docusaurus/theme-classic" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/theme-search-algolia" "3.6.3"
+    "@docusaurus/types" "3.6.3"
 
 "@docusaurus/responsive-loader@^1.7.0":
   version "1.7.0"
@@ -1619,24 +1926,24 @@
   dependencies:
     loader-utils "^2.0.0"
 
-"@docusaurus/theme-classic@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/theme-classic/-/theme-classic-3.6.1.tgz"
-  integrity sha512-5lVUmIXk7zp+n9Ki2lYWrmhbd6mssOlKCnnDJvY4QDi3EgjRisIu5g4yKXoWTIbiqE7m7q/dS9cbeShEtfkKng==
+"@docusaurus/theme-classic@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/theme-classic/-/theme-classic-3.6.3.tgz"
+  integrity sha512-1RRLK1tSArI2c00qugWYO3jRocjOZwGF1mBzPPylDVRwWCS/rnWWR91ChdbbaxIupRJ+hX8ZBYrwr5bbU0oztQ==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/module-type-aliases" "3.6.1"
-    "@docusaurus/plugin-content-blog" "3.6.1"
-    "@docusaurus/plugin-content-docs" "3.6.1"
-    "@docusaurus/plugin-content-pages" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/theme-translations" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/module-type-aliases" "3.6.3"
+    "@docusaurus/plugin-content-blog" "3.6.3"
+    "@docusaurus/plugin-content-docs" "3.6.3"
+    "@docusaurus/plugin-content-pages" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/theme-translations" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     "@mdx-js/react" "^3.0.0"
     clsx "^2.0.0"
     copy-text-to-clipboard "^3.2.0"
@@ -1651,15 +1958,15 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
-"@docusaurus/theme-common@^3.5.0", "@docusaurus/theme-common@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/theme-common/-/theme-common-3.6.1.tgz"
-  integrity sha512-18iEYNpMvarGfq9gVRpGowSZD24vZ39Iz4acqaj64180i54V9el8tVnhNr/wRvrUm1FY30A1NHLqnMnDz4rYEQ==
+"@docusaurus/theme-common@^3.5.0", "@docusaurus/theme-common@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/theme-common/-/theme-common-3.6.3.tgz"
+  integrity sha512-b8ZkhczXHDxWWyvz+YJy4t/PlPbEogTTbgnHoflYnH7rmRtyoodTsu8WVM12la5LmlMJBclBXFl29OH8kPE7gg==
   dependencies:
-    "@docusaurus/mdx-loader" "3.6.1"
-    "@docusaurus/module-type-aliases" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
+    "@docusaurus/mdx-loader" "3.6.3"
+    "@docusaurus/module-type-aliases" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
     "@types/history" "^4.7.11"
     "@types/react" "*"
     "@types/react-router-config" "*"
@@ -1669,32 +1976,32 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
-"@docusaurus/theme-mermaid@^3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/theme-mermaid/-/theme-mermaid-3.6.1.tgz"
-  integrity sha512-ke00/VSFibzucbr64JXwPWsiu66zcqI8mnEbbmPSV1Yby5FRsfGQqcE+1cvUkAOVCl+zX8RNjv8vrRb4ilQDLQ==
+"@docusaurus/theme-mermaid@^3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/theme-mermaid/-/theme-mermaid-3.6.3.tgz"
+  integrity sha512-kIqpjNCP/9R2GGf8UmiDxD3CkOAEJuJIEFlaKMgQtjVxa/vH+9PLI1+DFbArGoG4+0ENTYUq8phHPW7SeL36uQ==
   dependencies:
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/module-type-aliases" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/module-type-aliases" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     mermaid ">=10.4"
     tslib "^2.6.0"
 
-"@docusaurus/theme-search-algolia@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/theme-search-algolia/-/theme-search-algolia-3.6.1.tgz"
-  integrity sha512-BjmuiFRpQP1WEm8Mzu1Bb0Wdas6G65VHXDDNr7XTKgbstxalE6vuxt0ioXTDFS2YVep5748aVhKvnxR9gm2Liw==
+"@docusaurus/theme-search-algolia@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/theme-search-algolia/-/theme-search-algolia-3.6.3.tgz"
+  integrity sha512-rt+MGCCpYgPyWCGXtbxlwFbTSobu15jWBTPI2LHsHNa5B0zSmOISX6FWYAPt5X1rNDOqMGM0FATnh7TBHRohVA==
   dependencies:
     "@docsearch/react" "^3.5.2"
-    "@docusaurus/core" "3.6.1"
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/plugin-content-docs" "3.6.1"
-    "@docusaurus/theme-common" "3.6.1"
-    "@docusaurus/theme-translations" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-validation" "3.6.1"
+    "@docusaurus/core" "3.6.3"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/plugin-content-docs" "3.6.3"
+    "@docusaurus/theme-common" "3.6.3"
+    "@docusaurus/theme-translations" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-validation" "3.6.3"
     algoliasearch "^4.18.0"
     algoliasearch-helper "^3.13.3"
     clsx "^2.0.0"
@@ -1704,18 +2011,18 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
-"@docusaurus/theme-translations@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/theme-translations/-/theme-translations-3.6.1.tgz"
-  integrity sha512-bNm5G6sueUezvyhsBegA1wwM38yW0BnqpZTE9KHO2yKnkERNMaV5x/yPJ/DNCOHjJtCcJ5Uz55g2AS75Go31xA==
+"@docusaurus/theme-translations@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/theme-translations/-/theme-translations-3.6.3.tgz"
+  integrity sha512-Gb0regclToVlngSIIwUCtBMQBq48qVUaN1XQNKW4XwlsgUyk0vP01LULdqbem7czSwIeBAFXFoORJ0RPX7ht/w==
   dependencies:
     fs-extra "^11.1.1"
     tslib "^2.6.0"
 
-"@docusaurus/types@^3.6.0", "@docusaurus/types@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/types/-/types-3.6.1.tgz"
-  integrity sha512-hCB1hj9DYutVYBisnPNobz9SzEmCcf1EetJv09O49Cov3BqOkm+vnnjB3d957YJMtpLGQoKBeN/FF1DZ830JwQ==
+"@docusaurus/types@^3.6.0", "@docusaurus/types@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/types/-/types-3.6.3.tgz"
+  integrity sha512-xD9oTGDrouWzefkhe9ogB2fDV96/82cRpNGx2HIvI5L87JHNhQVIWimQ/3JIiiX/TEd5S9s+VO6FFguwKNRVow==
   dependencies:
     "@mdx-js/mdx" "^3.0.0"
     "@types/history" "^4.7.11"
@@ -1727,36 +2034,36 @@
     webpack "^5.95.0"
     webpack-merge "^5.9.0"
 
-"@docusaurus/utils-common@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/utils-common/-/utils-common-3.6.1.tgz"
-  integrity sha512-LX1qiTiC0aS8c92uZ+Wj2iNCNJyYZJIKY8/nZDKNMBfo759VYVS3RX3fKP3DznB+16sYp7++MyCz/T6fOGaRfw==
+"@docusaurus/utils-common@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/utils-common/-/utils-common-3.6.3.tgz"
+  integrity sha512-v4nKDaANLgT3pMBewHYEMAl/ufY0LkXao1QkFWzI5huWFOmNQ2UFzv2BiKeHX5Ownis0/w6cAyoxPhVdDonlSQ==
   dependencies:
-    "@docusaurus/types" "3.6.1"
+    "@docusaurus/types" "3.6.3"
     tslib "^2.6.0"
 
-"@docusaurus/utils-validation@^3.5.0", "@docusaurus/utils-validation@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/utils-validation/-/utils-validation-3.6.1.tgz"
-  integrity sha512-+iMd6zRl5cJQm7nUP+7pSO/oAXsN79eHO34ME7l2YJt4GEAr70l5kkD58u2jEPpp+wSXT70c7x2A2lzJI1E8jw==
+"@docusaurus/utils-validation@^3.5.0", "@docusaurus/utils-validation@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/utils-validation/-/utils-validation-3.6.3.tgz"
+  integrity sha512-bhEGGiN5BE38h21vjqD70Gxg++j+PfYVddDUE5UFvLDup68QOcpD33CLr+2knPorlxRbEaNfz6HQDUMQ3HuqKw==
   dependencies:
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/utils" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/utils" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
     fs-extra "^11.2.0"
     joi "^17.9.2"
     js-yaml "^4.1.0"
     lodash "^4.17.21"
     tslib "^2.6.0"
 
-"@docusaurus/utils@^3.5.0", "@docusaurus/utils@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.npmjs.org/@docusaurus/utils/-/utils-3.6.1.tgz"
-  integrity sha512-nS3WCvepwrnBEgSG5vQu40XG95lC9Jeh/odV5u5IhU1eQFEGDst9xBi6IK5yZdsGvbuaXBZLZtOqWYtuuFa/rQ==
+"@docusaurus/utils@^3.5.0", "@docusaurus/utils@3.6.3":
+  version "3.6.3"
+  resolved "https://registry.npmjs.org/@docusaurus/utils/-/utils-3.6.3.tgz"
+  integrity sha512-0R/FR3bKVl4yl8QwbL4TYFfR+OXBRpVUaTJdENapBGR3YMwfM6/JnhGilWQO8AOwPJGtGoDK7ib8+8UF9f3OZQ==
   dependencies:
-    "@docusaurus/logger" "3.6.1"
-    "@docusaurus/types" "3.6.1"
-    "@docusaurus/utils-common" "3.6.1"
+    "@docusaurus/logger" "3.6.3"
+    "@docusaurus/types" "3.6.3"
+    "@docusaurus/utils-common" "3.6.3"
     "@svgr/webpack" "^8.1.0"
     escape-string-regexp "^4.0.0"
     file-loader "^6.2.0"
@@ -2101,7 +2408,7 @@
     "@rspack/binding-win32-ia32-msvc" "1.0.14"
     "@rspack/binding-win32-x64-msvc" "1.0.14"
 
-"@rspack/core@^1.0.14", "@rspack/core@0.x || 1.x":
+"@rspack/core@0.x || 1.x":
   version "1.0.14"
   resolved "https://registry.npmjs.org/@rspack/core/-/core-1.0.14.tgz"
   integrity sha512-xHl23lxJZNjItGc5YuE9alz3yjb56y7EgJmAcBMPHMqgjtUt8rBu4xd/cSUjbr9/lLF9N4hdyoJiPJOFs9LEjw==
@@ -2272,65 +2579,6 @@
     "@svgr/core" "8.1.0"
     "@svgr/plugin-jsx" "8.1.0"
     "@svgr/plugin-svgo" "8.1.0"
-
-"@swc/core-darwin-arm64@1.9.2":
-  version "1.9.2"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.9.2.tgz"
-  integrity sha512-nETmsCoY29krTF2PtspEgicb3tqw7Ci5sInTI03EU5zpqYbPjoPH99BVTjj0OsF53jP5MxwnLI5Hm21lUn1d6A==
-
-"@swc/core@^1.2.147", "@swc/core@^1.7.39":
-  version "1.9.2"
-  resolved "https://registry.npmjs.org/@swc/core/-/core-1.9.2.tgz"
-  integrity sha512-dYyEkO6mRYtZFpnOsnYzv9rY69fHAHoawYOjGOEcxk9WYtaJhowMdP/w6NcOKnz2G7GlZaenjkzkMa6ZeQeMsg==
-  dependencies:
-    "@swc/counter" "^0.1.3"
-    "@swc/types" "^0.1.15"
-  optionalDependencies:
-    "@swc/core-darwin-arm64" "1.9.2"
-    "@swc/core-darwin-x64" "1.9.2"
-    "@swc/core-linux-arm-gnueabihf" "1.9.2"
-    "@swc/core-linux-arm64-gnu" "1.9.2"
-    "@swc/core-linux-arm64-musl" "1.9.2"
-    "@swc/core-linux-x64-gnu" "1.9.2"
-    "@swc/core-linux-x64-musl" "1.9.2"
-    "@swc/core-win32-arm64-msvc" "1.9.2"
-    "@swc/core-win32-ia32-msvc" "1.9.2"
-    "@swc/core-win32-x64-msvc" "1.9.2"
-
-"@swc/counter@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.npmjs.org/@swc/counter/-/counter-0.1.3.tgz"
-  integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
-
-"@swc/html-darwin-arm64@1.9.2":
-  version "1.9.2"
-  resolved "https://registry.npmjs.org/@swc/html-darwin-arm64/-/html-darwin-arm64-1.9.2.tgz"
-  integrity sha512-ZUdSXezeJrYgzrUv5alsjBI5wPMks/DyskHypOD6XwFJq1rFYRlFkiiwgf1U/uVSZnseIoXezBURnPliWpkrHQ==
-
-"@swc/html@^1.7.39":
-  version "1.9.2"
-  resolved "https://registry.npmjs.org/@swc/html/-/html-1.9.2.tgz"
-  integrity sha512-HoRqmYbxribu9thQ8vDshh6mgVcs2MSF0lEdoRBUBGcXbLwOMdCQMncbJoVguy0ehmmOzBwt+9qnP58IY+RWbg==
-  dependencies:
-    "@swc/counter" "^0.1.3"
-  optionalDependencies:
-    "@swc/html-darwin-arm64" "1.9.2"
-    "@swc/html-darwin-x64" "1.9.2"
-    "@swc/html-linux-arm-gnueabihf" "1.9.2"
-    "@swc/html-linux-arm64-gnu" "1.9.2"
-    "@swc/html-linux-arm64-musl" "1.9.2"
-    "@swc/html-linux-x64-gnu" "1.9.2"
-    "@swc/html-linux-x64-musl" "1.9.2"
-    "@swc/html-win32-arm64-msvc" "1.9.2"
-    "@swc/html-win32-ia32-msvc" "1.9.2"
-    "@swc/html-win32-x64-msvc" "1.9.2"
-
-"@swc/types@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.npmjs.org/@swc/types/-/types-0.1.15.tgz"
-  integrity sha512-XKaZ+dzDIQ9Ot9o89oJQ/aluI17+VvUnIpYJTcZtvv1iYX6MzHh3Ik2CSR7MdPKpPwfZXHBeCingb2b4PoDVdw==
-  dependencies:
-    "@swc/counter" "^0.1.3"
 
 "@szmarczak/http-timer@^5.0.1":
   version "5.0.1"
@@ -3170,9 +3418,9 @@ ajv@8.11.0:
     uri-js "^4.2.2"
 
 algoliasearch-helper@^3.13.3:
-  version "3.22.5"
-  resolved "https://registry.npmjs.org/algoliasearch-helper/-/algoliasearch-helper-3.22.5.tgz"
-  integrity sha512-lWvhdnc+aKOKx8jyA3bsdEgHzm/sglC4cYdMG4xSQyRiPLJVJtH/IVYZG3Hp6PkTEhQqhyVYkeP9z2IlcHJsWw==
+  version "3.22.6"
+  resolved "https://registry.npmjs.org/algoliasearch-helper/-/algoliasearch-helper-3.22.6.tgz"
+  integrity sha512-F2gSb43QHyvZmvH/2hxIjbk/uFdO2MguQYTFP7J+RowMW1csjIODMobEnpLI8nbLQuzZnGZdIxl5Bpy1k9+CFQ==
   dependencies:
     "@algolia/events" "^4.0.1"
 
@@ -3198,23 +3446,23 @@ algoliasearch@^4.18.0, "algoliasearch@>= 3.1 < 6", "algoliasearch@>= 4.9.1 < 6":
     "@algolia/transporter" "4.24.0"
 
 algoliasearch@^5.12.0:
-  version "5.14.0"
-  resolved "https://registry.npmjs.org/algoliasearch/-/algoliasearch-5.14.0.tgz"
-  integrity sha512-qr21NtvIkpptwj9z6W5guICK8yijXIGzw7Ka26zAPofnefofVXoXtuAopjtmk1ZKDu4YpACj38n9mgKKc5Zuhw==
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/algoliasearch/-/algoliasearch-5.17.0.tgz"
+  integrity sha512-BpuFprDFc3Pe9a1ZXLzLeqZ+l8Ur37AfzBswkOB4LwikqnRPbIGdluT/nFc/Xk+u/QMxMzUlTN+izqQJVb5vYA==
   dependencies:
-    "@algolia/client-abtesting" "5.14.0"
-    "@algolia/client-analytics" "5.14.0"
-    "@algolia/client-common" "5.14.0"
-    "@algolia/client-insights" "5.14.0"
-    "@algolia/client-personalization" "5.14.0"
-    "@algolia/client-query-suggestions" "5.14.0"
-    "@algolia/client-search" "5.14.0"
-    "@algolia/ingestion" "1.14.0"
-    "@algolia/monitoring" "1.14.0"
-    "@algolia/recommend" "5.14.0"
-    "@algolia/requester-browser-xhr" "5.14.0"
-    "@algolia/requester-fetch" "5.14.0"
-    "@algolia/requester-node-http" "5.14.0"
+    "@algolia/client-abtesting" "5.17.0"
+    "@algolia/client-analytics" "5.17.0"
+    "@algolia/client-common" "5.17.0"
+    "@algolia/client-insights" "5.17.0"
+    "@algolia/client-personalization" "5.17.0"
+    "@algolia/client-query-suggestions" "5.17.0"
+    "@algolia/client-search" "5.17.0"
+    "@algolia/ingestion" "1.17.0"
+    "@algolia/monitoring" "1.17.0"
+    "@algolia/recommend" "5.17.0"
+    "@algolia/requester-browser-xhr" "5.17.0"
+    "@algolia/requester-fetch" "5.17.0"
+    "@algolia/requester-node-http" "5.17.0"
 
 ansi-align@^3.0.1:
   version "3.0.1"
@@ -3337,7 +3585,7 @@ at-least-node@^1.0.0:
   resolved "https://registry.npmjs.org/at-least-node/-/at-least-node-1.0.0.tgz"
   integrity sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==
 
-autoprefixer@^10.4.14, autoprefixer@^10.4.19:
+autoprefixer@^10.4.19:
   version "10.4.20"
   resolved "https://registry.npmjs.org/autoprefixer/-/autoprefixer-10.4.20.tgz"
   integrity sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==
@@ -3641,7 +3889,7 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@^4.0.0, browserslist@^4.18.1, browserslist@^4.21.10, browserslist@^4.23.0, browserslist@^4.23.3, browserslist@^4.24.0, browserslist@^4.24.2, "browserslist@>= 4.21.0":
+browserslist@^4.0.0, browserslist@^4.18.1, browserslist@^4.21.10, browserslist@^4.23.0, browserslist@^4.23.1, browserslist@^4.23.3, browserslist@^4.24.0, browserslist@^4.24.2, "browserslist@>= 4.21.0":
   version "4.24.2"
   resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.24.2.tgz"
   integrity sha512-ZIc+Q62revdMcqC6aChtW4jz3My3klmCO1fEmINZY/8J3EpBg5/A/D0AKmBveUh6pgoeycoMkVMko84tuYS+Gg==
@@ -4319,10 +4567,26 @@ crypto-random-string@^4.0.0:
   dependencies:
     type-fest "^1.0.1"
 
+css-blank-pseudo@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/css-blank-pseudo/-/css-blank-pseudo-7.0.1.tgz"
+  integrity sha512-jf+twWGDf6LDoXDUode+nc7ZlrqfaNphrBIBrcmeP3D8yw1uPaix1gCC8LUQUGQ6CycuK2opkbFFWFuq/a94ag==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
+
 css-declaration-sorter@^7.2.0:
   version "7.2.0"
   resolved "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-7.2.0.tgz"
   integrity sha512-h70rUM+3PNFuaBDTLe8wF/cdWu+dOZmb7pJt8Z2sedYbAcQVQV/tEchueg3GWxwqS0cxtbxmaHEdkNACqcvsow==
+
+css-has-pseudo@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/css-has-pseudo/-/css-has-pseudo-7.0.1.tgz"
+  integrity sha512-EOcoyJt+OsuKfCADgLT7gADZI5jMzIe/AeI6MeAYKiFBDmNmM7kk46DtSfMj5AohUJisqVzopBpnQTlvbyaBWg==
+  dependencies:
+    "@csstools/selector-specificity" "^5.0.0"
+    postcss-selector-parser "^7.0.0"
+    postcss-value-parser "^4.2.0"
 
 css-loader@^6.8.1:
   version "6.11.0"
@@ -4349,6 +4613,11 @@ css-minimizer-webpack-plugin@^5.0.1:
     postcss "^8.4.24"
     schema-utils "^4.0.1"
     serialize-javascript "^6.0.1"
+
+css-prefers-color-scheme@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/css-prefers-color-scheme/-/css-prefers-color-scheme-10.0.0.tgz"
+  integrity sha512-VCtXZAWivRglTZditUfB4StnsWr6YVZ2PRtuxQLKTNRdtAf8tpzaVPE9zXIF3VaSc7O70iK/j1+NXxyQCqdPjQ==
 
 css-select@^4.1.3:
   version "4.3.0"
@@ -4392,6 +4661,11 @@ css-what@^6.0.1, css-what@^6.1.0:
   version "6.1.0"
   resolved "https://registry.npmjs.org/css-what/-/css-what-6.1.0.tgz"
   integrity sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==
+
+cssdb@^8.2.1:
+  version "8.2.3"
+  resolved "https://registry.npmjs.org/cssdb/-/cssdb-8.2.3.tgz"
+  integrity sha512-9BDG5XmJrJQQnJ51VFxXCAtpZ5ebDlAREmO8sxMOVU0aSxN/gocbctjIG5LMh3WBUq+xTlb/jw2LoljBEqraTA==
 
 cssesc@^3.0.0:
   version "3.0.0"
@@ -4908,11 +5182,6 @@ destroy@1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/destroy/-/destroy-1.2.0.tgz"
   integrity sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==
-
-detect-libc@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/detect-libc/-/detect-libc-1.0.3.tgz"
-  integrity sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==
 
 detect-libc@^2.0.0, detect-libc@^2.0.2:
   version "2.0.3"
@@ -7055,33 +7324,10 @@ leven@^3.1.0:
   resolved "https://registry.npmjs.org/leven/-/leven-3.1.0.tgz"
   integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
 
-lightningcss-darwin-arm64@1.28.1:
-  version "1.28.1"
-  resolved "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.28.1.tgz"
-  integrity sha512-VG3vvzM0m/rguCdm76DdobNeNJnHK+jWcdkNLFWHLh9YCotRvbRIt45JxwcHlIF8TDqWStVLTdghq5NaigVCBQ==
-
-lightningcss@^1.27.0:
-  version "1.28.1"
-  resolved "https://registry.npmjs.org/lightningcss/-/lightningcss-1.28.1.tgz"
-  integrity sha512-KRDkHlLlNj3DWh79CDt93fPlRJh2W1AuHV0ZSZAMMuN7lqlsZTV5842idfS1urWG8q9tc17velp1gCXhY7sLnQ==
-  dependencies:
-    detect-libc "^1.0.3"
-  optionalDependencies:
-    lightningcss-darwin-arm64 "1.28.1"
-    lightningcss-darwin-x64 "1.28.1"
-    lightningcss-freebsd-x64 "1.28.1"
-    lightningcss-linux-arm-gnueabihf "1.28.1"
-    lightningcss-linux-arm64-gnu "1.28.1"
-    lightningcss-linux-arm64-musl "1.28.1"
-    lightningcss-linux-x64-gnu "1.28.1"
-    lightningcss-linux-x64-musl "1.28.1"
-    lightningcss-win32-arm64-msvc "1.28.1"
-    lightningcss-win32-x64-msvc "1.28.1"
-
 lilconfig@^3.1.1:
-  version "3.1.2"
-  resolved "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.2.tgz"
-  integrity sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==
+  version "3.1.3"
+  resolved "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz"
+  integrity sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
@@ -8594,9 +8840,9 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 nanoid@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz"
-  integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
+  version "3.3.8"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.8.tgz"
+  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
 
 napi-build-utils@^1.0.1:
   version "1.0.2"
@@ -9270,12 +9516,53 @@ possible-typed-array-names@^1.0.0:
   resolved "https://registry.npmjs.org/possible-typed-array-names/-/possible-typed-array-names-1.0.0.tgz"
   integrity sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==
 
+postcss-attribute-case-insensitive@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/postcss-attribute-case-insensitive/-/postcss-attribute-case-insensitive-7.0.1.tgz"
+  integrity sha512-Uai+SupNSqzlschRyNx3kbCTWgY/2hcwtHEI/ej2LJWc9JJ77qKgGptd8DHwY1mXtZ7Aoh4z4yxfwMBue9eNgw==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
+
 postcss-calc@^9.0.1:
   version "9.0.1"
   resolved "https://registry.npmjs.org/postcss-calc/-/postcss-calc-9.0.1.tgz"
   integrity sha512-TipgjGyzP5QzEhsOZUaIkeO5mKeMFpebWzRogWG/ysonUlnHcq5aJe0jOjpfzUU8PeSaBQnrE8ehR0QA5vs8PQ==
   dependencies:
     postcss-selector-parser "^6.0.11"
+    postcss-value-parser "^4.2.0"
+
+postcss-clamp@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/postcss-clamp/-/postcss-clamp-4.1.0.tgz"
+  integrity sha512-ry4b1Llo/9zz+PKC+030KUnPITTJAHeOwjfAyyB60eT0AorGLdzp52s31OsPRHRf8NchkgFoG2y6fCfn1IV1Ow==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+postcss-color-functional-notation@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.npmjs.org/postcss-color-functional-notation/-/postcss-color-functional-notation-7.0.6.tgz"
+  integrity sha512-wLXvm8RmLs14Z2nVpB4CWlnvaWPRcOZFltJSlcbYwSJ1EDZKsKDhPKIMecCnuU054KSmlmubkqczmm6qBPCBhA==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
+postcss-color-hex-alpha@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/postcss-color-hex-alpha/-/postcss-color-hex-alpha-10.0.0.tgz"
+  integrity sha512-1kervM2cnlgPs2a8Vt/Qbe5cQ++N7rkYo/2rz2BkqJZIHQwaVuJgQH38REHrAi4uM0b1fqxMkWYmese94iMp3w==
+  dependencies:
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+postcss-color-rebeccapurple@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/postcss-color-rebeccapurple/-/postcss-color-rebeccapurple-10.0.0.tgz"
+  integrity sha512-JFta737jSP+hdAIEhk1Vs0q0YF5P8fFcj+09pweS8ktuGuZ8pPlykHsk6mPxZ8awDl4TrcxUqJo9l1IhVr/OjQ==
+  dependencies:
+    "@csstools/utilities" "^2.0.0"
     postcss-value-parser "^4.2.0"
 
 postcss-colormin@^6.1.0:
@@ -9295,6 +9582,44 @@ postcss-convert-values@^6.1.0:
   dependencies:
     browserslist "^4.23.0"
     postcss-value-parser "^4.2.0"
+
+postcss-custom-media@^11.0.5:
+  version "11.0.5"
+  resolved "https://registry.npmjs.org/postcss-custom-media/-/postcss-custom-media-11.0.5.tgz"
+  integrity sha512-SQHhayVNgDvSAdX9NQ/ygcDQGEY+aSF4b/96z7QUX6mqL5yl/JgG/DywcF6fW9XbnCRE+aVYk+9/nqGuzOPWeQ==
+  dependencies:
+    "@csstools/cascade-layer-name-parser" "^2.0.4"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/media-query-list-parser" "^4.0.2"
+
+postcss-custom-properties@^14.0.4:
+  version "14.0.4"
+  resolved "https://registry.npmjs.org/postcss-custom-properties/-/postcss-custom-properties-14.0.4.tgz"
+  integrity sha512-QnW8FCCK6q+4ierwjnmXF9Y9KF8q0JkbgVfvQEMa93x1GT8FvOiUevWCN2YLaOWyByeDX8S6VFbZEeWoAoXs2A==
+  dependencies:
+    "@csstools/cascade-layer-name-parser" "^2.0.4"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+postcss-custom-selectors@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.npmjs.org/postcss-custom-selectors/-/postcss-custom-selectors-8.0.4.tgz"
+  integrity sha512-ASOXqNvDCE0dAJ/5qixxPeL1aOVGHGW2JwSy7HyjWNbnWTQCl+fDc968HY1jCmZI0+BaYT5CxsOiUhavpG/7eg==
+  dependencies:
+    "@csstools/cascade-layer-name-parser" "^2.0.4"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    postcss-selector-parser "^7.0.0"
+
+postcss-dir-pseudo-class@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.npmjs.org/postcss-dir-pseudo-class/-/postcss-dir-pseudo-class-9.0.1.tgz"
+  integrity sha512-tRBEK0MHYvcMUrAuYMEOa0zg9APqirBcgzi6P21OhxtJyJADo/SWBwY1CAwEohQ/6HDaa9jCjLRG7K3PVQYHEA==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
 
 postcss-discard-comments@^6.0.2:
   version "6.0.2"
@@ -9323,6 +9648,58 @@ postcss-discard-unused@^6.0.5:
   dependencies:
     postcss-selector-parser "^6.0.16"
 
+postcss-double-position-gradients@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/postcss-double-position-gradients/-/postcss-double-position-gradients-6.0.0.tgz"
+  integrity sha512-JkIGah3RVbdSEIrcobqj4Gzq0h53GG4uqDPsho88SgY84WnpkTpI0k50MFK/sX7XqVisZ6OqUfFnoUO6m1WWdg==
+  dependencies:
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+postcss-focus-visible@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.npmjs.org/postcss-focus-visible/-/postcss-focus-visible-10.0.1.tgz"
+  integrity sha512-U58wyjS/I1GZgjRok33aE8juW9qQgQUNwTSdxQGuShHzwuYdcklnvK/+qOWX1Q9kr7ysbraQ6ht6r+udansalA==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
+
+postcss-focus-within@^9.0.1:
+  version "9.0.1"
+  resolved "https://registry.npmjs.org/postcss-focus-within/-/postcss-focus-within-9.0.1.tgz"
+  integrity sha512-fzNUyS1yOYa7mOjpci/bR+u+ESvdar6hk8XNK/TRR0fiGTp2QT5N+ducP0n3rfH/m9I7H/EQU6lsa2BrgxkEjw==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
+
+postcss-font-variant@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/postcss-font-variant/-/postcss-font-variant-5.0.0.tgz"
+  integrity sha512-1fmkBaCALD72CK2a9i468mA/+tr9/1cBxRRMXOUaZqO43oWPR5imcyPjXwuv7PXbCid4ndlP5zWhidQVVa3hmA==
+
+postcss-gap-properties@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/postcss-gap-properties/-/postcss-gap-properties-6.0.0.tgz"
+  integrity sha512-Om0WPjEwiM9Ru+VhfEDPZJAKWUd0mV1HmNXqp2C29z80aQ2uP9UVhLc7e3aYMIor/S5cVhoPgYQ7RtfeZpYTRw==
+
+postcss-image-set-function@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/postcss-image-set-function/-/postcss-image-set-function-7.0.0.tgz"
+  integrity sha512-QL7W7QNlZuzOwBTeXEmbVckNt1FSmhQtbMRvGGqqU4Nf4xk6KUEQhAoWuMzwbSv5jxiRiSZ5Tv7eiDB9U87znA==
+  dependencies:
+    "@csstools/utilities" "^2.0.0"
+    postcss-value-parser "^4.2.0"
+
+postcss-lab-function@^7.0.6:
+  version "7.0.6"
+  resolved "https://registry.npmjs.org/postcss-lab-function/-/postcss-lab-function-7.0.6.tgz"
+  integrity sha512-HPwvsoK7C949vBZ+eMyvH2cQeMr3UREoHvbtra76/UhDuiViZH6pir+z71UaJQohd7VDSVUdR6TkWYKExEc9aQ==
+  dependencies:
+    "@csstools/css-color-parser" "^3.0.6"
+    "@csstools/css-parser-algorithms" "^3.0.4"
+    "@csstools/css-tokenizer" "^3.0.3"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/utilities" "^2.0.0"
+
 postcss-loader@^7.3.3:
   version "7.3.4"
   resolved "https://registry.npmjs.org/postcss-loader/-/postcss-loader-7.3.4.tgz"
@@ -9331,6 +9708,13 @@ postcss-loader@^7.3.3:
     cosmiconfig "^8.3.5"
     jiti "^1.20.0"
     semver "^7.5.4"
+
+postcss-logical@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.npmjs.org/postcss-logical/-/postcss-logical-8.0.0.tgz"
+  integrity sha512-HpIdsdieClTjXLOyYdUPAX/XQASNIwdKt5hoZW08ZOAiI+tbV0ta1oclkpVkW5ANU+xJvk3KkA0FejkjGLXUkg==
+  dependencies:
+    postcss-value-parser "^4.2.0"
 
 postcss-merge-idents@^6.0.3:
   version "6.0.3"
@@ -9396,9 +9780,9 @@ postcss-modules-extract-imports@^3.1.0:
   integrity sha512-k3kNe0aNFQDAZGbin48pL2VNidTF0w4/eASDsxlyspobzU3wZQLOGj7L9gfRe0Jo9/4uud09DsjFNH7winGv8Q==
 
 postcss-modules-local-by-default@^4.0.5:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.1.0.tgz"
-  integrity sha512-rm0bdSv4jC3BDma3s9H19ZddW0aHX6EoqwDYU2IfZhRN+53QrufTRo2IdkAbRqLx4R2IYbZnbjKKxg4VN5oU9Q==
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.2.0.tgz"
+  integrity sha512-5kcJm/zk+GJDSfw+V/42fJ5fhjL5YbFDl8nVdXkJPLLW+Vf9mTD5Xe0wqIaDnLuL2U6cDNpTr+UQ+v2HWIBhzw==
   dependencies:
     icss-utils "^5.0.0"
     postcss-selector-parser "^7.0.0"
@@ -9417,6 +9801,15 @@ postcss-modules-values@^4.0.0:
   integrity sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==
   dependencies:
     icss-utils "^5.0.0"
+
+postcss-nesting@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.npmjs.org/postcss-nesting/-/postcss-nesting-13.0.1.tgz"
+  integrity sha512-VbqqHkOBOt4Uu3G8Dm8n6lU5+9cJFxiuty9+4rcoyRPO9zZS1JIs6td49VIoix3qYqELHlJIn46Oih9SAKo+yQ==
+  dependencies:
+    "@csstools/selector-resolve-nested" "^3.0.0"
+    "@csstools/selector-specificity" "^5.0.0"
+    postcss-selector-parser "^7.0.0"
 
 postcss-normalize-charset@^6.0.2:
   version "6.0.2"
@@ -9480,6 +9873,11 @@ postcss-normalize-whitespace@^6.0.2:
   dependencies:
     postcss-value-parser "^4.2.0"
 
+postcss-opacity-percentage@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/postcss-opacity-percentage/-/postcss-opacity-percentage-3.0.0.tgz"
+  integrity sha512-K6HGVzyxUxd/VgZdX04DCtdwWJ4NGLG212US4/LA1TLAbHgmAsTWVR86o+gGIbFtnTkfOpb9sCRBx8K7HO66qQ==
+
 postcss-ordered-values@^6.0.2:
   version "6.0.2"
   resolved "https://registry.npmjs.org/postcss-ordered-values/-/postcss-ordered-values-6.0.2.tgz"
@@ -9487,6 +9885,101 @@ postcss-ordered-values@^6.0.2:
   dependencies:
     cssnano-utils "^4.0.2"
     postcss-value-parser "^4.2.0"
+
+postcss-overflow-shorthand@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/postcss-overflow-shorthand/-/postcss-overflow-shorthand-6.0.0.tgz"
+  integrity sha512-BdDl/AbVkDjoTofzDQnwDdm/Ym6oS9KgmO7Gr+LHYjNWJ6ExORe4+3pcLQsLA9gIROMkiGVjjwZNoL/mpXHd5Q==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+postcss-page-break@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.npmjs.org/postcss-page-break/-/postcss-page-break-3.0.4.tgz"
+  integrity sha512-1JGu8oCjVXLa9q9rFTo4MbeeA5FMe00/9C7lN4va606Rdb+HkxXtXsmEDrIraQ11fGz/WvKWa8gMuCKkrXpTsQ==
+
+postcss-place@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/postcss-place/-/postcss-place-10.0.0.tgz"
+  integrity sha512-5EBrMzat2pPAxQNWYavwAfoKfYcTADJ8AXGVPcUZ2UkNloUTWzJQExgrzrDkh3EKzmAx1evfTAzF9I8NGcc+qw==
+  dependencies:
+    postcss-value-parser "^4.2.0"
+
+postcss-preset-env@^10.1.0:
+  version "10.1.1"
+  resolved "https://registry.npmjs.org/postcss-preset-env/-/postcss-preset-env-10.1.1.tgz"
+  integrity sha512-wqqsnBFD6VIwcHHRbhjTOcOi4qRVlB26RwSr0ordPj7OubRRxdWebv/aLjKLRR8zkZrbxZyuus03nOIgC5elMQ==
+  dependencies:
+    "@csstools/postcss-cascade-layers" "^5.0.1"
+    "@csstools/postcss-color-function" "^4.0.6"
+    "@csstools/postcss-color-mix-function" "^3.0.6"
+    "@csstools/postcss-content-alt-text" "^2.0.4"
+    "@csstools/postcss-exponential-functions" "^2.0.5"
+    "@csstools/postcss-font-format-keywords" "^4.0.0"
+    "@csstools/postcss-gamut-mapping" "^2.0.6"
+    "@csstools/postcss-gradients-interpolation-method" "^5.0.6"
+    "@csstools/postcss-hwb-function" "^4.0.6"
+    "@csstools/postcss-ic-unit" "^4.0.0"
+    "@csstools/postcss-initial" "^2.0.0"
+    "@csstools/postcss-is-pseudo-class" "^5.0.1"
+    "@csstools/postcss-light-dark-function" "^2.0.7"
+    "@csstools/postcss-logical-float-and-clear" "^3.0.0"
+    "@csstools/postcss-logical-overflow" "^2.0.0"
+    "@csstools/postcss-logical-overscroll-behavior" "^2.0.0"
+    "@csstools/postcss-logical-resize" "^3.0.0"
+    "@csstools/postcss-logical-viewport-units" "^3.0.3"
+    "@csstools/postcss-media-minmax" "^2.0.5"
+    "@csstools/postcss-media-queries-aspect-ratio-number-values" "^3.0.4"
+    "@csstools/postcss-nested-calc" "^4.0.0"
+    "@csstools/postcss-normalize-display-values" "^4.0.0"
+    "@csstools/postcss-oklab-function" "^4.0.6"
+    "@csstools/postcss-progressive-custom-properties" "^4.0.0"
+    "@csstools/postcss-random-function" "^1.0.1"
+    "@csstools/postcss-relative-color-syntax" "^3.0.6"
+    "@csstools/postcss-scope-pseudo-class" "^4.0.1"
+    "@csstools/postcss-sign-functions" "^1.1.0"
+    "@csstools/postcss-stepped-value-functions" "^4.0.5"
+    "@csstools/postcss-text-decoration-shorthand" "^4.0.1"
+    "@csstools/postcss-trigonometric-functions" "^4.0.5"
+    "@csstools/postcss-unset-value" "^4.0.0"
+    autoprefixer "^10.4.19"
+    browserslist "^4.23.1"
+    css-blank-pseudo "^7.0.1"
+    css-has-pseudo "^7.0.1"
+    css-prefers-color-scheme "^10.0.0"
+    cssdb "^8.2.1"
+    postcss-attribute-case-insensitive "^7.0.1"
+    postcss-clamp "^4.1.0"
+    postcss-color-functional-notation "^7.0.6"
+    postcss-color-hex-alpha "^10.0.0"
+    postcss-color-rebeccapurple "^10.0.0"
+    postcss-custom-media "^11.0.5"
+    postcss-custom-properties "^14.0.4"
+    postcss-custom-selectors "^8.0.4"
+    postcss-dir-pseudo-class "^9.0.1"
+    postcss-double-position-gradients "^6.0.0"
+    postcss-focus-visible "^10.0.1"
+    postcss-focus-within "^9.0.1"
+    postcss-font-variant "^5.0.0"
+    postcss-gap-properties "^6.0.0"
+    postcss-image-set-function "^7.0.0"
+    postcss-lab-function "^7.0.6"
+    postcss-logical "^8.0.0"
+    postcss-nesting "^13.0.1"
+    postcss-opacity-percentage "^3.0.0"
+    postcss-overflow-shorthand "^6.0.0"
+    postcss-page-break "^3.0.4"
+    postcss-place "^10.0.0"
+    postcss-pseudo-class-any-link "^10.0.1"
+    postcss-replace-overflow-wrap "^4.0.0"
+    postcss-selector-not "^8.0.1"
+
+postcss-pseudo-class-any-link@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.npmjs.org/postcss-pseudo-class-any-link/-/postcss-pseudo-class-any-link-10.0.1.tgz"
+  integrity sha512-3el9rXlBOqTFaMFkWDOkHUTQekFIYnaQY55Rsp8As8QQkpiSgIYEcF/6Ond93oHiDsGb4kad8zjt+NPlOC1H0Q==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
 
 postcss-reduce-idents@^6.0.3:
   version "6.0.3"
@@ -9509,6 +10002,18 @@ postcss-reduce-transforms@^6.0.2:
   integrity sha512-sB+Ya++3Xj1WaT9+5LOOdirAxP7dJZms3GRcYheSPi1PiTMigsxHAdkrbItHxwYHr4kt1zL7mmcHstgMYT+aiA==
   dependencies:
     postcss-value-parser "^4.2.0"
+
+postcss-replace-overflow-wrap@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/postcss-replace-overflow-wrap/-/postcss-replace-overflow-wrap-4.0.0.tgz"
+  integrity sha512-KmF7SBPphT4gPPcKZc7aDkweHiKEEO8cla/GjcBK+ckKxiZslIu3C4GCRW3DNfL0o7yW7kMQu9xlZ1kXRXLXtw==
+
+postcss-selector-not@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.npmjs.org/postcss-selector-not/-/postcss-selector-not-8.0.1.tgz"
+  integrity sha512-kmVy/5PYVb2UOhy0+LqUYAhKj7DUGDpSWa5LZqlkWJaaAV+dxxsOG3+St0yNLu6vsKD7Dmqx+nWQt0iil89+WA==
+  dependencies:
+    postcss-selector-parser "^7.0.0"
 
 postcss-selector-parser@^6.0.11, postcss-selector-parser@^6.0.16:
   version "6.1.2"
@@ -9558,7 +10063,7 @@ postcss-zindex@^6.0.2:
   resolved "https://registry.npmjs.org/postcss-zindex/-/postcss-zindex-6.0.2.tgz"
   integrity sha512-5BxW9l1evPB/4ZIc+2GobEBoKC+h8gPGCMi+jxsYvd2x0mjq7wazk6DrP71pStqxE9Foxh5TVnonbWpFZzXaYg==
 
-"postcss@^7.0.0 || ^8.0.1", postcss@^8.0.9, postcss@^8.1.0, postcss@^8.2.2, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.24, postcss@^8.4.26, postcss@^8.4.31, postcss@^8.4.33, postcss@^8.4.38:
+"postcss@^7.0.0 || ^8.0.1", postcss@^8, postcss@^8.0.3, postcss@^8.0.9, postcss@^8.1.0, postcss@^8.2.2, postcss@^8.4, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.24, postcss@^8.4.26, postcss@^8.4.31, postcss@^8.4.33, postcss@^8.4.38, postcss@^8.4.6:
   version "8.4.49"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.49.tgz"
   integrity sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==
@@ -10593,9 +11098,9 @@ schema-utils@2.7.0:
     ajv-keywords "^3.4.1"
 
 "search-insights@>= 1 < 3":
-  version "2.17.2"
-  resolved "https://registry.npmjs.org/search-insights/-/search-insights-2.17.2.tgz"
-  integrity sha512-zFNpOpUO+tY2D85KrxJ+aqwnIfdEGi06UH2+xEb+Bp9Mwznmauqc9djbnBibJO5mpfUPPa8st6Sx65+vbeO45g==
+  version "2.17.3"
+  resolved "https://registry.npmjs.org/search-insights/-/search-insights-2.17.3.tgz"
+  integrity sha512-RQPdCYTa8A68uM2jwxoY842xDhvx3E5LFL1LxvxCNMev4o5mLuokczhzjAgGwUZBAmOKZknArSxLKmXtIi2AxQ==
 
 section-matter@^1.0.0:
   version "1.0.0"
@@ -11262,13 +11767,6 @@ swagger2openapi@^7.0.8, swagger2openapi@7.0.8:
     reftools "^1.1.9"
     yaml "^1.10.0"
     yargs "^17.0.1"
-
-swc-loader@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.npmjs.org/swc-loader/-/swc-loader-0.2.6.tgz"
-  integrity sha512-9Zi9UP2YmDpgmQVbyOPJClY0dwf58JDyDMQ7uRc4krmc72twNI2fvlBWHLqVekBpPc7h5NJkGVT1zNDxFrqhvg==
-  dependencies:
-    "@swc/counter" "^0.1.3"
 
 tapable@^1.0.0:
   version "1.1.3"
@@ -12047,7 +12545,7 @@ webpack-sources@^3.2.3:
   resolved "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-"webpack@^4.0.0 || ^5.0.0", "webpack@^4.36.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.61.0, webpack@^5.88.1, webpack@^5.95.0, "webpack@>= 4", webpack@>=2, "webpack@>=4.41.1 || 5.x", webpack@>=5, "webpack@3 || 4 || 5":
+"webpack@^4.0.0 || ^5.0.0", "webpack@^4.36.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", webpack@^5.0.0, webpack@^5.1.0, webpack@^5.20.0, webpack@^5.61.0, webpack@^5.88.1, webpack@^5.95.0, "webpack@>= 4", "webpack@>=4.41.1 || 5.x", webpack@>=5, "webpack@3 || 4 || 5":
   version "5.95.0"
   resolved "https://registry.npmjs.org/webpack/-/webpack-5.95.0.tgz"
   integrity sha512-2t3XstrKULz41MNMBF+cJ97TyHdyQ8HCt//pqErqDvNjU9YQBnZxIHa11VXsi7F3mb5/aO2tuDxdeTPdU7xu9Q==
