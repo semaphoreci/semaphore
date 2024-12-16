@@ -52,6 +52,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          sidebarCollapsible: false,
           routeBasePath: '/', // move docs to the website root
           sidebarPath: './sidebars.js',
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
