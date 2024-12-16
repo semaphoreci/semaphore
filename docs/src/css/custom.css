@@ -76,3 +76,8 @@ iconify-icon {
 .tabs__item--active {
   background-color: var(--ifm-color-success-contrast-background);
 }
+
+/* hide not available feature pages in sidebar */
+.hidden {
+  display: none !important;
+}

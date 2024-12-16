@@ -113,26 +113,26 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'startSidebar',
+            sidebarId: 'gettingStarted',
             position: 'left',
             label: 'Get Started',
           },
           {
             type: 'docSidebar',
-            sidebarId: 'coreSidebar',
+            sidebarId: 'usingSemaphore',
             position: 'left',
             label: 'Using Semaphore',
           },
           {
             type: 'docSidebar',
-            sidebarId: 'refSidebar',
+            sidebarId: 'reference',
             position: 'left',
             label: 'Reference',
           },
           // uncomment this when the new API is released
           // {
           //   type: 'docSidebar',
-          //   sidebarId: 'apiSidebar',
+          //   sidebarId: 'openApi',
           //   position: 'left',
           //   label: 'API Specification',
           // },
