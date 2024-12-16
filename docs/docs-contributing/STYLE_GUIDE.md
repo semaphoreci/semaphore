@@ -295,7 +295,7 @@ Then add the `<Tabs>` component. Each `<TabItem>` is a tab. Indenting is optiona
 
 The `groupID` is optional. Tabs sharing a group id will switch together through the document.
 
-### Plans 
+### Available 
 
 We use a special admonition to mark features that are available only with specific plans.
 
@@ -319,7 +319,7 @@ You can pass an array of plans instead.
 <Available  plans={['Startup','Scaleup']}/>
 ```
 
-### Toggable content 
+### Toggleable content 
 
 You can hide less important elements using a toggable content
 
@@ -368,3 +368,14 @@ Docusaurus supports [Mermaid] diagrams. This allows us to embed sequence, state,
   ```
 
 You can preview diagram lives at [Mermaid Live Editor](https://mermaid.live/).
+
+### Feature unavailable
+
+When a feature is not available on documented edition/version of Semaphore, you can add the special FeatureNotAvailable admonition.
+
+To use it:
+
+```md
+import FeatureNotAvailable from '@site/src/components/FeatureNotAvailable';
+<FeatureNotAvailable/>
+```
