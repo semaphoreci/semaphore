@@ -94,15 +94,15 @@ Installed versions:
 
 - 16 (default)
 
-The default installed Xcode version is `16.0`.
+The default installed Xcode version is `16.2`.
 
-Xcode 16.0 has the following SDKs preinstalled:
+Xcode 16.2 has the following SDKs preinstalled:
 
-- iOS 18.0
+- iOS 18.2
 - macOS 15.0
-- tvOS 18.0
-- watchOS 11
-- visionos 2.0
+- tvOS 18.2
+- watchOS 11.2
+- visionOS 2.2
 
 </div>
 
