@@ -8,6 +8,19 @@ Thank you for using Semaphore!
 We continuously deploy changes that improve our product for our customers.
 This page is updated on a weekly basis.
 
+## Week of December 16, 2024
+
+**(Improved) macos-xcode16 (apple silicon) image update**
+
+**(Updated)** :
+
+- Xcode 16.0 -> 16.2
+- Simulator iOS    18.0  -> 18.2
+- Simulator tvOS    18.0 -> 18.2
+- Simulator watchOS   11 -> 11.2
+- Simulator visionOS 2.0 -> 2.2
+
+
 ## Week of December 2, 2024
 
 **(Improved) Ubuntu 20.04, Ubuntu 22.04 and Ubuntu 22.04 ARM image update**
