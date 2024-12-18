@@ -113,6 +113,12 @@ Describes the ending state of the job. The possible states are:
 - `failed`: the job finished in failure
 - `stopped`: the job was terminated before completion
 
+:::note
+
+This variable is only available in the [job epilogue](../using-semaphore/jobs#epilogue).
+
+:::
+
 ### Job type {#job-type}
 
 - **Environment variable**: `SEMAPHORE_JOB_TYPE`
