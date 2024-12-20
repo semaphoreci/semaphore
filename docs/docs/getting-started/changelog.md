@@ -15,6 +15,8 @@ This page is updated on a weekly basis.
 **(New)** Packages:
 
 - Erlang: 27.2
+- Elixir 1.18.0
+- PHP 8.2.27, 8.3.15
 
 **(Updated)** Updated packages:
 
@@ -69,6 +71,8 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 **(New)** Packages:
 
 - Erlang: 27.2
+- Elixir 1.18.0
+- PHP 8.2.27, 8.3.15
 
 **(Updated)** Updated packages:
 
