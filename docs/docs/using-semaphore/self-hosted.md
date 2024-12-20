@@ -22,6 +22,15 @@ Self-hosted agents allow you to run [workflows](./workflows) on machines that ar
 
 ![Self hosted architecture](./img/self-hosted-overview.jpg)
 
+## Self-hosted agents limitations {#limtations}
+
+Jobs running on self-hosted agents have the following limitations:
+
+- [sem-service](../reference/toolbox#sem-service) and [sem-version](../reference/toolbox#sem-version) do not work on self-hosted agents
+- [SSH debugging](#debug) works in [a different way]
+- On Kubernetes agents, only [Docker based environments](./pipelines#docker-environments) are supported
+- The CI environment may persist between jobs on certain configurations
+
 ## Agent lifecycle {#lifecycle}
 
 The agent attempts on startup to register with the Semaphore Control Plane by sending a registration request. Once registered, it waits for jobs. Repeated failure to register the agent causes it to shutdown.

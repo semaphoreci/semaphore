@@ -213,6 +213,16 @@ To install the Semaphore custom controller, follow these steps:
     kubectl apply -f semaphore-secret.yml
     ```
 
+6. Create an S3 bucket as [documented in the self-host cache page](./self-hosted-configure#aws-cache)
+7. Create a [secret](./secrets) with the following parameters:
+
+    - Environment variable `SEMAPHORE_CACHE_BACKEND=s3`
+    - Environment variable `SEMAPHORE_CACHE_S3_BUCKET=<your-S3-bucket-name>`
+    - New file `/root/.aws/credentials` upload the following file from your local machine: `$HOME/.aws/credentials`
+    - New file `/root/.aws/config` upload the following file from your local machine:  `$HOME/.aws/config`
+
+8. Enable the secret in all blocks where you need to use the [cache](./optimization/cache)
+
 </Steps>
 
 The Helm chart provides a few additional configuration options so you can tweak your installation to best suit your needs. Run `helm show values renderedtext/controller` to view all available settings.
