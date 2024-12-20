@@ -471,6 +471,15 @@ This might be a limitation related to the plan your organization is using. Open-
 
 ## Workflows
 
+### How do I fix the error "Machine type and OS image for initialization job not available"
+
+This can happen in self-hosted versions of Semaphore. The problem is that the agent that runs the initialization job is not defined or is defined but doesn't exist. To solve the error:
+
+1. Open your Organizations **Settings** menu
+2. Select **Initialization job**
+3. Select a valid agent types
+4. Press **Save**
+
 ### Can I approve blocked workflow triggers? {#sem-approve}
 
 If you are using a [filter for contributors](../using-semaphore/workflows#project-triggers), you can still review and approve blocked pull requests by commenting with a `/sem-approve` message. Anyone who can run a forked pull request can also approve one.
