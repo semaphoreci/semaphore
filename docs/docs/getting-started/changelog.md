@@ -20,49 +20,49 @@ This page is updated on a weekly basis.
 
 **(Updated)** Updated packages:
 
-Kernel: 5.15.0.119.129 -> 5.15.0.127.137
-Git: 2.46.0 -> 2.47.1
-Gitlfs: 3.5.1 -> 3.6.0
-Gh: 2.55.0 -> 2.63.2
-Geckodriver: 0.33.0 -> 0.35.0
-Chrome: 128.0.6613.113 -> 131.0.6778.139
-Chromedriver: 128.0.6613.113 -> 131.0.6778.139
-Docker: 27.2.0 -> 27.4.0
-Docker compose v2: 2.29.2 -> 2.32.1
-Dockerize: 0.7.0 -> 0.9.0
-Docker buildx: 0.16.2 -> 0.19.3
-Containerd.io: 1.7.21 -> 1.7.24
-Runc: 1.1.13 -> 1.2.2
-Aws v1: 1.34.10 -> 1.36.24
-Aws v2: 2.17.40 -> 2.22.19
-Azure: 2.64.0 -> 2.67.0
-Doctl: 1.111.0 -> 1.120.0
-Gcloud: 490.0.0 -> 504.0.0
-Heroku: 9.2.0 -> 10.0.0
-Terraform: 1.9.5 -> 1.10.2
-Helm: 3.15.4 -> 3.16.3
-Httpie: 3.2.2 -> 3.2.4
-Erlang: 25.3.2.15 -> 25.3.2.16 (aliased as 25.3)
-Erlang: 26.2.5.5 -> 26.2.5.6 (aliased as 26.2)
-Erlang: 27.1.2 -> 27.1.2 (aliased as 27.1)
-Rebar3: 3.22.1 -> 3.24.0
-Go: 1.23.0 -> 1.23.4
-Java 11: 11.0.24 -> 11.0.25
-Java 17: 17.0.12 -> 17.0.13
-Maven: 3.9.6 -> 3.9.9
-Gradle: 8.10 -> 8.11.1
-Bazel: 7.3.1 -> 8.0.0
-Node: 20.17.0 -> 22.12.0
-Npm: 10.8.2 -> 10.9.0
-Python3.9: 3.9.19 -> 3.9.21
-Python3.10: 3.10.14 -> 3.10.16
-Python3.11: 3.11.9 -> 3.11.11
-Python3.12: 3.12.5 -> 3.12.8
-Pip: 24.2 -> 24.3.1
-Pypy3: 7.3.16 -> 7.3.17
-Virtualenv: 20.26.3 -> 20.28.0
-Sbt: 1.10.1 -> 1.10.6
-Yq: 4.44.3 -> 4.44.6
+- Kernel: 5.15.0.119.129 -> 5.15.0.127.137
+- Git: 2.46.0 -> 2.47.1
+- Gitlfs: 3.5.1 -> 3.6.0
+- Gh: 2.55.0 -> 2.63.2
+- Geckodriver: 0.33.0 -> 0.35.0
+- Chrome: 128.0.6613.113 -> 131.0.6778.139
+- Chromedriver: 128.0.6613.113 -> 131.0.6778.139
+- Docker: 27.2.0 -> 27.4.0
+- Docker compose v2: 2.29.2 -> 2.32.1
+- Dockerize: 0.7.0 -> 0.9.0
+- Docker buildx: 0.16.2 -> 0.19.3
+- Containerd.io: 1.7.21 -> 1.7.24
+- Runc: 1.1.13 -> 1.2.2
+- Aws v1: 1.34.10 -> 1.36.24
+- Aws v2: 2.17.40 -> 2.22.19
+- Azure: 2.64.0 -> 2.67.0
+- Doctl: 1.111.0 -> 1.120.0
+- Gcloud: 490.0.0 -> 504.0.0
+- Heroku: 9.2.0 -> 10.0.0
+- Terraform: 1.9.5 -> 1.10.2
+- Helm: 3.15.4 -> 3.16.3
+- Httpie: 3.2.2 -> 3.2.4
+- Erlang: 25.3.2.15 -> 25.3.2.16 (aliased as 25.3)
+- Erlang: 26.2.5.5 -> 26.2.5.6 (aliased as 26.2)
+- Erlang: 27.1.2 -> 27.1.2 (aliased as 27.1)
+- Rebar3: 3.22.1 -> 3.24.0
+- Go: 1.23.0 -> 1.23.4
+- Java 11: 11.0.24 -> 11.0.25
+- Java 17: 17.0.12 -> 17.0.13
+- Maven: 3.9.6 -> 3.9.9
+- Gradle: 8.10 -> 8.11.1
+- Bazel: 7.3.1 -> 8.0.0
+- Node: 20.17.0 -> 22.12.0
+- Npm: 10.8.2 -> 10.9.0
+- Python3.9: 3.9.19 -> 3.9.21
+- Python3.10: 3.10.14 -> 3.10.16
+- Python3.11: 3.11.9 -> 3.11.11
+- Python3.12: 3.12.5 -> 3.12.8
+- Pip: 24.2 -> 24.3.1
+- Pypy3: 7.3.16 -> 7.3.17
+- Virtualenv: 20.26.3 -> 20.28.0
+- Sbt: 1.10.1 -> 1.10.6
+- Yq: 4.44.3 -> 4.44.6
 
 To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semaphoreci.com/reference/os-ubuntu-images/ubuntu-2004-image/).
 
@@ -76,47 +76,47 @@ To learn more about this image, check our [Ubuntu 20.04 page](https://docs.semap
 
 **(Updated)** Updated packages:
 
-Kernel: 5.15.0.119.119 -> 6.8.0-50.51.1
-Git: 2.46.0 -> 2.47.1
-Gitlfs: 3.5.1 -> 3.6.0
-Gh: 2.55.0 -> 2.63.2
-Geckodriver: 0.33.0 -> 0.35.0
-Chrome: 128.0.6613.113 -> 131.0.6778.139
-Chromedriver: 128.0.6613.113 -> 131.0.6778.139
-Docker: 27.2.0 -> 27.4.0
-Docker compose v2: 2.29.2 -> 2.32.1
-Dockerize: 0.7.0 -> 0.9.0
-Docker buildx: 0.16.2 -> 0.19.3
-Containerd.io: 1.7.21 -> 1.7.24
-Runc: 1.1.13 -> 1.2.2
-Aws v2: 2.17.40 -> 2.22.19
-Azure: 2.63.0 -> 2.67.0
-Doctl: 1.111.0 -> 1.120.0
-Gcloud: 490.0.0 -> 504.0.0
-Heroku: 9.2.0 -> 10.0.0
-Terraform: 1.9.5 -> 1.10.2
-Helm: 3.15.4 -> 3.16.3
-Httpie: 3.2.2 -> 3.2.4
-Erlang: 25.3.2.15 -> 25.3.2.16 (aliased as 25.3)
-Erlang: 26.2.5.5 -> 26.2.5.6 (aliased as 26.2)
-Erlang: 27.1.2 -> 27.1.2 (aliased as 27.1)
-Rebar3: 3.22.1 -> 3.24.0
-Go: 1.23.0 -> 1.23.4
-Java 11: 11.0.24 -> 11.0.25
-Java 17: 17.0.12 -> 17.0.13
-Maven: 3.9.6 -> 3.9.9
-Gradle: 8.10 -> 8.11.1
-Bazel: 7.3.1 -> 8.0.0
-Node: 20.17.0 -> 22.12.0
-Npm: 10.8.2 -> 10.9.0
-Python3.11: 3.11.9 -> 3.11.11
-Python3.12: 3.12.5 -> 3.12.8
-Pip: 24.2 -> 24.3.1
-Pypy3: 7.3.16 -> 7.3.17
-Virtualenv: 20.26.3 -> 20.28.0
-Sbt: 1.10.1 -> 1.10.6
-Yq: 4.44.3 -> 4.44.6
-Rust: 1.80.1 -> 1.83.0
+- Kernel: 5.15.0.119.119 -> 6.8.0-50.51.1
+- Git: 2.46.0 -> 2.47.1
+- Gitlfs: 3.5.1 -> 3.6.0
+- Gh: 2.55.0 -> 2.63.2
+- Geckodriver: 0.33.0 -> 0.35.0
+- Chrome: 128.0.6613.113 -> 131.0.6778.139
+- Chromedriver: 128.0.6613.113 -> 131.0.6778.139
+- Docker: 27.2.0 -> 27.4.0
+- Docker compose v2: 2.29.2 -> 2.32.1
+- Dockerize: 0.7.0 -> 0.9.0
+- Docker buildx: 0.16.2 -> 0.19.3
+- Containerd.io: 1.7.21 -> 1.7.24
+- Runc: 1.1.13 -> 1.2.2
+- Aws v2: 2.17.40 -> 2.22.19
+- Azure: 2.63.0 -> 2.67.0
+- Doctl: 1.111.0 -> 1.120.0
+- Gcloud: 490.0.0 -> 504.0.0
+- Heroku: 9.2.0 -> 10.0.0
+- Terraform: 1.9.5 -> 1.10.2
+- Helm: 3.15.4 -> 3.16.3
+- Httpie: 3.2.2 -> 3.2.4
+- Erlang: 25.3.2.15 -> 25.3.2.16 (aliased as 25.3)
+- Erlang: 26.2.5.5 -> 26.2.5.6 (aliased as 26.2)
+- Erlang: 27.1.2 -> 27.1.2 (aliased as 27.1)
+- Rebar3: 3.22.1 -> 3.24.0
+- Go: 1.23.0 -> 1.23.4
+- Java 11: 11.0.24 -> 11.0.25
+- Java 17: 17.0.12 -> 17.0.13
+- Maven: 3.9.6 -> 3.9.9
+- Gradle: 8.10 -> 8.11.1
+- Bazel: 7.3.1 -> 8.0.0
+- Node: 20.17.0 -> 22.12.0
+- Npm: 10.8.2 -> 10.9.0
+- Python3.11: 3.11.9 -> 3.11.11
+- Python3.12: 3.12.5 -> 3.12.8
+- Pip: 24.2 -> 24.3.1
+- Pypy3: 7.3.16 -> 7.3.17
+- Virtualenv: 20.26.3 -> 20.28.0
+- Sbt: 1.10.1 -> 1.10.6
+- Yq: 4.44.3 -> 4.44.6
+- Rust: 1.80.1 -> 1.83.0
 
 To learn more about this image, check our [Ubuntu 22.04 page](https://docs.semaphoreci.com/reference/os-ubuntu-images/ubuntu-2204-image/).
 
