@@ -20,7 +20,7 @@ This page is updated on a weekly basis.
 
 **(Updated)** Updated packages:
 
-- Kernel: 5.15.0.119.129 -> 5.15.0.127.137
+- Kernel: 5.15.0.119.129 -> 5.15.0-124.134
 - Git: 2.46.0 -> 2.47.1
 - Gitlfs: 3.5.1 -> 3.6.0
 - Gh: 2.55.0 -> 2.63.2
