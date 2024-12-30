@@ -12,11 +12,11 @@ import Steps from '@site/src/components/Steps';
 
 <VideoTutorial title="How to use Role Based Access Control" src="https://www.youtube.com/embed/YQ3LP5_UmpA?si=9GXkhLkPwT9lMpYJ" />
 
-Manage user permissions in your organization and projects with Role Based Access Control (RBAC). This page describes gives an overview of RBAC, how to assign roles to users and groups, and how to create custom roles.
+Manage user permissions in your organization and projects with Role Based Access Control (RBAC). This page gives an overview of RBAC, how to assign roles to users and groups, and how to create custom roles.
 
 ## Overview
 
-Semaphore uses a RBAC model to determine what actions users can take in organizations and projects.
+Semaphore uses an RBAC model to determine what actions users can take in organizations and projects.
 
 An organization [Admin](#org-admin) or [Owner](#org-owner) must invite users via their GitHub or BitBucket accounts before they can access the Semaphore organization or any of the projects.
 
@@ -39,7 +39,7 @@ Roles can be gained in three ways:
 
 Permissions are additive. Users gaining permissions through multiple ways obtain the combined total of all permissions.
 
-For example, let's say Pam has [admin](#org-admin) role in the organization. This gives her unfettered access to all the projects in the organization. If Kevin gives her the [reader](#project-reader) role in one project, she is still effectively admin in that project. In other words, roles never subtract permissions.
+For example, let's say Pam has the [admin](#org-admin) role in the organization. This gives her unfettered access to all the projects in the organization. If Kevin gives her the [reader](#project-reader) role in one project, she is still effectively admin in that project. In other words, roles never subtract permissions.
 
 ## Organization roles {#org}
 
@@ -153,7 +153,7 @@ Admins have the authority to modify any setting within the projects, including t
 
 <Available plans={['Scaleup']}/>
 
-In addition to the pre-defined roles provided by Semaphore, you can create your custom own roles. Custom roles let you follow the principle of least privilege when managing using permissions.
+In addition to the pre-defined roles provided by Semaphore, you can create your own custom roles. Custom roles let you follow the principle of least privilege when managing using permissions.
 
 To manage custom roles, see the following pages:
 
