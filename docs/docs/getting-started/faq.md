@@ -282,6 +282,10 @@ blocks:
             - echo hello3
 ```
 
+### Can I dynamically define or create pipelines?
+
+Yes. Semaphore provides template support on [parameterized promotions](../using-semaphore/promotions#parameters).
+
 ### Can I change the timezone?
 
 The default timezone is UTC. The timezone can be changed in 2 ways in Linux agents: 
