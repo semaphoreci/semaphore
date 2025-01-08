@@ -1492,6 +1492,487 @@ For example, with a `result` value of `failed`, the valid values of `result_reas
 - `internal`
 - `user`
 
+## Parameters {#parameters}
+
+Parameters can only be used in [parameterized promotions](../using-semaphore/promotions#parameters). When a pipeline is promoted with parameters enabled, you can use the special `${{parameters}}` and `%{{parameters}}` template syntax to define values and even change the pipeline YAML at runtime.
+
+There are two ways to use the template syntax:
+
+- **String expansion** (starts with `$`): parameters using the `${{parameters.VAR_NAME}}` syntax are expanded at runtime. For example, if you defined a parameter called `ENVIRONMENT`, you can insert its value in the pipeline config as `${{parameters.ENVIRONMENT}}` at runtime
+- **String evaluation** (start with `%`): strings using the `%{{parameters.VAR_NAME}}` syntax produce JSON-serialized output, allowing you to dynamically transform values and inject them as YAML into pipeline during runtime. This feature supports string manipulation using pipes and [Sprout functions](#parameters-functions)
+
+The examples below show all the ways these parameters can be used.
+
+### Using Sprout functions {#parameters-functions}
+
+Strings using the form `%{{parameters}}` (starting with the `%` sign) produce a JSON-serialized output and support string manipulation via pipes and functions. Internally, the templates are processed using the [Sprout library]
+
+Internally, Semaphore uses [Sprout](https://docs.atom.codes/sprout) as the templating engine and supports a subset of the [Sprout functions](https://docs.atom.codes/sprout/registries/list-of-all-registries).
+
+For example, given `VAR1='Hello World'` the string:
+
+```text
+"%{{parameters.VAR1 | nospace }}"
+```
+
+Removes the space, generating the following output:
+
+```text
+HelloWorld
+```
+
+Likewise, given `VAR2=us-central-1,us-east-1`
+
+```text
+"%{{parameters.VAR2 | splitList \",\"}}"
+```
+
+Generates the following list:
+
+```yaml
+- us-central-1
+- us-east-1
+```
+
+See [parameters job matrices](#parameter-matrix) for a complete working example using lists.
+
+<details>
+<summary>Supported Sprout functions</summary>
+<div>
+
+The following functions are supported. Refer to the [Sprout documentation](https://docs.atom.codes/sprout/registries/list-of-all-registries) to learn more about using these functions.
+
+- default  
+- empty  
+- coalesce  
+- all  
+- any  
+- compact  
+- ternary  
+- fromJson  
+- toJson  
+- toPrettyJson  
+- toRawJson  
+- deepCopy  
+- b64enc  
+- b64dec  
+- b32enc  
+- b32dec  
+- list  
+- dict  
+- get  
+- set  
+- unset  
+- chunk  
+- hasKey  
+- pluck  
+- keys  
+- pick  
+- omit  
+- values  
+- concat  
+- dig  
+- merge  
+- mergeOverwrite  
+- append  
+- prepend  
+- reverse  
+- first  
+- rest  
+- last  
+- initial  
+- uniq  
+- without  
+- has  
+- slice  
+- regexMatch  
+- regexFindAll  
+- regexFind  
+- regexReplaceAll  
+- regexReplaceAllLiteral  
+- regexSplit  
+- regexQuoteMeta  
+- ellipsis  
+- ellipsisBoth  
+- trunc  
+- trim  
+- upper  
+- lower  
+- title  
+- untitle  
+- substr  
+- repeat  
+- join  
+- sortAlpha  
+- trimAll  
+- trimSuffix  
+- trimPrefix  
+- nospace  
+- initials  
+- randAlphaNum  
+- randAlpha  
+- randAscii  
+- randNumeric  
+- swapcase  
+- shuffle  
+- snakecase  
+- camelcase  
+- kebabcase  
+- wrap  
+- wrapWith  
+- contains  
+- hasPrefix  
+- hasSuffix  
+- quote  
+- squote  
+- cat  
+- indent  
+- nindent  
+- replace  
+- plural  
+- sha1sum  
+- sha256sum  
+- adler32sum  
+- toString  
+- int64  
+- int  
+- float64  
+- seq  
+- toDecimal  
+- until  
+- untilStep  
+- split  
+- splitList  
+- splitn  
+- toStrings  
+- add1  
+- add  
+- sub  
+- div  
+- mod  
+- mul  
+- randInt  
+- add1f  
+- addf  
+- subf  
+- divf  
+- mulf  
+- max  
+- min  
+- maxf  
+- minf  
+- ceil  
+- floor  
+- round  
+
+</div>
+</details>
+
+
+### Pipeline name {#parameter-pipeline-name}
+
+The following example customizes the pipeline name given the parameters `DEPLOY_ENV` and `SERVER`. 
+
+```yaml title="deploy.yml"
+version: v1.0
+# highlight-next-line
+name: "Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}"
+```
+
+### Job and block names {#parameter-job-name}
+
+The following example uses parameters to set the job and block names with parameters.
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deploy pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+# highlight-next-line
+  - name: Deploy image to ${{parameters.DEPLOY_ENV}}
+    task:
+      jobs:
+      # highlight-start
+        - name: Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}
+          commands: ./deploy.sh $DEPLOY_ENV $SERVER
+      # highlight-end
+```
+
+### Agent {#parameter-agent}
+
+You can use parameters to dynamically define the [agent type](../using-semaphore/pipelines#agents).
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+
+agent:
+  machine:
+  # highlight-start
+    type: "${{parameters.MACHINE_TYPE}}"
+    os_image: "${{parameters.OS_IMAGE}}"
+  # highlight-end
+```
+
+### Commands in jobs {#parameter-commands}
+
+All parameters are exported as environment variables in the CI environment. You can access the value as environment variables in you shell environment.
+
+For example, if you have parameters named `ENVIRONMENT` and `RELEASE`, you can access them like this:
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+blocks:
+    task:
+      jobs:
+        - name: Using promotion as env. var
+          commands:
+            # highlight-start
+            # Use parameter values inside a job
+            - echo $ENVIRONMENT
+            - echo $RELEASE
+            # highlight-end
+```
+
+### Secrets {#parameter-secrets}
+
+You can dynamically import [secrets](../using-semaphore/secrets) using parameters in your pipeline YAML.
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+    task:
+      jobs:
+        - name: Deploy application
+          task:
+            secrets:
+      # highlight-start
+              - name: ${{parameters.DEPLOY_ENV}}_deploy_key
+              - name: ${{parameters.DEPLOY_ENV}}_aws_creds
+      # highlight-end
+            jobs:
+              - name: Deploy
+                commands: ./deploy.sh
+```
+
+
+### Global config {#parameter-global}
+
+You can use parameters in the [global config](#global-job-config) for the pipeline.
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+
+global_job_config:
+  secrets:
+  # highlight-next-line
+    - name: "${{parameters.DEPLOY_ENV}}_deploy_key"
+    - name: "github_key"
+```
+
+### Queue {#parameter-queue}
+
+The following example shows how to dynamically assign pipelines to [names queues](../using-semaphore/pipelines#named-queues) with parameters.
+
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+queue:
+# highlight-start
+  - name: "${{parameters.DEPLOY_ENV}}_deployment_queue"
+# highlight-end
+```
+
+### Job parallelism {#parameter-parallelism}
+
+You can dynamically calculate the [parallelism of the job](../using-semaphore/jobs#job-parallelism) using [Sprout functions](#parameters-functions).
+
+The following example configures job parallelism to the value of the `PARALLELISM` parameter multiplied by two:
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Run tests
+    task:
+      jobs:
+        - name: Run tests
+          commands:
+            - echo "Running tests"
+            # highlight-next-line
+          parallelism: "%{{parameters.PARALLELISM | mul 2}}"
+```
+
+### Job matrix {#parameter-matrix}
+
+You can define a [job matrix](../using-semaphore/jobs#matrix) with parameters. Given `AWS_REGIONS=us-central-1,us-east1`, the following example runs the `deploy.sh` script both regions by transforming the comma-separated regions in a YAML list.
+
+
+```yaml title="deploy.yml"
+version: v1.0
+name: Deployment pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+
+blocks:
+  - name: Deploy application in all regions
+    task:
+      jobs:
+        - name: Deploy to ${{parameters.AZ}}
+          commands: ./deploy.sh $AZ
+          # highlight-start
+          matrix:
+            - env_var: AZ
+              values: "%{{parameters.AWS_REGIONS | splitList \",\"}}"
+          # highlight-end
+```
+
+### Complete example {#parameter-example}
+
+The following example shows all the places and ways parameters can be used in dynamically define the pipeline YAML on runtime.
+
+```yaml
+version: v1.0
+# highlight-start
+# Change the pipeline name
+name: "Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}"
+# highlight-end
+
+agent:
+  machine:
+  # highlight-start
+    # set the agent type and os image
+    type: "${{parameters.MACHINE_TYPE}}"
+    os_image: "${{parameters.OS_IMAGE}}"
+  # highlight-end
+
+global_job_config:
+  secrets:
+  # highlight-start
+    # import the correct secret into all jobs
+    - name: "${{parameters.DEPLOY_ENV}}_deploy_key"
+  # highlight-end
+    - name: "github_key"
+
+queue:
+# highlight-start
+  # assign the pipeline to the first named queue that matches
+  - name: "${{parameters.DEPLOY_ENV}}_deployment_queue"
+  - name: "${{parameters.MISSING}}_queue"
+# highlight-end
+  - name: "default_queue"
+
+blocks:
+  - name: Run tests
+    task:
+      agent:
+        machine:
+        # highlight-start
+          # override the machine type for this job
+          type: "${{parameters.MACHINE_TYPE}}"
+        # highlight-end
+        containers: 
+        # highlight-start
+          # set the Docker environment container image and name
+          - name: "${{parameters.DEPLOY_ENV}}_test_container"
+            image: "${{parameters.DEPLOY_ENV}}_test_image"
+            secrets:
+              # import the secret to pull the image from a private registry
+              - name: ${{parameters.DEPLOY_ENV}}_api_key
+        # highlight-end
+      jobs:
+        - name: Run tests
+          commands:
+            - echo "Running tests"
+            # highlight-start
+          # set job parallelism to PARALLELISM * 2
+          parallelism: "%{{parameters.PARALLELISM | mul 2}}"
+            # highlight-end
+
+  - name: Build and push image
+    task:
+      secrets:
+      # highlight-start
+        # dynamically import the right secrets
+        - name: ${{parameters.DEPLOY_ENV}}_dockerhub
+        - name: ${{parameters.DEPLOY_ENV}}_ecr
+      # highlight-end
+
+  # highlight-start
+  # change the job name using the parameter DEPLOY_ENV
+  - name: Deploy image to ${{parameters.DEPLOY_ENV}}
+  # highlight-end
+    task:
+      secrets:
+# highlight-start
+        # dynamically import the right secrets
+        - name: ${{parameters.DEPLOY_ENV}}_deploy_key
+        - name: ${{parameters.DEPLOY_ENV}}_aws_creds
+# highlight-end
+      jobs:
+      # highlight-start
+        # change the job name using the parameters DEPLOY_ENV and SERVER
+        - name: Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}
+          # run deployment script in the region
+          commands: ./deploy.sh $AWS_REGION
+          # create a job matrix from a comma-separated string
+          matrix:
+            - env_var: AWS_REGION
+              values: "%{{parameters.AWS_REGIONS | splitList \",\"}}"
+      # highlight-end
+
+# send notifications to Slack channels and ping the servers once all jobs have ended
+after_pipeline:
+  task:
+    secrets:
+      - name: ${{parameters.DEPLOY_ENV}}_slack_token
+    jobs:
+      - name: "Notify on Slack: %{{parameters.SLACK_CHANNELS | splitList \",\"}}"
+        commands:
+          - echo "Notifying Slack"
+        matrix:
+          - env_var: SLACK_CHANNEL
+            values: "%{{parameters.SLACK_CHANNELS | splitList \",\" }}"
+      - name: Ping ${{parameters.DEPLOY_ENV}} from %{{parameters.PARALLELISM}} jobs
+        commands:
+          - echo "Pinging environment"
+        parallelism: "%{{parameters.PARALLELISM | int64 }}"
+```
+
 ## Deprecated properties {#deprecated}
 
 This section shows deprecated properties.

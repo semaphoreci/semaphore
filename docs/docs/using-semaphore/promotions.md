@@ -358,82 +358,134 @@ blocks:
 
 ### Accessing values in pipelines {#access-parameters-pipeline}
 
-You can access parameter values in pipeline elements like the pipeline name.
+You can use parameters in the pipeline YAML to dynamically define pipelines at runtime. For example, you can use parameters to change the pipeline name, compile a [job matrix](./jobs#matrix), or dynamically assign [pipeline queue](./pipelines#queue-scopes), among many other things.
 
-Parameters can be accessed in the pipeline configuration using the `${{parameters}}` namespace. For example, if you defined a parameter called `ENVIRONMENT`, you can read its value in the pipeline config as:
+Parameters can be used in two ways:
 
-```shell
-${{parameters.ENVIRONMENT}}
-```
 
-Parameters are available in the following places:
-
-- Pipeline `name`
-- Pipeline [queue name](../reference/pipeline-yaml#queue) (only available via YAML)
-- As the name of a [secret in the job](./jobs#secrets) (only available in YAML)
+- **String expansion** (starts with `$`): parameters using the `${{parameters.VAR_NAME}}` syntax are expanded at runtime. For example, if you defined a parameter called `ENVIRONMENT`, you can insert its value in the pipeline definition as `${{parameters.ENVIRONMENT}}` at runtime
+- **String evaluation** (start with `%`): strings using the `%{{parameters.VAR_NAME}}` syntax produce JSON-serialized output, allowing you to dynamically transform values and inject them as YAML into pipeline during runtime. This feature supports string manipulation using pipes and [Sprout functions](../reference/pipeline-yaml#parameters-functions)
+ 
+See the [pipeline YAML reference](../reference/pipeline-yaml#parameters) to view all the places where parameters and what functions are supported in the pipeline YAML definition.
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
+
+You can access some parameters in the UI with the `${{parameters.VAR_NAME}}` syntax. The following example shows how to change the pipeline name based on a parameter called `ENVIRONMENT`.
 
 ![Parameter value is expanded in the pipeline name](./img/pipeline-parameter-expansion.jpg)
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-The following YAML pipeline shows all the places where a parameter value can be used:
+
+The following example shows various ways in which parameters can be using in the pipeline YAML.
 
 ```yaml title="deploy.yml"
 version: v1.0
 # highlight-start
-# Use parameter values in the pipeline name
-name: '${{parameters.ENVIRONMENT}} deployment of the release: ${{parameters.RELEASE}}'
+# Change the pipeline name
+name: "Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}"
 # highlight-end
+
 agent:
   machine:
-    type: f1-standard-2
-    os_image: ubuntu2004
-queue:
   # highlight-start
-  # Use parameter values in the pipeline queue name
-  name: '${{parameters.ENVIRONMENT}}-queue'
-  scope: project
+    # set the agent type and os image
+    type: "${{parameters.MACHINE_TYPE}}"
+    os_image: "${{parameters.OS_IMAGE}}"
   # highlight-end
-blocks:
-    task:
-      jobs:
-        - name: Using promotion as env. var
-          commands:
-            # highlight-start
-            # Use parameter values inside a job
-            - echo $ENVIRONMENT
-            - echo $RELEASE
-            # highlight-end
-version: v1.0
-# highlight-next-line
-name: '${{parameters.ENVIRONMENT}} deployment of the release: ${{parameters.RELEASE}}'
-agent:
-  machine:
-    type: f1-standard-2
-    os_image: ubuntu2004
-# highlight-start
+
+global_job_config:
+  secrets:
+  # highlight-start
+    # import the correct secret into all jobs
+    - name: "${{parameters.DEPLOY_ENV}}_deploy_key"
+  # highlight-end
+    - name: "github_key"
+
 queue:
-  name: '${{parameters.ENVIRONMENT}}-queue'
-  scope: project
+# highlight-start
+  # assign the pipeline to the first named queue that matches
+  - name: "${{parameters.DEPLOY_ENV}}_deployment_queue"
+  - name: "${{parameters.MISSING}}_queue"
 # highlight-end
+  - name: "default_queue"
+
 blocks:
-  - name: Install
-    dependencies: []
+  - name: Run tests
     task:
+      agent:
+        machine:
+        # highlight-start
+          # override the machine type for this job
+          type: "${{parameters.MACHINE_TYPE}}"
+        # highlight-end
+        containers: 
+        # highlight-start
+          # set the Docker environment container image and name
+          - name: "${{parameters.DEPLOY_ENV}}_test_container"
+            image: "${{parameters.DEPLOY_ENV}}_test_image"
+            secrets:
+              # import the secret to pull the image from a private registry
+              - name: ${{parameters.DEPLOY_ENV}}_api_key
+        # highlight-end
       jobs:
-        - name: npm install
+        - name: Run tests
           commands:
+            - echo "Running tests"
             # highlight-start
-            - echo "Release: $RELEASE"
-            - echo "Deploying to $ENVIRONMENT"
+          # set job parallelism to PARALLELISM * 2
+          parallelism: "%{{parameters.PARALLELISM | mul 2}}"
             # highlight-end
-      # highlight-start
+
+  - name: Build and push image
+    task:
       secrets:
-        - name: 'creds-for-${{parameters.ENVIRONMENT}}'
+      # highlight-start
+        # dynamically import the right secrets
+        - name: ${{parameters.DEPLOY_ENV}}_dockerhub
+        - name: ${{parameters.DEPLOY_ENV}}_ecr
       # highlight-end
+
+  # highlight-start
+  # change the job name using the parameter DEPLOY_ENV
+  - name: Deploy image to ${{parameters.DEPLOY_ENV}}
+  # highlight-end
+    task:
+      secrets:
+# highlight-start
+        # dynamically import the right secrets
+        - name: ${{parameters.DEPLOY_ENV}}_deploy_key
+        - name: ${{parameters.DEPLOY_ENV}}_aws_creds
+# highlight-end
+      jobs:
+      # highlight-start
+        # change the job name using the parameters DEPLOY_ENV and SERVER
+        - name: Deploy to ${{parameters.DEPLOY_ENV}} on ${{parameters.SERVER}}
+          # run deployment script in the region
+          commands: ./deploy.sh $AWS_REGION
+          # create a job matrix from a comma-separated string
+          matrix:
+            - env_var: AWS_REGION
+              values: "%{{parameters.AWS_REGIONS | splitList \",\"}}"
+      # highlight-end
+
+# send notifications to Slack channels and ping the servers once all jobs have ended
+after_pipeline:
+  task:
+    secrets:
+      - name: ${{parameters.DEPLOY_ENV}}_slack_token
+    jobs:
+      - name: "Notify on Slack: %{{parameters.SLACK_CHANNELS | splitList \",\"}}"
+        commands:
+          - echo "Notifying Slack"
+        matrix:
+          - env_var: SLACK_CHANNEL
+            values: "%{{parameters.SLACK_CHANNELS | splitList \",\" }}"
+      - name: Ping ${{parameters.DEPLOY_ENV}} from %{{parameters.PARALLELISM}} jobs
+        commands:
+          - echo "Pinging environment"
+        parallelism: "%{{parameters.PARALLELISM | int64 }}"
 ```
 
 </TabItem>
@@ -441,15 +493,9 @@ blocks:
 
 ## Deployment targets {#deployment-targets}
 
-<VideoTutorial title="How to Use Environments" src="https://www.youtube.com/embed/xId2H2wlKx4?si=0IXKyNNUVVjDDvHz" />
+<VideoTutorial title="How to Use Deployment Targets" src="https://www.youtube.com/embed/xId2H2wlKx4?si=0IXKyNNUVVjDDvHz" />
 
 Deployment targets (also known as Environments) provide additional controls over [pipelines](./pipelines). You can limit who can trigger a pipeline and when, or define fine-grained secrets and environment variables.
-
-:::note
-
-Environments were formerly known as "Deployment Targets".
-
-:::
 
 ### Overview {#overview-environments}
 
