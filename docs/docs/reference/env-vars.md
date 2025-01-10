@@ -211,7 +211,7 @@ Holds `true` if the workflow is a rerun of a previously-ran workflow.
 - **Environment variable**: `SEMAPHORE_WORKFLOW_TRIGGERED_BY`
 - **Example**: `torvalds`
 
-Determines the GitHub or BitBucket username for the individual who promoted the pipeline.
+Determines the GitHub or BitBucket username for the individual who ran the workflow.
 
 ### Workflow is triggered by API {#workflow-triggered-by-api}
 
