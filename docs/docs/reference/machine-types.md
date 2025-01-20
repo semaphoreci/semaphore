@@ -95,7 +95,7 @@ The F1 generation is presented in the following types:
 
 F1 machines can also be paired with:
 
-- [`ubuntu2404`](../reference/os-ubuntu-images/ubuntu-2404-image)
+<!-- - [`ubuntu2404`](../reference/os-ubuntu-images/ubuntu-2404-image) -->
 - [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-image)
 - [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environments](../using-semaphore/pipelines#docker-environments).
