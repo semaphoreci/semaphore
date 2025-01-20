@@ -168,7 +168,7 @@ Semaphore Cloud provides the following agent types in x86 and ARM architectures:
 - [Linux](../reference/machine-types#linux) Virtual Machines
 - [Docker containers](#docker-environments) running on Linux
 - [Apple macOS](../reference/machine-types#macos) Machines
-- [Windows](./self-hosted-install#windows) Virtual Machines (only for self-hosted agents) 
+- [Windows](./self-hosted-install) Virtual Machines (only for self-hosted agents) 
 
 You can add your own machines by [installing self-hosted agents](./self-hosted).
 
