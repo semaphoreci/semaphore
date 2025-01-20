@@ -20,17 +20,16 @@ Before you can run jobs in your hardware, you need to install and register the s
 
 The agent type is the name assigned to agents running on the same hardware or platform. Semaphore expects all self-hosted agents to belong to one agent type.
 
-To register a self-hosted agent type, follow these steps:
+To register a self-hosted agent type ensure you're using an [Admin or Owner account](./rbac#org-owner) and follow these steps:
 
 <Steps>
 
-1. Open the [organization](./organizations) menu on the top-right corner
-2. Select **Self-hosted agents**
-3. Press **Add self-hosted agent type**
-4. Type the name of the agent type. Self hosted agents all begin with `s1-`, e.g. `s1-gpu-2`
-5. Select the [how the agent name is assigned](#name-assign)
-6. Select [when the agent name is released](#name-release)
-7. Press **Register**
+1. Press **Agents** near the top-left corner of the Semaphore homepage
+2. Press **Create new**
+3. Type the name of the agent type. Self hosted agents all begin with `s1-`, e.g. `s1-gpu-2`
+4. Select the [how the agent name is assigned](#name-assign)
+5. Select [when the agent name is released](#name-release)
+6. Press **Register**
 
     ![Registering an agent type in Semaphore](./img/register-agent-type.jpg)
 
