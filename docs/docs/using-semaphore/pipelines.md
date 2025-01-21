@@ -228,6 +228,7 @@ blocks:
 </TabItem>
 </Tabs>
 
+
 ### Docker containers {#docker-environments}
 
 :::tip
@@ -308,6 +309,7 @@ blocks:
 </TabItem>
 </Tabs>
 
+To use images in private repositories see [Private Docker Registries](#docker-private).
 
 ### Prologue {#prologue}
 
@@ -663,6 +665,170 @@ after_pipeline:
 
 </TabItem>
 </Tabs>
+
+
+## Private Docker Registries {#docker-private}
+
+If the images you need for your [docker environment](#docker-environments) are not publicly available, you need to provide authentication credentials in your pipeline. This feature is only available by editing the pipeline YAML directly.
+
+See [containers in pipeline YAML](../reference/pipeline-yaml#containers) for more details.
+
+### Images in Docker Hub {#docker-hub}
+
+To pull images from a private Docker Hub registry, follow these steps:
+
+<Steps>
+
+1. Create a [secret](./secrets) with the following key-value pairs:
+
+    - `DOCKER_CREDENTIAL_TYPE` = `DockerHub`
+    - `DOCKERHUB_USERNAME` = `<your Docker Hub account username>`
+    - `DOCKERHUB_PASSWORD` = `<your Docker Hub account password>`
+
+2. Import the secret by name into the agent using `image_pull_secret`. The following example assumes the secret is called `dockerhub-pull`
+
+  ```yaml title=".semaphore/semaphore.yml"
+  agent:
+     machine:
+       type: e1-standard-2
+     containers:
+       - name: main
+         image: <your-private-repository>/<image>
+         # highlight-start
+     image_pull_secrets:
+       - name: dockerhub-pull
+         # highlight-end
+  ```
+
+</Steps>
+
+### Images in AWS ECR {#docker-ecr}
+
+To pull images from a private AWS Elastic Container Registry (ECR), follow these steps:
+
+<Steps>
+
+1. Create a [secret](./secrets) with the following key-value pairs:
+
+    - `DOCKER_CREDENTIAL_TYPE` = `AWS_ECR`
+    - `AWS_REGION` = `<aws-ecr-region>`
+    - `AWS_ACCESS_KEY_ID` = `<your-aws-access-key>`
+    - `AWS_SECRET_ACCESS_KEY` = `<your-aws-secret-key>`
+
+2. Import the secret by name into the agent using `image_pull_secret`. The following example assumes the secret is called `ecr-pull`
+
+  ```yaml title=".semaphore/semaphore.yml"
+  agent:
+     machine:
+       type: e1-standard-2
+     containers:
+       - name: main
+         image: <your-private-repository>/<image>
+         # highlight-start
+     image_pull_secrets:
+       - name: ecr-pull
+         # highlight-end
+  ```
+
+</Steps>
+
+### Images in Google GCR {#docker-gcr}
+
+
+To pull images from a private Google Container Registry (GCR), follow these steps:
+
+<Steps>
+
+1. Create a [secret](./secrets) with the following key-value pairs:
+
+    - `DOCKER_CREDENTIAL_TYPE` = `GCR`
+    - `GCR_HOSTNAME` = `gcr.io`
+
+2. Download the [service account keyfile](https://cloud.google.com/artifact-registry/docs/docker/authentication#json-key) that provides access to your Google Container Registry.
+
+3. Upload the keyfile to the secret created on step 1
+  
+     **Important**: the file must be mounted on `/tmp/gcr/keyfile.json`
+
+     ![Secret to access GCR](./img/gcr-pull-secret.jpg)
+
+4. Import the secret by name into the agent using `image_pull_secret`. The following example assumes the secret is called `gcr-pull`
+
+  ```yaml title=".semaphore/semaphore.yml"
+  agent:
+     machine:
+       type: e1-standard-2
+     containers:
+       - name: main
+         image: <your-private-repository>/<image>
+         # highlight-start
+     image_pull_secrets:
+       - name: gcr-pull
+         # highlight-end
+  ```
+
+</Steps>
+
+### Images in Quay.io {#docker-quay}
+
+To pull images from a private Quay.io registry, follow these steps:
+
+<Steps>
+
+1. Create a [secret](./secrets) with the following key-value pairs:
+
+    - `DOCKER_CREDENTIAL_TYPE` = `GenericDocker`
+    - `DOCKER_URL` = `quay.io`
+    - `DOCKER_USERNAME` = `<your-quay-username>`
+    - `DOCKER_PASSWORD` = `<your-quay-password>`
+
+2. Import the secret by name into the agent using `image_pull_secret`. The following example assumes the secret is called `quay-pull`
+
+  ```yaml title=".semaphore/semaphore.yml"
+  agent:
+     machine:
+       type: e1-standard-2
+     containers:
+       - name: main
+         image: <your-private-repository>/<image>
+         # highlight-start
+     image_pull_secrets:
+       - name: quay-pull
+         # highlight-end
+  ```
+
+</Steps>
+
+### Images in generic registries {#docker-any}
+
+To pull images from any arbitrary Docker registry, follow these steps:
+
+<Steps>
+
+1. Create a [secret](./secrets) with the following key-value pairs:
+
+    - `DOCKER_CREDENTIAL_TYPE` = `GenericDocker`
+    - `DOCKER_URL` = `<your-repository-url>`
+    - `DOCKER_USERNAME` = `<your-registry-username>`
+    - `DOCKER_PASSWORD` = `<your-registry-password>`
+
+2. Import the secret by name into the agent using `image_pull_secret`. The following example assumes the secret is called `registry-pull`
+
+  ```yaml title=".semaphore/semaphore.yml"
+  agent:
+     machine:
+       type: e1-standard-2
+     containers:
+       - name: main
+         image: <your-private-repository>/<image>
+         # highlight-start
+     image_pull_secrets:
+       - name: registry-pull
+         # highlight-end
+  ```
+
+</Steps>
+
 
 ## Pipeline queues {#pipeline-queues}
 
