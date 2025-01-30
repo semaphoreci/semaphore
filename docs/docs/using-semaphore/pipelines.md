@@ -93,6 +93,12 @@ You can reorder blocks by changing their dependencies using the visual editor.
  <div>If we removed dependencies between blocks, then all of them would run in parallel.</div>
 </details>
 
+:::info
+
+If a block fails, the subsequent blocks that depend on it will not execute.
+
+:::
+
 ## Pipeline initialization {#init}
 
 Before Semaphore can start running the jobs in the pipeline, the pipeline YAML file needs to be retrieved from the repository. As a first step, Semaphore request the file via the GitHub or BitBucket API and inspects its contents.
