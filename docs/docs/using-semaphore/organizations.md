@@ -386,6 +386,45 @@ To see your spending:
 
 </Steps>
 
+### How Spending is Calculated
+
+In addition to subscription cost, your monthly bill is determined by your usage of the following four groups of resources:
+
+- **Machine Time** - the cost of using Semaphore Cloud machines (calculated by the minute)
+- **Storage and Egress** - the cost of storing and downloading your build artifacts
+- **Add-ons** - additional features or services offered by Semaphore Cloud (e.g. priority support, a dedicated cache server)
+
+You can monitor your monthly spending at any time on the [Plans & Billing](#plans) page within the app. Please note that spending data may take up to 24 hours to update.
+
+### How machine usage is billed
+
+Semaphore charges you based on the machine type used and the amount of time spent running. The timer starts when a job enters the running state and ends once the job is finished. Jobs that take less than one minute to complete will be rounded up to a full minute for billing purposes.
+
+:::info
+
+"Only running time is billed" Please note that time spent in the queue state due to concurrency limits or pipeline queues is not counted towards machine time used.
+
+:::
+
+### Machine time rates {#rates}
+
+Each cloud machine type has its own price per minute, listed in the table below:
+
+Each cloud machine type has its own **price per minute**, listed in the table below:
+
+| Generation | 2 vCPU (standard-2) | 4 vCPU (standard-4) | 8 vCPU (standard-8) |
+| :--------: | :-----------------: | :-----------------: | :-----------------: |
+| E1 (Linux) |       $0.0075       |       $0.015        |        $0.03        |
+| E2 (Linux) |        $0.01        |        $0.02        |          /          |
+| F1 (Linux) |       $0.015        |        $0.03        |          /          |
+| A1 (MacOS ARM64) |          /          |        $0.03        |          /          |
+| A2 (MacOS Silicon) |          /          |        $0.09        |          /          |
+
+
+### Self-hosted agents rates
+
+[Self-hosted agents](./self-hosted) are only available on Hybrid plans, and are not additionally charged in any way.
+
 
 ## Transfer ownership {#manage-ownership}
 
