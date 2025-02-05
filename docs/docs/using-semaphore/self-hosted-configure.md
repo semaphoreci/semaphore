@@ -18,7 +18,7 @@ Self-hosted agents allow you to run Semaphore jobs on your own hardware. This pa
 
 Self-hosted agents accept configuration settings in three ways. In order of precedence:
 
-- **command line arguments**: used when starting the agent, e.g. `agent start --endpoint my-org.semaphoreci.com`
+- **command line arguments**: used when starting the agent, e.g. `agent start --endpoint <organization-url>.semaphoreci.com`
 - **environment variables**: supplied when starting the agent. All configuration variable names are prefixed with `SEMAPHORE_AGENT`. So, for example the `--disconnect-after-job` argument is transformed into `SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`
 - **configuration file**: using the `--config` option when starting the agent, e.g. `agent start --config config.yml`
 

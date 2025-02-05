@@ -118,8 +118,8 @@ The next example shows how to grant permissions to:
 ```json title="Assigning trust relationship by pattern match"
 "Condition": {
     "StringLike": {
-        "{org-name}.semaphoreci.com:sub":
-        "org:{org-name}:project:936a5312-a3b8-4921-8b3f-2cec8baac574:repo:web:ref_type:branch:ref:refs/heads/*",
+        "<org-url>.semaphoreci.com:sub":
+        "org:<org-url>:project:936a5312-a3b8-4921-8b3f-2cec8baac574:repo:web:ref_type:branch:ref:refs/heads/*",
  },
 }
 ```

@@ -17,7 +17,7 @@ This page describes all the settings available to configure [self-hosted agents]
 
 Self-hosted agents accept configuration settings in three ways. In order of precedence:
 
-- **command line arguments**: used when starting the agent, e.g. `agent start --endpoint my-org.semaphoreci.com`
+- **command line arguments**: used when starting the agent, e.g. `agent start --endpoint <organization-url>.semaphoreci.com`
 - **environment variables**: supplied when starting the agent. All configuration variable names are prefixed with `SEMAPHORE_AGENT`. So, for example the `--disconnect-after-job` argument is transformed into `SEMAPHORE_AGENT_DISCONNECT_AFTER_JOB`
 - **configuration file**: using the `--config` option when starting the agent, e.g. `agent start --config config.yml`
 
@@ -68,7 +68,7 @@ Command line argument `--env-vars` expects a comma-separated list of `VAR=VALUE`
 
 ```shell
 agent start \
-  --endpoint my-org.semaphoreci.com \
+  --endpoint <organization-url>.semaphoreci.com \
   --token "..." \
   --env-vars VAR1=A,VAR2=B
 ```
@@ -76,7 +76,7 @@ agent start \
 On configuration files, the agent expects an array of strings using. For example:
 
 ```yaml title="config.yml"
-endpoint: "my-org.semaphoreci.com"
+endpoint: "<organization-url>.semaphoreci.com"
 token: "..."
 env-vars:
   - VAR1=A
@@ -96,7 +96,7 @@ On command line usage `--files` the agent expects a comma-separated list of `/ho
 
 ```shell
 agent start \
-  --endpoint my-org.semaphoreci.com \
+  --endpoint <organization-url>.semaphoreci.com \
   --token "..." \
   --files /tmp/host/file1:/tmp/container/file1,/tmp/host/file2:/tmp/container/file2
 ```
@@ -104,7 +104,7 @@ agent start \
 With the configuration file, the agent expects an array of strings. For example
 
 ```yaml title="config.yml"
-endpoint: "my-org.semaphoreci.com"
+endpoint: "<organization-url>.semaphoreci.com"
 token: "..."
 files:
   - /tmp/host/file1:/tmp/container/file1
@@ -216,7 +216,7 @@ It can also be useful when used in conjunction with [`disconnect-after-job`](#di
 For example, if you want to turn off the machine once the agent shuts down, use the following:
 
 ```yaml title="config.yml"
-endpoint: "my-org.semaphoreci.com"
+endpoint: "<organization-url>.semaphoreci.com"
 token: "..."
 shutdown-hook-path: "/opt/semaphore/agent/hooks/shutdown.sh"
 ```

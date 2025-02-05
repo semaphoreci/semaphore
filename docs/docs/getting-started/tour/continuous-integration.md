@@ -214,7 +214,7 @@ Before you can perform SSH debugging, you need to set the Semaphore Command Line
 5. Connect the tool to your organization, use the API key shown in step 2
 
     ```shell title="Connecting to your organization"
-    sem connect <your-organization-name>.semaphoreci.com <YOUR_API_TOKEN>
+    sem connect <your-organization-url>.semaphoreci.com <YOUR_API_TOKEN>
     ```
 6. You're ready to do SSH debugging
 
