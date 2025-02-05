@@ -6,7 +6,7 @@ description: Semaphore Public API
 
 This document describes all the resources that make up Semaphore API version `v1alpha`. If you have any problems or requests please [contact support](mailto:support@semaphoreci.com).
 
-The root of the API can be found here: `https://<org_name>.semaphoreci.com/api/v1alpha`.
+The root of the API can be found here: `https://<organization-url>.semaphoreci.com/api/v1alpha`.
 
 ## Overview
 
@@ -28,7 +28,7 @@ All API requests require authentication. To authenticate, you need an API Token.
 Your API Token must be sent as an HTTP header in all requests, as shown below:
 
 ```shell
-curl -H "Authorization: Token {api_token}" "https://<org_name>.semaphoreci.com/api/v1alpha/{resource_name}"
+curl -H "Authorization: Token {api_token}" "https://<organization-url>.semaphoreci.com/api/v1alpha/{resource_name}"
 ```
 
 ### Errors
@@ -47,8 +47,8 @@ Every request that that returns more than 30 items will be paginated. To avoid t
 A `link` header includes information about pagination, as shown below:
 
 ```text
-link: <http://<org_name>.semaphoreci.com/api/v1alpha/?PAGE_PARAMS>; rel="first",
-      <http://<org_name>.semaphoreci.com/api/orgs?PAGE_PARAMS>; rel="next"
+link: <http://<organization-url>.semaphoreci.com/api/v1alpha/?PAGE_PARAMS>; rel="first",
+      <http://<organization-url>.semaphoreci.com/api/orgs?PAGE_PARAMS>; rel="next"
 ```
 
 The possible `rel` values are:
@@ -91,7 +91,7 @@ May have a larger impact and effort will be made to provide migration paths as n
 Request: 
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows
+POST <organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows
 ```
 
 Parameters:
@@ -118,7 +118,7 @@ Example:
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
      -d "project_id={project_id}&reference={reference}" \
-     -X POST  "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows"
+     -X POST  "https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows"
 ```
 
 ### Describe a workflow
@@ -126,7 +126,7 @@ curl -i -H "Authorization: Token {api_token}" \
 Request: 
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id
 ```
 
 Parameters:
@@ -160,7 +160,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id"
 ```
 
 ### List workflows
@@ -168,7 +168,7 @@ curl -i -H "Authorization: Token {api_token}" \
 Request: 
 
 ```text
-GET https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows?project_id=:project_id
+GET https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows?project_id=:project_id
 ```
 
 Parameters:
@@ -217,13 +217,13 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows\?project_id\=:project_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows\?project_id\=:project_id"
 ```
 
 ### Rerun a workflow
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule?request_token=:request_token
+POST <organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule?request_token=:request_token
 ```
 
 Parameters:
@@ -246,13 +246,13 @@ Example:
 
 ```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
-        "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule\?request_token\=:request_token"
+        "https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/reschedule\?request_token\=:request_token"
 ```
 
 ### Stop a workflow
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate
+POST <organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate
 ```
 
 Parameters:
@@ -269,7 +269,7 @@ Example:
 
 ```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
-        "https://<org_name>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate"
+        "https://<organization-url>.semaphoreci.com/api/v1alpha/plumber-workflows/:workflow_id/terminate"
 ```
 
 ## Pipelines
@@ -277,7 +277,7 @@ curl -i -X POST -H "Authorization: Token {api_token}" \
 ### Describe a pipeline
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
 ```
 
 Parameters:
@@ -343,13 +343,13 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
 ```
 
 ### List pipelines
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/pipelines?project_id=:project_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/pipelines?project_id=:project_id
 ```
 
 Parameters:
@@ -389,13 +389,13 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines\?project_id\=:project_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/pipelines\?project_id\=:project_id"
 ```
 
 ### Stop a pipeline
 
 ```text
-PATCH <org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
+PATCH <organization-url>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id
 ```
 
 Parameters:
@@ -415,13 +415,13 @@ Example:
 curl -i -X PATCH  -H "Authorization: Token {api_token}" \
      --header "Accept: application/json"  --header "Content-Type: application/json" \
      --data '{"terminate_request": true}' \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/pipelines/:pipeline_id"
 ```
 
 ### Validate a pipeline YAML
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/yaml
+POST <organization-url>.semaphoreci.com/api/v1alpha/yaml
 ```
 
 Parameters:
@@ -442,7 +442,7 @@ curl -i -X POST \
         -H "Authorization: Token {api_token}" \
         -H "Content-Type: application/json" \
         --data "{\"yaml_definition\": \"$(cat .semaphore/semaphore.yml | sed 's/\"/\\\"/g')\"}" \
-        "https://<org_name>.semaphoreci.com/api/v1alpha/yaml"
+        "https://<organization-url>.semaphoreci.com/api/v1alpha/yaml"
 ```
 
 ## Promotions
@@ -450,7 +450,7 @@ curl -i -X POST \
 ### List promotions
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/promotions?pipeline_id=:pipeline_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/promotions?pipeline_id=:pipeline_id
 ```
 
 Parameters:
@@ -475,13 +475,13 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/promotions\?pipeline_id\=:pipeline_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/promotions\?pipeline_id\=:pipeline_id"
 ```
 
 ### Trigger a promotion
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/promotions
+POST <organization-url>.semaphoreci.com/api/v1alpha/promotions
 ```
 
 Parameters:
@@ -502,7 +502,7 @@ Example:
 ```shell
 curl -H "Authorization: Token {api_token}"  \
      -d "name=:promotion_name&pipeline_id=:pipeline_id"  \
-     -X POST  "https://<org_name>.semaphoreci.com/api/v1alpha/promotions"
+     -X POST  "https://<organization-url>.semaphoreci.com/api/v1alpha/promotions"
 ```
 
 ## Tasks {#tasks}
@@ -512,7 +512,7 @@ curl -H "Authorization: Token {api_token}"  \
 To trigger a task with its default parameters:
 
 ```shell
-curl -X POST --location "https://<org_name>.semaphoreci.com/api/v1alpha/tasks/{task_id}/run_now" \
+curl -X POST --location "https://<organization-url>.semaphoreci.com/api/v1alpha/tasks/{task_id}/run_now" \
     -H "Authorization: Token {api_token}" \
     -H "Content-Type: application/json"
 ```
@@ -526,7 +526,7 @@ You can pass any of the following options when you trigger the task:
 The following example uses all these options:
 
 ```shell
-curl -X POST --location "https://<org_name>.semaphoreci.com/api/v1alpha/tasks/{task_id}/run_now" \
+curl -X POST --location "https://<organization-url>.semaphoreci.com/api/v1alpha/tasks/{task_id}/run_now" \
     -H "Authorization: Token {api_token}" \
     -H "Content-Type: application/json" \
     -d $'{
@@ -544,7 +544,7 @@ curl -X POST --location "https://<org_name>.semaphoreci.com/api/v1alpha/tasks/{t
 ### Describe a job
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/jobs/:job_id
 ```
 
 Response:
@@ -571,13 +571,13 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/jobs/:job_id"
 ```
 
 ### Stop a job
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop
+POST <organization-url>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop
 ```
 
 Response:
@@ -590,7 +590,7 @@ Example:
 
 ```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/jobs/:job_id/stop"
 ```
 
 ### Get job logs
@@ -602,7 +602,7 @@ Instead of using the API to fetch job logs, you can also use [Semaphore CLI tool
 :::
 
 ```text
-GET https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id
+GET https://<organization-url>.semaphoreci.com/api/v1alpha/logs/:job_id
 ```
 
 Response:
@@ -657,7 +657,7 @@ Example:
 
 ```shell
 curl -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/logs/:job_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/logs/:job_id"
 ```
 
 
@@ -667,7 +667,7 @@ curl -H "Authorization: Token {api_token}" \
 #### Listing agent types
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
+GET <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
 ```
 
 Response:
@@ -722,7 +722,7 @@ Example:
 ```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
 ```
 
 
@@ -730,7 +730,7 @@ curl -i \
 #### Create an agent type
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
+POST <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types
 ```
 
 Parameters:
@@ -777,7 +777,7 @@ curl -i \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   --data '{"metadata": {"name": "s1-aws-small"}, "spec": {"agent_name_settings": {"assignment_origin": "assignment_origin_agent", "release_after": 0}}}' \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types"
 ```
 
 
@@ -785,7 +785,7 @@ curl -i \
 #### Update an agent type
 
 ```text
-PATCH <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
+PATCH <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
 Parameters:
@@ -831,14 +831,14 @@ curl -X PATCH -i \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   --data '{"metadata": {"name": "s1-aws-small"}, "spec": {"agent_name_settings": {"assignment_origin": "assignment_origin_agent", "release_after": 0}}}' \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
 
 #### Describe an agent type
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
+GET <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
 Parameters:
@@ -873,7 +873,7 @@ Example:
 ```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
 
@@ -881,7 +881,7 @@ curl -i \
 #### Delete an agent type
 
 ```text
-DELETE <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
+DELETE <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name
 ```
 
 Parameters:
@@ -900,7 +900,7 @@ Example:
 ```shell
 curl -i -X DELETE \
   -H "Authorization: Token {api_token}" \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small"
 ```
 
 
@@ -908,7 +908,7 @@ curl -i -X DELETE \
 #### Disable agents for an agent type
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name/disable_all
+POST <organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/:agent_type_name/disable_all
 ```
 
 Parameters:
@@ -929,7 +929,7 @@ Example:
 curl -i \
   -H "Authorization: Token {api_token}" \
   -d 'only_idle=false' \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small/disable_all"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/self_hosted_agent_types/s1-aws-small/disable_all"
 ```
 
 ### Self-hosted agents
@@ -937,7 +937,7 @@ curl -i \
 #### List agents for an agent type
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/agents?agent_type=:agent_type&page_size=:page_size&cursor=:cursor
+GET <organization-url>.semaphoreci.com/api/v1alpha/agents?agent_type=:agent_type&page_size=:page_size&cursor=:cursor
 ```
 
 Parameters:
@@ -995,13 +995,13 @@ Example:
 ```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/agents"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/agents"
 ```
 
 ### Describe an agent
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/agents/:agent_name
+GET <organization-url>.semaphoreci.com/api/v1alpha/agents/:agent_name
 ```
 
 Parameters:
@@ -1036,7 +1036,7 @@ Example:
 ```shell
 curl -i \
   -H "Authorization: Token {api_token}" \
-  "https://<org_name>.semaphoreci.com/api/v1alpha/agents/{agent_name}"
+  "https://<organization-url>.semaphoreci.com/api/v1alpha/agents/{agent_name}"
 ```
 
 ## Deployment targets
@@ -1046,7 +1046,7 @@ curl -i \
 This API endpoint provides a list of deployment targets linked to a given project.
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
 ```
 
 Parameters:
@@ -1110,7 +1110,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id"
 ```
 
 ### Describe a target
@@ -1118,7 +1118,7 @@ curl -i -H "Authorization: Token {api_token}" \
 This API endpoint retrieves the details about a deployment target specified by its UUID.
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
 ```
 
 Parameters:
@@ -1178,7 +1178,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id"
 ```
 
 #### Describe by name and project UUID
@@ -1186,7 +1186,7 @@ curl -i -H "Authorization: Token {api_token}" \
 This API endpoint retrieves a deployment target based on its name and the UUID of the project it is linked to.
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name
+GET <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name
 ```
 
 Parameters:
@@ -1249,7 +1249,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id&target_name=:target_name"
 ```
 
 ### Create a target
@@ -1257,7 +1257,7 @@ curl -i -H "Authorization: Token {api_token}" \
 This API endpoint allows you to create a new deployment target and assign it to a specific project.
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
+POST <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id
 ```
 
 Request Body:
@@ -1330,13 +1330,13 @@ Example request:
 
 ```shell
 curl -i -X POST -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id" \
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=:project_id" \
      -H "Content-Type: application/json" \
      -d '<json object>' 
 ```
 
 ```shell
-curl -XPOST <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=a426b4db-1919-483d-926d-06ba1320b209 -H "Authorization: Token {api_token}" -H "Content-Type: application/json" --data '{ "name": "testTarget", "description": "Target description", "url": "www.myurl.zyx","bookmark_parameter1": "my book 1", "unique_token": "6063dd03-ecfb-11ed-b539-0045e2f582b7",  "env_vars": [ {"name": "env1","value": "val1" }  ],  "files": [ {"path": "/etc/my.conf","content": "'"$(base64 -w 0 /home/pc/proj/someconf.conf)"'" }  ]}'
+curl -XPOST <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets?project_id=a426b4db-1919-483d-926d-06ba1320b209 -H "Authorization: Token {api_token}" -H "Content-Type: application/json" --data '{ "name": "testTarget", "description": "Target description", "url": "www.myurl.zyx","bookmark_parameter1": "my book 1", "unique_token": "6063dd03-ecfb-11ed-b539-0045e2f582b7",  "env_vars": [ {"name": "env1","value": "val1" }  ],  "files": [ {"path": "/etc/my.conf","content": "'"$(base64 -w 0 /home/pc/proj/someconf.conf)"'" }  ]}'
 ```
 
 ### Update a target
@@ -1344,7 +1344,7 @@ curl -XPOST <org_name>.semaphoreci.com/api/v1alpha/deployment_targets?project_id
 This API endpoint allows you to update an existing deployment target.
 
 ```text
-PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
+PATCH <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id
 ```
 
 Parameters:
@@ -1408,13 +1408,13 @@ Example:
 
 ```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}"  \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id" \
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id" \
      -H "Content-Type: application/json" \
      -d '<json object>'
 ```
 
 ```shell
-curl -X PATCH https://<org_name>.semaphoreci.com/deployment_targets/3a9196d7-f740-4451-b8f2-9d19b10a4520 \
+curl -X PATCH https://<organization-url>.semaphoreci.com/deployment_targets/3a9196d7-f740-4451-b8f2-9d19b10a4520 \
      -H "Authorization: Token {api_token}" \
      -d'{"name": "testTargetChanged", "description": "Target description changed", "url": "www.myurl2.zyx","bookmark_parameter1": "my book 1c", "unique_token": "6063dd03-ecfb-11ed-b539-0045e2f582b8",  "env_vars": [ {"name": "env1","value": "val2" }  ],  "files": [ {"path": "/etc/my.conf","content": "'"$(base64 -w 0 /home/pc/proje/updated.conf)"'" }]}' \
      -H "Content-Type: application/json"
@@ -1425,7 +1425,7 @@ curl -X PATCH https://<org_name>.semaphoreci.com/deployment_targets/3a9196d7-f74
 This API endpoint allows you to delete a specific deployment target.
 
 ```text
-DELETE <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token
+DELETE <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token
 ```
 
 Parameters:
@@ -1445,7 +1445,7 @@ Example:
 
 ```shell
 curl -i -X DELETE -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id?unique_token=:unique_token"
 ```
 
 ### Deactivate a target
@@ -1453,7 +1453,7 @@ curl -i -X DELETE -H "Authorization: Token {api_token}" \
 This API endpoint allows you to deactivate a specific deployment target.
 
 ```text
-PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate
+PATCH <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate
 ```
 
 Parameters:
@@ -1475,7 +1475,7 @@ Example:
 
 ```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/deactivate"
 ```
 
 ### Activate a target
@@ -1483,7 +1483,7 @@ curl -i -X PATCH -H "Authorization: Token {api_token}" \
 This API endpoint allows you to (re)activate a specific deployment target.
 
 ```text
-PATCH <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate
+PATCH <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate
 ```
 
 Parameters:
@@ -1505,7 +1505,7 @@ Example:
 
 ```shell
 curl -i -X PATCH -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/activate"
 ```
 
 ### Retrieve deployment history
@@ -1513,7 +1513,7 @@ curl -i -X PATCH -H "Authorization: Token {api_token}" \
 This endpoint provides the deployment history for a specific deployment target.
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history
+GET <organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history
 ```
 
 Parameters:
@@ -1582,7 +1582,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/deployment_targets/:target_id/history"
 ```
 
 ## Artifact retention policies
@@ -1594,7 +1594,7 @@ This API endpoint allows you to configure the artifact retention policy for a pr
 By default, artifacts are persisted and never automatically deleted. The artifact retention policy allows you to configure the lifetime of artifacts in your projects.
 
 ```text
-POST <org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies
+POST <organization-url>.semaphoreci.com/api/v1alpha/artifacts_retention_policies
 ```
 
 Request Body:
@@ -1646,14 +1646,14 @@ Example request:
 
 ```shell
 curl -X POST -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
      -H "Content-Type: application/json" \
      -d '<json object>' 
 ```
 
 ```shell
 curl -X POST -H "Authorization: Token {api_token}" \ 
-     "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/artifacts_retention_policies" \
      -H "Content-Type: application/json" \
      -d '{"project_id":"3796efe0-81a0-4157-8774-7ad72d41ac28","job_level_retention_policies":[{"selector":"/screenshots/**/*.png","age":"2 weeks"},{"selector":"/logs/**/*.txt","age":"3 months"}]}'
 ```
@@ -1665,7 +1665,7 @@ This API endpoint retrieves the details about an artifacts retention policy that
 By default, projects do not have an artifacts retention policy configured so a response in this case will have a policy with an empty set of retention rules for all artifacts levels.
 
 ```text
-GET <org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id
+GET <organization-url>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id
 ```
 
 Parameters:
@@ -1702,7 +1702,7 @@ Example:
 
 ```shell
 curl -i -H "Authorization: Token {api_token}" \
-     "https://<org_name>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id"
+     "https://<organization-url>.semaphoreci.com/api/v1alpha/artifacts_retention_policies/:project_id"
 ```
 
 

@@ -35,7 +35,7 @@ brew install semaphoreci/tap/sem
 Once installed, you need to authorize access to your Semaphore organization. You can do this with:
 
 ```shell
-sem connect <organization-name>.semaphoreci.com <API_TOKEN>
+sem connect <organization-url>.semaphoreci.com <API_TOKEN>
 ```
 You can get an API token on your [account page](https://me.semaphoreci.com/account).
 
@@ -161,7 +161,7 @@ Before using any other commands, you need to connect to your Semaphore organizat
 The syntax to connect is:
 
 ```shell title="Connecting to your organization"
-sem connect <organization-name>.semaphoreci.com <API_TOKEN>
+sem connect <organization-url>.semaphoreci.com <API_TOKEN>
 ```
 
 For example

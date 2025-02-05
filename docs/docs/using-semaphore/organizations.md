@@ -52,7 +52,7 @@ You must install and connect the [Semaphore command line](../reference/semaphore
         # highlight-next-line
       * myorg3_semaphoreci_com
     ```
-2. Change organization with `sem context <organization-name>`
+2. Change organization with `sem context <organization-url>`
     ```shell title="Change active organization"
     $ sem context myorg1_semaphoreci_com
     switched to context "myorg1_semaphoreci_com"
@@ -236,7 +236,9 @@ Your organization main settings.  Here, you can change its name, its URL, and co
 
 :::info
 
-The *URL of your organization* is the URL that leads to the Home page in your Semaphore organization. By default it follows the pattern `your-organization-name.semaphoreci.com`
+The *URL of your organization* is the URL that leads to the Home page in your Semaphore organization. 
+
+The default value is the name of your organization in lowercase and kebab-case, e.g. `<your-organization-url>.semaphoreci.com`. You can change the first part of the URL in the general settings page.
 
 :::
 

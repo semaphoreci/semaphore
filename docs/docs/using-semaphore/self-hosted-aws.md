@@ -148,7 +148,7 @@ Follow these steps to deploy self-hosted agents in AWS.
     Replace:
     - `<stack-name>` with the name of the stack, e.g. `my-aws-agents-linux`
     - `<ssm-parameter-name>` with the name of the secret created on Step 3
-    - `<your-organization>.semaphoreci.com` with your [organization URL](./organizations#general-settings), e.g. `my-org.semaphoreci.com`
+    - `<organization-url>.semaphoreci.com` with your [organization URL](./organizations#general-settings), e.g. `my-org.semaphoreci.com`
     - `<license-configuration>` the license information from Apple (only for macOS)
 
     <br/>
@@ -161,7 +161,7 @@ Follow these steps to deploy self-hosted agents in AWS.
         "SEMAPHORE_AGENT_STACK_NAME": "<stack-name>",
         "SEMAPHORE_AGENT_TOKEN_PARAMETER_NAME": "<ssm-parameter-name>",
         "SEMAPHORE_AGENT_TOKEN_KMS_KEY": "<ssm-parameter-name>",
-        "SEMAPHORE_ENDPOINT": "<your-organization>.semaphoreci.com"
+        "SEMAPHORE_ENDPOINT": "<organization-url>.semaphoreci.com"
     }
     ```
     </div>
@@ -176,7 +176,7 @@ Follow these steps to deploy self-hosted agents in AWS.
         "SEMAPHORE_AGENT_STACK_NAME": "<stack-name>",
         "SEMAPHORE_AGENT_TOKEN_PARAMETER_NAME": "<ssm-parameter-name>",
         "SEMAPHORE_AGENT_TOKEN_KMS_KEY": "<ssm-parameter-name>",
-        "SEMAPHORE_ENDPOINT": "<your-organization>.semaphoreci.com",
+        "SEMAPHORE_ENDPOINT": "<organization-url>.semaphoreci.com",
         "SEMAPHORE_AGENT_OS": "windows"
     }
     ```
@@ -192,7 +192,7 @@ Follow these steps to deploy self-hosted agents in AWS.
         "SEMAPHORE_AGENT_STACK_NAME": "<stack-name>",
         "SEMAPHORE_AGENT_TOKEN_PARAMETER_NAME": "<ssm-parameter-name>",
         "SEMAPHORE_AGENT_TOKEN_KMS_KEY": "<ssm-parameter-name>",
-        "SEMAPHORE_ENDPOINT": "<your-organization>.semaphoreci.com",
+        "SEMAPHORE_ENDPOINT": "<organization-url>.semaphoreci.com",
         "SEMAPHORE_AGENT_OS": "macos",
         "SEMAPHORE_AGENT_DISCONNECT_AFTER_IDLE_TIMEOUT": "86400",
         "SEMAPHORE_AGENT_MAC_FAMILY": "mac1",

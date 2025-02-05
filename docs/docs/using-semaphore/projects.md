@@ -337,13 +337,13 @@ To get a badge embed code:
 Badge URLs follow the following format for the "master" branch:
 
 ```text
-https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>.svg
+https://<organization-url>.semaphoreci.com/badges/<PROJECT-NAME>.svg
 ```
 
 On other branches the format is:
 
 ```text
-https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>/branches/<BRANCH-NAME>.svg
+https://<organization-url>.semaphoreci.com/badges/<PROJECT-NAME>/branches/<BRANCH-NAME>.svg
 ```
 
 The visual style of the badge can also be customized. There are two styles:
@@ -356,7 +356,7 @@ The visual style of the badge can also be customized. There are two styles:
 The Semaphore style is the default. To use shields style, add `?style=shields` to the URL. For example:
 
 ```text
-https://<ORGANIZATION-NAME>.semaphoreci.com/badges/<PROJECT-NAME>.svg?style=shields
+https://<organization-url>.semaphoreci.com/badges/<PROJECT-NAME>.svg?style=shields
 ```
 
 ### Artifacts {#artifacts}
