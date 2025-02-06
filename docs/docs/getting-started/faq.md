@@ -140,7 +140,7 @@ Here’s how to do that:
 
     ![Update payment method](./img/update-payment.jpg)
 
-4. Go to the **Subscriptions** tag
+4. Go to the **Subscriptions** tab
 5. Press **Manage** and then **Update payment method**
 6. Press **Use this** next to the credit card you'd like to use
 
