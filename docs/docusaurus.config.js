@@ -168,27 +168,6 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Get Started',
-                to: 'category/getting-started',
-              },
-              {
-                label: 'Using Semaphore',
-                to: 'category/using-semaphore',
-              },
-              {
-                label: 'Reference',
-                to: 'category/reference',
-              },
-              {
-                label: 'API',
-                to: 'reference/api',
-              },
-            ],
-          },
-          {
             title: 'Community',
             items: [
               {
