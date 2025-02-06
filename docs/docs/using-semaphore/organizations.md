@@ -458,6 +458,28 @@ Updating the ownership of an organization doesn't automatically transfer the pro
 
 If you need to demote or remove an owner from the organization, any user with the Owner permission level needs to send an email to support@semaphoreci.com from the primary email address associated with their GitHub or Bitbucket account used to log into Semaphore.
 
+## How to delete an organization {#deleting-an-organization}
+
+:::danger
+
+Deleted organizations cannot be restored. There is no undo for this operation.
+
+:::
+
+
+Before you can delete an organization, you must [remove all it projects](./projects#general). Only the [Owner](./rbac#org-owner) of an organization can delete it.
+
+In order to delete an organization, follow these steps:
+
+1. Open the Organization Settings menu
+2. Press on **Settings** 
+3. Press on **Delete Organization...** at the bottom of the page
+4. Type "delete" to confirm
+5. Press the **Delete Organization** button
+
+![Delete organization menu](./img/delete-org.jpg)
+
+
 ## See also
 
 - [How to configure Okta integration](./okta)

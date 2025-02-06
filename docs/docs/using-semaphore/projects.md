@@ -295,6 +295,34 @@ In the general project settings, you can:
 
 ![General settings](./img/project-general-settings-1.jpg)
 
+### How to delete a project {#delete-project}
+
+:::danger
+
+Deleting a project is irreversible. All the pipelines, jobs, and artifacts associated with the project will be lost.
+
+:::
+
+Go to the general settings of your project and follow these steps:
+
+<Steps>
+
+1. At the bottom of the page, press "Proceed with caution" under **Delete project**
+
+    ![Delete a project link](./img/delete-project-link.jpg)
+
+2. Select a **Reason for deleting** the project
+
+    ![Deletion page for project](./img/delete-project-wizard.jpg)
+
+3. Optionally, you may leave some feedback
+4. Enter the name of the project to confirm the deletion
+5. Press **Delete project**
+
+</Steps>
+
+You may also delete a project using the [Semaphore CLI](../reference/semaphore-cli#sem-delete).
+
 ### Workflow triggers {#settings-triggers}
 
 See [workflow triggers](./workflows#project-triggers) to learn how to customize what actions trigger a workflow.
@@ -377,7 +405,7 @@ If you want to run commands for all pipelines in your organization, see [organiz
 
 :::
 
-### How to set up checks {#preflight-add}
+### How to set up preflight checks {#preflight-add}
 
 To create, edit, or delete project pre-flight checks, follow these steps:
 
