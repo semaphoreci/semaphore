@@ -27,12 +27,10 @@ const config = {
 
   // Production url of your site here
   url: 'https://docs.semaphoreci.com',
-  // url: 'https://docs-v2.sxmoon.com/',
+
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: process.env.BASE_URL ? process.env.BASE_URL : '/',
-  // when true, the build breaks (default is undefined)
-  // trailingSlash: false,
 
   // GitHub org and project. Needed for Github Pages.
   organizationName: 'semaphoreci',
@@ -56,8 +54,23 @@ const config = {
           routeBasePath: '/', // move docs to the website root
           sidebarPath: './sidebars.js',
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-          editUrl:
-            'https://github.com/semaphoreci/semaphore/tree/main/docs/'
+          editUrl: 'https://github.com/semaphoreci/semaphore/tree/main/docs/',
+
+          /* Versioned Docs */
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'Cloud (SaaS)',
+              path: '',
+              banner: "none",
+            },
+            "CE": {
+              label: 'Community Edition (1.0)',
+              path: 'CE',
+              banner: "none"
+            }
+          },
+
         },
         blog: false,
         theme: {
@@ -120,7 +133,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'gettingStarted',
             position: 'left',
-            label: 'Get Started',
+            label: 'Getting Started',
           },
           {
             type: 'docSidebar',
@@ -137,10 +150,22 @@ const config = {
           // uncomment this when the new API is released
           // {
           //   type: 'docSidebar',
-          //   sidebarId: 'openApi',
+          //   sidebarId: 'apiSidebar',
           //   position: 'left',
           //   label: 'API Specification',
           // },
+          {
+            type: 'html',
+            position: 'right',
+            value: '<a href="/CE/getting-started/about-semaphore">Semaphore Editions →</a>'
+          },
+          /* version */
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            // dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+            dropdownActiveClassDisabled: true,
+          },
           {
             href: 'https://github.com/semaphoreci/semaphore/tree/main/docs',
             className: 'header-github-link',
@@ -149,11 +174,6 @@ const config = {
             position: 'right',
 
           },
-          // {
-          //   type: 'html',
-          //   position: 'right',
-          //   value: '<button>Give feedback</button>',
-          // },
           {
             type: 'search',
             position: 'right',

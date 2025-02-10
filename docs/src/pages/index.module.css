@@ -69,3 +69,27 @@ main {
 .indexCtaTryNowButton:hover {
   color: var(--ifm-color-primary);
 }
+
+/* Wraps all buttons in a row and centers them horizontally. */
+.buttonsWrapper {
+  display: flex;
+  justify-content: center; 
+  gap: 2rem; /* spacing between each button container */
+  flex-wrap: wrap; /* optional: allows wrapping on smaller screens */
+}
+
+/* Centers each button and its legend vertically. */
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* A simple style for each legend. Customize as needed. */
+.legend {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+  /* You can also change color, weight, etc. */
+}
+

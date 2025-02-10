@@ -41,6 +41,9 @@
     var(--ifm-transition-timing-default);
 }
 
+.button {
+  margin-right: 1rem;
+}
 /* header styling for hero banner */
 .header-github-link:hover::before {
   background-color: var(--ifm-navbar-link-hover-color);
@@ -80,4 +83,60 @@ iconify-icon {
 /* hide not available feature pages in sidebar */
 .hidden {
   display: none !important;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-left: 4px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 200px;
+    padding: 5px;
+    border-radius: 4px;
+    
+    opacity: 0;
+    transition: opacity 0.3s;
+    
+    /* Docusaurus light theme */
+    background-color: var(--ifm-color-gray-900);
+    color: var(--ifm-color-white);
+    
+    /* Docusaurus dark theme compatibility */
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--ifm-color-gray-100);
+        color: var(--ifm-color-black);
+    }
+    
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--ifm-color-gray-900) transparent transparent transparent;
+    
+    @media (prefers-color-scheme: dark) {
+        border-color: var(--ifm-color-gray-100) transparent transparent transparent;
+    }
 }
