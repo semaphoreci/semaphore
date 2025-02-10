@@ -10,43 +10,71 @@ This page describes how to create a new version or release.
 We handle docs in two ways:
 
 - Cloud: the cloud edition is unversioned. The docs are located on `docs/`
-- Community Edition: the open-source edition is versined. The docs are located on `versioned_docs/version-CE-*/`
-- Enterprise Edition: the licensed on-premise is also versined. The docs are located on `versioned_docs/version-EE-*/`
+- Community Edition: the open-source edition is versined. The docs are located on `versioned_docs/version-CE/`
+- Enterprise Edition: the licensed on-premise is also versined. The docs are located on `versioned_docs/version-EE/`
 
+## Naming conventions
 
-## Step 1: Copy versioned docs and sidebars
+Each versioned doc must have a unique ID string to identify the set of pages. We use the following conventions
 
-Create a copy of the versioned docs and sidebars to edit in the next step.
+### Community Edition
 
-For example, to create `1.0.1` we copy the latest release like this:
+The latest version ID is always "CE" (without the semver). Older versions have the semver appended.
+
+For example:
+
+- Latest version: "CE"
+- Version 1.0: "CE-1.0"
+- Version 1.1: "CE-1.1"
+
+### Enterprise Edition
+
+The latest version ID is always "EE" (without the semver). Older versions have the semver appended.
+
+For example:
+
+- Latest version: "EE"
+- Version 1.0: "EE-1.0"
+- Version 1.1: "EE-1.1"
+
+## How to create a new version of the docs
+
+The following example assumes we're creating a new CE version 1.1 docs
+
+### Step 1: Copy versioned docs and sidebars
+
+Rename the latest edition by appending the semver
 
 ```shell
-cp -r versioned_docs/version-CE-1.0.0 versioned_docs/version-CE-1.0.1
-cp versioned_sidebars/version-CE-1.0.0-sidebars.json versioned_sidebars/version-CE-1.0.1-sidebars.json
+mv versioned_docs/version-CE versioned_docs/version-CE-1.0
+mv versioned_sidebars/version-CE-sidebars.json versioned_sidebars/version-CE-1.0-sidebars.json
 ```
 
-In this example `CE-1.0.1` is the ID of your new version. You will need that in step 3 and 4.
+### Step 2: Create the current copy of the docs
 
-## Step 2: Edit your docs
+Copy the 1.0 version of the docs as the latest release. This is your starting point.
 
-In the newly-created docs and sidebars. You can create new pages, add notices of deprecation, update the changelog, etc.
-
-Tip: Use relative paths to keep versions separated.
-
-## Step 3: Edit versions.json
+```shell
+cp -r versioned_docs/version-CE-1.0 versioned_docs/version-CE
+cp versioned_sidebars/version-CE-1.0-sidebars.json versioned_sidebars/version-CE-sidebars.json
+```
 
 Add the new version to `versions.json`. Add the newer version ID at the top.
 
+## Step 3: Edit versions.json
+
+Add the older (1.0) version to `versions.json`. Starting from most current to older versions
+
 ```json
 [
-  "CE-1.0.1",
-  "CE-1.0.0"
+  "CE",
+  "CE-1.0"
 ]
 ```
 
 ## Step 4: Edit docusaurus.config.json
 
-Go to the `presets` section in the page and add an entry for the new version. 
+Go to the `presets` section in the page and add an entry for the 1.0 version. 
 
 For example, before adding the new version, the section may look like this:
 
@@ -58,16 +86,17 @@ For example, before adding the new version, the section may look like this:
         path: '',
         banner: "none"
     },
-    "CE-1.0.0": {
-        label: 'Community Edition 1.0.0',
-        path: 'CE-1.0.0',
+    "CE": {
+        label: 'Community Edition (1.0)',
+        path: 'CE',
         banner: "none"
     }
     },
 ```
 
 To add a new version: 
-- add a key to the dictionary with the ID of the new version
+- Bump the `label` of the `CE` entry
+- Add a new `CE-1.0` key
 - remove the `banner` line in all but the most recent version for Semaphore edition, the banner is used to warn the user that they are browsing an older release
 
 After adding the new version, the config looks like this:
@@ -80,19 +109,25 @@ After adding the new version, the config looks like this:
         path: '',
         banner: "none"
     },
-    "CE-1.0.1": {
-        label: 'Community Edition 1.0.1',
-        path: 'CE-1.0.1',
+    "CE": {
+        label: 'Community Edition (1.1)',
+        path: 'CE',
         banner: "none"
     },
-    "CE-1.0.0": {
-        label: 'Community Edition 1.0.0',
-        path: 'CE-1.0.0',
+    "CE-1.0": {
+        label: 'Community Edition (1.0)',
+        path: 'CE-1.0',
     }
     },
 ```
 
-## Step 5: Test your build
+### Step 5: Edit your docs
+
+In the newly-created docs and sidebars for the `CE` edition. You can create new pages, add notices of deprecation, update the changelog, etc.
+
+Tip: Use relative paths to keep versions separated.
+
+## Step 6: Test your build
 
 Run the following commands to test your build:
 
@@ -135,7 +170,7 @@ For features that have a whole page dedicated, e.g. Promotions, do the following
     ```md
     ---
     description: Connect pipelines to create workflows
-    displayed_sidebar: usingSemaphoreSidebar
+    displayed_sidebar: usingSemaphore
     ---
     ```
 
@@ -146,7 +181,7 @@ For features that have a whole page dedicated, e.g. Promotions, do the following
     <FeatureNotAvailable/>
     ```
 
-3. Remove all other contents in the page
+3. Remove/edit all other contents in the page
 4. Remove the entry from the sidebar:
    - For explicit items in sidebar file, remove the in the corresponding file in the `versioned_sidebars` folder
    - For autogenerated docs, add `sidebar_class_name: hidden` into the doc frontmatter

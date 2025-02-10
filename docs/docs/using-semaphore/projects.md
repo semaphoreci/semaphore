@@ -343,8 +343,6 @@ In **Secrets** page, you can create project-level [secrets](./secrets.md). These
 
 To learn how to create project secrets, see the [secrets documentation page](./secrets#create-project-secrets).
 
-Project roles: https://docs.semaphoreci.com/security/default-roles/
-
 ### Badges {#badges}
 
 The **Badge** settings page shows you [shields](https://shields.io/) embed codes for your README or any webpage, allowing team members and users about the build status of your project.
