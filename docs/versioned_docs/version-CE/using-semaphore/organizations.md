@@ -37,18 +37,17 @@ To manage users in your Semaphore instance, open the server menu and select **Pe
 
 To invite a user to your instance, press the **Add people** button.
 
+
 <Steps>
 
 1. Type the email of the person you wish to invite
 2. Optionally, set a username. If not provided, the username is inferred from the email
-3. Press **Add member**
-4. Press **Reveal** to show the temporary password assigned to the new member
+3. Press **Create Accounts**
+4. Take note of the temporary passwords. On first login, users are prompted to change their passwords
 
 ![Add user screen](./img/add-user.jpg)
 
 </Steps>
-
-TODO: will the user get an email? Does he need to change the password?
 
 ### How to remove users {#remove-users}
 

@@ -75,31 +75,24 @@ To manage users in your organization, open the organization menu and select **Pe
 
 ### How to invite users {#add-people}
 
-To invite a user to your organization, press the **Add people** button. You have two options:
+To invite a user to your organization, press the **Add people** button:
 
-- **By their [GitHub username](https://docs.github.com/en/get-started/learning-about-github/github-glossary#username)**, e.g. `TomFern`
+![People tab](./img/people-tab.jpg)
 
-  - Type their GitHub handle
-  - Press **Invite**
+<Steps>
 
-  ![Adding users by their GitHub handle](./img/github-handle.jpg)
+1. Select one of the table: **Email**, **GitHub**, **BitBucket**, or **GitLab**
+    - For email: type their email and optionally their username. A temporary password is shown. The user must change it on first login.
+    - For other options: type their handle, e.g. `TomFern`
+    - You may alternatively select users from the list. The list shows not-yet-invited users with access to at least one of the repositories
 
-  This option **does not allow email addresses** and doesn't send email notifications to users. To notify users via email, use the option below.
+    ![Invite users](./img/invite-user.jpg)
 
-- **By existing projects**
-  
-  The list shows GitHub and BitBucket users that already have access to repositories but have not yet been added to the Semaphore project
+2. Press **invite**
+3. Optionally, set their [role](#roles-people)
 
-  - Select the users and optionally type an email
-  - Press **Add selected** to add them to the organization and project
 
-  ![Adding users to the organization](./img/add-people.jpg)
-
-:::note In case of delays
-
-In case of delays, click on the **Refresh** button in the top right corner of the page after sending an invite. This will trigger a sync between GitHub and Semaphore, which can typically last up to 2 to 5 minutes.
-
-:::
+</Steps>
 
 ### How to remove users {#remove-users}
 
