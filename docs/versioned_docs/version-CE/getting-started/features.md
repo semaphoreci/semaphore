@@ -19,92 +19,74 @@ Legends: ? (unknown), p (pending/planned), x (deleted pages/content), c (confirm
 
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
-| cVisual editor | Yes | Yes |
-| cArtifacts | Yes | Yes |
-| cTasks | Yes | Yes |
-| ?SSH Debug | Yes | Yes (but SSH debugging is not available for self-hosted jobs)|
-| cCache | Yes | Yes |
-| pMonorepo support | Yes | Yes (depends on initialization jobs) |
-| pInitialization jobs | Yes | Yes |
-| cSelf-hosted agents | Yes | Yes |
-| cGitHub support | Yes | Yes |
-| cBitBucket support | Yes | Yes |
-| cxPromotions | Yes | No |
-| cxParameterized promotions | Yes | No |
-| cxDeployment targets | Yes | No |
-| cxPre-flight checks | Yes | No |
-| cxsem-service & sem-versin | Yes | No |
+| Visual editor | Yes | Yes |
+| Artifacts | Yes | Yes |
+| Tasks | Yes | Yes |
+| SSH Debug | Yes | Yes |
+| Cache | Yes | Yes |
+| Monorepo support | Yes | Yes |
+| Initialization jobs | Yes | Yes |
+| Self-hosted agents | Yes | Yes |
+| GitHub support | Yes | Yes |
+| BitBucket support | Yes | Yes |
+| Promotions | Yes | No |
+| Parameterized promotions | Yes | No |
+| Deployment targets | Yes | No |
+| Pre-flight checks | Yes | No |
+| sem-service & sem-version | Yes | No |
 
 
 ## Dashboards
 
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
-| pTest reports | Yes | Yes |
-| cActivity monitor | Yes | Yes |
-| cxCustomeDashboards | Yes | No |
-| cxFlaky tests | Yes | No |
-| cxProject insights | Yes | No |
-| cxOrganization health | Yes | No |
+| Test reports | Yes | Yes |
+| Activity monitor | Yes | Yes |
+| CustomeDashboards | Yes | No |
+| Flaky tests | Yes | No |
+| Project insights | Yes | No |
+| Organization health | Yes | No |
 
 
 ## Security and compliance
 
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
-| cProject-level secrets | Yes | Yes |
-| cOrganization secrets | Yes | Yes |
-| cxPolicies for accessing secrets | Yes | No |
-| cxAudit logs | Yes | No |
+| Project-level secrets | Yes | Yes |
+| Organization secrets | Yes | Yes |
+| Policies for accessing secrets | Yes | No |
+| Audit logs | Yes | No |
 
 
 ## User and permissions management 
 
-NOTE: see actual implementation to determine what needs to be deleted from organizations.md
-
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
-| cMultiple organizations | Yes | No | 
-| cInvite users to your organization | Yes | Yes |
-| cOrganization roles | Yes | Yes |
-| ?Project roles | Yes | Yes (*) |
-| cxUser groups | Yes | No |
-| cxCustom Roles | Yes | No |
+| Multiple organizations | Yes | No | 
+| Invite users to your organization | Yes | Yes |
+| Organization roles | Yes | Yes |
+| Project roles | Yes | Yes (*) |
+| User groups | Yes | No |
+| xCustom Roles | Yes | No |
 
 (*) Project roles exist but cannot be manually assigned to individual users. The role is assigned based on project-membership and org-wide user roles.
 
 ## Integrations 
 
-NOTE: what about Github SSO? affects Connect GitHub and Single Sign on GitHub pages
-
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
-| cRepository status checks | Yes | Yes |
-| cRepository badges | Yes | Yes |
-| ?Slack notifications | Yes | Yes |
-| ?Webhook notifications | Yes | Yes |
-| cxSAML/SCIM integrations | Yes | No |
-| cxOkta integration | Yes | No |
-| cxOpenID Connect | Yes | No |
-| ?GitHub SSO | Yes | ? |
+| Repository status checks | Yes | Yes |
+| Repository badges | Yes | Yes |
+| Slack notifications | Yes | Yes |
+| Webhook notifications | Yes | Yes |
+| SAML/SCIM integrations | Yes | No |
+| Okta integration | Yes | No |
+| OpenID Connect | Yes | No |
+| GitHub SSO | Yes | No |
 
-## Questions
+## See also
 
-Change/forgot password?
-Maintenance/upgrade Semaphore
-Take backups? Restore an installation?
-Renew/install certificates
+- [Guided tour](./guided-tour)
+- [Migration guides](./migration/overview)
+- [Install Semaphore CE](./install)
 
-Do project roles exist? or we just have to use org roles? They exist, but you cannot assign them, just view them. You can add/remove people from projects and that's it.
-TODO: is oauth still supported? I can't make it work
-
-How do project permissions work? Do I need to invite user to my org with email and then manually add them to the project? Does it check for collaborators on the repo?
-How do I grant permissions to a user to a project? Do I need to give him admin on the org?
-Confirm with alek: Are there any plans to sem-service or sem-version to self-hosted agent jobs? NO
-
-Are there any plans to add SSH debugging to self-hosted jobs?
-Will GitHub SSO be included in CE?
-
-Should pull request trigger workflows?
-Do status badged work?
-How do I make the cache work on k8s? The docs only talk about VMs
