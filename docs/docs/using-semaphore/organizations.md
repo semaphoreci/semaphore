@@ -81,10 +81,9 @@ To invite a user to your organization, press the **Add people** button:
 
 <Steps>
 
-1. Select one of the table: **Email**, **GitHub**, **BitBucket**, or **GitLab**
-    - For email: type their email and optionally their username. A temporary password is shown. The user must change it on first login.
-    - For other options: type their handle, e.g. `TomFern`
-    - You may alternatively select users from the list. The list shows not-yet-invited users with access to at least one of the repositories
+1. Select one of the tabs: **GitHub**, **BitBucket**, or **GitLab**
+    - Type the user's handle, e.g. `TomFern`, or select the user from the list.
+    - If you don't see the user in the list. Ensure they have access to at least repository in **GitHub**, **BitBucket**, or **GitLab**
 
     ![Invite users](./img/invite-user.jpg)
 
