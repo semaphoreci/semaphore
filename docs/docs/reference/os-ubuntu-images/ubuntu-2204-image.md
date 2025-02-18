@@ -2,15 +2,13 @@
 description: Ubuntu 22.04 (x86_64) Image Reference
 ---
 
-# Ubuntu 22.04 (x86_64) 
+# Ubuntu 22.04 (x86_64)
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
-
-<Available/>
 
 :::note
 
@@ -48,14 +46,12 @@ agent:
 
 The following section describes the software pre-installed on the image.
 
-
 ## Toolbox
 
 The image comes with the following [toolbox utilities](../toolbox) preinstalled:
 
 - [sem-version](../toolbox#sem-version): manage language versions on Linux
 - [sem-service](../toolbox#sem-service): manage databases and services on Linux
-
 
 ## Version control
 
@@ -222,7 +218,6 @@ The default installed Ruby version is `3.2.6`.
 ### Rust
 
 - 1.83.0
-
 
 ## See also
 

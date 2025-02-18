@@ -10,8 +10,6 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-<Available/>
-
 This is a customized x86_64 image based on [Ubuntu 20.04](https://wiki.ubuntu.com/FocalFossa/ReleaseNotes) (Focal Fossa LTS).
 
 <Tabs groupId="editor-yaml">
@@ -222,7 +220,6 @@ The default installed Ruby version is `2.7.8`.
 ### Rust
 
 - 1.83.0
-
 
 ## See also
 

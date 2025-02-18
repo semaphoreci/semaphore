@@ -15,7 +15,7 @@ This page gives technical specifications for the machines available on Semaphore
 
 ## Overview
 
-A machine type defines what virtualized hardware to use in your [agents](../using-semaphore/pipelines#agents). 
+A machine type defines what virtualized hardware to use in your [agents](../using-semaphore/pipelines#agents).
 
 The machines described in this page only apply to Semaphore Cloud. You can add more types of machines using [self-hosted agents](../using-semaphore/self-hosted).
 
@@ -27,7 +27,7 @@ Linux machines are provided in four generations. The following table shows what 
 |--|--|--|--|
 | [E1](#e1) | Intel x86_64 | [Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) |  Yes |
 | [E2](#e2) | Intel x86_64 | [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
-| [F1](#f1) | Intel x86_64 |[Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
+| [F1](#f1) | Intel x86_64 | [Ubuntu 24.04](./os-ubuntu-images/ubuntu-2404-image) <br/> [Ubuntu 22.04](./os-ubuntu-images/ubuntu-2204-image)<br/>[Ubuntu 20.04](./os-ubuntu-images/ubuntu-2004-image) | Yes |
 | [R1](#r1) | ARM | [Ubuntu 22.04 ARM](./os-ubuntu-images/ubuntu-2204-arm-image) | No |
 
 ### E1 generation {#e1}
@@ -35,6 +35,7 @@ Linux machines are provided in four generations. The following table shows what 
 This is the entry-level, cost-effective machine type. E1s are a good choice for less compute and memory intensive tasks.
 
 Implementation details:
+
 - **CPU**: hyperthreaded on a 3.4GHz Max Turbo 4.0GHz Intel® Core™ i7
 - **Memory**: DDR4 RAM
 - **Disk**: RAM drive (DDR4)
@@ -85,7 +86,6 @@ Implementation details:
 - **Memory**: DDR4 RAM
 - **Disk**: NvME storage
 
-
 The F1 generation is presented in the following types:
 
 | Type | Virtual CPUs | Memory (GB) | Disk (GB) |
@@ -93,9 +93,9 @@ The F1 generation is presented in the following types:
 | `f1-standard-2` | 2 | 8 | 45 |
 | `f1-standard-4` | 4 | 16 | 65 |
 
-F1 machines can also be paired with:
+F1 machines can be paired with:
 
-<!-- - [`ubuntu2404`](../reference/os-ubuntu-images/ubuntu-2404-image) -->
+- [`ubuntu2404`](../reference/os-ubuntu-images/ubuntu-2404-image)
 - [`ubuntu2204`](../reference/os-ubuntu-images/ubuntu-2204-image)
 - [`ubuntu2004`](../reference/os-ubuntu-images/ubuntu-2004-image)
 - [Docker-based environments](../using-semaphore/pipelines#docker-environments).
@@ -133,7 +133,7 @@ A1 machines can only be paired with [macOS Xcode15](./os-apple#mac-15).
 
 A2 machines can be paired with:
 
-- [macOS Xcode15](./os-apple#mac-15) 
+- [macOS Xcode15](./os-apple#mac-15)
 - [macOS Xcode16](./os-apple#mac-16)
 
 ## See also
@@ -142,3 +142,4 @@ A2 machines can be paired with:
 - [Self-hosted agents](../using-semaphore/self-hosted)
 - [Linux Ubuntu images reference](./os-ubuntu)
 - [Apple macOS images reference](./os-apple)
+

@@ -10,14 +10,11 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-<Available/>
+:::info
 
-:::warning
-
-This image is in the Technical Preview stage. Documentation and the image itself are subject to change.
+This image is in the Technical Preview stage. If you wish to use this machine, please contact `support@semaphoreci.com`
 
 :::
-
 
 This is a customized x86_64 image based on [Ubuntu 24.04](https://releases.ubuntu.com/noble/) (Noble Numbat LTS).
 
@@ -55,7 +52,6 @@ The image comes with the following [toolbox utilities](../toolbox) preinstalled:
 
 - [sem-version](../toolbox#sem-version): manage language versions on Linux
 - [sem-service](../toolbox#sem-service): manage databases and services on Linux
-
 
 ## Version control
 
@@ -220,7 +216,6 @@ The default installed Ruby version is `3.3.6`.
 ### Rust
 
 - 1.83.0
-
 
 ## See also
 

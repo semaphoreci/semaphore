@@ -10,12 +10,9 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-<Available/>
-
 This is a customized ARM image based on [Ubuntu 22.04](https://wiki.ubuntu.com/JammyJellyfish/ReleaseNotes) (Jammy Jellyfish LTS).
 
 This OS can only be paired with [R1 ARM machines](../machine-types#r1).
-
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
@@ -56,7 +53,6 @@ The image comes with the following [toolbox utilities](../toolbox) preinstalled:
 The [sem-service](../toolbox#sem-service) utility is currently not available on ARM images
 
 :::
-
 
 ## Version control
 
