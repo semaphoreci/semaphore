@@ -9,8 +9,6 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-<Available/>
-
 This page gives technical specifications for the machines available on Semaphore Cloud.
 
 ## Overview

@@ -10,8 +10,6 @@ import TabItem from '@theme/TabItem';
 import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 
-<Available/>
-
 Semaphore Cloud provides an integrated Docker Container Registry to pull popular images faster into your jobs.
 
 ## Overview
@@ -301,6 +299,7 @@ Ruby images come in two variants:
 | ruby:3.2.3-node-browsers | `registry.semaphoreci.com/ruby:3.2.3-node-browsers` |  
 | ruby:3.3.0 | `registry.semaphoreci.com/ruby:3.3.0` |  
 | ruby:3.3.0-node-browsers | `registry.semaphoreci.com/ruby:3.3.0-node-browsers` |  
+
 </div>
 </details>
 
