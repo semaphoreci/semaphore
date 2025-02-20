@@ -82,12 +82,14 @@ Each platform presents trade-off. Use the following table as a guide:
     subtitle="Google Cloud Kubernetes"
     url="./install-gke"
   />
+<!--
   <NiceButton
     icon={EKSIcon}
     title="Install on EKS"
     subtitle="Amazon Elastic Kubernetes (pending)"
     url="./install"
   />
+-->
 </ButtonContainer>
 
 ## See also
