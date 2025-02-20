@@ -9,7 +9,7 @@ import styles from './index.module.css';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
-  const githubStarsUrl=`https://ghbtns.com/github-btn.html?user=${siteConfig.organizationName}&repo=${siteConfig.projectName}&type=star&count=true&size=large`;
+  const githubStarsUrl=`https://ghbtns.com/github-btn.html?user=semaphoreio&repo=semaphore&type=star&count=true&size=large`;
   const { colorMode } = useColorMode();
  
   return (
