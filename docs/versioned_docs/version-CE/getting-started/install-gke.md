@@ -19,6 +19,12 @@ If this is your first time using Semaphore we suggest trying out [Semaphore Clou
 
 The self-hosted installation is recommended for users and teams familiar with Semaphore.
 
+:::note macOS users
+
+There is a known issue that blocks Docker on macOS. If you have trouble running Helm and you're using macOS, check the following [outstanding issue](https://github.com/docker/for-mac/issues/7520#issuecomment-2593247448) for a workaround.
+
+:::
+
 ## Step 1 - Install dependencies {#dependencies}
 
 Install the following tools before starting the installation:
@@ -271,7 +277,9 @@ ls certs/live/${DOMAIN}/privkey.pem certs/live/${DOMAIN}/fullchain.pem
 Run the following to install Semaphore:
 
 ```shell title="Install Semaphore"
-helm upgrade --install --debug semaphore semaphore_chart.tgz --timeout 20m \
+helm upgrade --install --debug semaphore oci://ghcr.io/semaphoreio/semaphore \
+  --version v1.0.0-rc.1 \
+  --timeout 20m \
   --set global.domain.ip=${IP_ADDRESS} \
   --set global.domain.name="${DOMAIN}" \
   --set ingress.staticIpName="${GOOGLE_STATIC_IP_NAME}" \
@@ -374,6 +382,7 @@ If you uninstall Semaphore you will lose access to all your projects, workflows 
 First, uninstall Semaphore with the following command:
 
 ```shell title="Uninstall Semaphore"
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm uninstall semaphore
 ```
 

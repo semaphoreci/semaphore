@@ -193,12 +193,12 @@ kubectl apply -f https://app.getambassador.io/yaml/emissary/3.9.1/emissary-crds.
 kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext -n emissary-system
 ```
 
-TODO: either download the chart of do helm repo add...
-
 Finally, install Semaphore with Helm:
 
 ```shell title="remote shell - install Semaphore"
-helm upgrade --install --debug semaphore semaphore_chart.tgz --timeout 20m \
+helm upgrade --install --debug semaphore oci://ghcr.io/semaphoreio/semaphore \
+  --version v1.0.0-rc.1 \
+  --timeout 20m \
   --set global.domain.ip=${IP_ADDRESS} \
   --set global.domain.name=${DOMAIN} \
   --set ingress.enabled=true \

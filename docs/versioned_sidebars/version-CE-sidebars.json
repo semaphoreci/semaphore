@@ -36,8 +36,7 @@
             "description": "Install Semaphore on a Kubernetes cluster"
           },
           "items": [
-            "getting-started/install-gke",
-            "getting-started/install-eks"
+            "getting-started/install-gke"
           ]
         }
       ]

@@ -12,3 +12,9 @@ import Steps from '@site/src/components/Steps';
 import FeatureNotAvailable from '@site/src/components/FeatureNotAvailable';
 
 WIP
+
+:::note macOS users
+
+There is a known issue that blocks Docker on macOS. If you have trouble running Helm and you're using macOS, check the following [outstanding issue](https://github.com/docker/for-mac/issues/7520#issuecomment-2593247448) for a workaround.
+
+:::
