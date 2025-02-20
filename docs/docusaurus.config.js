@@ -167,7 +167,7 @@ const config = {
             dropdownActiveClassDisabled: true,
           },
           {
-            href: 'https://github.com/semaphoreci/semaphore/tree/main/docs',
+            href: 'https://github.com/semaphoreio/semaphore',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
             // label: 'GitHub',
@@ -184,7 +184,7 @@ const config = {
       // This is an optional announcement bar. It goes on the top of the page
       announcementBar: {
         id: `announcementBar-1`,
-        content: `⭐️ If you like Semaphore, <b>give it a star</b> on <a target="_blank" rel="noopener noreferrer" href="https://github.com/semaphoreci/semaphore">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/semaphoreci">X (Twitter)</a>`,
+        content: `⭐️ If you like Semaphore, <b>give it a star</b> on <a target="_blank" rel="noopener noreferrer" href="https://github.com/semaphoreio/semaphore">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/semaphoreci">X (Twitter)</a>`,
         backgroundColor: '#49a26e',
         textColor: '#f5f6f7'
       },
@@ -208,7 +208,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/semaphoreci',
+                href: 'https://github.com/semaphoreio',
               },
               {
                 label: 'LinkedIn',
