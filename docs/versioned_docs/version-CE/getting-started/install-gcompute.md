@@ -118,7 +118,7 @@ export IP_ADDRESS=$(gcloud compute instances describe ${GOOGLE_INSTANCE_NAME} --
 Take note of the public IP address of your instance:
 
 ```shell
-echo IP_ADDRESS
+echo $IP_ADDRESS
 ```
 
 ## Step 6 - Update DNS records {#dns}
@@ -131,16 +131,16 @@ Configure your DNS by creating two A records that point to the reserved IP:
 2. Create root domain A record
 
       - Type: A
-      - Name: `@` or empty (e.g. `semaphore.example.com`)
+      - Name: `semaphore` (e.g. `semaphore.example.com`)
       - Value: the public IP address of your Linux machine
 
 3. Create a wildcard record
 
       - Type: A
-      - Name: `*` or `*.semaphore.example.com`
+      - Name: `*.semaphore` (e.g. `*.semaphore.example.com`)
       - Value: the public IP address of your Linux machine
 
-4. Wait for DNS propagation (typically 15-30 minutes)
+4. Wait for DNS propagation (typically a few minutes)
 
     You can verify the creation of the TXT record in the [Online Dig Tool](https://toolbox.googleapps.com/apps/dig/#A/) for:
 
