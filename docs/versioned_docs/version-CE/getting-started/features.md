@@ -15,8 +15,6 @@ This page compares the features available across all [Semaphore editions](./abou
 
 ## CI/CD Workflows
 
-Legends: ? (unknown), p (pending/planned), x (deleted pages/content), c (confirmed live)
-
 | Feature | Semaphore Cloud | Semaphore CE |
 |--|--|--|
 | Visual editor | Yes | Yes |
@@ -42,7 +40,7 @@ Legends: ? (unknown), p (pending/planned), x (deleted pages/content), c (confirm
 |--|--|--|
 | Test reports | Yes | Yes |
 | Activity monitor | Yes | Yes |
-| CustomeDashboards | Yes | No |
+| Custom Dashboards | Yes | No |
 | Flaky tests | Yes | No |
 | Project insights | Yes | No |
 | Organization health | Yes | No |
@@ -67,9 +65,9 @@ Legends: ? (unknown), p (pending/planned), x (deleted pages/content), c (confirm
 | Organization roles | Yes | Yes |
 | Project roles | Yes | Yes (*) |
 | User groups | Yes | No |
-| xCustom Roles | Yes | No |
+| Custom Roles | Yes | No |
 
-(*) Project roles exist but cannot be manually assigned to individual users. The role is assigned based on project-membership and org-wide user roles.
+(*) Project roles exist but cannot be manually assigned to individual users. The role is assigned based on project membership and server roles.
 
 ## Integrations 
 

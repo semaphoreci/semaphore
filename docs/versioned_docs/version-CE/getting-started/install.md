@@ -87,7 +87,7 @@ Each platform presents trade-off. Use the following table as a guide:
   <NiceButton
     icon={EKSIcon}
     title="Install on EKS"
-    subtitle="Amazon Elastic Kubernetes (pending)"
+    subtitle="Amazon Elastic Kubernetes"
     url="./install-eks"
   />
 </ButtonContainer>
