@@ -31,6 +31,7 @@ Install the following tools before starting the installation:
 
 - [Google Cloud SDK](https://cloud.google.com/sdk): command line tools to create and manage your Google Cloud services
 - [Certbot](https://certbot.eff.org/): to create TLS certificates for your domain
+- [Helm](https://helm.sh/docs/intro/install/): to install Semaphore
 
 ## Step 2 - Set up Google project {#setup}
 
@@ -203,7 +204,7 @@ Configure your DNS by creating two A records that point to the reserved IP:
 3. Create a wildcard record
 
       - Type: A
-      - Name: `*.semaphore` (e.g. `*.semaphore.example.com`)
+      - Name: `*.semaphore` (e.g. `*.semaphore.example.com`
       - Value: the public IP address of your Linux machine
 
 4. Wait for DNS propagation (typically a few minutes)
@@ -346,7 +347,7 @@ On new installations, the system may take up to 30 minutes to finish all setup t
 
 :::
 
-Open a browser and navigate to the domain to `id.<your-domain>/login`. For example: `id.example.com/login`
+Open a browser and navigate to the domain to `id.<your-domain>/login`. For example: `id.semaphore.example.com/login`
 
 Fill in the username and password obtained at the end of [step 7](#semaphore).
 
