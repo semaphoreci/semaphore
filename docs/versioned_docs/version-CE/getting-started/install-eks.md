@@ -34,7 +34,16 @@ Install the following tools before starting the installation:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/): to manage your Kubernetes installation
 - [Helm](https://helm.sh/docs/intro/install/): to install Semaphore
 
-In addition, you need to configure [Route53 DNS](https://aws.amazon.com/route53/) for your domain. Take note of the hosted Zone ID for your domain within Route 53, for example `Z05666441V6R4KFL4MJAA`, since it is used to create Semaphore infrastructure.
+In addition, you need to the domain where Semaphore will be installed to [Route53 DNS](https://aws.amazon.com/route53/). Take note of the **hosted Zone ID** for your domain within Route 53, for example, `Z05666441V6R4KFL4MJAA`, since it is used to create Semaphore infrastructure.
+
+
+:::info Important
+
+We highly recommend **installing Semaphore on a subdomain**, e.g. `semaphore.example.com`. Installing Semaphore on your main domain is discouraged as its operation might interfere with other services running on the same domain.
+
+For example, if your domain is `example.com`, consider using the domain `semaphore.example.com`. 
+
+:::
 
 ## Step 2 - Clone the Semaphore repository {#clone}
 
@@ -66,17 +75,6 @@ export AWS_REGION="<your-aws-region>"
 export ZONE_ID="<your-route53-zone-id>"
 ```
 
-:::info Important
-
-We highly recommend **installing Semaphore on a subdomain**, e.g. `semaphore.example.com`. Installing Semaphore on your main domain is discouraged as its operation might interfere with other services running on the same domain.
-
-For example, if your domain is `example.com`, consider installing Semaphore on `semaphore.example.com`. See the example below.
-
-```shell title="example DOMAIN variable"
-export DOMAIN="semaphore.example.com"
-```
-
-:::
 
 Once you are done with the configuration, it should look like this:
 
@@ -157,6 +155,29 @@ helm upgrade --install --debug semaphore oci://ghcr.io/semaphoreio/semaphore \
   --set ssl.type=alb
 ```
 
+Once the installation is done, you the following command should appear in the terminal:
+
+```text
+=============================================================================================
+Congratulations, Semaphore has been installed successfully!
+
+To start using the app, go to https://id.semaphore.example.com/login
+
+You can fetch credentials for the login by running this command:
+
+echo "Email: $(kubectl get secret user-creds -n default -o jsonpath='{.data.email}' | base64 -d)"; echo "Password: $(kubectl get secret user-creds -n default -o jsonpath='{.data.password}' | base64 -d)"
+=============================================================================================
+```
+
+Execute the shown command to retrieve the login credentials.
+
+```shell title="remote shell - get login credentials"
+$ echo "Email: $(kubectl get secret user-creds -n default -o jsonpath='{.data.email}' | base64 -d)"; echo "Password: $(kubectl get secret user-creds -n default -o jsonpath='{.data.password}' | base64 -d)"
+
+Email: root@example.com
+Password: AhGg_2v6uHuy7hqvNmeLw0O4RqI=
+API Token: nQjnaPKQvW6TqXtpTNSx
+```
 
 ## Step 7 - First login {#login}
 
@@ -168,7 +189,7 @@ On new installations, the system may take up to 30 minutes to finish all setup t
 
 Open a browser and navigate to the domain to `id.<your-domain>/login`. For example: `id.semaphore.example.com/login`
 
-Fill in the username and password obtained at the end of [step 7](#semaphore).
+Fill in the username and password obtained at the end of [step 6](#install).
 
 ![Log in screen for Semaphore](./img/first-login.jpg)
 
@@ -180,7 +201,7 @@ You should be greeted with the onboarding guide.
 
 ![Onboarding guide screen](./img/on-boarding-guide.jpg)
 
-## Post installation tasks
+## Post-installation tasks
 
 Once your have Semaphore up and running, check out the following pages to finish setting up:
 
@@ -233,4 +254,5 @@ You will be prompted to confirm the deletion of the AWS resources.
 - [Installation guide](./install.md)
 - [Getting started guide](./guided-tour)
 - [Migration guide](./migration/overview)
+
 

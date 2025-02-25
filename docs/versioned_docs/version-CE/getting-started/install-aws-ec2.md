@@ -376,7 +376,7 @@ On new installations, the system may take up a few minutes to finish all setup t
 
 Open a browser and navigate to the domain to `id.<your-domain>/login`. For example: `id.semaphore.example.com/login`
 
-Fill in the username and password obtained at the end of [step 7](#install).
+Fill in the username and password obtained at the end of [step 10](#install).
 
 ![Log in screen for Semaphore](./img/first-login.jpg)
 
