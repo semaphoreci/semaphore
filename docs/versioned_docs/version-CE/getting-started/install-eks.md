@@ -147,7 +147,7 @@ Install Semaphore with Helm:
 
 ```shell
 helm upgrade --install --debug semaphore oci://ghcr.io/semaphoreio/semaphore \
-  --version v1.0.0-rc.1 \
+  --version v1.0.0 \
   --timeout 20m \
   --set global.domain.name="${DOMAIN}" \
   --set ingress.ssl.certName="${CERT_NAME}" \

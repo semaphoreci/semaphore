@@ -321,7 +321,7 @@ Finally, install Semaphore with Helm:
 
 ```shell title="remote shell - install Semaphore"
 helm upgrade --install --debug semaphore oci://ghcr.io/semaphoreio/semaphore \
-  --version v1.0.0-rc.1 \
+  --version v1.0.0 \
   --timeout 20m \
   --set global.domain.ip=${IP_ADDRESS} \
   --set global.domain.name=${DOMAIN} \
