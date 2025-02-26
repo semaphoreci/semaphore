@@ -15,6 +15,7 @@ const sidebars = {
 
   gettingStarted: [
           'getting-started/about-semaphore',
+          'getting-started/features',
           {
             type: 'category',
             label: 'Guided Tour',

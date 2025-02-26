@@ -2,7 +2,7 @@ import Admonition from '@theme/Admonition';
 import SemaphoreLogo from '@site/static/img/logo.svg';
 import styles from './styles.module.css';
 
-const pricingUrl = "https://semaphoreci.com/pricing";
+const pricingUrl = "https://semaphore.io/pricing";
 
 /**
  * A repurposed admonition to show plans that support the explained feature

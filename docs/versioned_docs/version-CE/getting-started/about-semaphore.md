@@ -4,13 +4,13 @@ description: About Semaphore
 
 # About Semaphore
 
-Semaphore is [Continuous Integration and Delivery](https://semaphoreci.com/continuous-integration) (CI) platform that's fast, easy to use, and incredibly scalable. 
+Semaphore is [Continuous Integration and Delivery](https://semaphore.io/continuous-integration) (CI) platform that's fast, easy to use, and incredibly scalable. 
 
 ## Semaphore editions {#editions}
 
 Semaphore comes in two editions:
 
-- **[Semaphore Cloud](/getting-started/about-semaphore)**: is a cloud-based, fully-managed CI-as-a-Service platform. Meant for individuals and companies that don't wish to maintain a CI/CD system. Head to [semaphoreci.com](https://semaphoreci.com) to access Semaphore Cloud
+- **[Semaphore Cloud](/getting-started/about-semaphore)**: is a cloud-based, fully-managed CI-as-a-Service platform. Meant for individuals and companies that don't wish to maintain a CI/CD system. Head to [semaphoreci.com](https://semaphore.io) to access Semaphore Cloud
 - **[Semaphore CE](/CE/getting-started/install)**: is the free and open-source Community Edition of Semaphore. Meant for anyone that wishes to host and manage their own CI/CD architecture.
 - **On-premise (Enterprise Edition)**: fully-featured Semaphore that can run behind a firewall using your infrastructure
 
@@ -30,7 +30,7 @@ Continuous Delivery and Continuous Deployment extend this process by providing a
 
 ## Where to go next?
 
-If you want to give Semaphore a go, head to the [Guided Tour](./guided-tour). You can try Semaphore for free, with no strings attached.
+If you want to give Semaphore Cloud, head to the [Guided Tour](./guided-tour). If you prefer to self-host, see the [Community Edition installation guide](./install).
 
 You can find the complete Semaphore handbook in the [Using Semaphore](../using-semaphore/jobs) section.
 

@@ -221,15 +221,15 @@ const config = {
             items: [
               {
                 label: 'Semaphore Blog',
-                href: 'https://semaphoreci.com/blog',
+                href: 'https://semaphore.io/blog',
               },
               {
                 label: 'Guides and E-Books',
-                href: 'https://semaphoreci.com/resources',
+                href: 'https://semaphore.io/resources',
               },
               {
                 label: 'CI/CD Learning Tool',
-                href: 'https://semaphoreci.com/cicd-learning-hub',
+                href: 'https://semaphore.io/cicd-learning-hub',
               },
             ],
           },

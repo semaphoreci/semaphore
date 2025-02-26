@@ -4,7 +4,17 @@ description: About Semaphore
 
 # About Semaphore
 
-Semaphore is a cloud-based [Continuous Integration and Delivery](https://semaphoreci.com/continuous-integration) (CI) platform that's fast, easy to use, and incredibly scalable.
+Semaphore is [Continuous Integration and Delivery](https://semaphore.io/continuous-integration) (CI) platform that's fast, easy to use, and incredibly scalable. 
+
+## Semaphore editions {#editions}
+
+Semaphore comes in two editions:
+
+- **[Semaphore Cloud](/getting-started/about-semaphore)**: is a cloud-based, fully-managed CI-as-a-Service platform. Meant for individuals and companies that don't wish to maintain a CI/CD system. Head to [semaphore.io](https://semaphore.io) to access Semaphore Cloud
+- **[Semaphore CE](/CE/getting-started/install)**: is the free and open-source Community Edition of Semaphore. Meant for anyone that wishes to host and manage their own CI/CD architecture.
+- **On-premise (Enterprise Edition)**: fully-featured Semaphore that can run behind a firewall using your infrastructure
+
+See the [feature comparison](./features) to decide which edition of Semaphore is best for you.
 
 ## What is CI/CD?
 
@@ -17,32 +27,6 @@ CI enables developers to frequently merge code changes, automatically test them,
 Continuous Delivery and Continuous Deployment extend this process by providing a package you can release and deploy to the world. The whole thing is automated and can be set up to not need human intervention. No more stressing over deployment or releases!
 
 ![CD Workflow](./tour/img/cd-workflow.jpg)
-
-## Ways to run Semaphore
-
-- **Semaphore Cloud**: fully managed CI/CD solution that runs fully on the cloud. Just sign up and begin using it. No infrastructure to maintain.
-- **Semaphore Hybrid**: run workflows fully or partly on your own hardware, allowing you to leverage your infrastructure while letting Semaphore orchestrate the workload
-- **On-Premise**: run Semaphore fully behind a firewall using your infrastructure
-
-## Features
-
-- Manage your projects using the visual builder, the command line, or via the API
-- Unlimited scale and parallelization
-- A wide variety of cloud machines to run your workflows
-- SSH into any job to debug problems interactively
-- x86_64 and ARM architectures out of the box
-- Self-hosted agents to run workflows on your infrastructure
-- Built-in artifact and cache storage
-- Project metrics to track your productivity
-- Test insights and flaky test detector
-- Parameterized deployments
-- Role-based access control
-- User groups
-- Granular deployment permissions
-- Audit logs
-- SCIM/SAML support for enterprise user management
-- Pre-build Docker images for various tasks
-- SLA and premium support
 
 ## Where to go next?
 
