@@ -411,7 +411,7 @@ Some commands like `bash -e` or `set -x otrace` may override this behavior and m
 
 This is commonly due to a rate-limit of third-party providers such as Docker Hub. These services limit how many unauthenticated pulls you can do in an hour, often based on IP. The machine you are running your jobs on may have been provisioned for another user, resulting in that particular IP being rate-limited.
 
-You can bypass this issue by creating a free account on Docker Hub, and then [authenticating with Docker](../using-semaphore/optimization/docker#auth) within the job. This way, the pulls are limited by your account (ten times more), and not by the IP of the machine.
+You can bypass this issue by creating a free account on Docker Hub, and then [authenticating with Docker](../using-semaphore/optimization/docker#auth) within the job. This way, the [pulls are limited by your account (100 per hour)](https://docs.docker.com/docker-hub/usage/), and not by the IP of the machine.
 
 :::tip
 
