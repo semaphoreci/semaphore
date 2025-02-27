@@ -23,6 +23,18 @@ This page contains Frequently Asked Questions.
 
 You can run Semaphore CE on any Linux machine or Kubernetes cluster. We provide detailed [installation instructions](./install.md) for popular cloud vendors and generic systems.
 
+### Help! Docker fails with "toomanyrequests"
+
+This is commonly due to a rate-limit of third-party providers such as Docker Hub. These services limit how many unauthenticated pulls you can do in an hour, often based on IP. The machine or cluster running the jobs might have already tripped the IP rate limit.
+
+You can bypass this issue by creating a free account on Docker Hub, and then [authenticating with Docker](../using-semaphore/optimization/docker#auth) within the job. This way, the [pulls are limited by your account (100 per hour)](https://docs.docker.com/docker-hub/usage/), and not by the IP of the machine.
+
+:::tip
+
+If you cannot authenticate, you can use other third-party Docker registries such as the [ECR Public Gallery](https://gallery.ecr.aws/).
+
+:::
+
 ### Can I use self-signed certificates with private Docker registries?
 
 Yes. To use a private Docker registry with a self-signed SSL certificate you must:
