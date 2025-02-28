@@ -467,7 +467,6 @@ This section lists utility images for [sem-service](../../reference/toolbox#sem-
 | postgres:17 | `registry.semaphoreci.com/postgres:17` |  
 | postgres:17.2 | `registry.semaphoreci.com/postgres:17.2` |  
 
-
 </div>
 </details>
 
@@ -481,15 +480,22 @@ This is a PostgreSQL container extended with [PostGIS](https://postgis.net/).
 
 | Image | Link |
 |--------|--------|
+| postgis:9.5-2.5 | `registry.semaphoreci.com/postgis:9.5-2.5` |    
+| postgis:9.5-3.0 | `registry.semaphoreci.com/postgis:9.5-3.0` |    
 | postgis:9.6-2.5 | `registry.semaphoreci.com/postgis:9.6-2.5` |    
 | postgis:9.6-3.0 | `registry.semaphoreci.com/postgis:9.6-3.0` |    
 | postgis:10-2.5 | `registry.semaphoreci.com/postgis:10-2.5` |    
+| postgis:10-3.0 | `registry.semaphoreci.com/postgis:10-3.0` |    
 | postgis:11-2.5 | `registry.semaphoreci.com/postgis:11-2.5` |    
 | postgis:11-3.0 | `registry.semaphoreci.com/postgis:11-3.0` |    
 | postgis:12-2.5 | `registry.semaphoreci.com/postgis:12-2.5` |    
 | postgis:12-3.0 | `registry.semaphoreci.com/postgis:12-3.0` |    
 | postgis:13-3.0 | `registry.semaphoreci.com/postgis:13-3.0` |    
 | postgis:14-3.1 | `registry.semaphoreci.com/postgis:14-3.1` |    
+| postgis:15-3.3 | `registry.semaphoreci.com/postgis:15-3.3` |    
+| postgis:15-3.4 | `registry.semaphoreci.com/postgis:15-3.4` |    
+| postgis:16-3.4 | `registry.semaphoreci.com/postgis:16-3.4` |    
+| postgis:17-3.5 | `registry.semaphoreci.com/postgis:17-3.5` |    
 
 </div>
 </details>
