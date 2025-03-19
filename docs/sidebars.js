@@ -88,6 +88,7 @@ const sidebars = {
           },
           collapsed: false,
           items: [
+            'using-semaphore/billing',
             'using-semaphore/rbac',
             'using-semaphore/org-health',
             'using-semaphore/org-preflight',

@@ -65,7 +65,7 @@ Here is the recommended plan to migrate from any CI provider to Semaphore.
 
 5. Optimize costs
 
-    Once you have your project running, you can track your spending in the [Plans & Billing page](../../using-semaphore/organizations#plans)
+    Once you have your project running, you can track your spending in the [Plans & Billing page](../../using-semaphore/billing).
 
     The figure to optimize is the cost-per-pipeline. In other words, you should balance the cost of running your CI pipeline against the expected performance.
         
