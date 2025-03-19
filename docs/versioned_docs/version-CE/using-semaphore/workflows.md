@@ -59,7 +59,7 @@ The following events or actions trigger workflows by default:
 
 Additionally, you can configure workflows to be triggered by:
 
-- Pull requests
+- Pull requests (not available on BitBucket projects)
 - Pull request on forked repositories
 
 The reason for the trigger can be determined at runtime by examining the Semaphore environment variables in the job. See the [environment variable reference page](../reference/env-vars#semaphore) for more details.
