@@ -111,10 +111,15 @@ Selecting **Run on** allows you to configure what triggers are enabled for the p
 :::
 
 - Enabling **Pull requests** option allows Semaphore to run workflows on pull requests originating in the same repository
-- The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket usernames that can trigger workflows in this way
+- The **Forked pull request** works the same for pull requests originating from forked pull requests. [To prevent security leaks](#pr), you can configure a list of allowed secrets and GitHub/BitBucket/GitLab usernames that can trigger workflows in this way
   
 ![Pull request triggers](./img/project-general-settings-3.jpg)
 
+### Approving PRs with `/sem-approve` {#sem-approve}
+
+Blocked pull requests can be manually approved by adding a comment containing `/sem-approve` string in the PR conversation. Anyone who can run a forked pull request can also approve one.
+
+Approving forked pull requests is limited to new comments only and does not work with comment edits. Due to security concerns, `/sem-approve` will work only once. Subsequent pushes to the forked pull request must be approved again.
 
 ## How to skip commits {#skip}
 
