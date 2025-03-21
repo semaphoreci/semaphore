@@ -65,7 +65,9 @@ You must install and connect the [Semaphore command line](../reference/semaphore
 
 ## Managing users {#people}
 
-Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level. You can add up to 500 persons to an organization.
+Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the organization and project level.
+
+Free plans are limited to 5 users per organization. Paid plans have no user limit.
 
 You can only invite people with GitHub or BitBucket accounts to your organization.
 
@@ -77,17 +79,17 @@ To manage users in your organization, open the organization menu and select **Pe
 
 To invite a user to your organization, press the **Add people** button:
 
-![People tab](./img/people-tab.jpg)
+![Add people button](./img/add-people-button.jpg)
 
 <Steps>
 
-1. Select one of the tabs: **GitHub**, **BitBucket**, or **GitLab**
+1. Select one of the available tabs
     - Type the user's handle, e.g. `TomFern`, or select the user from the list.
-    - If you don't see the user in the list. Ensure they have access to at least repository in **GitHub**, **BitBucket**, or **GitLab**
+    - If you don't see the user in the list. Ensure they have repository access in **GitHub** or **BitBucket** for at least one project in your organization
 
-    ![Invite users](./img/invite-user.jpg)
+    ![Invite users](./img/invite-users.jpg)
 
-2. Press **invite**
+2. Press **Add selected**
 3. Optionally, set their [role](#roles-people)
 
 
@@ -97,14 +99,12 @@ To invite a user to your organization, press the **Add people** button:
 
 Users can only be removed from the organization when they don't own any projects. You must [transfer the ownership](./projects#owner-change) of all the user's projects before they can be removed from the organization.
 
-To remove users from the organization:
+To remove a user, go to the people option in the organization menu and follow these steps:
 
 <Steps>
 
 1. Transfer any [project ownership](./projects#owner-change) the user may have to another individual. The user must not own any projects
-2. Open the organization menu
-3. Select **People**
-4. Press the **X** button next to the username of the user you want to remove
+2. Press the **X** button next to the username of the user you want to remove
 
   ![Removing a user from the organization](./img/remove-user.jpg)
 
