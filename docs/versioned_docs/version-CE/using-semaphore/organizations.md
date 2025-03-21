@@ -100,7 +100,7 @@ To reset a user password, go to the poeple option in the server menu and follow 
 
 Users can only be removed from the instance when they don't own any projects. You must [transfer the ownership](./projects#owner-change) of all the user's projects before they can be removed from Semaphore.
 
-To remove a user, go to the poeple option in the server menu and follow these steps:
+To remove a user, go to the people option in the server menu and follow these steps:
 
 <Steps>
 
