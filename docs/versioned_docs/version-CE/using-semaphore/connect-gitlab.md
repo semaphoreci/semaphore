@@ -1,8 +1,8 @@
 ---
-description: Access your BitBucket repositories
+description: Access your GitLab repositories
 ---
 
-# Connect Bitbucket
+# Connect GitLab
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -10,15 +10,15 @@ import Available from '@site/src/components/Available';
 import VideoTutorial from '@site/src/components/VideoTutorial';
 import Steps from '@site/src/components/Steps';
 
-BitBucket users need to provide access to Semaphore so it can read their repositories.
+GitLab users need to provide access to Semaphore so it can read their repositories.
 
 ## Overview {#overview}
 
-You must connect Semaphore to your BitBucket account in order to access your BitBucket repositories.
+You must connect Semaphore to your GitLab account in order to access your GitLab repositories.
 
-## How to connect to BitBucket {#connect-bitbucket}
+## How to connect to GitLab {#connect-bitbucket}
 
-To connect Semaphore to BitBucket, follow these steps:
+To connect Semaphore to GitLab, follow these steps:
 
 <Steps>
 
@@ -26,48 +26,33 @@ To connect Semaphore to BitBucket, follow these steps:
 
       ![Profile settings](./img/profile-settings.jpg)
 
-2. Click on **Grant access** next to BitBucket
+2. Click on **Grant access** next to GitLab
 
       ![Profile Git Connect](./img/profile-git-connect.jpg)
 
-3. You are redirected to BitBucket, log in and authorize Semaphore connection to proceed
-
-</Steps>
-
-## How to disconnect a BitBucket account {#disconnect-bb}
-
-Disconnecting a BitBucket account removes Semaphore access to your repositories.
-
-To disconnect Semaphore from BitBucket:
-
-<Steps>
-
-1. Log in your BitBucket account
-2. Go to the [Application authorization page](https://bitbucket.org/account/settings/app-authorizations/)
-3. Click on **Revoke** next to Semaphore 2.0
-    ![Revoke access to Semaphore](./img/revoke-bb.jpg)
+3. You are redirected to GitLab, log in and authorize Semaphore connection to proceed
 
 </Steps>
 
 ## Troubleshooting guide
 
-If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between BitBucket and Semaphore.
+If your repositories aren't showing in Semaphore or changes are not triggering new workflows, check the connection between GitLab and Semaphore.
 
 <Steps>
 
 1. Navigate to your [Semaphore account](https://me.semaphoreci.com/account)
-2. Read the status next to BitBucket
+2. Read the status next to GitLab
     ![Connection status green](./img/account-gh-bb-access.jpg)
 3. If the status is disconnected, click on **Grant**
 
 </Steps>
 
-Your Bitbucket profile connection on this page can be in one of these states:
+Your GitLab profile connection on this page can be in one of these states:
 
 - **Not Connected**: your account is not connected. Next time you attempt to log in, you will need to grant access to Semaphore again.
 - **Connected**: can connect both private and public repositories via OAuth. 
 
-You can check and change the permissions of your OAuth App connection on the [BitBucket authorization page](https://bitbucket.org/account/settings/app-authorizations/).
+You can check and change the permissions of your OAuth App connection on the [GitLab authorization page](https://bitbucket.org/account/settings/app-authorizations/).
 
 ### Verify deploy key health {#deploy-key}
 
@@ -121,11 +106,11 @@ To fix the broken webhook, click on **Regenerate**. This should generate a new w
 
 ### Reconnecting moved or renamed projects
 
-There are several actions that can break the connection between BitBucket and Semaphore. For example:
+There are several actions that can break the connection between GitLab and Semaphore. For example:
 
 - moving the repository to a different location
 - renaming the repository
-- renaming the BitBucket user account
+- renaming the GitLab user account
 
 When this happens, you must update the URL of the repository in Semaphore. To do this:
 
@@ -146,3 +131,4 @@ After changing the URL, double-check the status of the [deploy key](#deploy-key)
 - [Getting Started Guide](../getting-started/guided-tour)
 - [Managing Semaphore servers](./organizations)
 - [How to connect with GitHub](./connect-github)
+

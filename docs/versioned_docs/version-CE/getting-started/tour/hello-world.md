@@ -2,8 +2,7 @@
 description: Create your first job
 ---
 
-# Hello, World!
-
+# Hello, World
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -46,7 +45,7 @@ These are the steps to create your first project:
 
 <Steps>
 
-1. Press the **Create new** button 
+1. Press the **Create new** button
 
     ![Create new button location](./img/create-new.jpg)
 
@@ -61,11 +60,9 @@ These are the steps to create your first project:
 
 5. Wait a few moments for Semaphore to connect to your repository and set up the project
 
-    TODO: the next step is probably not valid
+6. Next, you'll see a list with all the existing contributors in the repository. These are all individuals with some level of access to your Git provider
 
-6. Next, you'll see a list with all the existing contributors in the repository. These are all individuals with some level of access to your GitHub or BitBucket repository.
-
-    Select the individuals you wish to invite to the project and press **Add selected** 
+    Select the individuals you wish to invite to the project and press **Add selected**
 
     You can also [add people later](#people)
 

@@ -27,6 +27,7 @@ This page compares the features available across all [Semaphore editions](./abou
 | Self-hosted agents | Yes | Yes |
 | GitHub support | Yes | Yes |
 | BitBucket support | Yes | Yes |
+| GitLab support | Yes | Yes |
 | Promotions | Yes | No |
 | Parameterized promotions | Yes | No |
 | Deployment targets | Yes | No |
