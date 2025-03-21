@@ -18,7 +18,7 @@ Semaphore uses a RBAC model to determine what actions users can take in server a
 
 A server [Admin](#org-admin) or [Owner](#org-owner) must invite users via their GitHub or BitBucket accounts before they can access the Semaphore server or any of the projects.
 
-### Role scopes {#scopes}
+## Role scopes {#scopes}
 
 Semaphore manages roles on two levels:
 
