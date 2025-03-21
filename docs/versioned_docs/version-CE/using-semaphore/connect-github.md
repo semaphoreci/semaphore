@@ -12,8 +12,6 @@ import Steps from '@site/src/components/Steps';
 
 GitHub users need to provide access to Semaphore so it can read their repositories.
 
-TODO: Use organization menu -> settings -> github app
-
 ## Overview
 
 Semaphore accesses your GitHub repositories using the [Semaphore GitHub App](https://github.com/apps/semaphore-ci-cd). This method provides fine-grained control and per-repository permissions to control which code Semaphore can access.
@@ -28,20 +26,19 @@ To connect Semaphore with GitHub, follow these steps:
 
 1. Open the server menu and select **Settings**
 
-    ![Server menu](./img/server-menu.jpg)
+    ![Server menu](./img/settings-menu-ce.jpg)
 
-2. Select **Git Integration**
-3. Press **Connect**
+2. On **Git Integration** press **Connect**
 
-    ![Connect GitHub Integration](./img/github-connect-button.jpg)
+    ![Git integration page](./img/git-integrations.jpg)
 
-4. Sign into your GitHub account
-5. Select what type of access to authorize
+3. Sign into your GitHub account
+4. Select what type of access to authorize
 
     - **All repositories**: grant access to Semaphore to all your current *and future repositories*
     - **Only select repositories**: select from the list which repositories can be accessed by Semaphore
 
-6. Press **Install**
+5. Press **Install**
 
 </Steps>
 
@@ -52,8 +49,6 @@ You might not be able to install the GitHub App if you are not the GitHub organi
 :::
 
 ## How to transfer projects from OAuth to GitHub App {#transfer}
-
-TODO: oauth was not working on the alpha I used. Check again
 
 Projects [connected via the OAuth App](./connect-github-oauth) can be transferred to the [GitHub App](#connect-ghapp) at any time. You need to have installed the GitHub App in your organization before the transfer can take place.
 

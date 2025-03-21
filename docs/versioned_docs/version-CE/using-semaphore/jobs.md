@@ -62,7 +62,7 @@ Open your [project](./projects) on Semaphore and press **Edit Workflow**.
 </Steps>
 
 ![New job being edited](./img/create-a-job-1.jpg)
- 
+
 </TabItem>
 <TabItem value="yaml" label="YAML">
 
@@ -125,20 +125,19 @@ To run two jobs in parallel:
 
 1. Select the block
 2. Press **+ Add job**
-3. Type the job name and commands 
+3. Type the job name and commands
 
 </Steps>
-
 
 ![Adding a second job](./img/jobs-parallel.jpg)
 
 Here you can also:
-- Delete a job by pressing the X sign next to it. 
+
+- Delete a job by pressing the X sign next to it.
 - Delete the whole block along with the jobs by scrolling down and clicking on **Delete block...**
 
 </TabItem>
 <TabItem value="yaml" label="YAML">
-
 
 <Steps>
 
@@ -147,7 +146,6 @@ Here you can also:
 3. Save the file, commit and push it to your repository
 
 </Steps>
-
 
 ```yaml title=".semaphore/semaphore.yaml"
 version: v1.0
@@ -205,7 +203,7 @@ If you want to run jobs in sequence, i.e. not in parallel, you must define them 
 
 1. Add a new job entry under `blocks`
 2. Add a `dependencies`. List the names of the dependent blocks.
- 
+
 </Steps>
 
 ```yaml title=".semaphore/semaphore.yml"
@@ -252,7 +250,7 @@ You can use block dependencies to control the execution flow of the workflow. Se
 
 The [Semaphore toolbox](../reference/toolbox) is a set of built-in command line tools to carry essential tasks in your jobs such as cloning the repository or moving data between jobs.
 
-The most-used tools in the Semaphore toolbox are: 
+The most-used tools in the Semaphore toolbox are:
 
 - [checkout](#checkout) clones the remote Git repository
 - [cache](#cache) speeds up jobs by caching downloaded files
@@ -341,7 +339,6 @@ The highlighted lines show how to use the cache:
 
 Cache is not limited to Node.js. It works with several languages and frameworks. Alternatively, you can use cache with any kind of file or folder but in that case, you need to [supply additional arguments](../reference/toolbox#cache)
 
-
 ### artifact {#artifact}
 
 :::note
@@ -426,8 +423,6 @@ echo "continuing job..."
 
 ### Interactive debug with SSH {#ssh-into-agent}
 
-TODO: update instructions. it seems SSH on self-hosted agents does not work
-
 You can debug a job interactively by SSHing into the agent. This is a very  powerful feature for troubleshooting.
 
 ![An interactive SSH session](./img/ssh-debug-session.png)
@@ -475,7 +470,7 @@ To run the actual job commands in the SSH session:
 source ~/commands.sh
 ```
 
-You can actually run anything in the agent, including commands that were not actually part of the job. Exit the session to end the job. 
+You can actually run anything in the agent, including commands that were not actually part of the job. Exit the session to end the job.
 
 By default, the duration of the SSH session is limited to one hour. To run longer debug sessions, pass the duration flag to the previous command as shown below:
 
@@ -491,18 +486,15 @@ sem debug job <job-id> --duration 3h
 
 ### Inspecting running jobs {#attach-job}
 
-TODO: update instructions. it seems this does not work on self-hosted agents
-
 You attach a terminal console to a running job. The steps are the same as [debugging a job](#ssh-into-agent). The only difference is that Semaphore presents the following command (only while the job is running):
 
 ```shell
 sem attach <job-id>
 ```
+
 You can explore running processes, inspect the environment variables, and take a peek at the log files to help identify problems with your jobs.
 
 ### Port forwarding {#port-forwarding}
-
-TODO: update instructions. it seems this does not work on self-hosted agents
 
 When SSH is not enough to troubleshoot an issue, you can use port forwarding to connect to services listening to ports in the agent.
 
@@ -542,7 +534,7 @@ Commands in the *prologue* run before each job in the block. Use this to run com
 <Steps>
 
 1. Select the block
-2. Open the prologue section and add your shell commands. 
+2. Open the prologue section and add your shell commands.
 
 </Steps>
 
@@ -557,7 +549,7 @@ In the example below we use [checkout](#checkout) to clone the repository at the
 
 1. Locate the block you wish to add the prologue to
 2. Add the `prologue` under `tasks`
-3. The `commands` are prepended to all jobs in the block. 
+3. The `commands` are prepended to all jobs in the block.
 
 </Steps>
 
@@ -665,7 +657,6 @@ blocks:
 </TabItem>
 </Tabs>
 
-
 ### Environment variables {#environment-variables}
 
 <VideoTutorial title="How to use environment variables" src="https://www.youtube.com/embed/gB02RreOd7E?si=35xbE6tOoiUAYiwk" />
@@ -676,7 +667,6 @@ Environment variables are exported into the shell environment of every job in th
 <TabItem value="editor" label="Editor">
 
 To add an environment variable:
-
 
 <Steps>
 
@@ -757,7 +747,7 @@ To enable existing secrets in a block:
 
 <Steps>
 
-1. Select the block 
+1. Select the block
 2. Open the **Secrets** section (you may need to scroll down)
 3. Enable the checkbox next to the secret
 
@@ -894,14 +884,12 @@ blocks:
 </TabItem>
 </Tabs>
 
-
 ### Agent {#agent-override}
 
 Here you can override the pipeline-level [agent](./pipelines#agents) for a specific job. You can select VMs running Linux, macOS, or Windows (self-hosted only) in both X86 and ARM architectures. This setting also allows you to run the job in [self-hosted agents](./self-hosted) or in [Docker environments](./pipelines#docker-environments).
 
 <Tabs groupId="editor-yaml">
 <TabItem value="editor" label="Editor">
-
 
 <Steps>
 
@@ -1029,7 +1017,6 @@ blocks:
 </TabItem>
 </Tabs>
 
-
 :::note
 
 It's not possible to use job parallelism at the same time as [job matrices](#matrix).
@@ -1121,6 +1108,7 @@ blocks:
                 - 20.15.1
           # highlight-end
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1137,8 +1125,6 @@ Every job in Semaphore has an internal priority value from 0 to 100. Job priorit
 The priority of a job matters when there are more jobs than [available agents](./organizations#activity-monitor).
 
 ### Default priorities {#default-priority}
-
-TODO: this table probably changes in CE, check values
 
 The priorities are assigned automatically according to the table below, but they [can be configured](#priority-assign) on a per-job or per-pipeline basis.
 
@@ -1300,14 +1286,13 @@ See [pipeline global time limit](./pipelines#max-job-duration) to change the max
 
 A pipeline can have up to *100 blocks*. This limit is not configurable.
 
-If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
+If you have a use case in which this limit is too constraining, please contact us at `<support@semaphoreci.com>` and we will try to work out a solution.
 
 ### Max jobs per block {#max-jobs}
 
 A block can have up to *50 jobs*. This limit is not configurable.
 
-If you have a use case in which this limit is too constraining, please contact us at support@semaphoreci.com and we will try to work out a solution.
-
+If you have a use case in which this limit is too constraining, please contact us at `<support@semaphoreci.com>` and we will try to work out a solution.
 
 ### Max job log size {#max-log-size}
 

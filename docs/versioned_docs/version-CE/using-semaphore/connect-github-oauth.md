@@ -12,8 +12,6 @@ import Steps from '@site/src/components/Steps';
 
 OAuth is the legacy method to access your GitHub repositories. This feature might be deprecated in the following releases. Semaphore recommends using [GitHub App](./connect-github) instead of the method described here.
 
-TODO: oauth was not working on the alpha I used. Check again
-
 ## Overview {#overview}
 
 Semaphore supports two types of ways to access your GitHub repositories:
@@ -34,33 +32,23 @@ Semaphore recommends using the [GitHub App](./connect-github) whenever possible 
 - **Granular permissions**: you can grant Semaphore access to individual repositories, giving you control over which data Semaphore has access to.
 - **No personal tokens**: since it does not rely on a personal access token, you can offboard people from the GitHub organization without the connection with Semaphore.
 
-## How to sign up using GitHub {#sign-gh}
-
-If you are creating a new Semaphore account, you can sign in with GitHub to create the connection automatically.
-
-Follow these steps to create a Semaphore account using GitHub:
-
-<Steps>
-
-1. Log in to your GitHub account
-2. Navigate to the [Semaphore login page](https://semaphoreci.com/login)
-3. Select **Log in with GitHub**
-4. Grant access to the Semaphore [OAuth App](https://github.com/settings/connections/applications/328c742132e5407abd7d) in GitHub
-5. Finish the Semaphore setup
-
-</Steps>
-
 ## How to authorize OAuth App {#connect-oauth}
 
-The connection between Semaphore and GitHub should be configured automatically when you sign up. However, this connection can be severed for different reasons. If you don't see your repositories when trying to create a [project](./projects), follow these steps:
+To connect Semaphore to GitHub using OAuth, follow these steps:
 
 <Steps>
 
-1. Navigate to your [Semaphore account page](https://me.semaphoreci.com/account)
-2. Click on **Grant public access** or **Grant private access** to grant access to only public or all of your repositories on GitHub
-    ![Connecting Semaphore to your Git provider](./img/connect-gh-bb.jpg)
-3. Press **Authorize semaphoreci**
-    ![Authorize access to GitHub account](./img/authorize-gh.jpg)
+1. Select **Profile Settings** under your login menu
+
+      ![Profile settings](./img/profile-settings.jpg)
+
+2. Click on **Connect** next to GitHub
+
+      ![Profile Git Connect](./img/profile-git-connect.jpg)
+
+3. You are redirected to GitHub, log in and authorize Semaphore connection to proceed
+
+      ![Authorize access to GitHub account](./img/authorize-gh.jpg)
 
 </Steps>
 

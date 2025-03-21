@@ -28,7 +28,7 @@ For this part of the tutorial you will need:
 
 ## Something to build {#demo}
 
-In most cases, the first step in CI is building the application. This proves that the main trunk is not broken and usually gives us a target to test. 
+In most cases, the first step in CI is building the application. This proves that the main trunk is not broken and usually gives us a target to test.
 
 So, our first task is to have something to build. In this case, we'll build a "Hello, World!" HTTP server in Go.
 
@@ -41,6 +41,7 @@ So, our first task is to have something to build. In this case, we'll build a "H
     git fetch origin setup-semaphore
     git checkout setup-semaphore
     ```
+
 3. Execute `go mod init hello-go` to initialize the Go module
 4. Create `main.go` with the following contents. This provides an HTTP endpoint that returns "Hello Go!" in the body
 
@@ -100,7 +101,6 @@ So, our first task is to have something to build. In this case, we'll build a "H
     ```
 
 </Steps>
-
 
 ## The build job {#build}
 
@@ -191,8 +191,6 @@ We're only scratching the surface of what you can test. So, here's an idea, try 
 
 ## Debugging with SSH {#ssh}
 
-TODO: check if this works? probably the steps are wrong
-
 Sooner or later you'll find that a command that runs fine in your machine fails miserably in the CI environment. The cause for this is often a subtle difference between the environments.
 
 Fortunately, Semaphore provides a great way to debug jobs. You can actually SSH into the CI environment to run the commands interactively, dig around, and try solutions. Once you find what's wrong, you can update the jobs to fix the error.
@@ -202,7 +200,7 @@ Before you can perform SSH debugging, you need to set the Semaphore Command Line
 <Steps>
 
 1. Go to your account menu and select **Profile Settings**
-2. Press the **Regenerate API Token** button 
+2. Press the **Regenerate API Token** button
 
     ![Regenerate Token](./img/regen-api-token.jpg)
 
@@ -218,6 +216,7 @@ Before you can perform SSH debugging, you need to set the Semaphore Command Line
     ```shell title="Connecting to your server"
     sem connect semaphore.<your-domain> <YOUR_API_TOKEN>
     ```
+
 6. You're ready to do SSH debugging
 
 </Steps>
@@ -246,4 +245,3 @@ The next time you encounter a failing job, follow these steps:
 - We learned how to use dependencies to run jobs sequentially
 - We used artifacts
 - We explored how to debug jobs using SSH
-
