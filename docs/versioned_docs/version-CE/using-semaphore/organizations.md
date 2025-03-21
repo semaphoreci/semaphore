@@ -27,25 +27,72 @@ A Semaphore instance has:
 
 ## Managing users {#people}
 
-Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the instance level. You can add up to 500 persons to your instance.
+Semaphore users a [Role Based Access Control](./rbac) model to manage permissions at the instance level.
 
 To manage users in your Semaphore instance, open the server menu and select **People**. This tab shows users and groups in your instance along with their roles and groups.
 
 ![The people tab](./img/people-tab.jpg)
 
-### How to invite users {#add-people}
+### How to create users {#add-people}
 
-To invite a user to your instance, press the **Add people** button.
-
+To create new accounts, go to the poeple option in the server menu and follow these steps:
 
 <Steps>
 
-1. Type the email of the person you wish to invite
-2. Optionally, set a username. If not provided, the username is inferred from the email
-3. Press **Create Accounts**
-4. Take note of the temporary passwords. On first login, users are prompted to change their passwords
+1. Press **Add people**
 
-![Add user screen](./img/add-user.jpg)
+    ![Add people button](./img/add-people-button.jpg)
+
+2. Type the email of the persons you wish to invite
+3. Optionally, set a username. If not provided, the username is inferred from the email
+4. When you are done adding users, press **Create Accounts**
+
+    ![Add user screen](./img/add-user.jpg)
+
+5. Take note of the temporary passwords for each account
+
+    ![Temporary password](./img/temp-password.jpg)
+
+6. When the new user first logs in with the temporary password, they will be prompted to create a new one. After that, they can start using Semaphore normally.
+
+</Steps>
+
+### How to change a user role {#role-change}
+
+To change user roles, go to the poeple option in the server menu and follow these steps:
+
+<Steps>
+
+1. Press the **Edit** button next to the user you want to change
+
+    ![Edit button](./img/edit-button-people.jpg)
+
+2. Select the new role
+
+    ![Change role button](./img/change-role.jpg)
+
+</Steps>
+
+
+### How to reset a user password {#reset-password}
+
+To reset a user password, go to the poeple option in the server menu and follow these steps:
+
+<Steps>
+
+1. Press the **Edit** button next to the user you want to change
+
+    ![Edit button](./img/edit-button-people.jpg)
+
+2. Press the **Reset password** button
+
+    ![Reset password button](./img/change-role.jpg)
+
+3. Press **Reset password**
+
+4. A new temporary password will be generated
+
+5. When the user logs in with the temporary password they will be prompted to create a new password
 
 </Steps>
 
@@ -53,14 +100,12 @@ To invite a user to your instance, press the **Add people** button.
 
 Users can only be removed from the instance when they don't own any projects. You must [transfer the ownership](./projects#owner-change) of all the user's projects before they can be removed from Semaphore.
 
-To remove users from the Semaphore instance:
+To remove a user, go to the people option in the server menu and follow these steps:
 
 <Steps>
 
 1. Transfer any [project ownership](./projects#owner-change) the user may have to another individual. The user must not own any projects
-2. Open the server menu
-3. Select **People**
-4. Press the **X** button next to the username of the user you want to remove
+2. Press the **X** button next to the username of the user you want to remove
 
   ![Removing a user from the organization](./img/remove-user.jpg)
 
@@ -73,14 +118,6 @@ Upon removal, access to all projects in Semaphore are revoked.
 Only an Admins and Owners can remove users from the Semaphore instance.
 
 :::
-
-### How to change user roles {#roles-people}
-
-To change the role of a user, press the **Change Role** button next to the person.
-
-![Changing user roles](./img/change-roles.jpg)
-
-See [roles](./rbac#org) to learn what roles are available.
 
 ### How to view permissions for roles {#org-roles}
 

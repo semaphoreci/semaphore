@@ -57,14 +57,29 @@ Since the root account is not tied to an specific person and has elevated privil
 
 To create new accounts, follow these steps:
 
-1. Type the email of the person you wish to invite
-2. Optionally, set a username. If not provided, the username is inferred from the email
-3. Press **Add member**
-4. Press **Reveal** to show the temporary password assigned to the new member
+<Steps>
 
-![Add user screen](./img/add-user.jpg)
+1. Open the server menu
+2. Select **People**
 
-By default, new accounts have the member role, which gives basic pemissions to the Semaphore instance. We recommend to create at least a new account with the admin or owner roles to manage the server without using the root account.
+    ![Server menu](./img/server-menu.jpg)
+
+3. Press **Add people**
+4. Type the email of the persons you wish to invite
+5. Optionally, set a username. If not provided, the username is inferred from the email
+6. When you are done adding users, press **Create Accounts**
+
+    ![Add user screen](./img/add-user.jpg)
+
+7. Take note of the temporary passwords for each account
+
+    ![Temporary password](./img/temp-password.jpg)
+
+8. When the new user first logs in with the temporary password, they will be prompted to create a new one. After that, they can start using Semaphore normally.
+
+</Steps>
+
+By default, new accounts have the member role, which gives basic permissions to the Semaphore instance. We recommend to create at least a new account with the admin or owner roles to manage the server without using the root account.
 
 You can change the role of a new user by pressing the **Change Role** button and selecting a new role.
 

@@ -115,9 +115,10 @@ Run the following command to retrieve the assigned IP address for your new serve
 export IP_ADDRESS=$(gcloud compute instances describe ${GOOGLE_INSTANCE_NAME} --zone ${GOOGLE_CLOUD_ZONE} --format='text(networkInterfaces.[].accessConfigs.[].natIP)' | awk -F': ' '{print $2}')
 ```
 
-Take note of the public IP address of your instance:
+Take note of the public IP address of your instance and save it on the configuration file:
 
 ```shell
+echo export IP_ADDRESS=${IP_ADDRESS} >> google-config
 echo $IP_ADDRESS
 ```
 
