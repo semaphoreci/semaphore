@@ -114,6 +114,12 @@ Selecting **Run on** allows you to configure what triggers are enabled for the p
 ![Pull request triggers](./img/project-general-settings-3.jpg)
 
 
+### Approving PRs with `/sem-approve` {#sem-approve}
+
+Blocked pull requests can be manually approved by adding a comment containing `/sem-approve` string in the PR conversation. Anyone who can run a forked pull request can also approve one.
+
+Approving forked pull requests is limited to new comments only and does not work with comment edits. Due to security concerns, `/sem-approve` will work only once. Subsequent pushes to the forked pull request must be approved again.
+
 ## How to skip commits {#skip}
 
 If you don't want to start a workflow, type one of the following strings in the commit message. 
